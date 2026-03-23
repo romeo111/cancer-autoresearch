@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-03-23T18:43:51.985515",
+  "source_reports": "experiment_reports",
+  "task": "treatments",
+  "min_score_filter": 75,
+  "augmented": true,
+  "total_examples": 291,
+  "train": 232,
+  "val": 29,
+  "test": 30,
+  "format": "both",
+  "system_prompt_chars": 1229
+}
