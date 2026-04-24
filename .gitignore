@@ -47,3 +47,8 @@ desktop.ini
 /tmp/
 *_temp.json
 *_draft.json
+
+# Private patient deliverables — CHARTER §9.3
+# Keep out until informed consent + de-identification + ethics approval
+/агресивний план лікування.html
+/стандартний план лікування.html
