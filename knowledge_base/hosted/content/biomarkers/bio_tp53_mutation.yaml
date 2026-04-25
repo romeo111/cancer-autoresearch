@@ -1,0 +1,79 @@
+id: BIO-TP53-MUTATION
+names:
+  preferred: "TP53 mutation / del(17p)"
+  ukrainian: "Мутація TP53 / del(17p)"
+  english: "TP53 mutation / del(17p)"
+  synonyms:
+    - "TP53"
+    - "del 17p"
+    - "p53 mutation"
+    - "17p deletion"
+
+biomarker_type: gene_mutation
+
+mutation_details:
+  gene: "TP53"
+  gene_hugo_id: "11998"
+  variant_type: "missense / nonsense / frameshift / splice / 17p deletion"
+  functional_impact: "loss_of_function (tumor suppressor)"
+
+measurement:
+  method: "NGS panel (PCR + sequencing) for point mutations + FISH for del(17p13.1) on tumor cells"
+  units: "categorical (positive | negative); positive = mutation OR del(17p) OR both"
+
+specimen_requirements:
+  - "Tumor tissue (FFPE biopsy) for solid + lymphoid neoplasms"
+  - "CD138-enriched plasma cells (BM aspirate) for myeloma"
+  - "CD19-enriched B cells (PB) for CLL — preferred over BM"
+  - "BM aspirate for AML / MDS"
+
+related_biomarkers:
+  - BIO-CLL-HIGH-RISK-GENETICS  # TP53 is one of 3-4 high-risk markers in CLL composite
+  - BIO-MM-CYTOGENETICS-HR      # del(17p) is one of high-risk MM cytogenetic abnormalities
+
+knowledge_base_refs:
+  oncokb: "https://www.oncokb.org/gene/TP53"
+  civic: "https://civicdb.org/genes/52"
+  cosmic: "https://cancer.sanger.ac.uk/cosmic/gene/analysis?ln=TP53"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-NCCN-MM-2025
+  - SRC-NCCN-AML-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Universal adverse marker across most hematologic + solid malignancies
+  — predicts poor response to chemo + chemoimmuno; selects for novel-
+  agent regimens / targeted therapies / cellular therapy / alloSCT.
+
+  **Cross-disease decision impact in our KB (current scope):**
+
+  - **CLL/SLL**: TP53-mut OR del(17p) → contraindicates chemoimmuno
+    (FCR/BR); favors fixed-duration VenO (CLL14) over BTKi continuous
+    in some guidelines. Captured in composite BIO-CLL-HIGH-RISK-GENETICS
+    + RF-CLL-HIGH-RISK.
+
+  - **MCL**: TP53-mut → predicts chemoimmuno failure (intensive
+    R-CHOP/R-DHAP+autoSCT outcomes substantially worse); routes to
+    BTKi-based 1L (acalabrutinib+R) regardless of fitness. Captured in
+    RF-MCL-BLASTOID-OR-TP53.
+
+  - **MM**: del(17p) part of high-risk cytogenetics composite — drives
+    quadruplet (D-VRd) over triplet (VRd). Captured in
+    BIO-MM-CYTOGENETICS-HR + RF-MM-HIGH-RISK-CYTOGENETICS.
+
+  - **DLBCL** (future scope): predicts R-CHOP failure; flag for early
+    CAR-T pathway consideration at 2L+. Not yet driving 1L algorithm.
+
+  - **AML** (future scope, not in KB yet): TP53-mut AML has dismal
+    chemo outcomes — currently routes directly to alloSCT consideration
+    + venetoclax-azacitidine for unfit + clinical trials.
+
+  This entity is the **standalone marker citation** for all the above.
+  Engine algorithms reference it indirectly via composite biomarkers
+  (CLL-HIGH-RISK-GENETICS, MM-CYTOGENETICS-HR) or via RedFlags
+  (RF-MCL-BLASTOID-OR-TP53). Centralizing it here gives clean
+  traceability + ready ground for future direct-driving rules
+  (e.g., 2L CAR-T flag) without re-encoding the source citation in
+  multiple places.

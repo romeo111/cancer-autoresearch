@@ -16,7 +16,8 @@ specimen_requirements:
   - "Bone marrow aspirate, plasma-cell enriched (CD138+ selection)"
   - "Minimum 100-200 plasma cells scored per probe"
 
-related_biomarkers: []
+related_biomarkers:
+  - BIO-TP53-MUTATION  # del(17p) / TP53 mutation is one component of this composite
 knowledge_base_refs: {}
 sources:
   - SRC-NCCN-MM-2025

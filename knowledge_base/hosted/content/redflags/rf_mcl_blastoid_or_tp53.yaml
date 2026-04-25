@@ -9,6 +9,8 @@ trigger:
       value: true
     - finding: "pleomorphic_morphology"
       value: true
+    - finding: "BIO-TP53-MUTATION"
+      value: "positive"
     - finding: "tp53_mutation"
       value: true
     - finding: "del_17p"

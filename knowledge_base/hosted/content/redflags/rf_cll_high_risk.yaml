@@ -7,6 +7,8 @@ trigger:
   any_of:
     - finding: "BIO-CLL-HIGH-RISK-GENETICS"
       value: "positive"
+    - finding: "BIO-TP53-MUTATION"
+      value: "positive"
     - finding: "tp53_mutation"
       value: true
     - finding: "del_17p"
