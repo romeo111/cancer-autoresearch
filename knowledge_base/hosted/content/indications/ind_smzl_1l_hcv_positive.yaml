@@ -1,0 +1,66 @@
+id: IND-SMZL-1L-HCV-POSITIVE
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-SPLENIC-MZL
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-HCV-RNA, required: true, value_constraint: "detectable (positive viral load)"}
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 2, decompensated_cirrhosis: false}
+
+recommended_regimen: REG-DAA-SOF-VEL  # reuse from HCV-MZL extranodal
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: strong
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~50-75% lymphoma regression after SVR12"
+  hcv_cure_rate_svr12: ">95% (non-cirrhotic, treatment-naive)"
+  progression_free_survival: "Median not reached in DAA-responsive cases; durable in many"
+  overall_survival_5y: ">85% in non-cirrhotic responders"
+
+hard_contraindications: []
+red_flags_triggering_alternative: [RF-DECOMP-CIRRHOSIS]
+
+required_tests:
+  - TEST-CBC
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-FIB4
+  - TEST-CD20-IHC
+  - TEST-HBV-SEROLOGY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PET-CT
+  - TEST-LN-EXCISIONAL-BIOPSY
+desired_tests: []
+
+rationale: >
+  HCV-positive splenic MZL behaves similarly to HCV-MZL extranodal —
+  antiviral therapy alone (SOF/VEL 12 weeks) often produces durable
+  lymphoma regression in parallel with HCV cure. ESMO 2024 + NCCN 2025
+  endorse antiviral-first for HCV-associated SMZL (treatment-naive,
+  non-cirrhotic, indolent presentation). Reuses REG-DAA-SOF-VEL from
+  HCV-MZL extranodal — same biology, same regimen.
+
+sources:
+  - {source_id: SRC-ESMO-MZL-2024, position: supports}
+  - {source_id: SRC-NCCN-BCELL-2025, position: supports}
+  - {source_id: SRC-EASL-HCV-2023, position: supports}
+  - {source_id: SRC-BSH-MZL-2024, position: supports}
+
+known_controversies: []
+
+do_not_do:
+  - "Не пропускати HCV testing у всіх пацієнтів з SMZL — DAA може уникнути chemoimmunotherapy."
+  - "Не комбінувати sofosbuvir з аміодароном — ризик важкої брадикардії."
+  - "Не пропускати HBV серологію перед стартом — окультна реактивація можлива."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: STUB — reuses HCV-MZL extranodal logic for splenic localization.

@@ -1,0 +1,13 @@
+{
+  "patient_id": "SMZL-HCVNEG-001",
+  "comment": "SMZL HCV-negative. Engine should select rituximab monotherapy as default.",
+  "disease": {"icd_o_3_morphology": "9689/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD20-IHC": "positive"},
+  "demographics": {"age": 71, "sex": "female", "ecog": 1},
+  "findings": {
+    "HCV RNA positive": false,
+    "HCV RNA negative OR no antiviral candidate": true,
+    "CD20+ histology confirmed": true
+  }
+}

@@ -1,0 +1,73 @@
+id: IND-SMZL-1L-RITUXIMAB
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-SPLENIC-MZL
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive"}
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 2}
+
+recommended_regimen: REG-RITUXIMAB-MONO
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: strong
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~80-90%"
+  complete_response: "~50%"
+  progression_free_survival: "Median PFS 5+ years"
+  overall_survival_5y: "~85%"
+
+hard_contraindications: [CI-HBV-NO-PROPHYLAXIS]
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-CD20-IHC
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-CECT-CAP
+desired_tests: []
+
+rationale: >
+  Standard 1L for HCV-negative splenic MZL OR HCV-positive SMZL with
+  symptomatic hypersplenism not adequately resolved by DAA. Rituximab
+  monotherapy is preferred over splenectomy in modern era — comparable
+  efficacy with less morbidity. Splenectomy reserved for patients
+  needing diagnostic clarification, refractory hypersplenism, or
+  rituximab failure.
+
+sources:
+  - {source_id: SRC-ESMO-MZL-2024, position: supports}
+  - {source_id: SRC-NCCN-BCELL-2025, position: supports}
+
+known_controversies:
+  - topic: "Splenectomy as 1L vs rituximab monotherapy"
+    positions:
+      - position: "Rituximab preferred — avoids surgical morbidity, comparable PFS"
+        sources: [SRC-ESMO-MZL-2024]
+      - position: "Splenectomy curative for some + provides definitive diagnosis"
+        sources: [SRC-NCCN-BCELL-2025]
+        evidence_note: "Splenectomy fell out of favor with widespread rituximab availability; still used in selected cases"
+    our_default: "Rituximab × 4 weekly induction, then maintenance every 2 months × 2 years"
+    rationale: "Less morbid; durable PFS; preserves spleen function."
+
+do_not_do:
+  - "Не починати без HBV скринінгу + entecavir prophylaxis при HBsAg+ або anti-HBc+ — anti-CD20 reactivation ризик."
+  - "Не пропускати HCV testing — якщо HCV+, спочатку DAA pathway (IND-SMZL-1L-HCV-POSITIVE)."
+  - "Не призначати splenectomy як 1L без обговорення rituximab з пацієнтом."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: STUB.

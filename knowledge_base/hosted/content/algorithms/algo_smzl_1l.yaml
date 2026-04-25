@@ -1,0 +1,40 @@
+id: ALGO-SMZL-1L
+applicable_to_disease: DIS-SPLENIC-MZL
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select default + alternative for first-line splenic MZL based on HCV
+  status. HCV-positive → DAA antiviral therapy first (lymphoma often
+  regresses with viral cure); HCV-negative → rituximab monotherapy.
+
+output_indications:
+  - IND-SMZL-1L-HCV-POSITIVE
+  - IND-SMZL-1L-RITUXIMAB
+
+default_indication: IND-SMZL-1L-RITUXIMAB
+alternative_indication: IND-SMZL-1L-HCV-POSITIVE
+
+decision_tree:
+  - step: 1
+    evaluate:
+      all_of:
+        - condition: "HCV RNA positive"
+        - condition: "Compensated liver function"
+    if_true:
+      result: IND-SMZL-1L-HCV-POSITIVE
+    if_false:
+      next_step: 2
+  - step: 2
+    evaluate:
+      all_of:
+        - condition: "HCV RNA negative OR no antiviral candidate"
+        - condition: "CD20+ histology confirmed"
+    if_true:
+      result: IND-SMZL-1L-RITUXIMAB
+    if_false:
+      result: IND-SMZL-1L-RITUXIMAB
+
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-MZL-2024]
+last_reviewed: "2026-04-25"
+notes: >
+  HCV testing MANDATORY. If HCV+ → DAA pathway. Decompensated cirrhosis
+  = HCV-positive route blocked → rituximab fallback.

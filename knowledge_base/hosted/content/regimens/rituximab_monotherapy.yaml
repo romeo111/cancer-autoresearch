@@ -1,0 +1,38 @@
+id: REG-RITUXIMAB-MONO
+name: "Rituximab monotherapy (375 mg/m² weekly × 4, then maintenance)"
+name_ua: "Ритуксимаб монотерапія (375 mg/m² щотижня × 4, потім підтримка)"
+alternate_names: ["R-mono", "Rituximab single-agent"]
+
+components:
+  - drug_id: DRUG-RITUXIMAB
+    dose: "375 mg/m²"
+    schedule: "IV weekly × 4 (induction); then every 2 months × 2 years (maintenance)"
+    route: IV
+
+cycle_length_days: 7  # weekly induction
+total_cycles: "4 weekly + 12 maintenance doses every 2 months × 2 years"
+toxicity_profile: low
+
+premedication: ["Antihistamine + acetaminophen + IV steroid before each dose (especially first dose)"]
+mandatory_supportive_care: []
+monitoring_schedule_id: MON-RITUXIMAB-MONO
+
+dose_adjustments:
+  - condition: "Severe infusion reaction"
+    modification: "Slow infusion rate; if anaphylactoid → discontinue"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "ANC <1000"
+    modification: "Hold dose; resume when recovered"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: "Rituximab fully reimbursed via НСЗУ for B-cell lymphoma indications"
+
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-MZL-2024]
+last_reviewed: "2026-04-25"
+notes: >
+  Used in: SMZL (HCV-neg or post-DAA persistence), nodal MZL low-burden,
+  FL low-burden when patient prefers active treatment over W&W,
+  selected r/r low-grade NHL. HBV reactivation surveillance throughout
+  + 12 mo post.

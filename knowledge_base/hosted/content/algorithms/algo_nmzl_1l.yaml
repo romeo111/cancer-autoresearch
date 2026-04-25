@@ -1,0 +1,40 @@
+id: ALGO-NMZL-1L
+applicable_to_disease: DIS-NODAL-MZL
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select default + alternative for first-line nodal MZL. Mirrors FL
+  algorithm: low-burden → W&W; high-burden → BR; transformation suspect
+  → R-CHOP (via aggressive track shared with FL).
+
+output_indications:
+  - IND-NMZL-1L-WATCH
+  - IND-NMZL-1L-BR
+  - IND-FL-1L-RCHOP-AGGRESSIVE  # share aggressive with FL — same biology, same regimen
+
+default_indication: IND-NMZL-1L-WATCH
+alternative_indication: IND-NMZL-1L-BR
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-FL-TRANSFORMATION-SUSPECT
+    if_true:
+      result: IND-FL-1L-RCHOP-AGGRESSIVE
+    if_false:
+      next_step: 2
+  - step: 2
+    evaluate:
+      any_of:
+        - red_flag: RF-FL-HIGH-TUMOR-BURDEN-GELF
+    if_true:
+      result: IND-NMZL-1L-BR
+    if_false:
+      result: IND-NMZL-1L-WATCH
+
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-MZL-2024]
+last_reviewed: "2026-04-25"
+notes: >
+  Reuses GELF + transformation-suspect RedFlags from FL. Aggressive track
+  reuses IND-FL-1L-RCHOP-AGGRESSIVE — biology + treatment identical at
+  the transformation point.

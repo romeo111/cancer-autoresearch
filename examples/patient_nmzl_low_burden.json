@@ -1,0 +1,16 @@
+{
+  "patient_id": "NMZL-LOWBURDEN-001",
+  "comment": "Nodal MZL, asymptomatic, no GELF criteria. Engine should select W&W (surveillance).",
+  "disease": {"id": "DIS-NODAL-MZL"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD20-IHC": "positive"},
+  "demographics": {"age": 62, "sex": "male", "ecog": 0},
+  "findings": {
+    "fl_gelf_high_burden": false,
+    "dominant_nodal_mass_cm": 2.5,
+    "b_symptoms_present": false,
+    "ldh_above_uln": false,
+    "rapid_progression": false,
+    "fl_transformation_suspect": false
+  }
+}

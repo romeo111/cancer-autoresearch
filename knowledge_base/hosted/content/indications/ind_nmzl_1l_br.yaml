@@ -1,0 +1,69 @@
+id: IND-NMZL-1L-BR
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-NODAL-MZL
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive"}
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 2, fit_for_chemoimmunotherapy: true}
+
+recommended_regimen: REG-BR-STANDARD  # reuse from HCV-MZL + FL
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~90%"
+  complete_response: "~50%"
+  progression_free_survival: "Median PFS ~5-7 years"
+  overall_survival_5y: "~85%"
+
+hard_contraindications: [CI-HBV-NO-PROPHYLAXIS, CI-SEVERE-CYTOPENIA-BR]
+red_flags_triggering_alternative: [RF-FL-TRANSFORMATION-SUSPECT]
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-CD20-IHC
+  - TEST-LN-EXCISIONAL-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PET-CT
+  - TEST-FIB4
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+desired_tests: []
+
+rationale: >
+  Standard 1L for nodal MZL with high tumor burden (GELF-style) or
+  symptomatic disease. BR (bendamustine + rituximab) is preferred over
+  R-CHOP for indolent NMZL — same logic as FL. Maintenance rituximab
+  × 2 years post-induction recommended.
+
+sources:
+  - {source_id: SRC-NCCN-BCELL-2025, position: supports}
+  - {source_id: SRC-ESMO-MZL-2024, position: supports}
+
+known_controversies: []
+
+do_not_do:
+  - "Не починати без HBV скринінгу + entecavir prophylaxis при HBsAg+ або anti-HBc+."
+  - "Не використовувати full-dose bendamustine при FIB-4 > 3.25."
+  - "Не пропускати PJP profilaxis."
+  - "Не пропускати re-biopsy при підозрі на трансформацію — потребує R-CHOP."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: STUB — reuses REG-BR-STANDARD.

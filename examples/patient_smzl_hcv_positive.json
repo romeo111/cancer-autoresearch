@@ -1,0 +1,12 @@
+{
+  "patient_id": "SMZL-HCV-001",
+  "comment": "SMZL with HCV-positive status, compensated liver. Engine should select DAA antiviral (HCV-positive track) as default.",
+  "disease": {"icd_o_3_morphology": "9689/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-HCV-RNA": "positive", "BIO-CD20-IHC": "positive"},
+  "demographics": {"age": 64, "sex": "male", "ecog": 1, "decompensated_cirrhosis": false},
+  "findings": {
+    "HCV RNA positive": true,
+    "Compensated liver function": true
+  }
+}

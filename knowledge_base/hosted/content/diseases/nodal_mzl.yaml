@@ -1,0 +1,37 @@
+id: DIS-NODAL-MZL
+names:
+  preferred: "Nodal Marginal Zone Lymphoma"
+  ukrainian: "Нодальна лімфома маргінальної зони"
+  english: "Nodal Marginal Zone Lymphoma"
+  synonyms: ["NMZL"]
+
+codes:
+  icd_o_3_morphology: "9699/3"  # shared with extranodal MZL morphology family
+  icd_10: "C83.0"
+  who_classification: "Mature B-cell neoplasms — Nodal marginal zone lymphoma per WHO 5th ed."
+
+archetype: risk_stratified
+lineage: b_cell_lymphoma
+
+etiological_factors:
+  - "Etiology largely unknown (unlike extranodal MZL → H. pylori, HCV)"
+  - "Possible association with autoimmune disease in subset"
+
+related_diseases:
+  - DIS-HCV-MZL
+  - DIS-SPLENIC-MZL
+  - DIS-FL  # nodal differential
+
+epidemiology:
+  context: >
+    Least common MZL subtype (~10%). Median age ~60. Lymph-node-
+    predominant disease without extranodal mass or splenomegaly.
+    Indolent — treated similarly to follicular lymphoma (W&W for
+    asymptomatic; chemoimmuno for high-burden).
+
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-MZL-2024]
+last_reviewed: "2026-04-25"
+notes: >
+  Treatment paradigm mirrors FL: GELF-style criteria for active treatment;
+  W&W for asymptomatic low-burden. No specific etiologic agent identified
+  (so antiviral pathway not relevant).

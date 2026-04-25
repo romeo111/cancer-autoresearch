@@ -1,0 +1,61 @@
+id: IND-NMZL-1L-WATCH
+plan_track: surveillance
+
+applicable_to:
+  disease_id: DIS-NODAL-MZL
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive"}
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 2}
+
+recommended_regimen: null
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "N/A — observational"
+  progression_free_survival: "Median time-to-treatment 2-5 years for low-burden cases"
+  overall_survival_5y: "Equivalent to immediate-treatment for low-burden"
+
+hard_contraindications: []
+red_flags_triggering_alternative: [RF-FL-HIGH-TUMOR-BURDEN-GELF, RF-FL-TRANSFORMATION-SUSPECT]
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-CD20-IHC
+  - TEST-LN-EXCISIONAL-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PET-CT
+  - TEST-HBV-SEROLOGY
+desired_tests: []
+
+rationale: >
+  Watch-and-wait for low-burden asymptomatic nodal MZL. Treatment
+  paradigm mirrors FL — same evidence base supports observation for
+  GELF-negative patients. Active treatment triggered on GELF criteria
+  or transformation suspect (route to BR or R-CHOP respectively).
+
+sources:
+  - {source_id: SRC-NCCN-BCELL-2025, position: supports}
+  - {source_id: SRC-ESMO-MZL-2024, position: supports}
+
+known_controversies: []
+
+do_not_do:
+  - "Не лікувати asymptomatic NMZL без GELF-подібних критеріїв — як для FL."
+  - "Не пропускати CD20 + flow + LN biopsy для точної диференціації від FL/MCL/CLL."
+  - "Не пропускати re-biopsy при rapidly-growing dominant lesion — трансформація потребує R-CHOP."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: STUB.

@@ -1,0 +1,41 @@
+id: MON-RITUXIMAB-MONO
+linked_to_regimen: REG-RITUXIMAB-MONO
+
+phases:
+  - name: baseline
+    window: "Within 2 weeks before first dose"
+    tests:
+      - TEST-CBC
+      - TEST-LFT
+      - TEST-LDH
+      - TEST-CD20-IHC
+      - TEST-HBV-SEROLOGY
+      - TEST-HCV-ANTIBODY
+      - TEST-FLOW-CYTOMETRY
+    visits: ["Treatment planning visit"]
+    checkpoints:
+      - "Confirm CD20+ histology"
+      - "HBV status + entecavir prophylaxis if HBsAg+ or anti-HBc+"
+
+  - name: induction
+    window: "Day 1 of each weekly induction × 4"
+    tests: [TEST-CBC, TEST-LFT]
+    visits: ["Pre-infusion clinical assessment + infusion"]
+    checkpoints: ["Infusion reactions especially first dose"]
+
+  - name: maintenance
+    window: "Every 2 months × 2 years"
+    tests: [TEST-CBC, TEST-LFT, TEST-LDH]
+    visits: ["Pre-infusion clinical + lab review"]
+    checkpoints:
+      - "HBV-DNA quarterly during therapy and 12 mo post"
+      - "Disease assessment clinically; imaging if concern"
+
+  - name: follow_up
+    window: "Every 6 months × 5 years post-treatment"
+    tests: [TEST-CBC, TEST-LFT, TEST-LDH]
+    visits: ["Clinical assessment"]
+    checkpoints: ["Surveillance for relapse + transformation"]
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
