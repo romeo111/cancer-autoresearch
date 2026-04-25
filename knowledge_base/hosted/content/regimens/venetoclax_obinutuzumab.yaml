@@ -1,0 +1,59 @@
+id: REG-VENETOCLAX-OBINUTUZUMAB
+name: "Venetoclax + Obinutuzumab (VenO), 12 months fixed-duration (CLL14 schedule)"
+name_ua: "Венетоклакс + Обінутузумаб (VenO), 12 місяців фіксованої тривалості (CLL14)"
+alternate_names: ["VenO", "Ven-Obi", "CLL14"]
+
+components:
+  - drug_id: DRUG-OBINUTUZUMAB
+    dose: "100 mg cycle 1 day 1; 900 mg day 2; 1000 mg days 8 + 15; then 1000 mg day 1 of cycles 2-6"
+    schedule: "IV monthly (28-day cycles), 6 cycles total"
+    route: IV
+  - drug_id: DRUG-VENETOCLAX
+    dose: >
+      5-week ramp starting cycle 1 day 22: 20 → 50 → 100 → 200 → 400 mg
+      PO daily, then 400 mg daily continuous through cycle 12
+    schedule: "PO daily, total 12 months from start of ramp"
+    route: PO
+  - drug_id: DRUG-ALLOPURINOL
+    dose: "300 mg PO daily"
+    schedule: "Start 72h before venetoclax ramp; continue ≥1 week post highest dose"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "6 obinutuzumab + 12 months total venetoclax"
+toxicity_profile: moderate-high
+
+premedication:
+  - "Pre-obinutuzumab: methylprednisolone IV + acetaminophen + diphenhydramine for first dose"
+  - "Pre-venetoclax ramp: hydration + allopurinol; serial labs every 6-8h during first 24h of each ramp step in high-burden patients"
+mandatory_supportive_care:
+  - SUP-TLS-PROPHYLAXIS
+  - SUP-PJP-PROPHYLAXIS
+monitoring_schedule_id: MON-CLL-BTKI
+
+dose_adjustments:
+  - condition: "Concomitant strong CYP3A4 inhibitor"
+    modification: "Hold during inhibitor; resume after washout. Avoid during ramp-up phase."
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "High tumor burden (ALC >25K OR any LN ≥10 cm OR LN ≥5 cm + ALC ≥25K)"
+    modification: "Hospitalize for first 3 ramp-up doses with q6h labs (TLS surveillance)"
+    rationale: "Fatal TLS reported when ramp-up done outpatient in high-burden patients"
+  - condition: "ANC <1000 OR febrile neutropenia"
+    modification: "Hold venetoclax + G-CSF support; resume at lower step"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: >
+    Venetoclax registered, NOT reimbursed via НСЗУ. Obinutuzumab
+    registered + reimbursed for some indications. Funding pathway must
+    be confirmed pre-start.
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  CLL14 trial (Fischer 2019, follow-up 2024): superior 6-year PFS vs
+  Clb+O. Fixed-duration (12 mo) attractive vs continuous BTKi. Preferred
+  in some guidelines for high-risk CLL (TP53/del 17p/IGHV-unmutated).
+  TLS PROTOCOL CRITICAL: skipping ramp = fatal hyperkalemia + AKI.
+  PJP prophylaxis throughout therapy.

@@ -1,0 +1,41 @@
+id: ALGO-CLL-1L
+applicable_to_disease: DIS-CLL
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select default + alternative for first-line CLL based on cytogenetic
+  risk (TP53/del 17p/IGHV-unmutated/complex karyotype). Two tracks:
+  BTKi continuous (standard) vs VenO time-limited (preferred for high-risk).
+
+output_indications:
+  - IND-CLL-1L-BTKI
+  - IND-CLL-1L-VENO
+
+default_indication: IND-CLL-1L-BTKI
+alternative_indication: IND-CLL-1L-VENO
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-CLL-HIGH-RISK
+    if_true:
+      result: IND-CLL-1L-VENO
+    if_false:
+      next_step: 2
+  - step: 2
+    evaluate:
+      all_of:
+        - condition: "Standard-risk genetics"
+        - condition: "iwCLL treatment indication present"
+    if_true:
+      result: IND-CLL-1L-BTKI
+    if_false:
+      result: IND-CLL-1L-BTKI
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Both tracks are NCCN Cat 1; choice reflects risk + patient preference
+  (continuous vs finite-duration). Asymptomatic CLL without iwCLL
+  indication routes to active surveillance — handled at higher level
+  (no plan generated).

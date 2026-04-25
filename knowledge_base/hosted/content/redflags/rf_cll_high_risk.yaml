@@ -1,0 +1,30 @@
+id: RF-CLL-HIGH-RISK
+definition: "CLL with high-risk genetics: TP53 mutation OR del(17p) OR IGHV-unmutated OR complex karyotype (≥3 abnormalities)"
+definition_ua: "ХЛЛ з цитогенетикою високого ризику: мутація TP53 АБО del(17p) АБО IGHV-unmutated АБО комплексний каріотип (≥3 аномалії)"
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "BIO-CLL-HIGH-RISK-GENETICS"
+      value: "positive"
+    - finding: "tp53_mutation"
+      value: true
+    - finding: "del_17p"
+      value: true
+    - finding: "ighv_unmutated"
+      value: true
+    - finding: "complex_karyotype"
+      value: true
+
+clinical_direction: intensify
+
+relevant_diseases: [DIS-CLL]
+shifts_algorithm: [ALGO-CLL-1L]
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Triggers preference for fixed-duration venetoclax+obinutuzumab (CLL14)
+  over BTKi continuous in some patient profiles, AND absolutely
+  contraindicates chemoimmunotherapy (FCR/BR). High-risk CLL must NEVER
+  receive chemoimmuno 1L — survival impact substantial.

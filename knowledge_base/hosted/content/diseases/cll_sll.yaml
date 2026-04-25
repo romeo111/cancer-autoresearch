@@ -1,0 +1,39 @@
+id: DIS-CLL
+names:
+  preferred: "Chronic Lymphocytic Leukemia / Small Lymphocytic Lymphoma"
+  ukrainian: "Хронічна лімфоцитарна лейкемія / Дрібноклітинна лімфоцитарна лімфома"
+  english: "Chronic Lymphocytic Leukemia / Small Lymphocytic Lymphoma"
+  synonyms: ["CLL", "SLL", "ХЛЛ"]
+
+codes:
+  icd_o_3_morphology: "9823/3"
+  icd_o_3_topography: []
+  icd_10: "C91.1"  # CLL of B-cell type
+  who_classification: "Mature B-cell leukemias — CLL/SLL per WHO 5th ed."
+
+archetype: risk_stratified
+lineage: b_cell_leukemia
+
+etiological_factors:
+  - "Genetic: del(13q) ~55% (favorable), trisomy 12 ~16%, del(11q) ~18% (intermediate), del(17p)/TP53 ~5-7% (adverse)"
+  - "IGHV mutational status: unmutated (~50%) = adverse; mutated = favorable"
+  - "MBL (monoclonal B-cell lymphocytosis) precedes most CLL"
+
+related_diseases: ["DIS-DLBCL-NOS"]  # Richter transformation target
+
+epidemiology:
+  context: >
+    Most common adult leukemia in West (~30% of all leukemias, ~5/100K/y).
+    Median age ~70. Indolent for many — some never need treatment.
+    Modern era (BTKi + venetoclax) has transformed outcomes; chemoimmuno
+    (FCR, BR) nearly obsolete except in young IGHV-mutated.
+
+sources: [SRC-NCCN-BCELL-2025, SRC-EHA-WORKUP-2024]
+last_reviewed: "2026-04-25"
+notes: >
+  CLL = bone marrow + blood disease (≥5K monoclonal B-cells); SLL =
+  same biology, lymph-node-predominant. Treated identically. iwCLL
+  criteria for treatment indication: progressive cytopenia, symptomatic
+  splenomegaly/lymphadenopathy, B-symptoms, autoimmune cytopenia not
+  responsive to steroids, lymphocyte doubling time <6 mo. Asymptomatic
+  CLL = active surveillance regardless of stage.

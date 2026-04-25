@@ -1,0 +1,17 @@
+{
+  "patient_id": "CLL-LOWRISK-001",
+  "comment": "CLL with iwCLL indication, standard-risk genetics (no TP53/del 17p/IGHV-unmutated). Engine should select BTKi continuous (acalabrutinib) as default.",
+  "disease": {"icd_o_3_morphology": "9823/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CLL-HIGH-RISK-GENETICS": "negative"},
+  "demographics": {"age": 68, "sex": "male", "ecog": 1},
+  "findings": {
+    "tp53_mutation": false,
+    "del_17p": false,
+    "ighv_unmutated": false,
+    "complex_karyotype": false,
+    "iwcll_treatment_indication": true,
+    "Standard-risk genetics": true,
+    "iwCLL treatment indication present": true
+  }
+}

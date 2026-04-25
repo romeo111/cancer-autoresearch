@@ -1,0 +1,40 @@
+id: REG-ACALABRUTINIB-CONTINUOUS
+name: "Acalabrutinib monotherapy (continuous, until progression or intolerance)"
+name_ua: "Акалабрутиніб монотерапія (безперервно до прогресії або непереносимості)"
+alternate_names: ["Acalabrutinib mono", "ELEVATE-TN-style"]
+
+components:
+  - drug_id: DRUG-ACALABRUTINIB
+    dose: "100 mg"
+    schedule: "PO twice daily continuous"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression or intolerance"
+toxicity_profile: low-moderate
+
+premedication: ["Hydration if high-burden disease (TLS unusual but possible)"]
+mandatory_supportive_care: []
+monitoring_schedule_id: MON-CLL-BTKI
+
+dose_adjustments:
+  - condition: "Concomitant strong CYP3A4 inhibitor (azoles, ritonavir)"
+    modification: "Hold during inhibitor course OR reduce to 100 mg once daily"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Severe hepatic impairment (Child-Pugh C)"
+    modification: "Avoid"
+  - condition: "Concomitant PPI/H2-blocker"
+    modification: "Separate dosing 2h apart OR switch to acalabrutinib maleate (PPI-compatible)"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Acalabrutinib registered but NOT reimbursed via НСЗУ — funding gap; ibrutinib (REG-IBRUTINIB-CLL or similar) may substitute as fallback"
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Preferred BTKi for CLL 1L per NCCN 2025 (over ibrutinib due to less
+  cardiac toxicity). ELEVATE-TN (1L CLL): superior PFS vs Clb+O at 5y;
+  ELEVATE-RR (r/r): non-inferior to ibrutinib with better safety. Funding
+  pathway must be confirmed pre-start in Ukraine.

@@ -1,0 +1,79 @@
+id: MON-CLL-BTKI
+linked_to_regimen: REG-ACALABRUTINIB-CONTINUOUS
+
+phases:
+  - name: baseline
+    window: "Within 2 weeks before start"
+    tests:
+      - TEST-CBC
+      - TEST-CMP
+      - TEST-LFT
+      - TEST-LDH
+      - TEST-B2-MICROGLOBULIN
+      - TEST-FISH-PANEL
+      - TEST-NGS-LYMPHOID-PANEL
+      - TEST-IMMUNOGLOBULINS
+      - TEST-HBV-SEROLOGY
+      - TEST-HCV-ANTIBODY
+      - TEST-HIV-SEROLOGY
+      - TEST-CECT-CAP
+      - TEST-ECHO
+    visits: ["Treatment planning visit + cardiology if BTKi (acalabrutinib lower cardiac risk than ibrutinib but baseline ECG advised)"]
+    checkpoints:
+      - "Confirm CLL diagnosis: CD19+ CD5+ CD23+ flow on PB ≥5K monoclonal B-cells"
+      - "Risk stratification: del(17p), TP53, IGHV mutational status, karyotype"
+      - "iwCLL treatment indication documented (if asymptomatic — defer to surveillance)"
+      - "Cardiac baseline (atrial fibrillation history, hypertension control)"
+      - "HBV status + entecavir prophylaxis if HBsAg+ or anti-HBc+ (anti-CD20 in VenO regimen)"
+
+  - name: on_treatment_btki
+    window: "Monthly × 3 months, then every 3 months"
+    tests:
+      - TEST-CBC
+      - TEST-CMP
+      - TEST-LFT
+    visits: ["Clinical assessment + bleeding/bruising screen + AF screen"]
+    checkpoints:
+      - "ALC trend (lymphocytosis early on BTKi is expected — not progression)"
+      - "Bleeding events; major bleed → hold BTKi"
+      - "AF symptoms → ECG; if AF → cardiology + anticoagulation strategy"
+
+  - name: on_treatment_veno
+    window: "Per CLL14 schedule during 12-month VenO course"
+    tests:
+      - TEST-CBC
+      - TEST-CMP
+      - TEST-LFT
+      - TEST-URIC-ACID
+    visits: ["Pre-cycle obinutuzumab visits; venetoclax ramp-up visits with q6-8h labs at high-burden disease"]
+    checkpoints:
+      - "TLS labs (K+, phosphate, calcium, uric acid, creatinine) per ramp-up schedule"
+      - "ANC + platelets pre each obinutuzumab dose"
+      - "Infusion reactions to obinutuzumab (especially first dose)"
+
+  - name: response_assessment
+    window: "After cycle 6 (VenO) or every 6 months on BTKi"
+    tests:
+      - TEST-CBC
+      - TEST-CECT-CAP
+      - TEST-FLOW-CYTOMETRY
+    visits: ["Restaging — clinical, lab, imaging"]
+    checkpoints:
+      - "iwCLL response criteria (CR, PR, PR-L on BTKi, SD, PD)"
+      - "MRD assessment by flow on PB at end of VenO 12-month course"
+
+  - name: follow_up
+    window: "Every 3-6 months after treatment / continuously on BTKi"
+    tests: [TEST-CBC, TEST-CMP, TEST-LFT]
+    visits: ["Clinical + labs"]
+    checkpoints:
+      - "Surveillance for relapse (median PFS years for both regimens)"
+      - "Watch for Richter transformation (rapid LDH rise, new B-symptoms, isolated mass) — re-biopsy"
+      - "Second primary malignancy screening"
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Shared between BTKi (acalabrutinib continuous) and VenO time-limited
+  paths. BTKi-specific cardiac/bleeding surveillance; VenO-specific TLS
+  protocol during ramp.

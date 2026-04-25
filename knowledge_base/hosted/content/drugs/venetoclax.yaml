@@ -1,0 +1,62 @@
+id: DRUG-VENETOCLAX
+names:
+  preferred: "Venetoclax"
+  ukrainian: "Венетоклакс"
+  english: "Venetoclax"
+  brand_names: ["Venclexta", "Venclyxto"]
+atc_code: L01XX52
+rxnorm_id: "1812489"
+drug_class: "Selective BCL-2 inhibitor (BH3 mimetic)"
+mechanism: >
+  Selectively binds BCL-2, displaces pro-apoptotic BH3 proteins, restores
+  apoptosis in BCL-2-dependent cancer cells. Highly active in CLL (where
+  CLL is BCL-2-addicted), AML, multiple myeloma. Substantial tumor lysis
+  risk at initiation — strict 5-week dose ramp + TLS prophylaxis required.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    registration_number: "[TBD]"
+    reimbursed_nszu: false
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  CLL 1L (CLL14 schedule): 5-week ramp 20 → 50 → 100 → 200 → 400 mg PO daily,
+  then 400 mg daily continuous OR for 12 months total combined with
+  obinutuzumab 6 cycles. AML / r/r MM use different schedules.
+formulations: ["Tablets 10 / 50 / 100 mg"]
+
+absolute_contraindications:
+  - "Concomitant strong CYP3A4 inhibitors during ramp-up phase (azoles, clarithromycin)"
+  - "Severe hepatic impairment"
+  - "Hypersensitivity"
+black_box_warnings:
+  - "Tumor lysis syndrome — fatal if not managed; mandatory TLS prophylaxis + ramp"
+major_interactions:
+  - "Strong CYP3A4 inhibitors / inducers: dose modify"
+  - "Anticoagulants: bleeding risk"
+  - "Live vaccines: avoid"
+common_adverse_events:
+  - "Neutropenia (mandatory G-CSF support if febrile)"
+  - "Diarrhea"
+  - "Nausea"
+  - "Fatigue"
+  - "Upper respiratory infection"
+serious_adverse_events:
+  - "Tumor lysis syndrome (fatal if ramp / prophylaxis skipped)"
+  - "Severe neutropenia + infection"
+  - "Pneumonia"
+
+pharmacology: {half_life: "~26 hours"}
+
+sources: [SRC-NCCN-BCELL-2025, SRC-NCCN-AML-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Used in fixed-duration combos: VenO (venetoclax + obinutuzumab) 12 mo
+  for CLL 1L (CLL14); MURANO for r/r CLL with rituximab. AML: lower-dose
+  with azacitidine for unfit. Ukraine: registered, NOT НСЗУ reimbursed —
+  major access barrier. Strict 5-week ramp-up + IV hydration + allopurinol
+  + serial labs every 6-8 hours during first 3 doses of each ramp step
+  for high-burden CLL — TLS deaths reported with skipped protocol.
