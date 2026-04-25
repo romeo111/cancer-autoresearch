@@ -1,0 +1,4 @@
+red_flag: RF-HGBL-DH-FRAILTY-AGE
+findings:
+  age_years: 76
+expected_fires: true

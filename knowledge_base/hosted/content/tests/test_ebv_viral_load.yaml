@@ -1,0 +1,33 @@
+id: TEST-EBV-VIRAL-LOAD
+names:
+  preferred: "EBV DNA viral load (quantitative PCR)"
+  ukrainian: "Кількісне визначення ДНК EBV (ПЛР)"
+  english: "EBV DNA quantitative PCR"
+  synonyms: ["EBV PCR plasma", "EBV viral load whole blood"]
+loinc_codes: ["32781-7", "62461-3"]
+category: lab
+purpose: >
+  Quantify circulating Epstein-Barr virus DNA. Pre-emptive monitoring in
+  PTLD (post-transplant), ATLL workup, NK/T-nasal lymphoma, AITL
+  (driving B-cell proliferation), and to detect EBV-driven progression
+  in HIV-related lymphomas.
+specimen: "Whole blood (EDTA) preferred for transplant monitoring; plasma for tumor-burden assessment"
+turnaround_time: "1-3 days"
+priority_class: standard
+
+availability_ukraine:
+  state_funded: false
+  typical_availability: "Tertiary centers + private labs; not universally state-funded"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-EHA-WORKUP-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. PTLD: rising EBV VL >1000 copies/mL is the trigger for
+  pre-emptive rituximab + immunosuppression reduction (Reduce-IS).
+  NK/T-nasal: pre-treatment EBV VL is prognostic; clearance during
+  SMILE correlates with response. AITL: EBER-ISH on biopsy + plasma
+  EBV PCR identifies EBV-driven B-cell proliferations within the
+  T-cell tumor.

@@ -1,0 +1,29 @@
+id: RF-EATL-HIGH-RISK-BIOLOGY
+definition: "Type II EATL (monomorphic epitheliotropic intestinal T-cell lymphoma) per WHO classification — distinct from celiac-associated Type I EATL; often non-celiac, more chemo-refractory."
+definition_ua: "Тип II EATL (мономорфна епітеліотропна кишкова T-клітинна лімфома) за WHO — відрізняється від целіакія-асоційованої Type I EATL; часто без целіакії, більш хіміо-рефрактерна."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "eatl_type_ii_meitl"
+      value: true
+    - finding: "celiac_disease_negative_eatl"
+      value: true
+
+
+clinical_direction: intensify
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-EATL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Type II EATL (now MEITL in WHO 2022) has worse outcomes than Type I; intensification options limited (alloSCT considered upfront when feasible).

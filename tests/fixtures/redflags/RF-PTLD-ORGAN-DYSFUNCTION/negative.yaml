@@ -1,0 +1,5 @@
+red_flag: RF-PTLD-ORGAN-DYSFUNCTION
+findings:
+  allograft_dysfunction: false
+  creatinine_increase_x_baseline: -3.5
+expected_fires: false

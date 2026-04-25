@@ -1,0 +1,31 @@
+id: RF-PMBCL-INFECTION-SCREENING
+definition: "Pre-treatment HBV/HCV/HIV serology mandatory before rituximab; HBsAg+ requires antiviral prophylaxis (entecavir/TDF) initiated 1 week before anti-CD20."
+definition_ua: "Обов'язкова HBV/HCV/HIV серологія перед rituximab; HBsAg+ потребує противірусної профілактики (entecavir/TDF) за 1 тиждень до анти-CD20."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hcv"
+      value: "positive"
+    - finding: "hiv_serology"
+      value: "positive"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PMBCL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Cross-disease HBV reactivation risk handled by RF-UNIVERSAL-HBV-REACTIVATION-RISK; this disease-specific entry kept for PMBCL MDT-brief annotation.

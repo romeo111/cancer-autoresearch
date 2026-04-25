@@ -1,0 +1,5 @@
+red_flag: RF-PTLD-TRANSFORMATION-PROGRESSION
+findings:
+  is_reduction_failure_2_4_weeks: false
+  ptld_progression_on_rituximab: false
+expected_fires: false

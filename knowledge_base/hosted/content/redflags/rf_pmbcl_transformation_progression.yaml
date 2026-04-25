@@ -1,0 +1,29 @@
+id: RF-PMBCL-TRANSFORMATION-PROGRESSION
+definition: "Mid-treatment PET-CT progression (Deauville 4-5 with new lesions or SUVmax increase >25%) — switch to salvage 2L pathway, do not continue same regimen."
+definition_ua: "Прогресія за PET-CT під час лікування (Deauville 4-5 з новими вогнищами або SUVmax зростання >25%) — перехід на 2L salvage, не продовжувати поточний режим."
+
+trigger:
+  type: imaging_finding
+  any_of:
+    - finding: "pet_deauville_score"
+      threshold: 4
+      comparator: ">="
+    - finding: "interim_pet_progression"
+      value: true
+
+clinical_direction: investigate
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-PMBCL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Mid-therapy progression triggers a 2L salvage handoff (separate Algorithm). 1L decision_tree is unaffected; flag surfaces as MDT-brief priority annotation.

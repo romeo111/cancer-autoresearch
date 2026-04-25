@@ -1,0 +1,4 @@
+red_flag: RF-FL-TRANSFORMATION-SUSPECT
+findings:
+  biopsy_shows_dlbcl: true
+expected_fires: true

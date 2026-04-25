@@ -283,6 +283,32 @@ h3 {
     display: block; margin-top: 2px;
 }
 
+/* Branch-explanation — actually-fired RFs from the engine trace, with
+   the conflict-resolution winner highlighted. Distinct from PRO/CONTRA
+   above (which lists possible triggers in the abstract). */
+.branch-explanation { margin: 18px 0; }
+.branch-explanation .branch-step {
+    background: var(--green-bg, #ecfdf5); border-left: 4px solid var(--green-700, #047857);
+    padding: 10px 14px; border-radius: 6px; margin-bottom: 10px;
+}
+.branch-explanation .branch-step-head {
+    font-size: 13px; color: var(--gray-700); margin-bottom: 6px; font-weight: 600;
+}
+.branch-explanation .branch-step ul {
+    margin: 0; padding-left: 20px; font-size: 13px; color: var(--gray-700);
+}
+.branch-explanation .branch-step li { padding: 3px 0; line-height: 1.5; }
+.branch-explanation .rf-winner-tag {
+    font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.5px;
+    background: var(--green-700, #047857); color: white;
+    padding: 1px 6px; border-radius: 3px; margin-left: 4px; vertical-align: 1px;
+}
+.branch-explanation .src-chip {
+    font-family: var(--font-mono); font-size: 9.5px;
+    background: var(--gray-100); color: var(--gray-700);
+    padding: 1px 6px; border-radius: 3px; margin-left: 4px;
+}
+
 /* Do-not — strongly framed prohibitive list */
 .do-not {
     background: var(--red-bg); border-left: 4px solid var(--red-alert);
@@ -934,6 +960,85 @@ def _render_pretreatment_investigations(plan, kb_resolved: dict) -> str:
     )
 
 
+def _render_branch_explanation(
+    plan_result, kb_resolved: dict, target_lang: str = "uk"
+) -> str:
+    """Surface the actually-fired RedFlags from the engine trace.
+
+    For each step that resolved a branch (`outcome=True` and `result` set),
+    list the RFs that fired in that step and which one won the conflict-
+    resolution tiebreak (`winner_red_flag` set by walk_algorithm in P2).
+
+    This is the "Why this branch was chosen" answer — distinct from the
+    PRO/CONTRA section above, which lists *possible* triggers. This one
+    lists what actually drove the chosen branch on this specific patient.
+    """
+    rf_lookup = (kb_resolved or {}).get("red_flags") or {}
+    src_lookup = (kb_resolved or {}).get("sources") or {}
+    trace = getattr(plan_result, "trace", None) or []
+
+    explained_steps: list[str] = []
+    for step in trace:
+        fired = step.get("fired_red_flags") or []
+        if not fired:
+            continue
+        winner = step.get("winner_red_flag")
+        branch = step.get("branch") or {}
+        step_id = step.get("step")
+        result_target = branch.get("result") or branch.get("next_step")
+
+        rf_items: list[str] = []
+        for rid in fired:
+            rf = rf_lookup.get(rid) or {}
+            defn = (
+                rf.get("definition_ua")
+                if target_lang == "uk" and rf.get("definition_ua")
+                else rf.get("definition") or "—"
+            )
+            srcs = rf.get("sources") or []
+            src_chips = "".join(
+                f'<span class="src-chip">{_h(sid)}</span>'
+                for sid in srcs
+            )
+            winner_mark = (
+                ' <span class="rf-winner-tag">★ winner</span>'
+                if rid == winner else ""
+            )
+            rf_items.append(
+                f'<li><strong>{_h(rid)}</strong>{winner_mark}: '
+                f'{_h(defn)} {src_chips}</li>'
+            )
+
+        head = (
+            f"Step {step_id} → branch <code>{_h(str(result_target))}</code>"
+            if result_target
+            else f"Step {step_id}"
+        )
+        explained_steps.append(
+            f'<div class="branch-step">'
+            f'<div class="branch-step-head">{head}</div>'
+            f'<ul>{"".join(rf_items)}</ul>'
+            f'</div>'
+        )
+
+    if not explained_steps:
+        return ""
+
+    title = "Чому обрано саме цей трек" if target_lang == "uk" else "Why this branch was chosen"
+    sub = (
+        "Тригери з профілю пацієнта, що активувалися та визначили вибір."
+        if target_lang == "uk"
+        else "Triggers from the patient profile that fired and drove the chosen branch."
+    )
+    return (
+        '<section class="branch-explanation">'
+        f'<h2>{title}</h2>'
+        f'<div class="section-sub">{sub}</div>'
+        f'{"".join(explained_steps)}'
+        '</section>'
+    )
+
+
 def _render_red_flags_pro_contra(plan, kb_resolved: dict, target_lang: str = "uk") -> str:
     """RedFlag PRO/CONTRA categorization for the aggressive escalation:
 
@@ -1270,6 +1375,11 @@ def render_plan_html(
         f'<section><h2>Treatment options ({len(plan.tracks)} tracks)</h2>'
         f'<div class="tracks">{"".join(track_html)}</div></section>'
     )
+
+    # Why this branch was chosen — actual fired RFs from the trace,
+    # with the conflict-resolution winner tagged. Distinct from the
+    # PRO/CONTRA section, which lists possible triggers in the abstract.
+    body.append(_render_branch_explanation(plan_result, plan_result.kb_resolved, target_lang))
 
     # Pre-treatment investigations · RedFlag PRO/CONTRA · What NOT to do ·
     # Monitoring phases · Timeline (REFERENCE_CASE_SPECIFICATION §1.3)

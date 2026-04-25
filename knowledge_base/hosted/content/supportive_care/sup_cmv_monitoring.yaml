@@ -1,0 +1,33 @@
+id: SUP-CMV-MONITORING
+intervention_type: monitoring
+name: "CMV PCR surveillance during T-cell-depleting therapy"
+name_ua: "Моніторинг CMV ПЛР під час T-клітино-деплетуючої терапії"
+
+standard_intervention:
+  schedule: "CMV PCR weekly × 8-12 weeks during and post-induction; then biweekly until immune reconstitution (CD4 ≥200)"
+  notes: >
+    Pre-emptive ganciclovir or valganciclovir at first detectable CMV
+    viremia (>500 copies/mL or any rise from undetectable on consecutive
+    samples). Continue prophylactic acyclovir for HSV/VZV.
+
+triggers:
+  relevant_drugs:
+    - DRUG-ALEMTUZUMAB
+  relevant_regimens:
+    - REG-ALEMTUZUMAB-IV
+
+rationale: >
+  Alemtuzumab depletes CD4+ T-cells profoundly, with median recovery
+  9-12 months. CMV reactivation rate without surveillance is 30-60%;
+  CMV pneumonitis carries ~30% mortality even with treatment.
+  Pre-emptive monitoring allows initiation of antivirals at viremia
+  threshold, before clinical disease.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. Same surveillance pattern applies to allogeneic SCT,
+  some bispecific T-cell-engager regimens (mosunetuzumab, glofitamab),
+  and any patient with prolonged severe lymphopenia (CD4 <100).

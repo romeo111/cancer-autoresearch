@@ -1,0 +1,4 @@
+red_flag: RF-MM-HIGH-RISK-CYTOGENETICS
+findings:
+  del_17p: true
+expected_fires: true

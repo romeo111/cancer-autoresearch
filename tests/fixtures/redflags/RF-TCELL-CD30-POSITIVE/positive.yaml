@@ -1,0 +1,4 @@
+red_flag: RF-TCELL-CD30-POSITIVE
+findings:
+  cd30_positive: true
+expected_fires: true

@@ -1,0 +1,5 @@
+red_flag: RF-UNIVERSAL-INFUSION-REACTION-FIRST-CYCLE
+findings:
+  cycle_number: 1
+  regimen_contains_rituximab: true
+expected_fires: true

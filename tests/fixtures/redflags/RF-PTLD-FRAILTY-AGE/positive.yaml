@@ -1,0 +1,4 @@
+red_flag: RF-PTLD-FRAILTY-AGE
+findings:
+  ecog_status: 3
+expected_fires: true

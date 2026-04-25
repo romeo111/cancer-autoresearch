@@ -1,0 +1,8 @@
+red_flag: RF-UNIVERSAL-TLS-RISK
+findings:
+  dominant_nodal_mass_cm: 4.0
+  splenomegaly_cm: 8.0
+  ldh_ratio_to_uln: 1.0
+  absolute_lymphocyte_count_k_ul: 5.0
+  leukemic_phase: false
+expected_fires: false

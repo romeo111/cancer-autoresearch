@@ -1,0 +1,59 @@
+id: DRUG-L-ASPARAGINASE
+names:
+  preferred: "L-Asparaginase (E. coli or Erwinia)"
+  ukrainian: "Л-Аспарагіназа"
+  english: "L-Asparaginase"
+  brand_names: ["Elspar (E. coli)", "Erwinase (Erwinia)", "PEG-asparaginase: Oncaspar"]
+atc_code: L01XX02
+rxnorm_id: "1116"
+drug_class: "Enzyme (asparagine-depleting)"
+mechanism: >
+  Hydrolyzes circulating L-asparagine to aspartic acid + ammonia.
+  Lymphoblasts and NK/T cells lack asparagine synthetase and depend on
+  exogenous asparagine — depletion causes selective protein-synthesis
+  arrest and apoptosis in malignant lymphoblasts/NK cells.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  ALL induction: 6,000-10,000 IU/m² IM/IV multiple doses per cycle.
+  SMILE (NK/T-nasal): 6,000 IU/m² IM days 2, 4, 6, 8 with dexa+MTX+ifosfamide+etoposide.
+formulations: ["Lyophilized vial 10,000 IU (E. coli or Erwinia)", "PEG: 3,750 IU/5 mL IV"]
+
+absolute_contraindications:
+  - "Prior pancreatitis on asparaginase"
+  - "Severe hypersensitivity to asparaginase preparations"
+  - "Severe hepatic dysfunction (bilirubin >3× ULN)"
+  - "Active thrombosis"
+
+black_box_warnings:
+  - "Pancreatitis (can be fulminant)"
+  - "Coagulopathy / thrombosis (depletes antithrombin, plasminogen, fibrinogen)"
+  - "Hepatotoxicity"
+  - "Anaphylaxis (escalating with each dose)"
+
+common_adverse_events:
+  - "Hypersensitivity (more with E. coli; switch to Erwinia or PEG)"
+  - "Hyperglycemia"
+  - "Hypoalbuminemia"
+  - "Coagulopathy with elevated PT/PTT"
+
+serious_adverse_events:
+  - "Acute pancreatitis"
+  - "CNS thrombosis (cerebral sinus venous thrombosis)"
+  - "Anaphylaxis"
+  - "DIC-like coagulopathy"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. SMILE for NK/T-nasal lymphoma uses native E. coli or
+  Erwinia preparation; PEG-asparaginase is the modern ALL preparation
+  (Oncaspar). Monitor lipase + amylase before each dose; hold for
+  pancreatitis. Prophylactic antithrombin replacement controversial.

@@ -6,6 +6,8 @@ Algorithm.decision_tree is a list of steps. Each step:
       evaluate:
         any_of:  [ {red_flag: RF-X}, {red_flag: RF-Y}, <nested clause> ]
         all_of:  [ ... ]
+        red_flags_all_of: [ RF-X, RF-Y ]    # P2 shorthand: ALL must fire
+        red_flags_any_of: [ RF-X, RF-Y ]    # P2 shorthand: ANY must fire
       if_true:
         result: IND-X         # select this Indication
         # or
@@ -109,6 +111,25 @@ def _eval_step_evaluate(
         parts.append(ok)
         # nothing fires under none_of
 
+    # P2 shorthand combos. red_flags_all_of/any_of accept a flat list of
+    # RedFlag IDs and desugar to the equivalent {red_flag: ...} clauses.
+    if "red_flags_all_of" in evaluate:
+        rf_ids = evaluate["red_flags_all_of"] or []
+        sub = [_eval_step_clause({"red_flag": rid}, findings, redflag_lookup) for rid in rf_ids]
+        ok = all(r[0] for r in sub) if sub else False
+        parts.append(ok)
+        if ok:
+            for _, r_fired in sub:
+                fired.extend(r_fired)
+    if "red_flags_any_of" in evaluate:
+        rf_ids = evaluate["red_flags_any_of"] or []
+        sub = [_eval_step_clause({"red_flag": rid}, findings, redflag_lookup) for rid in rf_ids]
+        ok = any(r[0] for r in sub) if sub else False
+        parts.append(ok)
+        for r_ok, r_fired in sub:
+            if r_ok:
+                fired.extend(r_fired)
+
     if not parts:
         # No boolean group — treat the whole evaluate dict as one clause
         return _eval_step_clause(evaluate, findings, redflag_lookup)
@@ -172,11 +193,23 @@ def walk_algorithm(
             step.get("evaluate") or {}, findings, redflag_lookup
         )
         branch = step.get("if_true") if outcome else step.get("if_false")
+
+        # P2: deterministic conflict resolution when ≥2 flags fire.
+        # winner_red_flag is the one whose clinical_direction drove the
+        # branch; downstream consumers (Plan render, MDT brief) can use
+        # this to write "Branch chosen because RF-X (intensify) outranked
+        # RF-Y (de-escalate)".
+        winner_rf = None
+        if fired:
+            from .redflag_eval import resolve_redflag_conflict
+            winner_rf, _ordered = resolve_redflag_conflict(fired, redflag_lookup)
+
         trace.append({
             "step": current_key,
             "outcome": outcome,
             "branch": branch,
             "fired_red_flags": fired,
+            "winner_red_flag": winner_rf,
         })
 
         if not branch:

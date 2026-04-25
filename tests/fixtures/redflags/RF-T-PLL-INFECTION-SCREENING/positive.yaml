@@ -1,0 +1,4 @@
+red_flag: RF-T-PLL-INFECTION-SCREENING
+findings:
+  cmv_pcr_blood_positive: true
+expected_fires: true

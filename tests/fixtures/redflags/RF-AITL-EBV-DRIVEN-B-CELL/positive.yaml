@@ -1,0 +1,4 @@
+red_flag: RF-AITL-EBV-DRIVEN-B-CELL
+findings:
+  ebv_positive_b_cells: true
+expected_fires: true

@@ -14,7 +14,19 @@ default_indication: IND-ATLL-1L-AGGRESSIVE
 alternative_indication: IND-ATLL-1L-INDOLENT-AZT-IFN
 
 decision_tree:
+  # Step 1: hypercalcemia overrides Shimoyama subtype — paraneoplastic
+  # hypercalcemia (RANKL-driven) marks aggressive variant regardless of
+  # WBC; AZT+IFN inadequate.
   - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-ATLL-ORGAN-DYSFUNCTION
+        - red_flag: RF-ATLL-HIGH-RISK-BIOLOGY
+    if_true:
+      result: IND-ATLL-1L-AGGRESSIVE
+    if_false:
+      next_step: 2
+  - step: 2
     evaluate:
       any_of:
         - condition: "Shimoyama subtype: smoldering"

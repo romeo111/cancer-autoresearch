@@ -1,0 +1,32 @@
+id: RF-HSTCL-ORGAN-DYSFUNCTION
+definition: "Hepatic dysfunction (Child-Pugh B/C, bilirubin >3xULN) at HSTCL diagnosis — disease itself causes hepatosplenomegaly + cytopenias; ifosfamide + carboplatin + etoposide (ICE) induction toxicity exacerbated."
+definition_ua: "Печінкова дисфункція (Child-Pugh B/C, білірубін >3xULN) на діагнозі HSTCL — хвороба сама викликає гепатоспленомегалію + цитопенії; токсичність ICE підвищена."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "child_pugh_class"
+      value: "B"
+    - finding: "child_pugh_class"
+      value: "C"
+    - finding: "bilirubin_x_uln"
+      threshold: 3
+      comparator: ">"
+
+
+clinical_direction: investigate
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-HSTCL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  HSTCL almost always presents with hepatosplenomegaly + cytopenias; baseline LFT abnormalities common. Hepatology + hematology co-management critical; supportive care intensified.

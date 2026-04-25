@@ -77,3 +77,4 @@ legacy/source_pdfs/
 # DiagnosticPlan instances live OUTSIDE public KB. Persistence layer
 # (knowledge_base/engine/persistence.py) writes here by default.
 patient_plans/
+.tmp/

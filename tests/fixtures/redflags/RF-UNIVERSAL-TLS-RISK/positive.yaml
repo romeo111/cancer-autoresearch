@@ -1,0 +1,4 @@
+red_flag: RF-UNIVERSAL-TLS-RISK
+findings:
+  ldh_ratio_to_uln: 3.0
+expected_fires: true

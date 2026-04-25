@@ -1,0 +1,34 @@
+id: RF-NK-T-NASAL-FRAILTY-AGE
+definition: "Age >65 OR ECOG ≥3 — SMILE myelosuppression intolerable; modified DDGP or AspaMetDex with reduced asparaginase dosing acceptable."
+definition_ua: "Вік >65 АБО ECOG ≥3 — мієлосупресія SMILE непереносна; модифікований DDGP або AspaMetDex зі зниженою дозою аспарагінази."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "age_years"
+      threshold: 65
+      comparator: ">"
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-NK-T-NASAL]
+# ALGO-NK-T-NASAL-1L is single-track (SMILE only). Reduced-intensity
+# alternatives (modified DDGP, AspaMetDex) not yet modeled as separate
+# Indications. Flag drives Indication-level dose adjustment + MDT note.
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  SMILE TRM in elderly is high (10-15%); reduced-intensity regimens trade 5-10% efficacy for tolerability.

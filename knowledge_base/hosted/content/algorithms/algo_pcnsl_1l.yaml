@@ -13,7 +13,18 @@ default_indication: IND-PCNSL-1L-MATRIX
 alternative_indication: IND-PCNSL-1L-R-MPV
 
 decision_tree:
+  # Step 1 — renal dysfunction: HD-MTX requires CrCl >=50 mL/min. Below
+  # that, switch to R-MPV (lower MTX dose) per NCCN/ESMO.
   - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-PCNSL-ORGAN-DYSFUNCTION
+    if_true:
+      result: IND-PCNSL-1L-R-MPV
+    if_false:
+      next_step: 2
+  # Step 2 — age/frailty/logistics fallback to R-MPV.
+  - step: 2
     evaluate:
       any_of:
         - condition: "Age > 70"

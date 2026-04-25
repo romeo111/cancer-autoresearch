@@ -1,0 +1,6 @@
+red_flag: RF-WM-HYPERVISCOSITY
+findings:
+  hyperviscosity_symptomatic: false
+  serum_viscosity_above_4cp: false
+  retinal_hemorrhage: false
+expected_fires: false

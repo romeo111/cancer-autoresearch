@@ -1,0 +1,59 @@
+id: DRUG-INTERFERON-ALPHA
+names:
+  preferred: "Interferon alfa-2a / alfa-2b"
+  ukrainian: "Інтерферон альфа"
+  english: "Interferon alfa"
+  brand_names: ["Roferon-A", "Intron A"]
+atc_code: L03AB04
+rxnorm_id: "5801"
+drug_class: "Type-I interferon (immunomodulator)"
+mechanism: >
+  Binds type-I interferon receptor (IFNAR), inducing JAK-STAT signaling
+  → upregulation of MHC-I, NK-cell activity, Th1 polarization, direct
+  antiproliferative effect. In ATLL, synergizes with zidovudine
+  (AZT/IFN-α) by inducing apoptosis of HTLV-1-infected cells.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  ATLL (AZT/IFN-α): IFN-α 5-9 million IU/day SC continuous indefinitely
+  (with AZT 600-1000 mg/day). Dose-adjusted for cytopenias and depression.
+formulations: ["SC injection 3-18 million IU"]
+
+absolute_contraindications:
+  - "Severe psychiatric disorder, especially active suicidal ideation"
+  - "Decompensated cirrhosis (Child-Pugh B/C)"
+  - "Autoimmune hepatitis"
+  - "Severe cardiac disease"
+
+black_box_warnings:
+  - "Neuropsychiatric (depression, suicidality)"
+  - "Autoimmune disorders (thyroid, hepatitis, lupus-like)"
+  - "Ischemic events (cardiac, cerebrovascular)"
+  - "Infectious complications"
+
+common_adverse_events:
+  - "Flu-like syndrome (universal, blunts after weeks)"
+  - "Fatigue (often dose-limiting long-term)"
+  - "Depression (~30%)"
+  - "Cytopenias"
+  - "Hypothyroidism"
+
+serious_adverse_events:
+  - "Suicidality, severe depression"
+  - "Autoimmune disease (Hashimoto, AIHA)"
+  - "Cardiomyopathy"
+  - "Retinopathy"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. ATLL indolent (chronic/smoldering) responds to AZT/IFN-α
+  with MR ~80%, OS benefit. Mandatory baseline psych assessment;
+  TSH q3 months. Dose-reduce for ANC <1.0, plt <50, depression PHQ-9 ≥10.

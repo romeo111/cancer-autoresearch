@@ -1,0 +1,6 @@
+red_flag: RF-PTLD-HIGH-RISK-BIOLOGY
+findings:
+  ptld_subtype_monomorphic_dlbcl: false
+  ptld_subtype_burkitt_like: false
+  ptld_subtype_t_cell: false
+expected_fires: false

@@ -1,0 +1,52 @@
+id: DRUG-THIOTEPA
+names:
+  preferred: "Thiotepa"
+  ukrainian: "Тіотепа"
+  english: "Thiotepa"
+  brand_names: ["Tepadina"]
+atc_code: L01AC01
+rxnorm_id: "10440"
+drug_class: "Polyfunctional alkylating agent (ethylenimine)"
+mechanism: >
+  Alkylates DNA via ethylenimine groups, producing inter-strand
+  cross-links. Highly lipid-soluble — crosses CNS readily, hence
+  PCNSL induction (MATRix) and CNS-prophylaxis conditioning. Major
+  metabolite TEPA contributes to prolonged DNA-binding.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  PCNSL (MATRix): 30 mg/m² IV days 4-5 of cycle 4 induction.
+  Auto-SCT conditioning (TBC): 5 mg/kg IV days -7 to -5.
+formulations: ["IV powder for reconstitution 15 mg, 100 mg"]
+
+absolute_contraindications:
+  - "Severe hypersensitivity"
+  - "Severe pre-existing myelosuppression"
+  - "Severe hepatic / renal impairment"
+
+common_adverse_events:
+  - "Severe myelosuppression (dose-limiting at high doses)"
+  - "Nausea/vomiting"
+  - "Mucositis"
+  - "Skin reaction at infusion site"
+
+serious_adverse_events:
+  - "Hepatic veno-occlusive disease (high-dose, conditioning context)"
+  - "Pulmonary toxicity (rare)"
+  - "Secondary malignancies (long-term)"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. PCNSL: in MATRix (MTX-AraC-Thiotepa-Rituximab) the
+  thiotepa enhances CNS penetration of the regimen. Auto-SCT: BCNU+TT
+  or thiotepa+busulfan are common alternatives to BEAM for CNS-relapse-
+  risk lymphomas. Skin must be washed thoroughly to avoid contact
+  dermatitis from drug excretion in sweat.

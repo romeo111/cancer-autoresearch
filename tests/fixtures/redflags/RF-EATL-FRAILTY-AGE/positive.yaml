@@ -1,0 +1,4 @@
+red_flag: RF-EATL-FRAILTY-AGE
+findings:
+  age_years: 71
+expected_fires: true

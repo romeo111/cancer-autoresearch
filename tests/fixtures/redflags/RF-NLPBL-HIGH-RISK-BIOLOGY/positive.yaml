@@ -1,0 +1,4 @@
+red_flag: RF-NLPBL-HIGH-RISK-BIOLOGY
+findings:
+  nlpbl_variant_histology: true
+expected_fires: true

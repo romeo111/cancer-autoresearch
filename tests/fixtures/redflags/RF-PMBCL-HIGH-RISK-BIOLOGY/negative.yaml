@@ -1,0 +1,6 @@
+red_flag: RF-PMBCL-HIGH-RISK-BIOLOGY
+findings:
+  dominant_mediastinal_mass_cm: 5
+  aaipi_score: -3
+  bulky_mediastinal_pmbcl: false
+expected_fires: false

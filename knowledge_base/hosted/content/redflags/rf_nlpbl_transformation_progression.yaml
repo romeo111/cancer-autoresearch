@@ -1,0 +1,29 @@
+id: RF-NLPBL-TRANSFORMATION-PROGRESSION
+definition: "Multiple relapses or histologic transformation to DLBCL/THRLBCL on rebiopsy — switch to aggressive B-cell pathway (R-CHOP-based ± autoSCT consideration)."
+definition_ua: "Множинні рецидиви або гістологічна трансформація в DLBCL/THRLBCL на повторній біопсії — перехід на агресивний B-cell шлях (R-CHOP ± autoSCT)."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "nlpbl_multiple_relapses"
+      value: true
+    - finding: "biopsy_shows_dlbcl"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-NLPBL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-HODGKIN-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Transformation rate ~7-15% over 10 years; outcomes after transformation depend on aggressive-lymphoma-pathway response.

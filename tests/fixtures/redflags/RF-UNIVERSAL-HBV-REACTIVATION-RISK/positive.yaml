@@ -1,0 +1,4 @@
+red_flag: RF-UNIVERSAL-HBV-REACTIVATION-RISK
+findings:
+  hbsag: "positive"
+expected_fires: true

@@ -1,0 +1,51 @@
+id: RF-UNIVERSAL-HBV-REACTIVATION-RISK
+definition: >
+  Risk of HBV reactivation prior to immunosuppressive / cytotoxic therapy:
+  HBsAg-positive (high-risk) OR HBsAg-negative + anti-HBc-positive (occult
+  HBV, intermediate risk). Applies to anti-CD20 (rituximab, obinutuzumab),
+  BTKi, autoSCT, and any high-dose corticosteroid regimen.
+definition_ua: >
+  Ризик реактивації HBV перед імуносупресивною/цитотоксичною терапією:
+  HBsAg+ (високий ризик) АБО HBsAg- + anti-HBc+ (occult HBV, проміжний
+  ризик). Поширюється на anti-CD20 (rituximab, obinutuzumab), BTKi,
+  autoSCT, високі дози кортикостероїдів.
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hbc_total"
+      value: "positive"
+    - finding: "hbv_dna_detectable"
+      value: true
+
+clinical_direction: hold
+
+severity: critical
+priority: 50
+
+# Universal — applies to ANY disease whose treatment plan includes
+# anti-CD20, BTKi, or autoSCT. Replaces disease-specific HBV-coinfection
+# RFs that duplicated the same trigger.
+relevant_diseases:
+  - "*"
+shifts_algorithm: []  # Triggers SUP-HBV-PROPHYLAXIS in parallel; does
+                      # not branch indication choice. Engine surfaces this
+                      # in the plan's pre-treatment workup section.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-EASL-HCV-2023
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Mandates entecavir or tenofovir prophylaxis from -7 days through
+  +12 months post-last-anti-CD20 (NCCN B-Cell v2.2025 §HBV-1). Reactivation
+  rate without prophylaxis: 30-50% in HBsAg+, 5-10% in HBsAg-/anti-HBc+
+  cohorts receiving anti-CD20 (Huang et al. 2014, Seto et al. 2014).
+  Replaces the disease-specific RF-HBV-COINFECTION pattern; that RF is
+  retained for ALGO-HCV-MZL-1L pending the clinical-co-lead decision in
+  docs/plans/rf_wiring_audit_2026-04-25.md.

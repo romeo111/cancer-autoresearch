@@ -1,0 +1,6 @@
+red_flag: RF-T-PLL-HIGH-RISK-BIOLOGY
+findings:
+  complex_karyotype: false
+  tp53_mutation: false
+  ki67_above_40_percent: false
+expected_fires: false

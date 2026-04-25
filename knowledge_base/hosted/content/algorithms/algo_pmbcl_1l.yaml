@@ -13,7 +13,18 @@ default_indication: IND-PMBCL-1L-DA-EPOCH-R
 alternative_indication: IND-PMBCL-1L-RCHOP-RT
 
 decision_tree:
+  # Step 1 — frailty/age check first: fragile elderly tolerate R-CHOP+RT
+  # better than infusional DA-EPOCH-R (NCCN B-cell 2025).
   - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-PMBCL-FRAILTY-AGE
+    if_true:
+      result: IND-PMBCL-1L-RCHOP-RT
+    if_false:
+      next_step: 2
+  # Step 2 — center capability / patient preference fallback to R-CHOP+RT.
+  - step: 2
     evaluate:
       any_of:
         - condition: "Center cannot deliver infusional DA-EPOCH-R safely"

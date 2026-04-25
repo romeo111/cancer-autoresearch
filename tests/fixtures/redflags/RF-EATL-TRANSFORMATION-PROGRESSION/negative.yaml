@@ -1,0 +1,5 @@
+red_flag: RF-EATL-TRANSFORMATION-PROGRESSION
+findings:
+  eatl_no_response_after_4_cycles: false
+  eatl_rapid_relapse: false
+expected_fires: false

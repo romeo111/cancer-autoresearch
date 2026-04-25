@@ -1,0 +1,6 @@
+red_flag: RF-MM-RENAL-DYSFUNCTION
+findings:
+  creatinine_clearance_ml_min: 95
+  serum_creatinine_mg_dl: 0.9
+  mm_renal_failure: false
+expected_fires: false

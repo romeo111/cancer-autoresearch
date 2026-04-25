@@ -1,0 +1,32 @@
+id: RF-EATL-ORGAN-DYSFUNCTION
+definition: "Bowel perforation, severe malabsorption (albumin <2.5 g/dL), or surgical complication — defer CHOEP induction until nutritional/surgical stabilization; parenteral nutrition + delayed-onset chemo schedule."
+definition_ua: "Перфорація кишки, виражена мальабсорбція (альбумін <2.5 г/дл), або хірургічне ускладнення — відстрочити CHOEP до харчової/хірургічної стабілізації; парентеральне харчування + delayed-onset режим."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "bowel_perforation"
+      value: true
+    - finding: "albumin_g_dl"
+      threshold: 2.5
+      comparator: "<"
+    - finding: "surgical_complication_active"
+      value: true
+
+
+clinical_direction: hold
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-EATL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  EATL frequently presents with perforation/obstruction requiring emergent surgery. Chemo cannot start safely until ECOG recovers and nutrition stabilizes. Multi-disciplinary surgery-onc-nutrition path.

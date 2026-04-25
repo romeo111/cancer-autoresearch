@@ -1,0 +1,5 @@
+red_flag: RF-PTLD-FRAILTY-AGE
+findings:
+  ecog_status: -2
+  age_years: 65
+expected_fires: false

@@ -1,0 +1,5 @@
+red_flag: RF-ATLL-FRAILTY-AGE
+findings:
+  ecog_status: 3
+  age_years: 71
+expected_fires: true

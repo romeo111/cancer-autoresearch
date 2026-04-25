@@ -17,7 +17,7 @@ decision_tree:
   - step: 1
     evaluate:
       all_of:
-        - condition: "HCV RNA positive"
+        - red_flag: RF-SMZL-INFECTION-SCREENING  # HCV RNA / anti-HCV positive
         - condition: "Compensated liver function"
     if_true:
       result: IND-SMZL-1L-HCV-POSITIVE

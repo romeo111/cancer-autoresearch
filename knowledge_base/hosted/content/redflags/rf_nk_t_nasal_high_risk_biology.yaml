@@ -1,0 +1,36 @@
+id: RF-NK-T-NASAL-HIGH-RISK-BIOLOGY
+definition: "Stage III-IV / extranasal involvement / PINK-E score ≥3 — favor SMILE intensive regimen + radiotherapy over reduced-intensity DDGP-mod/AspaMetDex."
+definition_ua: "Стадія III-IV / екстраназальне ураження / PINK-E score ≥3 — SMILE інтенсивний над reduced-intensity DDGP-mod/AspaMetDex; + променева."
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "ann_arbor_stage"
+      threshold: 3
+      comparator: ">="
+    - finding: "pink_e_score"
+      threshold: 3
+      comparator: ">="
+    - finding: "extranasal_involvement"
+      value: true
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-NK-T-NASAL]
+# ALGO-NK-T-NASAL-1L is single-track (SMILE only); reduced-intensity
+# alternatives not modeled as separate Indications yet. Flag remains
+# as MDT annotation drives consolidation/RT decisions.
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  PINK / PINK-E (Prognostic Index NK lymphoma) plus stage drives intensity selection. SMILE has CR rates >70% in advanced disease; less intensive regimens trail by 15-20%.

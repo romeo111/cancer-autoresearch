@@ -1,0 +1,38 @@
+id: RF-PCNSL-FRAILTY-AGE
+definition: "Age >70 OR ECOG ≥3 OR CrCl 50-70 mL/min — full-dose HD-MTX (≥3.5 g/m²) carries excessive toxicity; reduced-dose MTX (1-3 g/m²) ± rituximab considered."
+definition_ua: "Вік >70 АБО ECOG ≥3 АБО CrCl 50-70 мл/хв — повна доза HD-MTX (≥3.5 г/м²) має надлишкову токсичність; знижена доза MTX (1-3 г/м²) ± rituximab."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "age_years"
+      threshold: 70
+      comparator: ">"
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+    - all_of:
+        - finding: "creatinine_clearance_ml_min"
+          threshold: 50
+          comparator: ">="
+        - finding: "creatinine_clearance_ml_min"
+          threshold: 70
+          comparator: "<="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PCNSL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Elderly PCNSL OS dominated by tolerability of induction; reduced-dose MTX with rituximab achieves comparable response rates with markedly less toxicity. Decision sits within Indication-level dose-adjustment, not 1L Algorithm branch.

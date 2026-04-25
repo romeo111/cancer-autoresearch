@@ -1,0 +1,4 @@
+red_flag: RF-HSTCL-HIGH-RISK-BIOLOGY
+findings:
+  tcr_gamma_delta_phenotype: true
+expected_fires: true

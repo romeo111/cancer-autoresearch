@@ -1,0 +1,35 @@
+id: RF-PMBCL-FRAILTY-AGE
+definition: "Frailty (ECOG ≥3 OR age ≥75 + ≥2 comorbidities) — DA-EPOCH-R infusional toxicity poorly tolerated; R-CHOP+RT preferred for fragile elderly."
+definition_ua: "Frailty (ECOG ≥3 АБО вік ≥75 + ≥2 коморбідності) — токсичність інфузійного DA-EPOCH-R погано переноситься; R-CHOP+RT кращий для frail elderly."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+    - all_of:
+        - finding: "age_years"
+          threshold: 75
+          comparator: ">="
+        - finding: "comorbidity_count"
+          threshold: 2
+          comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PMBCL]
+shifts_algorithm: [ALGO-PMBCL-1L]
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  DA-EPOCH-R infusional schedule + G-CSF support poorly tolerated in elderly frail; R-CHOP+ISRT acceptable per NCCN with similar EFS in this subgroup.

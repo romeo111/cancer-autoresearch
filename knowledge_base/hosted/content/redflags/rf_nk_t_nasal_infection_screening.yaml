@@ -1,0 +1,30 @@
+id: RF-NK-T-NASAL-INFECTION-SCREENING
+definition: "EBV plasma DNA quantification at baseline + during treatment — high baseline EBV (>10^4 copies/mL) and persistent EBV-positivity post-induction predict worse outcomes."
+definition_ua: "EBV плазмова ДНК на старті + під час терапії — високий базовий EBV (>10^4 копій/мл) і персистенція EBV після індукції погіршує прогноз."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "ebv_dna_copies_per_ml"
+      threshold: 10000
+      comparator: ">="
+    - finding: "ebv_persistent_post_induction"
+      value: true
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-NK-T-NASAL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  EBV DNA tracking is THE biomarker of response in NK/T-nasal. Drives intensification of consolidation and surveillance schedule.

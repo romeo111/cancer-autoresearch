@@ -1,0 +1,4 @@
+red_flag: RF-EATL-ORGAN-DYSFUNCTION
+findings:
+  bowel_perforation: true
+expected_fires: true

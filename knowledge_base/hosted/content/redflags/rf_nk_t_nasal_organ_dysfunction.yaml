@@ -1,0 +1,31 @@
+id: RF-NK-T-NASAL-ORGAN-DYSFUNCTION
+definition: "Hepatic dysfunction (bilirubin >2xULN OR transaminases >5xULN) — asparaginase (SMILE, modified DDGP, AspaMetDex) is hepatotoxic; pegaspargase substitution + close monitoring."
+definition_ua: "Печінкова дисфункція (білірубін >2xULN АБО трансамінази >5xULN) — аспарагіназа (SMILE, modified DDGP, AspaMetDex) гепатотоксична; pegaspargase + моніторинг."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "bilirubin_x_uln"
+      threshold: 2
+      comparator: ">"
+    - finding: "alt_x_uln"
+      threshold: 5
+      comparator: ">"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-NK-T-NASAL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Asparaginase backbone is pillar of NK/T-nasal therapy; alternatives are inferior. Hepatic-protection + dose-modification, not regimen-class change.

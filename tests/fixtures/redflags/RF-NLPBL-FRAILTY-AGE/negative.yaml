@@ -1,0 +1,4 @@
+red_flag: RF-NLPBL-FRAILTY-AGE
+findings:
+  nlpbl_stage_i_or_ii: false
+expected_fires: false

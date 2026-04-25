@@ -1,0 +1,31 @@
+id: RF-T-PLL-HIGH-RISK-BIOLOGY
+definition: "Complex karyotype (≥3 abnormalities), TP53 mutation/deletion, or Ki-67 >40% — aggressive variant; alemtuzumab response shorter; alloSCT consolidation prioritized."
+definition_ua: "Складний каріотип (≥3 аномалій), мутація/делеція TP53 або Ki-67 >40% — агресивний варіант; відповідь на alemtuzumab коротша; alloSCT консолідація пріоритетна."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "complex_karyotype"
+      value: true
+    - finding: "tp53_mutation"
+      value: true
+    - finding: "ki67_above_40_percent"
+      value: true
+
+
+clinical_direction: intensify
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-T-PLL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Complex karyotype/TP53 in T-PLL predicts alemtuzumab response duration <6 months; alloSCT urgently while in CR1.

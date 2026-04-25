@@ -1,0 +1,4 @@
+red_flag: RF-PCNSL-INFECTION-SCREENING
+findings:
+  hiv_serology: "positive"
+expected_fires: true

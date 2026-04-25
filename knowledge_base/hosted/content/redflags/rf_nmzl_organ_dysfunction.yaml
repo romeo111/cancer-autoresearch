@@ -1,0 +1,28 @@
+id: RF-NMZL-ORGAN-DYSFUNCTION
+definition: "Renal dysfunction (CrCl <40 mL/min) — bendamustine clearance reduced; dose adjustment or alternative regimen (R-CHOP or rituximab monotherapy) considered."
+definition_ua: "Ниркова дисфункція (CrCl <40 мл/хв) — кліренс bendamustine знижений; коригування дози або альтернативний режим (R-CHOP або rituximab моно)."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "creatinine_clearance_ml_min"
+      threshold: 40
+      comparator: "<"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-NODAL-MZL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Bendamustine renally cleared; dose reduce 25-50% if CrCl 30-50 mL/min, avoid <30 mL/min.

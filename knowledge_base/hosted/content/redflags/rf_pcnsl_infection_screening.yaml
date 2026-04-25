@@ -1,0 +1,30 @@
+id: RF-PCNSL-INFECTION-SCREENING
+definition: "HIV serology mandatory at PCNSL diagnosis — HIV-associated PCNSL (CD4 <200) is treated differently (cART optimization first, intrathecal ± lower-intensity systemic)."
+definition_ua: "Обов'язкова HIV серологія при діагнозі PCNSL — HIV-асоційована PCNSL (CD4 <200) лікується інакше (спочатку оптимізація cART, потім інтратекально ± менш інтенсивна системна)."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "hiv_serology"
+      value: "positive"
+    - finding: "cd4_count_per_ul"
+      threshold: 200
+      comparator: "<"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PCNSL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  HIV+ PCNSL (with CD4 <200) often EBV-driven; cART initiation alone can produce remissions. Distinct from immunocompetent PCNSL — flagged for MDT review and infectious-disease co-management; algorithm choice deferred.

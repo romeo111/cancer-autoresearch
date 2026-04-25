@@ -1,0 +1,32 @@
+id: RF-NLPBL-ORGAN-DYSFUNCTION
+definition: "Pulmonary or cardiac dysfunction in field-of-RT region — radiation contraindicated; rituximab monotherapy or systemic chemo alternative."
+definition_ua: "Легенева або кардіальна дисфункція в зоні RT — променева протипоказана; rituximab моно або системна хіміо альтернатива."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "pulmonary_dysfunction_rt_field"
+      value: true
+    - finding: "cardiac_dysfunction_rt_field"
+      value: true
+    - finding: "lvef_percent"
+      threshold: 50
+      comparator: "<"
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-NLPBL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-HODGKIN-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  NLPBL is highly responsive to RT; field-of-RT organ dysfunction is the main contraindication. Rituximab monotherapy + observation acceptable alternative.

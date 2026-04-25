@@ -1,0 +1,31 @@
+id: RF-SMZL-HIGH-RISK-BIOLOGY
+definition: "TP53 mutation, NOTCH2 mutation, or 7q deletion — aggressive SMZL variant with shorter PFS; consider rituximab + bendamustine over rituximab monotherapy."
+definition_ua: "TP53 мутація, NOTCH2 мутація або 7q делеція — агресивний варіант SMZL з коротшим PFS; розглянути rituximab + bendamustine над rituximab моно."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "tp53_mutation"
+      value: true
+    - finding: "notch2_mutation"
+      value: true
+    - finding: "del_7q"
+      value: true
+
+
+clinical_direction: intensify
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-SPLENIC-MZL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Adverse molecular markers in SMZL are emerging branch points; combination therapy (BR) over monotherapy is supportive-care-tested but not yet hard standard.

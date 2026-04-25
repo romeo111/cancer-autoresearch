@@ -1,0 +1,31 @@
+id: RF-T-ALL-ORGAN-DYSFUNCTION
+definition: "Hepatic dysfunction (bilirubin >3xULN OR transaminases >5xULN) — asparaginase + methotrexate + thiopurines accumulate hepatotoxicity; dose modification or asparaginase substitution required."
+definition_ua: "Печінкова дисфункція (білірубін >3xULN АБО трансамінази >5xULN) — аспарагіназа + метотрексат + тіопурини акумулюють гепатотоксичність; модифікація дози або заміна аспарагінази."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "bilirubin_x_uln"
+      threshold: 3
+      comparator: ">"
+    - finding: "alt_x_uln"
+      threshold: 5
+      comparator: ">"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-T-ALL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Hepatotoxicity in T-ALL induction is multi-drug; depends on regimen phase. Surveillance + dose-mod under hematology — not a 1L algorithm shift.

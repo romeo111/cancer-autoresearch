@@ -1,0 +1,4 @@
+red_flag: RF-NLPBL-TRANSFORMATION-PROGRESSION
+findings:
+  nlpbl_multiple_relapses: true
+expected_fires: true

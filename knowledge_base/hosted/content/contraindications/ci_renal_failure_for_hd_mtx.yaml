@@ -1,0 +1,49 @@
+id: CI-RENAL-FAILURE-FOR-HD-MTX
+severity: absolute
+trigger:
+  type: lab_value
+  conditions:
+    - lab_value: "creatinine_clearance_ml_min"
+      threshold: 50
+      comparator: "<"
+    - lab_value: "egfr"
+      threshold: 50
+      comparator: "<"
+  logic: OR
+
+description: >
+  High-dose methotrexate (≥1 g/m²) is renally cleared and depends on
+  vigorous hydration + alkalinization for safe elimination. CrCl <50
+  mL/min causes catastrophic MTX accumulation, AKI worsening,
+  mucositis, and myelotoxicity that can be fatal even with leucovorin
+  and glucarpidase rescue.
+description_ua: >
+  Високодозовий метотрексат (≥1 г/м²) виводиться нирками і потребує
+  агресивної гідратації + лужнення. CrCl <50 мл/хв спричиняє катастрофічне
+  накопичення MTX, погіршення ГНН, мукозит і мієлотоксичність,
+  яка може бути фатальною навіть із leucovorin + glucarpidase.
+
+alternative_actions:
+  - "Hold HD-MTX until CrCl ≥60 mL/min sustained over 48h"
+  - "Aggressive hydration ≥3 L/m²/day pre-dose + 24h post-dose"
+  - "If irreversible CKD → switch PCNSL induction from MATRix/R-MPV to alternative regimens (rituximab + ibrutinib, or single-agent HD-cytarabine)"
+  - "Renal consult mandatory; consider glucarpidase availability before high-risk dosing"
+
+affects_drugs:
+  - DRUG-METHOTREXATE
+affects_regimens:
+  - REG-MATRIX
+  - REG-R-MPV
+affects_indications:
+  - IND-PCNSL-1L-MATRIX
+  - IND-PCNSL-1L-R-MPV
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. Avoid concurrent NSAIDs, PPIs (some), TMP-SMX, penicillins
+  — all reduce MTX clearance. Urine pH ≥7.0 before each dose; serum MTX
+  level at 24h, 48h, 72h post-dose; leucovorin rescue 15-50 mg/m² q6h
+  starting 24h post-MTX until level <0.05 µmol/L.

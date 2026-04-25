@@ -69,10 +69,12 @@ class LoadResult:
     # id -> {"type": "diseases", "data": {...raw yaml...}, "path": Path}
     schema_errors: list[tuple[Path, str]] = field(default_factory=list)
     ref_errors: list[tuple[Path, str]] = field(default_factory=list)
+    contract_errors: list[tuple[Path, str]] = field(default_factory=list)
+    contract_warnings: list[tuple[Path, str]] = field(default_factory=list)
 
     @property
     def ok(self) -> bool:
-        return not (self.schema_errors or self.ref_errors)
+        return not (self.schema_errors or self.ref_errors or self.contract_errors)
 
 
 def _extract(obj: dict, dotted: str):
@@ -98,7 +100,9 @@ def load_content(root: Path) -> LoadResult:
         d = root / entity_dir
         if not d.is_dir():
             continue
-        for path in sorted(d.glob("*.yaml")):
+        # Recursive — entity types like redflags/ permit subfolders
+        # (e.g., redflags/universal/) for organizing cross-disease flags.
+        for path in sorted(d.rglob("*.yaml")):
             try:
                 raw = yaml.safe_load(path.read_text(encoding="utf-8"))
             except yaml.YAMLError as e:
@@ -210,13 +214,105 @@ def load_content(root: Path) -> LoadResult:
             # role IDs are NOT validated against KB entities — they're a
             # closed enum in mdt_orchestrator._ROLE_CATALOG, not KB content
 
-        # Generic top-level sources list (lots of entities have it)
-        if etype != "indications":  # already handled above for indications
+        # Generic top-level sources list (lots of entities have it).
+        # Drafts skip ref-check on sources because authors leave SRC-TODO
+        # placeholders during scaffolding; the contract pass still emits
+        # a draft warning so the work-in-progress is visible.
+        if etype != "indications" and not data.get("draft"):
             for i, sid in enumerate(data.get("sources") or []):
                 if isinstance(sid, str):
                     check_ref(path, sid, "sources", f"sources[{i}]")
 
+    # Pass 3: entity-contract checks (semantics beyond schema)
+    _check_redflag_contracts(result)
+
     return result
+
+
+_VALID_DIRECTIONS = {"intensify", "de-escalate", "hold", "investigate"}
+_VALID_SEVERITY = {"critical", "major", "minor"}
+
+
+def _check_redflag_contracts(result: LoadResult) -> None:
+    """RedFlag-specific contract validation (CHARTER §6.1, §8.3).
+
+    Errors (block CI):
+      - Non-draft RedFlag with empty sources (CHARTER §6.1 violation)
+      - Unknown clinical_direction or severity value
+      - relevant_diseases entry that doesn't resolve to a diseases/ entity
+        (except "*" sentinel for universal RedFlags)
+      - branch_targets key not present in shifts_algorithm
+
+    Warnings (advisory):
+      - draft: true RedFlag (kept loadable so authoring doesn't break)
+      - shifts_algorithm non-empty but clinical_direction is "investigate"
+        (investigate semantics shouldn't shift; flag for re-classification)
+    """
+    for eid, info in result.entities_by_id.items():
+        if info["type"] != "redflags":
+            continue
+        data = info["data"]
+        path = info["path"]
+
+        is_draft = bool(data.get("draft"))
+
+        sources = data.get("sources") or []
+        if not is_draft and not sources:
+            result.contract_errors.append(
+                (path, f"{eid}: non-draft RedFlag missing sources (CHARTER §6.1)")
+            )
+        elif not is_draft and len(sources) < 2:
+            result.contract_warnings.append(
+                (path,
+                 f"{eid}: only {len(sources)} source(s) — CLINICAL_CONTENT_STANDARDS §6.1 "
+                 "asks for ≥2 independent Tier-1/2 sources for clinical content")
+            )
+        if is_draft:
+            result.contract_warnings.append(
+                (path, f"{eid}: draft — needs clinical review before merge")
+            )
+
+        direction = data.get("clinical_direction")
+        if direction not in _VALID_DIRECTIONS:
+            result.contract_errors.append(
+                (path, f"{eid}: clinical_direction={direction!r} not in {sorted(_VALID_DIRECTIONS)}")
+            )
+
+        severity = data.get("severity", "major")
+        if severity not in _VALID_SEVERITY:
+            result.contract_errors.append(
+                (path, f"{eid}: severity={severity!r} not in {sorted(_VALID_SEVERITY)}")
+            )
+
+        for d in data.get("relevant_diseases") or []:
+            if d == "*":
+                continue  # universal sentinel
+            if d not in result.entities_by_id:
+                result.contract_errors.append(
+                    (path, f"{eid}: relevant_diseases entry {d!r} unresolved")
+                )
+                continue
+            if result.entities_by_id[d]["type"] != "diseases":
+                result.contract_errors.append(
+                    (path,
+                     f"{eid}: relevant_diseases entry {d!r} is "
+                     f"{result.entities_by_id[d]['type']}, expected diseases")
+                )
+
+        algs = set(data.get("shifts_algorithm") or [])
+        for alg_id in (data.get("branch_targets") or {}):
+            if alg_id not in algs:
+                result.contract_errors.append(
+                    (path,
+                     f"{eid}: branch_targets references {alg_id} which is not in shifts_algorithm")
+                )
+
+        if direction == "investigate" and algs:
+            result.contract_warnings.append(
+                (path,
+                 f"{eid}: clinical_direction=investigate but shifts_algorithm is non-empty — "
+                 "re-classify to intensify/de-escalate/hold or clear shifts_algorithm")
+            )
 
 
 def main() -> int:
@@ -252,6 +348,16 @@ def main() -> int:
     if result.ref_errors:
         print(f"\nReferential-integrity errors ({len(result.ref_errors)}):", file=sys.stderr)
         for path, msg in result.ref_errors:
+            print(f"  {path}: {msg}", file=sys.stderr)
+
+    if result.contract_errors:
+        print(f"\nContract errors ({len(result.contract_errors)}):", file=sys.stderr)
+        for path, msg in result.contract_errors:
+            print(f"  {path}: {msg}", file=sys.stderr)
+
+    if result.contract_warnings:
+        print(f"\nContract warnings ({len(result.contract_warnings)}):", file=sys.stderr)
+        for path, msg in result.contract_warnings:
             print(f"  {path}: {msg}", file=sys.stderr)
 
     if result.ok:

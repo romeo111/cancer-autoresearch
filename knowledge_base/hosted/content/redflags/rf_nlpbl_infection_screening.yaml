@@ -1,0 +1,31 @@
+id: RF-NLPBL-INFECTION-SCREENING
+definition: "HBV/HCV/HIV serology pre-rituximab. NLPBL not associated with EBV (unlike classical Hodgkin); serology routine, not diagnostic."
+definition_ua: "HBV/HCV/HIV серологія перед rituximab. NLPBL не асоційована з EBV (на відміну від класичної Ходжкіна); серологія рутинна, не діагностична."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hcv"
+      value: "positive"
+    - finding: "hiv_serology"
+      value: "positive"
+
+
+clinical_direction: investigate
+severity: minor
+priority: 100
+
+relevant_diseases: [DIS-NLPBL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-HODGKIN-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Standard pre-anti-CD20 screening; HBV reactivation handled by universal RF.

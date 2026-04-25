@@ -1,0 +1,4 @@
+red_flag: RF-PCNSL-HIGH-RISK-BIOLOGY
+findings:
+  ielsg_pcnsl_score: 3
+expected_fires: true

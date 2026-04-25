@@ -1,0 +1,4 @@
+red_flag: RF-PTLD-ORGAN-DYSFUNCTION
+findings:
+  allograft_dysfunction: true
+expected_fires: true

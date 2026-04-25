@@ -26,7 +26,7 @@ clinical_direction: intensify
 relevant_diseases: [DIS-MCL]
 shifts_algorithm: [ALGO-MCL-1L]
 
-sources: [SRC-NCCN-BCELL-2025]
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-MCL-2024]
 last_reviewed: "2026-04-25"
 notes: >
   Blastoid/pleomorphic + TP53-mutant MCL has poor response to

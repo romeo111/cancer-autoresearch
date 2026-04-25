@@ -1,0 +1,4 @@
+red_flag: RF-B-ALL-ORGAN-DYSFUNCTION
+findings:
+  lvef_percent: 49
+expected_fires: true

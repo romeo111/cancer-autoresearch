@@ -1,0 +1,5 @@
+red_flag: RF-HGBL-DH-HIGH-RISK-BIOLOGY
+findings:
+  myc_rearrangement: true
+  bcl2_rearrangement: true
+expected_fires: true

@@ -1,0 +1,31 @@
+id: RF-PTLD-INFECTION-SCREENING
+definition: "EBV viral load + CMV PCR mandatory; EBV-driven PTLD (most cases) responds to rituximab ± chemo; EBV-negative PTLD often requires chemo upfront."
+definition_ua: "EBV вірусне навантаження + CMV PCR обов'язково; EBV-driven PTLD (більшість випадків) відповідає на rituximab ± хіміо; EBV-негативна PTLD часто потребує хіміо одразу."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "ebv_pcr_blood_positive"
+      value: true
+    - finding: "cmv_pcr_blood_positive"
+      value: true
+    - finding: "ebv_status_tumor"
+      value: "positive"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PTLD]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  EBV status determines whether monotherapy rituximab + IS-reduction has high response chance vs requiring R-CHOP-like chemo upfront. Flag drives MDT discussion + indication selection downstream.

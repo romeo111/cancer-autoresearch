@@ -7,6 +7,8 @@
   "demographics": {"age": 64, "sex": "male", "ecog": 1, "decompensated_cirrhosis": false},
   "findings": {
     "HCV RNA positive": true,
-    "Compensated liver function": true
+    "Compensated liver function": true,
+    "hcv_rna_positive": true,
+    "anti_hcv": "positive"
   }
 }

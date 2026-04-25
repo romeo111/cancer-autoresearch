@@ -1,0 +1,5 @@
+red_flag: RF-PCNSL-INFECTION-SCREENING
+findings:
+  hiv_serology: "negative"
+  cd4_count_per_ul: 205
+expected_fires: false

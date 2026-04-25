@@ -1,0 +1,5 @@
+red_flag: RF-ATLL-ORGAN-DYSFUNCTION
+findings:
+  calcium_mg_dl: 7
+  atll_hypercalcemia: false
+expected_fires: false

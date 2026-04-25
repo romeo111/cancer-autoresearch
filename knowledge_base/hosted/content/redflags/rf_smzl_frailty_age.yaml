@@ -1,0 +1,38 @@
+id: RF-SMZL-FRAILTY-AGE
+definition: "Age >80 OR ECOG ≥3 with significant comorbidity AND asymptomatic SMZL — watch-and-wait may be more appropriate than active treatment."
+definition_ua: "Вік >80 АБО ECOG ≥3 з суттєвою коморбідністю І асимптоматична SMZL — watch-and-wait може бути доречнішим за активну терапію."
+
+trigger:
+  type: composite_clinical
+  all_of:
+    - finding: "smzl_asymptomatic"
+      value: true
+    - any_of:
+        - finding: "age_years"
+          threshold: 80
+          comparator: ">"
+        - all_of:
+            - finding: "ecog_status"
+              threshold: 3
+              comparator: ">="
+            - finding: "comorbidity_count"
+              threshold: 2
+              comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-SPLENIC-MZL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  SMZL is indolent; in asymptomatic elderly, observation is GELF/iwCLL-style standard of care. Active treatment only for cytopenias / symptomatic splenomegaly / B-symptoms.

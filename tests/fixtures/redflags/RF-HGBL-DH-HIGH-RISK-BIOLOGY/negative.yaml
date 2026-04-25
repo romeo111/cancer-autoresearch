@@ -1,0 +1,6 @@
+red_flag: RF-HGBL-DH-HIGH-RISK-BIOLOGY
+findings:
+  myc_rearrangement: false
+  double_hit_lymphoma: false
+  triple_hit_lymphoma: false
+expected_fires: false

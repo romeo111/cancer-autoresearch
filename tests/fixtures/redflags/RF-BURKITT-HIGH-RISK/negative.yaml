@@ -1,0 +1,8 @@
+red_flag: RF-BURKITT-HIGH-RISK
+findings:
+  burkitt_high_risk: false
+  cns_involvement: false
+  ldh_above_3x_uln: false
+  leukemic_phase: false
+  bulky_abdominal: false
+expected_fires: false

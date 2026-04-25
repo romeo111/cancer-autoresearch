@@ -1,0 +1,4 @@
+red_flag: RF-HCL-TRANSFORMATION-PROGRESSION
+findings:
+  hcl_no_cr_after_cladribine: true
+expected_fires: true

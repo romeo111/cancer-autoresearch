@@ -1,0 +1,6 @@
+red_flag: RF-PCNSL-HIGH-RISK-BIOLOGY
+findings:
+  ielsg_pcnsl_score: -2
+  deep_brain_involvement: false
+  multifocal_pcnsl: false
+expected_fires: false

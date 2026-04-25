@@ -1,0 +1,31 @@
+id: RF-HSTCL-FRAILTY-AGE
+definition: "Age >65 OR ECOG ≥3 — ICE + alloSCT toxicity prohibitive; reduced-intensity conditioning alloSCT or palliative chemotherapy considered."
+definition_ua: "Вік >65 АБО ECOG ≥3 — токсичність ICE + alloSCT непереносна; reduced-intensity conditioning alloSCT або паліативна хіміо."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "age_years"
+      threshold: 65
+      comparator: ">"
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-HSTCL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  HSTCL outside trial setting in elderly is largely palliative; cure intent restricted to fit transplant candidates.

@@ -16,8 +16,7 @@ decision_tree:
   - step: 1
     evaluate:
       any_of:
-        - condition: "Monomorphic PTLD (DLBCL-like)"
-        - condition: "Burkitt-like PTLD"
+        - red_flag: RF-PTLD-HIGH-RISK-BIOLOGY  # monomorphic / Burkitt-like / T-cell PTLD
         - condition: "Failed reduce-IS + rituximab attempt"
     if_true:
       result: IND-PTLD-1L-RCHOP

@@ -1,0 +1,5 @@
+red_flag: RF-HCL-FRAILTY-AGE
+findings:
+  age_years: 70
+  comorbidity_count: -3
+expected_fires: false

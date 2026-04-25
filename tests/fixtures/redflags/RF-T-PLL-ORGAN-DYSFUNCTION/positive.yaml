@@ -1,0 +1,4 @@
+red_flag: RF-T-PLL-ORGAN-DYSFUNCTION
+findings:
+  anc_x10_9_l: -0.5
+expected_fires: true

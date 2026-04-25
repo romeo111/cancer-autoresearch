@@ -1,0 +1,4 @@
+red_flag: RF-HCL-HIGH-RISK-BIOLOGY
+findings:
+  hcl_variant_v: true
+expected_fires: true

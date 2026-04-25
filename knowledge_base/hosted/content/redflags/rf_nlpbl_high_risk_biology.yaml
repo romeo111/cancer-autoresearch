@@ -1,0 +1,31 @@
+id: RF-NLPBL-HIGH-RISK-BIOLOGY
+definition: "Variant histology (T-cell rich, diffuse, or with histologic transformation to DLBCL/THRLBCL) — distinct from classical NLPBL nodular pattern; standard NLPBL approach inadequate, treat as aggressive B-cell lymphoma (R-CHOP-based)."
+definition_ua: "Варіантна гістологія (T-cell rich, дифузна, або трансформація в DLBCL/THRLBCL) — відрізняється від класичної nodular NLPBL; стандартний NLPBL підхід недостатній, лікувати як агресивну B-клітинну лімфому (R-CHOP)."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "nlpbl_variant_histology"
+      value: true
+    - finding: "thrlbcl_pattern"
+      value: true
+    - finding: "biopsy_shows_dlbcl"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-NLPBL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-HODGKIN-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Variant pattern NLPBL behaves like aggressive B-cell lymphoma; reclassification to DLBCL pathway expected.

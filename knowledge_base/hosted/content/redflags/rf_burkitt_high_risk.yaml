@@ -21,7 +21,7 @@ clinical_direction: intensify
 relevant_diseases: [DIS-BURKITT]
 shifts_algorithm: [ALGO-BURKITT-1L]
 
-sources: [SRC-NCCN-BCELL-2025]
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-BURKITT-2024]
 last_reviewed: "2026-04-25"
 notes: >
   CALGB 10002 / CALGB 50202 evidence that DA-EPOCH-R is sufficient for

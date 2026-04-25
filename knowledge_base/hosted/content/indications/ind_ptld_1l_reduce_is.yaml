@@ -10,7 +10,7 @@ applicable_to:
   demographic_constraints:
     ecog_max: 4
 
-recommended_regimen: REG-RITUXIMAB-MONOTHERAPY
+recommended_regimen: REG-RITUXIMAB-MONO
 concurrent_therapy: []
 followed_by: []
 

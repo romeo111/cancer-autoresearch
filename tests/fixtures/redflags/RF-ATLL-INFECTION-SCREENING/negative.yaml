@@ -1,0 +1,5 @@
+red_flag: RF-ATLL-INFECTION-SCREENING
+findings:
+  htlv1_serology: "negative"
+  strongyloides_endemic_exposure: false
+expected_fires: false

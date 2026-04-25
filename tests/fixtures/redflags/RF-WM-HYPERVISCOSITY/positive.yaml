@@ -1,0 +1,4 @@
+red_flag: RF-WM-HYPERVISCOSITY
+findings:
+  hyperviscosity_symptomatic: true
+expected_fires: true

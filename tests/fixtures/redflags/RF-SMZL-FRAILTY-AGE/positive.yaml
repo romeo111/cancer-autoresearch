@@ -1,0 +1,5 @@
+red_flag: RF-SMZL-FRAILTY-AGE
+findings:
+  smzl_asymptomatic: true
+  age_years: 81
+expected_fires: true

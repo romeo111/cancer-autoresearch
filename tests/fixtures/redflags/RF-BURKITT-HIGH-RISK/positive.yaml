@@ -1,0 +1,4 @@
+red_flag: RF-BURKITT-HIGH-RISK
+findings:
+  cns_involvement: true
+expected_fires: true

@@ -13,7 +13,7 @@ decision_tree:
   - step: 1
     evaluate:
       all_of:
-        - condition: "CD30+ (universal in systemic ALCL)"
+        - red_flag: RF-TCELL-CD30-POSITIVE
         - condition: "Brentuximab accessible (funding pathway)"
     if_true:
       result: IND-TCELL-1L-CHP-BV

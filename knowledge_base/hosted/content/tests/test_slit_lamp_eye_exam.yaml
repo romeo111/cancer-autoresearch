@@ -1,0 +1,31 @@
+id: TEST-SLIT-LAMP-EYE-EXAM
+names:
+  preferred: "Slit-lamp + dilated fundoscopic ophthalmologic exam"
+  ukrainian: "Огляд за допомогою щілинної лампи + офтальмоскопія з мідріазом"
+  english: "Slit-lamp + dilated fundoscopic exam"
+  synonyms: ["Ophthalmologic exam", "Vitreoretinal exam"]
+loinc_codes: ["28626-5"]
+category: imaging
+purpose: >
+  Detect intraocular lymphoma — vitreous or retinal involvement (primary
+  vitreoretinal lymphoma OR secondary CNS lymphoma extension into eye).
+  Required at PCNSL diagnosis (5-25% have ocular involvement, often
+  bilateral) and at any new visual symptoms.
+specimen: "Clinical exam (no specimen unless vitreous biopsy)"
+turnaround_time: "Same day"
+priority_class: standard
+
+availability_ukraine:
+  state_funded: true
+  typical_availability: "Ophthalmology departments at all tertiary centers"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. PCNSL workup: bilateral slit-lamp + dilated funduscopy
+  before induction. If vitritis or sub-RPE deposits → diagnostic
+  vitrectomy with cytology + flow + IL-10/IL-6 ratio. Ocular lymphoma
+  needs intraocular methotrexate or rituximab in addition to systemic
+  therapy.

@@ -1,0 +1,5 @@
+red_flag: RF-T-PLL-INFECTION-SCREENING
+findings:
+  cmv_pcr_blood_positive: false
+  hbsag: "negative"
+expected_fires: false

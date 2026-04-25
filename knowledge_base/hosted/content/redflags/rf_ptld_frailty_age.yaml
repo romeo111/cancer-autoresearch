@@ -1,0 +1,35 @@
+id: RF-PTLD-FRAILTY-AGE
+definition: "Age >70 + advanced organ dysfunction OR ECOG ≥3 — full-dose R-CHOP poorly tolerated; reduced-intensity rituximab-only or modified chemo with growth-factor support."
+definition_ua: "Вік >70 + виражена органна дисфункція АБО ECOG ≥3 — повна доза R-CHOP погано переноситься; reduced-intensity rituximab-моно або модифікована хіміо з росток-factor support."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+    - all_of:
+        - finding: "age_years"
+          threshold: 70
+          comparator: ">"
+        - finding: "comorbidity_count"
+          threshold: 2
+          comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PTLD]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Transplant recipients are usually older with multi-organ comorbidity at PTLD diagnosis. Reduced-intensity approach preserves quality of life; alloSCT obviously not relevant here.

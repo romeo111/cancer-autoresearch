@@ -1,0 +1,4 @@
+red_flag: RF-HCL-INFECTION-SCREENING
+findings:
+  active_uncontrolled_infection: true
+expected_fires: true

@@ -98,4 +98,72 @@ def evaluate_redflag_trigger(trigger: dict, findings: dict[str, Any]) -> bool:
     return all(results)
 
 
-__all__ = ["evaluate_redflag_trigger"]
+# ── Conflict resolution (P2) ─────────────────────────────────────────────
+# When two or more RedFlags fire in the same Algorithm step with conflicting
+# clinical_directions, resolve deterministically. Spec: REDFLAG_AUTHORING_GUIDE §5.
+
+_DIRECTION_PRECEDENCE = {
+    "hold": 0,           # highest priority — contraindication wins
+    "intensify": 1,
+    "de-escalate": 2,
+    "investigate": 3,    # lowest — surveillance only
+}
+
+_SEVERITY_PRECEDENCE = {
+    "critical": 0,
+    "major": 1,
+    "minor": 2,
+}
+
+
+def resolve_redflag_conflict(
+    fired_ids: list[str],
+    redflag_lookup: dict[str, dict],
+) -> tuple[str | None, list[str]]:
+    """Pick the winning RedFlag from a list of fired ones.
+
+    Returns (winner_id, ordered_full_list). winner_id is None iff fired_ids
+    is empty. ordered_full_list is the full input sorted by the same
+    precedence (winner first), useful for trace logging.
+
+    Order: clinical_direction precedence > severity > priority (lower = wins) > id.
+    """
+    if not fired_ids:
+        return None, []
+
+    def sort_key(rf_id: str) -> tuple:
+        rf = redflag_lookup.get(rf_id) or {}
+        direction = rf.get("clinical_direction", "investigate")
+        severity = rf.get("severity", "major")
+        priority = rf.get("priority", 100)
+        return (
+            _DIRECTION_PRECEDENCE.get(direction, 99),
+            _SEVERITY_PRECEDENCE.get(severity, 99),
+            priority,
+            rf_id,
+        )
+
+    ordered = sorted(fired_ids, key=sort_key)
+    return ordered[0], ordered
+
+
+def is_redflag_applicable(redflag: dict, disease_id: str | None) -> bool:
+    """Whether a RedFlag applies in the given disease context.
+
+    Universal RFs use ``relevant_diseases: ["*"]``; concrete RFs list
+    explicit disease IDs. RFs with empty ``relevant_diseases`` are treated
+    as applicable everywhere (legacy compatibility).
+    """
+    rel = redflag.get("relevant_diseases") or []
+    if not rel:
+        return True
+    if "*" in rel:
+        return True
+    return disease_id in rel if disease_id is not None else False
+
+
+__all__ = [
+    "evaluate_redflag_trigger",
+    "resolve_redflag_conflict",
+    "is_redflag_applicable",
+]

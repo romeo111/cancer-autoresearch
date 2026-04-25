@@ -1,0 +1,31 @@
+id: RF-ATLL-FRAILTY-AGE
+definition: "Age >70 + ECOG ≥3 OR severe cytopenia at diagnosis — mLSG-15 intensive chemotherapy excessive toxicity; CHOP-based or AZT+IFN-α (even in aggressive subtype) considered."
+definition_ua: "Вік >70 + ECOG ≥3 АБО важкі цитопенії на діагнозі — інтенсивна mLSG-15 надмірно токсична; CHOP або AZT+IFN-α (навіть в агресивному підтипі)."
+
+trigger:
+  type: composite_clinical
+  all_of:
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+    - finding: "age_years"
+      threshold: 70
+      comparator: ">"
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-ATLL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  ATLL endemic in older Japanese/Caribbean populations; mLSG-15 trials excluded >70. Real-world elderly aggressive ATLL often gets dose-reduced CHOP at best.

@@ -1,0 +1,4 @@
+red_flag: RF-ATLL-FRAILTY-AGE
+findings:
+  ecog_status: -2
+expected_fires: false

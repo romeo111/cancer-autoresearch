@@ -1,0 +1,5 @@
+red_flag: RF-EATL-HIGH-RISK-BIOLOGY
+findings:
+  eatl_type_ii_meitl: false
+  celiac_disease_negative_eatl: false
+expected_fires: false

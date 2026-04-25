@@ -1,0 +1,5 @@
+red_flag: RF-HCL-FRAILTY-AGE
+findings:
+  age_years: 76
+  ecog_status: 2
+expected_fires: true

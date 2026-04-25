@@ -13,7 +13,7 @@ clinical_direction: investigate  # not algorithm-shifting; flag for surveillance
 relevant_diseases: [DIS-AITL]
 shifts_algorithm: []  # informational/safety — does not switch indication
 
-sources: [SRC-NCCN-BCELL-2025]
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-PTCL-2024]
 last_reviewed: "2026-04-25"
 notes: >
   AITL microenvironment classically contains EBV+ B-cells (~80-90%).

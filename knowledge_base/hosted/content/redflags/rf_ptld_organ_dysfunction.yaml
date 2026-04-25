@@ -1,0 +1,30 @@
+id: RF-PTLD-ORGAN-DYSFUNCTION
+definition: "Allograft dysfunction (worsening creatinine if kidney, transaminases if liver, troponin if heart) at PTLD diagnosis — IS-reduction must be balanced against allograft loss; transplant team co-management mandatory."
+definition_ua: "Дисфункція трансплантата (погіршення креатиніну для нирки, трансаміназ для печінки, тропоніну для серця) на діагнозі PTLD — IS-редукція балансується з ризиком втрати трансплантата; обов'язкова co-management з трансплант-командою."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "allograft_dysfunction"
+      value: true
+    - finding: "creatinine_increase_x_baseline"
+      threshold: 1.5
+      comparator: ">="
+
+
+clinical_direction: investigate
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-PTLD]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  PTLD treatment fundamentally requires IS-reduction; balancing allograft survival vs PTLD response is per-patient clinical decision. Flag mandates transplant team involvement.

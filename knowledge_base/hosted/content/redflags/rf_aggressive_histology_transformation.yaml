@@ -24,6 +24,7 @@ shifts_algorithm:
 
 sources:
   - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
 
 last_reviewed: "2026-04-24"
 notes: "Transformation shifts MZL from indolent to aggressive lymphoma treatment paradigm."

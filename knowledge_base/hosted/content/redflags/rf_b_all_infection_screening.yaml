@@ -1,0 +1,33 @@
+id: RF-B-ALL-INFECTION-SCREENING
+definition: "HBV/HCV/HIV/CMV serology + latent TB testing mandatory pre-induction; rituximab-containing regimens (CD20+ B-ALL) require HBV prophylaxis."
+definition_ua: "HBV/HCV/HIV/CMV серологія + латентний ТБ обов'язково перед індукцією; rituximab-вмісні режими (CD20+ B-ALL) — HBV профілактика."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hcv"
+      value: "positive"
+    - finding: "hiv_serology"
+      value: "positive"
+    - finding: "tb_latent"
+      value: "positive"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-B-ALL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Cross-disease HBV reactivation handled by RF-UNIVERSAL-HBV-REACTIVATION-RISK. CMV monitoring critical given prolonged immunosuppression of B-ALL induction/consolidation.

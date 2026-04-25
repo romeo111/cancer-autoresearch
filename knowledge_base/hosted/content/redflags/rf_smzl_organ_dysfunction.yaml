@@ -1,0 +1,31 @@
+id: RF-SMZL-ORGAN-DYSFUNCTION
+definition: "Severe portal hypertension (varices, ascites, splenic vein thrombosis) OR Child-Pugh B/C in HCV-associated SMZL — splenectomy contraindicated; rituximab monotherapy preferred."
+definition_ua: "Виражена портальна гіпертензія (варікози, асцит, тромбоз селезінкової вени) АБО Child-Pugh B/C у HCV-асоційованій SMZL — спленектомія протипоказана; rituximab монотерапія переважніша."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "portal_hypertension_severe"
+      value: true
+    - finding: "child_pugh_class"
+      value: "B"
+    - finding: "child_pugh_class"
+      value: "C"
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-SPLENIC-MZL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Splenectomy was historic SMZL standard; modern practice prefers rituximab esp. in cirrhosis where surgery risk is prohibitive. Decision drives Indication, not 1L Algorithm class.

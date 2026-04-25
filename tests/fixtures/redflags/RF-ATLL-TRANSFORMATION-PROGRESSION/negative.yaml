@@ -1,0 +1,5 @@
+red_flag: RF-ATLL-TRANSFORMATION-PROGRESSION
+findings:
+  atll_transformation_to_acute: false
+  lymphocyte_count_doubling_3_months: false
+expected_fires: false

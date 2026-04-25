@@ -1,0 +1,6 @@
+red_flag: RF-NLPBL-HIGH-RISK-BIOLOGY
+findings:
+  nlpbl_variant_histology: false
+  thrlbcl_pattern: false
+  biopsy_shows_dlbcl: false
+expected_fires: false

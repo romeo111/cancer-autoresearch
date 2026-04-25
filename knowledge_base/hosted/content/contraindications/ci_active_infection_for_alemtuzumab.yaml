@@ -1,0 +1,43 @@
+id: CI-ACTIVE-INFECTION-FOR-ALEMTUZUMAB
+severity: absolute
+trigger:
+  type: patient_condition
+  conditions:
+    - patient_condition: "Active uncontrolled bacterial, viral, or fungal infection"
+    - patient_condition: "HIV-positive serology"
+    - patient_condition: "Active CMV viremia (CMV PCR positive)"
+  logic: OR
+
+description: >
+  Alemtuzumab causes profound, prolonged CD4+ T-cell depletion (median
+  recovery 9-12 months). Active uncontrolled infection at baseline becomes
+  life-threatening once cellular immunity collapses. HIV-positive status
+  is itself an absolute contraindication — alemtuzumab on top of HIV
+  immunosuppression has unacceptable infectious mortality.
+description_ua: >
+  Алемтузумаб викликає глибоку та тривалу депресію CD4+ T-клітин (медіана
+  відновлення 9-12 міс). Активна неконтрольована інфекція на старті
+  стає життєво-небезпечною після колапсу клітинного імунітету. HIV+
+  статус — самостійне абсолютне протипоказання.
+
+alternative_actions:
+  - "Treat infection to clearance / control before initiating alemtuzumab"
+  - "If HIV+ → use HIV-compatible T-PLL regimens (e.g., pentostatin, bendamustine + rituximab in CD52-low cases)"
+  - "Defer alemtuzumab and reassess CMV PCR weekly until clear"
+  - "Mandatory PJP prophylaxis (TMP-SMX or atovaquone) and HSV prophylaxis (acyclovir) before alemtuzumab in eligible patients"
+
+affects_drugs:
+  - DRUG-ALEMTUZUMAB
+affects_regimens:
+  - REG-ALEMTUZUMAB-IV
+affects_indications:
+  - IND-T-PLL-1L-ALEMTUZUMAB
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. CMV reactivation pneumonitis is the signature toxicity;
+  weekly CMV PCR for 8 weeks post-induction is mandatory. Pre-emptive
+  ganciclovir/valganciclovir at any rise in CMV PCR.

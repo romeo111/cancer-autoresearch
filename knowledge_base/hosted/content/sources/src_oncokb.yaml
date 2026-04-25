@@ -1,0 +1,83 @@
+id: SRC-ONCOKB
+source_type: knowledge_base
+title: 'OncoKB — Precision Oncology Knowledge Base'
+version: continuous (last verified 2026-04-25)
+authors:
+  - Memorial Sloan Kettering Cancer Center
+url: https://www.oncokb.org
+access_level: registered_free
+currency_status: current
+superseded_by: null
+current_as_of: '2026-04-25'
+evidence_tier: 1
+hosting_mode: referenced
+hosting_justification: null
+ingestion:
+  method: live_api
+  endpoint: https://www.oncokb.org/api/v1
+  auth: bearer_token
+  proxy_path: services/oncokb_proxy
+  notes: >
+    OncoKB API access requires a registered token (free for academic /
+    non-commercial use). The token is held by services/oncokb_proxy
+    (FastAPI on Cloud Run); the Pyodide client never sees the token.
+    Requests are proxied with in-memory LRU cache, 7-day TTL.
+
+license:
+  name: OncoKB Academic / Research License
+  url: https://www.oncokb.org/terms
+  spdx_id: null
+
+attribution:
+  required: true
+  text: >
+    Therapeutic-level data sourced from OncoKB™ (Memorial Sloan Kettering
+    Cancer Center). Citation: Chakravarty et al. JCO Precis Oncol 2017.
+    Full clinical interpretation: https://www.oncokb.org/gene/{gene}/{variant}
+
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+
+known_restrictions:
+  - >
+    Academic-license terms forbid redistribution, mirroring, and
+    commercial use. OpenOnco is "free public resource → non-commercial"
+    per CHARTER §2, which aligns with academic terms.
+  - >
+    Data scope intentionally narrowed to therapeutic levels (1, 2, 3A,
+    3B, 4, R1, R2) for (gene, variant, disease) triplets. Gene-level
+    annotations, structural variants, and VUS interpretation are
+    out-of-scope for OpenOnco — see docs/plans/oncokb_data_scope.md.
+  - >
+    Caching is in-memory only (LRU + 7-day TTL); no on-disk snapshot
+    of OncoKB content is created. Each Plan-render call to the proxy
+    either hits the LRU or makes a live API call — no "hosted" snapshot.
+
+legal_review:
+  status: pending
+  reviewer: null
+  date: '2026-04-25'
+  notes: >
+    Phase 10 scaffold. Pre-deployment: legal needs to confirm the proxy
+    architecture (token-on-server, no client-side token, no on-disk
+    snapshot, attribution in every plan render) is consistent with
+    OncoKB Academic Terms and CHARTER §2. Until that review clears,
+    services/oncokb_proxy stays unbuilt-in production (only local-dev
+    + tests).
+
+relates_to_diseases:
+  - "*"
+last_verified: '2026-04-25'
+pages_count: 12  # Foundational paper Chakravarty 2017 + therapeutic-level taxonomy doc
+references_count: 50  # Curated PMIDs cited in level-1/2/3A/3B annotations consumed by proxy
+corpus_role: secondary_evidence_base
+notes: >
+  Integration shape: Plan render adds a "OncoKB precision-medicine layer"
+  section listing level 3A/3B options for the patient's biomarkers,
+  with a direct URL to the OncoKB gene/variant page for clinician
+  follow-up. The engine itself does not select treatments based on
+  OncoKB data — that would conflict with CHARTER §8.3 (LLM/external
+  KB cannot be the clinical decision-maker). OncoKB-derived options
+  are surfaced for human review, not auto-promoted into Plan tracks.

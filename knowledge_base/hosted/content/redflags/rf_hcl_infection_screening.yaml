@@ -1,0 +1,29 @@
+id: RF-HCL-INFECTION-SCREENING
+definition: "Active uncontrolled infection at HCL diagnosis — defer purine analog (cladribine/pentostatin) until infection controlled; profound CD4 lymphopenia for 6-12 months post-treatment increases opportunistic infection risk."
+definition_ua: "Активна неконтрольована інфекція на діагнозі HCL — відстрочити пуринові аналоги (кладрибін/пентостатин) до контролю інфекції; виражена CD4-лімфопенія 6-12 місяців після терапії підвищує ризик опортуністичних інфекцій."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "active_uncontrolled_infection"
+      value: true
+    - finding: "neutropenic_fever_active"
+      value: true
+
+
+clinical_direction: hold
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-HCL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Active infection at diagnosis is common in HCL (severe neutropenia from disease itself). Standard practice: control infection first (G-CSF + antibiotics), then start cladribine. Hold-direction surfaces in MDT brief but doesn't shift Indication.

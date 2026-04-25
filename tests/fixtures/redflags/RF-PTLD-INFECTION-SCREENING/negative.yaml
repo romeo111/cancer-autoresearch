@@ -1,0 +1,6 @@
+red_flag: RF-PTLD-INFECTION-SCREENING
+findings:
+  ebv_pcr_blood_positive: false
+  cmv_pcr_blood_positive: false
+  ebv_status_tumor: "negative"
+expected_fires: false

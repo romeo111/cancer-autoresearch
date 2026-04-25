@@ -1,0 +1,5 @@
+red_flag: RF-NK-T-NASAL-ORGAN-DYSFUNCTION
+findings:
+  bilirubin_x_uln: -3
+  alt_x_uln: 0
+expected_fires: false

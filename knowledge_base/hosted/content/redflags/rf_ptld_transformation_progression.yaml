@@ -1,0 +1,29 @@
+id: RF-PTLD-TRANSFORMATION-PROGRESSION
+definition: "Failure of IS-reduction trial after 2-4 weeks (no clinical/radiologic improvement) — escalate to rituximab monotherapy → R-CHOP if rituximab fails."
+definition_ua: "Невдача IS-редукції через 2-4 тижні (без клінічного/радіологічного покращення) — ескалація до rituximab моно → R-CHOP якщо rituximab не спрацював."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "is_reduction_failure_2_4_weeks"
+      value: true
+    - finding: "ptld_progression_on_rituximab"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-PTLD]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Sequential treatment paradigm in polymorphic PTLD: IS-reduction → rituximab → chemoimmuno. Each escalation is a separate Indication selection downstream of 1L Algorithm.

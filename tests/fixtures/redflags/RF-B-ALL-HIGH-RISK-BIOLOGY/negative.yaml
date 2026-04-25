@@ -1,0 +1,6 @@
+red_flag: RF-B-ALL-HIGH-RISK-BIOLOGY
+findings:
+  ph_positive: false
+  bcr_abl1: "negative"
+  ph_like_signature: false
+expected_fires: false

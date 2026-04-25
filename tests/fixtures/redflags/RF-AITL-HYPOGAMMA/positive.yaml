@@ -1,0 +1,4 @@
+red_flag: RF-AITL-HYPOGAMMA
+findings:
+  hypogamma_present: true
+expected_fires: true

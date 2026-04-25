@@ -1,0 +1,31 @@
+id: RF-NMZL-INFECTION-SCREENING
+definition: "HBV/HCV/HIV serology mandatory pre-rituximab; no NMZL-specific infectious driver established (unlike HCV-MZL or H. pylori gastric MALT)."
+definition_ua: "HBV/HCV/HIV серологія обов'язково перед rituximab; на відміну від HCV-MZL або H. pylori шлункова MALT, NMZL не має встановленого інфекційного драйвера."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hcv"
+      value: "positive"
+    - finding: "hiv_serology"
+      value: "positive"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-NODAL-MZL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Cross-disease HBV reactivation risk handled by RF-UNIVERSAL-HBV-REACTIVATION-RISK; this disease-specific entry kept for NMZL MDT-brief annotation.

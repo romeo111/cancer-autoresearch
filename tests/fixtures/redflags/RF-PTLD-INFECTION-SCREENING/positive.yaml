@@ -1,0 +1,4 @@
+red_flag: RF-PTLD-INFECTION-SCREENING
+findings:
+  ebv_pcr_blood_positive: true
+expected_fires: true

@@ -1,0 +1,52 @@
+id: RF-MM-TRANSFORMATION-PROGRESSION
+definition: >
+  Aggressive plasma-cell biology indicating need for intensified MM
+  induction: plasma cell leukemia (≥5% circulating plasma cells, or
+  absolute count ≥500/µL), extramedullary disease at diagnosis (soft-tissue
+  plasmacytoma not contiguous with bone), or rapid laboratory progression
+  (≥25% rise in M-protein over 4-8 weeks pre-treatment).
+definition_ua: >
+  Агресивна біологія плазмоцитарних клітин, що потребує інтенсифікованої
+  індукції при ММ: плазмоклітинна лейкемія (≥5% циркулюючих плазмоцитів
+  або абсолютний рахунок ≥500/мкл), позакістковомозкове ураження на
+  момент діагнозу, швидке лабораторне прогресування (≥25% зростання
+  M-білка за 4-8 тижнів до лікування).
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "plasma_cell_leukemia"
+      value: true
+    - finding: "circulating_plasma_cells_percent"
+      threshold: 5
+      comparator: ">="
+    - finding: "extramedullary_disease_present"
+      value: true
+    - finding: "m_protein_rise_25pct_in_4_8wk"
+      value: true
+
+clinical_direction: intensify
+
+severity: critical
+priority: 80
+
+relevant_diseases:
+  - DIS-MM
+shifts_algorithm:
+  - ALGO-MM-1L
+
+sources:
+  - SRC-NCCN-MM-2025
+  - SRC-ESMO-MM-2023
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Plasma cell leukemia (PCL) — both primary and secondary forms have
+  inferior PFS/OS on standard VRd; D-VRd or KCd is preferred. EMD at
+  diagnosis (soft-tissue plasmacytoma not extending from bone): ≈30%
+  worse PFS regardless of cytogenetics. ESMO MM 2023 §IV.2 explicitly
+  recommends quadruplet (D-VRd / IsaVRd) for these high-risk presentations
+  even in cytogenetically standard-risk patients. This RF intensifies
+  toward D-VRd track, supplementing RF-MM-HIGH-RISK-CYTOGENETICS step 1.

@@ -1,0 +1,6 @@
+red_flag: RF-BULKY-DISEASE
+findings:
+  dominant_nodal_mass_cm: 4.2
+  mediastinal_ratio: 0.20
+  symptomatic_b_symptoms_severe: false
+expected_fires: false

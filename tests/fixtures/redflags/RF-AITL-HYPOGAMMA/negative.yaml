@@ -1,0 +1,5 @@
+red_flag: RF-AITL-HYPOGAMMA
+findings:
+  hypogamma_present: false
+  recurrent_bacterial_infections: false
+expected_fires: false

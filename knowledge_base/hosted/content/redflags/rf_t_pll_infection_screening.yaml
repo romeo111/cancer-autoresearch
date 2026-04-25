@@ -1,0 +1,29 @@
+id: RF-T-PLL-INFECTION-SCREENING
+definition: "CMV PCR + HBV/HCV/HIV serology + PCP prophylaxis pre-alemtuzumab — alemtuzumab reactivates CMV in ~30%; PCP prophylaxis mandatory for ≥6 months post-treatment."
+definition_ua: "CMV PCR + HBV/HCV/HIV серологія + PCP профілактика перед alemtuzumab — alemtuzumab реактивує CMV у ~30%; PCP профілактика обов'язкова ≥6 міс після терапії."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "cmv_pcr_blood_positive"
+      value: true
+    - finding: "hbsag"
+      value: "positive"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-T-PLL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Alemtuzumab CMV reactivation is the dominant infectious complication; weekly CMV PCR monitoring + pre-emptive ganciclovir threshold is standard of care.

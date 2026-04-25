@@ -1,0 +1,4 @@
+red_flag: RF-B-ALL-INFECTION-SCREENING
+findings:
+  hbsag: "positive"
+expected_fires: true

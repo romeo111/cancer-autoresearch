@@ -1,0 +1,4 @@
+red_flag: RF-DLBCL-CNS-RISK
+findings:
+  cns_ipi_score: 5
+expected_fires: true

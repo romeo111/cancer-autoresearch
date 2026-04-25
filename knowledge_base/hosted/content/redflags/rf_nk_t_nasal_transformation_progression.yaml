@@ -1,0 +1,29 @@
+id: RF-NK-T-NASAL-TRANSFORMATION-PROGRESSION
+definition: "PD-L1 expression high OR progression on first asparaginase-based regimen — pembrolizumab/sintilimab + chidamide salvage shows ORR 50-60% in this setting."
+definition_ua: "Висока експресія PD-L1 АБО прогресія на першому аспарагіназ-вмісному режимі — pembrolizumab/sintilimab + chidamide salvage має ORR 50-60%."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "pd_l1_high_expression"
+      value: true
+    - finding: "asparaginase_regimen_failure"
+      value: true
+
+
+clinical_direction: investigate
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-NK-T-NASAL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  PD-1 inhibitor activity in NK/T-nasal exceptional (50-60% ORR) — this is a 2L decision driver. 1L Algorithm unaffected.

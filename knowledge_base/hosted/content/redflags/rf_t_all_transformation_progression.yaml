@@ -1,0 +1,29 @@
+id: RF-T-ALL-TRANSFORMATION-PROGRESSION
+definition: "MRD-positive post-induction (≥0.01%) OR overt CNS involvement (CNS-3) — alloSCT consolidation becomes standard; nelarabine-containing salvage if not yet exposed."
+definition_ua: "MRD-позитив після індукції (≥0.01%) АБО явне ЦНС-ураження (CNS-3) — alloSCT консолідація стає стандартом; nelarabine у salvage якщо ще не отримував."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "mrd_positive_post_induction"
+      value: true
+    - finding: "cns_status_cns3"
+      value: true
+
+
+clinical_direction: investigate
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-T-ALL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  MRD-driven consolidation strategy sits downstream of 1L induction Algorithm.

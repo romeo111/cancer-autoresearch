@@ -27,6 +27,7 @@ shifts_algorithm:
 
 sources:
   - SRC-NCCN-MM-2025
+  - SRC-ESMO-MM-2023
 
 last_reviewed: "2026-04-25"
 notes: >

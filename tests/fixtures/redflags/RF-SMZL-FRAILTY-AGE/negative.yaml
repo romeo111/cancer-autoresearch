@@ -1,0 +1,4 @@
+red_flag: RF-SMZL-FRAILTY-AGE
+findings:
+  smzl_asymptomatic: false
+expected_fires: false

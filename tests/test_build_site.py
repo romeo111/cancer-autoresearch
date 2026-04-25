@@ -203,11 +203,13 @@ def test_engine_bundle_excludes_heavy_unused_subtrees(site_dir: Path):
         for pfx in forbidden_prefixes:
             assert not n.startswith(pfx), f"unexpected file in bundle: {n}"
     # Bundle must be small enough for fast first-page load.
-    # Threshold scales with KB content size — currently ~260-280KB for
-    # ~200 entities; hard ceiling 500KB for UX (Pyodide overhead dominates
-    # at first load anyway).
-    assert zip_path.stat().st_size < 500_000, (
-        f"engine bundle exceeds 500KB compressed: {zip_path.stat().st_size}"
+    # ~260KB at initial implementation (2026-Q1, ~200 entities); ~605KB
+    # after the redflag-quality plan (2026-04-25) added 19 broken-ref
+    # stubs, 3 universal RFs, 7 disease-specific RFs (DLBCL + MM), 2
+    # ESMO sources, and OncoKB Source. Pyodide first-load (≈10 MB)
+    # dominates UX latency, so the ceiling is sized for headroom.
+    assert zip_path.stat().st_size < 750_000, (
+        f"engine bundle exceeds 750KB compressed: {zip_path.stat().st_size}"
     )
 
 

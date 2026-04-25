@@ -1,0 +1,6 @@
+red_flag: RF-T-PLL-ORGAN-DYSFUNCTION
+findings:
+  anc_x10_9_l: 5.5
+  platelets_x10_9_l: 55
+  hemoglobin_g_dl: 13
+expected_fires: false

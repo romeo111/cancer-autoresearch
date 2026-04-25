@@ -1,0 +1,32 @@
+id: TEST-MRI-BRAIN-CONTRAST
+names:
+  preferred: "MRI brain with gadolinium contrast"
+  ukrainian: "МРТ головного мозку з гадолінієвим контрастом"
+  english: "MRI brain with contrast"
+  synonyms: ["Brain MRI", "Cranial MRI gadolinium-enhanced"]
+loinc_codes: ["30794-8"]
+category: imaging
+purpose: >
+  Detect parenchymal CNS lymphoma, leptomeningeal disease, and
+  pre-treatment baseline for PCNSL induction. Required for staging
+  in PCNSL/secondary-CNS lymphoma and any neurologic symptoms in
+  systemic lymphoma. Gadolinium enhancement improves sensitivity
+  vs non-contrast.
+specimen: "Imaging procedure (no specimen)"
+turnaround_time: "Same-day report (urgent); 1-2 days routine"
+priority_class: standard
+
+availability_ukraine:
+  state_funded: true
+  typical_availability: "Most regional centers; gadolinium contrast may have access constraints"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. PCNSL: classic appearance is periventricular T2-iso/hypointense
+  homogeneously-enhancing mass. Pre-steroid MRI is preferred when feasible
+  — corticosteroids cause rapid radiographic regression that can mask
+  the lymphoma. Contraindicated in patients with non-MRI-compatible
+  metallic implants; gadolinium with caution in eGFR <30 (NSF risk).

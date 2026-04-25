@@ -1,0 +1,32 @@
+id: RF-PCNSL-HIGH-RISK-BIOLOGY
+definition: "Multifocal disease, deep brain involvement (basal ganglia/thalamus/brainstem), or high IELSG-PCNSL score (≥3) — favor consolidation with autoSCT or full-dose WBRT after induction."
+definition_ua: "Мультифокальне ураження, глибокі структури (базальні ганглії/таламус/стовбур), або високий IELSG-PCNSL score (≥3) — консолідація autoSCT або повна WBRT після індукції."
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "ielsg_pcnsl_score"
+      threshold: 3
+      comparator: ">="
+    - finding: "deep_brain_involvement"
+      value: true
+    - finding: "multifocal_pcnsl"
+      value: true
+
+
+clinical_direction: intensify
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PCNSL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  IELSG-PCNSL prognostic model (age, ECOG, LDH, CSF protein, deep-brain involvement) stratifies 2-year OS. Flag drives consolidation strategy decisions (autoSCT vs WBRT) which sit downstream of 1L Algorithm.

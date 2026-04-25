@@ -9,5 +9,5 @@ trigger:
 clinical_direction: intensify
 relevant_diseases: [DIS-CHL]
 shifts_algorithm: [ALGO-CHL-1L]
-sources: [SRC-NCCN-BCELL-2025]
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-HODGKIN-2024]
 last_reviewed: "2026-04-25"

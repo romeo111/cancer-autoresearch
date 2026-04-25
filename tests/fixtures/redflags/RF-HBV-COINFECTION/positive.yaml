@@ -1,0 +1,4 @@
+red_flag: RF-HBV-COINFECTION
+findings:
+  hbsag: "positive"
+expected_fires: true

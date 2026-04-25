@@ -1,0 +1,35 @@
+id: RF-PMBCL-HIGH-RISK-BIOLOGY
+definition: "Bulky mediastinal disease (>10 cm) and/or aaIPI ≥2 — favors DA-EPOCH-R over R-CHOP+RT per IELSG-26 / NCCN B-cell."
+definition_ua: "Об'ємне медіастінальне ураження (>10 см) та/або aaIPI ≥2 — DA-EPOCH-R над R-CHOP+RT за IELSG-26 / NCCN B-cell."
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "dominant_mediastinal_mass_cm"
+      threshold: 10
+      comparator: ">="
+    - finding: "aaipi_score"
+      threshold: 2
+      comparator: ">="
+    - finding: "bulky_mediastinal_pmbcl"
+      value: true
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PMBCL]
+# ALGO-PMBCL-1L default is already DA-EPOCH-R for all-comers; this flag
+# confirms the choice rather than shifting (no more-intense arm exists).
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Dunleavy NEJM 2013 phase-2 (DA-EPOCH-R 93% EFS) + IELSG-26 PET-driven response data form the evidence base for DA-EPOCH-R preference in bulky/high-IPI PMBCL.

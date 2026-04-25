@@ -1,0 +1,4 @@
+red_flag: RF-HSTCL-INFECTION-SCREENING
+findings:
+  hbsag: "positive"
+expected_fires: true

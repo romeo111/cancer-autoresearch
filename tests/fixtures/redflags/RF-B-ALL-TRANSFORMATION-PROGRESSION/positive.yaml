@@ -1,0 +1,4 @@
+red_flag: RF-B-ALL-TRANSFORMATION-PROGRESSION
+findings:
+  mrd_positive_post_induction: true
+expected_fires: true

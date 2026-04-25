@@ -1,0 +1,4 @@
+red_flag: RF-BULKY-DISEASE
+findings:
+  dominant_nodal_mass_cm: 8.5
+expected_fires: true

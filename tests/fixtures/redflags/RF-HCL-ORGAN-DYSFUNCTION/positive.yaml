@@ -1,0 +1,4 @@
+red_flag: RF-HCL-ORGAN-DYSFUNCTION
+findings:
+  creatinine_clearance_ml_min: 59
+expected_fires: true

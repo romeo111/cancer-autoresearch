@@ -1,0 +1,6 @@
+red_flag: RF-DLBCL-CNS-RISK
+findings:
+  cns_ipi_score: 1
+  anatomic_cns_risk_site: false
+  testicular_involvement: false
+expected_fires: false

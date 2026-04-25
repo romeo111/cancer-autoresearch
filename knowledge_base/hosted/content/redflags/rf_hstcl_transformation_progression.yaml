@@ -1,0 +1,29 @@
+id: RF-HSTCL-TRANSFORMATION-PROGRESSION
+definition: "Refractory or rapid-relapse disease post-ICE — alloSCT urgently if not yet planned; otherwise pralatrexate or romidepsin salvage with transplant intent."
+definition_ua: "Рефрактерна або швидко-рецидивна хвороба після ICE — терміново alloSCT якщо ще не заплановано; інакше pralatrexate або romidepsin salvage з трансплант-інтентом."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "hstcl_refractory_post_ice"
+      value: true
+    - finding: "hstcl_rapid_relapse"
+      value: true
+
+
+clinical_direction: investigate
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-HSTCL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  HSTCL refractory disease has very poor outcomes; alloSCT is the only realistic curative path.

@@ -1,0 +1,4 @@
+red_flag: RF-PTLD-TRANSFORMATION-PROGRESSION
+findings:
+  is_reduction_failure_2_4_weeks: true
+expected_fires: true

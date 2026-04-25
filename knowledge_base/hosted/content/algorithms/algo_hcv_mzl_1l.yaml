@@ -17,13 +17,23 @@ decision_tree:
   - step: 1
     evaluate:
       any_of:
+        - red_flag: RF-DECOMP-CIRRHOSIS
+    if_true:
+      # Child-Pugh B/C contraindicates bendamustine and PI-containing DAA;
+      # de-escalate to antiviral-only (SOF/VEL+RBV) per RF notes.
+      result: IND-HCV-MZL-1L-ANTIVIRAL
+    if_false:
+      next_step: 2
+  - step: 2
+    evaluate:
+      any_of:
         - red_flag: RF-BULKY-DISEASE
         - red_flag: RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION
     if_true:
       result: IND-HCV-MZL-1L-BR-AGGRESSIVE
     if_false:
-      next_step: 2
-  - step: 2
+      next_step: 3
+  - step: 3
     evaluate:
       all_of:
         - condition: "HCV RNA positive"

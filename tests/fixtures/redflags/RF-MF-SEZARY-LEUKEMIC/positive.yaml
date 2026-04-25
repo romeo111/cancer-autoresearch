@@ -1,0 +1,4 @@
+red_flag: RF-MF-SEZARY-LEUKEMIC
+findings:
+  sezary_count_b2: true
+expected_fires: true

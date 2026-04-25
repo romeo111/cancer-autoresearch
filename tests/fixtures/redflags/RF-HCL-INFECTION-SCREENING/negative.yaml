@@ -1,0 +1,5 @@
+red_flag: RF-HCL-INFECTION-SCREENING
+findings:
+  active_uncontrolled_infection: false
+  neutropenic_fever_active: false
+expected_fires: false

@@ -1,0 +1,34 @@
+id: RF-ATLL-HIGH-RISK-BIOLOGY
+definition: "Shimoyama acute or lymphoma subtype (LDH >2×ULN, BUN >ULN, albumin <ULN — any one) — aggressive variant; AZT+IFN-α inadequate, requires intensive chemo (mLSG-15) ± alloSCT."
+definition_ua: "Shimoyama гостра або лімфомна форма (LDH >2×ULN, BUN >ULN, альбумін <ULN — будь-який один) — агресивний варіант; AZT+IFN-α недостатній, потрібна інтенсивна хіміо (mLSG-15) ± alloSCT."
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "shimoyama_aggressive_subtype"
+      value: true
+    - finding: "ldh_x_uln"
+      threshold: 2
+      comparator: ">"
+    - finding: "bun_above_uln"
+      value: true
+    - finding: "albumin_below_uln"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-ATLL]
+shifts_algorithm: [ALGO-ATLL-1L]
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Shimoyama's prognostic system is THE classifier in ATLL: smoldering/chronic-favorable get watch-and-wait or AZT+IFN-α; acute/lymphoma get aggressive chemo. Engine routes appropriately.

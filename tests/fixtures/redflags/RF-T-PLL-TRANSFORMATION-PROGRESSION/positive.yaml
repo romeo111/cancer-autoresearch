@@ -1,0 +1,4 @@
+red_flag: RF-T-PLL-TRANSFORMATION-PROGRESSION
+findings:
+  t_pll_no_cr_after_alemtuzumab: true
+expected_fires: true

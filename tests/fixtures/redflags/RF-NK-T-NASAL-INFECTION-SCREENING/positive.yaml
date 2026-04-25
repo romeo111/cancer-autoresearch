@@ -1,0 +1,4 @@
+red_flag: RF-NK-T-NASAL-INFECTION-SCREENING
+findings:
+  ebv_dna_copies_per_ml: 10000
+expected_fires: true

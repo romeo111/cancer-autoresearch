@@ -14,7 +14,17 @@ default_indication: IND-HCL-1L-CLADRIBINE
 alternative_indication: IND-HCL-1L-PENTOSTATIN
 
 decision_tree:
+  # Step 1: frail elderly tolerate pentostatin (weekly, titratable) better
+  # than cladribine 5-7-day continuous infusion.
   - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-HCL-FRAILTY-AGE
+    if_true:
+      result: IND-HCL-1L-PENTOSTATIN
+    if_false:
+      next_step: 2
+  - step: 2
     evaluate:
       all_of:
         - condition: "Treatment indication present (cytopenia or symptomatic splenomegaly)"

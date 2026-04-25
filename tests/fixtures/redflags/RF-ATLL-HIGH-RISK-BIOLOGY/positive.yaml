@@ -1,0 +1,4 @@
+red_flag: RF-ATLL-HIGH-RISK-BIOLOGY
+findings:
+  shimoyama_aggressive_subtype: true
+expected_fires: true

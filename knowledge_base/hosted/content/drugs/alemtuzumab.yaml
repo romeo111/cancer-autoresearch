@@ -1,0 +1,58 @@
+id: DRUG-ALEMTUZUMAB
+names:
+  preferred: "Alemtuzumab"
+  ukrainian: "Алемтузумаб"
+  english: "Alemtuzumab"
+  brand_names: ["Lemtrada", "Campath"]
+atc_code: L04AG06
+rxnorm_id: "117055"
+drug_class: "Anti-CD52 humanized monoclonal antibody"
+mechanism: >
+  Binds CD52 on the surface of B and T lymphocytes (and other lymphoid
+  cells), causing antibody-dependent cellular cytotoxicity and
+  complement-dependent cytolysis. Profound and prolonged lymphopenia
+  (especially CD4+ T-cells) drives both efficacy and infectious risk.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  T-PLL: 30 mg IV three times weekly × 12 weeks (escalation from 3 mg → 10 mg
+  → 30 mg over first week to limit cytokine release).
+
+formulations: ["IV concentrate 30 mg/mL"]
+
+absolute_contraindications:
+  - "Active uncontrolled systemic infection (bacterial, viral, fungal)"
+  - "HIV-positive (additional immunosuppression unsafe)"
+  - "Hypersensitivity to alemtuzumab or murine proteins"
+
+black_box_warnings:
+  - "Cytopenias (severe pancytopenia, autoimmune)"
+  - "Infusion reactions (premedicate; first-dose escalation mandatory)"
+  - "Infections (CMV reactivation, PJP, fungal — prophylaxis required)"
+  - "Malignancies (secondary)"
+
+common_adverse_events:
+  - "Cytokine-release syndrome on first infusion"
+  - "Lymphopenia, neutropenia"
+  - "Opportunistic infection"
+
+serious_adverse_events:
+  - "CMV reactivation pneumonitis"
+  - "PJP pneumonia without prophylaxis"
+  - "Autoimmune cytopenias"
+  - "Secondary autoimmunity (thyroiditis, ITP)"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — created in Phase 9 (broken-ref repair, 2026-04-25). T-PLL is
+  only oncologic indication retained; MS uses are out-of-scope here.
+  Mandatory CMV PCR weekly + PJP prophylaxis (TMP-SMX or atovaquone)
+  + HSV prophylaxis (acyclovir) during therapy and ≥2 months post.

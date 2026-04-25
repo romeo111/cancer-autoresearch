@@ -1,0 +1,6 @@
+red_flag: RF-NLPBL-ORGAN-DYSFUNCTION
+findings:
+  pulmonary_dysfunction_rt_field: false
+  cardiac_dysfunction_rt_field: false
+  lvef_percent: 55
+expected_fires: false

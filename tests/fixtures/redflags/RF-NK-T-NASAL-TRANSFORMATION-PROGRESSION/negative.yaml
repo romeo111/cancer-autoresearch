@@ -1,0 +1,5 @@
+red_flag: RF-NK-T-NASAL-TRANSFORMATION-PROGRESSION
+findings:
+  pd_l1_high_expression: false
+  asparaginase_regimen_failure: false
+expected_fires: false

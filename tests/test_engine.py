@@ -30,18 +30,28 @@ def test_indolent_hcv_mzl_picks_antiviral_default():
 
 
 def test_bulky_hcv_mzl_picks_br_default():
-    """Bulky HCV-MZL patient: BR should become the default via
-    RF-BULKY-DISEASE firing; antiviral remains the alternative."""
+    """Bulky HCV-MZL patient: BR should become the default.
+
+    NOTE: ALGO-HCV-MZL-1L is now a 3-step tree (Phase 1 wiring 2026-04-25):
+      step 1 = RF-DECOMP-CIRRHOSIS → ANTIVIRAL (de-escalate)
+      step 2 = RF-BULKY-DISEASE / RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION → BR
+      step 3 = HCV-RNA+ + indolent → ANTIVIRAL
+    Bulky-without-decomp patient: step 1 False, step 2 True → BR."""
 
     result = generate_plan(_patient("patient_zero_bulky.json"), kb_root=KB_ROOT)
 
     assert result.disease_id == "DIS-HCV-MZL"
     assert result.default_indication_id == "IND-HCV-MZL-1L-BR-AGGRESSIVE"
     assert result.alternative_indication_id == "IND-HCV-MZL-1L-ANTIVIRAL"
-    # RF-BULKY-DISEASE fired at step 1
+
     step_1 = next((t for t in result.trace if t.get("step") == 1), None)
-    assert step_1 is not None
-    assert step_1["outcome"] is True
+    step_2 = next((t for t in result.trace if t.get("step") == 2), None)
+    assert step_1 is not None and step_1["outcome"] is False, (
+        "decomp-cirrhosis step should NOT fire for the bulky-without-decomp patient"
+    )
+    assert step_2 is not None and step_2["outcome"] is True, (
+        "bulky-disease step should fire and route to BR-AGGRESSIVE"
+    )
 
 
 def test_plan_result_has_full_indication_records():

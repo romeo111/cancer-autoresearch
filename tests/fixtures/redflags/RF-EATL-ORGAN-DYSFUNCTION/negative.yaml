@@ -1,0 +1,6 @@
+red_flag: RF-EATL-ORGAN-DYSFUNCTION
+findings:
+  bowel_perforation: false
+  albumin_g_dl: 7.5
+  surgical_complication_active: false
+expected_fires: false

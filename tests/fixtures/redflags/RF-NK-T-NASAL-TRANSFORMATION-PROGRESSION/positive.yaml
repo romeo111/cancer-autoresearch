@@ -1,0 +1,4 @@
+red_flag: RF-NK-T-NASAL-TRANSFORMATION-PROGRESSION
+findings:
+  pd_l1_high_expression: true
+expected_fires: true

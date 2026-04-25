@@ -1,0 +1,31 @@
+id: RF-PTLD-HIGH-RISK-BIOLOGY
+definition: "Monomorphic PTLD with DLBCL-type morphology / Burkitt-like / T-cell PTLD — chemoimmunotherapy from start (R-CHOP, EPOCH, or T-cell-specific); polymorphic forms may respond to IS-reduction ± rituximab."
+definition_ua: "Мономорфна PTLD з DLBCL-морфологією / Burkitt-like / T-cell PTLD — хіміоімуно одразу (R-CHOP, EPOCH, T-cell-specific); полімерні форми можуть відповідати на IS-редукцію ± rituximab."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "ptld_subtype_monomorphic_dlbcl"
+      value: true
+    - finding: "ptld_subtype_burkitt_like"
+      value: true
+    - finding: "ptld_subtype_t_cell"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-PTLD]
+shifts_algorithm: [ALGO-PTLD-1L]
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Histologic subtype is the dominant treatment selector in PTLD. Polymorphic / early-lesion → IS-reduction trial first; monomorphic → chemoimmuno from start. T-cell PTLD is rare and requires CHOP-based without rituximab.

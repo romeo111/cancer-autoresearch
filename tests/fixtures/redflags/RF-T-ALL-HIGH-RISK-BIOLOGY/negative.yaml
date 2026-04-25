@@ -1,0 +1,5 @@
+red_flag: RF-T-ALL-HIGH-RISK-BIOLOGY
+findings:
+  etp_phenotype: false
+  etp_all: false
+expected_fires: false

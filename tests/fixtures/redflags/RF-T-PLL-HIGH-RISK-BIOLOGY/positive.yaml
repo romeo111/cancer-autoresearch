@@ -1,0 +1,4 @@
+red_flag: RF-T-PLL-HIGH-RISK-BIOLOGY
+findings:
+  complex_karyotype: true
+expected_fires: true

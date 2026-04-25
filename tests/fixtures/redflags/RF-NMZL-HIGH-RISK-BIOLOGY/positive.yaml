@@ -1,0 +1,4 @@
+red_flag: RF-NMZL-HIGH-RISK-BIOLOGY
+findings:
+  tp53_mutation: true
+expected_fires: true

@@ -1,0 +1,5 @@
+red_flag: RF-DLBCL-HIGH-IPI
+findings:
+  ipi_score: 1
+  high_ipi: false
+expected_fires: false

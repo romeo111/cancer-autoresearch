@@ -1,0 +1,28 @@
+id: RF-HGBL-DH-ORGAN-DYSFUNCTION
+definition: "Cardiac dysfunction (LVEF <50%) — DA-EPOCH-R (preferred for HGBL-DH/-TH) is anthracycline-intensive; cardio-onc consult and dose-modification required."
+definition_ua: "Кардіальна дисфункція (LVEF <50%) — DA-EPOCH-R (preferred для HGBL-DH/-TH) антрациклін-інтенсивний; кардіо-онк консультація + dose-modification."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "lvef_percent"
+      threshold: 50
+      comparator: "<"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-HGBL-DH]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  DA-EPOCH-R cumulative doxorubicin exceeds R-CHOP; cardio-monitoring should be aggressive in baseline-borderline LVEF. Indication-level dose adjustment, not 1L Algorithm shift.

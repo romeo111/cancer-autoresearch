@@ -1,0 +1,5 @@
+red_flag: RF-PMBCL-ORGAN-DYSFUNCTION
+findings:
+  lvef_percent: 55
+  cardiac_dysfunction_baseline: false
+expected_fires: false

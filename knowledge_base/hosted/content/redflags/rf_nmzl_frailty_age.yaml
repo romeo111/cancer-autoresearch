@@ -1,0 +1,38 @@
+id: RF-NMZL-FRAILTY-AGE
+definition: "Age >80 OR ECOG ≥3 with comorbidity AND asymptomatic NMZL (no GELF criteria) — observation appropriate; rituximab monotherapy if treatment indicated."
+definition_ua: "Вік >80 АБО ECOG ≥3 з коморбідностями І асимптоматична NMZL (без GELF) — спостереження доречне; rituximab моно якщо потрібне лікування."
+
+trigger:
+  type: composite_clinical
+  all_of:
+    - finding: "nmzl_asymptomatic"
+      value: true
+    - any_of:
+        - finding: "age_years"
+          threshold: 80
+          comparator: ">"
+        - all_of:
+            - finding: "ecog_status"
+              threshold: 3
+              comparator: ">="
+            - finding: "comorbidity_count"
+              threshold: 2
+              comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-NODAL-MZL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  NMZL is indolent like FL; watch-and-wait standard for asymptomatic. Active treatment reserved for symptomatic burden.

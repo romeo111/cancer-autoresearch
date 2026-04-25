@@ -1,0 +1,31 @@
+id: TEST-CSF-CYTOLOGY-FLOW
+names:
+  preferred: "CSF cytology + flow cytometry"
+  ukrainian: "Цитологія + проточна цитофлуометрія ліквору"
+  english: "CSF cytology + flow cytometry"
+  synonyms: ["CSF cytomorphology", "Spinal fluid flow"]
+loinc_codes: ["10328-6", "73959-8"]
+category: pathology
+purpose: >
+  Detect CNS involvement in lymphoma/leukemia by combining traditional
+  cytomorphology with multiparameter flow cytometry. Flow detects
+  smaller monoclonal B/T-cell populations than cytology can resolve;
+  combined sensitivity exceeds either alone.
+specimen: "CSF (≥3 mL ideal; minimum 1 mL split between cytology and flow)"
+turnaround_time: "1-3 days"
+priority_class: standard
+
+availability_ukraine:
+  state_funded: true
+  typical_availability: "Tertiary hematology/oncology centers; routine in PCNSL workup"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-EHA-WORKUP-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. Mandatory in PCNSL, B-ALL, T-ALL induction workup.
+  Lumbar puncture timing: pre-systemic-therapy when feasible, or with
+  IT prophylaxis dose. In thrombocytopenia (plt <50k), platelet
+  transfusion immediately pre-LP. Always paired with brain MRI in PCNSL.

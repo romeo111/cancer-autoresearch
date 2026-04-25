@@ -1,0 +1,29 @@
+id: RF-ATLL-TRANSFORMATION-PROGRESSION
+definition: "Smoldering/chronic ATLL transforming to acute (rising lymphocyte count, new B-symptoms, organ infiltration) — switch from watch-and-wait/AZT+IFN to aggressive chemo immediately."
+definition_ua: "Тліюча/хронічна ATLL трансформується в гостру (зростання лімфоцитів, нові B-симптоми, інфільтрація органів) — негайний перехід з watch-and-wait/AZT+IFN на агресивну хіміо."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "atll_transformation_to_acute"
+      value: true
+    - finding: "lymphocyte_count_doubling_3_months"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-ATLL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Indolent ATLL transformation requires immediate algorithm reassessment — typically modeled as a re-evaluation event triggering revise_plan() rather than a 1L decision_tree branch.

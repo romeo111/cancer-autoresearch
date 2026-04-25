@@ -1,0 +1,6 @@
+red_flag: RF-SMZL-HIGH-RISK-BIOLOGY
+findings:
+  tp53_mutation: false
+  notch2_mutation: false
+  del_7q: false
+expected_fires: false

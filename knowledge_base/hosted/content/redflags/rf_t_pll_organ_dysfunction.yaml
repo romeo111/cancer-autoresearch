@@ -1,0 +1,34 @@
+id: RF-T-PLL-ORGAN-DYSFUNCTION
+definition: "Severe cytopenia (ANC <0.5 OR platelets <50 OR Hgb <8) at diagnosis — disease-driven marrow infiltration; alemtuzumab will worsen lymphopenia; growth-factor support + transfusion threshold management critical."
+definition_ua: "Виражені цитопенії (ANC <0.5 АБО тромбоцити <50 АБО Hgb <8) на діагнозі — пухлинна інфільтрація; alemtuzumab погіршить лімфопенію; G-CSF + трансфузійний поріг критично важливі."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "anc_x10_9_l"
+      threshold: 0.5
+      comparator: "<"
+    - finding: "platelets_x10_9_l"
+      threshold: 50
+      comparator: "<"
+    - finding: "hemoglobin_g_dl"
+      threshold: 8
+      comparator: "<"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-T-PLL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  T-PLL cytopenias are disease-driven; alemtuzumab causes profound CD52+ lymphocyte depletion (months). Supportive care + opportunistic infection prophylaxis essential.

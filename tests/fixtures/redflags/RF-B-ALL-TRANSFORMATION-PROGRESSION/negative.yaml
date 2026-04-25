@@ -1,0 +1,5 @@
+red_flag: RF-B-ALL-TRANSFORMATION-PROGRESSION
+findings:
+  mrd_positive_post_induction: false
+  mrd_level_percent: -4.99
+expected_fires: false

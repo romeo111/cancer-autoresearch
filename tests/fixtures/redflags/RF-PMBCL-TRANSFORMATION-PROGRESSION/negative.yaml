@@ -1,0 +1,5 @@
+red_flag: RF-PMBCL-TRANSFORMATION-PROGRESSION
+findings:
+  pet_deauville_score: -1
+  interim_pet_progression: false
+expected_fires: false

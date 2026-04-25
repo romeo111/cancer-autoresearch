@@ -14,15 +14,34 @@ default_indication: IND-DLBCL-1L-RCHOP
 alternative_indication: IND-DLBCL-1L-POLA-R-CHP
 
 decision_tree:
+  # Step 1 — frailty / organ dysfunction de-escalates from intensification.
+  # If a patient cannot tolerate full-dose CHOP backbone, Pola-R-CHP is
+  # not safer; route to standard R-CHOP (or R-mini-CHOP at clinician
+  # discretion within that indication).
   - step: 1
     evaluate:
       any_of:
+        - red_flag: RF-DLBCL-FRAILTY-AGE
+        - red_flag: RF-DLBCL-ORGAN-DYSFUNCTION
+    if_true:
+      result: IND-DLBCL-1L-RCHOP
+    if_false:
+      next_step: 2
+
+  # Step 2 — high-risk biology OR high-IPI escalates to Pola-R-CHP
+  # (POLARIX subgroup analysis: benefit largest in non-GCB / DE / IPI≥3).
+  - step: 2
+    evaluate:
+      any_of:
         - red_flag: RF-DLBCL-HIGH-IPI
+        - red_flag: RF-DLBCL-HIGH-RISK-BIOLOGY
     if_true:
       result: IND-DLBCL-1L-POLA-R-CHP
     if_false:
-      next_step: 2
-  - step: 2
+      next_step: 3
+
+  # Step 3 — default standard R-CHOP × 6 for low-IPI standard-biology DLBCL.
+  - step: 3
     evaluate:
       all_of:
         - condition: "Standard-risk IPI (0-1)"
@@ -34,11 +53,18 @@ decision_tree:
 
 sources:
   - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
 
 last_reviewed: "2026-04-25"
 notes: >
-  IPI is the primary determinant. CNS-IPI handled separately as
-  RF-DLBCL-CNS-RISK with direction "investigate" — does not shift main
-  regimen but adds CNS prophylaxis as particularity. Cell-of-origin
-  (Hans GCB vs ABC) recorded as biomarker but not yet acting on regimen
-  choice in this version.
+  IPI + biology are the primary regimen determinants; frailty / organ
+  dysfunction de-escalate ahead of intensification (step 1 wins over
+  step 2 if both fire). Engine still surfaces all fired RFs in trace —
+  the conflict is visible to the MDT.
+
+  RF-DLBCL-CNS-RISK and RF-DLBCL-INFECTION-SCREENING are intentionally
+  NOT in the decision_tree because they don't switch indication:
+  CNS-RISK adds CNS prophylaxis (handled in plan render);
+  INFECTION-SCREENING adds HBV/HIV prophylaxis (parallel SUP-* triggers).
+  Cell-of-origin (Hans GCB vs ABC) recorded as biomarker; non-GCB +
+  high-IPI is captured by RF-DLBCL-HIGH-RISK-BIOLOGY.

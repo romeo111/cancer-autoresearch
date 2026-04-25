@@ -1,0 +1,4 @@
+red_flag: RF-HSTCL-FRAILTY-AGE
+findings:
+  age_years: 66
+expected_fires: true

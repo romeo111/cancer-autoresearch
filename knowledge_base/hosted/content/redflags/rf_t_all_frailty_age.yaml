@@ -1,0 +1,35 @@
+id: RF-T-ALL-FRAILTY-AGE
+definition: "Age >55 — pediatric-inspired protocols (GRAALL, CALGB 10403) carry excessive induction mortality; reduced-intensity backbone with selected MRD-targeted agents (nelarabine, asparaginase modifications) preferred."
+definition_ua: "Вік >55 — педіатричні протоколи (GRAALL, CALGB 10403) мають надлишкову смертність на індукції; reduced-intensity backbone з MRD-таргетованими (nelarabine, модифікації аспарагінази)."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "age_years"
+      threshold: 55
+      comparator: ">"
+    - all_of:
+        - finding: "ecog_status"
+          threshold: 3
+          comparator: ">="
+        - finding: "comorbidity_count"
+          threshold: 2
+          comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-T-ALL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  T-ALL >55 is rare; protocols underrepresented in trials. Reduced-intensity backbone often borrowed from older B-ALL regimens with T-cell substitutions.

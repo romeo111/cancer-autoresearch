@@ -1,0 +1,4 @@
+red_flag: RF-FL-HIGH-TUMOR-BURDEN-GELF
+findings:
+  dominant_nodal_mass_cm: 8.0
+expected_fires: true

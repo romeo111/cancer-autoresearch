@@ -1,0 +1,4 @@
+red_flag: RF-SMZL-INFECTION-SCREENING
+findings:
+  hcv_rna_positive: true
+expected_fires: true

@@ -1,0 +1,31 @@
+id: RF-EATL-FRAILTY-AGE
+definition: "Age >70 OR ECOG ≥3 — CHOEP intensity + autoSCT consolidation poorly tolerated; CHOP-based with reduced doses ± brentuximab (CD30+) considered."
+definition_ua: "Вік >70 АБО ECOG ≥3 — інтенсивність CHOEP + autoSCT погано переноситься; CHOP з redukованими дозами ± брентуксимаб (CD30+)."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "age_years"
+      threshold: 70
+      comparator: ">"
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-EATL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  EATL is mostly disease of elderly; autoSCT limited by performance status. Reduced-intensity backbone trades cure rates for tolerability.

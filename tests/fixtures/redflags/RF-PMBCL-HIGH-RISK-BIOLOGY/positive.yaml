@@ -1,0 +1,4 @@
+red_flag: RF-PMBCL-HIGH-RISK-BIOLOGY
+findings:
+  dominant_mediastinal_mass_cm: 10
+expected_fires: true

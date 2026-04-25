@@ -1,0 +1,4 @@
+red_flag: RF-ATLL-ORGAN-DYSFUNCTION
+findings:
+  calcium_mg_dl: 13
+expected_fires: true

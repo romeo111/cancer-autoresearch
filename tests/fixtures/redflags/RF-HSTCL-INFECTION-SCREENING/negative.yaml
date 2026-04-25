@@ -1,0 +1,7 @@
+red_flag: RF-HSTCL-INFECTION-SCREENING
+findings:
+  hbsag: "negative"
+  ebv_pcr_blood_positive: false
+  post_transplant_setting: false
+  anti_tnf_exposure: false
+expected_fires: false

@@ -1,0 +1,30 @@
+id: RF-ATLL-ORGAN-DYSFUNCTION
+definition: "Hypercalcemia (Ca >12 mg/dL) at diagnosis — hallmark of aggressive ATLL; requires bisphosphonate/calcitonin urgently and predicts aggressive subtype regardless of WBC."
+definition_ua: "Гіперкальціємія (Ca >12 мг/дл) на діагнозі — маркер агресивної ATLL; потребує бісфосфонат/кальцитонін терміново і передбачає агресивний підтип незалежно від WBC."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "calcium_mg_dl"
+      threshold: 12
+      comparator: ">"
+    - finding: "atll_hypercalcemia"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-ATLL]
+shifts_algorithm: [ALGO-ATLL-1L]
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Hypercalcemia in ATLL is paraneoplastic (RANKL-driven by HTLV-1+ T cells) — its presence overrides Shimoyama subtyping toward aggressive variant; AZT+IFN-α inadequate. Immediate hypercalcemia management + aggressive chemo (mLSG-15 / EPOCH-like) standard.

@@ -1,0 +1,7 @@
+red_flag: RF-ATLL-HIGH-RISK-BIOLOGY
+findings:
+  shimoyama_aggressive_subtype: false
+  ldh_x_uln: -3
+  bun_above_uln: false
+  albumin_below_uln: false
+expected_fires: false

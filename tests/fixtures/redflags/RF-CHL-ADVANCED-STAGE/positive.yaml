@@ -1,0 +1,4 @@
+red_flag: RF-CHL-ADVANCED-STAGE
+findings:
+  stage_3_or_4: true
+expected_fires: true

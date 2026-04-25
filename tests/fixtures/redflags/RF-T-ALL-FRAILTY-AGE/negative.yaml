@@ -1,0 +1,5 @@
+red_flag: RF-T-ALL-FRAILTY-AGE
+findings:
+  age_years: 50
+  ecog_status: -2
+expected_fires: false

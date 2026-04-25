@@ -1,0 +1,4 @@
+red_flag: RF-SMZL-ORGAN-DYSFUNCTION
+findings:
+  portal_hypertension_severe: true
+expected_fires: true

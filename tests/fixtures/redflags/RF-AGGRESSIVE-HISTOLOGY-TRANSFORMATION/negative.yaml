@@ -1,0 +1,6 @@
+red_flag: RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION
+findings:
+  biopsy_shows_dlbcl: false
+  ldh_ratio_to_uln: 0.9
+  clinical_progression_weeks: 52
+expected_fires: false

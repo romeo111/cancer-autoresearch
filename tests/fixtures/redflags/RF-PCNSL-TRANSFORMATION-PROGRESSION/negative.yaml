@@ -1,0 +1,5 @@
+red_flag: RF-PCNSL-TRANSFORMATION-PROGRESSION
+findings:
+  end_induction_mri_residual: false
+  interim_progression_pcnsl: false
+expected_fires: false

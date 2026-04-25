@@ -1,0 +1,31 @@
+id: RF-PCNSL-ORGAN-DYSFUNCTION
+definition: "Renal dysfunction (CrCl <50 mL/min) — high-dose methotrexate (HD-MTX, ≥3 g/m²) backbone of all PCNSL 1L regimens contraindicated; transition to non-MTX regimen or refer to specialized center."
+definition_ua: "Ниркова дисфункція (CrCl <50 мл/хв) — високодозовий метотрексат (HD-MTX, ≥3 г/м²) як базис усіх 1L PCNSL режимів протипоказаний; перехід на non-MTX режим або скерувати в спеціалізований центр."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "creatinine_clearance_ml_min"
+      threshold: 50
+      comparator: "<"
+    - finding: "egfr_ml_min"
+      threshold: 50
+      comparator: "<"
+
+
+clinical_direction: hold
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-PCNSL]
+shifts_algorithm: [ALGO-PCNSL-1L]
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  HD-MTX requires CrCl ≥50 mL/min for safe clearance; below that, MTX accumulates and causes severe nephrotoxicity / mucositis / myelosuppression. Non-MTX salvage options (R-temozolomide, WBRT alone) carry inferior outcomes — this is a hold/refer decision.

@@ -1,0 +1,5 @@
+red_flag: RF-HSTCL-TRANSFORMATION-PROGRESSION
+findings:
+  hstcl_refractory_post_ice: false
+  hstcl_rapid_relapse: false
+expected_fires: false

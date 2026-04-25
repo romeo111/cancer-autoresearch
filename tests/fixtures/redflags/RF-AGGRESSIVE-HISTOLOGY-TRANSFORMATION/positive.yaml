@@ -1,0 +1,4 @@
+red_flag: RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION
+findings:
+  biopsy_shows_dlbcl: true
+expected_fires: true

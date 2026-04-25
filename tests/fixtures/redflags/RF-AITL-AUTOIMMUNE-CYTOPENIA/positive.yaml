@@ -1,0 +1,4 @@
+red_flag: RF-AITL-AUTOIMMUNE-CYTOPENIA
+findings:
+  aiha_present: true
+expected_fires: true

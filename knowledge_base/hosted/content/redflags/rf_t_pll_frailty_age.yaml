@@ -1,0 +1,31 @@
+id: RF-T-PLL-FRAILTY-AGE
+definition: "Age >75 OR not alloSCT-eligible (ECOG ≥3, severe organ dysfunction) — alemtuzumab still appropriate but with palliative intent; reduced-intensity-conditioning alloSCT considered if borderline."
+definition_ua: "Вік >75 АБО не кандидат на alloSCT (ECOG ≥3, важка органна дисфункція) — alemtuzumab все ще доречний, але з паліативним intent; reduced-intensity conditioning alloSCT якщо межовий."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "age_years"
+      threshold: 75
+      comparator: ">"
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-T-PLL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  T-PLL incurable without alloSCT; alemtuzumab is bridge only. Frailty surfaces palliative-intent realism in MDT brief.

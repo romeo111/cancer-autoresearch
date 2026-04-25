@@ -1,0 +1,56 @@
+id: DRUG-ZIDOVUDINE
+names:
+  preferred: "Zidovudine (AZT)"
+  ukrainian: "Зидовудин (АЗТ)"
+  english: "Zidovudine"
+  brand_names: ["Retrovir"]
+atc_code: J05AF01
+rxnorm_id: "11489"
+drug_class: "Nucleoside reverse transcriptase inhibitor (NRTI)"
+mechanism: >
+  Thymidine analog; phosphorylated intracellularly to ZDV-triphosphate
+  which terminates HTLV-1 (and HIV) reverse transcription. In HTLV-1-driven
+  ATLL, AZT in combination with IFN-α induces apoptosis of leukemic cells
+  via NF-κB pathway suppression and Tax-mediated mechanisms.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  ATLL (AZT/IFN-α regimen): 200 mg PO 5× daily (≈1000 mg/day) continuous
+  with IFN-α 5-9 MU/day SC. Dose-reduce for renal impairment.
+formulations: ["Capsules 100 mg, 250 mg", "Tablets 300 mg", "Oral solution 10 mg/mL", "IV 10 mg/mL"]
+
+absolute_contraindications:
+  - "Severe hypersensitivity"
+  - "Severe pre-existing anemia (Hgb <7.5 g/dL untreated)"
+
+black_box_warnings:
+  - "Hematologic toxicity (anemia, neutropenia)"
+  - "Myopathy (long-term use)"
+  - "Lactic acidosis with hepatic steatosis"
+
+common_adverse_events:
+  - "Macrocytic anemia (universal — MCV rises within weeks)"
+  - "Neutropenia"
+  - "Headache"
+  - "Nausea, fatigue"
+
+serious_adverse_events:
+  - "Severe anemia requiring transfusion"
+  - "Lactic acidosis"
+  - "Mitochondrial myopathy"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. ATLL indolent (chronic/smoldering): AZT/IFN-α gives
+  durable remissions and OS benefit (Bazarbachi et al. 2010 meta-analysis).
+  Aggressive ATLL: not effective as monotherapy — combine with
+  CHOP-based induction. Macrocytosis is expected (not B12 deficiency)
+  — do not work up unless Hgb is dropping disproportionately.

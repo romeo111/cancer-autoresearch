@@ -1,0 +1,55 @@
+id: DRUG-IFOSFAMIDE
+names:
+  preferred: "Ifosfamide"
+  ukrainian: "Іфосфамід"
+  english: "Ifosfamide"
+  brand_names: ["Ifex", "Holoxan"]
+atc_code: L01AA06
+rxnorm_id: "5521"
+drug_class: "Oxazaphosphorine alkylating agent"
+mechanism: >
+  Prodrug; CYP3A4-activated to 4-hydroxyifosfamide → ifosforamide mustard,
+  which alkylates DNA at N7-guanine. Acrolein metabolite causes
+  hemorrhagic cystitis — MESNA prophylaxis is mandatory.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  ICE regimen: 5000 mg/m² IV continuous infusion over 24h day 2 (with
+  MESNA). CODOX-M/IVAC: 1500 mg/m² IV days 1-5.
+formulations: ["IV powder for reconstitution 1 g, 2 g, 3 g"]
+
+absolute_contraindications:
+  - "Severe hypersensitivity"
+  - "Severe bone marrow suppression"
+  - "Active urinary tract infection or cystitis (until resolved)"
+
+black_box_warnings:
+  - "CNS toxicity (encephalopathy — variable, can be fatal)"
+  - "Hemorrhagic cystitis without MESNA"
+  - "Myelosuppression"
+
+common_adverse_events:
+  - "Myelosuppression"
+  - "Nausea/vomiting (highly emetogenic)"
+  - "Alopecia"
+  - "CNS effects (somnolence, confusion, encephalopathy)"
+
+serious_adverse_events:
+  - "Ifosfamide-induced encephalopathy (treat with methylene blue)"
+  - "Hemorrhagic cystitis"
+  - "Tubular nephrotoxicity"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. MESNA at 60-100% of ifosfamide dose, divided
+  doses; aggressive hydration (2-3 L/day during therapy). Encephalopathy
+  is more common with hypoalbuminemia, prior cisplatin, renal impairment.

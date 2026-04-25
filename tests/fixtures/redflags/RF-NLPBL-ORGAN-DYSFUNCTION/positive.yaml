@@ -1,0 +1,4 @@
+red_flag: RF-NLPBL-ORGAN-DYSFUNCTION
+findings:
+  pulmonary_dysfunction_rt_field: true
+expected_fires: true

@@ -1,0 +1,4 @@
+red_flag: RF-HGBL-DH-ORGAN-DYSFUNCTION
+findings:
+  lvef_percent: 49
+expected_fires: true

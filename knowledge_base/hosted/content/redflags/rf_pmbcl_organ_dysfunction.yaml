@@ -1,0 +1,29 @@
+id: RF-PMBCL-ORGAN-DYSFUNCTION
+definition: "Cardiac dysfunction (LVEF <50%) at baseline — both PMBCL 1L arms contain doxorubicin; cardio-oncology evaluation and ECG/echo monitoring required."
+definition_ua: "Кардіальна дисфункція (LVEF <50%) на старті — обидві лінії 1L терапії PMBCL містять доксорубіцин; потрібна кардіо-онк консультація + ECG/echo моніторинг."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "lvef_percent"
+      threshold: 50
+      comparator: "<"
+    - finding: "cardiac_dysfunction_baseline"
+      value: true
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-PMBCL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Both 1L arms (DA-EPOCH-R, R-CHOP+RT) anthracycline-based; no anthracycline-free standard. Surfaces as cardio-onc consult + dose-modification supportive care.

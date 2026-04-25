@@ -1,0 +1,4 @@
+red_flag: RF-EATL-HIGH-RISK-BIOLOGY
+findings:
+  eatl_type_ii_meitl: true
+expected_fires: true

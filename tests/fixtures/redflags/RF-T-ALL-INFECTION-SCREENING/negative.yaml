@@ -1,0 +1,6 @@
+red_flag: RF-T-ALL-INFECTION-SCREENING
+findings:
+  hbsag: "negative"
+  hiv_serology: "negative"
+  anti_hcv: "negative"
+expected_fires: false

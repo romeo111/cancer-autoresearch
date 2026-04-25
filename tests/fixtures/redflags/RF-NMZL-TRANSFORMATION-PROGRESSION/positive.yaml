@@ -1,0 +1,4 @@
+red_flag: RF-NMZL-TRANSFORMATION-PROGRESSION
+findings:
+  biopsy_shows_dlbcl: true
+expected_fires: true

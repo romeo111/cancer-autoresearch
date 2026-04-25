@@ -1,0 +1,11 @@
+red_flag: RF-DLBCL-HIGH-RISK-BIOLOGY
+findings:
+  double_expressor_status: false
+  tp53_mutation: false
+  cell_of_origin_hans: _NOT_non-GCB
+  high_ipi: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

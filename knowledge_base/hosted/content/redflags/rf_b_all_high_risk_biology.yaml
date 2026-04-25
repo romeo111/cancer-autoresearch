@@ -1,0 +1,31 @@
+id: RF-B-ALL-HIGH-RISK-BIOLOGY
+definition: "Philadelphia-positive B-ALL (BCR-ABL1+) — TKI (imatinib/dasatinib/ponatinib) + chemotherapy is standard; Ph-like B-ALL signature requires JAK/ABL pathway-targeted addition."
+definition_ua: "Філадельфія-позитивна B-ALL (BCR-ABL1+) — стандарт TKI (imatinib/dasatinib/ponatinib) + хіміо; Ph-like B-ALL потребує таргетної терапії JAK/ABL шляху."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "ph_positive"
+      value: true
+    - finding: "bcr_abl1"
+      value: "positive"
+    - finding: "ph_like_signature"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-B-ALL]
+shifts_algorithm: [ALGO-B-ALL-1L]
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Ph+ B-ALL is a fundamentally different disease — TKI addition reverses what was historically the worst-prognosis subgroup. NCCN/ESMO both place TKI testing in upfront workup mandate.

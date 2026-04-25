@@ -21,6 +21,7 @@ shifts_algorithm: []
 
 sources:
   - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
 
 last_reviewed: "2026-04-25"
 notes: >

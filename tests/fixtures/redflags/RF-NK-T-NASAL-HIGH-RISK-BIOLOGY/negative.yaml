@@ -1,0 +1,6 @@
+red_flag: RF-NK-T-NASAL-HIGH-RISK-BIOLOGY
+findings:
+  ann_arbor_stage: -2
+  pink_e_score: -2
+  extranasal_involvement: false
+expected_fires: false

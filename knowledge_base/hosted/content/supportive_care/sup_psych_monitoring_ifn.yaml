@@ -1,0 +1,36 @@
+id: SUP-PSYCH-MONITORING-IFN
+intervention_type: monitoring
+name: "Neuropsychiatric monitoring during interferon-α therapy"
+name_ua: "Нейропсихіатричний моніторинг під час терапії інтерфероном-α"
+
+standard_intervention:
+  schedule: "Baseline psychiatry consult + PHQ-9; PHQ-9 monthly during therapy; psychiatric reassessment at any PHQ-9 ≥10 or new SI/HI"
+  notes: >
+    Patient education on expected fatigue, mood changes, and red-flag
+    symptoms (suicidal ideation, hopelessness, severe insomnia). Family
+    member or caregiver should also be educated to recognize changes.
+    Concurrent SSRI prophylaxis may be considered in patients with prior
+    depression history.
+
+triggers:
+  relevant_drugs:
+    - DRUG-INTERFERON-ALPHA
+  relevant_regimens:
+    - REG-AZT-IFN-A
+
+rationale: >
+  Interferon-α has a black-box warning for neuropsychiatric toxicity:
+  ~30% of patients develop clinically significant depression, with
+  rare but reported completed suicides. Onset is typically within
+  4-12 weeks. Early detection via structured PHQ-9 screening allows
+  dose reduction or hold before crisis.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. PHQ-9 ≥10 = consider dose reduction + psychiatry referral.
+  PHQ-9 ≥15 with active SI = hold IFN-α + urgent psychiatric care. ATLL
+  indolent regimen is long-term (often years), so monitoring infrastructure
+  needs to be sustained, not just induction-period.

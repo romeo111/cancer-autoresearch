@@ -1,0 +1,4 @@
+red_flag: RF-T-ALL-ORGAN-DYSFUNCTION
+findings:
+  bilirubin_x_uln: 4
+expected_fires: true

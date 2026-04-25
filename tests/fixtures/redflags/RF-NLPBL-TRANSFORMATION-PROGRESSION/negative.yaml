@@ -1,0 +1,5 @@
+red_flag: RF-NLPBL-TRANSFORMATION-PROGRESSION
+findings:
+  nlpbl_multiple_relapses: false
+  biopsy_shows_dlbcl: false
+expected_fires: false

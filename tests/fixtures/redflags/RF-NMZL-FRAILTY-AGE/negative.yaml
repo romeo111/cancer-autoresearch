@@ -1,0 +1,4 @@
+red_flag: RF-NMZL-FRAILTY-AGE
+findings:
+  nmzl_asymptomatic: false
+expected_fires: false

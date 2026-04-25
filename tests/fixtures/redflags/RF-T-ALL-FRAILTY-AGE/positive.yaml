@@ -1,0 +1,4 @@
+red_flag: RF-T-ALL-FRAILTY-AGE
+findings:
+  age_years: 56
+expected_fires: true

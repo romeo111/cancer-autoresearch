@@ -1,0 +1,6 @@
+red_flag: RF-EATL-INFECTION-SCREENING
+findings:
+  hbsag: "negative"
+  strongyloides_endemic_exposure: false
+  hiv_serology: "negative"
+expected_fires: false

@@ -1,0 +1,44 @@
+id: CI-PSYCH-DECOMPENSATED-FOR-INTERFERON
+severity: absolute
+trigger:
+  type: patient_condition
+  conditions:
+    - patient_condition: "Active major depressive disorder with current suicidal ideation"
+    - patient_condition: "Active uncontrolled psychotic disorder"
+    - patient_condition: "Recent (≤6 months) suicide attempt or psychiatric hospitalization for self-harm"
+  logic: OR
+
+description: >
+  Interferon alfa carries a black-box warning for neuropsychiatric
+  toxicity, including depression worsening, mania, and completed
+  suicide. Patients with active major depression or psychosis at
+  baseline have unacceptable risk of decompensation, often within
+  weeks of initiation.
+description_ua: >
+  Інтерферон альфа має попередження "black-box" про нейропсихіатричну
+  токсичність — погіршення депресії, манію та самогубства. Пацієнти
+  з активним важким депресивним розладом або психозом на момент
+  початку терапії мають неприйнятний ризик декомпенсації.
+
+alternative_actions:
+  - "Stabilize depression/psychosis first; reassess in 3-6 months with psychiatry input"
+  - "If ATLL indolent and patient psychiatrically ineligible → consider observation or chemo-based regimen"
+  - "Mandatory baseline PHQ-9 and psychiatric clearance before AZT/IFN-α initiation"
+  - "Concurrent antidepressant prophylaxis (SSRI) reduces risk in stable mood-disorder patients"
+
+affects_drugs:
+  - DRUG-INTERFERON-ALPHA
+affects_regimens:
+  - REG-AZT-IFN-A
+affects_indications:
+  - IND-ATLL-1L-INDOLENT-AZT-IFN
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. PHQ-9 ≥10 at baseline = caution; ≥15 with active SI =
+  hold. Mandatory monthly PHQ-9 during therapy. SSRI prophylaxis in
+  patients with prior depression history is well-evidenced (Hauser et al.
+  2002 in HCV-IFN) and likely transfers to ATLL context.

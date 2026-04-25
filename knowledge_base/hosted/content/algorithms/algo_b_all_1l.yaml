@@ -16,8 +16,7 @@ decision_tree:
   - step: 1
     evaluate:
       any_of:
-        - condition: "BCR-ABL1 positive (Ph+)"
-        - condition: "BCR-ABL1-like / Ph-like signature"
+        - red_flag: RF-B-ALL-HIGH-RISK-BIOLOGY  # Ph+ / Ph-like → TKI arm
     if_true:
       result: IND-B-ALL-1L-PH-POS
     if_false:

@@ -1,0 +1,29 @@
+id: RF-T-PLL-TRANSFORMATION-PROGRESSION
+definition: "Failure to achieve CR after 12 weeks alemtuzumab IV OR rapid relapse — alloSCT urgently; venetoclax + ibrutinib or pentostatin/cladribine salvage as bridge."
+definition_ua: "Без CR після 12 тижнів alemtuzumab IV АБО швидкий рецидив — терміново alloSCT; venetoclax + ibrutinib або pentostatin/cladribine salvage як bridge."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "t_pll_no_cr_after_alemtuzumab"
+      value: true
+    - finding: "t_pll_rapid_relapse"
+      value: true
+
+
+clinical_direction: investigate
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-T-PLL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  T-PLL median OS without alloSCT ~7-12 months even with alemtuzumab CR. Refractory disease essentially requires transplant or palliative intent.

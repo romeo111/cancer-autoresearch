@@ -1,0 +1,31 @@
+id: RF-HGBL-DH-FRAILTY-AGE
+definition: "Age >75 OR ECOG ≥3 — DA-EPOCH-R toxicity prohibitive; modified R-CHOP + IT MTX prophylaxis acceptable compromise."
+definition_ua: "Вік >75 АБО ECOG ≥3 — токсичність DA-EPOCH-R непереносна; модифікований R-CHOP + IT-MTX профілактика прийнятний компроміс."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "age_years"
+      threshold: 75
+      comparator: ">"
+    - finding: "ecog_status"
+      threshold: 3
+      comparator: ">="
+
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-HGBL-DH]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  DA-EPOCH-R toxicity in elderly approaches 25-30% treatment-related mortality; modified R-CHOP retains majority of efficacy with manageable toxicity. Decision sits at Indication-dose level.

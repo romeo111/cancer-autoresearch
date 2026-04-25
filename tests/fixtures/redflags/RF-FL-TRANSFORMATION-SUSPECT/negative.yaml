@@ -1,0 +1,8 @@
+red_flag: RF-FL-TRANSFORMATION-SUSPECT
+findings:
+  fl_transformation_suspect: false
+  rapid_progression: false
+  ldh_doubled_in_weeks: false
+  biopsy_shows_dlbcl: false
+  fl_grade_3b: false
+expected_fires: false

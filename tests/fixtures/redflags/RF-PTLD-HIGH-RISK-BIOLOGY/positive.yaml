@@ -1,0 +1,4 @@
+red_flag: RF-PTLD-HIGH-RISK-BIOLOGY
+findings:
+  ptld_subtype_monomorphic_dlbcl: true
+expected_fires: true

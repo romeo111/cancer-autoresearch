@@ -1,0 +1,5 @@
+red_flag: RF-NMZL-FRAILTY-AGE
+findings:
+  nmzl_asymptomatic: true
+  age_years: 81
+expected_fires: true

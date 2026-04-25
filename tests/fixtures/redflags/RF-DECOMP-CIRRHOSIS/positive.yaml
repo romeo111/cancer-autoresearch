@@ -1,0 +1,4 @@
+red_flag: RF-DECOMP-CIRRHOSIS
+findings:
+  child_pugh_class: "B"
+expected_fires: true

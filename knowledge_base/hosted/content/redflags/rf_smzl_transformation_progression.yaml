@@ -1,0 +1,29 @@
+id: RF-SMZL-TRANSFORMATION-PROGRESSION
+definition: "Histologic transformation to DLBCL (rapid progression, new constitutional symptoms, LDH spike) — biopsy-confirmed transformation reclassifies as DLBCL pathway."
+definition_ua: "Гістологічна трансформація в DLBCL (швидка прогресія, нові constitutional симптоми, стрибок LDH) — biopsy-підтверджена трансформація реклассифікує як DLBCL шлях."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "biopsy_shows_dlbcl"
+      value: true
+    - finding: "smzl_transformation_suspected"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-SPLENIC-MZL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Transformation to DLBCL changes the disease classification entirely — the engine should hand off to DLBCL Algorithm with the DLBCL biopsy result.

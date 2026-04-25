@@ -1,0 +1,5 @@
+red_flag: RF-NK-T-NASAL-INFECTION-SCREENING
+findings:
+  ebv_dna_copies_per_ml: 9995
+  ebv_persistent_post_induction: false
+expected_fires: false

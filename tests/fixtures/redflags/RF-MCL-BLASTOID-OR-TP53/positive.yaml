@@ -1,0 +1,4 @@
+red_flag: RF-MCL-BLASTOID-OR-TP53
+findings:
+  blastoid_morphology: true
+expected_fires: true

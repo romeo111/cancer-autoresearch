@@ -74,6 +74,19 @@ class RedFlagDirection(str, Enum):
     INVESTIGATE = "investigate"
 
 
+class RedFlagSeverity(str, Enum):
+    """Severity tier for conflict-resolution when multiple RedFlags fire.
+
+    Resolution order (engine): clinical_direction precedence
+    (hold > intensify > de_escalate > investigate) THEN severity
+    (critical > major > minor) THEN explicit numeric priority.
+    """
+
+    CRITICAL = "critical"
+    MAJOR = "major"
+    MINOR = "minor"
+
+
 # ── Common embedded models ────────────────────────────────────────────────────
 
 
@@ -167,6 +180,7 @@ __all__ = [
     "ContraindicationSeverity",
     "TestPriority",
     "RedFlagDirection",
+    "RedFlagSeverity",
     "License",
     "Attribution",
     "LegalReview",

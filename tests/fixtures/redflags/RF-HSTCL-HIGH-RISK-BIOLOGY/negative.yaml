@@ -1,0 +1,6 @@
+red_flag: RF-HSTCL-HIGH-RISK-BIOLOGY
+findings:
+  tcr_gamma_delta_phenotype: false
+  setd2_mutation: false
+  ino80_mutation: false
+expected_fires: false

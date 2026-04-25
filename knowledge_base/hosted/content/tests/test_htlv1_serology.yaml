@@ -1,0 +1,29 @@
+id: TEST-HTLV1-SEROLOGY
+names:
+  preferred: "HTLV-1/2 serology + confirmatory"
+  ukrainian: "Серологія HTLV-1/2 (антитіла) + підтверджувальний тест"
+  english: "HTLV-1/2 antibody screen + confirmatory"
+  synonyms: ["Anti-HTLV-1", "HTLV ELISA", "HTLV western blot"]
+loinc_codes: ["6448-1", "11581-9"]
+category: lab
+purpose: >
+  Establish HTLV-1 status — required to make the diagnosis of ATLL
+  (HTLV-1-driven mature T-cell neoplasm). Initial ELISA screen
+  followed by Western blot (or PCR for indeterminate) to confirm.
+specimen: "Serum (5 mL clotted blood)"
+turnaround_time: "3-7 days"
+priority_class: standard
+
+availability_ukraine:
+  state_funded: false
+  typical_availability: "Reference labs + transplant programs; rarely tested outside endemic-region history (Caribbean, southern Japan, sub-Saharan Africa)"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. ATLL diagnostic gate: positive HTLV-1 serology +
+  flow-confirmed CD4+/CD25+/FoxP3-variant T-cell clone. PCR-quantified
+  proviral load can stratify lifetime ATLL risk in carriers.
+  Indeterminate Western blot → HTLV-1 PCR + repeat in 6 weeks.

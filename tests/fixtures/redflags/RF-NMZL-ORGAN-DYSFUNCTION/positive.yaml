@@ -1,0 +1,4 @@
+red_flag: RF-NMZL-ORGAN-DYSFUNCTION
+findings:
+  creatinine_clearance_ml_min: 39
+expected_fires: true

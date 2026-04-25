@@ -1,0 +1,59 @@
+id: RF-UNIVERSAL-TLS-RISK
+definition: >
+  High risk of tumor lysis syndrome at first cycle: bulky disease (≥10 cm
+  nodal mass OR splenomegaly ≥15 cm) OR LDH ≥2× ULN OR leukemic phase
+  (ALC ≥25 k/µL with circulating tumor cells) OR rapidly proliferative
+  histology (Burkitt, HGBL, lymphoblastic, AML, ALL).
+definition_ua: >
+  Високий ризик синдрому розпаду пухлини на 1-му циклі: bulky-захворювання
+  (≥10 см вузол АБО спленомегалія ≥15 см) АБО LDH ≥2× ULN АБО лейкемічна
+  фаза (ALC ≥25 k/µL з циркулюючими пухлинними клітинами) АБО високопроліферативна
+  гістологія (Burkitt, HGBL, лімфобластна, AML, ALL).
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "dominant_nodal_mass_cm"
+      threshold: 10
+      comparator: ">="
+    - finding: "splenomegaly_cm"
+      threshold: 15
+      comparator: ">="
+    - finding: "ldh_ratio_to_uln"
+      threshold: 2.0
+      comparator: ">="
+    - finding: "absolute_lymphocyte_count_k_ul"
+      threshold: 25
+      comparator: ">="
+    - finding: "leukemic_phase"
+      value: true
+    - finding: "tls_high_risk_histology"
+      value: true
+
+clinical_direction: intensify
+
+severity: major
+priority: 70
+
+# Universal — applies to any aggressive lymphoma/leukemia. Triggers
+# pre-treatment supportive care (allopurinol or rasburicase, IV hydration,
+# electrolyte monitoring) parallel to indication choice.
+relevant_diseases:
+  - "*"
+shifts_algorithm: []  # Engages SUP-TLS-PROPHYLAXIS; does not branch
+                      # indication. Surfaces in plan's supportive-care section.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Howard et al. 2011 NEJM TLS-risk stratification. NCCN Burkitt v2.2025 §BURK-A
+  mandates rasburicase for high-risk; allopurinol for intermediate. ESMO
+  guidance on intensive lymphoma regimens (DA-EPOCH-R, R-CHOP cycle 1)
+  recommends 24-48h pre-cycle hydration + allopurinol when LDH ≥2× ULN.
+  Engine should surface this RF in the plan's supportive-care section
+  alongside the chosen regimen, not as an indication-switch.

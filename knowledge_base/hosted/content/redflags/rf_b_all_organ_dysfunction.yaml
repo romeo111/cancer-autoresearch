@@ -1,0 +1,28 @@
+id: RF-B-ALL-ORGAN-DYSFUNCTION
+definition: "Cardiac dysfunction (LVEF <50%) — anthracycline-based induction (hyper-CVAD A, BFM-style protocols) requires modification or substitution."
+definition_ua: "Кардіальна дисфункція (LVEF <50%) — антрациклін-вмісна індукція (hyper-CVAD A, BFM протоколи) потребує модифікації або заміни."
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "lvef_percent"
+      threshold: 50
+      comparator: "<"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-B-ALL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Anthracycline-free B-ALL induction (e.g., blinatumomab-based MRD-guided) is emerging but not yet 1L standard outside trials. Flag drives cardio-onc co-management and dose modification.

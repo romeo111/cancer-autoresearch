@@ -1,0 +1,6 @@
+red_flag: RF-UNIVERSAL-HBV-REACTIVATION-RISK
+findings:
+  hbsag: "negative"
+  anti_hbc_total: "negative"
+  hbv_dna_detectable: false
+expected_fires: false

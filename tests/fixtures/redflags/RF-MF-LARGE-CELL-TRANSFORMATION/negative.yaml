@@ -1,0 +1,4 @@
+red_flag: RF-MF-LARGE-CELL-TRANSFORMATION
+findings:
+  large_cell_transformation: false
+expected_fires: false

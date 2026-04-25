@@ -1,0 +1,5 @@
+red_flag: RF-HGBL-DH-TRANSFORMATION-PROGRESSION
+findings:
+  interim_pet_progression: false
+  end_induction_non_cr: false
+expected_fires: false

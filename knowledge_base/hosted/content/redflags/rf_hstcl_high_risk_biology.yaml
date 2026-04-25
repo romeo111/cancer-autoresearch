@@ -1,0 +1,31 @@
+id: RF-HSTCL-HIGH-RISK-BIOLOGY
+definition: "γδ T-cell receptor variant (most common) vs αβ variant — both aggressive but γδ classically associated with worse prognosis; SETD2/INO80 mutations confer chemo-resistance."
+definition_ua: "γδ варіант TCR (найчастіший) vs αβ — обидва агресивні, але γδ традиційно гірший прогноз; SETD2/INO80 мутації → хіміо-резистентність."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "tcr_gamma_delta_phenotype"
+      value: true
+    - finding: "setd2_mutation"
+      value: true
+    - finding: "ino80_mutation"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-HSTCL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  HSTCL biology drives early alloSCT decision more than 1L regimen choice (ICE is universal default). Flag MDT-priority for transplant referral.

@@ -1,0 +1,5 @@
+red_flag: RF-PCNSL-ORGAN-DYSFUNCTION
+findings:
+  creatinine_clearance_ml_min: 55
+  egfr_ml_min: 55
+expected_fires: false

@@ -1,0 +1,31 @@
+id: RF-HGBL-DH-INFECTION-SCREENING
+definition: "HBV/HCV/HIV serology mandatory pre-rituximab; HIV-associated HGBL-DH gets cART optimization concurrently with chemo."
+definition_ua: "HBV/HCV/HIV серологія обов'язково перед rituximab; HIV-асоційована HGBL-DH — оптимізація cART паралельно з хіміо."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hcv"
+      value: "positive"
+    - finding: "hiv_serology"
+      value: "positive"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-HGBL-DH]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Cross-disease HBV reactivation by RF-UNIVERSAL-HBV-REACTIVATION-RISK. HIV-HGBL behaves more aggressively but treatment intent unchanged.

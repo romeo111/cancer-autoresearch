@@ -1,0 +1,50 @@
+id: DRUG-CARBOPLATIN
+names:
+  preferred: "Carboplatin"
+  ukrainian: "Карбоплатин"
+  english: "Carboplatin"
+  brand_names: ["Paraplatin"]
+atc_code: L01XA02
+rxnorm_id: "40048"
+drug_class: "Platinum alkylating agent (second-generation)"
+mechanism: >
+  DNA cross-linker forming intra- and inter-strand platinum-DNA adducts,
+  preferentially at N7 of guanine. Less nephrotoxic and less neurotoxic
+  than cisplatin; myelosuppression (especially thrombocytopenia) is the
+  dose-limiting toxicity.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  Calvert formula AUC dose: dose (mg) = AUC × (GFR + 25). Typical lymphoma
+  AUC = 5 (ICE regimen, day 2). Round GFR cap at 125 mL/min for safety.
+formulations: ["IV concentrate 10 mg/mL"]
+
+absolute_contraindications:
+  - "Severe hypersensitivity to platinum compounds"
+  - "Severe pre-existing myelosuppression"
+
+common_adverse_events:
+  - "Myelosuppression (thrombocytopenia is dose-limiting)"
+  - "Nausea/vomiting (moderately emetogenic)"
+  - "Fatigue"
+  - "Hypersensitivity (delayed, ≥cycle 6 risk)"
+
+serious_adverse_events:
+  - "Severe thrombocytopenia"
+  - "Peripheral neuropathy (less than cisplatin)"
+  - "Tumor lysis syndrome in bulky disease"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — Phase 9. Used in ICE salvage regimen + GDP, GemOx variants.
+  Dose calculation requires GFR (Cockcroft-Gault or measured); engine
+  uses creatinine_clearance_ml_min finding for AUC computation downstream.

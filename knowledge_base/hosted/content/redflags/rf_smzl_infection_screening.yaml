@@ -1,0 +1,29 @@
+id: RF-SMZL-INFECTION-SCREENING
+definition: "HCV RNA PCR mandatory at SMZL diagnosis — HCV-driven SMZL responds to direct-acting antivirals (DAA) with regression in 50-75%; rituximab deferred until antiviral response assessed."
+definition_ua: "HCV RNA PCR обов'язково при діагнозі SMZL — HCV-індукована SMZL відповідає на DAA з регресією в 50-75%; rituximab відкладається до оцінки антивірусної відповіді."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "hcv_rna_positive"
+      value: true
+    - finding: "anti_hcv"
+      value: "positive"
+
+
+clinical_direction: intensify
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-SPLENIC-MZL]
+shifts_algorithm: [ALGO-SMZL-1L]
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  HCV-positive SMZL is etiologically distinct — DAA antiviral therapy alone induces lymphoma response in majority. Rituximab reserved for HCV-negative or DAA non-responders.

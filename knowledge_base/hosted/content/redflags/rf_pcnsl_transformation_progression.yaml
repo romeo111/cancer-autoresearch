@@ -1,0 +1,29 @@
+id: RF-PCNSL-TRANSFORMATION-PROGRESSION
+definition: "Refractory disease at end-of-induction MRI (any persistent enhancing lesion) or progression during therapy — switch to salvage 2L pathway (R-temozolomide, ibrutinib, lenalidomide-based, or WBRT)."
+definition_ua: "Рефрактерне захворювання за MRI наприкінці індукції (будь-яке персистуюче контрастне вогнище) або прогресія під час терапії — перехід на 2L salvage (R-temozolomide, ibrutinib, lenalidomide-based, або WBRT)."
+
+trigger:
+  type: imaging_finding
+  any_of:
+    - finding: "end_induction_mri_residual"
+      value: true
+    - finding: "interim_progression_pcnsl"
+      value: true
+
+
+clinical_direction: investigate
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-PCNSL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  Progression on HD-MTX-based induction is poor-prognosis; R/R PCNSL pathway (separate Algorithm) takes over. 1L decision_tree unaffected; surfaces as MDT-brief priority.

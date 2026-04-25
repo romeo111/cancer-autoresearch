@@ -1,0 +1,7 @@
+red_flag: RF-CLL-HIGH-RISK
+findings:
+  tp53_mutation: false
+  del_17p: false
+  ighv_unmutated: false
+  complex_karyotype: false
+expected_fires: false

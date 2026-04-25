@@ -16,15 +16,33 @@ default_indication: IND-MM-1L-VRD
 alternative_indication: IND-MM-1L-DVRD
 
 decision_tree:
+  # Step 1 — high-risk cytogenetics OR aggressive plasma-cell biology
+  # (PCL, EMD, rapid lab progression) escalates to D-VRd quadruplet.
   - step: 1
     evaluate:
       any_of:
         - red_flag: RF-MM-HIGH-RISK-CYTOGENETICS
+        - red_flag: RF-MM-TRANSFORMATION-PROGRESSION
     if_true:
       result: IND-MM-1L-DVRD
     if_false:
       next_step: 2
+
+  # Step 2 — frailty doesn't switch indication (both VRd / D-VRd have
+  # dose-modified schedules) but is recorded in trace so render layer
+  # surfaces it. We pin to IND-MM-1L-VRD here as the de-escalated
+  # default; the dose-modification is a Regimen-level concern handled
+  # by the supportive_care + monitoring_schedule plumbing.
   - step: 2
+    evaluate:
+      any_of:
+        - red_flag: RF-MM-FRAILTY-AGE
+    if_true:
+      result: IND-MM-1L-VRD
+    if_false:
+      next_step: 3
+
+  - step: 3
     evaluate:
       all_of:
         - condition: "Standard-risk cytogenetics (no high-risk FISH abnormality)"
@@ -36,14 +54,19 @@ decision_tree:
 
 sources:
   - SRC-NCCN-MM-2025
+  - SRC-ESMO-MM-2023
 
 last_reviewed: "2026-04-25"
 notes: >
-  Cytogenetic risk is the primary determinant; transplant eligibility is
+  Cytogenetic risk + aggressive biology are the primary regimen
+  determinants; frailty is recorded but doesn't switch regimen
+  (handled at Regimen dose-modification layer). Transplant eligibility is
   a downstream consideration that affects total cycle count and post-
   induction pathway (ASCT + consolidation + maintenance vs continuous
-  induction-then-maintenance), but not the induction regimen choice. Both
-  Indications carry CI-LENALIDOMIDE-PREGNANCY and
+  induction-then-maintenance), but not the induction regimen choice.
+  Both Indications carry CI-LENALIDOMIDE-PREGNANCY and
   CI-BORTEZOMIB-SEVERE-NEUROPATHY; D-VRd additionally carries
-  CI-HBV-NO-PROPHYLAXIS. Renal dysfunction (RF-MM-RENAL-DYSFUNCTION)
+  CI-HBV-NO-PROPHYLAXIS. RF-MM-RENAL-DYSFUNCTION (investigate)
   triggers dose adjustment but does not shift regimen choice.
+  RF-MM-INFECTION-SCREENING (hold) operates via parallel
+  SUP-HBV-PROPHYLAXIS, not a decision-tree branch.

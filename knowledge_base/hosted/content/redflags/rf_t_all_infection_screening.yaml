@@ -1,0 +1,31 @@
+id: RF-T-ALL-INFECTION-SCREENING
+definition: "HIV/HBV/HCV/CMV serology + PCP prophylaxis pre-induction; nelarabine-containing regimens require PJP prophylaxis throughout treatment."
+definition_ua: "HIV/HBV/HCV/CMV серологія + PCP профілактика перед індукцією; nelarabine-вмісні режими — PJP профілактика весь курс."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "hiv_serology"
+      value: "positive"
+    - finding: "anti_hcv"
+      value: "positive"
+
+
+clinical_direction: investigate
+severity: major
+priority: 100
+
+relevant_diseases: [DIS-T-ALL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  T-ALL induction profoundly lymphopenic; opportunistic infection prophylaxis (PCP, fluconazole, acyclovir) standard regardless of serology — but baseline screen ensures appropriate prophylaxis intensity.

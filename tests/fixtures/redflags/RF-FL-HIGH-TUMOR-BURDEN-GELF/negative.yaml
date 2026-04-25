@@ -1,0 +1,8 @@
+red_flag: RF-FL-HIGH-TUMOR-BURDEN-GELF
+findings:
+  fl_gelf_high_burden: false
+  dominant_nodal_mass_cm: 3.0
+  b_symptoms_present: false
+  ldh_above_uln: false
+  rapid_progression: false
+expected_fires: false

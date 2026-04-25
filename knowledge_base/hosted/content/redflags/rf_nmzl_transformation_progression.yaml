@@ -1,0 +1,29 @@
+id: RF-NMZL-TRANSFORMATION-PROGRESSION
+definition: "Histologic transformation to DLBCL (already wired through RF-FL-TRANSFORMATION-SUSPECT in ALGO-NMZL-1L) — biopsy-confirmed transformation reclassifies as DLBCL pathway."
+definition_ua: "Гістологічна трансформація в DLBCL (вже wired через RF-FL-TRANSFORMATION-SUSPECT у ALGO-NMZL-1L) — biopsy-підтверджена трансформація реклассифікує як DLBCL шлях."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "biopsy_shows_dlbcl"
+      value: true
+    - finding: "nmzl_transformation_suspected"
+      value: true
+
+
+clinical_direction: intensify
+severity: critical
+priority: 100
+
+relevant_diseases: [DIS-NODAL-MZL]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+draft: false
+
+notes: >
+  ALGO-NMZL-1L already imports RF-FL-TRANSFORMATION-SUSPECT; this NMZL-specific entry duplicates that semantically. Kept distinct for MDT-brief disease-context labeling.
