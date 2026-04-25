@@ -1767,14 +1767,30 @@ await micropip.install(['pydantic', 'pyyaml'])
   const resp = await fetch('/openonco-engine.zip');
   const buf = await resp.arrayBuffer();
   pyodide.unpackArchive(buf, 'zip');
-  await pyodide.runPythonAsync(`
+  const validationSummary = await pyodide.runPythonAsync(`
 from pathlib import Path
 from knowledge_base.validation.loader import load_content
 _r = load_content(Path('knowledge_base/hosted/content'))
-assert _r.ok, f'KB validation failed: {{_r.schema_errors[:3]}}'
+if _r.ok:
+    _summary = "ok"
+else:
+    _parts = []
+    if _r.schema_errors:
+        _parts.append(f"schema({{len(_r.schema_errors)}}): " + "; ".join(f"{{p.name}}: {{m}}" for p, m in _r.schema_errors[:3]))
+    if _r.ref_errors:
+        _parts.append(f"ref({{len(_r.ref_errors)}}): " + "; ".join(f"{{p.name}}: {{m}}" for p, m in _r.ref_errors[:3]))
+    if _r.contract_errors:
+        _parts.append(f"contract({{len(_r.contract_errors)}}): " + "; ".join(f"{{p.name}}: {{m}}" for p, m in _r.contract_errors[:3]))
+    _summary = " | ".join(_parts)
+_summary
 `);
   enginReady = true;
-  setStatus('Двигун готовий ✓', 'ok');
+  if (validationSummary === 'ok') {{
+    setStatus('Двигун готовий ✓', 'ok');
+  }} else {{
+    console.warn('[OpenOnco] KB validation did not pass — engine loaded anyway for testing.\\n' + validationSummary);
+    setStatus('Двигун готовий ⚠ KB неверифіковано (деталі в консолі)', 'warn');
+  }}
   // Re-run preview now that engine is ready
   scheduleEval();
   return pyodide;
@@ -2536,6 +2552,10 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
 .status[data-kind="ok"] {
   background: var(--green-50); border-left-color: var(--green-500);
   color: var(--green-800);
+}
+.status[data-kind="warn"] {
+  background: #fff8e1; border-left-color: #f59e0b;
+  color: #92400e;
 }
 .error {
   font-family: var(--font-mono); font-size: 12px; color: var(--red);

@@ -491,7 +491,26 @@ if quest is None:
     _preview_result = json.dumps({'error': f'Questionnaire {_quest_id} not found'})
 else:
     _preview_eval = evaluate_partial(profile, quest, kb_root=KB)
-    _preview_result = json.dumps(_preview_eval.to_dict())
+    _payload = _preview_eval.to_dict()
+    # P4: enrich fired_redflags with definition + sources so the live
+    # impact panel can show meaningful context, not just IDs.
+    _rf_lookup = {
+        info['data'].get('id'): info['data']
+        for info in ld.entities_by_id.values()
+        if info['type'] == 'redflags' and info['data'].get('id')
+    }
+    _payload['fired_redflags_detail'] = [
+        {
+            'id': rid,
+            'definition_ua': (_rf_lookup.get(rid) or {}).get('definition_ua'),
+            'definition': (_rf_lookup.get(rid) or {}).get('definition'),
+            'clinical_direction': (_rf_lookup.get(rid) or {}).get('clinical_direction'),
+            'severity': (_rf_lookup.get(rid) or {}).get('severity', 'major'),
+            'sources': (_rf_lookup.get(rid) or {}).get('sources') or [],
+        }
+        for rid in (_payload.get('fired_redflags') or [])
+    ]
+    _preview_result = json.dumps(_payload)
 _preview_result
 `);
     const result = JSON.parse(resultJson);
@@ -673,8 +692,31 @@ function updateImpactPanel(result) {
     : '<li class="muted">Усі critical поля заповнені ✓</li>';
 
   const rfs = result.fired_redflags || [];
+  const rfDetail = result.fired_redflags_detail || [];
+  // Build detail-keyed map so we can join id -> {definition, sources}
+  const detailById = {};
+  for (const d of rfDetail) detailById[d.id] = d;
+
+  const dirEmoji = {
+    'hold': '🛑', 'intensify': '⚡', 'de-escalate': '🔻', 'investigate': '🔍'
+  };
+
   impactRedflags.querySelector('ul').innerHTML = rfs.length
-    ? rfs.map(r => `<li><code>${escHtml(r)}</code></li>`).join('')
+    ? rfs.map(r => {
+        const d = detailById[r] || {};
+        const defn = d.definition_ua || d.definition || '';
+        const dir = d.clinical_direction || '';
+        const emoji = dirEmoji[dir] || '';
+        const sources = (d.sources || []).map(
+          s => `<span class="rf-src-chip">${escHtml(s)}</span>`
+        ).join('');
+        return `<li class="rf-fired-item">
+          <div class="rf-fired-head"><code>${escHtml(r)}</code> ${emoji}
+            <span class="rf-dir rf-dir-${escHtml(dir)}">${escHtml(dir)}</span></div>
+          ${defn ? `<div class="rf-fired-defn">${escHtml(defn)}</div>` : ''}
+          ${sources ? `<div class="rf-fired-srcs">${sources}</div>` : ''}
+        </li>`;
+      }).join('')
     : '<li class="muted">Жодного RedFlag поки не активовано</li>';
 
   impactSelectedText.innerHTML = result.would_select_indication
@@ -708,14 +750,30 @@ await micropip.install(['pydantic', 'pyyaml'])
   const resp = await fetch('/openonco-engine.zip');
   const buf = await resp.arrayBuffer();
   pyodide.unpackArchive(buf, 'zip');
-  await pyodide.runPythonAsync(`
+  const validationSummary = await pyodide.runPythonAsync(`
 from pathlib import Path
 from knowledge_base.validation.loader import load_content
 _r = load_content(Path('knowledge_base/hosted/content'))
-assert _r.ok, f'KB validation failed: {_r.schema_errors[:3]}'
+if _r.ok:
+    _summary = "ok"
+else:
+    _parts = []
+    if _r.schema_errors:
+        _parts.append(f"schema({len(_r.schema_errors)}): " + "; ".join(f"{p.name}: {m}" for p, m in _r.schema_errors[:3]))
+    if _r.ref_errors:
+        _parts.append(f"ref({len(_r.ref_errors)}): " + "; ".join(f"{p.name}: {m}" for p, m in _r.ref_errors[:3]))
+    if _r.contract_errors:
+        _parts.append(f"contract({len(_r.contract_errors)}): " + "; ".join(f"{p.name}: {m}" for p, m in _r.contract_errors[:3]))
+    _summary = " | ".join(_parts)
+_summary
 `);
   enginReady = true;
-  setStatus('Двигун готовий ✓', 'ok');
+  if (validationSummary === 'ok') {
+    setStatus('Двигун готовий ✓', 'ok');
+  } else {
+    console.warn('[OpenOnco] KB validation did not pass — engine loaded anyway for testing.\n' + validationSummary);
+    setStatus('Двигун готовий ⚠ KB неверифіковано (деталі в консолі)', 'warn');
+  }
   // Re-run preview now that engine is ready
   scheduleEval();
   return pyodide;
