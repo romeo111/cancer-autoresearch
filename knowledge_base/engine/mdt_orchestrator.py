@@ -228,11 +228,14 @@ _ROLE_CATALOG: dict[str, str] = {
     "medical_oncologist": "Медичний онколог (хіміотерапевт солідних пухлин)",
     "infectious_disease_hepatology": "Інфекціоніст / гепатолог",
     "radiologist": "Лікар-радіолог",
-    "pathologist": "Патолог / гематопатолог",
+    "pathologist": "Патолог (загальний)",
+    "hematopathologist": "Гематопатолог (специфічно для лімфом / лейкозів / мієломи)",
     "molecular_geneticist": "Молекулярний генетик / молекулярний онколог",
     "clinical_pharmacist": "Клінічний фармацевт",
     "radiation_oncologist": "Радіотерапевт (променева терапія)",
     "surgical_oncologist": "Хірург-онколог",
+    "transplant_specialist": "Спеціаліст з трансплантації (BMT)",
+    "cellular_therapy_specialist": "Спеціаліст з клітинної терапії (CAR-T)",
     "psychologist": "Психолог / онкопсихолог",
     "palliative_care": "Паліативна допомога",
     "social_worker_case_manager": "Соціальний працівник / кейс-менеджер",
@@ -326,15 +329,34 @@ _SKILL_REGISTRY: dict[str, SkillMetadata] = {
     ),
     "pathologist": SkillMetadata(
         skill_id="pathologist",
-        name="Патолог / гематопатолог",
+        name="Патолог (загальний)",
         version="0.1.0",
         last_reviewed="2026-04-25",
         clinical_lead=None,
         verified_by=[],
         sources=["SRC-NCCN-BCELL-2025", "SRC-EHA-WORKUP-2024"],
         domain="pathology",
-        notes="STUB — confirms histology + IHC + FISH; mandatory for any "
-              "treatment plan per CHARTER §15.2 C7.",
+        notes="STUB — generic pathologist for solid-tumor histology. "
+              "Hematologic neoplasms route to hematopathologist (separate skill) "
+              "in future rule revision; per CHARTER §15.2 C7 either way.",
+    ),
+    "hematopathologist": SkillMetadata(
+        skill_id="hematopathologist",
+        name="Гематопатолог (специфічно для лімфом / лейкозів / мієломи)",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-NCCN-BCELL-2025", "SRC-NCCN-AML-2025",
+                 "SRC-NCCN-MM-2025", "SRC-EHA-WORKUP-2024"],
+        domain="hematopathology",
+        notes="STUB — subspecialized pathologist for lymphoid + myeloid "
+              "neoplasms. Owns: WHO 5th-ed classification mapping, IHC panel "
+              "design (CD20/CD3/CD5/CD10/CD23/BCL2/BCL6/MYC/Ki67), flow "
+              "cytometry interpretation, FISH (MYC/BCL2/BCL6 break-apart), "
+              "Hans algorithm (ABC vs GCB DLBCL), gene-rearrangement studies. "
+              "Critical for differentiating lymphoma subtypes — without rich "
+              "hematopathology, you can't pick the right Tier 1 algorithm.",
     ),
     "molecular_geneticist": SkillMetadata(
         skill_id="molecular_geneticist",
@@ -382,7 +404,41 @@ _SKILL_REGISTRY: dict[str, SkillMetadata] = {
         sources=[],
         domain="surgical_oncology",
         notes="STUB — placeholder; rules minimal until first solid-tumor "
-              "disease lands in KB.",
+              "disease lands in KB. Episodic role for hematologic: "
+              "splenectomy in splenic MZL with hypersplenism, GI surgery "
+              "for selected GI lymphomas.",
+    ),
+    "transplant_specialist": SkillMetadata(
+        skill_id="transplant_specialist",
+        name="Спеціаліст з трансплантації (BMT)",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-NCCN-BCELL-2025", "SRC-NCCN-MM-2025",
+                 "SRC-EHA-WORKUP-2024"],
+        domain="cellular_therapy",
+        notes="STUB — autoSCT/alloSCT decision-making. Activates for: "
+              "first-line consolidation in transplant-eligible MCL + high-risk "
+              "DLBCL; salvage transplant for relapsed/refractory aggressive "
+              "lymphomas; alloSCT for relapsed CLL/T-cell. Triggers: "
+              "fit_for_transplant + ECOG ≤ 2 + age ≤ 70-75 (relative).",
+    ),
+    "cellular_therapy_specialist": SkillMetadata(
+        skill_id="cellular_therapy_specialist",
+        name="Спеціаліст з клітинної терапії (CAR-T)",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-NCCN-BCELL-2025"],
+        domain="cellular_therapy",
+        notes="STUB — CAR-T product selection (axi-cel, tisa-cel, liso-cel, "
+              "brexu-cel) + bridging therapy + CRS/ICANS management. Modern "
+              "standard for refractory/relapsed DLBCL/MCL/CLL after 2nd line. "
+              "Triggers: line_of_therapy ≥ 2 + aggressive_b_cell_lymphoma + "
+              "fit_for_cellular_therapy. Funding pathway flag mandatory "
+              "(not НСЗУ-reimbursed in UA — clinical trial / charitable).",
     ),
     "psychologist": SkillMetadata(
         skill_id="psychologist",

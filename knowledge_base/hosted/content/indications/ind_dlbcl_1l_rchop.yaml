@@ -1,0 +1,101 @@
+id: IND-DLBCL-1L-RCHOP
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-DLBCL-NOS
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-CD20-IHC
+      required: true
+      value_constraint: "positive (CD20+)"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 3
+
+recommended_regimen: REG-R-CHOP
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~85% (≥PR after 6 cycles)"
+  complete_response: "~65-70%"
+  progression_free_survival: "Median PFS ~5 years for low-IPI; ~2 years for high-IPI"
+  overall_survival_5y: "~60% overall (low-IPI ~80%, high-IPI ~55%)"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS
+  - CI-LVEF-LOW-FOR-ANTHRACYCLINE
+red_flags_triggering_alternative:
+  - RF-DLBCL-HIGH-IPI
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-CD20-IHC
+  - TEST-PET-CT
+  - TEST-ECHO
+  - TEST-LN-EXCISIONAL-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-FISH-PANEL
+  - TEST-PREGNANCY
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+desired_tests: []
+
+rationale: >
+  Long-standing 1L standard for newly-diagnosed DLBCL NOS, used for the
+  past 20+ years across NCCN, ESMO, EHA. ~60% overall cure rate; outcomes
+  highly dependent on IPI. Replaced PreCHOP regimens after the rituximab
+  era (RCT data from late 1990s/early 2000s). Default for low-IPI (0-1)
+  patients; for IPI ≥2, modern evidence (POLARIX 2022) favors
+  Pola-R-CHP if accessible (see IND-DLBCL-1L-POLA-R-CHP).
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "R-CHOP is a Category 1 preferred regimen for newly-diagnosed DLBCL across all IPI groups; Pola-R-CHP is preferred Category 1 for IPI ≥2 where accessible"
+
+known_controversies:
+  - topic: "R-CHOP vs Pola-R-CHP for IPI ≥2 1L DLBCL"
+    positions:
+      - position: "Pola-R-CHP preferred for IPI ≥2 where accessible (POLARIX evidence)"
+        sources:
+          - SRC-NCCN-BCELL-2025
+        evidence_note: "PFS benefit ~6.5% absolute at 2 years"
+      - position: "R-CHOP remains acceptable when polatuzumab not accessible"
+        sources:
+          - SRC-NCCN-BCELL-2025
+    our_default: "R-CHOP for IPI 0-1 OR when polatuzumab not accessible (Ukraine reimbursement gap); Pola-R-CHP for IPI ≥2 with confirmed funding pathway"
+    rationale: >
+      Polatuzumab not НСЗУ-reimbursed in Ukraine — access is bottleneck.
+      Patient should be informed of trade-off + offered POLARIX-style
+      Pola-R-CHP if funding pathway exists.
+
+do_not_do:
+  - "Не починати без HBV скринінгу + entecavir prophylaxis при HBsAg+ або anti-HBc+ — ризик фатальної реактивації значно підвищений на anti-CD20."
+  - "Не призначати без baseline LVEF ≥50% — anthracyclines кардіотоксичні; кардіоміопатія часто незворотна."
+  - "Не ігнорувати CNS-IPI — для пацієнтів з ≥4 CNS-IPI або високоризиковими anatomic sites (тестикули, груди, нирки/наднирники, параназальні синуси) додавати CNS prophylaxis (HD-MTX intercalated)."
+  - "Не пропускати fertility preservation discussion у репродуктивного віку — циклофосфамід викликає азооспермію + amenorrhea."
+  - "Не вводити вінкристин інтратекально — ФАТАЛЬНО. WHO/FDA вимагають IV mini-bag packaging."
+  - "Не ескалувати дозу при febrile neutropenia без G-CSF — G-CSF prophylaxis для високоризикових пацієнтів (вік >65, prior cytopenia, advanced disease)."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard track for DLBCL 1L
+  two-plan output (CHARTER §2). For relapsed/refractory after R-CHOP,
+  treatment moves to 2L pathway (salvage chemo → autoSCT for fit; CAR-T
+  for r/r refractory) — separate Indication entities.

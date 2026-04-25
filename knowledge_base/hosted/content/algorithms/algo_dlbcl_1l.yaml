@@ -1,0 +1,44 @@
+id: ALGO-DLBCL-1L
+applicable_to_disease: DIS-DLBCL-NOS
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select default + alternative Indication for first-line newly-diagnosed
+  DLBCL NOS based on IPI risk. Outputs the two-plan pair (R-CHOP standard
+  vs Pola-R-CHP intensified) per CHARTER §2.
+
+output_indications:
+  - IND-DLBCL-1L-RCHOP
+  - IND-DLBCL-1L-POLA-R-CHP
+
+default_indication: IND-DLBCL-1L-RCHOP
+alternative_indication: IND-DLBCL-1L-POLA-R-CHP
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-DLBCL-HIGH-IPI
+    if_true:
+      result: IND-DLBCL-1L-POLA-R-CHP
+    if_false:
+      next_step: 2
+  - step: 2
+    evaluate:
+      all_of:
+        - condition: "Standard-risk IPI (0-1)"
+        - condition: "ECOG ≤ 2"
+    if_true:
+      result: IND-DLBCL-1L-RCHOP
+    if_false:
+      result: IND-DLBCL-1L-RCHOP
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  IPI is the primary determinant. CNS-IPI handled separately as
+  RF-DLBCL-CNS-RISK with direction "investigate" — does not shift main
+  regimen but adds CNS prophylaxis as particularity. Cell-of-origin
+  (Hans GCB vs ABC) recorded as biomarker but not yet acting on regimen
+  choice in this version.

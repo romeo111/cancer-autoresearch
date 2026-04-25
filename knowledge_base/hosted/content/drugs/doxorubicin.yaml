@@ -1,0 +1,72 @@
+id: DRUG-DOXORUBICIN
+names:
+  preferred: "Doxorubicin (hydroxydaunorubicin)"
+  ukrainian: "Доксорубіцин"
+  english: "Doxorubicin"
+  synonyms:
+    - "Hydroxydaunorubicin"
+  brand_names:
+    - "Adriamycin"
+    - "Doxil (liposomal — different drug entity)"
+atc_code: L01DB01
+rxnorm_id: "3639"
+drug_class: "Anthracycline topoisomerase II inhibitor"
+mechanism: >
+  Intercalates DNA, inhibits topoisomerase II → DNA double-strand breaks.
+  Generates free radicals (mechanism of cardiotoxicity). Cell-cycle
+  non-specific.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: "[TBD]"
+    reimbursed_nszu: true
+    last_verified: "2026-04-25"
+
+typical_dosing: "50 mg/m² IV day 1 of 21-day cycle (R-CHOP); cumulative dose limit ~450-500 mg/m² lifetime (cardiotoxicity)"
+formulations:
+  - "IV solution 2 mg/mL, 10 / 20 / 50 / 200 mg vials"
+
+absolute_contraindications:
+  - "Severe pre-existing cardiac dysfunction (LVEF <50%)"
+  - "Cumulative anthracycline exposure exceeded lifetime threshold"
+  - "Severe hepatic impairment"
+  - "Hypersensitivity"
+black_box_warnings:
+  - "Cardiomyopathy / heart failure (cumulative-dose-dependent)"
+  - "Severe myelosuppression"
+  - "Extravasation = severe tissue necrosis (give via central line preferred)"
+  - "Secondary leukemia"
+major_interactions:
+  - "Trastuzumab: significantly increases cardiotoxicity"
+  - "Paclitaxel: alters anthracycline pharmacokinetics"
+  - "Cyclosporine: increases doxorubicin exposure"
+common_adverse_events:
+  - "Myelosuppression"
+  - "Alopecia (universal)"
+  - "Mucositis"
+  - "Nausea/vomiting (moderate)"
+  - "Red urine (harmless, transient)"
+  - "Cardiotoxicity (acute and chronic)"
+serious_adverse_events:
+  - "Congestive heart failure"
+  - "Severe extravasation injury"
+  - "Severe myelosuppression with neutropenic fever"
+  - "Acute leukemia / myelodysplasia (long-term)"
+
+pharmacology:
+  half_life: "Triphasic: ~12 minutes (alpha), ~3 hours (beta), ~30 hours (gamma)"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Baseline echocardiogram (LVEF) mandatory before first dose; surveillance
+  during therapy especially after cumulative dose >300 mg/m². Dexrazoxane
+  cardioprotectant available for high-cumulative-dose scenarios. Liposomal
+  doxorubicin (Doxil) has different toxicity profile — separate drug entity.

@@ -1,0 +1,30 @@
+id: BIO-DLBCL-IPI
+names:
+  preferred: "International Prognostic Index (IPI) for DLBCL"
+  ukrainian: "Міжнародний прогностичний індекс (IPI) для DLBCL"
+  english: "International Prognostic Index for DLBCL"
+  synonyms:
+    - "IPI"
+    - "R-IPI"
+    - "NCCN-IPI"
+biomarker_type: composite_score
+
+measurement:
+  method: "Composite of 5 clinical variables (age >60, ECOG ≥2, LDH >ULN, stage III/IV, ≥2 extranodal sites)"
+  units: "score 0-5 (low / low-int / int-high / high)"
+
+specimen_requirements:
+  - "Clinical assessment + LDH lab + imaging (CT or PET-CT for staging)"
+
+related_biomarkers: []
+knowledge_base_refs: {}
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  5-variable score: each adverse factor = 1 point.
+  Risk groups (R-IPI): 0 = very good (5y OS ~94%); 1-2 = good (~80%);
+  3-5 = poor (~55%). NCCN-IPI refines age + LDH cuts; gives finer
+  stratification. POLARIX trial used IPI ≥2 to select Pola-R-CHP over
+  R-CHOP — primary determinant in our ALGO-DLBCL-1L decision tree.

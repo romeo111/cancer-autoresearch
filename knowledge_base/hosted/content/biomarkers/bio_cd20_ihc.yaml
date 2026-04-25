@@ -1,0 +1,29 @@
+id: BIO-CD20-IHC
+names:
+  preferred: "CD20 expression by immunohistochemistry"
+  ukrainian: "Експресія CD20 (імуногістохімія)"
+  english: "CD20 expression (IHC)"
+  synonyms:
+    - "CD20"
+biomarker_type: protein_expression_ihc
+
+measurement:
+  method: "Immunohistochemistry on FFPE tissue (anti-CD20 antibody, e.g., L26 clone)"
+  units: "categorical (positive | negative | weak/equivocal)"
+
+specimen_requirements:
+  - "FFPE tissue block from excisional/core biopsy"
+  - "≥10% of tumor cells with membrane staining = positive"
+
+related_biomarkers: []
+knowledge_base_refs: {}
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  CD20+ status is required for any anti-CD20 monoclonal antibody therapy
+  (rituximab, obinutuzumab). Most B-cell lymphomas are CD20+; rare
+  exceptions (some HHV-8+ neoplasms, certain plasmablastic lymphomas)
+  may be CD20- and require alternative regimens. Status can change
+  post-rituximab — re-biopsy on relapse.

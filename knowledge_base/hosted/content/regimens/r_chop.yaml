@@ -1,0 +1,78 @@
+id: REG-R-CHOP
+name: "Rituximab + CHOP (R-CHOP), 6 cycles"
+name_ua: "Ритуксимаб + CHOP (R-CHOP), 6 циклів"
+alternate_names:
+  - "R-CHOP"
+  - "R-CHOP-21"
+
+components:
+  - drug_id: DRUG-RITUXIMAB
+    dose: "375 mg/m²"
+    schedule: "IV day 1 of each 21-day cycle"
+    route: IV
+  - drug_id: DRUG-CYCLOPHOSPHAMIDE
+    dose: "750 mg/m²"
+    schedule: "IV day 1 of each 21-day cycle"
+    route: IV
+  - drug_id: DRUG-DOXORUBICIN
+    dose: "50 mg/m²"
+    schedule: "IV day 1 of each 21-day cycle"
+    route: IV
+  - drug_id: DRUG-VINCRISTINE
+    dose: "1.4 mg/m² (capped at 2 mg total)"
+    schedule: "IV day 1 of each 21-day cycle"
+    route: IV
+  - drug_id: DRUG-PREDNISONE
+    dose: "100 mg"
+    schedule: "PO days 1-5 of each 21-day cycle"
+    route: PO
+
+cycle_length_days: 21
+total_cycles: "6 (with consideration of 2-month interim PET-CT after cycles 2-4)"
+
+toxicity_profile: moderate
+
+premedication:
+  - "Antihistamine + acetaminophen + IV steroid before rituximab (especially first dose)"
+  - "5-HT3 antagonist + dexamethasone before doxorubicin/cyclophosphamide"
+mandatory_supportive_care:
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-TLS-PROPHYLAXIS
+  - SUP-ANTIEMETIC-PREMED
+monitoring_schedule_id: MON-R-CHOP-REGIMEN
+
+dose_adjustments:
+  - condition: "Cumulative anthracycline approaching 450-500 mg/m² lifetime"
+    modification: "Echo + LVEF check before next dose; consider regimen change if borderline"
+    rationale: "Cardiotoxicity is dose-cumulative"
+    source_refs:
+      - SRC-NCCN-BCELL-2025
+  - condition: "Total bilirubin >3 mg/dL"
+    modification: "Reduce vincristine + doxorubicin per hepatic-impairment dosing"
+    rationale: "Both are hepatically cleared"
+    source_refs:
+      - SRC-NCCN-BCELL-2025
+  - condition: "Grade ≥2 peripheral neuropathy"
+    modification: "Hold or reduce vincristine; may convert to non-vincristine regimen"
+    rationale: "Vincristine neuropathy is dose-cumulative and often permanent"
+  - condition: "ANC <1500 or platelets <100K at cycle start"
+    modification: "Delay cycle ≥7 days; consider G-CSF support"
+    rationale: "Cumulative myelosuppression"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: "All R-CHOP components reimbursed via НСЗУ for B-cell lymphoma indications"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Standard 1L regimen for newly-diagnosed DLBCL NOS for the past 20+
+  years. ~60% cure rate overall, ~80% for low-IPI / ~55% for high-IPI.
+  HBV screening + entecavir prophylaxis if HBsAg+ or anti-HBc+ MANDATORY
+  before first rituximab dose. Echocardiogram (LVEF) baseline + after
+  cumulative dose >300 mg/m². Interim PET-CT after cycles 2-4 helpful
+  for response assessment but doesn't routinely change therapy unless
+  PD seen.

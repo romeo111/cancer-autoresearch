@@ -1,0 +1,35 @@
+id: CI-LVEF-LOW-FOR-ANTHRACYCLINE
+severity: absolute
+trigger:
+  type: lab_result
+  conditions:
+    - patient_condition: "Baseline LVEF <50% by echocardiogram or MUGA"
+  logic: AND
+
+description: "Pre-treatment LVEF <50% is an absolute contraindication to anthracycline-containing regimens (R-CHOP, Pola-R-CHP, ABVD, BV-AVD, etc.). Cardiotoxicity from doxorubicin is dose-cumulative and often irreversible; starting with already-impaired function risks acute decompensation."
+description_ua: "LVEF <50% на baseline — абсолютне протипоказання до anthracycline-вмісних регімів (R-CHOP, Pola-R-CHP, ABVD, BV-AVD). Кардіотоксичність доксорубіцину доза-кумулятивна і часто незворотна."
+
+alternative_actions:
+  - "Cardiology consult — confirm LVEF + assess reversible causes (treat HTN, ischemia, etc.)"
+  - "Consider non-anthracycline regimen: R-CEOP (etoposide replaces doxorubicin), R-mini-CHOP for elderly, R-bendamustine for selected patients"
+  - "Liposomal doxorubicin in selected cases (lower cardiotoxicity per dose)"
+  - "Dexrazoxane cardioprotectant if anthracycline absolutely required"
+
+affects_indications:
+  - IND-DLBCL-1L-RCHOP
+  - IND-DLBCL-1L-POLA-R-CHP
+affects_drugs:
+  - DRUG-DOXORUBICIN
+affects_regimens:
+  - REG-R-CHOP
+  - REG-POLA-R-CHP
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Cumulative anthracycline lifetime threshold ~450-500 mg/m² doxorubicin.
+  Borderline LVEF (50-55%) — proceed with serial echo monitoring.
+  Trastuzumab + anthracycline combination separately contraindicated
+  (additive cardiotoxicity).

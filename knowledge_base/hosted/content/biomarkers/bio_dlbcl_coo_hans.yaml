@@ -1,0 +1,31 @@
+id: BIO-DLBCL-COO-HANS
+names:
+  preferred: "Cell-of-origin classification (Hans IHC algorithm)"
+  ukrainian: "Класифікація за клітиною походження (Hans IHC алгоритм)"
+  english: "Cell-of-origin classification by Hans algorithm"
+  synonyms:
+    - "Hans algorithm"
+    - "GCB vs ABC"
+    - "Cell of origin"
+biomarker_type: protein_expression_ihc
+
+measurement:
+  method: "Hans algorithm: CD10 → BCL6 → MUM1/IRF4 IHC on biopsy"
+  units: "categorical (GCB | non-GCB / ABC)"
+
+specimen_requirements:
+  - "FFPE biopsy block; CD10, BCL6, MUM1 IHC"
+
+related_biomarkers: []
+knowledge_base_refs: {}
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  GCB (germinal center B-cell): CD10+ OR (CD10− BCL6+ MUM1−). ABC/non-GCB:
+  CD10− BCL6+ MUM1+ OR CD10− BCL6−. Gold-standard is GEP (gene-expression
+  profiling) but Hans IHC is widely used proxy. ABC subtype historically
+  worse outcome on R-CHOP; some agents (ibrutinib, lenalidomide) show
+  preferential ABC activity in trials. Does not yet drive 1L regimen
+  choice in our algorithm — informational stratification.

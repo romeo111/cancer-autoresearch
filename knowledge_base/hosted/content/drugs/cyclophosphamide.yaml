@@ -1,0 +1,73 @@
+id: DRUG-CYCLOPHOSPHAMIDE
+names:
+  preferred: "Cyclophosphamide"
+  ukrainian: "Циклофосфамід"
+  english: "Cyclophosphamide"
+  brand_names:
+    - "Cytoxan"
+    - "Endoxan"
+    - "Procytox"
+atc_code: L01AA01
+rxnorm_id: "3002"
+drug_class: "Nitrogen mustard alkylating agent"
+mechanism: >
+  Prodrug activated by hepatic CYP2B6/CYP3A4 to phosphoramide mustard,
+  which crosslinks DNA strands and induces apoptosis. Active in both
+  proliferating and resting cells; broadly used in lymphoid neoplasms.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: "[TBD]"
+    reimbursed_nszu: true
+    reimbursement_indications:
+      - "Лімфоми, лейкози, мієлома"
+      - "Аутоімунні захворювання (нестандартний контекст)"
+    last_verified: "2026-04-25"
+
+typical_dosing: "750 mg/m² IV day 1 of 21-day cycle (R-CHOP); 600-1500 mg/m² depending on regimen"
+formulations:
+  - "IV powder 100 / 200 / 500 / 1000 / 2000 mg vials"
+  - "Tablets 25 / 50 mg (oral, less common in oncology)"
+
+absolute_contraindications:
+  - "Severe bone marrow suppression"
+  - "Hypersensitivity"
+  - "Hemorrhagic cystitis (active)"
+  - "Severe infection (uncontrolled)"
+black_box_warnings:
+  - "Myelosuppression with infection risk"
+  - "Hemorrhagic cystitis (mitigated by mesna for high-dose)"
+  - "Cardiotoxicity at very high doses"
+  - "Secondary malignancies (long-term exposure)"
+major_interactions:
+  - "Allopurinol: increases bone marrow suppression"
+  - "Live vaccines: avoid during therapy"
+  - "Strong CYP inducers/inhibitors alter activation"
+common_adverse_events:
+  - "Myelosuppression (neutropenia, thrombocytopenia)"
+  - "Nausea/vomiting (moderate-high emetogenicity)"
+  - "Alopecia"
+  - "Hemorrhagic cystitis (high-dose, prevented by mesna + hydration)"
+  - "Amenorrhea / infertility"
+serious_adverse_events:
+  - "Severe myelosuppression"
+  - "Hemorrhagic cystitis (urological emergency)"
+  - "SIADH / hyponatremia (high-dose)"
+  - "Pulmonary fibrosis (rare, late)"
+
+pharmacology:
+  half_life: "~3-12 hours (parent + metabolites)"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Standard R-CHOP component. Premedication: 5-HT3 antagonist + dexamethasone.
+  Mesna NOT routinely needed at R-CHOP doses (750 mg/m²) but mandatory for
+  high-dose conditioning (>1500 mg/m²).

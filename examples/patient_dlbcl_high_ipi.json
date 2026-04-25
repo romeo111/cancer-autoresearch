@@ -1,0 +1,81 @@
+{
+  "patient_id": "DLBCL-HIGHIPI-001",
+  "comment": "Synthetic newly-diagnosed DLBCL NOS with high IPI (3+, age >60, advanced stage, multiple extranodal). Engine should select Pola-R-CHP (aggressive track) as default.",
+
+  "disease": {
+    "icd_o_3_morphology": "9680/3"
+  },
+  "line_of_therapy": 1,
+
+  "biomarkers": {
+    "BIO-CD20-IHC": "positive"
+  },
+
+  "demographics": {
+    "age": 67,
+    "sex": "female",
+    "ecog": 2
+  },
+
+  "findings": {
+    "ipi_score": 4,
+    "high_ipi": true,
+    "cns_ipi_score": 4,
+    "anatomic_cns_risk_site": false,
+    "lvef_percent": 58
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Diffuse Large B-Cell Lymphoma, NOS",
+        "icd_o_3": "9680/3",
+        "icd_10": "C83.3",
+        "who_classification_5th_ed": "Aggressive B-cell lymphomas — Diffuse large B-cell lymphoma, NOS"
+      },
+      "staging": {
+        "staging_system": "Lugano",
+        "stage": "IV",
+        "b_symptoms": true,
+        "extranodal_involvement": true,
+        "extranodal_sites": ["bone marrow", "liver", "stomach"]
+      },
+      "ipi_components": {
+        "age_over_60": true,
+        "ecog_2_or_more": true,
+        "ldh_above_uln": true,
+        "stage_3_or_4": true,
+        "extranodal_sites_2_or_more": true,
+        "ipi_score": 4
+      },
+      "cell_of_origin_hans": "non-GCB"
+    },
+    "ihc_and_molecular": {
+      "ihc_markers": {
+        "CD20": "positive",
+        "CD3": "negative",
+        "CD10": "negative",
+        "BCL2": "positive",
+        "BCL6": "positive",
+        "MUM1": "positive",
+        "MYC": "approximately_40_percent",
+        "Ki67_percent": 80
+      },
+      "fish": {
+        "MYC_break_apart": "negative",
+        "BCL2_break_apart": "negative",
+        "BCL6_break_apart": "negative"
+      }
+    },
+    "infectious_status": {
+      "HBV": {"HBsAg": "negative", "anti_HBc": "negative"},
+      "HCV": {"anti_HCV": "negative"},
+      "HIV": "negative"
+    },
+    "cardiac": {"baseline_LVEF_percent": 58},
+    "funding_pathway": {
+      "polatuzumab_funding_confirmed": false,
+      "notes": "Без підтвердженого charitable / clinical-trial / out-of-pocket pathway пацієнта спрямовано на R-CHOP як fallback"
+    }
+  }
+}

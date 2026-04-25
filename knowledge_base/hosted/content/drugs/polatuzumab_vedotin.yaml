@@ -1,0 +1,67 @@
+id: DRUG-POLATUZUMAB-VEDOTIN
+names:
+  preferred: "Polatuzumab vedotin"
+  ukrainian: "Полатузумаб ведотин"
+  english: "Polatuzumab vedotin"
+  brand_names:
+    - "Polivy"
+atc_code: L01FX14
+rxnorm_id: "2122734"
+drug_class: "Anti-CD79b antibody-drug conjugate (MMAE payload)"
+mechanism: >
+  CD79b-targeted IgG1 monoclonal antibody conjugated via cleavable
+  protease-cleavable linker to monomethyl auristatin E (MMAE), a
+  microtubule-disrupting payload. Internalized into CD79b+ B-cells,
+  cleaves intracellularly, releases MMAE → mitotic arrest + apoptosis.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: false
+    registration_number: null
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-25"
+
+typical_dosing: "1.8 mg/kg IV day 1 of 21-day cycle (Pola-R-CHP, 6 cycles for newly-diagnosed DLBCL)"
+formulations:
+  - "IV powder 30 / 140 mg vials"
+
+absolute_contraindications:
+  - "Hypersensitivity"
+  - "Severe pre-existing peripheral neuropathy (Grade ≥2)"
+black_box_warnings: []
+major_interactions:
+  - "Strong CYP3A4 inhibitors increase MMAE exposure"
+common_adverse_events:
+  - "Peripheral neuropathy (sensory)"
+  - "Neutropenia, thrombocytopenia, anemia"
+  - "Fatigue"
+  - "Diarrhea"
+  - "Pyrexia"
+  - "Decreased appetite"
+serious_adverse_events:
+  - "Severe peripheral neuropathy"
+  - "Severe myelosuppression with neutropenic fever"
+  - "Tumor lysis syndrome (high tumor burden)"
+  - "Hepatotoxicity (rare)"
+  - "PML — progressive multifocal leukoencephalopathy (very rare)"
+
+pharmacology:
+  half_life: "~12 days (antibody); MMAE released gradually intracellularly"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Replaces vincristine in Pola-R-CHP regimen for newly-diagnosed DLBCL
+  with IPI ≥2 (POLARIX trial — improved PFS vs R-CHOP). Substantial cost
+  + access constraint in Ukraine: NOT НСЗУ-reimbursed as of 2026-04-25 —
+  funding pathway must be confirmed BEFORE plan finalization (clinical
+  trial / charitable scheme / out-of-pocket). Premedication: antihistamine
+  + paracetamol for first dose (infusion-related reactions). Hold for
+  Grade ≥2 peripheral neuropathy.

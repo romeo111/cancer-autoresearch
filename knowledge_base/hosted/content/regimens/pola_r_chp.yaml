@@ -1,0 +1,79 @@
+id: REG-POLA-R-CHP
+name: "Polatuzumab vedotin + Rituximab + CHP (Pola-R-CHP), 6 cycles + 2× rituximab"
+name_ua: "Полатузумаб ведотин + Ритуксимаб + CHP (Pola-R-CHP), 6 циклів + 2× ритуксимаб"
+alternate_names:
+  - "Pola-R-CHP"
+  - "POLARIX-style"
+
+components:
+  - drug_id: DRUG-POLATUZUMAB-VEDOTIN
+    dose: "1.8 mg/kg"
+    schedule: "IV day 1 of each 21-day cycle, cycles 1-6"
+    route: IV
+  - drug_id: DRUG-RITUXIMAB
+    dose: "375 mg/m²"
+    schedule: "IV day 1 of each 21-day cycle, cycles 1-8 (last 2 cycles rituximab-only)"
+    route: IV
+  - drug_id: DRUG-CYCLOPHOSPHAMIDE
+    dose: "750 mg/m²"
+    schedule: "IV day 1 of each 21-day cycle, cycles 1-6"
+    route: IV
+  - drug_id: DRUG-DOXORUBICIN
+    dose: "50 mg/m²"
+    schedule: "IV day 1 of each 21-day cycle, cycles 1-6"
+    route: IV
+  - drug_id: DRUG-PREDNISONE
+    dose: "100 mg"
+    schedule: "PO days 1-5 of each 21-day cycle, cycles 1-6"
+    route: PO
+
+cycle_length_days: 21
+total_cycles: "6 (Pola-R-CHP) + 2× rituximab consolidation (cycles 7-8)"
+
+toxicity_profile: moderate-high
+
+premedication:
+  - "Antihistamine + acetaminophen before polatuzumab (first dose)"
+  - "Antihistamine + acetaminophen + IV steroid before rituximab (especially first dose)"
+  - "5-HT3 antagonist + dexamethasone before chemotherapy"
+mandatory_supportive_care:
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-TLS-PROPHYLAXIS
+  - SUP-ANTIEMETIC-PREMED
+monitoring_schedule_id: MON-R-CHOP-REGIMEN
+
+dose_adjustments:
+  - condition: "Grade ≥2 peripheral neuropathy"
+    modification: "Hold polatuzumab; consider switching to vincristine (R-CHOP)"
+    rationale: "Polatuzumab carries dose-limiting neuropathy from MMAE payload"
+    source_refs:
+      - SRC-NCCN-BCELL-2025
+  - condition: "Cumulative anthracycline >450-500 mg/m²"
+    modification: "Echo + LVEF check before next dose; consider regimen change"
+    rationale: "Cardiotoxicity is dose-cumulative"
+    source_refs:
+      - SRC-NCCN-BCELL-2025
+  - condition: "Strong CYP3A4 inhibitor concomitant"
+    modification: "Avoid coadministration if possible; if necessary, monitor for increased neuropathy/myelosuppression"
+    rationale: "Polatuzumab MMAE is CYP3A4 substrate"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: >
+    Polatuzumab vedotin is NOT registered/reimbursed in Ukraine as of
+    2026-04-25 — clinical trial enrollment, charitable scheme, or
+    out-of-pocket are the only access pathways. This is a meaningful
+    barrier; flag explicitly to patient before regimen offered.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  POLARIX trial (NEJM 2022): in IPI ≥2 newly-diagnosed DLBCL, superior
+  2-year PFS (76.7% vs 70.2% R-CHOP, HR 0.73). Comparable OS (mature
+  data still maturing) and toxicity profile (more PN with polatuzumab
+  but offset by NO vincristine). Becoming the new 1L standard for
+  IPI ≥2 in resourced settings — access in Ukraine is the bottleneck.
+  Vincristine is replaced by polatuzumab (hence "CHP" not "CHOP").

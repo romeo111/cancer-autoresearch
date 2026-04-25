@@ -1,0 +1,71 @@
+id: DRUG-PREDNISONE
+names:
+  preferred: "Prednisone (or prednisolone equivalent)"
+  ukrainian: "Преднізон"
+  english: "Prednisone"
+  synonyms:
+    - "Prednisolone"
+  brand_names:
+    - "Deltasone"
+    - "Rayos"
+atc_code: H02AB07
+rxnorm_id: "8640"
+drug_class: "Synthetic glucocorticoid"
+mechanism: >
+  Activates glucocorticoid receptors → broad anti-inflammatory, immuno-
+  suppressive, and pro-apoptotic effects on lymphoid cells. Prodrug
+  converted to prednisolone in liver.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: "[TBD]"
+    reimbursed_nszu: true
+    last_verified: "2026-04-25"
+
+typical_dosing: "100 mg PO days 1-5 of 21-day cycle (R-CHOP); 60 mg/m² in pediatric / select adult protocols"
+formulations:
+  - "Tablets 1 / 2.5 / 5 / 10 / 20 / 50 mg"
+  - "Oral solution 5 mg/5 mL"
+
+absolute_contraindications:
+  - "Systemic fungal infection (uncontrolled)"
+  - "Hypersensitivity"
+  - "Live vaccines (during chronic therapy)"
+black_box_warnings: []
+major_interactions:
+  - "CYP3A4 substrate"
+  - "NSAIDs: increase GI ulceration"
+  - "Anticoagulants: variable effect"
+  - "Hypoglycemic agents: reduced effect"
+  - "Live vaccines"
+common_adverse_events:
+  - "Hyperglycemia"
+  - "Insomnia, mood changes"
+  - "Increased appetite, weight gain"
+  - "Hypertension"
+  - "Hypokalemia"
+  - "Increased infection susceptibility"
+serious_adverse_events:
+  - "Adrenal suppression (with abrupt discontinuation)"
+  - "Severe psychiatric reactions"
+  - "Avascular necrosis (long-term)"
+  - "Opportunistic infections (PJP — coadminister cotrimoxazole if prolonged)"
+  - "GI bleeding / perforation"
+
+pharmacology:
+  half_life: "~3-4 hours; biological effect 18-36 hours"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Equivalent to prednisolone (same active drug); used interchangeably.
+  In R-CHOP, 5-day pulse minimizes steroid toxicity. Long-term high-dose
+  use → PJP prophylaxis (cotrimoxazole). PPI co-prescription if GI risk
+  factors. Glucose monitoring in diabetics.

@@ -1,0 +1,51 @@
+id: DIS-DLBCL-NOS
+names:
+  preferred: "Diffuse Large B-Cell Lymphoma, NOS"
+  ukrainian: "Дифузна B-великоклітинна лімфома, неуточнена (DLBCL NOS)"
+  english: "Diffuse Large B-Cell Lymphoma, Not Otherwise Specified"
+  synonyms:
+    - "DLBCL"
+    - "DLBCL NOS"
+    - "Дифузна великоклітинна B-клітинна лімфома"
+
+codes:
+  icd_o_3_morphology: "9680/3"
+  icd_o_3_topography: []
+  icd_10: "C83.3"
+  snomed_ct: null
+  who_classification: "Aggressive B-cell lymphomas — Diffuse large B-cell lymphoma, NOS (DLBCL, NOS) per WHO Classification of Tumours of Haematolymphoid Tumours, 5th ed."
+
+archetype: risk_stratified
+lineage: b_cell_lymphoma
+
+etiological_factors:
+  - "De novo (most cases) or transformation from indolent lymphoma (Richter, FL→DLBCL, MZL→DLBCL)"
+  - "Chronic immune activation (HCV, HIV, EBV in immunosuppressed) — etiologic in subset"
+  - "Genetic alterations: BCL2/BCL6/MYC translocations, TP53 mutation, EZH2 in some"
+
+related_diseases:
+  - "DIS-HGBL-DH"  # high-grade B-cell with double/triple-hit — separate entity
+  - "DIS-FL"       # transformed-from
+  - "DIS-PMBCL"    # primary mediastinal — distinct biology, future entity
+  - "DIS-PCNSL"    # primary CNS lymphoma — distinct, future entity
+
+epidemiology:
+  context: >
+    Most common NHL subtype globally — ~30% of all non-Hodgkin lymphomas
+    (~7-8 cases per 100,000/year). Median age ~65 years; slight male
+    predominance. ~60% cure rate with R-CHOP for fit patients with
+    early/intermediate IPI; high-IPI cases substantially worse.
+    R/R rate ~40% by 2 years — drives demand for CAR-T pathway.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-EHA-WORKUP-2024
+
+last_reviewed: "2026-04-25"
+reviewers: []
+notes: >
+  Risk-stratified by IPI (age, ECOG, LDH, stage, extranodal sites) and
+  by cell-of-origin (GCB vs ABC via Hans IHC algorithm). Primary
+  mediastinal (PMBCL), primary CNS (PCNSL), transformed from indolent,
+  and double-hit (HGBL) are biologically distinct entities — treated
+  separately in our Tier 1 scope.
