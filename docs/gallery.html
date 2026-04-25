@@ -74,6 +74,60 @@
   <p>Той самий пацієнт після підтвердження гістології — diagnostic→treatment promotion через revise_plan.</p>
   <div class="case-foot">patient_diagnostic_lymphoma_confirmed.json</div>
 </a>
+<a class="case-card" href="cases/dlbcl-low-ipi.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>DLBCL NOS · Low-IPI (R-CHOP standard)</h3>
+  <p>Чоловік 54, ECOG 1, IPI 1, GCB cell-of-origin — engine обирає R-CHOP × 6 циклів як default. Найпоширеніша агресивна лімфома (~30% NHL).</p>
+  <div class="case-foot">patient_dlbcl_low_ipi.json</div>
+</a>
+<a class="case-card" href="cases/dlbcl-high-ipi.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>DLBCL NOS · High-IPI (Pola-R-CHP)</h3>
+  <p>Жінка 67, IPI 4, multiple extranodal — RF-DLBCL-HIGH-IPI fired. Engine ескалує до Pola-R-CHP (POLARIX trial); Ukraine-funding caveat.</p>
+  <div class="case-foot">patient_dlbcl_high_ipi.json</div>
+</a>
+<a class="case-card" href="cases/fl-low-burden.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>Follicular · Low Burden (Watch-and-Wait)</h3>
+  <p>FL grade 1-2, asymptomatic, no GELF criteria — engine обирає surveillance трек (3 plans usable side-by-side, default = W&W).</p>
+  <div class="case-foot">patient_fl_low_burden.json</div>
+</a>
+<a class="case-card" href="cases/fl-high-burden.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>Follicular · High Burden (BR)</h3>
+  <p>FL з 8 cm масою + B-symptoms + LDH↑ — RF-FL-HIGH-TUMOR-BURDEN-GELF fired. Engine обирає BR (бендамустин + ритуксимаб); reuse REG-BR-STANDARD з HCV-MZL.</p>
+  <div class="case-foot">patient_fl_high_burden.json</div>
+</a>
+<a class="case-card" href="cases/fl-transformation.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>Follicular · Transformation Suspect (R-CHOP)</h3>
+  <p>FL з rapid progression + LDH doubling — RF-FL-TRANSFORMATION-SUSPECT fired. Engine обирає R-CHOP (трактує як DLBCL pathway).</p>
+  <div class="case-foot">patient_fl_transformation.json</div>
+</a>
+<a class="case-card" href="cases/cll-low-risk.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>CLL/SLL · Low-Risk (BTKi continuous)</h3>
+  <p>ХЛЛ зі стандартним ризиком (no TP53/del 17p/IGHV-unmut) — engine обирає acalabrutinib continuous; modern era замість FCR/BR.</p>
+  <div class="case-foot">patient_cll_low_risk.json</div>
+</a>
+<a class="case-card" href="cases/cll-high-risk.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>CLL/SLL · High-Risk (VenO time-limited)</h3>
+  <p>ХЛЛ з TP53 mutation + IGHV-unmut + complex karyotype — RF-CLL-HIGH-RISK fired. Engine ескалує до venetoclax+obinutuzumab (CLL14).</p>
+  <div class="case-foot">patient_cll_high_risk.json</div>
+</a>
+<a class="case-card" href="cases/mcl-fit-younger.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>Mantle Cell · Fit Younger (Intensive + autoSCT)</h3>
+  <p>MCL вік 58, ECOG 0, TP53-wt — engine обирає intensive R-CHOP/R-DHAP × 6 + autoSCT + R-maintenance × 3 years (Nordic protocol).</p>
+  <div class="case-foot">patient_mcl_fit_younger.json</div>
+</a>
+<a class="case-card" href="cases/mcl-unfit-tp53.html">
+  <div class="case-badge bdg-plan">Treatment Plan</div>
+  <h3>Mantle Cell · Unfit / TP53-mutant (BTKi+R)</h3>
+  <p>MCL вік 71, ECOG 2, TP53 mutation — RF-MCL-BLASTOID-OR-TP53 fired. Engine обирає acalabrutinib + rituximab (BTKi-based).</p>
+  <div class="case-foot">patient_mcl_unfit_or_tp53.json</div>
+</a>
   </section>
 
   <section class="kb-stats">
@@ -144,26 +198,30 @@
 </style>
 <div class="oo-widget" data-component="openonco-stats">
 <h2>OpenOnco — стан бази знань</h2>
-<div class="oo-sub">Зріз станом на 2026-04-25 14:24 UTC · видно і обсяг, і обмеження — поки покриваємо лише декілька хвороб.</div>
+<div class="oo-sub">Зріз станом на 2026-04-25 15:03 UTC · видно і обсяг, і обмеження — поки покриваємо лише декілька хвороб.</div>
 <div class="oo-grid">
-<div class="oo-card"><div class="oo-num">2</div><div class="oo-lbl">Хвороби</div></div>
-<div class="oo-card"><div class="oo-num">4</div><div class="oo-lbl">Показання</div></div>
-<div class="oo-card"><div class="oo-num">5</div><div class="oo-lbl">Режими</div></div>
-<div class="oo-card"><div class="oo-num">2</div><div class="oo-lbl">Алгоритми</div></div>
-<div class="oo-card"><div class="oo-num">2</div><div class="oo-lbl">Біомаркери / гени</div></div>
-<div class="oo-card"><div class="oo-num">18</div><div class="oo-lbl">Препарати</div></div>
+<div class="oo-card"><div class="oo-num">6</div><div class="oo-lbl">Хвороби</div></div>
+<div class="oo-card"><div class="oo-num">13</div><div class="oo-lbl">Показання</div></div>
+<div class="oo-card"><div class="oo-num">11</div><div class="oo-lbl">Режими</div></div>
+<div class="oo-card"><div class="oo-num">6</div><div class="oo-lbl">Алгоритми</div></div>
+<div class="oo-card"><div class="oo-num">8</div><div class="oo-lbl">Біомаркери / гени</div></div>
+<div class="oo-card"><div class="oo-num">26</div><div class="oo-lbl">Препарати</div></div>
 <div class="oo-card"><div class="oo-num">40</div><div class="oo-lbl">Тести / процедури</div></div>
 <div class="oo-card"><div class="oo-num">8</div><div class="oo-lbl">Workups (триаж)</div></div>
-<div class="oo-card"><div class="oo-num">6</div><div class="oo-lbl">Red flags</div></div>
-<div class="oo-card"><div class="oo-num">5</div><div class="oo-lbl">Протипоказання</div></div>
-<div class="oo-card"><div class="oo-num">2</div><div class="oo-lbl">Моніторинг</div></div>
+<div class="oo-card"><div class="oo-num">12</div><div class="oo-lbl">Red flags</div></div>
+<div class="oo-card"><div class="oo-num">6</div><div class="oo-lbl">Протипоказання</div></div>
+<div class="oo-card"><div class="oo-num">5</div><div class="oo-lbl">Моніторинг</div></div>
 <div class="oo-card"><div class="oo-num">8</div><div class="oo-lbl">Супровідна терапія</div></div>
 <div class="oo-card"><div class="oo-num">13</div><div class="oo-lbl">Джерела</div></div>
 </div>
-<div class="oo-meta"><span>Специфікації: <b>10</b></span><span>Live API-клієнти: <b>5</b></span><span>Skills (MDT): <b>0</b> / 13 планується</span><span>Reviewer sign-offs ≥ 2: <b>0</b> / 4</span></div>
+<div class="oo-meta"><span>Специфікації: <b>10</b></span><span>Live API-клієнти: <b>5</b></span><span>Skills (MDT): <b>0</b> / 16 планується</span><span>Reviewer sign-offs ≥ 2: <b>0</b> / 13</span></div>
 <div class="oo-warn">⚠️ Жоден клінічний контент ще не пройшов два sign-off Clinical Co-Lead — увесь контент позначено як STUB. Це інструмент підтримки рішень, не медичний пристрій.</div>
 <table><thead><tr><th>Хвороба</th><th>ID</th><th class="num">Ind</th><th class="num">Reg</th><th class="num">Алг</th><th class="num">RF</th><th class="num">Workups</th><th>Статус</th></tr></thead><tbody>
+<tr><td>Хронічна лімфоцитарна лейкемія / Дрібноклітинна лімфоцитарна лімфома</td><td><code>DIS-CLL</code></td><td class="num">2</td><td class="num">2</td><td class="num">✓</td><td class="num">0</td><td class="num">0</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
+<tr><td>Дифузна B-великоклітинна лімфома, неуточнена (DLBCL NOS)</td><td><code>DIS-DLBCL-NOS</code></td><td class="num">2</td><td class="num">2</td><td class="num">✓</td><td class="num">1</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
+<tr><td>Фолікулярна лімфома</td><td><code>DIS-FL</code></td><td class="num">3</td><td class="num">2</td><td class="num">✓</td><td class="num">2</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Лімфома маргінальної зони, асоційована з HCV</td><td><code>DIS-HCV-MZL</code></td><td class="num">2</td><td class="num">2</td><td class="num">✓</td><td class="num">3</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
+<tr><td>Лімфома з клітин зони мантії</td><td><code>DIS-MCL</code></td><td class="num">2</td><td class="num">2</td><td class="num">✓</td><td class="num">1</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Множинна мієлома</td><td><code>DIS-MM</code></td><td class="num">2</td><td class="num">2</td><td class="num">✓</td><td class="num">1</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 </tbody></table>
 <div class="oo-foot">Auto-generated · <code>python -m knowledge_base.stats --format html-widget</code></div>

@@ -503,5 +503,398 @@
         "prior_malignancy": null
       }
     }
+  },
+  {
+    "case_id": "dlbcl-low-ipi",
+    "label": "DLBCL NOS · Low-IPI (R-CHOP standard)",
+    "file": "patient_dlbcl_low_ipi.json",
+    "json": {
+      "patient_id": "DLBCL-LOWIPI-001",
+      "comment": "Synthetic newly-diagnosed DLBCL NOS with low IPI (0-1). Engine should select R-CHOP (standard track) as default.",
+      "disease": {
+        "icd_o_3_morphology": "9680/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 54,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "ipi_score": 1,
+        "high_ipi": false,
+        "cns_ipi_score": 1,
+        "anatomic_cns_risk_site": false,
+        "lvef_percent": 62,
+        "Standard-risk IPI (0-1)": true,
+        "ECOG ≤ 2": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Diffuse Large B-Cell Lymphoma, NOS",
+            "icd_o_3": "9680/3",
+            "icd_10": "C83.3",
+            "who_classification_5th_ed": "Aggressive B-cell lymphomas — Diffuse large B-cell lymphoma, NOS"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "II",
+            "b_symptoms": false,
+            "extranodal_involvement": false
+          },
+          "ipi_components": {
+            "age_over_60": false,
+            "ecog_2_or_more": false,
+            "ldh_above_uln": true,
+            "stage_3_or_4": false,
+            "extranodal_sites_2_or_more": false,
+            "ipi_score": 1
+          },
+          "cell_of_origin_hans": "GCB"
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "CD3": "negative",
+            "CD10": "positive",
+            "BCL2": "positive",
+            "BCL6": "positive",
+            "MUM1": "negative",
+            "MYC": "<40%",
+            "Ki67_percent": 65
+          },
+          "fish": {
+            "MYC_break_apart": "negative",
+            "BCL2_break_apart": "negative",
+            "BCL6_break_apart": "negative"
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative",
+            "anti_HBs": "positive"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        },
+        "cardiac": {
+          "baseline_LVEF_percent": 62
+        }
+      }
+    }
+  },
+  {
+    "case_id": "dlbcl-high-ipi",
+    "label": "DLBCL NOS · High-IPI (Pola-R-CHP)",
+    "file": "patient_dlbcl_high_ipi.json",
+    "json": {
+      "patient_id": "DLBCL-HIGHIPI-001",
+      "comment": "Synthetic newly-diagnosed DLBCL NOS with high IPI (3+, age >60, advanced stage, multiple extranodal). Engine should select Pola-R-CHP (aggressive track) as default.",
+      "disease": {
+        "icd_o_3_morphology": "9680/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 67,
+        "sex": "female",
+        "ecog": 2
+      },
+      "findings": {
+        "ipi_score": 4,
+        "high_ipi": true,
+        "cns_ipi_score": 4,
+        "anatomic_cns_risk_site": false,
+        "lvef_percent": 58
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Diffuse Large B-Cell Lymphoma, NOS",
+            "icd_o_3": "9680/3",
+            "icd_10": "C83.3",
+            "who_classification_5th_ed": "Aggressive B-cell lymphomas — Diffuse large B-cell lymphoma, NOS"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "IV",
+            "b_symptoms": true,
+            "extranodal_involvement": true,
+            "extranodal_sites": [
+              "bone marrow",
+              "liver",
+              "stomach"
+            ]
+          },
+          "ipi_components": {
+            "age_over_60": true,
+            "ecog_2_or_more": true,
+            "ldh_above_uln": true,
+            "stage_3_or_4": true,
+            "extranodal_sites_2_or_more": true,
+            "ipi_score": 4
+          },
+          "cell_of_origin_hans": "non-GCB"
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "CD3": "negative",
+            "CD10": "negative",
+            "BCL2": "positive",
+            "BCL6": "positive",
+            "MUM1": "positive",
+            "MYC": "approximately_40_percent",
+            "Ki67_percent": 80
+          },
+          "fish": {
+            "MYC_break_apart": "negative",
+            "BCL2_break_apart": "negative",
+            "BCL6_break_apart": "negative"
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        },
+        "cardiac": {
+          "baseline_LVEF_percent": 58
+        },
+        "funding_pathway": {
+          "polatuzumab_funding_confirmed": false,
+          "notes": "Без підтвердженого charitable / clinical-trial / out-of-pocket pathway пацієнта спрямовано на R-CHOP як fallback"
+        }
+      }
+    }
+  },
+  {
+    "case_id": "fl-low-burden",
+    "label": "Follicular · Low Burden (Watch-and-Wait)",
+    "file": "patient_fl_low_burden.json",
+    "json": {
+      "patient_id": "FL-LOWBURDEN-001",
+      "comment": "FL grade 1-2, asymptomatic, no GELF criteria → engine should select WATCH (surveillance) as default.",
+      "disease": {
+        "icd_o_3_morphology": "9690/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "female",
+        "ecog": 0
+      },
+      "findings": {
+        "fl_gelf_high_burden": false,
+        "dominant_nodal_mass_cm": 3.2,
+        "b_symptoms_present": false,
+        "ldh_above_uln": false,
+        "rapid_progression": false,
+        "fl_transformation_suspect": false,
+        "fl_grade_3b": false,
+        "biopsy_shows_dlbcl": false,
+        "GELF criteria not met (low tumor burden)": true,
+        "Asymptomatic / minimally symptomatic": true
+      }
+    }
+  },
+  {
+    "case_id": "fl-high-burden",
+    "label": "Follicular · High Burden (BR)",
+    "file": "patient_fl_high_burden.json",
+    "json": {
+      "patient_id": "FL-HIGHBURDEN-001",
+      "comment": "FL grade 1-2 with high tumor burden by GELF (8 cm mass + B-symptoms) → engine should select BR (standard) as default.",
+      "disease": {
+        "icd_o_3_morphology": "9690/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 61,
+        "sex": "male",
+        "ecog": 1,
+        "fit_for_chemoimmunotherapy": true
+      },
+      "findings": {
+        "fl_gelf_high_burden": true,
+        "dominant_nodal_mass_cm": 8.0,
+        "b_symptoms_present": true,
+        "ldh_above_uln": true,
+        "rapid_progression": false,
+        "fl_transformation_suspect": false,
+        "fl_grade_3b": false,
+        "biopsy_shows_dlbcl": false
+      }
+    }
+  },
+  {
+    "case_id": "fl-transformation",
+    "label": "Follicular · Transformation Suspect (R-CHOP)",
+    "file": "patient_fl_transformation.json",
+    "json": {
+      "patient_id": "FL-TRANSFORM-001",
+      "comment": "FL with rapid progression + LDH doubling → transformation suspect → engine should select R-CHOP (aggressive).",
+      "disease": {
+        "icd_o_3_morphology": "9690/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 62,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "fl_transformation_suspect": true,
+        "rapid_progression": true,
+        "ldh_doubled_in_weeks": true,
+        "biopsy_shows_dlbcl": false,
+        "fl_grade_3b": false,
+        "lvef_percent": 60
+      }
+    }
+  },
+  {
+    "case_id": "cll-low-risk",
+    "label": "CLL/SLL · Low-Risk (BTKi continuous)",
+    "file": "patient_cll_low_risk.json",
+    "json": {
+      "patient_id": "CLL-LOWRISK-001",
+      "comment": "CLL with iwCLL indication, standard-risk genetics (no TP53/del 17p/IGHV-unmutated). Engine should select BTKi continuous (acalabrutinib) as default.",
+      "disease": {
+        "icd_o_3_morphology": "9823/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CLL-HIGH-RISK-GENETICS": "negative"
+      },
+      "demographics": {
+        "age": 68,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "tp53_mutation": false,
+        "del_17p": false,
+        "ighv_unmutated": false,
+        "complex_karyotype": false,
+        "iwcll_treatment_indication": true,
+        "Standard-risk genetics": true,
+        "iwCLL treatment indication present": true
+      }
+    }
+  },
+  {
+    "case_id": "cll-high-risk",
+    "label": "CLL/SLL · High-Risk (VenO time-limited)",
+    "file": "patient_cll_high_risk.json",
+    "json": {
+      "patient_id": "CLL-HIGHRISK-001",
+      "comment": "CLL with TP53 mutation + IGHV-unmutated + complex karyotype. Engine should select VenO fixed-duration as default.",
+      "disease": {
+        "icd_o_3_morphology": "9823/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CLL-HIGH-RISK-GENETICS": "positive"
+      },
+      "demographics": {
+        "age": 64,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "tp53_mutation": true,
+        "del_17p": false,
+        "ighv_unmutated": true,
+        "complex_karyotype": true,
+        "iwcll_treatment_indication": true
+      }
+    }
+  },
+  {
+    "case_id": "mcl-fit-younger",
+    "label": "Mantle Cell · Fit Younger (Intensive + autoSCT)",
+    "file": "patient_mcl_fit_younger.json",
+    "json": {
+      "patient_id": "MCL-FIT-001",
+      "comment": "MCL fit younger (age 58, ECOG 0, TP53-wt). Engine should select intensive R-CHOP/R-DHAP+autoSCT as default.",
+      "disease": {
+        "icd_o_3_morphology": "9673/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 0,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "blastoid_morphology": false,
+        "pleomorphic_morphology": false,
+        "tp53_mutation": false,
+        "del_17p": false,
+        "ki67_above_30_percent": false,
+        "fit_for_transplant": true,
+        "age_max_65": true,
+        "ecog_0_or_1": true
+      }
+    }
+  },
+  {
+    "case_id": "mcl-unfit-tp53",
+    "label": "Mantle Cell · Unfit / TP53-mutant (BTKi+R)",
+    "file": "patient_mcl_unfit_or_tp53.json",
+    "json": {
+      "patient_id": "MCL-UNFIT-TP53-001",
+      "comment": "MCL with TP53 mutation + age 71 + ECOG 2 (multiple reasons to go BTKi+R). Engine should select REG-ACALABRUTINIB-RITUXIMAB.",
+      "disease": {
+        "icd_o_3_morphology": "9673/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 71,
+        "sex": "female",
+        "ecog": 2,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "blastoid_morphology": false,
+        "pleomorphic_morphology": false,
+        "tp53_mutation": true,
+        "del_17p": false,
+        "ki67_above_30_percent": true,
+        "fit_for_transplant": false,
+        "age_max_65": false
+      }
+    }
   }
 ]
