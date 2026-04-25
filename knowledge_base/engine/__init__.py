@@ -38,6 +38,12 @@ from .provenance import (
     ProvenanceEvent,
     make_event,
 )
+from .render import (
+    render,
+    render_diagnostic_brief_html,
+    render_plan_html,
+    render_revision_note_html,
+)
 from .revisions import revise_plan
 
 __all__ = [
@@ -58,6 +64,10 @@ __all__ = [
     "load_result",
     "make_event",
     "orchestrate_mdt",
+    "render",
+    "render_diagnostic_brief_html",
+    "render_plan_html",
+    "render_revision_note_html",
     "revise_plan",
     "save_result",
     "update_superseded_by_on_disk",

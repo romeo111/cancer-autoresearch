@@ -42,6 +42,11 @@ from .persistence import (
     update_superseded_by_on_disk,
 )
 from .plan import PlanResult, generate_plan
+from .render import (
+    render_diagnostic_brief_html,
+    render_plan_html,
+    render_revision_note_html,
+)
 from .revisions import revise_plan
 
 # Force UTF-8 stdout so Cyrillic + symbols print correctly on Windows cp1252
@@ -199,6 +204,7 @@ def _run_revise(
     mdt: bool,
     save: bool = False,
     save_dir: Path = PATIENT_PLANS_ROOT,
+    render_path: Path | None = None,
 ) -> int:
     try:
         # `prev_arg` is the value of --revise. If the path doesn't exist as
@@ -296,6 +302,12 @@ def _run_revise(
             print(f"ERROR persisting plan: {e}", file=sys.stderr)
             return 2
 
+    if render_path:
+        m_obj = orchestrate_mdt(patient, new_result, kb_root=kb_root) if mdt else None
+        html_str = render_revision_note_html(revised_prev, new_result, transition, mdt=m_obj)
+        render_path.write_text(html_str, encoding="utf-8")
+        print(f"\nRevision note rendered: {render_path}")
+
     return 0
 
 
@@ -356,6 +368,13 @@ def main() -> int:
         metavar="PATIENT_ID",
         help="List all saved plan versions for a patient_id, then exit.",
     )
+    parser.add_argument(
+        "--render",
+        type=Path,
+        metavar="OUT.html",
+        help=("Render result to a single-file HTML document (A4 print-friendly). "
+              "Works with treatment plan, diagnostic brief, and --revise (revision note)."),
+    )
     args = parser.parse_args()
 
     # ── List versions and exit (no patient profile needed) ──────────────
@@ -380,7 +399,8 @@ def main() -> int:
         # _run_revise / _load_previous_result handles both; do not pre-check.
         return _run_revise(patient, args.revise, args.revision_trigger, args.kb,
                            json_output=args.json_output, mdt=args.mdt,
-                           save=args.save, save_dir=args.save_dir)
+                           save=args.save, save_dir=args.save_dir,
+                           render_path=args.render)
 
     # Mode dispatch — see DIAGNOSTIC_MDT_SPEC §6.3
     use_diagnostic = args.diagnostic or (
@@ -414,6 +434,10 @@ def main() -> int:
             except (ValueError, OSError) as e:
                 print(f"ERROR persisting plan: {e}", file=sys.stderr)
                 return 2
+        if args.render and diag_result.diagnostic_plan is not None:
+            html_str = render_diagnostic_brief_html(diag_result, mdt=mdt)
+            args.render.write_text(html_str, encoding="utf-8")
+            print(f"\nHTML rendered: {args.render}")
         if diag_result.diagnostic_plan is None:
             return 1
         return 0
@@ -478,6 +502,11 @@ def main() -> int:
         except (ValueError, OSError) as e:
             print(f"ERROR persisting plan: {e}", file=sys.stderr)
             return 2
+
+    if args.render and result.plan is not None:
+        html_str = render_plan_html(result, mdt=mdt)
+        args.render.write_text(html_str, encoding="utf-8")
+        print(f"\nHTML rendered: {args.render}")
 
     if not result.default_indication_id:
         return 1
