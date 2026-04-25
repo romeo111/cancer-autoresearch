@@ -454,11 +454,12 @@ def render_landing(stats) -> str:
 <main>
   <section class="hero">
     <div class="hero-content">
-      <h1>Структуроване рішення для tumor-board.<br>Без чорних скриньок.</h1>
+      <h1>Open-source infrastructure for oncology clinical decision-making</h1>
       <p class="hero-sub">
-        Лікар завантажує профіль пацієнта → отримує два альтернативні плани лікування
-        (стандартний + агресивний) із повними цитуваннями. Плани оновлюються при появі
-        нових даних. Усе на rule engine + curated knowledge base, без LLM-судження.
+        Get clear, evidence-based treatment strategies in minutes. Upload a patient
+        profile to receive standard and aggressive options, built on global clinical
+        guidelines and references. Transparent and based on internationally recognized
+        standards.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="try.html">Спробувати з віртуальним пацієнтом →</a>
