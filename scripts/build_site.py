@@ -2753,10 +2753,10 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
   padding: 1px 6px; border-radius: 3px; text-transform: uppercase;
   font-weight: 600;
 }
-.rf-dir-hold        {{ background: var(--red-bg, #fef2f2); color: var(--red, #b91c1c); }}
-.rf-dir-intensify   {{ background: var(--amber-bg, #fef3c7); color: var(--amber, #b45309); }}
-.rf-dir-de-escalate {{ background: var(--gray-100); color: var(--gray-700); }}
-.rf-dir-investigate {{ background: var(--gray-100); color: var(--gray-500); }}
+.rf-dir-hold        { background: var(--red-bg, #fef2f2); color: var(--red, #b91c1c); }
+.rf-dir-intensify   { background: var(--amber-bg, #fef3c7); color: var(--amber, #b45309); }
+.rf-dir-de-escalate { background: var(--gray-100); color: var(--gray-700); }
+.rf-dir-investigate { background: var(--gray-100); color: var(--gray-500); }
 .rf-fired-defn {
   font-size: 11.5px; color: var(--gray-700); line-height: 1.45;
   margin-bottom: 4px;

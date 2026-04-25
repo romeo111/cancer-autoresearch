@@ -59,18 +59,18 @@ def test_landing_is_public_with_hero_and_ctas(site_dir: Path):
     assert "oncology" in html.lower() or "онколог" in html.lower()
 
 
-def test_landing_shows_numerical_metrics(site_dir: Path):
-    """Goal 1: project metrics must be prominent on the landing.
+def test_capabilities_shows_numerical_metrics(site_dir: Path):
+    """Project metrics live on /capabilities.html (moved off the landing
+    in commit `25b0340` so the landing stays focused on the MDT story).
 
-    Per user direction: removed 'Показання' (Indications) and 'Supportive care'
-    cards; added 'Лікарі-скіли' card explaining virtual specialists.
-    Each card now includes a textual explanation, not just the number."""
-    html = (site_dir / "index.html").read_text(encoding="utf-8")
+    The rich-card layout with per-metric textual explanations is the
+    canonical place to show what's in the KB."""
+    html = (site_dir / "capabilities.html").read_text(encoding="utf-8")
     assert 'class="num-grid num-grid--rich"' in html
     for label in ("Хвороби в KB", "Лікарі-скіли", "Режими лікування",
                   "Препарати", "Тести", "Workups", "Red flags",
                   "Джерела", "Специфікації"):
-        assert label in html, f"missing landing metric label: {label}"
+        assert label in html, f"missing capabilities metric label: {label}"
     # Removed labels per user direction
     for removed in ("Показання (Indications)", "Supportive care"):
         assert removed not in html, f"label '{removed}' should be removed"
@@ -87,22 +87,24 @@ def test_landing_drops_watson_comparison(site_dir: Path):
     assert 'class="approach"' not in html
 
 
-def test_landing_problem_block_is_single_paragraph(site_dir: Path):
-    """Per user direction: the problem section is now one prose block,
-    not a 2-column grid."""
+def test_landing_problem_block_is_single_prose(site_dir: Path):
+    """The 'why this is needed' block is prose paragraphs (`how-lead`)
+    inside the unified `<section class="how">`, not a 2-column grid.
+    Renamed from `problem-text` to `how-lead` in commit `25b0340` when
+    the problem and how-it-works blocks merged."""
     html = (site_dir / "index.html").read_text(encoding="utf-8")
-    assert 'class="problem-text"' in html
+    assert 'class="how-lead"' in html
     assert 'class="problem-grid"' not in html
 
 
 def test_landing_how_section_uses_mdt_infographic(site_dir: Path):
-    """Per user direction: 'Як це працює' section now embeds the MDT
-    infographic image instead of a 5-step ordered list."""
+    """The 'Як це працює' section embeds the MDT infographic
+    (light-mode variant) instead of a 5-step ordered list."""
     html = (site_dir / "index.html").read_text(encoding="utf-8")
-    assert "MDT.png" in html
+    assert "MDT-light.png" in html
     assert 'class="how-fig"' in html
     # Image asset actually copied into docs/
-    assert (site_dir / "MDT.png").exists()
+    assert (site_dir / "MDT-light.png").exists()
     # Old text-list step format removed
     assert '<ol class="steps">' not in html
 
