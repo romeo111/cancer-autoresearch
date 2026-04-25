@@ -224,3 +224,73 @@ def test_role_block_uses_skill_framing_in_ukrainian():
     mdt = orchestrate_mdt(p, plan, kb_root=KB_ROOT)
     html = render_plan_html(plan, mdt=mdt)
     assert "Скіли" in html or "віртуальні спеціалісти" in html.lower()
+
+
+# ── i18n: target_lang switch (auto-translate render output) ───────────────
+
+
+def test_render_default_target_lang_is_ukrainian():
+    """Backward compat: default render produces UA HTML."""
+    p = _patient("patient_zero_indolent.json")
+    plan = generate_plan(p, kb_root=KB_ROOT)
+    html = render_plan_html(plan, mdt=None)
+    assert '<html lang="uk">' in html
+    assert "Що НЕ робити" in html
+    assert "Етіологічний драйвер" in html
+
+
+def test_render_target_lang_en_localizes_ui_strings():
+    """target_lang='en' post-processes the UA render to swap UI labels."""
+    p = _patient("patient_zero_indolent.json")
+    plan = generate_plan(p, kb_root=KB_ROOT)
+    mdt = orchestrate_mdt(p, plan, kb_root=KB_ROOT)
+    html = render_plan_html(plan, mdt=mdt, target_lang="en")
+    # html lang attribute flipped
+    assert '<html lang="en">' in html
+    assert '<html lang="uk">' not in html
+    # Section headers translated
+    assert "What NOT to do" in html
+    assert "Etiological driver" in html
+    assert "Skills (required) — mandatory virtual specialists" in html
+    assert "Skills (recommended) — for consideration" in html
+    # UA section headers absent
+    assert "Що НЕ робити" not in html
+    assert "Етіологічний драйвер" not in html
+    assert "Скіли (required)" not in html
+    # Common UA pairs translated
+    assert "Hard contraindications" in html  # was already EN
+    # Disclaimer translated to EN
+    assert "informational resource" in html or "tumor-board discussion" in html
+    assert "Цей документ — інформаційний ресурс" not in html
+
+
+def test_render_diagnostic_brief_target_lang_en():
+    """Diagnostic-mode render also accepts target_lang."""
+    from knowledge_base.engine import generate_diagnostic_brief
+    p = _patient("patient_diagnostic_lymphoma_suspect.json")
+    res = generate_diagnostic_brief(p, kb_root=KB_ROOT)
+    html = render_diagnostic_brief_html(res, target_lang="en")
+    assert '<html lang="en">' in html
+
+
+def test_render_target_lang_unknown_falls_back_to_uk():
+    """Unsupported target_lang doesn't break — falls back to UA."""
+    p = _patient("patient_zero_indolent.json")
+    plan = generate_plan(p, kb_root=KB_ROOT)
+    html = render_plan_html(plan, mdt=None, target_lang="ja")
+    # No translation map for 'ja' → all UA strings remain, but lang attr flipped
+    assert "Що НЕ робити" in html
+
+
+def test_render_target_lang_preserves_entity_ids_and_doses():
+    """Entity IDs / doses must survive the localization pass unchanged
+    (they're in the substitution corpus only as values, never as keys).
+
+    Note: regimen IDs (REG-*) are not surfaced in the rendered HTML —
+    only regimen NAMES are — so we check IDs that actually appear in
+    the document (disease, indication, source IDs)."""
+    p = _patient("patient_zero_indolent.json")
+    plan = generate_plan(p, kb_root=KB_ROOT)
+    html = render_plan_html(plan, mdt=None, target_lang="en")
+    for token in ("DIS-HCV-MZL", "IND-HCV-MZL-1L-ANTIVIRAL", "SRC-NCCN-BCELL-2025"):
+        assert token in html, f"localization swallowed entity ID '{token}'"

@@ -278,12 +278,6 @@ def render_landing(stats) -> str:
 
   <section class="numbers">
     <h2>Що вже зроблено</h2>
-    <p class="numbers-lead">
-      Open-source онкологічний rule engine має знаннєву базу (KB), в яку клініцисти
-      контрибутують напряму через GitHub. Кожна одиниця контенту версіонована, цитує
-      першоджерела (NCCN/ESMO/EHA/МОЗ) і проходить dual-review per CHARTER §6.1
-      перш ніж потрапити з STUB у production.
-    </p>
     <div class="num-grid num-grid--rich">
 
       <div class="num-card">

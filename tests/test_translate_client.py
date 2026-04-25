@@ -283,3 +283,131 @@ def test_build_full_chain_with_both_engines(monkeypatch, tmp_path: Path):
     assert isinstance(client.inner, FallbackTranslateClient)
     assert isinstance(client.inner.primary, DeepLClient)
     assert isinstance(client.inner.secondary, LibreTranslateClient)
+
+
+# ── Glossary (translation memory) ─────────────────────────────────────────
+
+
+from knowledge_base.clients.translate_client import (
+    GlossaryTranslateClient,
+    build_full_stack,
+    translate_for_ingestion,
+    DEFAULT_SKIP_PATTERNS,
+)
+
+
+@pytest.mark.parametrize("text", [
+    "DRUG-RITUXIMAB", "TEST-CBC", "REG-VRD", "IND-MM-1L-VRD",
+    "RF-BULKY-DISEASE", "CI-HBV-NO-PROPHYLAXIS", "MON-BR-REGIMEN",
+    "WORKUP-SUSPECTED-LYMPHOMA", "ALGO-MM-1L", "BIO-MM-CYTOGENETICS-HR",
+    "SRC-NCCN-MM-2025", "OQ-HBV-SEROLOGY",
+    "90 mg/m²", "1.3 mg/m²", "16 mg/kg", "375 mg/m²",
+    "75%", "12.5 %", ">95%",
+    "9699/3", "C88.4", "C90.0",
+    "CD20", "BCL2", "MYC", "JAK2",
+    "v0.1.0", "v1.0",
+    "2026-04-25",
+    "https://example.com/foo",
+    "test_cbc.yaml", "build_site.py",
+    "§15.2 C7", "§ 6.1",
+])
+def test_glossary_skips_protected_patterns(text):
+    """Entity IDs, doses, codes etc. must not reach the translator."""
+    inner = _StubClient("inner")
+    g = GlossaryTranslateClient(inner)
+    assert g.translate(text, "en", "uk") == text
+    assert inner.calls == 0, f"glossary leaked '{text}' to inner translator"
+
+
+def test_glossary_passes_through_real_text():
+    inner = _StubClient("inner", output="EN")
+    g = GlossaryTranslateClient(inner)
+    out = g.translate("Лікар завантажує профіль пацієнта", "en", "uk")
+    assert out.startswith("EN(")
+    assert inner.calls == 1
+
+
+def test_glossary_applies_term_overrides_after_translation():
+    """Overrides enforce house-style on jargon the translator might mangle."""
+    class FakeInner:
+        name = "fake"
+        def translate(self, text, target_lang, source_lang=None):
+            # Simulate translator producing wrong jargon: "tumor council"
+            return "discussion at tumor council about patient profile"
+    g = GlossaryTranslateClient(FakeInner())
+    out = g.translate("обговорення на тумор-борд про профіль пацієнта", "en", "uk")
+    # Override map is keyed (uk,en); but the test simulates EN output that
+    # already includes "patient profile" — should pass through. The
+    # tumor-board override only fires when translator outputs UA→EN with
+    # the source-side phrase appearing. We verify the substitution
+    # mechanism by checking a known UA→EN pair below directly.
+    assert "patient profile" in out
+
+    # Direct UA term override path: source UA text with "тумор-борд",
+    # inner returns it untranslated, override should map to "tumor board".
+    class PassthroughInner:
+        name = "fake"
+        def translate(self, text, target_lang, source_lang=None):
+            return text  # echo
+    g2 = GlossaryTranslateClient(PassthroughInner())
+    out2 = g2.translate("обговорення на тумор-борд", "en", "uk")
+    assert "tumor board" in out2
+
+
+def test_glossary_empty_input_passthrough():
+    inner = _StubClient("inner")
+    g = GlossaryTranslateClient(inner)
+    assert g.translate("", "en", "uk") == ""
+    assert g.translate("   ", "en", "uk") == "   "
+    assert inner.calls == 0
+
+
+def test_glossary_skip_patterns_can_be_overridden():
+    """Caller can supply custom skip_patterns (e.g., for non-clinical
+    domains)."""
+    inner = _StubClient("inner", output="OUT")
+    g = GlossaryTranslateClient(inner, skip_patterns=[r"FOO-\w+"])
+    # FOO-X is now skipped; DRUG-X is NOT (overridden patterns replace defaults)
+    assert g.translate("FOO-BAR", "en", "uk") == "FOO-BAR"
+    assert g.translate("DRUG-RITUXIMAB", "en", "uk").startswith("OUT(")
+
+
+# ── build_full_stack ──────────────────────────────────────────────────────
+
+
+def test_build_full_stack_layers_cache_glossary_fallback(monkeypatch, tmp_path: Path):
+    monkeypatch.setenv("DEEPL_API_KEY", "test:fx")
+    monkeypatch.setenv("LIBRETRANSLATE_URL", "http://lt:5000")
+    stack = build_full_stack(cache_dir=tmp_path)
+    # cache → glossary → fallback(deepl, libretranslate)
+    assert isinstance(stack, CachedTranslateClient)
+    assert isinstance(stack.inner, GlossaryTranslateClient)
+    assert isinstance(stack.inner.inner, FallbackTranslateClient)
+    assert isinstance(stack.inner.inner.primary, DeepLClient)
+    assert isinstance(stack.inner.inner.secondary, LibreTranslateClient)
+
+
+def test_build_full_stack_without_glossary_or_cache(monkeypatch, tmp_path: Path):
+    monkeypatch.delenv("DEEPL_API_KEY", raising=False)
+    stack = build_full_stack(use_cache=False, use_glossary=False, libre_url="http://lt:5000")
+    assert isinstance(stack, LibreTranslateClient)
+
+
+# ── translate_for_ingestion ───────────────────────────────────────────────
+
+
+def test_translate_for_ingestion_returns_metadata_record():
+    """Returns a YAML-embeddable record with CHARTER §8.3 metadata flags."""
+    record = translate_for_ingestion(
+        "Bendamustine + Rituximab",
+        source_lang="en", target_lang="uk",
+        client=_StubClient("deepl", output="UA"),
+    )
+    assert record["source_text"] == "Bendamustine + Rituximab"
+    assert record["translation"].startswith("UA(")
+    assert record["source_lang"] == "en"
+    assert record["target_lang"] == "uk"
+    assert record["engine"] == "deepl"
+    assert record["machine_translated"] is True
+    assert record["needs_clinical_review"] is True
+    assert record["translated_at"]

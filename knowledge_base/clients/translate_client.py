@@ -48,10 +48,11 @@ import hashlib
 import json
 import logging
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional, Protocol, runtime_checkable
+from typing import Iterable, Optional, Protocol, Tuple, runtime_checkable
 
 import httpx
 
@@ -297,6 +298,189 @@ class CachedTranslateClient:
         return translated
 
 
+# ── Glossary (translation memory) ────────────────────────────────────────
+
+
+# Strings whose body matches one of these regexes (anchored, full match)
+# pass through untranslated. Covers: entity IDs (DRUG-RITUXIMAB, TEST-CBC,
+# REG-VRD, etc.), drug doses, percentages, ICD codes, gene symbols,
+# percentages with operators, isolated numbers, single-character tokens.
+ENTITY_ID_PATTERNS = [
+    r"[A-Z]{2,}-[A-Z0-9][\w-]*",                      # DRUG-X, TEST-Y, REG-Z, etc.
+    r"OQ-[\w-]+",                                      # OQ-HBV-SEROLOGY, etc.
+    r"DQ\d+", r"D\d+", r"R\d+",                        # rule IDs (D1, R1, DQ1, ...)
+    r"Q\d+",
+]
+DOSE_PATTERN = (
+    r"\d+(?:[.,]\d+)?\s*(?:mg|mcg|g|kg|ml|µl|µg|IU|MIU|cm|mm|m)"
+    r"(?:/m²|/m2|/kg|/day|/d|/cycle)?"
+)
+_LAB_VALUE_PATTERN = r"[<>≤≥~]\s*\d+(?:[.,]\d+)?(?:\s*[\w%]+)?"
+_PERCENT_PATTERN = r"[<>≤≥~]?\s*\d+(?:[.,]\d+)?\s*%"
+_ICD_O_3_PATTERN = r"\d{4}/\d"
+_ICD_10_PATTERN = r"[A-TVZ]\d{2}(?:\.\d+)?"
+
+DEFAULT_SKIP_PATTERNS: list[str] = [
+    *ENTITY_ID_PATTERNS,
+    DOSE_PATTERN,
+    _LAB_VALUE_PATTERN,
+    _PERCENT_PATTERN,
+    _ICD_O_3_PATTERN,
+    _ICD_10_PATTERN,
+    r"https?://\S+",                                   # URLs
+    r"[A-Za-z0-9_]+\.(yaml|yml|json|md|py|html)",      # filenames
+    r"[A-Z]{2,5}\d*",                                  # CD20, BCL2, MYC, ATRA etc.
+    r"v\d+\.\d+(?:\.\d+)?",                            # version strings
+    r"\d{4}-\d{2}-\d{2}",                              # ISO dates
+    r"§\s*\d+(?:\.\d+)*(?:\s*[A-Z]\d+)?",              # spec section refs (§15.2 C7)
+]
+
+
+# Project-specific term mappings. Applied as deterministic post-substitution
+# on the translator output to enforce house-style consistency. Keyed by
+# (source_lang, target_lang). DeepL/LibreTranslate handle generic translation
+# fine, but they get inconsistent on jargon — this is the normalization pass.
+DEFAULT_TERM_OVERRIDES: dict[Tuple[str, str], dict[str, str]] = {
+    ("uk", "en"): {
+        "тумор-борд": "tumor board",
+        "Тумор-борд": "Tumor board",
+        "MDT-брифінг": "MDT briefing",
+        "віртуальний спеціаліст": "virtual specialist",
+        "віртуальні спеціалісти": "virtual specialists",
+        "знаннєва база": "knowledge base",
+        "правило": "rule",
+        "правил-движок": "rule engine",
+        "клінічний контент": "clinical content",
+    },
+    ("en", "uk"): {
+        "tumor board": "тумор-борд",
+        "Tumor board": "Тумор-борд",
+        "knowledge base": "знаннєва база",
+        "rule engine": "правило-движок",
+        "clinical content": "клінічний контент",
+        "patient profile": "профіль пацієнта",
+    },
+}
+
+
+class GlossaryTranslateClient:
+    """Translation memory wrapper around any TranslateClient.
+
+    Two layers of protection:
+
+    1. **skip_patterns** — if the entire input matches one of these regexes
+       (anchored full match), return text unchanged. Used for entity IDs
+       (DRUG-RITUXIMAB), drug doses (90 mg/m²), percentages, ICD codes,
+       gene symbols, version strings, ISO dates, spec section references,
+       URLs, filenames. These should never be sent to a translator —
+       they'd come back wrong half the time.
+
+    2. **term_overrides** — after the inner translator runs, apply
+       deterministic UA↔EN term substitution to enforce house-style
+       consistency on project jargon (tumor-board, knowledge base,
+       virtual specialist, etc.). The translator usually handles these
+       OK, but sometimes drifts — overrides lock it down.
+
+    Empty / whitespace-only input returns as-is. Same with text that
+    only contains skip-pattern tokens after stripping.
+    """
+
+    name = "glossary"
+
+    def __init__(
+        self,
+        inner: TranslateClient,
+        skip_patterns: Optional[Iterable[str]] = None,
+        term_overrides: Optional[dict[Tuple[str, str], dict[str, str]]] = None,
+    ) -> None:
+        self.inner = inner
+        patterns = list(skip_patterns) if skip_patterns is not None else DEFAULT_SKIP_PATTERNS
+        # Compile each as anchored full-match
+        self._skip_re = [re.compile(rf"^\s*{p}\s*$") for p in patterns]
+        self._overrides = (
+            term_overrides if term_overrides is not None else DEFAULT_TERM_OVERRIDES
+        )
+
+    def _should_skip(self, text: str) -> bool:
+        return any(p.match(text) for p in self._skip_re)
+
+    def _apply_overrides(
+        self, text: str, source_lang: Optional[str], target_lang: str,
+    ) -> str:
+        if not source_lang:
+            return text
+        mapping = self._overrides.get((source_lang.lower(), target_lang.lower()))
+        if not mapping:
+            return text
+        for k, v in mapping.items():
+            text = text.replace(k, v)
+        return text
+
+    def translate(
+        self,
+        text: str,
+        target_lang: str,
+        source_lang: Optional[str] = None,
+    ) -> str:
+        if not text or not text.strip():
+            return text
+        if self._should_skip(text.strip()):
+            return text
+        out = self.inner.translate(text, target_lang, source_lang)
+        return self._apply_overrides(out, source_lang, target_lang)
+
+
+# ── Ingestion helper ─────────────────────────────────────────────────────
+
+
+def translate_for_ingestion(
+    text: str,
+    *,
+    source_lang: str,
+    target_lang: str,
+    client: Optional[TranslateClient] = None,
+) -> dict:
+    """Translate a single text fragment for ingestion-pipeline use.
+
+    Returns a dict ready to embed into a YAML `notes:` field:
+
+        {
+          "source_text": "...",         # original
+          "translation": "...",         # MT output
+          "source_lang": "en",
+          "target_lang": "uk",
+          "engine":      "deepl|libretranslate|...",
+          "translated_at": "...",
+          "machine_translated": true,
+          "needs_clinical_review": true,    # CHARTER §8.3
+        }
+
+    Caller is responsible for either:
+      - storing this whole record in the YAML for traceability, OR
+      - extracting `translation` and storing it with a top-level
+        `mt: true` flag elsewhere in the entity's metadata.
+
+    Use this from a future ingestion loader (e.g., NCCN PDF extractor →
+    UA-localized notes for clinical reviewers).
+    """
+    if client is None:
+        client = build_translate_client()
+    translated = client.translate(text, target_lang=target_lang, source_lang=source_lang)
+    return {
+        "source_text": text,
+        "translation": translated,
+        "source_lang": source_lang.lower(),
+        "target_lang": target_lang.lower(),
+        "engine": getattr(
+            getattr(client, "inner", client), "name",
+            getattr(client, "name", "unknown"),
+        ),
+        "translated_at": datetime.now(timezone.utc).isoformat(),
+        "machine_translated": True,
+        "needs_clinical_review": True,
+    }
+
+
 # ── Factory ──────────────────────────────────────────────────────────────
 
 
@@ -336,6 +520,45 @@ def build_translate_client(
 
     if use_cache:
         return CachedTranslateClient(chain, cache_dir=cache_dir)
+    return chain
+
+
+def build_full_stack(
+    *,
+    use_cache: bool = True,
+    use_glossary: bool = True,
+    cache_dir: Path = _DEFAULT_CACHE_DIR,
+    deepl_key: Optional[str] = None,
+    libre_url: Optional[str] = None,
+    libre_key: Optional[str] = None,
+) -> TranslateClient:
+    """Production stack with translation memory: cache → glossary → fallback.
+
+    Order matters:
+
+      cache(glossary(fallback(deepl, libretranslate)))
+
+    so the cache key is the original text (dedupes "DRUG-RITUXIMAB" calls
+    even though glossary skips them) and glossary normalization happens
+    consistently per (source, target) pair before hitting the network.
+    """
+    primary: Optional[TranslateClient] = None
+    if deepl_key or os.environ.get("DEEPL_API_KEY"):
+        try:
+            primary = DeepLClient(api_key=deepl_key)
+        except TranslateError:
+            primary = None
+    secondary: TranslateClient = LibreTranslateClient(url=libre_url, api_key=libre_key)
+
+    if primary is None:
+        chain: TranslateClient = secondary
+    else:
+        chain = FallbackTranslateClient(primary=primary, secondary=secondary)
+
+    if use_glossary:
+        chain = GlossaryTranslateClient(chain)
+    if use_cache:
+        chain = CachedTranslateClient(chain, cache_dir=cache_dir)
     return chain
 
 
@@ -398,5 +621,12 @@ __all__ = [
     "LibreTranslateClient",
     "FallbackTranslateClient",
     "CachedTranslateClient",
+    "GlossaryTranslateClient",
     "build_translate_client",
+    "build_full_stack",
+    "translate_for_ingestion",
+    "ENTITY_ID_PATTERNS",
+    "DOSE_PATTERN",
+    "DEFAULT_SKIP_PATTERNS",
+    "DEFAULT_TERM_OVERRIDES",
 ]

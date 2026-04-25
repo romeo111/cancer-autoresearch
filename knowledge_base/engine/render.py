@@ -390,11 +390,195 @@ def _now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
 
-def _doc_shell(title: str, body: str) -> str:
+# ── i18n: UI label dictionary (UA + EN) ───────────────────────────────────
+#
+# Used by render to switch static section headers / banners / disclaimers
+# between UA and EN. Long free-text from KB (Indication.rationale,
+# Indication.notes etc.) is NOT covered here — that's the next iteration
+# (live translation via knowledge_base.clients.translate_client). For
+# `target_lang` outside {uk, en}, falls back to UA.
+
+_UI_STRINGS: dict[str, dict[str, str]] = {
+    # Section headers
+    "treatment_options":           {"uk": "Варіанти лікування", "en": "Treatment options"},
+    "etiological_driver":          {"uk": "Етіологічний драйвер", "en": "Etiological driver"},
+    "etiological_driver_label":    {"uk": "Etiological driver · etiologically_driven archetype",
+                                    "en": "Etiological driver · etiologically_driven archetype"},
+    "pretreatment":                {"uk": "Pre-treatment investigations",
+                                    "en": "Pre-treatment investigations"},
+    "pretreatment_sub":            {"uk": "Дослідження перед стартом терапії · критичні / стандарт / бажано · поєднані по треках",
+                                    "en": "Investigations before treatment start · critical / standard / desired · merged across tracks"},
+    "redflags_pro_contra":         {"uk": "Red flags — PRO / CONTRA aggressive",
+                                    "en": "Red flags — PRO / CONTRA aggressive"},
+    "what_not":                    {"uk": "Що НЕ робити", "en": "What NOT to do"},
+    "what_not_sub":                {"uk": "Прямі прохібітивні правила, кожне з обґрунтуванням у regimen / supportive care / contraindication",
+                                    "en": "Explicit prohibitive rules, each grounded in a regimen / supportive care / contraindication entity"},
+    "monitoring":                  {"uk": "Monitoring schedule", "en": "Monitoring schedule"},
+    "monitoring_sub":              {"uk": "Графік моніторингу за фазами лікування",
+                                    "en": "Monitoring schedule by treatment phase"},
+    "timeline":                    {"uk": "Timeline", "en": "Timeline"},
+    "timeline_sub":                {"uk": "Хронологія лікування — derived from regimen + monitoring schedule",
+                                    "en": "Treatment timeline — derived from regimen + monitoring schedule"},
+    "skills_required":             {"uk": "Скіли (required) — обов'язкові віртуальні спеціалісти",
+                                    "en": "Skills (required) — mandatory virtual specialists"},
+    "skills_recommended":          {"uk": "Скіли (recommended) — рекомендовані для розгляду",
+                                    "en": "Skills (recommended) — for consideration"},
+    "skills_optional":             {"uk": "Скіли (optional) — опціональні",
+                                    "en": "Skills (optional)"},
+    "mdt_brief":                   {"uk": "MDT brief", "en": "MDT brief"},
+    "open_questions":              {"uk": "Open questions", "en": "Open questions"},
+    "data_quality":                {"uk": "Data quality", "en": "Data quality"},
+    "blocking":                    {"uk": "BLOCKING", "en": "BLOCKING"},
+    "sources_cited":               {"uk": "Sources cited", "en": "Sources cited"},
+    # Track labels (matches plan.py track id semantics)
+    "track_standard":              {"uk": "Стандартний план", "en": "Standard plan"},
+    "track_aggressive":            {"uk": "Агресивний план", "en": "Aggressive plan"},
+    "track_surveillance":          {"uk": "Активне спостереження (watch-and-wait)",
+                                    "en": "Active surveillance (watch-and-wait)"},
+    "track_palliative":            {"uk": "Паліативний план", "en": "Palliative plan"},
+    "track_trial":                 {"uk": "План у рамках клінічного дослідження", "en": "Clinical-trial-only plan"},
+    # Document headers
+    "doc_label_plan":              {"uk": "OpenOnco · Treatment Plan", "en": "OpenOnco · Treatment Plan"},
+    "doc_title_plan_prefix":       {"uk": "План лікування", "en": "Treatment plan"},
+    "doc_label_brief":             {"uk": "OpenOnco · Workup Brief · DIAGNOSTIC PHASE",
+                                    "en": "OpenOnco · Workup Brief · DIAGNOSTIC PHASE"},
+    "doc_title_brief":             {"uk": "Brief підготовки до тумор-борду", "en": "Pre-tumor-board workup brief"},
+    "doc_label_revision":          {"uk": "OpenOnco · Revision Note", "en": "OpenOnco · Revision Note"},
+    "doc_title_revision":          {"uk": "Перегляд плану", "en": "Plan revision"},
+    # Banners and labels
+    "diagnostic_banner_strong":    {"uk": "⚠ DIAGNOSTIC PHASE — TREATMENT PLAN NOT YET APPLICABLE",
+                                    "en": "⚠ DIAGNOSTIC PHASE — TREATMENT PLAN NOT YET APPLICABLE"},
+    "patient_label":               {"uk": "Patient", "en": "Patient"},
+    "default_badge":                {"uk": "★ DEFAULT", "en": "★ DEFAULT"},
+    "indication_label":            {"uk": "Indication", "en": "Indication"},
+    "regimen_label":               {"uk": "Regimen", "en": "Regimen"},
+    "supportive_label":            {"uk": "Supportive care", "en": "Supportive care"},
+    "ci_label":                    {"uk": "Hard contraindications", "en": "Hard contraindications"},
+    "reason_label":                {"uk": "Reason", "en": "Reason"},
+    # Skill catalog
+    "skill_catalog_prefix":        {"uk": "Skill catalog", "en": "Skill catalog"},
+    "skill_catalog_active_in":     {"uk": "активовано в цьому плані", "en": "activated in this plan"},
+    "skill_catalog_legend":        {"uk": "Усі зареєстровані віртуальні спеціалісти. ✓ — активовано для цього кейсу; ○ — не активовано (доступні для інших клінічних сценаріїв).",
+                                    "en": "All registered virtual specialists. ✓ — activated for this case; ○ — not activated (available for other clinical scenarios)."},
+    "th_specialist":               {"uk": "Спеціаліст", "en": "Specialist"},
+    "th_skill_id":                 {"uk": "skill_id", "en": "skill_id"},
+    "th_version":                  {"uk": "Версія", "en": "Version"},
+    "th_last_reviewed":            {"uk": "Last reviewed", "en": "Last reviewed"},
+    "th_signoffs":                 {"uk": "Sign-offs", "en": "Sign-offs"},
+    "th_domain":                   {"uk": "Domain", "en": "Domain"},
+    "th_id":                       {"uk": "ID", "en": "ID"},
+    "th_name":                     {"uk": "Назва", "en": "Name"},
+    "th_priority":                 {"uk": "Пріоритет", "en": "Priority"},
+    "th_category":                 {"uk": "Категорія", "en": "Category"},
+    "th_needed_for":               {"uk": "Потрібно для", "en": "Needed for"},
+    "th_phase":                    {"uk": "Фаза", "en": "Phase"},
+    "th_window":                   {"uk": "Вікно", "en": "Window"},
+    "th_tests":                    {"uk": "Тести", "en": "Tests"},
+    "th_checkpoints":              {"uk": "Контрольні точки", "en": "Checkpoints"},
+    "scope_all_tracks":            {"uk": "усі треки", "en": "all tracks"},
+    "scope_desired_prefix":        {"uk": "бажано", "en": "desired"},
+    # Priority labels
+    "priority_critical":           {"uk": "Критично", "en": "Critical"},
+    "priority_standard":           {"uk": "Стандарт", "en": "Standard"},
+    "priority_desired":            {"uk": "Бажано", "en": "Desired"},
+    "priority_calculation_based":  {"uk": "Розрахунок", "en": "Calculation"},
+    # PRO/CONTRA columns
+    "pro_aggressive":              {"uk": "PRO-AGGRESSIVE", "en": "PRO-AGGRESSIVE"},
+    "pro_aggressive_sub":          {"uk": "Тригери що штовхають до агресивного треку",
+                                    "en": "Triggers that push toward the aggressive track"},
+    "contra_aggressive":           {"uk": "CONTRA-AGGRESSIVE", "en": "CONTRA-AGGRESSIVE"},
+    "contra_aggressive_sub":       {"uk": "Жорсткі протипоказання до ескалації",
+                                    "en": "Hard contraindications to escalation"},
+    # Timeline phase names
+    "tl_baseline":                 {"uk": "Baseline", "en": "Baseline"},
+    "tl_induction":                {"uk": "Induction", "en": "Induction"},
+    "tl_response":                 {"uk": "Response assessment", "en": "Response assessment"},
+    "tl_maintenance":              {"uk": "Maintenance", "en": "Maintenance"},
+    "tl_followup":                 {"uk": "Follow-up", "en": "Follow-up"},
+    # Disclaimers
+    "medical_disclaimer":          {
+        "uk": "Цей документ — інформаційний ресурс для підтримки обговорення в "
+              "тумор-борді (per CHARTER §11). Не система, що приймає клінічні рішення. "
+              "Усі рекомендації потребують перевірки лікуючим лікарем.",
+        "en": "This document is an informational resource supporting tumor-board "
+              "discussion (per CHARTER §11). It is not a system that makes clinical "
+              "decisions. Every recommendation must be verified by the treating physician.",
+    },
+    "fda_disclosure_label":        {"uk": "Per FDA non-device CDS positioning (CHARTER §15):",
+                                    "en": "Per FDA non-device CDS positioning (CHARTER §15):"},
+}
+
+
+def _t(key: str, target_lang: str = "uk") -> str:
+    """Look up a UI label in the desired language. Falls back to UA if
+    the key is missing in the target language. Falls back to the key
+    itself if the key is missing entirely (defensive — surfaces missing
+    translations clearly in the rendered output)."""
+    entry = _UI_STRINGS.get(key)
+    if entry is None:
+        return key
+    return entry.get(target_lang) or entry.get("uk") or key
+
+
+def _track_label(track_id: str, target_lang: str = "uk") -> str:
+    """Map a track_id to its localized display label."""
+    return _t(f"track_{track_id}", target_lang) or track_id
+
+
+def _localize_html(html_text: str, target_lang: str) -> str:
+    """Post-process a fully-rendered UA HTML document into another language
+    by targeted UI-label substitution. The render layer always produces UA
+    first; if the caller asks for `target_lang != "uk"`, we do longest-first
+    string replacements over the known UI labels in `_UI_STRINGS` plus a
+    handful of common phrases used inside f-strings.
+
+    Free-text KB content (Indication.rationale, Indication.notes, RedFlag
+    definitions, etc.) is NOT translated here — that's the next iteration
+    via `knowledge_base.clients.translate_client`. Only UI labels.
+
+    Also flips `<html lang="uk">` to `<html lang="en">` for proper a11y.
+    """
+    if target_lang == "uk" or not target_lang:
+        return html_text
+
+    # Build the substitution map: UA-side string → target-lang string, only
+    # when both sides exist and differ. Include both the raw and the
+    # HTML-escaped form (the render layer pipes most strings through _h()
+    # which encodes apostrophes as `&#x27;` etc.) — without the escaped
+    # variant a UA literal like "обов'язкові" would never match. Longest-
+    # first to avoid collisions ("Стандартний план" before "Стандарт").
+    pairs: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for entry in _UI_STRINGS.values():
+        ua = entry.get("uk")
+        out = entry.get(target_lang)
+        if not ua or not out or ua == out:
+            continue
+        for src, dst in (
+            (ua, out),
+            (html.escape(ua, quote=True), html.escape(out, quote=True)),
+        ):
+            if src in seen or src == dst:
+                continue
+            pairs.append((src, dst))
+            seen.add(src)
+    pairs.sort(key=lambda p: len(p[0]), reverse=True)
+
+    out_html = html_text
+    for src, dst in pairs:
+        out_html = out_html.replace(src, dst)
+
+    # Doc-language attribute
+    out_html = out_html.replace('<html lang="uk">', f'<html lang="{target_lang}">')
+    return out_html
+
+
+def _doc_shell(title: str, body: str, target_lang: str = "uk") -> str:
     """Wrap rendered body in a complete HTML document with embedded CSS."""
+    lang_attr = "en" if target_lang == "en" else "uk"
     return (
         "<!DOCTYPE html>\n"
-        '<html lang="uk">\n<head>\n'
+        f'<html lang="{lang_attr}">\n<head>\n'
         '<meta charset="UTF-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
         f"<title>{_h(title)}</title>\n"
@@ -931,6 +1115,8 @@ def _render_timeline(plan) -> str:
 def render_plan_html(
     plan_result: PlanResult,
     mdt: Optional[MDTOrchestrationResult] = None,
+    *,
+    target_lang: str = "uk",
 ) -> str:
     plan = plan_result.plan
     if plan is None:
@@ -1022,7 +1208,8 @@ def render_plan_html(
     body.append(f'<div class="medical-disclaimer">{_h(_MEDICAL_DISCLAIMER)}</div>')
     body.append('</div>')
 
-    return _doc_shell(f"План лікування — {plan_result.disease_id}", "".join(body))
+    out = _doc_shell(f"План лікування — {plan_result.disease_id}", "".join(body))
+    return _localize_html(out, target_lang)
 
 
 # ── Diagnostic Brief render ───────────────────────────────────────────────
@@ -1031,6 +1218,8 @@ def render_plan_html(
 def render_diagnostic_brief_html(
     diag_result: DiagnosticPlanResult,
     mdt: Optional[MDTOrchestrationResult] = None,
+    *,
+    target_lang: str = "uk",
 ) -> str:
     dp = diag_result.diagnostic_plan
     if dp is None:
@@ -1138,7 +1327,8 @@ def render_diagnostic_brief_html(
     body.append(f'<div class="medical-disclaimer">{_h(_MEDICAL_DISCLAIMER)}</div>')
     body.append('</div>')
 
-    return _doc_shell("OpenOnco · Workup Brief", "".join(body))
+    out = _doc_shell("OpenOnco · Workup Brief", "".join(body))
+    return _localize_html(out, target_lang)
 
 
 # ── Revision Note render ──────────────────────────────────────────────────
@@ -1149,6 +1339,8 @@ def render_revision_note_html(
     new_result: Union[PlanResult, DiagnosticPlanResult],
     transition: str,
     mdt: Optional[MDTOrchestrationResult] = None,
+    *,
+    target_lang: str = "uk",
 ) -> str:
     """Renders a revision note: shows transition + prev/new IDs, then
     renders the new result inline (so reviewer sees the latest state)."""
@@ -1185,21 +1377,22 @@ def render_revision_note_html(
         '</div>'
     )
 
-    # Inline render of the NEW result (delegate)
+    # Inline render of the NEW result (delegate). The inner render handles
+    # localization itself; here we render in UA and let the outer wrap
+    # localize the entire revision-note HTML in one pass.
     if isinstance(new_result, DiagnosticPlanResult):
-        # Render and strip the wrapping shell to embed inline
-        inner = render_diagnostic_brief_html(new_result, mdt=mdt)
+        inner = render_diagnostic_brief_html(new_result, mdt=mdt, target_lang="uk")
     else:
-        inner = render_plan_html(new_result, mdt=mdt)
-    # Extract <body> contents — quick string trim
+        inner = render_plan_html(new_result, mdt=mdt, target_lang="uk")
     start = inner.find('<div class="page">')
     end = inner.rfind('</div>\n</body>')
     if start >= 0 and end >= 0:
         body.append(inner[start + len('<div class="page">'):end])
     else:
-        body.append(inner)  # fallback
+        body.append(inner)
 
-    return _doc_shell("OpenOnco · Revision Note", "".join(body))
+    out = _doc_shell("OpenOnco · Revision Note", "".join(body))
+    return _localize_html(out, target_lang)
 
 
 # ── Polymorphic dispatch ──────────────────────────────────────────────────
@@ -1208,11 +1401,13 @@ def render_revision_note_html(
 def render(
     result: Union[PlanResult, DiagnosticPlanResult],
     mdt: Optional[MDTOrchestrationResult] = None,
+    *,
+    target_lang: str = "uk",
 ) -> str:
     """Auto-dispatch by result type."""
     if isinstance(result, DiagnosticPlanResult):
-        return render_diagnostic_brief_html(result, mdt=mdt)
-    return render_plan_html(result, mdt=mdt)
+        return render_diagnostic_brief_html(result, mdt=mdt, target_lang=target_lang)
+    return render_plan_html(result, mdt=mdt, target_lang=target_lang)
 
 
 __all__ = [
