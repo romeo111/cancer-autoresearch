@@ -12,6 +12,7 @@
 <header class="top-bar">
   <div class="brand-line">
     <a href="/" class="brand-mini">OpenOnco</a>
+    <span class="brand-version" title="Project version">v0.1.0</span>
   </div>
   <nav class="top-nav">
     <a href="/">Головна</a>
@@ -38,6 +39,125 @@
       з декларативних правил, які можна прочитати у KB і відстежити в trace.
       Нижче — детально, як ми працюємо з даними, джерелами і запитами.
     </p>
+
+    <section class="numbers numbers-on-info">
+      <h2>Що вже зроблено</h2>
+      <div class="num-grid num-grid--rich">
+
+        <div class="num-card">
+          <div class="num-big">28</div>
+          <div class="num-lbl">Хвороби в KB</div>
+          <div class="num-detail">28 з повним ланцюгом disease→indication→regimen→algorithm · 0 частково</div>
+          <p class="num-text">
+            Кожна хвороба має свій <strong>archetype</strong> (etiologically_driven як
+            HCV-MZL, risk_stratified як MM, biomarker_driven, stage_driven), що визначає
+            логіку алгоритму вибору лікування.
+          </p>
+        </div>
+
+        <div class="num-card num-card--accent">
+          <div class="num-big">16</div>
+          <div class="num-lbl">Лікарі-скіли (віртуальні спеціалісти)</div>
+          <div class="num-detail">кожен скіл має свою версію, sources, last_reviewed</div>
+          <p class="num-text">
+            Гематолог, патолог, інфекціоніст-гепатолог, радіолог, молекулярний генетик,
+            клінічний фармацевт, радіотерапевт, паліативна допомога та інші — кожен
+            активується на конкретні тригери у профілі пацієнта і додає свої open-questions
+            + supportive care recommendations до плану.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">8</div>
+          <div class="num-lbl">Workups (триаж)</div>
+          <div class="num-detail">pre-biopsy діагностичний шлях</div>
+          <p class="num-text">
+            Коли в пацієнта ще немає підтвердженої гістології (CHARTER §15.2 C7 забороняє
+            treatment Plan без неї), engine вмикає <strong>diagnostic mode</strong>: видає
+            Workup Brief зі списком тестів, biopsy approach, IHC panel, та переліком ролей
+            що мають бути в triage MDT. Як тільки histology підтверджено — diagnostic plan
+            promote-иться в treatment plan через <code>revise_plan(...)</code>.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">103</div>
+          <div class="num-lbl">Red flags</div>
+          <div class="num-detail">тригери ескалації або розслідування</div>
+          <p class="num-text">
+            Червоні прапорці — структуровані клінічні умови, що автоматично змінюють план:
+            <em>RF-BULKY-DISEASE</em> (нодальна маса &gt;7 см) перемикає HCV-MZL з antiviral-first
+            на BR + DAA, <em>RF-MM-HIGH-RISK-CYTOGENETICS</em> (t(4;14), del(17p), gain 1q)
+            ескалує MM з триплету VRd до квадруплету D-VRd. Кожен RedFlag прив'язаний до
+            domain-role, який «виловлює» його у MDT brief.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">30</div>
+          <div class="num-lbl">Режими лікування</div>
+          <p class="num-text">
+            Кожна схема — список drugs з дозами, шкалою циклів, dose adjustments
+            (для renal impairment, FIB-4, frailty), premedications, mandatory supportive
+            care та monitoring schedule.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">43</div>
+          <div class="num-lbl">Препарати</div>
+          <p class="num-text">
+            ATC/RxNorm-кодовані. Кожен з регуляторним статусом FDA/EMA/MOЗ + НСЗУ
+            reimbursement (наприклад, daratumumab наразі НЕ реімбурсується НСЗУ —
+            це блокер для D-VRd, явно фіксований у плані).
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">48</div>
+          <div class="num-lbl">Тести / процедури</div>
+          <p class="num-text">
+            LOINC-кодовані лабораторні + imaging + histology + IHC + genomic тести.
+            Кожен має <code>priority_class</code> (critical / standard / desired /
+            calculation_based) — рендеряться у Plan як «pre-treatment investigations»
+            таблиця.
+          </p>
+        </div>
+
+        <div class="num-card num-card--accent">
+          <div class="num-big">25</div>
+          <div class="num-lbl">Джерела (top-level guidelines + RCTs)</div>
+          <div class="num-detail">NCCN · ESMO · EHA · BSH · EASL · МОЗ · WHO · CTCAE · FDA</div>
+          <p class="num-text">
+            Під цими 25 джерелами — <strong>4,840+ primary
+            clinical publications</strong> (RCTs, мета-аналізи, когортні дослідження)
+            і <strong>2,450 сторінок керівництв</strong>. Сама лише
+            NCCN B-Cell Lymphomas guideline — ~500 сторінок з ~700 references.
+            Кожна Indication / Regimen / RedFlag цитує конкретні джерела з
+            <em>position</em> (supports / contradicts / context), paraphrased
+            quote, page/section. FDA Criterion 4 — лікар незалежно перевіряє
+            підставу кожної рекомендації.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">12</div>
+          <div class="num-lbl">Специфікації</div>
+          <p class="num-text">
+            CHARTER (governance + FDA позиціювання), CLINICAL_CONTENT_STANDARDS,
+            KNOWLEDGE_SCHEMA, DATA_STANDARDS, SOURCE_INGESTION, REFERENCE_CASE,
+            MDT_ORCHESTRATOR, DIAGNOSTIC_MDT, WORKUP_METHODOLOGY, SKILL_ARCHITECTURE.
+          </p>
+        </div>
+
+      </div>
+      <div class="num-foot">
+        Зріз станом на <code>2026-04-25 21:18 UTC</code>.
+        Reviewer sign-offs ≥ 2: <strong>0/51</strong>
+        — увесь клінічний контент позначено як <strong>STUB</strong> до dual-sign-off
+        Clinical Co-Lead. Це інструмент підтримки рішень, не медичний пристрій.
+      </div>
+    </section>
 
     <div class="info-section">
       <h2>1. Як обробляється запит</h2>

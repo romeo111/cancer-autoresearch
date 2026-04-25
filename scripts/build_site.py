@@ -52,6 +52,7 @@ from knowledge_base.engine import (
     render_diagnostic_brief_html,
     render_plan_html,
 )
+from knowledge_base import __version__ as OPENONCO_VERSION
 from knowledge_base.stats import collect_stats, format_html_widget
 
 
@@ -432,19 +433,26 @@ _BUNDLE_INCLUDE_FILES = ["__init__.py"]
 
 def bundle_engine(output_dir: Path) -> dict:
     """Zip the runtime parts of knowledge_base/ → docs/openonco-engine.zip
-    so Pyodide can `pyodide.unpackArchive` it into its filesystem."""
+    so Pyodide can `pyodide.unpackArchive` it into its filesystem.
+
+    Returns a dict whose `version` field is a 12-char SHA-256 prefix of the
+    finished zip — used as a `?v=...` cache-buster on the Pyodide fetch in
+    try.html, so users always get the fresh bundle on KB updates without
+    having to hard-reload."""
+    import hashlib
+
     src = REPO_ROOT / "knowledge_base"
     out_zip = output_dir / "openonco-engine.zip"
 
     files_added = 0
     bytes_uncompressed = 0
+    # Sort entries so the zip is deterministic — same content → same hash.
     with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as zf:
+        entries: list[tuple[Path, str]] = []
         for fname in _BUNDLE_INCLUDE_FILES:
             p = src / fname
             if p.is_file():
-                zf.write(p, f"knowledge_base/{fname}")
-                files_added += 1
-                bytes_uncompressed += p.stat().st_size
+                entries.append((p, f"knowledge_base/{fname}"))
         for sub in _BUNDLE_INCLUDE_DIRS:
             sub_root = src / sub
             if not sub_root.is_dir():
@@ -455,15 +463,21 @@ def bundle_engine(output_dir: Path) -> dict:
                 if "__pycache__" in path.parts or path.suffix in {".pyc", ".pyo"}:
                     continue
                 arcname = "knowledge_base/" + str(path.relative_to(src)).replace("\\", "/")
-                zf.write(path, arcname)
-                files_added += 1
-                bytes_uncompressed += path.stat().st_size
+                entries.append((path, arcname))
+        for path, arcname in sorted(entries, key=lambda e: e[1]):
+            zf.write(path, arcname)
+            files_added += 1
+            bytes_uncompressed += path.stat().st_size
+
+    bundle_bytes = out_zip.read_bytes()
+    version = hashlib.sha256(bundle_bytes).hexdigest()[:12]
 
     return {
         "zip": str(out_zip.relative_to(output_dir)),
         "files": files_added,
         "uncompressed_bytes": bytes_uncompressed,
         "compressed_bytes": out_zip.stat().st_size,
+        "version": version,
     }
 
 
@@ -586,6 +600,7 @@ def _render_top_bar(active: str = "", target_lang: str = "uk",
     return f"""<header class="top-bar">
   <div class="brand-line">
     <a href="{home_path}" class="brand-mini">OpenOnco</a>
+    <span class="brand-version" title="Project version">v{OPENONCO_VERSION}</span>
   </div>
   <nav class="top-nav">
     <a href="{home_path}"{cls("home")}>{labels['home']}</a>
@@ -604,19 +619,11 @@ def _render_top_bar(active: str = "", target_lang: str = "uk",
 
 
 def render_landing(stats, *, target_lang: str = "uk") -> str:
-    diseases_full = sum(1 for d in stats.diseases if d.coverage_status in {"stub_full_chain", "reviewed"})
-    diseases_partial = sum(1 for d in stats.diseases if d.coverage_status == "partial")
-
-    # Pull headline numbers
-    by_type = {e.type: e.count for e in stats.entities}
-    n_diseases = by_type.get("diseases", 0)
-    n_regimens = by_type.get("regimens", 0)
-    n_drugs = by_type.get("drugs", 0)
-    n_tests = by_type.get("tests", 0)
-    n_sources = by_type.get("sources", 0)
-    n_workups = by_type.get("workups", 0)
-    n_redflags = by_type.get("redflags", 0)
-    n_skills = stats.skills_planned_roles  # 13 — full registry of virtual specialists
+    # Live numbers / corpus-mass cards moved to /capabilities.html — landing
+    # is now hero + combined "why + how" with the MDT figure. `stats` is kept
+    # in the signature so build.py can pass the same arg and so future
+    # widgets on the landing can reach for it without a refactor.
+    _ = stats  # noqa: F841 — intentionally unused on landing for now
 
     if target_lang == "en":
         hero_h1 = "Open-source infrastructure for oncology clinical decision-making"
@@ -670,152 +677,28 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
     </div>
   </section>
 
-  <section class="numbers">
-    <h2>Що вже зроблено</h2>
-    <div class="num-grid num-grid--rich">
-
-      <div class="num-card">
-        <div class="num-big">{n_diseases}</div>
-        <div class="num-lbl">Хвороби в KB</div>
-        <div class="num-detail">{diseases_full} з повним ланцюгом disease→indication→regimen→algorithm · {diseases_partial} частково</div>
-        <p class="num-text">
-          Кожна хвороба має свій <strong>archetype</strong> (etiologically_driven як
-          HCV-MZL, risk_stratified як MM, biomarker_driven, stage_driven), що визначає
-          логіку алгоритму вибору лікування.
-        </p>
-      </div>
-
-      <div class="num-card num-card--accent">
-        <div class="num-big">{n_skills}</div>
-        <div class="num-lbl">Лікарі-скіли (віртуальні спеціалісти)</div>
-        <div class="num-detail">кожен скіл має свою версію, sources, last_reviewed</div>
-        <p class="num-text">
-          Гематолог, патолог, інфекціоніст-гепатолог, радіолог, молекулярний генетик,
-          клінічний фармацевт, радіотерапевт, паліативна допомога та інші — кожен
-          активується на конкретні тригери у профілі пацієнта і додає свої open-questions
-          + supportive care recommendations до плану.
-        </p>
-      </div>
-
-      <div class="num-card">
-        <div class="num-big">{n_workups}</div>
-        <div class="num-lbl">Workups (триаж)</div>
-        <div class="num-detail">pre-biopsy діагностичний шлях</div>
-        <p class="num-text">
-          Коли в пацієнта ще немає підтвердженої гістології (CHARTER §15.2 C7 забороняє
-          treatment Plan без неї), engine вмикає <strong>diagnostic mode</strong>: видає
-          Workup Brief зі списком тестів, biopsy approach, IHC panel, та переліком ролей
-          що мають бути в triage MDT. Як тільки histology підтверджено — diagnostic plan
-          promote-иться в treatment plan через <code>revise_plan(...)</code>.
-        </p>
-      </div>
-
-      <div class="num-card">
-        <div class="num-big">{n_redflags}</div>
-        <div class="num-lbl">Red flags</div>
-        <div class="num-detail">тригери ескалації або розслідування</div>
-        <p class="num-text">
-          Червоні прапорці — структуровані клінічні умови, що автоматично змінюють план:
-          <em>RF-BULKY-DISEASE</em> (нодальна маса &gt;7 см) перемикає HCV-MZL з antiviral-first
-          на BR + DAA, <em>RF-MM-HIGH-RISK-CYTOGENETICS</em> (t(4;14), del(17p), gain 1q)
-          ескалує MM з триплету VRd до квадруплету D-VRd. Кожен RedFlag прив'язаний до
-          domain-role, який «виловлює» його у MDT brief.
-        </p>
-      </div>
-
-      <div class="num-card">
-        <div class="num-big">{n_regimens}</div>
-        <div class="num-lbl">Режими лікування</div>
-        <p class="num-text">
-          Кожен схема — список drugs з дозами, шкалою циклів, dose adjustments
-          (для renal impairment, FIB-4, frailty), premedications, mandatory supportive
-          care та monitoring schedule.
-        </p>
-      </div>
-
-      <div class="num-card">
-        <div class="num-big">{n_drugs}</div>
-        <div class="num-lbl">Препарати</div>
-        <p class="num-text">
-          ATC/RxNorm-кодовані. Кожен з регуляторним статусом FDA/EMA/MOЗ + НСЗУ
-          reimbursement (наприклад, daratumumab наразі НЕ реімбурсується НСЗУ —
-          це блокер для D-VRd, явно фіксований у плані).
-        </p>
-      </div>
-
-      <div class="num-card">
-        <div class="num-big">{n_tests}</div>
-        <div class="num-lbl">Тести / процедури</div>
-        <p class="num-text">
-          LOINC-кодовані лабораторні + imaging + histology + IHC + genomic тести.
-          Кожен має <code>priority_class</code> (critical / standard / desired /
-          calculation_based) — рендеряться у Plan як «pre-treatment investigations»
-          таблиця.
-        </p>
-      </div>
-
-      <div class="num-card num-card--accent">
-        <div class="num-big">{n_sources}</div>
-        <div class="num-lbl">Джерела (top-level guidelines + RCTs)</div>
-        <div class="num-detail">NCCN · ESMO · EHA · BSH · EASL · МОЗ · WHO · CTCAE · FDA</div>
-        <p class="num-text">
-          Під цими {n_sources} джерелами — <strong>{stats.corpus_references_total:,}+ primary
-          clinical publications</strong> (RCTs, мета-аналізи, когортні дослідження)
-          і <strong>{stats.corpus_pages_total:,} сторінок керівництв</strong>. Сама лише
-          NCCN B-Cell Lymphomas guideline — ~500 сторінок з ~700 references.
-          Кожна Indication / Regimen / RedFlag цитує конкретні джерела з
-          <em>position</em> (supports / contradicts / context), paraphrased
-          quote, page/section. FDA Criterion 4 — лікар незалежно перевіряє
-          підставу кожної рекомендації.
-        </p>
-      </div>
-
-      <div class="num-card">
-        <div class="num-big">{stats.specs_count}</div>
-        <div class="num-lbl">Специфікації</div>
-        <p class="num-text">
-          CHARTER (governance + FDA позиціювання), CLINICAL_CONTENT_STANDARDS,
-          KNOWLEDGE_SCHEMA, DATA_STANDARDS, SOURCE_INGESTION, REFERENCE_CASE,
-          MDT_ORCHESTRATOR, DIAGNOSTIC_MDT, WORKUP_METHODOLOGY, SKILL_ARCHITECTURE.
-        </p>
-      </div>
-
-    </div>
-    <div class="num-foot">
-      Зріз станом на <code>{stats.generated_at_utc}</code>.
-      Reviewer sign-offs ≥ 2: <strong>{stats.reviewer_signoffs_reviewed}/{stats.reviewer_signoffs_total}</strong>
-      — увесь клінічний контент позначено як <strong>STUB</strong> до dual-sign-off
-      Clinical Co-Lead. Це інструмент підтримки рішень, не медичний пристрій.
-    </div>
-  </section>
-
-  <section class="problem">
-    <h2>Проблема</h2>
-    <p class="problem-text">
-      Щоб призначити лікування, лікар або клінічний фармаколог витрачає 2–4 години
-      ручної роботи: відкриває NCCN PDF, звіряє ESMO guideline, перечитує МОЗ протокол,
-      перевіряє НСЗУ-формуляр на доступність препарату, шукає dose adjustments
-      для нирок чи печінки, додає supportive care, не забуває про вакцинації та
-      профілактику опортуністичних інфекцій. І так — для кожного пацієнта,
-      кожного разу заново. Будь-яка пропущена контраіндикація може коштувати
-      життя. OpenOnco автоматизує цю чорнову роботу: лікар отримує готовий
-      проект плану з усіма джерелами, а далі лише верифікує і коригує під
-      конкретного пацієнта.
-    </p>
-  </section>
-
   <section class="how">
-    <h2>Як це працює</h2>
+    <h2>Чому це потрібно і як це працює</h2>
     <p class="how-lead">
-      Логіка така ж, як у класичної мультидисциплінарної команди (MDT): кілька
-      спеціалістів навколо пацієнта, обговорення випадку, узгоджений план,
-      повернення до випадку при появі нових даних. Ми просто оформлюємо це як
-      structured engine — кожен «віртуальний лікар» — це модуль із версією,
-      правилами і списком джерел.
+      Щоб призначити лікування, лікар або клінічний фармаколог витрачає 2–4&nbsp;години
+      ручної роботи: відкриває NCCN PDF, звіряє ESMO guideline, перечитує МОЗ протокол,
+      перевіряє НСЗУ-формуляр на доступність препарату, шукає dose adjustments для нирок
+      чи печінки, додає supportive care, не забуває про вакцинації та профілактику
+      опортуністичних інфекцій. І так — для кожного пацієнта, кожного разу заново.
+      Будь-яка пропущена контраіндикація може коштувати життя.
+    </p>
+    <p class="how-lead">
+      OpenOnco автоматизує цю чорнову роботу: <strong>логіка така сама, як у класичної
+      мультидисциплінарної команди (MDT)</strong>, посиленої шаром аналітичних алгоритмів.
+      Кілька спеціалістів навколо пацієнта, обговорення випадку, узгоджений план,
+      повернення до випадку при появі нових даних. Ми просто оформлюємо це як structured
+      engine — кожен «віртуальний лікар» це модуль із власною версією, правилами та
+      списком джерел. Лікар отримує готовий проєкт плану з усіма посиланнями і лише
+      верифікує та коригує його під конкретного пацієнта.
     </p>
     <figure class="how-fig">
-      <img src="/MDT.png" alt="Мультидисциплінарна команда — як спеціалісти спільно ухвалюють план лікування пацієнта" loading="lazy">
-      <figcaption>Кожна роль (Хірург-онколог, Хіміотерапевт, Радіолог, Патолог, Молекулярний генетик, Радіотерапевт, Психолог/паліатив тощо) у нашій системі — це <strong>скіл</strong> із власною версією. Активується автоматично при умовах профілю пацієнта і додає до плану свої open-questions, contraindications, supportive care.</figcaption>
+      <img src="/MDT-light.png" alt="Мультидисциплінарна команда, посилена шаром аналітичних алгоритмів — як спеціалісти спільно ухвалюють план лікування пацієнта" loading="lazy">
+      <figcaption>Кожна роль (Хірург-онколог, Хіміотерапевт, Радіолог, Патолог, Молекулярний генетик, Радіотерапевт, Психолог/паліатив тощо) у нашій системі — це <strong>скіл</strong> із власною версією. Активується автоматично при умовах профілю пацієнта і додає до плану свої open-questions, contraindications, supportive care. Деталі того, що зараз у KB і як працює engine — на сторінці <a href="/capabilities.html">Можливості</a>.</figcaption>
     </figure>
   </section>
 
@@ -1070,7 +953,7 @@ def render_gallery(stats_widget_html: str, *, target_lang: str = "uk") -> str:
 _PYODIDE_VERSION = "0.26.4"
 
 
-def render_try(*, target_lang: str = "uk") -> str:
+def render_try(*, target_lang: str = "uk", bundle_version: str = "") -> str:
     # Pyodide assets live at site root — root-relative paths work for both
     # /try.html (UA) and /en/try.html (EN). The Pyodide engine bundle +
     # examples.json + questionnaires.json are single shared copies.
@@ -1764,7 +1647,11 @@ import micropip
 await micropip.install(['pydantic', 'pyyaml'])
 `);
   setStatus('Завантажую двигун OpenOnco…');
-  const resp = await fetch('/openonco-engine.zip');
+  // Cache-busting: bundle_version is the SHA-256 prefix of the engine
+  // zip, computed at build time. Forces a fresh fetch when KB content
+  // changes, sidestepping CDN/browser cache (GitHub Pages serves
+  // openonco-engine.zip with Cache-Control: max-age=600).
+  const resp = await fetch('/openonco-engine.zip?v={bundle_version}');
   const buf = await resp.arrayBuffer();
   pyodide.unpackArchive(buf, 'zip');
   const validationSummary = await pyodide.runPythonAsync(`
@@ -2180,6 +2067,13 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
   font-family: var(--font-display); font-size: 26px;
   color: var(--green-100); text-decoration: none;
   letter-spacing: 0.2px;
+}
+.brand-version {
+  font-family: var(--font-mono); font-size: 10.5px;
+  color: var(--green-100); opacity: 0.55;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 7px; border-radius: 3px; letter-spacing: 0.5px;
+  align-self: center;
 }
 .role-pill {
   background: var(--teal); color: white;
@@ -3006,6 +2900,14 @@ def render_capabilities(stats) -> str:
     n_drugs = by_type.get("drugs", 0)
     n_skills = stats.skills_planned_roles
 
+    # Live KB metric (moved here from landing). Per-disease coverage is
+    # computed once and re-used in the cards block below.
+    diseases_full = sum(
+        1 for d in stats.diseases
+        if d.coverage_status in {"stub_full_chain", "reviewed"}
+    )
+    diseases_partial = sum(1 for d in stats.diseases if d.coverage_status == "partial")
+
     return f"""<!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -3029,6 +2931,125 @@ def render_capabilities(stats) -> str:
       з декларативних правил, які можна прочитати у KB і відстежити в trace.
       Нижче — детально, як ми працюємо з даними, джерелами і запитами.
     </p>
+
+    <section class="numbers numbers-on-info">
+      <h2>Що вже зроблено</h2>
+      <div class="num-grid num-grid--rich">
+
+        <div class="num-card">
+          <div class="num-big">{n_diseases}</div>
+          <div class="num-lbl">Хвороби в KB</div>
+          <div class="num-detail">{diseases_full} з повним ланцюгом disease→indication→regimen→algorithm · {diseases_partial} частково</div>
+          <p class="num-text">
+            Кожна хвороба має свій <strong>archetype</strong> (etiologically_driven як
+            HCV-MZL, risk_stratified як MM, biomarker_driven, stage_driven), що визначає
+            логіку алгоритму вибору лікування.
+          </p>
+        </div>
+
+        <div class="num-card num-card--accent">
+          <div class="num-big">{n_skills}</div>
+          <div class="num-lbl">Лікарі-скіли (віртуальні спеціалісти)</div>
+          <div class="num-detail">кожен скіл має свою версію, sources, last_reviewed</div>
+          <p class="num-text">
+            Гематолог, патолог, інфекціоніст-гепатолог, радіолог, молекулярний генетик,
+            клінічний фармацевт, радіотерапевт, паліативна допомога та інші — кожен
+            активується на конкретні тригери у профілі пацієнта і додає свої open-questions
+            + supportive care recommendations до плану.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">{n_workups}</div>
+          <div class="num-lbl">Workups (триаж)</div>
+          <div class="num-detail">pre-biopsy діагностичний шлях</div>
+          <p class="num-text">
+            Коли в пацієнта ще немає підтвердженої гістології (CHARTER §15.2 C7 забороняє
+            treatment Plan без неї), engine вмикає <strong>diagnostic mode</strong>: видає
+            Workup Brief зі списком тестів, biopsy approach, IHC panel, та переліком ролей
+            що мають бути в triage MDT. Як тільки histology підтверджено — diagnostic plan
+            promote-иться в treatment plan через <code>revise_plan(...)</code>.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">{n_redflags}</div>
+          <div class="num-lbl">Red flags</div>
+          <div class="num-detail">тригери ескалації або розслідування</div>
+          <p class="num-text">
+            Червоні прапорці — структуровані клінічні умови, що автоматично змінюють план:
+            <em>RF-BULKY-DISEASE</em> (нодальна маса &gt;7 см) перемикає HCV-MZL з antiviral-first
+            на BR + DAA, <em>RF-MM-HIGH-RISK-CYTOGENETICS</em> (t(4;14), del(17p), gain 1q)
+            ескалує MM з триплету VRd до квадруплету D-VRd. Кожен RedFlag прив'язаний до
+            domain-role, який «виловлює» його у MDT brief.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">{n_regimens}</div>
+          <div class="num-lbl">Режими лікування</div>
+          <p class="num-text">
+            Кожна схема — список drugs з дозами, шкалою циклів, dose adjustments
+            (для renal impairment, FIB-4, frailty), premedications, mandatory supportive
+            care та monitoring schedule.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">{n_drugs}</div>
+          <div class="num-lbl">Препарати</div>
+          <p class="num-text">
+            ATC/RxNorm-кодовані. Кожен з регуляторним статусом FDA/EMA/MOЗ + НСЗУ
+            reimbursement (наприклад, daratumumab наразі НЕ реімбурсується НСЗУ —
+            це блокер для D-VRd, явно фіксований у плані).
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">{n_tests}</div>
+          <div class="num-lbl">Тести / процедури</div>
+          <p class="num-text">
+            LOINC-кодовані лабораторні + imaging + histology + IHC + genomic тести.
+            Кожен має <code>priority_class</code> (critical / standard / desired /
+            calculation_based) — рендеряться у Plan як «pre-treatment investigations»
+            таблиця.
+          </p>
+        </div>
+
+        <div class="num-card num-card--accent">
+          <div class="num-big">{n_sources}</div>
+          <div class="num-lbl">Джерела (top-level guidelines + RCTs)</div>
+          <div class="num-detail">NCCN · ESMO · EHA · BSH · EASL · МОЗ · WHO · CTCAE · FDA</div>
+          <p class="num-text">
+            Під цими {n_sources} джерелами — <strong>{stats.corpus_references_total:,}+ primary
+            clinical publications</strong> (RCTs, мета-аналізи, когортні дослідження)
+            і <strong>{stats.corpus_pages_total:,} сторінок керівництв</strong>. Сама лише
+            NCCN B-Cell Lymphomas guideline — ~500 сторінок з ~700 references.
+            Кожна Indication / Regimen / RedFlag цитує конкретні джерела з
+            <em>position</em> (supports / contradicts / context), paraphrased
+            quote, page/section. FDA Criterion 4 — лікар незалежно перевіряє
+            підставу кожної рекомендації.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">{stats.specs_count}</div>
+          <div class="num-lbl">Специфікації</div>
+          <p class="num-text">
+            CHARTER (governance + FDA позиціювання), CLINICAL_CONTENT_STANDARDS,
+            KNOWLEDGE_SCHEMA, DATA_STANDARDS, SOURCE_INGESTION, REFERENCE_CASE,
+            MDT_ORCHESTRATOR, DIAGNOSTIC_MDT, WORKUP_METHODOLOGY, SKILL_ARCHITECTURE.
+          </p>
+        </div>
+
+      </div>
+      <div class="num-foot">
+        Зріз станом на <code>{stats.generated_at_utc}</code>.
+        Reviewer sign-offs ≥ 2: <strong>{stats.reviewer_signoffs_reviewed}/{stats.reviewer_signoffs_total}</strong>
+        — увесь клінічний контент позначено як <strong>STUB</strong> до dual-sign-off
+        Clinical Co-Lead. Це інструмент підтримки рішень, не медичний пристрій.
+      </div>
+    </section>
 
     <div class="info-section">
       <h2>1. Як обробляється запит</h2>
@@ -4054,7 +4075,7 @@ def _copy_landing_assets(output_dir: Path) -> list[str]:
     lives in infograph/ (gitignored except these). Listed by name so we don't
     accidentally copy patient HTMLs (CHARTER §9.3)."""
     src_root = REPO_ROOT / "infograph"
-    assets = ["MDT.png"]
+    assets = ["MDT.png", "MDT-light.png"]
     copied: list[str] = []
     for name in assets:
         src = src_root / name
@@ -4082,13 +4103,21 @@ def build_site(output_dir: Path) -> dict:
     stats = collect_stats()
     stats_widget = format_html_widget(stats, embed_style=True)
 
+    # Build engine bundle FIRST so we can stamp its content-hash into
+    # try.html as a cache-buster (?v=<hash>). Without this, GitHub Pages
+    # serves the zip with Cache-Control: max-age=600 and users get stale
+    # bundles for ~10 minutes after a KB push.
+    engine_bundle = bundle_engine(output_dir)
+    bundle_version = engine_bundle.get("version", "")
+
     # ── UA build (default at site root) ──
     (output_dir / "index.html").write_text(render_landing(stats), encoding="utf-8")
     (output_dir / "capabilities.html").write_text(render_capabilities(stats), encoding="utf-8")
     (output_dir / "limitations.html").write_text(render_limitations(stats), encoding="utf-8")
     (output_dir / "specs.html").write_text(render_specs(stats), encoding="utf-8")
     (output_dir / "gallery.html").write_text(render_gallery(stats_widget), encoding="utf-8")
-    (output_dir / "try.html").write_text(render_try(), encoding="utf-8")
+    (output_dir / "try.html").write_text(
+        render_try(bundle_version=bundle_version), encoding="utf-8")
 
     # ── EN build (mirror at /en/) ──
     # Body copy of landing/gallery/try is currently UA — nav + lang attribute
@@ -4100,7 +4129,7 @@ def build_site(output_dir: Path) -> dict:
     (output_dir / "en" / "gallery.html").write_text(
         render_gallery(stats_widget, target_lang="en"), encoding="utf-8")
     (output_dir / "en" / "try.html").write_text(
-        render_try(target_lang="en"), encoding="utf-8")
+        render_try(target_lang="en", bundle_version=bundle_version), encoding="utf-8")
 
     case_paths_uk = [{
         "case_id": c.case_id, "lang": "uk",
@@ -4111,7 +4140,6 @@ def build_site(output_dir: Path) -> dict:
         "path": str(build_one_case(c, output_dir, target_lang="en").relative_to(output_dir)),
     } for c in CASES]
 
-    engine_bundle = bundle_engine(output_dir)
     examples_payload = bundle_examples(output_dir)
     questionnaires_payload = bundle_questionnaires(output_dir)
 
