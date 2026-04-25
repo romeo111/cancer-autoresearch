@@ -1,0 +1,35 @@
+id: DRUG-ERLOTINIB
+names:
+  preferred: "Erlotinib"
+  ukrainian: "Ерлотиніб"
+  english: "Erlotinib"
+  brand_names: ["Tarceva"]
+atc_code: L01EB02
+rxnorm_id: null
+drug_class: "1st-generation EGFR TKI (reversible)"
+mechanism: >
+  Reversible EGFR-TKI. Pre-T790M era 1L standard; now 2L+ or alternate when osimertinib unavailable.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: null
+    notes: "Generic; reimbursed."
+
+typical_dosing: >
+  150 mg PO once daily on empty stomach.
+
+key_toxicities:
+  - Rash / acneiform eruption (~75%)
+  - Diarrhea
+  - Fatigue
+  - Hepatic transaminase elevations
+  - ILD (~1-2%)
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Largely supplanted by osimertinib in 1L. 2L+ option when osi-resistance pathway not amenable to next-line targeted; rare in modern era.

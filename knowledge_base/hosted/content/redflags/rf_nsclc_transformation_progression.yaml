@@ -1,0 +1,33 @@
+id: RF-NSCLC-TRANSFORMATION-PROGRESSION
+definition: "Symptomatic CNS metastases OR superior vena cava (SVC) syndrome OR rapid radiographic progression on therapy — emergency / aggressive-progression flag requiring brain imaging, RT/surgical consult, and treatment intensification or sequencing change."
+definition_ua: "Симптоматичні метастази в ЦНС АБО синдром верхньої порожнистої вени (SVC) АБО швидке радіографічне прогресування на терапії — невідкладний / агресивно-прогресуючий тригер."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "symptomatic_cns_metastases"
+      value: true
+    - finding: "svc_syndrome"
+      value: true
+    - finding: "rapid_radiographic_progression_nsclc"
+      value: true
+
+clinical_direction: hold
+severity: critical
+priority: 50
+category: transformation-progression
+
+relevant_diseases: [DIS-NSCLC]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-NSCLC-2025
+  - SRC-ESMO-NSCLC-METASTATIC-2024
+
+last_reviewed: null
+draft: false
+
+notes: >
+  CNS-active TKI options critical for ALK / EGFR / ROS1 mets — alectinib /
+  lorlatinib / brigatinib / osimertinib all have CNS efficacy. SVC syndrome:
+  emergent RT or stenting; systemic therapy proceeds in parallel.

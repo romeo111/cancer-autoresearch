@@ -1,0 +1,36 @@
+id: DRUG-ENTRECTINIB
+names:
+  preferred: "Entrectinib"
+  ukrainian: "Ентректініб"
+  english: "Entrectinib"
+  brand_names: ["Rozlytrek"]
+atc_code: L01EX14
+rxnorm_id: null
+drug_class: "ROS1 / NTRK / ALK TKI (CNS-penetrant)"
+mechanism: >
+  Multi-kinase inhibitor (TRKA/B/C / ROS1 / ALK) with high CNS penetration. Tumor-agnostic NTRK-fusion indication; 1L preferred for ROS1+ NSCLC per ESMO.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not registered in Ukraine. Off-label access."
+
+typical_dosing: >
+  600 mg PO once daily.
+
+key_toxicities:
+  - Dysgeusia
+  - Constipation
+  - Fatigue
+  - Cognitive / mood (TRK class)
+  - Weight gain
+  - Hepatic
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  STARTRK-2: tumor-agnostic NTRK + ROS1 efficacy. Larotrectinib alternative for NTRK-only.

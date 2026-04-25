@@ -1,0 +1,30 @@
+id: ALGO-SCLC-1L
+applicable_to_disease: DIS-SCLC
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select 1L SCLC regimen by stage: limited → EP + concurrent RT;
+  extensive → EP + ICI (durvalumab or atezolizumab).
+
+output_indications:
+  - IND-SCLC-EXTENSIVE-1L
+  - IND-SCLC-LIMITED-1L
+
+default_indication: IND-SCLC-EXTENSIVE-1L
+alternative_indication: IND-SCLC-LIMITED-1L
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - condition: "Limited-stage (one hemithorax + tolerable RT field)"
+    if_true:
+      result: IND-SCLC-LIMITED-1L
+    if_false:
+      result: IND-SCLC-EXTENSIVE-1L
+
+sources: [SRC-NCCN-SCLC-2025, SRC-ESMO-SCLC-2021]
+last_reviewed: null
+notes: >
+  Stage-driven binary fork. Frailty (RF-SCLC-FRAILTY-AGE) triggers
+  sequential rather than concurrent CRT for limited; reduced-intensity
+  EP+ICI for extensive.

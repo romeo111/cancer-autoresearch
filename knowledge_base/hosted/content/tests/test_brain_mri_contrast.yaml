@@ -1,0 +1,18 @@
+id: TEST-BRAIN-MRI-CONTRAST
+names:
+  preferred: "Brain MRI with contrast"
+  ukrainian: "МРТ головного мозку з контрастом"
+test_type: imaging_mri
+priority_class: standard
+specimen: "Whole-brain MRI with gadolinium contrast"
+turnaround_hours_typical: 48
+measures: []
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Required for NSCLC staging in: stage III considered for curative
+  intent, stage IV with neurologic symptoms, ALK / ROS1 / EGFR (high
+  CNS-met rates) at baseline + serial monitoring. CT-only acceptable
+  if MRI contraindicated. Alias TEST-MRI-BRAIN-CONTRAST exists in some
+  references (lymphoma branch) — kept distinct here for solid-tumor
+  staging context.

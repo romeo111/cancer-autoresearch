@@ -1,0 +1,36 @@
+id: DRUG-DABRAFENIB
+names:
+  preferred: "Dabrafenib"
+  ukrainian: "Дабрафеніб"
+  english: "Dabrafenib"
+  brand_names: ["Tafinlar"]
+atc_code: L01EC02
+rxnorm_id: null
+drug_class: "BRAF inhibitor"
+mechanism: >
+  Selective BRAF V600E/K inhibitor. Always combined with trametinib (MEKi) to prevent paradoxical RAF activation in BRAF-WT cells and improve efficacy.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Registered; reimbursement varies. Used across BRAF V600E NSCLC, melanoma, ATC, CRC (with cetuximab)."
+
+typical_dosing: >
+  150 mg PO BID + trametinib 2 mg PO daily.
+
+key_toxicities:
+  - Pyrexia (~60% — class effect)
+  - Rash
+  - Fatigue
+  - Cutaneous SCC (paradoxical activation; less with MEKi combo)
+  - Hyperglycemia
+  - QT prolongation
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  BRAF V600E NSCLC 1L+. Pyrexia management: hold + restart at lower dose; antipyretics. Combination essential.

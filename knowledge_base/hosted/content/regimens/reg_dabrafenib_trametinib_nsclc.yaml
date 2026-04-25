@@ -1,0 +1,40 @@
+id: REG-DABRAFENIB-TRAMETINIB-NSCLC
+name: "Dabrafenib + trametinib (BRAF V600E+ NSCLC)"
+name_ua: "Дабрафеніб + траметиніб (BRAF V600E+ НДРЛ)"
+alternate_names: ["BRF113928 regimen"]
+
+components:
+  - drug_id: DRUG-DABRAFENIB
+    dose: "150 mg PO BID"
+    schedule: "Continuous"
+    route: PO
+  - drug_id: DRUG-TRAMETINIB
+    dose: "2 mg PO once daily"
+    schedule: "Continuous"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression"
+toxicity_profile: moderate
+
+premedication:
+  - "Antipyretics on hand for pyrexia (very common)"
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Pyrexia ≥38.5°C"
+    modification: "Hold both; restart at lower dose"
+  - condition: "LVEF decline"
+    modification: "Cardiology consult"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Registered; reimbursement variable. Out-of-pocket for many."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  BRF113928: ORR ~64% in 1L BRAF V600E+ NSCLC. Pyrexia management
+  dominant clinical challenge.

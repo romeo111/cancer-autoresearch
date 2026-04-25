@@ -1,0 +1,29 @@
+id: BIO-ALK-FUSION
+names:
+  preferred: "ALK rearrangement / fusion"
+  ukrainian: "Перебудова / фузія ALK"
+codes:
+  loinc: null
+
+biomarker_type: fusion
+mutation_details:
+  gene: "ALK"
+  partners: ["EML4 (most common)", "KIF5B", "TFG", "KLC1", "STRN", "and others"]
+  type: "chromosomal rearrangement (typically inversion at 2p21-23)"
+  functional_impact: "Constitutive ALK kinase activation"
+
+measurement:
+  method: "RNA-based NGS (preferred for fusion sensitivity) OR FISH OR IHC (D5F3 antibody)"
+  sensitivity_requirement: "RNA-NGS captures fusion partners; FISH break-apart probe detects rearrangements"
+
+interpretation_notes: >
+  ~5% of NSCLC adenocarcinoma; enriched in never-smokers and younger
+  patients. ALEX / CROWN: alectinib / lorlatinib superior to crizotinib
+  1L. ALINA: 2-year alectinib adjuvant after resection.
+
+related_biomarkers: []
+
+last_reviewed: null
+notes: >
+  IHC screen → confirmatory FISH or NGS. Modern NGS panels detect ALK
+  fusions directly.

@@ -1,0 +1,31 @@
+id: BIO-EGFR-MUTATION
+names:
+  preferred: "EGFR mutation status (NSCLC actionable)"
+  ukrainian: "Статус мутацій EGFR (NSCLC actionable)"
+codes:
+  loinc: null
+
+biomarker_type: mutation
+mutation_details:
+  gene: "EGFR"
+  hotspots: ["exon 19 deletion (Δ746-750 most common)", "L858R", "L861Q", "G719X", "S768I", "T790M (resistance)", "exon 20 insertion (variable)"]
+  type: "activating + resistance"
+  functional_impact: "Constitutive EGFR signaling activation; T790M confers gefitinib/erlotinib resistance"
+
+measurement:
+  method: "Tumor-tissue NGS panel OR ctDNA NGS OR PCR (cobas EGFR Mutation Test)"
+  sensitivity_requirement: "VAF detection threshold ≥1% for ctDNA; tissue more sensitive"
+
+interpretation_notes: >
+  ~10-15% of Western adenocarcinoma; 30-50% in East Asian populations.
+  Common (exon 19 del + L858R) ~85-90% of EGFR-mut cases — best response
+  to osimertinib. Uncommon mutations: variable response; afatinib /
+  dacomitinib may be preferred for some. T790M resistance: osimertinib
+  active. Exon 20 ins: poor response to standard EGFR TKIs; amivantamab
+  + chemo or mobocertinib (where available).
+
+related_biomarkers: []
+
+last_reviewed: null
+notes: >
+  NCCN 2025 mandates universal EGFR testing for advanced non-squamous NSCLC.

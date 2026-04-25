@@ -1,0 +1,63 @@
+id: DIS-SCLC
+names:
+  preferred: "Small cell lung cancer"
+  ukrainian: "Дрібноклітинний рак легені"
+  english: "Small cell lung cancer"
+  synonyms: ["SCLC", "ДРЛ"]
+
+codes:
+  icd_o_3_morphology: "8041/3"
+  icd_o_3_topography: ["C34.9"]
+  icd_10: "C34"
+  who_classification: "Small cell lung carcinoma — neuroendocrine tumor (WHO 5th 2021)"
+
+archetype: stage_driven
+lineage: solid_tumor_lung_sclc
+
+stage_strata:
+  - id: LIMITED
+    label: "Limited-stage SCLC"
+    label_ua: "Обмежена стадія SCLC"
+    definition: "Disease confined to one hemithorax, encompassable in one tolerable RT field; ~30% of SCLC at presentation"
+  - id: EXTENSIVE
+    label: "Extensive-stage SCLC"
+    label_ua: "Поширена стадія SCLC"
+    definition: "Disease beyond one hemithorax (contralateral lung, distant metastases); ~70% at presentation"
+
+prognostic_frameworks:
+  - id: VALG
+    label: "VALG (Veterans Administration Lung Group) staging — limited vs extensive"
+    used_for: "Standard binary SCLC staging — drives treatment choice"
+  - id: AJCC-8TH-LUNG
+    label: "AJCC 8th edition TNM (recently extended to SCLC)"
+    used_for: "Refined T/N/M stratification within VALG strata"
+
+etiological_factors:
+  - "Tobacco smoking — overwhelming dominant risk (>95% of SCLC); rare in never-smokers"
+  - "Neuroendocrine differentiation — rapid proliferation, paraneoplastic syndromes (SIADH, Cushing's, Lambert-Eaton, autoimmune limbic encephalitis)"
+
+related_diseases:
+  - "DIS-NSCLC"
+  - "DIS-CARCINOID-LUNG"
+
+epidemiology:
+  context: >
+    ~15% of all lung cancers. Median age ~70. Aggressive natural history
+    — extensive-stage median OS historically ~10 months, now 13-15 months
+    with EP + atezolizumab/durvalumab (IMpower133, CASPIAN). Limited-stage
+    median OS 25-30 months with EP + concurrent RT. Late-onset PCI
+    (prophylactic cranial irradiation) controversial in extensive-stage
+    after MRI-surveillance era.
+
+sources:
+  - SRC-NCCN-SCLC-2025
+  - SRC-ESMO-SCLC-2021
+
+last_reviewed: null
+reviewers: []
+notes: >
+  archetype: stage_driven — limited vs extensive is the dominant fork.
+  Modern era: chemoimmunotherapy combinations standard for extensive;
+  chemo + concurrent RT for limited. Targeted/biomarker-driven options
+  (e.g., DLL3-targeted tarlatamab for extensive 2L+) emerging but not
+  yet 1L standard.

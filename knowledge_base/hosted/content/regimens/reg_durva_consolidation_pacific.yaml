@@ -1,0 +1,33 @@
+id: REG-DURVA-CONSOLIDATION-PACIFIC
+name: "Durvalumab consolidation post-CRT (NSCLC stage III unresectable)"
+name_ua: "Дурвалумаб консолідація після ХПТ (НДРЛ III ст нерезектабельний)"
+alternate_names: ["PACIFIC regimen"]
+
+components:
+  - drug_id: DRUG-DURVALUMAB
+    dose: "10 mg/kg IV q2 weeks (or 1500 mg flat dose q4 weeks)"
+    schedule: "Up to 12 months consolidation"
+    route: IV
+
+cycle_length_days: 14
+total_cycles: "Up to 12 months consolidation post-CRT"
+toxicity_profile: moderate
+
+premedication: []
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Pneumonitis G≥2"
+    modification: "Hold; corticosteroids; permanent discontinuation if recurrent / severe"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Registered; reimbursement variable. Out-of-pocket for most patients."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-EARLY-2024]
+last_reviewed: null
+notes: >
+  PACIFIC: 5-year OS 43% (durva) vs 33% (placebo) post-concurrent CRT
+  in stage III unresectable NSCLC. Standard of care.

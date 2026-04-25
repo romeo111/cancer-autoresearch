@@ -1,0 +1,42 @@
+id: IND-NSCLC-STAGE-III-PACIFIC
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-NSCLC
+  stage_stratum: STAGE_III_UNRESECTABLE
+  line_of_therapy: 1
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 1
+
+recommended_regimen: REG-DURVA-CONSOLIDATION-PACIFIC
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  five_year_overall_survival: "43% durva vs 33% placebo"
+  notes: "PACIFIC"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-NSCLC-ORGAN-DYSFUNCTION
+required_tests: [TEST-NSCLC-NGS-PANEL, TEST-PDL1-IHC, TEST-CECT-CAP, TEST-BRAIN-MRI-CONTRAST]
+desired_tests: []
+
+sources:
+  - source_id: SRC-NCCN-NSCLC-2025
+    weight: primary
+  - source_id: SRC-ESMO-NSCLC-EARLY-2024
+    weight: primary
+
+last_reviewed: null
+reviewers: []
+
+notes: >
+  Standard for stage III unresectable post-concurrent CRT. Pneumonitis
+  G≥2 at end of CRT excludes durva initiation.

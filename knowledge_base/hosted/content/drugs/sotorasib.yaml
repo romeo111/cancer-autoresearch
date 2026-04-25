@@ -1,0 +1,35 @@
+id: DRUG-SOTORASIB
+names:
+  preferred: "Sotorasib"
+  ukrainian: "Сотерасіб"
+  english: "Sotorasib"
+  brand_names: ["Lumakras"]
+atc_code: L01XX73
+rxnorm_id: null
+drug_class: "KRAS G12C-selective covalent inhibitor"
+mechanism: >
+  First-in-class covalent inhibitor of KRAS G12C — locks the protein in its inactive GDP-bound state. CodeBreaK 100: ORR ~37% in pretreated KRAS G12C+ NSCLC.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not registered in Ukraine. Off-label access; major barrier."
+
+typical_dosing: >
+  960 mg PO once daily.
+
+key_toxicities:
+  - Diarrhea
+  - Hepatotoxicity (~25% transaminase elevation)
+  - Nausea
+  - Fatigue
+  - Pneumonitis (rare)
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  CodeBreaK 200 vs docetaxel in 2L: PFS benefit, OS not significant. Approved 2L+ for KRAS G12C-mutant NSCLC.

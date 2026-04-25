@@ -1,0 +1,33 @@
+id: REG-PEMBRO-MONO-NSCLC
+name: "Pembrolizumab monotherapy (NSCLC PD-L1 ≥50%, driver-negative, 1L)"
+name_ua: "Пембролізумаб моно (НДРЛ PD-L1 ≥50%, driver-negative, 1L)"
+alternate_names: ["KEYNOTE-024 regimen"]
+
+components:
+  - drug_id: DRUG-PEMBROLIZUMAB
+    dose: "200 mg IV q3 weeks (or 400 mg q6 weeks)"
+    schedule: "Continuous until progression OR 2 years"
+    route: IV
+
+cycle_length_days: 21
+total_cycles: "Up to 2 years (35 cycles q3w) — KEYNOTE-024 protocol"
+toxicity_profile: moderate
+
+premedication: []
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Immune-mediated AE G≥2"
+    modification: "Hold; corticosteroids; discontinue if recurrent G3+"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Registered; reimbursement varies by indication. Out-of-pocket for many."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  KEYNOTE-024: pembro mono superior to platinum-doublet chemo in
+  PD-L1≥50% driver-negative metastatic NSCLC (5-year OS ~32% vs 16%).

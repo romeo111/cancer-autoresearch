@@ -1,0 +1,69 @@
+id: ALGO-NSCLC-METASTATIC-1L
+applicable_to_disease: DIS-NSCLC
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select 1L metastatic NSCLC regimen via molecular-cascade decision
+  tree: actionable driver → driver-targeted TKI/ADC; driver-negative →
+  PD-L1 TPS → ICI strategy. Stage III unresectable handled in separate
+  Algorithm.
+
+output_indications:
+  - IND-NSCLC-EGFR-MUT-MET-1L
+  - IND-NSCLC-ALK-MET-1L
+  - IND-NSCLC-KRAS-G12C-MET-2L
+  - IND-NSCLC-PDL1-HIGH-MET-1L
+  - IND-NSCLC-PDL1-LOW-NONSQ-MET-1L
+
+default_indication: IND-NSCLC-PDL1-LOW-NONSQ-MET-1L
+alternative_indication: IND-NSCLC-PDL1-HIGH-MET-1L
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-NSCLC-HIGH-RISK-BIOLOGY
+    if_true:
+      next_step: 2
+    if_false:
+      next_step: 5
+  - step: 2
+    evaluate:
+      any_of:
+        - condition: "EGFR mutation positive"
+    if_true:
+      result: IND-NSCLC-EGFR-MUT-MET-1L
+    if_false:
+      next_step: 3
+  - step: 3
+    evaluate:
+      any_of:
+        - condition: "ALK rearrangement positive"
+    if_true:
+      result: IND-NSCLC-ALK-MET-1L
+    if_false:
+      next_step: 4
+  - step: 4
+    evaluate:
+      any_of:
+        - condition: "Other actionable driver (ROS1 / KRAS G12C / BRAF / MET / RET / NTRK / HER2-mut)"
+    if_true:
+      result: IND-NSCLC-KRAS-G12C-MET-2L
+    if_false:
+      next_step: 5
+  - step: 5
+    evaluate:
+      any_of:
+        - condition: "PD-L1 TPS ≥50%"
+    if_true:
+      result: IND-NSCLC-PDL1-HIGH-MET-1L
+    if_false:
+      result: IND-NSCLC-PDL1-LOW-NONSQ-MET-1L
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Decision tree intentionally simplified for MVP. KRAS G12C step routes
+  to KRAS-G12C-MET-2L (which is 2L+ per current guidelines); for true
+  1L driver-targeting of ROS1 / BRAF / MET / RET / NTRK / HER2, additional
+  per-driver indications would be required (deferred). Driver-negative
+  branches into PD-L1-stratified ICI ± chemo.

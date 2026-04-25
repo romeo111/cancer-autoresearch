@@ -1,0 +1,31 @@
+id: DRUG-GEFITINIB
+names:
+  preferred: "Gefitinib"
+  ukrainian: "Гефітиніб"
+  english: "Gefitinib"
+  brand_names: ["Iressa"]
+atc_code: L01EB01
+rxnorm_id: null
+drug_class: "1st-generation EGFR TKI (reversible)"
+mechanism: >
+  Reversible EGFR-TKI similar to erlotinib. Equivalent efficacy in clinical use.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: null
+    notes: "Generic; reimbursed."
+
+typical_dosing: >
+  250 mg PO once daily.
+
+key_toxicities:
+  - Same class profile as erlotinib (rash, diarrhea, fatigue)
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Interchangeable with erlotinib. Also supplanted by osimertinib in 1L.

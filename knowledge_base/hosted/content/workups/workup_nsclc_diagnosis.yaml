@@ -1,0 +1,57 @@
+id: WORKUP-NSCLC-DIAGNOSIS
+applicable_to:
+  lineage_hints:
+    - solid_tumor_lung_nsclc
+    - solid_tumor_lung_sclc
+    - lung_mass
+    - lung_cancer_suspect
+  tissue_locations:
+    - lung
+    - hilar_lymph_nodes
+    - mediastinal_lymph_nodes
+  presentation_keywords:
+    - lung_mass
+    - lung_nodule
+    - lung_cancer_suspect
+    - hemoptysis
+    - persistent_cough
+    - solitary_pulmonary_nodule
+
+required_tests:
+  - TEST-CECT-CAP
+  - TEST-PDL1-IHC
+  - TEST-NSCLC-NGS-PANEL
+
+desired_tests:
+  - TEST-BRAIN-MRI-CONTRAST
+  - TEST-PET-CT
+  - TEST-BONE-SCAN
+  - TEST-GERMLINE-BRCA-PANEL
+
+triggers_mdt_roles:
+  required:
+    - medical_oncologist
+    - thoracic_surgeon
+    - radiation_oncologist
+    - pathologist
+  recommended:
+    - radiologist
+    - molecular_geneticist
+    - nuclear_medicine_specialist
+  rationale_per_role:
+    medical_oncologist: "Systemic therapy planning across stages."
+    thoracic_surgeon: "Resectability + nodal staging assessment for stage I-III."
+    radiation_oncologist: "CRT planning for stage III, palliative RT for symptomatic mets."
+    pathologist: "Histology + IHC + biomarker reporting."
+    radiologist: "Staging interpretation; brain MRI integration."
+    molecular_geneticist: "NGS panel + fusion testing oversight."
+    nuclear_medicine_specialist: "PET/CT for staging + response assessment."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024, SRC-ESMO-NSCLC-EARLY-2024]
+
+last_reviewed: null
+notes: >
+  Comprehensive NSCLC workup. Universal NGS + PD-L1 at advanced disease
+  per NCCN 2025. Brain MRI essential for stage III curative-intent or
+  any stage IV. SCLC workup overlaps significantly — reuses this workup
+  with stage-specific imaging additions.

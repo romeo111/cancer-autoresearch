@@ -1,0 +1,36 @@
+id: REG-ALECTINIB-NSCLC
+name: "Alectinib monotherapy (ALK+ NSCLC, 1L metastatic OR adjuvant)"
+name_ua: "Алектиніб моно (ALK+ НДРЛ, 1L метастатичний АБО ад'ювант)"
+alternate_names: ["ALEX regimen", "ALINA regimen"]
+
+components:
+  - drug_id: DRUG-ALECTINIB
+    dose: "600 mg PO BID with food"
+    schedule: "Continuous"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression (metastatic) OR 2 years (ALINA adjuvant)"
+toxicity_profile: low-moderate
+
+premedication: []
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Severe hepatic impairment (Child-Pugh C)"
+    modification: "Reduce to 450 mg BID"
+  - condition: "Bradycardia"
+    modification: "Hold if symptomatic; reduce dose"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Registered; reimbursement under negotiation. Out-of-pocket; major access barrier for ALK+ population."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  ALEX: superior to crizotinib 1L (PFS 35 vs 11 months; intracranial
+  response 81 vs 50%). ALINA: 2-year adjuvant in ALK+ stage IB-IIIA
+  resected.

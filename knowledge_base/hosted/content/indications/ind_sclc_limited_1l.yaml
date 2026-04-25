@@ -1,0 +1,42 @@
+id: IND-SCLC-LIMITED-1L
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-SCLC
+  stage_stratum: LIMITED
+  line_of_therapy: 1
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 1
+
+recommended_regimen: REG-EP-CONCURRENT-RT-SCLC-LIMITED
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  median_overall_survival_months: 27
+  notes: "CONVERT once-daily 60 Gy"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-SCLC-FRAILTY-AGE
+required_tests: [TEST-CECT-CAP, TEST-BRAIN-MRI-CONTRAST]
+desired_tests: []
+
+sources:
+  - source_id: SRC-NCCN-SCLC-2025
+    weight: primary
+  - source_id: SRC-ESMO-SCLC-2021
+    weight: primary
+
+last_reviewed: null
+reviewers: []
+
+notes: >
+  Concurrent CRT — superior to sequential. PCI consideration for CR/PR
+  post-CRT.

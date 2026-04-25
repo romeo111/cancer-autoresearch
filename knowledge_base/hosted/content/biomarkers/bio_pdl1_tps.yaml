@@ -1,0 +1,28 @@
+id: BIO-PDL1-TPS
+names:
+  preferred: "PD-L1 Tumor Proportion Score (TPS)"
+  ukrainian: "PD-L1 Tumor Proportion Score (TPS)"
+codes:
+  loinc: null
+
+biomarker_type: protein_expression_ihc
+
+measurement:
+  method: "IHC (22C3, SP263, SP142, 28-8 — pembrolizumab uses 22C3)"
+  units: "percent of viable tumor cells with membranous PD-L1 staining"
+  typical_range: [0, 100]
+
+interpretation_notes: >
+  NSCLC strata:
+  • TPS ≥50%: pembrolizumab monotherapy 1L candidate (KEYNOTE-024)
+  • TPS 1-49%: pembro + chemo (KEYNOTE-189 / 407) preferred
+  • TPS <1%: pembro + chemo OR chemo alone; ICI benefit smaller
+  Note: TPS assesses tumor cells only, distinct from CPS (combined
+  positive score) used in some other tumors.
+
+related_biomarkers: []
+
+last_reviewed: null
+notes: >
+  Universal at metastatic NSCLC diagnosis. Distinguishes ICI-monotherapy
+  candidates from combination-therapy population.

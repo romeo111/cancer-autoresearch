@@ -1,0 +1,28 @@
+id: BIO-ROS1-FUSION
+names:
+  preferred: "ROS1 fusion"
+  ukrainian: "Фузія ROS1"
+codes:
+  loinc: null
+
+biomarker_type: fusion
+mutation_details:
+  gene: "ROS1"
+  partners: ["CD74 (most common)", "EZR", "SLC34A2", "SDC4", "and others"]
+  type: "chromosomal rearrangement"
+  functional_impact: "Constitutive ROS1 kinase activation"
+
+measurement:
+  method: "RNA-based NGS OR FISH OR IHC screen"
+  sensitivity_requirement: "Same as ALK"
+
+interpretation_notes: >
+  ~1-2% of NSCLC adenocarcinoma; never-smoker enriched. Crizotinib /
+  entrectinib / lorlatinib effective; entrectinib preferred for CNS-active
+  brain metastases.
+
+related_biomarkers: []
+
+last_reviewed: null
+notes: >
+  Often co-tested with ALK on same NGS panel.

@@ -1,0 +1,35 @@
+id: DRUG-SELPERCATINIB
+names:
+  preferred: "Selpercatinib"
+  ukrainian: "Селперкатиніб"
+  english: "Selpercatinib"
+  brand_names: ["Retevmo"]
+atc_code: L01EX22
+rxnorm_id: null
+drug_class: "RET-selective TKI"
+mechanism: >
+  Highly selective RET inhibitor. LIBRETTO-001: ORR ~85% in 1L RET-fusion+ NSCLC. Tumor-agnostic for RET-fusion / RET-mutant cancers (also MTC, papillary thyroid).
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not registered in Ukraine. Off-label access; major barrier."
+
+typical_dosing: >
+  160 mg PO BID (≥50 kg) or 120 mg BID (<50 kg) with food.
+
+key_toxicities:
+  - Hypertension (~40%)
+  - Hepatotoxicity
+  - QT prolongation
+  - Hemorrhage
+  - Hypersensitivity
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  RET-fusion NSCLC 1L+. High response rate transformative for this rare driver.

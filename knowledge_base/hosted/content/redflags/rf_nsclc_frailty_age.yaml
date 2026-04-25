@@ -1,0 +1,37 @@
+id: RF-NSCLC-FRAILTY-AGE
+definition: "Age ≥75 + ECOG ≥2 + significant comorbidity — concurrent CRT and platinum-doublet chemo poorly tolerated; consider sequential CRT, weekly chemo + ICI, or single-agent / best-supportive-care for fragile patients."
+definition_ua: "Вік ≥75 + ECOG ≥2 + суттєві коморбідності — одночасна ХПТ і платиновий дублет погано переносяться; розглянути послідовну ХПТ, тижневу хіміо + ICI, або моно / best-supportive-care."
+
+trigger:
+  type: composite_clinical
+  all_of:
+    - finding: "age_years"
+      threshold: 75
+      comparator: ">="
+    - any_of:
+        - finding: "ecog_status"
+          threshold: 2
+          comparator: ">="
+        - finding: "comorbidity_count"
+          threshold: 2
+          comparator: ">="
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+category: frailty-age
+
+relevant_diseases: [DIS-NSCLC]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-NSCLC-2025
+  - SRC-ESMO-NSCLC-EARLY-2024
+
+last_reviewed: null
+draft: false
+
+notes: >
+  Geriatric assessment (G8 / CGA) recommended pre-treatment for ≥70.
+  PD-L1≥50% driver-negative elderly: pembrolizumab mono is the
+  best-tolerated option preserving OS benefit.

@@ -1,0 +1,34 @@
+id: DRUG-TEPOTINIB
+names:
+  preferred: "Tepotinib"
+  ukrainian: "Тепотініб"
+  english: "Tepotinib"
+  brand_names: ["Tepmetko"]
+atc_code: L01EX21
+rxnorm_id: null
+drug_class: "MET-selective TKI"
+mechanism: >
+  Selective MET inhibitor with similar efficacy profile to capmatinib. VISION trial: ORR ~46% in 1L MET ex14+ NSCLC.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not registered in Ukraine. Off-label access."
+
+typical_dosing: >
+  450 mg PO once daily.
+
+key_toxicities:
+  - Peripheral edema (~70%)
+  - Nausea
+  - Fatigue
+  - Hepatic enzyme elevation
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Once-daily alternative to capmatinib BID. Edema dominant AE.

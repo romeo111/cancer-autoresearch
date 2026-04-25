@@ -1,0 +1,47 @@
+id: IND-NSCLC-PDL1-LOW-NONSQ-MET-1L
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-NSCLC
+  molecular_subtype: DRIVER_NEGATIVE
+  stage_stratum: STAGE_IV_METASTATIC
+  pdl1_tps_stratum: TPS_INTERMEDIATE
+  line_of_therapy: 1
+  biomarker_requirements_required:
+    - biomarker_id: BIO-PDL1-TPS
+      value_constraint: "<50"
+      required: true
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-PEMBRO-CHEMO-NSCLC-NONSQ
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  median_overall_survival_months: 22
+  notes: "KEYNOTE-189 (non-squamous)"
+
+hard_contraindications: []
+red_flags_triggering_alternative: []
+required_tests: [TEST-NSCLC-NGS-PANEL, TEST-PDL1-IHC, TEST-CECT-CAP]
+desired_tests: [TEST-BRAIN-MRI-CONTRAST]
+
+sources:
+  - source_id: SRC-NCCN-NSCLC-2025
+    weight: primary
+  - source_id: SRC-ESMO-NSCLC-METASTATIC-2024
+    weight: primary
+
+last_reviewed: null
+reviewers: []
+
+notes: >
+  KEYNOTE-189: pembro + carbo + pemetrexed superior to chemo alone in
+  non-squamous PD-L1<50% driver-negative metastatic. KEYNOTE-407
+  parallel for squamous (with paclitaxel instead of pemetrexed).

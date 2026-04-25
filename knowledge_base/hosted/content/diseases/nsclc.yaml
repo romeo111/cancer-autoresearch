@@ -1,0 +1,116 @@
+id: DIS-NSCLC
+names:
+  preferred: "Non-small cell lung cancer"
+  ukrainian: "Недрібноклітинний рак легені"
+  english: "Non-small cell lung cancer"
+  synonyms: ["NSCLC", "НДРЛ"]
+
+codes:
+  icd_o_3_morphology: "8046/3"
+  icd_o_3_topography: ["C34.9"]
+  icd_10: "C34"
+  who_classification: "Non-small cell lung carcinoma — adenocarcinoma / squamous / large cell (WHO 5th 2021)"
+
+archetype: biomarker_driven
+lineage: solid_tumor_lung_nsclc
+
+# Molecular subtypes — drive Algorithm decision_tree
+molecular_subtypes:
+  - id: EGFR_MUT
+    label: "EGFR-mutant (exon 19 deletion / L858R / uncommon)"
+    label_ua: "EGFR-мутантний"
+    actionable_drugs: ["osimertinib (1L preferred)", "erlotinib", "gefitinib", "afatinib", "dacomitinib"]
+  - id: ALK_REARRANGED
+    label: "ALK-rearranged (EML4-ALK and variants)"
+    label_ua: "ALK-перебудований"
+    actionable_drugs: ["alectinib (1L preferred)", "brigatinib", "lorlatinib", "crizotinib"]
+  - id: ROS1
+    label: "ROS1 fusion"
+    label_ua: "ROS1-фузія"
+    actionable_drugs: ["entrectinib", "crizotinib", "lorlatinib", "repotrectinib"]
+  - id: KRAS_G12C
+    label: "KRAS G12C mutation"
+    label_ua: "KRAS G12C мутація"
+    actionable_drugs: ["sotorasib", "adagrasib"]
+  - id: BRAF_V600E
+    label: "BRAF V600E mutation"
+    label_ua: "BRAF V600E мутація"
+    actionable_drugs: ["dabrafenib + trametinib"]
+  - id: MET_EX14
+    label: "MET exon 14 skipping mutation"
+    label_ua: "MET exon 14 skipping"
+    actionable_drugs: ["capmatinib", "tepotinib"]
+  - id: RET_FUSION
+    label: "RET fusion"
+    label_ua: "RET-фузія"
+    actionable_drugs: ["selpercatinib", "pralsetinib"]
+  - id: NTRK_FUSION
+    label: "NTRK fusion"
+    label_ua: "NTRK-фузія"
+    actionable_drugs: ["larotrectinib", "entrectinib"]
+  - id: HER2_MUT
+    label: "HER2 (ERBB2) mutation"
+    label_ua: "HER2 (ERBB2) мутація"
+    actionable_drugs: ["trastuzumab deruxtecan (T-DXd)"]
+  - id: DRIVER_NEGATIVE
+    label: "No actionable driver — PD-L1 / immunotherapy ± chemo path"
+    label_ua: "Без таргет-драйвера — PD-L1 / імунотерапія ± хіміо"
+    actionable_drugs: ["pembrolizumab ± chemo", "atezolizumab + chemo", "cemiplimab", "nivolumab + ipilimumab + chemo"]
+
+# Stage strata
+stage_strata:
+  - id: STAGE_I_II_RESECTABLE
+    label: "Stage I-II resectable"
+    definition: "Localized; surgical resection ± adjuvant chemo / osimertinib (EGFR+) / atezolizumab (PD-L1+)"
+  - id: STAGE_III_UNRESECTABLE
+    label: "Stage III locally advanced unresectable"
+    definition: "Concurrent chemoradiation → durvalumab consolidation (PACIFIC)"
+  - id: STAGE_IV_METASTATIC
+    label: "Stage IV metastatic"
+    definition: "Driver-targeted therapy or immunotherapy ± chemo per molecular + PD-L1 status"
+
+# PD-L1 TPS strata (relevant only for driver-negative)
+pdl1_tps_strata:
+  - id: TPS_HIGH
+    label: "PD-L1 TPS ≥50% — pembrolizumab monotherapy candidate"
+  - id: TPS_INTERMEDIATE
+    label: "PD-L1 TPS 1-49% — pembro + chemo"
+  - id: TPS_NEGATIVE
+    label: "PD-L1 TPS <1% — pembro + chemo OR chemo alone (immunotherapy benefit smaller)"
+
+prognostic_frameworks:
+  - id: AJCC-8TH-LUNG
+    label: "AJCC 8th edition TNM staging"
+    used_for: "Anatomic stage stratification"
+
+etiological_factors:
+  - "Tobacco smoking — dominant risk for squamous + most adenocarcinoma"
+  - "Radon, asbestos, air pollution — environmental contributors"
+  - "Driver-mutant adenocarcinoma in never-smokers / light smokers (~80% of EGFR-mut, ALK, ROS1 patients are never-smokers)"
+
+related_diseases:
+  - "DIS-SCLC"
+  - "DIS-MESOTHELIOMA"
+
+epidemiology:
+  context: >
+    Most common cancer cause of death globally. ~85% of all lung cancers
+    are NSCLC; remaining ~15% SCLC. Adenocarcinoma > squamous in incidence
+    in modern era. 5-year OS varies by stage: I ~80%, IV ~10% — but
+    targeted therapy in driver-mutant subtypes shifts metastatic OS to
+    ≥3-5 years for EGFR/ALK. UA practice gap: NGS-panel availability
+    + funding for expensive targeted TKIs.
+
+sources:
+  - SRC-NCCN-NSCLC-2025
+  - SRC-ESMO-NSCLC-METASTATIC-2024
+  - SRC-ESMO-NSCLC-EARLY-2024
+
+last_reviewed: null
+reviewers: []
+notes: >
+  archetype: biomarker_driven — molecular profiling the dominant
+  branch point. Universal NGS panel (DNA + RNA fusion) recommended at
+  metastatic diagnosis. Reflex PD-L1 IHC standard. Schema gaps absorbed
+  by extra="allow" Base config: molecular_subtypes, stage_strata,
+  pdl1_tps_strata. Pending unification with PROPOSAL §17/§18.

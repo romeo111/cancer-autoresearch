@@ -1,0 +1,45 @@
+id: RF-NSCLC-HIGH-RISK-BIOLOGY
+definition: "Actionable molecular driver detected (EGFR / ALK / ROS1 / KRAS G12C / BRAF V600E / MET ex14 / RET / NTRK / HER2 mut) — driver-targeted TKI / ADC takes precedence over ICI ± chemo regardless of PD-L1 TPS."
+definition_ua: "Виявлено таргет-драйвер (EGFR / ALK / ROS1 / KRAS G12C / BRAF V600E / MET ex14 / RET / NTRK / HER2 mut) — таргет-TKI / ADC має перевагу над ICI ± хіміо незалежно від PD-L1 TPS."
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "BIO-EGFR-MUTATION"
+      value: "positive"
+    - finding: "BIO-ALK-FUSION"
+      value: "positive"
+    - finding: "BIO-ROS1-FUSION"
+      value: "positive"
+    - finding: "BIO-KRAS-G12C"
+      value: "positive"
+    - finding: "BIO-BRAF-V600E"
+      value: "positive"
+    - finding: "met_ex14_skipping"
+      value: true
+    - finding: "ret_fusion"
+      value: true
+    - finding: "ntrk_fusion"
+      value: true
+    - finding: "her2_mutation_nsclc"
+      value: true
+
+clinical_direction: intensify
+severity: critical
+priority: 50
+category: high-risk-biology
+
+relevant_diseases: [DIS-NSCLC]
+shifts_algorithm: [ALGO-NSCLC-METASTATIC-1L]
+
+sources:
+  - SRC-NCCN-NSCLC-2025
+  - SRC-ESMO-NSCLC-METASTATIC-2024
+
+last_reviewed: null
+draft: false
+
+notes: >
+  Driver-mutant NSCLC patients DO NOT benefit from ICI 1L (poorer
+  responses, hyperprogression risk) — TKIs/ADCs are markedly superior.
+  Universal NGS at diagnosis prevents missed-driver scenarios.

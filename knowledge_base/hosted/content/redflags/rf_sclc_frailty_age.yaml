@@ -1,0 +1,37 @@
+id: RF-SCLC-FRAILTY-AGE
+definition: "Age ≥75 + ECOG ≥2 OR significant comorbidity — concurrent CRT (limited-stage) poorly tolerated; sequential CRT or single-agent palliative chemo considered."
+definition_ua: "Вік ≥75 + ECOG ≥2 АБО суттєві коморбідності — одночасна ХПТ (обмежена стадія) погано переноситься; послідовна ХПТ або моно паліативна хіміо."
+
+trigger:
+  type: composite_clinical
+  all_of:
+    - finding: "age_years"
+      threshold: 75
+      comparator: ">="
+    - any_of:
+        - finding: "ecog_status"
+          threshold: 2
+          comparator: ">="
+        - finding: "comorbidity_count"
+          threshold: 2
+          comparator: ">="
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+category: frailty-age
+
+relevant_diseases: [DIS-SCLC]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-SCLC-2025
+  - SRC-ESMO-SCLC-2021
+
+last_reviewed: null
+draft: false
+
+notes: >
+  Limited-stage SCLC + frailty: sequential CRT (chemo first, then RT)
+  better tolerated than concurrent. Extensive-stage + frailty: EP +
+  ICI feasible with G-CSF support.

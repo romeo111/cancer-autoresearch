@@ -1,0 +1,35 @@
+id: DRUG-TRAMETINIB
+names:
+  preferred: "Trametinib"
+  ukrainian: "Траметиніб"
+  english: "Trametinib"
+  brand_names: ["Mekinist"]
+atc_code: L01EE01
+rxnorm_id: null
+drug_class: "MEK1/2 inhibitor"
+mechanism: >
+  Selective MEK inhibitor used in combination with dabrafenib. Reduces resistance + skin toxicity vs BRAFi alone.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Registered; reimbursement varies."
+
+typical_dosing: >
+  2 mg PO once daily + dabrafenib 150 mg BID.
+
+key_toxicities:
+  - Cardiomyopathy / LVEF decline (echo monitoring)
+  - Retinal events (CSR-like)
+  - Hypertension
+  - Rash
+  - Diarrhea
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Always combined with dabrafenib for BRAF V600E NSCLC, melanoma, ATC. Cardiac monitoring critical.

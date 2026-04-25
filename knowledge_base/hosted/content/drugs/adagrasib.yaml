@@ -1,0 +1,34 @@
+id: DRUG-ADAGRASIB
+names:
+  preferred: "Adagrasib"
+  ukrainian: "Адаграсіб"
+  english: "Adagrasib"
+  brand_names: ["Krazati"]
+atc_code: L01XX76
+rxnorm_id: null
+drug_class: "KRAS G12C inhibitor (CNS-penetrant)"
+mechanism: >
+  KRAS G12C-selective covalent inhibitor with greater CNS penetration than sotorasib. KRYSTAL-1: ORR ~43% in pretreated KRAS G12C+ NSCLC, intracranial response ~33%.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not registered in Ukraine. Off-label access."
+
+typical_dosing: >
+  600 mg PO BID.
+
+key_toxicities:
+  - Diarrhea, nausea, vomiting (high)
+  - QT prolongation
+  - Hepatotoxicity
+  - Renal impairment
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Better CNS profile than sotorasib makes it preferred for brain-met-positive KRAS G12C+ disease.

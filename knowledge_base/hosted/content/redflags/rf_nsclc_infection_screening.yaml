@@ -1,0 +1,31 @@
+id: RF-NSCLC-INFECTION-SCREENING
+definition: "Active TB OR latent TB conversion risk — ICI may trigger TB reactivation; pre-treatment IGRA / TST + chest imaging recommended."
+definition_ua: "Активний ТБ АБО ризик конверсії латентного — ICI може викликати реактивацію; перед терапією IGRA / TST + рентген грудної клітки."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "tb_latent"
+      value: "positive"
+    - finding: "tb_active"
+      value: true
+
+clinical_direction: hold
+severity: major
+priority: 100
+category: infection-screening
+
+relevant_diseases: [DIS-NSCLC]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-NSCLC-2025
+  - SRC-ESMO-NSCLC-METASTATIC-2024
+
+last_reviewed: null
+draft: false
+
+notes: >
+  Ukraine is an HBV/HCV/TB high-prevalence region — pre-ICI screen
+  more important than in low-prevalence settings. HBV reactivation
+  risk handled by RF-UNIVERSAL-HBV-REACTIVATION-RISK.

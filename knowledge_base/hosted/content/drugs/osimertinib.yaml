@@ -1,0 +1,36 @@
+id: DRUG-OSIMERTINIB
+names:
+  preferred: "Osimertinib"
+  ukrainian: "Осимертиніб"
+  english: "Osimertinib"
+  brand_names: ["Tagrisso"]
+atc_code: L01EB04
+rxnorm_id: null
+drug_class: "3rd-generation EGFR TKI (T790M-active)"
+mechanism: >
+  Irreversible covalent EGFR-TKI selective for activating mutations and T790M resistance mutation. Excellent CNS penetration. 1L preferred for EGFR-mut metastatic per FLAURA + FLAURA2; adjuvant for stage IB-IIIA EGFR-mut resected per ADAURA.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Registered; reimbursement under negotiation. Out-of-pocket for most patients in Ukraine; major access barrier for EGFR-mut population. Clinical-review queue priority."
+
+typical_dosing: >
+  1L: 80 mg PO once daily. Continue until progression. ADAURA adjuvant: 80 mg PO daily x 3 years.
+
+key_toxicities:
+  - Diarrhea (~50%)
+  - Rash (~30%, milder than 1G TKIs)
+  - Paronychia
+  - Cardiac (QT prolongation, LVEF decline; ECG + echo monitoring)
+  - Pneumonitis (~3-5%, can be fatal — CT chest on respiratory symptoms)
+  - Stomatitis
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  FLAURA: osimertinib superior to 1G TKIs in 1L EGFR-mut metastatic. FLAURA2: osimertinib + chemo further extends PFS. ADAURA: adjuvant 3-year osi reduces recurrence by 80% vs placebo in resected EGFR-mut stage IB-IIIA.

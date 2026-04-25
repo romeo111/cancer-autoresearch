@@ -1,0 +1,34 @@
+id: DRUG-LAROTRECTINIB
+names:
+  preferred: "Larotrectinib"
+  ukrainian: "Ларотректініб"
+  english: "Larotrectinib"
+  brand_names: ["Vitrakvi"]
+atc_code: L01EX12
+rxnorm_id: null
+drug_class: "TRK-selective inhibitor"
+mechanism: >
+  Tumor-agnostic NTRK-fusion-targeted TKI. Highly active across NTRK1/2/3-fusion cancers including NSCLC. Not active in NTRK-WT.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not registered in Ukraine. Off-label / international referral."
+
+typical_dosing: >
+  100 mg PO BID.
+
+key_toxicities:
+  - Fatigue
+  - Dizziness / cognitive AEs (TRK class)
+  - Hepatic enzyme elevation
+  - Withdrawal pain (paradoxical pain on dose interruption)
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Cross-disease tumor-agnostic indication. NTRK testing universal in NSCLC NGS panels.

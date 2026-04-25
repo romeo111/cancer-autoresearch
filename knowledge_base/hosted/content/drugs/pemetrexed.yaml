@@ -1,0 +1,47 @@
+id: DRUG-PEMETREXED
+names:
+  preferred: "Pemetrexed"
+  ukrainian: "Пеметрексед"
+  english: "Pemetrexed"
+  brand_names: ["Alimta"]
+atc_code: L01BA04
+rxnorm_id: null
+drug_class: "Multi-targeted antifolate antimetabolite"
+mechanism: >
+  Inhibits multiple folate-dependent enzymes (TS, DHFR, GARFT) — disrupts
+  DNA/RNA synthesis. Folic acid + B12 supplementation mandatory to mitigate
+  hematologic and mucosal toxicity. Active in non-squamous NSCLC and
+  mesothelioma.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: null
+    notes: "Generic; reimbursed for non-squamous NSCLC + mesothelioma."
+
+typical_dosing: >
+  500 mg/m² IV q3 weeks. With folic acid 400-1000 mcg PO daily (start
+  1 week pre-treatment) + Vit B12 1000 mcg IM q9 weeks + dexamethasone
+  4 mg PO BID days 0, 1, 2 (rash prophylaxis).
+
+key_toxicities:
+  - Myelosuppression (neutropenia, thrombocytopenia)
+  - Mucositis / stomatitis
+  - Rash (mitigated by dexamethasone prophylaxis)
+  - Fatigue
+  - Nephrotoxicity (renally cleared — avoid in CrCl <45)
+  - Hepatic enzyme elevations
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Standard backbone in non-squamous NSCLC (KEYNOTE-189 + maintenance).
+  Not active in squamous histology — important histology-specific
+  selection. Mesothelioma (cisplatin + pemetrexed) primary 1L.
+
+  STUB: minimum valid entry. Full clinical content (mesothelioma dosing
+  table, induction-vs-maintenance distinctions) to be filled by
+  cross-disease drug-curation pass.

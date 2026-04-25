@@ -1,0 +1,36 @@
+id: REG-LORLATINIB-NSCLC
+name: "Lorlatinib monotherapy (ALK+ NSCLC, 1L OR post-2G TKI)"
+name_ua: "Лорлатініб моно (ALK+ НДРЛ, 1L АБО після 2G TKI)"
+alternate_names: ["CROWN regimen"]
+
+components:
+  - drug_id: DRUG-LORLATINIB
+    dose: "100 mg PO once daily"
+    schedule: "Continuous"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression"
+toxicity_profile: moderate
+
+premedication:
+  - "Statin therapy when triglycerides / cholesterol elevated (very common)"
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "G3 cognitive AE"
+    modification: "Hold; resume at 75 mg or 50 mg with neuro consult"
+  - condition: "Severe hypertriglyceridemia"
+    modification: "Statin / fibrate; do not discontinue if managed"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: "Not registered in Ukraine. Off-label access; major barrier."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  CROWN: 3-year PFS 64% (lorlatinib) vs 19% (crizotinib) — most active
+  ALK 1L. Cognitive AE management requires careful patient selection.

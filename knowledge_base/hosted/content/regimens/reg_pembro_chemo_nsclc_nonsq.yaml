@@ -1,0 +1,49 @@
+id: REG-PEMBRO-CHEMO-NSCLC-NONSQ
+name: "Pembrolizumab + carboplatin + pemetrexed (NSCLC non-squamous, 1L)"
+name_ua: "Пембролізумаб + карбоплатин + пеметрексед (НДРЛ non-sq, 1L)"
+alternate_names: ["KEYNOTE-189 regimen"]
+
+components:
+  - drug_id: DRUG-PEMBROLIZUMAB
+    dose: "200 mg IV q3 weeks"
+    schedule: "Continuous up to 2 years"
+    route: IV
+  - drug_id: DRUG-CARBOPLATIN
+    dose: "AUC 5 IV"
+    schedule: "Cycles 1-4"
+    route: IV
+  - drug_id: DRUG-PEMETREXED
+    dose: "500 mg/m² IV"
+    schedule: "Cycles 1-4 + maintenance until progression"
+    route: IV
+
+cycle_length_days: 21
+total_cycles: "4 cycles induction; then pembro + pemetrexed maintenance until progression OR 2 years total pembro"
+toxicity_profile: moderate-severe
+
+premedication:
+  - "Folic acid 400-1000 mcg PO daily + Vit B12 1000 mcg IM q9 weeks (pemetrexed)"
+  - "Dexamethasone 4 mg PO BID days 0, 1, 2 (rash prophylaxis)"
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Renal impairment (CrCl <45)"
+    modification: "Avoid pemetrexed"
+  - condition: "Immune-mediated AE"
+    modification: "Hold pembro; corticosteroids"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Pembrolizumab reimbursement variable; chemo backbone reimbursed. Out-of-pocket for combination."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  KEYNOTE-189: superior OS in non-sq NSCLC 1L driver-negative
+  regardless of PD-L1 status.
+
+  NOTE: DRUG-PEMETREXED not yet in KB — placeholder reference; if
+  pemetrexed YAML missing this regimen will surface ref-error. Will be
+  created in cross-disease drug pass.

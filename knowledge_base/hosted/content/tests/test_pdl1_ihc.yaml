@@ -1,0 +1,15 @@
+id: TEST-PDL1-IHC
+names:
+  preferred: "PD-L1 IHC (TPS for NSCLC)"
+  ukrainian: "PD-L1 ІГХ (TPS для НДРЛ)"
+test_type: pathology_ihc
+priority_class: critical
+specimen: "FFPE tumor tissue"
+turnaround_hours_typical: 72
+measures: [BIO-PDL1-TPS]
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  22C3 antibody is companion diagnostic for pembrolizumab. SP263 / SP142
+  acceptable analytically; institutional preference. Reflex at advanced
+  NSCLC diagnosis, parallel to NGS.

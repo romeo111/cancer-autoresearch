@@ -1,0 +1,29 @@
+id: BIO-KRAS-G12C
+names:
+  preferred: "KRAS G12C mutation"
+  ukrainian: "KRAS G12C мутація"
+codes:
+  loinc: null
+
+biomarker_type: mutation
+mutation_details:
+  gene: "KRAS"
+  hotspots: ["G12C (codon 12, glycine→cysteine)"]
+  type: "activating missense"
+  functional_impact: "GTP-bound active KRAS; cysteine residue is the covalent target of sotorasib/adagrasib"
+
+measurement:
+  method: "Tumor-tissue NGS OR ctDNA NGS OR allele-specific PCR"
+  sensitivity_requirement: "Standard NGS"
+
+interpretation_notes: >
+  ~13% of NSCLC adenocarcinoma; smoking-associated. Sotorasib + adagrasib
+  available for 2L+. KRAS WT or non-G12C variants not actionable with
+  current G12C inhibitors.
+
+related_biomarkers: []
+
+last_reviewed: null
+notes: >
+  Co-mutations with TP53, STK11, KEAP1 may modulate response. STK11 +
+  KRAS G12C predicts poorer ICI response.

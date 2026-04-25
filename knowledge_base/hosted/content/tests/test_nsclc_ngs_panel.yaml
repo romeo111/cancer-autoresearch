@@ -1,0 +1,23 @@
+id: TEST-NSCLC-NGS-PANEL
+names:
+  preferred: "NSCLC comprehensive NGS panel (DNA + RNA fusion)"
+  ukrainian: "NSCLC комплексна NGS панель (ДНК + РНК-фузії)"
+test_type: molecular_somatic
+priority_class: critical
+specimen: "FFPE tumor block (minimum 200 cells; preferred ≥40% tumor content) OR plasma for ctDNA"
+turnaround_hours_typical: 336
+measures:
+  - BIO-EGFR-MUTATION
+  - BIO-ALK-FUSION
+  - BIO-ROS1-FUSION
+  - BIO-KRAS-G12C
+  - BIO-BRAF-V600E
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Universal at advanced NSCLC diagnosis. Panel must cover EGFR (incl
+  T790M), ALK, ROS1, KRAS G12C, BRAF V600E, MET ex14, RET, NTRK 1/2/3,
+  HER2, NRG1. RNA-based fusion calls preferred for ALK/ROS1/RET/NTRK.
+  ctDNA acceptable when tissue inadequate; tissue more sensitive.
+  UA-availability concentrated in private labs + academic centers;
+  funding pathway barrier.

@@ -1,0 +1,31 @@
+id: RF-SCLC-ORGAN-DYSFUNCTION
+definition: "Renal dysfunction (CrCl <50) OR severe hepatic impairment — limits cisplatin (use carboplatin AUC 5); dose-modify etoposide for liver impairment."
+definition_ua: "Ниркова дисфункція (CrCl <50) АБО тяжке печінкове порушення — обмежує цисплатин (use карбоплатин AUC 5); модифікація етопозиду при печінковому порушенні."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "creatinine_clearance_ml_min"
+      threshold: 50
+      comparator: "<"
+    - finding: "child_pugh_class"
+      value: "C"
+
+clinical_direction: investigate
+severity: major
+priority: 100
+category: organ-dysfunction
+
+relevant_diseases: [DIS-SCLC]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-SCLC-2025
+  - SRC-ESMO-SCLC-2021
+
+last_reviewed: null
+draft: false
+
+notes: >
+  Carboplatin substitution standard for CrCl <50. Liver dysfunction:
+  reduce etoposide 50% if bilirubin 1.5-3x ULN; avoid if >3x ULN.

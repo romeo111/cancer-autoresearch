@@ -1,0 +1,41 @@
+id: REG-EP-CONCURRENT-RT-SCLC-LIMITED
+name: "Etoposide-platinum + concurrent thoracic RT (limited SCLC)"
+name_ua: "Етопозид-платина + одночасна торакальна променева (обмежена SCLC)"
+alternate_names: ["CONVERT regimen"]
+
+components:
+  - drug_id: DRUG-CISPLATIN
+    dose: "75 mg/m² IV"
+    schedule: "Day 1 of 21-day cycle x 4 cycles"
+    route: IV
+  - drug_id: DRUG-ETOPOSIDE
+    dose: "100 mg/m² IV"
+    schedule: "Days 1, 2, 3 of 21-day cycle x 4 cycles"
+    route: IV
+
+cycle_length_days: 21
+total_cycles: "4-6 cycles concurrent with thoracic RT (60 Gy/30 fx once-daily OR 45 Gy/30 fx BID)"
+toxicity_profile: severe
+
+premedication:
+  - "Antiemetic per high-emetogenic protocol"
+  - "Hydration for cisplatin"
+mandatory_supportive_care:
+  - SUP-G-CSF-PRIMARY-PROPHYLAXIS-PROSTATE
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Esophagitis from RT"
+    modification: "Symptomatic management; do not interrupt RT unless severe"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: "All chemo components reimbursed; RT availability institutional."
+
+sources: [SRC-NCCN-SCLC-2025, SRC-ESMO-SCLC-2021]
+last_reviewed: null
+notes: >
+  CONVERT: once-daily 60 Gy non-inferior to BID 45 Gy. Concurrent (not
+  sequential) chemo+RT improves outcomes. PCI consideration for CR/PR
+  patients post-CRT.

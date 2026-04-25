@@ -1,0 +1,46 @@
+id: REG-EP-ATEZO-SCLC
+name: "Etoposide-platinum + atezolizumab (extensive SCLC, 1L)"
+name_ua: "Етопозид-платина + атезолізумаб (поширена SCLC, 1L)"
+alternate_names: ["IMpower133 regimen"]
+
+components:
+  - drug_id: DRUG-CARBOPLATIN
+    dose: "AUC 5 IV"
+    schedule: "Day 1 of 21-day cycle x 4 cycles"
+    route: IV
+  - drug_id: DRUG-ETOPOSIDE
+    dose: "100 mg/m² IV"
+    schedule: "Days 1, 2, 3 of 21-day cycle x 4 cycles"
+    route: IV
+  - drug_id: DRUG-ATEZOLIZUMAB
+    dose: "1200 mg IV q3 weeks"
+    schedule: "Continuous from cycle 1; maintenance after EP discontinuation"
+    route: IV
+
+cycle_length_days: 21
+total_cycles: "EP × 4; atezolizumab maintenance until progression"
+toxicity_profile: severe
+
+premedication:
+  - "Antiemetic per high-emetogenic protocol"
+mandatory_supportive_care:
+  - SUP-G-CSF-PRIMARY-PROPHYLAXIS-PROSTATE
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Febrile neutropenia"
+    modification: "G-CSF; subsequent dose reduction"
+  - condition: "Immune-mediated AE"
+    modification: "Hold atezolizumab; corticosteroids"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Atezolizumab reimbursement varies; chemo backbone reimbursed."
+
+sources: [SRC-NCCN-SCLC-2025, SRC-ESMO-SCLC-2021]
+last_reviewed: null
+notes: >
+  IMpower133: median OS 12.3 (EP+atezo) vs 10.3 months (EP alone) in
+  extensive SCLC 1L. Cisplatin substitute possible (less common in
+  modern practice).

@@ -1,0 +1,36 @@
+id: DRUG-ALECTINIB
+names:
+  preferred: "Alectinib"
+  ukrainian: "Алектиніб"
+  english: "Alectinib"
+  brand_names: ["Alecensa"]
+atc_code: L01ED03
+rxnorm_id: null
+drug_class: "2nd-generation ALK inhibitor (CNS-penetrant)"
+mechanism: >
+  ALK + RET inhibitor with excellent CNS penetration. ALEX: superior PFS + intracranial response vs crizotinib in 1L ALK-rearranged metastatic. Adjuvant ALINA: 3-year DFS benefit in resected ALK+ stage IB-IIIA.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Registered; reimbursement under negotiation; out-of-pocket for many. UA-access major barrier for ALK+ population."
+
+typical_dosing: >
+  600 mg PO BID with food. Adjuvant ALINA: 600 mg BID x 2 years.
+
+key_toxicities:
+  - Anemia
+  - Myalgia / CK elevation
+  - Fatigue
+  - Photosensitivity rash
+  - Bradycardia
+  - Hepatotoxicity
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  Workhorse 1L ALK inhibitor. CNS efficacy critical (high CNS-met rate in ALK+).

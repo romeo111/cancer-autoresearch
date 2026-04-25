@@ -1,0 +1,38 @@
+id: REG-OSIMERTINIB-NSCLC
+name: "Osimertinib monotherapy (EGFR-mut NSCLC, 1L metastatic OR adjuvant)"
+name_ua: "Осимертиніб моно (EGFR-мут НДРЛ, 1L метастатичний АБО ад'ювант)"
+alternate_names: ["FLAURA regimen", "ADAURA regimen"]
+
+components:
+  - drug_id: DRUG-OSIMERTINIB
+    dose: "80 mg PO once daily"
+    schedule: "Continuous"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression (metastatic) OR 3 years (ADAURA adjuvant)"
+toxicity_profile: low-moderate
+
+premedication: []
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "QTc >500 ms"
+    modification: "Hold; resume at 40 mg when normalized"
+  - condition: "Pneumonitis any grade"
+    modification: "Hold; corticosteroids; permanent discontinuation if severe / recurrent"
+  - condition: "LVEF decline"
+    modification: "Cardiology consult"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Registered; reimbursement under negotiation. Out-of-pocket for most patients in Ukraine — major access barrier for EGFR-mut metastatic + adjuvant indications."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  FLAURA: superior PFS/OS vs 1G TKIs in 1L EGFR-mut metastatic.
+  FLAURA2: osi + chemo extends PFS further. ADAURA: 3-year adjuvant
+  in stage IB-IIIA EGFR-mut resected — 80% reduction in recurrence.

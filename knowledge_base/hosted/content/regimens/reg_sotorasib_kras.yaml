@@ -1,0 +1,32 @@
+id: REG-SOTORASIB-KRAS
+name: "Sotorasib monotherapy (KRAS G12C+ NSCLC, 2L+)"
+name_ua: "Сотерасіб моно (KRAS G12C+ НДРЛ, 2L+)"
+alternate_names: ["CodeBreaK regimen"]
+
+components:
+  - drug_id: DRUG-SOTORASIB
+    dose: "960 mg PO once daily"
+    schedule: "Continuous"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression"
+toxicity_profile: moderate
+
+premedication: []
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Hepatic transaminase elevation"
+    modification: "Hold; reduce dose"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: "Not registered in Ukraine. Off-label access."
+
+sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
+last_reviewed: null
+notes: >
+  CodeBreaK 100/200: 2L+ KRAS G12C+ NSCLC.
