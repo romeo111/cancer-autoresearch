@@ -390,13 +390,90 @@ def _now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
 
+# ── i18n: live translation client for long free-text ─────────────────────
+#
+# Phase B of auto-translate render: long free-text from KB (Indication
+# notes, do_not_do bullets, RedFlag definitions, MDT role reasons) goes
+# through a configured translate client (DeepL Free + LibreTranslate
+# fallback + glossary protection + on-disk cache).
+#
+# Graceful degrade: if neither DEEPL_API_KEY nor LIBRETRANSLATE_URL is
+# set in the environment, `_translate_kb_text` returns the original UA
+# text unchanged. Render still produces a usable document, just with
+# UA-only KB content embedded.
+#
+# Per CHARTER §8.3 every cached translation is marked
+# `machine_translated: true` for clinician review.
+
+_TRANSLATE_CLIENT = None
+_TRANSLATE_CLIENT_INIT = False
+
+
+def _get_translate_client():
+    """Lazy-load the translate client once per process. Returns None if
+    no upstream is configured — caller falls back to original text."""
+    global _TRANSLATE_CLIENT, _TRANSLATE_CLIENT_INIT
+    if _TRANSLATE_CLIENT_INIT:
+        return _TRANSLATE_CLIENT
+    _TRANSLATE_CLIENT_INIT = True
+    import os
+    if not (os.environ.get("DEEPL_API_KEY") or os.environ.get("LIBRETRANSLATE_URL")):
+        _TRANSLATE_CLIENT = None
+        return None
+    try:
+        from knowledge_base.clients.translate_client import build_full_stack
+        _TRANSLATE_CLIENT = build_full_stack()
+    except Exception:
+        _TRANSLATE_CLIENT = None
+    return _TRANSLATE_CLIENT
+
+
+def _set_translate_client(client) -> None:
+    """Test hook — inject a stub client. Pass None to clear + force
+    re-init from env on next call."""
+    global _TRANSLATE_CLIENT, _TRANSLATE_CLIENT_INIT
+    _TRANSLATE_CLIENT = client
+    _TRANSLATE_CLIENT_INIT = client is not None
+
+
+def _translate_kb_text(text: str, target_lang: str, source_lang: str = "uk") -> str:
+    """Translate a UA free-text fragment to target_lang via the configured
+    client. Returns the original text if:
+    - target_lang is the source language (no translation needed)
+    - text is empty or whitespace-only
+    - no translate client configured (graceful degrade)
+    - the client raises (network failure, quota, etc.)
+    """
+    if not text or not text.strip():
+        return text
+    if target_lang == source_lang or not target_lang:
+        return text
+    client = _get_translate_client()
+    if client is None:
+        return text
+    try:
+        return client.translate(text, target_lang=target_lang, source_lang=source_lang)
+    except Exception:
+        return text
+
+
+def _h_t(text, target_lang: str = "uk", source_lang: str = "uk") -> str:
+    """HTML-escape AND translate (where applicable). Drop-in replacement
+    for `_h(...)` at sites that emit long UA free-text from the KB.
+    Translation happens BEFORE escaping — the cached translation is in
+    natural language, escape is just transport."""
+    if text is None:
+        return ""
+    return html.escape(_translate_kb_text(str(text), target_lang, source_lang))
+
+
 # ── i18n: UI label dictionary (UA + EN) ───────────────────────────────────
 #
 # Used by render to switch static section headers / banners / disclaimers
-# between UA and EN. Long free-text from KB (Indication.rationale,
-# Indication.notes etc.) is NOT covered here — that's the next iteration
-# (live translation via knowledge_base.clients.translate_client). For
-# `target_lang` outside {uk, en}, falls back to UA.
+# between UA and EN. Long free-text from KB is handled by
+# `_translate_kb_text` (live translation, configured via env vars).
+# For `target_lang` outside {uk, en}, falls back to UA on UI labels;
+# free-text still translated by the client if it supports the language.
 
 _UI_STRINGS: dict[str, dict[str, str]] = {
     # Section headers
@@ -592,7 +669,8 @@ def _doc_shell(title: str, body: str, target_lang: str = "uk") -> str:
     )
 
 
-def _render_mdt_section(mdt: Optional[MDTOrchestrationResult]) -> str:
+def _render_mdt_section(mdt: Optional[MDTOrchestrationResult],
+                        target_lang: str = "uk") -> str:
     if mdt is None:
         return ""
     parts: list[str] = []
@@ -631,7 +709,7 @@ def _render_mdt_section(mdt: Optional[MDTOrchestrationResult]) -> str:
                 f"<li>"
                 f'<span class="role-name">{_h(r.role_name)}</span> '
                 f'<span class="badge {badge_cls}">{_h(r.priority)}</span>'
-                f'<div class="role-reason">{_h(r.reason)}</div>'
+                f'<div class="role-reason">{_h_t(r.reason, target_lang)}</div>'
                 f"{qs}"
                 f"{_skill_meta_html(r)}"
                 f"</li>"
@@ -661,8 +739,8 @@ def _render_mdt_section(mdt: Optional[MDTOrchestrationResult]) -> str:
             items.append(
                 f'<li class="{cls.strip()}">'
                 f'<div class="q-id">{tag}{_h(q.id)}</div>'
-                f'<div class="q-text">{_h(q.question)}</div>'
-                f'<div class="q-rationale">{_h(q.rationale)}</div>'
+                f'<div class="q-text">{_h_t(q.question, target_lang)}</div>'
+                f'<div class="q-rationale">{_h_t(q.rationale, target_lang)}</div>'
                 f'<div class="q-owner">→ {_h(q.owner_role)}</div>'
                 f"</li>"
             )
@@ -856,7 +934,7 @@ def _render_pretreatment_investigations(plan, kb_resolved: dict) -> str:
     )
 
 
-def _render_red_flags_pro_contra(plan, kb_resolved: dict) -> str:
+def _render_red_flags_pro_contra(plan, kb_resolved: dict, target_lang: str = "uk") -> str:
     """RedFlag PRO/CONTRA categorization for the aggressive escalation:
 
     - PRO-AGGRESSIVE: red flags that, when present, push the engine toward
@@ -905,13 +983,22 @@ def _render_red_flags_pro_contra(plan, kb_resolved: dict) -> str:
 
     def _rf_li(rid: str) -> str:
         rf = rf_lookup.get(rid) or {}
+        # Prefer the bilingual EN field if target_lang=en — saves a translate
+        # call when curator already provided an English definition. Fall back
+        # to translating the UA field if only UA is present.
+        if target_lang == "en" and rf.get("definition"):
+            defn = rf["definition"]
+            return f'<li>{_h(defn)}<span class="rf-id">{_h(rid)}</span></li>'
         defn = rf.get("definition_ua") or rf.get("definition") or "—"
-        return f'<li>{_h(defn)}<span class="rf-id">{_h(rid)}</span></li>'
+        return f'<li>{_h_t(defn, target_lang)}<span class="rf-id">{_h(rid)}</span></li>'
 
     def _ci_li(c: dict) -> str:
         cid = c.get("id", "?")
+        if target_lang == "en" and c.get("description"):
+            descr = c["description"]
+            return f'<li>{_h(descr)}<span class="rf-id">{_h(cid)}</span></li>'
         descr = c.get("description_ua") or c.get("description") or "—"
-        return f'<li>{_h(descr)}<span class="rf-id">{_h(cid)}</span></li>'
+        return f'<li>{_h_t(descr, target_lang)}<span class="rf-id">{_h(cid)}</span></li>'
 
     pro_html = (
         '<div class="pc-col pc-col--pro">'
@@ -935,16 +1022,19 @@ def _render_red_flags_pro_contra(plan, kb_resolved: dict) -> str:
     )
 
 
-def _render_what_not_to_do(plan) -> str:
+def _render_what_not_to_do(plan, target_lang: str = "uk") -> str:
     """Explicitly prohibitive 'do_not_do' list per track.
-    Per REFERENCE_CASE_SPECIFICATION §1.3 critical."""
+    Per REFERENCE_CASE_SPECIFICATION §1.3 critical.
+
+    Each bullet is UA free-text from Indication.do_not_do — translated
+    via the configured client when target_lang != source."""
     blocks = []
     for t in plan.tracks:
         ind = t.indication_data or {}
         items = ind.get("do_not_do") or []
         if not items:
             continue
-        li = "".join(f"<li>{_h(x)}</li>" for x in items)
+        li = "".join(f"<li>{_h_t(x, target_lang)}</li>" for x in items)
         blocks.append(
             '<div class="do-not">'
             f'<div class="track-name">{_h(t.label)} ({_h(t.indication_id)})</div>'
@@ -1184,13 +1274,13 @@ def render_plan_html(
     # Pre-treatment investigations · RedFlag PRO/CONTRA · What NOT to do ·
     # Monitoring phases · Timeline (REFERENCE_CASE_SPECIFICATION §1.3)
     body.append(_render_pretreatment_investigations(plan, plan_result.kb_resolved))
-    body.append(_render_red_flags_pro_contra(plan, plan_result.kb_resolved))
-    body.append(_render_what_not_to_do(plan))
+    body.append(_render_red_flags_pro_contra(plan, plan_result.kb_resolved, target_lang))
+    body.append(_render_what_not_to_do(plan, target_lang))
     body.append(_render_monitoring_phases(plan))
     body.append(_render_timeline(plan))
 
     # MDT brief inline
-    body.append(_render_mdt_section(mdt))
+    body.append(_render_mdt_section(mdt, target_lang))
 
     # Sources
     if fda.data_sources_summary:
@@ -1315,7 +1405,7 @@ def render_diagnostic_brief_html(
         )
 
     # MDT brief
-    body.append(_render_mdt_section(mdt))
+    body.append(_render_mdt_section(mdt, target_lang))
 
     # Footer
     body.append('<div class="doc-footer">')
