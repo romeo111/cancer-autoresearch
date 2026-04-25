@@ -333,3 +333,90 @@ def test_role_catalog_covers_infographic_team_composition():
     }
     missing = expected_roles - set(_ROLE_CATALOG.keys())
     assert not missing, f"Catalog missing roles from project infographic: {missing}"
+
+
+# ── Skill versioning (per user request: each skill carries version, last
+# reviewed, sign-off status, so changes are easy to verify) ───────────────
+
+
+def test_every_role_in_catalog_has_skill_registry_entry():
+    """Every role advertised in _ROLE_CATALOG must have versioned metadata
+    in _SKILL_REGISTRY — otherwise the rendered Plan can't show 'skill X
+    v0.1.0, last reviewed YYYY-MM-DD' for that role."""
+    from knowledge_base.engine.mdt_orchestrator import (
+        _ROLE_CATALOG,
+        _SKILL_REGISTRY,
+    )
+    missing = set(_ROLE_CATALOG.keys()) - set(_SKILL_REGISTRY.keys())
+    assert not missing, f"Roles missing from _SKILL_REGISTRY: {missing}"
+
+
+def test_skill_registry_has_required_metadata_fields():
+    """Each skill record carries the contractual fields that the render
+    layer surfaces inline (so a clinician can verify which version of
+    which skill produced a given role activation)."""
+    from knowledge_base.engine.mdt_orchestrator import _SKILL_REGISTRY
+    import re
+    semver = re.compile(r"^\d+\.\d+\.\d+$")
+    iso_date = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+    for sid, s in _SKILL_REGISTRY.items():
+        assert s.skill_id == sid, f"{sid}: skill_id mismatch"
+        assert s.name, f"{sid}: missing display name"
+        assert semver.match(s.version), f"{sid}: version not semver: {s.version}"
+        assert iso_date.match(s.last_reviewed), (
+            f"{sid}: last_reviewed not ISO date: {s.last_reviewed}"
+        )
+        # signoffs property derived from verified_by length
+        assert s.signoffs == len(s.verified_by)
+        # All currently STUBs (no clinician sign-offs yet); review_status
+        # flips to "reviewed" once 2+ verified_by entries exist
+        assert s.review_status in {"reviewed", "stub"}
+
+
+def test_activated_role_carries_skill_metadata():
+    """When a role activates, the MDTRequiredRole instance must carry the
+    skill metadata so the render layer can show version inline."""
+    patient = _patient("patient_zero_indolent.json")
+    plan_result = generate_plan(patient, kb_root=KB_ROOT)
+    mdt = orchestrate_mdt(patient, plan_result, kb_root=KB_ROOT)
+
+    all_roles = (
+        list(mdt.required_roles) + list(mdt.recommended_roles) + list(mdt.optional_roles)
+    )
+    assert all_roles, "test setup: no roles activated for indolent HCV-MZL"
+    for r in all_roles:
+        assert r.skill is not None, f"role {r.role_id} missing skill metadata"
+        assert r.skill.skill_id == r.role_id
+        assert r.skill.version
+
+
+def test_activated_skills_dedupes_across_buckets():
+    """A role appearing in multiple buckets (e.g., promoted from
+    recommended → required across rules) should appear once in
+    activated_skills."""
+    patient = _patient("patient_zero_bulky.json")
+    plan_result = generate_plan(patient, kb_root=KB_ROOT)
+    mdt = orchestrate_mdt(patient, plan_result, kb_root=KB_ROOT)
+    activated = mdt.activated_skills
+    skill_ids = [s.skill_id for s in activated]
+    assert len(skill_ids) == len(set(skill_ids)), (
+        f"activated_skills has duplicates: {skill_ids}"
+    )
+
+
+def test_to_dict_surfaces_skill_catalog_for_render():
+    """to_dict() must surface the full registry as 'skill_catalog' so the
+    render layer can list all skills (activated + dormant) with versions."""
+    patient = _patient("patient_zero_indolent.json")
+    plan_result = generate_plan(patient, kb_root=KB_ROOT)
+    mdt = orchestrate_mdt(patient, plan_result, kb_root=KB_ROOT)
+    d = mdt.to_dict()
+    assert "activated_skills" in d
+    assert "skill_catalog" in d
+    catalog_ids = {s["skill_id"] for s in d["skill_catalog"]}
+    activated_ids = {s["skill_id"] for s in d["activated_skills"]}
+    # Every activated skill must be in the catalog
+    assert activated_ids <= catalog_ids
+    # Catalog matches registry size
+    from knowledge_base.engine.mdt_orchestrator import _SKILL_REGISTRY
+    assert catalog_ids == set(_SKILL_REGISTRY.keys())

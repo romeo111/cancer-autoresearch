@@ -48,6 +48,50 @@ _PRIORITY_RANK = {"required": 3, "recommended": 2, "optional": 1}
 
 
 @dataclass
+class SkillMetadata:
+    """Versioned metadata for one MDT specialist skill (= virtual doctor).
+
+    Per CHARTER §6.1, every clinical-content unit needs dual sign-off
+    before it can claim "reviewed". Skill modules are rule containers,
+    so they version + sign-off the SAME way Indications do. The version
+    string follows semver convention and bumps on:
+
+    - patch: typo, wording, source citation update
+    - minor: rule added/removed/modified, new linked-finding mapping
+    - major: rule semantics changed (e.g., direction flipped from
+      "intensify" to "investigate")
+
+    `verified_by` holds the cumulative list of named clinician sign-offs
+    with dates. `clinical_lead` is the single accountable owner (per
+    CHARTER §6 Project Coordinator + Clinical Co-Lead model).
+    """
+
+    skill_id: str  # equals role_id
+    name: str
+    version: str
+    last_reviewed: str
+    clinical_lead: Optional[str] = None
+    verified_by: list[dict] = field(default_factory=list)
+    sources: list[str] = field(default_factory=list)
+    domain: Optional[str] = None
+    notes: Optional[str] = None
+
+    @property
+    def signoffs(self) -> int:
+        return len(self.verified_by)
+
+    @property
+    def review_status(self) -> str:
+        return "reviewed" if self.signoffs >= 2 else "stub"
+
+    def to_dict(self) -> dict:
+        d = asdict(self)
+        d["signoffs"] = self.signoffs
+        d["review_status"] = self.review_status
+        return d
+
+
+@dataclass
 class MDTRequiredRole:
     role_id: str
     role_name: str
@@ -56,9 +100,13 @@ class MDTRequiredRole:
     priority: Priority
     linked_findings: list[str] = field(default_factory=list)
     linked_questions: list[str] = field(default_factory=list)
+    skill: Optional[SkillMetadata] = None
 
     def to_dict(self) -> dict:
-        return asdict(self)
+        d = asdict(self)
+        if self.skill is not None:
+            d["skill"] = self.skill.to_dict()
+        return d
 
 
 @dataclass
@@ -88,6 +136,18 @@ class MDTOrchestrationResult:
     warnings: list[str] = field(default_factory=list)
     provenance: Optional[DecisionProvenanceGraph] = None
 
+    @property
+    def activated_skills(self) -> list[SkillMetadata]:
+        """All distinct skills triggered for this plan, deduped across the
+        required/recommended/optional buckets, in catalog order."""
+        seen: dict[str, SkillMetadata] = {}
+        for bucket in (self.required_roles, self.recommended_roles, self.optional_roles):
+            for r in bucket:
+                if r.role_id in seen or r.skill is None:
+                    continue
+                seen[r.role_id] = r.skill
+        return list(seen.values())
+
     def to_dict(self) -> dict:
         return {
             "patient_id": self.patient_id,
@@ -101,6 +161,8 @@ class MDTOrchestrationResult:
             "aggregation_summary": dict(self.aggregation_summary),
             "warnings": list(self.warnings),
             "provenance": self.provenance.to_dict() if self.provenance else None,
+            "activated_skills": [s.to_dict() for s in self.activated_skills],
+            "skill_catalog": [s.to_dict() for s in _SKILL_REGISTRY.values()],
         }
 
 
@@ -198,6 +260,194 @@ def _role_name(role_id: str) -> str:
     return _ROLE_CATALOG.get(role_id, role_id)
 
 
+# ── Skill registry (version + last_reviewed + clinical_lead per role) ─────
+#
+# Each MDT role is a "skill" — a versioned bundle of rules implemented in
+# this module (see SKILL_ARCHITECTURE_SPEC §5; refactor to per-file modules
+# under knowledge_base/skills/ deferred until Co-Lead sign-off). The
+# registry is the single source of truth for rendering "skill X v0.1.0,
+# last reviewed YYYY-MM-DD" badges on every Plan / Diagnostic Brief.
+#
+# Bump version when: rule semantics change (major), rule added/modified
+# (minor), source citation or wording (patch). Update last_reviewed on
+# every bump.
+
+_SKILL_REGISTRY: dict[str, SkillMetadata] = {
+    "hematologist": SkillMetadata(
+        skill_id="hematologist",
+        name="Гематолог / онкогематолог",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-NCCN-BCELL-2025", "SRC-NCCN-AML-2025",
+                 "SRC-NCCN-MM-2025", "SRC-NCCN-MPN-2025",
+                 "SRC-EHA-WORKUP-2024", "SRC-ESMO-MZL-2024",
+                 "SRC-BSH-MZL-2024"],
+        domain="hematology_oncology",
+        notes="STUB — required role for any lymphoma/MM/leukemia plan; "
+              "pending Clinical Co-Lead sign-off per CHARTER §6.1.",
+    ),
+    "medical_oncologist": SkillMetadata(
+        skill_id="medical_oncologist",
+        name="Медичний онколог (хіміотерапевт солідних пухлин)",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=[],
+        domain="solid_oncology",
+        notes="STUB — placeholder for solid-tumor cases; rules minimal "
+              "until first solid-tumor disease lands in KB.",
+    ),
+    "infectious_disease_hepatology": SkillMetadata(
+        skill_id="infectious_disease_hepatology",
+        name="Інфекціоніст / гепатолог",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-EASL-HCV-2023", "SRC-NCCN-BCELL-2025"],
+        domain="infectious_diseases",
+        notes="STUB — escalates on viral etiology (HCV/HBV/HIV) or anti-CD20 "
+              "with HBV reactivation risk.",
+    ),
+    "radiologist": SkillMetadata(
+        skill_id="radiologist",
+        name="Лікар-радіолог",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-NCCN-BCELL-2025"],
+        domain="diagnostic_imaging",
+        notes="STUB — staging/restaging via CECT/PET-CT/MRI; reads bulky-disease "
+              "and mass-mapping findings.",
+    ),
+    "pathologist": SkillMetadata(
+        skill_id="pathologist",
+        name="Патолог / гематопатолог",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-NCCN-BCELL-2025", "SRC-EHA-WORKUP-2024"],
+        domain="pathology",
+        notes="STUB — confirms histology + IHC + FISH; mandatory for any "
+              "treatment plan per CHARTER §15.2 C7.",
+    ),
+    "molecular_geneticist": SkillMetadata(
+        skill_id="molecular_geneticist",
+        name="Молекулярний генетик / молекулярний онколог",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-NCCN-MM-2025"],
+        domain="molecular_oncology",
+        notes="STUB — escalates on actionable genomic biomarkers per R9 "
+              "(_ACTIONABLE_GENOMIC_TYPES set).",
+    ),
+    "clinical_pharmacist": SkillMetadata(
+        skill_id="clinical_pharmacist",
+        name="Клінічний фармацевт",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=[],
+        domain="clinical_pharmacy",
+        notes="STUB — drug-drug interactions, dose adjustments, "
+              "premedication, supportive care.",
+    ),
+    "radiation_oncologist": SkillMetadata(
+        skill_id="radiation_oncologist",
+        name="Радіотерапевт (променева терапія)",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=["SRC-ESMO-MZL-2024"],
+        domain="radiation_oncology",
+        notes="STUB — extranodal MALT lymphomas often eligible for "
+              "localized radiotherapy.",
+    ),
+    "surgical_oncologist": SkillMetadata(
+        skill_id="surgical_oncologist",
+        name="Хірург-онколог",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=[],
+        domain="surgical_oncology",
+        notes="STUB — placeholder; rules minimal until first solid-tumor "
+              "disease lands in KB.",
+    ),
+    "psychologist": SkillMetadata(
+        skill_id="psychologist",
+        name="Психолог / онкопсихолог",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=[],
+        domain="psychosocial",
+        notes="STUB — supportive role for distress, anxiety, treatment "
+              "decision support.",
+    ),
+    "palliative_care": SkillMetadata(
+        skill_id="palliative_care",
+        name="Паліативна допомога",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=[],
+        domain="palliative_care",
+        notes="STUB — advanced-disease symptom management and goals-of-care.",
+    ),
+    "social_worker_case_manager": SkillMetadata(
+        skill_id="social_worker_case_manager",
+        name="Соціальний працівник / кейс-менеджер",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=[],
+        domain="psychosocial",
+        notes="STUB — coordinates НСЗУ reimbursement pathway, drug access, "
+              "transportation, financial counseling.",
+    ),
+    "primary_care": SkillMetadata(
+        skill_id="primary_care",
+        name="Сімейний лікар / терапевт",
+        version="0.1.0",
+        last_reviewed="2026-04-25",
+        clinical_lead=None,
+        verified_by=[],
+        sources=[],
+        domain="primary_care",
+        notes="STUB — comorbidity management, vaccinations, post-treatment "
+              "long-term follow-up.",
+    ),
+}
+
+
+def get_skill(role_id: str) -> SkillMetadata:
+    """Return registry entry for a role_id, or a synthetic 'unknown' record."""
+    s = _SKILL_REGISTRY.get(role_id)
+    if s is not None:
+        return s
+    return SkillMetadata(
+        skill_id=role_id,
+        name=_role_name(role_id),
+        version="0.0.0",
+        last_reviewed="unknown",
+        notes="No skill metadata registered — add to _SKILL_REGISTRY.",
+    )
+
+
 # Maps a fired RedFlag id (or substring) → the role whose priority should
 # escalate when that RedFlag fires with clinical_direction in {intensify, hold}.
 # MVP scope; extend as KB grows.
@@ -249,6 +499,7 @@ def _apply_role_rules(
                 trigger_type=trigger_type,
                 priority=priority,
                 linked_findings=list(linked_findings or []),
+                skill=get_skill(role_id),
             )
             return
         # Dedupe — keep highest-priority + accumulate linked findings + extend reason if new
@@ -819,6 +1070,7 @@ def _apply_diagnostic_role_rules(
                 trigger_type=trigger_type,
                 priority=priority,
                 linked_findings=list(linked_findings or []),
+                skill=get_skill(role_id),
             )
             return
         if _PRIORITY_RANK[priority] > _PRIORITY_RANK[existing.priority]:

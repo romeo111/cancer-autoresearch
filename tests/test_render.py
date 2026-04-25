@@ -167,3 +167,60 @@ def test_render_does_not_leak_reference_patient_initials():
     # Latin and Cyrillic forms of the reference patient initials
     assert "V.D.V" not in html
     assert "В.Д.В" not in html
+
+
+# ── Skill version metadata in MDT brief (per user request) ────────────────
+
+
+def test_mdt_brief_shows_skill_version_per_role():
+    """Each activated role in the rendered MDT brief must show the skill's
+    version + last_reviewed date inline so a clinician verifying changes
+    can see at a glance which version produced that activation."""
+    p = _patient("patient_zero_indolent.json")
+    plan = generate_plan(p, kb_root=KB_ROOT)
+    mdt = orchestrate_mdt(p, plan, kb_root=KB_ROOT)
+    html = render_plan_html(plan, mdt=mdt)
+
+    # Skill metadata strip class must be present
+    assert "skill-meta" in html
+    # At least one version pill rendered (e.g., "v0.1.0")
+    import re
+    assert re.search(r"v\d+\.\d+\.\d+", html), "no semver version pill in rendered HTML"
+    # last_reviewed date format (e.g., "reviewed 2026-04-25")
+    assert "reviewed " in html
+    # STUB or REVIEWED status pill
+    assert ("STUB" in html) or ("REVIEWED" in html)
+
+
+def test_mdt_brief_includes_skill_catalog_with_activation_markers():
+    """Skill catalog footer must list ALL registered skills with their
+    versions, so a clinician can see which dormant skills are available
+    for other clinical scenarios."""
+    p = _patient("patient_zero_indolent.json")
+    plan = generate_plan(p, kb_root=KB_ROOT)
+    mdt = orchestrate_mdt(p, plan, kb_root=KB_ROOT)
+    html = render_plan_html(plan, mdt=mdt)
+
+    assert "skill-catalog" in html
+    assert "Skill catalog" in html
+    # Every catalog row carries a version
+    from knowledge_base.engine.mdt_orchestrator import _SKILL_REGISTRY
+    for sid, s in _SKILL_REGISTRY.items():
+        assert sid in html, f"skill_id '{sid}' missing from rendered catalog"
+    # Activation marker must mention the count
+    import re
+    m = re.search(r"Skill catalog \((\d+)/(\d+)", html)
+    assert m, "skill catalog header missing activation count"
+    activated, total = int(m.group(1)), int(m.group(2))
+    assert total == len(_SKILL_REGISTRY)
+    assert 1 <= activated <= total
+
+
+def test_role_block_uses_skill_framing_in_ukrainian():
+    """User explicitly requested 'віртуальні спеціалісти' framing instead
+    of generic 'roles'."""
+    p = _patient("patient_zero_indolent.json")
+    plan = generate_plan(p, kb_root=KB_ROOT)
+    mdt = orchestrate_mdt(p, plan, kb_root=KB_ROOT)
+    html = render_plan_html(plan, mdt=mdt)
+    assert "Скіли" in html or "віртуальні спеціалісти" in html.lower()

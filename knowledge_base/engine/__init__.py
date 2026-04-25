@@ -22,6 +22,8 @@ from .mdt_orchestrator import (
     MDTOrchestrationResult,
     MDTRequiredRole,
     OpenQuestion,
+    SkillMetadata,
+    get_skill,
     orchestrate_mdt,
 )
 from .persistence import (
@@ -55,8 +57,10 @@ __all__ = [
     "PATIENT_PLANS_ROOT",
     "PlanResult",
     "ProvenanceEvent",
+    "SkillMetadata",
     "generate_diagnostic_brief",
     "generate_plan",
+    "get_skill",
     "is_diagnostic_profile",
     "is_treatment_profile",
     "latest_version_path",

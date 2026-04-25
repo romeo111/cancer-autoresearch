@@ -338,6 +338,41 @@ h3 {
     font-style: italic; color: var(--gray-700); font-size: 11px;
     border-left: 2px solid var(--gray-200); padding-left: 12px;
 }
+
+/* Skill metadata badge inline with each role */
+.skill-meta {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--gray-500); margin-top: 4px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+}
+.skill-meta .pill {
+    padding: 1px 6px; border-radius: 3px; background: var(--gray-100);
+}
+.skill-meta .pill--reviewed { background: var(--green-100); color: var(--green-700); }
+.skill-meta .pill--stub { background: var(--amber-bg); color: var(--amber); }
+
+/* Skill catalog block */
+.skill-catalog { margin-top: 18px; }
+.skill-catalog table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.skill-catalog th {
+    text-align: left; padding: 6px 8px; background: var(--gray-100);
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--gray-700);
+}
+.skill-catalog td {
+    padding: 6px 8px; border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+}
+.skill-catalog tr.activated td:first-child::before {
+    content: "✓ "; color: var(--green-600); font-weight: 700;
+}
+.skill-catalog tr.dormant { color: var(--gray-500); }
+.skill-catalog tr.dormant td:first-child::before {
+    content: "○ "; color: var(--gray-500);
+}
+.skill-catalog .ver {
+    font-family: var(--font-mono); color: var(--gray-700);
+}
 """
 
 
@@ -378,6 +413,27 @@ def _render_mdt_section(mdt: Optional[MDTOrchestrationResult]) -> str:
         return ""
     parts: list[str] = []
 
+    def _skill_meta_html(r) -> str:
+        """One-line metadata strip showing skill version + last-reviewed
+        date + sign-off status — so a clinician verifying changes can see
+        at a glance which version of which skill produced this row."""
+        s = r.skill
+        if s is None:
+            return ""
+        status_cls = "pill--reviewed" if s.review_status == "reviewed" else "pill--stub"
+        status_label = "REVIEWED" if s.review_status == "reviewed" else "STUB"
+        lead = _h(s.clinical_lead) if s.clinical_lead else "TBD"
+        return (
+            '<div class="skill-meta">'
+            f'<span class="pill">skill: <code>{_h(s.skill_id)}</code></span>'
+            f'<span class="pill">v{_h(s.version)}</span>'
+            f'<span class="pill">reviewed {_h(s.last_reviewed)}</span>'
+            f'<span class="pill {status_cls}">{status_label}</span>'
+            f'<span class="pill">sign-offs: {s.signoffs}</span>'
+            f'<span class="pill">lead: {lead}</span>'
+            "</div>"
+        )
+
     def _role_block(label: str, badge_cls: str, roles) -> str:
         if not roles:
             return ""
@@ -393,6 +449,7 @@ def _render_mdt_section(mdt: Optional[MDTOrchestrationResult]) -> str:
                 f'<span class="badge {badge_cls}">{_h(r.priority)}</span>'
                 f'<div class="role-reason">{_h(r.reason)}</div>'
                 f"{qs}"
+                f"{_skill_meta_html(r)}"
                 f"</li>"
             )
         return (
@@ -400,9 +457,15 @@ def _render_mdt_section(mdt: Optional[MDTOrchestrationResult]) -> str:
             f'<ul class="role-list">{"".join(items)}</ul>'
         )
 
-    parts.append(_role_block("Required roles", "badge--required", mdt.required_roles))
-    parts.append(_role_block("Recommended roles", "badge--recommended", mdt.recommended_roles))
-    parts.append(_role_block("Optional roles", "badge--optional", mdt.optional_roles))
+    parts.append(_role_block(
+        "Скіли (required) — обов'язкові віртуальні спеціалісти",
+        "badge--required", mdt.required_roles))
+    parts.append(_role_block(
+        "Скіли (recommended) — рекомендовані для розгляду",
+        "badge--recommended", mdt.recommended_roles))
+    parts.append(_role_block(
+        "Скіли (optional) — опціональні",
+        "badge--optional", mdt.optional_roles))
 
     qs = mdt.open_questions
     if qs:
@@ -437,6 +500,39 @@ def _render_mdt_section(mdt: Optional[MDTOrchestrationResult]) -> str:
         if unevaluated:
             parts.append(f"<li>Unevaluated RedFlags: {_h(', '.join(unevaluated))}</li>")
         parts.append("</ul>")
+
+    # Skill catalog — full list of registered skills with activation marker
+    activated_ids = {s.skill_id for s in mdt.activated_skills}
+    catalog_rows = []
+    # Pull the full registry via the dict surfaced through to_dict()
+    full = mdt.to_dict().get("skill_catalog", [])
+    for s in full:
+        sid = s["skill_id"]
+        is_active = sid in activated_ids
+        cls = "activated" if is_active else "dormant"
+        catalog_rows.append(
+            f'<tr class="{cls}">'
+            f'<td>{_h(s["name"])}</td>'
+            f'<td><code>{_h(sid)}</code></td>'
+            f'<td class="ver">v{_h(s["version"])}</td>'
+            f'<td>{_h(s["last_reviewed"])}</td>'
+            f'<td>{s["signoffs"]}</td>'
+            f'<td>{_h(s.get("domain") or "—")}</td>'
+            "</tr>"
+        )
+    parts.append(
+        '<div class="skill-catalog">'
+        f'<h3>Skill catalog ({len(activated_ids)}/{len(full)} активовано в цьому плані)</h3>'
+        '<div class="section-sub">Усі зареєстровані віртуальні спеціалісти. '
+        '✓ — активовано для цього кейсу; ○ — не активовано (доступні для інших клінічних сценаріїв).</div>'
+        '<table><thead><tr>'
+        '<th>Спеціаліст</th><th>skill_id</th><th>Версія</th>'
+        '<th>Last reviewed</th><th>Sign-offs</th><th>Domain</th>'
+        "</tr></thead><tbody>"
+        f'{"".join(catalog_rows)}'
+        "</tbody></table>"
+        "</div>"
+    )
 
     return f'<section><h2>MDT brief</h2><div class="mdt">{"".join(parts)}</div></section>'
 
