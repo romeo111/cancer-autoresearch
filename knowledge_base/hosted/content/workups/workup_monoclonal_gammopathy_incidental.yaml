@@ -15,7 +15,7 @@ applicable_to:
     - mgus_evaluation
     - serum_globulin_high
 
-# Триgger — incidental SPEP finding (e.g., високі globulins on routine bio chem,
+# Trigger — incidental SPEP finding (e.g., високі globulins on routine bio chem,
 # screening тест проведений у GP). Тут diagnostic workup щоб stratify MGUS vs
 # smoldering MM vs active MM. Per IMWG 2014/2024 + NCCN MM v.X.2025.
 required_tests:

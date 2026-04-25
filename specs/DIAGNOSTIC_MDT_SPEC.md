@@ -456,7 +456,7 @@ python -m knowledge_base.engine.cli patient_v2.json \
 **Що не входить у MVP:**
 - Database backend (SQLite/Postgres) — JSON files достатньо для current scale
 - Encryption-at-rest — patient data але development-only зараз;
-  якщо deployment у хмарі — доcaller'а
+  якщо deployment у хмарі — додамо
 - Network sync / cloud backup — розглядається коли буде > 1 OpenOnco
   installation
 - Search / cross-patient analytics — окремий "Case cohort matching"

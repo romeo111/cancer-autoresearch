@@ -265,7 +265,7 @@ def render_landing(stats) -> str:
       <div class="eyebrow">Open-source · MIT · клінічний контент під CHARTER §6.1 dual-review</div>
       <h1>Структуроване рішення для tumor-board.<br>Без чорних скриньок.</h1>
       <p class="hero-sub">
-        Лікар завантажує профіль pacієнта → отримує два альтернативні плани лікування
+        Лікар завантажує профіль пацієнта → отримує два альтернативні плани лікування
         (стандартний + агресивний) із повними цитуваннями. Плани оновлюються при появі
         нових даних. Усе на rule engine + curated knowledge base, без LLM-судження.
       </p>
@@ -388,7 +388,7 @@ def render_gallery(stats_widget_html: str) -> str:
 <main class="gallery">
   <h1>Готові приклади</h1>
   <p class="lead">
-    Сім синтетичних pacієнтських профілів прогнані через рушій. Кожен клік
+    Сім синтетичних пацієнтських профілів прогнані через рушій. Кожен клік
     відкриває повний Plan або Diagnostic Brief, як його побачить лікар у
     tumor-board. Якщо щось виглядає клінічно неправильно або дезорієнтує —
     <a href="{GH_NEW_ISSUE}?title=%5Bfeedback%5D+&labels=tester-feedback"

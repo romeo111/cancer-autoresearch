@@ -295,7 +295,7 @@ Engine маппить FHIR `code.coding[icd-o-3]` → KS `Disease.codes.icd_o_3`
 
 - "unknown" на staging — це valid value, треба використовувати
   dataAbsentReason
-- Сombination staging systems — окремі Observation (наприклад,
+- Combination staging systems — окремі Observation (наприклад,
   ISS + R-ISS для MM)
 
 ---
@@ -610,7 +610,7 @@ Cockcroft-Gault:
 CrCl = ((140 - age) × weight × (0.85 if female)) / (72 × serum_creatinine)
 ```
 
-Eгine автоматично обчислює якщо є креатинін + вік + вага.
+Engine автоматично обчислює якщо є креатинін + вік + вага.
 
 ### 10.3. FIB-4 (для HCV context)
 

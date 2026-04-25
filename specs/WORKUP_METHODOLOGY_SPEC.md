@@ -12,7 +12,7 @@ KNOWLEDGE_SCHEMA_SPECIFICATION.md, DIAGNOSTIC_MDT_SPEC.md, SOURCE_INGESTION_SPEC
 ## Мета документа
 
 OpenOnco масштабується від HCV-MZL → онкогематологія загалом → solid
-tumours → інші nозології. Кожне розширення вимагає **детального basic
+tumours → інші нозології. Кожне розширення вимагає **детального basic
 workup** для відповідної підозри: які тести потрібні для diagnosis +
 staging + pre-treatment baseline.
 
@@ -70,7 +70,7 @@ WORKUP-CYTOPENIA-EVALUATION (broad triage)
 
 Кожен Test має посилатись на authority через `sources:` поле
 (існуючий механізм Source entities). Не вільне "everyone knows that".
-Це posilвue Criterion 4 transparency — лікар може tracé why X test is
+Це посилює Criterion 4 transparency — лікар може tracé why X test is
 listed in this workup.
 
 ---
@@ -179,7 +179,7 @@ listed in this workup.
 
 ---
 
-## 5. Process: extending OpenOnco до нової onкологічної області
+## 5. Process: extending OpenOnco до нової онкологічної області
 
 Кожне розширення (e.g., "додати solid tumour breast cancer") пройти ці кроки:
 

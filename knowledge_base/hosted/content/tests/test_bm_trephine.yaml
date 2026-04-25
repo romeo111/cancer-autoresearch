@@ -1,7 +1,7 @@
 id: TEST-BM-TREPHINE
 names:
   preferred: "Bone Marrow Trephine Biopsy (Core)"
-  ukrainian: "Трепанобіопсія кісткового мозку (сoreбіопсія)"
+  ukrainian: "Трепанобіопсія кісткового мозку (core-біопсія)"
   english: "Bone Marrow Trephine"
   synonyms: ["BM core biopsy"]
 loinc_codes: ["31207-4"]

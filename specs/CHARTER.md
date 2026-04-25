@@ -64,7 +64,7 @@
 - Автоматичне виконання дій в EHR
 
 **Перші нозології для покриття:**
-- [Nозологія 1] — reference case з документом для верифікації
+- [Нозологія 1] — reference case з документом для верифікації
 - [Нозологія 2] — TBD після Phase 1
 
 ---
@@ -488,7 +488,7 @@ implementation:
 
 ### 15.4. Інші юрисдикції
 
-Цей розділ написаний з orientацією на **US FDA** як global gold standard.
+Цей розділ написаний з орієнтацією на **US FDA** як global gold standard.
 - **Україна:** МОЗ regulation менш формалізована для CDS; принцип
   "decision-support ≠ decision-making" застосовний.
 - **EU:** MDR (Medical Device Regulation) має схожий carve-out для CDS,

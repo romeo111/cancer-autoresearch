@@ -423,7 +423,7 @@ Knowledge base зберігається англійською для:
   BArT, BRIGHT тощо), не транслітеруємо
 - Dosage units — метричні, SI-compliant (мг/м², мг/кг)
 
-### 7.3. Consistency через гlossary
+### 7.3. Consistency через glossary
 
 Ведеться `GLOSSARY.md` з узгодженими translation pairs для clinical
 terms. Це частина проекту, public і editable через standard review.

@@ -3,7 +3,7 @@
 **Проєкт:** OpenOnco
 **Документ:** Reference Case Specification — "Patient Zero"
 **Версія:** v0.1 (draft)
-**Статус:** Draft для обговорення; фінальне введення pacієнтських даних
+**Статус:** Draft для обговорення; фінальне введення пацієнтських даних
 відкладається до отримання формальної згоди
 **Попередні документи:** CHARTER.md, CLINICAL_CONTENT_STANDARDS.md,
 KNOWLEDGE_SCHEMA_SPECIFICATION.md, DATA_STANDARDS.md
@@ -516,7 +516,7 @@ pass, це сигнал для архітектурного обговоренн
 
 ## 5. Testing with variations
 
-Один pацієнтський case — недостатньо для повної валідації. Створюємо
+Один пацієнтський case — недостатньо для повної валідації. Створюємо
 **варіації** на базі reference case для тестування edge cases.
 
 ### 5.1. Test variant generation
@@ -584,11 +584,11 @@ structured output. Stored in `test_cases/reference_variants/`.
 ### 6.1. Що reference case НЕ тестує
 
 - Multi-line therapy decisions (relapsed/refractory)
-- Pediatric pacієнти
+- Pediatric пацієнти
 - Other archetypes (biomarker_driven, stage_driven, etc.)
 - Solid tumors
 - Radiation therapy planning
-- Surgical оncology decisions
+- Surgical oncology decisions
 - Psychosocial assessment
 - Palliative-only scenarios
 
@@ -713,7 +713,7 @@ people з ~50% time commitment.
 
 ## 9. Governance цього документа
 
-- Template зміни (без pацієнтських даних) — consensus Tech Lead +
+- Template зміни (без пацієнтських даних) — consensus Tech Lead +
   один Clinical Co-Lead
 - Incorporation реальних деідентифікованих даних — full dual medical
   review + Project Coordinator approval + documented consent
@@ -728,7 +728,7 @@ people з ~50% time commitment.
 **v0.1:**
 - Structural template готовий
 - Реальні patient дані — placeholder, чекають consent
-- Test variants (Section 5) — hypothetical, potребують clinical
+- Test variants (Section 5) — hypothetical, потребують clinical
   validation що вони корректні edge cases
 - Validation protocol (Section 4) — не implemented в code
 

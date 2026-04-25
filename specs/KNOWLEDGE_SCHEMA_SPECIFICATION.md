@@ -1246,7 +1246,7 @@ knowledge_base/
 Overkill для MVP.
 
 **Рекомендація:** почати з 16.1, перейти на 16.2 коли тестова нозологія
-доведе life (шкалiрування + production reliability).
+доведе life (шкалювання + production reliability).
 
 ---
 
