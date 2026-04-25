@@ -65,6 +65,7 @@ sources:
 
 known_controversies: []
 
+time_critical: false  # outpatient cancer planning, not time-critical (FDA non-device CDS criterion 4)
 last_reviewed: "2026-04-24"
 reviewers: []
 reviewer_signoffs: 0

@@ -2,17 +2,23 @@
 
     patient profile  →  Disease match  →  applicable Algorithm
                                     →   Algorithm walked with RedFlags
-                                    →   (default_indication, alternative_indication)
-                                    →   two-plan output
+                                    →   Plan with multiple tracks (≥2)
+                                    →   one rendered document per CHARTER §2
 
-Per CHARTER §2, the output always contains two alternative plans. The
-data-model guarantee for this comes from `Algorithm.output_indications`
-plus `default_indication` + `alternative_indication` fields.
+Per CHARTER §2 the output always presents at least two alternative tracks
+in **one document**. The data-model guarantee for this comes from
+`Algorithm.output_indications` (≥2 candidates) plus `default_indication`
++ `alternative_indication` markers.
+
+FDA non-device CDS positioning (CHARTER §15) requires every Plan to surface
+the four Criterion-4 elements (intended use, HCP user, patient population,
+algorithm summary, data limitations). Engine populates these from Algorithm
+and Indication metadata.
 
 Patient profile shape (dict; MVP — we will move to FHIR/mCODE later):
 
     {
-        "patient_id": "PZ-001",                      # optional
+        "patient_id": "PZ-001",                      # required for Plan persistence
         "disease": {"icd_o_3_morphology": "9699/3"}, # or {"id": "DIS-HCV-MZL"}
         "line_of_therapy": 1,                        # default 1
         "biomarkers": {"BIO-HCV-RNA": "positive"},
@@ -24,32 +30,57 @@ Patient profile shape (dict; MVP — we will move to FHIR/mCODE later):
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
-from knowledge_base.schemas import ENTITY_BY_DIR
+from knowledge_base.schemas import (
+    FDAComplianceMetadata,
+    Plan,
+    PlanTrack,
+)
 from knowledge_base.validation.loader import load_content
 from .algorithm_eval import walk_algorithm
 
 
+# Track labels — ordered, default labels for the well-known plan_track values.
+# Extend as we add new track types (palliative, trial-only, etc.)
+_TRACK_LABELS_UA = {
+    "standard": "Стандартний план",
+    "aggressive": "Агресивний план",
+    "palliative": "Паліативний план",
+    "trial": "План у рамках клінічного дослідження",
+}
+_TRACK_LABELS_EN = {
+    "standard": "Standard plan",
+    "aggressive": "Aggressive plan",
+    "palliative": "Palliative plan",
+    "trial": "Clinical-trial-only plan",
+}
+
+
 @dataclass
 class PlanResult:
+    """In-memory engine output. Carries both the new Plan structure and
+    backward-compat fields for existing tests.
+    """
+
+    # Core
     patient_id: Optional[str]
     disease_id: Optional[str]
     algorithm_id: Optional[str]
 
-    # The two plans
-    default_indication_id: Optional[str]
-    alternative_indication_id: Optional[str]
+    # New primary structure: full Plan with tracks + FDA metadata
+    plan: Optional[Plan] = None
 
-    # Full Indication records for rendering
-    default_indication: Optional[dict]
-    alternative_indication: Optional[dict]
+    # Back-compat shortcuts (derived from plan.tracks)
+    default_indication_id: Optional[str] = None
+    alternative_indication_id: Optional[str] = None
+    default_indication: Optional[dict] = None
+    alternative_indication: Optional[dict] = None
 
-    # Structured trace of rule-engine steps — audit / debug
+    # Engine internals
     trace: list[dict] = field(default_factory=list)
-
-    # Warnings accumulated during plan generation (not errors)
     warnings: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
@@ -61,17 +92,19 @@ class PlanResult:
             "alternative_indication_id": self.alternative_indication_id,
             "default_indication": self.default_indication,
             "alternative_indication": self.alternative_indication,
+            "plan": self.plan.model_dump() if self.plan else None,
             "trace": self.trace,
             "warnings": self.warnings,
         }
+
+
+# ── KB lookup helpers ─────────────────────────────────────────────────────────
 
 
 def _find_disease_id(patient: dict, entities_by_id: dict) -> Optional[str]:
     dinfo = patient.get("disease") or {}
     if "id" in dinfo:
         return dinfo["id"]
-
-    # Look up by ICD-O-3 morphology
     icd = dinfo.get("icd_o_3_morphology")
     if icd:
         for eid, info in entities_by_id.items():
@@ -83,9 +116,7 @@ def _find_disease_id(patient: dict, entities_by_id: dict) -> Optional[str]:
     return None
 
 
-def _find_algorithm(
-    disease_id: str, line: int, entities_by_id: dict
-) -> Optional[dict]:
+def _find_algorithm(disease_id: str, line: int, entities_by_id: dict) -> Optional[dict]:
     for eid, info in entities_by_id.items():
         if info["type"] != "algorithms":
             continue
@@ -96,27 +127,150 @@ def _find_algorithm(
 
 
 def _collect_redflags(entities_by_id: dict) -> dict[str, dict]:
-    return {
-        eid: info["data"]
-        for eid, info in entities_by_id.items()
-        if info["type"] == "redflags"
-    }
+    return {eid: info["data"] for eid, info in entities_by_id.items() if info["type"] == "redflags"}
+
+
+def _resolve(entities: dict, entity_id: Optional[str]) -> Optional[dict]:
+    if entity_id and entity_id in entities:
+        return entities[entity_id]["data"]
+    return None
+
+
+# ── Track materialization ─────────────────────────────────────────────────────
+
+
+def _materialize_track(
+    track_id: str,
+    indication_id: str,
+    is_default: bool,
+    selection_reason: str,
+    entities: dict,
+) -> PlanTrack:
+    indication = _resolve(entities, indication_id)
+    regimen = None
+    monitoring = None
+    supportive: list[dict] = []
+    contras: list[dict] = []
+
+    if indication:
+        regimen = _resolve(entities, indication.get("recommended_regimen"))
+        if regimen:
+            monitoring = _resolve(entities, regimen.get("monitoring_schedule_id"))
+            for sup_id in regimen.get("mandatory_supportive_care") or []:
+                d = _resolve(entities, sup_id)
+                if d:
+                    supportive.append(d)
+        for ci_id in indication.get("hard_contraindications") or []:
+            d = _resolve(entities, ci_id)
+            if d:
+                contras.append(d)
+
+    return PlanTrack(
+        track_id=track_id,
+        label=_TRACK_LABELS_UA.get(track_id, track_id),
+        label_en=_TRACK_LABELS_EN.get(track_id, track_id),
+        indication_id=indication_id,
+        is_default=is_default,
+        selection_reason=selection_reason,
+        indication_data=indication,
+        regimen_data=regimen,
+        monitoring_data=monitoring,
+        supportive_care_data=supportive,
+        contraindications_data=contras,
+    )
+
+
+# ── FDA compliance metadata ───────────────────────────────────────────────────
+
+
+def _build_fda_compliance(
+    algorithm: dict,
+    tracks: list[PlanTrack],
+    entities: dict,
+    warnings: list[str],
+) -> FDAComplianceMetadata:
+    """Populate the four Criterion-4 fields that every rendered Plan must carry.
+    See specs/CHARTER.md §15 and the FDA Clinical Decision Support Guidance
+    (specs/Guidance-Clinical-Decision-Software_5.pdf, source SRC-FDA-CDS-2026)."""
+
+    # Aggregate sources cited across all tracks
+    source_ids: set[str] = set()
+    for t in tracks:
+        ind = t.indication_data or {}
+        for s in ind.get("sources") or []:
+            if isinstance(s, dict) and s.get("source_id"):
+                source_ids.add(s["source_id"])
+            elif isinstance(s, str):
+                source_ids.add(s)
+
+    sources_summary: list[str] = []
+    for sid in sorted(source_ids):
+        srec = _resolve(entities, sid)
+        if srec:
+            sources_summary.append(f"{sid}: {srec.get('title', '')} ({srec.get('version', '')})")
+        else:
+            sources_summary.append(f"{sid}: (not in KB)")
+
+    # Time-critical: any track marked time_critical disqualifies the whole plan
+    time_critical = any((t.indication_data or {}).get("time_critical") for t in tracks)
+
+    limitations: list[str] = list(warnings)
+    if time_critical:
+        limitations.append(
+            "WARNING: This plan includes time-critical Indications — falls "
+            "OUTSIDE FDA non-device CDS carve-out per §520(o)(1)(E) Criterion 4."
+        )
+
+    return FDAComplianceMetadata(
+        intended_use=(
+            "Outpatient oncology treatment planning to support tumor-board "
+            "discussion. Not a medical device; not for autonomous clinical "
+            "decision-making."
+        ),
+        hcp_user_specification=(
+            "Licensed oncologist or hematologist participating in a "
+            "multidisciplinary tumor board. Intended user must be qualified "
+            "to independently review the basis of every recommendation."
+        ),
+        patient_population_match=(
+            f"Adults with confirmed {(tracks[0].indication_data or {}).get('applicable_to', {}).get('disease_id', 'disease')} "
+            f"diagnosis at line of therapy "
+            f"{(tracks[0].indication_data or {}).get('applicable_to', {}).get('line_of_therapy', '?')}."
+        ),
+        algorithm_summary=algorithm.get("purpose") or (
+            "Rule-based decision tree evaluating patient findings against "
+            "RedFlag entities, selecting an Indication from a fixed candidate "
+            "set authored by clinical reviewers."
+        ),
+        data_sources_summary=sources_summary,
+        data_limitations=limitations,
+        automation_bias_warning=(
+            "Both treatment options below are presented for review. The "
+            "engine's selection of a 'recommended' default does not constitute "
+            "a clinical decision. Final treatment selection requires HCP "
+            "judgment incorporating information not available to the system."
+        ),
+        time_critical=time_critical,
+    )
+
+
+# ── Top-level entry point ─────────────────────────────────────────────────────
 
 
 def generate_plan(
     patient: dict,
     kb_root: Path | str = "knowledge_base/hosted/content",
+    plan_version: int = 1,
+    supersedes: Optional[str] = None,
+    revision_trigger: Optional[str] = None,
 ) -> PlanResult:
-    """Load KB + generate two-plan result for a patient."""
+    """Run the rule engine on a patient profile and return a PlanResult
+    containing a fully-materialized Plan with multiple tracks."""
 
     result = PlanResult(
         patient_id=patient.get("patient_id"),
         disease_id=None,
         algorithm_id=None,
-        default_indication_id=None,
-        alternative_indication_id=None,
-        default_indication=None,
-        alternative_indication=None,
     )
 
     load = load_content(Path(kb_root))
@@ -125,7 +279,6 @@ def generate_plan(
             result.warnings.append(f"schema error in {path.name}: {msg[:120]}")
         for path, msg in load.ref_errors:
             result.warnings.append(f"ref error in {path.name}: {msg}")
-        # Continue — partially-loaded KB is still useful for basic flows
 
     entities = load.entities_by_id
     disease_id = _find_disease_id(patient, entities)
@@ -143,7 +296,7 @@ def generate_plan(
         return result
     result.algorithm_id = algo["id"]
 
-    # Merge findings + biomarkers + demographics into a single flat lookup
+    # Flatten findings + biomarkers + demographics for clause evaluation
     findings = dict(patient.get("findings") or {})
     for k, v in (patient.get("biomarkers") or {}).items():
         findings.setdefault(k, v)
@@ -151,30 +304,64 @@ def generate_plan(
         findings.setdefault(k, v)
 
     redflag_lookup = _collect_redflags(entities)
-
     selected, trace = walk_algorithm(algo, findings, redflag_lookup)
     result.trace = trace
 
-    # Default = what decision tree selected (or algorithm.default_indication fallback)
-    result.default_indication_id = selected or algo.get("default_indication")
+    # Build the full track list — every Indication in algorithm.output_indications
+    # becomes a track, ordered with the engine-selected default first.
+    candidates = list(algo.get("output_indications") or [])
+    default_id = selected or algo.get("default_indication")
+    if default_id and default_id in candidates:
+        candidates.remove(default_id)
+        candidates.insert(0, default_id)
 
-    # Alternative = the OTHER one in output_indications, prefer algo.alternative_indication
-    alt = algo.get("alternative_indication")
-    if alt and alt != result.default_indication_id:
-        result.alternative_indication_id = alt
-    else:
-        # Pick any other candidate from output_indications
-        candidates = algo.get("output_indications") or []
-        for c in candidates:
-            if c != result.default_indication_id:
-                result.alternative_indication_id = c
-                break
+    tracks: list[PlanTrack] = []
+    for ind_id in candidates:
+        ind = _resolve(entities, ind_id)
+        track_label = (ind or {}).get("plan_track") or ind_id
+        is_default = ind_id == default_id
+        reason = (
+            f"Engine default per algorithm {algo['id']}: {trace[-1] if trace else 'no trace'}"
+            if is_default
+            else "Alternative track presented for HCP consideration"
+        )
+        tracks.append(_materialize_track(track_label, ind_id, is_default, reason, entities))
 
-    # Materialize full Indication records for rendering
-    if result.default_indication_id and result.default_indication_id in entities:
-        result.default_indication = entities[result.default_indication_id]["data"]
-    if result.alternative_indication_id and result.alternative_indication_id in entities:
-        result.alternative_indication = entities[result.alternative_indication_id]["data"]
+    fda = _build_fda_compliance(algo, tracks, entities, result.warnings)
+
+    # KB state snapshot (per CHARTER §10.2 — immutable audit)
+    kb_state = {
+        "loaded_entities": len(entities),
+        "indications_used": [t.indication_id for t in tracks],
+        "algorithm_version": algo.get("last_reviewed"),
+    }
+
+    plan_id = f"PLAN-{(result.patient_id or 'ANONYMOUS').upper()}-V{plan_version}"
+    result.plan = Plan(
+        id=plan_id,
+        patient_id=result.patient_id or "ANONYMOUS",
+        version=plan_version,
+        generated_at=datetime.now(timezone.utc).isoformat(),
+        supersedes=supersedes,
+        superseded_by=None,
+        revision_trigger=revision_trigger,
+        patient_snapshot=patient,
+        algorithm_id=algo["id"],
+        knowledge_base_state=kb_state,
+        tracks=tracks,
+        fda_compliance=fda,
+        trace=trace,
+        warnings=result.warnings,
+        annotations=[],
+    )
+
+    # Back-compat fields for existing tests
+    if tracks:
+        result.default_indication_id = tracks[0].indication_id
+        result.default_indication = tracks[0].indication_data
+        if len(tracks) >= 2:
+            result.alternative_indication_id = tracks[1].indication_id
+            result.alternative_indication = tracks[1].indication_data
 
     return result
 

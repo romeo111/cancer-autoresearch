@@ -28,8 +28,9 @@
   біомаркери, коморбідності, попереднє лікування)
 - Застосовує затверджену базу знань (NCCN, ESMO, WHO Classification,
   українські протоколи МОЗ)
-- Генерує два документи з альтернативними планами лікування +
-  порівняльну таблицю
+- Генерує **один документ (Plan)** з кількома альтернативними планами
+  (tracks: standard / aggressive / опційно інші) поданими паралельно для
+  обговорення на тумор-борді. Версіонується при отриманні нових даних.
 - Цитує джерела для кожної рекомендації
 - Явно відмічає невідомі параметри і red flags
 
@@ -39,7 +40,14 @@
 - Не замінює клінічне рішення лікаря
 - Не претендує на рекомендації для рідкісних/ексальних випадків
 - Не працює з педіатричними пацієнтами (scope — дорослі)
-- Не є медичним виробом у регуляторному сенсі
+- Не є медичним виробом у регуляторному сенсі (per §15)
+- **Не призначений для пацієнтів / опікунів напряму** — тільки HCP
+  (онколог/гематолог у клінічному контексті). Direct-to-patient
+  розгортання вимагало б re-classification як medical device — поза
+  scope CHARTER (per §15).
+- **Не призначений для time-critical/urgent рішень** — outpatient
+  планування. Гострі стани (TLS active management, neutropenic fever,
+  spinal cord compression) — поза scope (per §15).
 
 ---
 
@@ -402,6 +410,93 @@ Semantic versioning по нозологіям:
 - Clinical questions: [контакт]
 - Security / privacy concerns: [контакт]
 - General discussion: [посилання на форум/chat]
+
+---
+
+## 15. FDA Non-Device CDS Positioning
+
+OpenOnco свідомо спроектований так, щоб **відповідати чотирьом
+критеріям §520(o)(1)(E) FD&C Act** (carve-out 21st Century Cures Act
+2016, інтерпретація FDA — `specs/Guidance-Clinical-Decision-Software_5.pdf`,
+Source `SRC-FDA-CDS-2026`). Software, що відповідає всім чотирьом, **не
+є medical device** і не підлягає FDA premarket review.
+
+Цей розділ — engineering best-effort positioning, не юридична
+консультація. Перед US-deployment потрібен формальний regulatory ревю.
+
+### 15.1. Чотири критерії і як OpenOnco до них підходить
+
+**Criterion 1 — NOT image / IVD signal / signal-pattern processor.**
+- OpenOnco приймає **витяги** (radiology report text, lab results як
+  числа з LOINC кодами, biomarker statuses), не raw signals чи images
+- Genomic data — як structured variants з validated NGS-pipelines (через
+  CIViC / OncoKB references), не raw FASTQ
+- **Червона лінія:** ніколи не ingest'ити PET/CT pixels, ECG waveforms,
+  raw NGS reads напряму
+
+**Criterion 2 — display/analyze/print medical information.**
+- Patient profile (mCODE / FHIR per `DATA_STANDARDS`)
+- Цитуємо guidelines (NCCN, ESMO, EASL, МОЗ протоколи), drug labels
+  (FDA, EMA), peer-reviewed RCT, government recommendations — все це
+  явно "medical information" per FDA Guidance §IV(2)
+
+**Criterion 3 — recommendations to HCP about prevention/diagnosis/treatment.**
+- Output: `Plan` з кількома `tracks` (≥2: standard + aggressive) — це
+  **list / prioritized list of treatment options**, exactly the
+  non-device pattern in FDA Examples V.A.9, V.A.10, V.B.2
+- HCP-only за дизайном (§2). **Direct-to-patient deployment = device.**
+  Permanent constraint.
+- Жодного "specific directive" — `Plan.tracks[].is_default` маркує
+  engine's selection, але `automation_bias_warning` явно нагадує що
+  обидва треки представлені для HCP review
+
+**Criterion 4 — HCP can independently review the basis.**
+- `Plan.fda_compliance` блок (FDA Criterion 4 metadata) обов'язково
+  surfaced у кожному рендері: `intended_use`, `hcp_user_specification`,
+  `patient_population_match`, `algorithm_summary`, `data_sources_summary`,
+  `data_limitations`, `automation_bias_warning`, `time_critical`
+- Rule engine — transparent YAML, не opaque ML; `Plan.trace` записує
+  кожен decision-tree step
+- Кожна Indication має `rationale` + `sources[]` Citations з PMID/DOI/URL
+- Версіонування ([§10.2](#10-версіонування)) дає reproducibility
+
+### 15.2. Critical constraints (порушення = втрата non-device status)
+
+| # | Constraint | Що стає device |
+|---|---|---|
+| C1 | HCP-only, never patient-facing | Direct-to-patient → device |
+| C2 | Outpatient/non-time-critical only (`Indication.time_critical: false`) | Acute/emergency modules → device |
+| C3 | No raw image / signal / NGS read input | Adding such → device |
+| C4 | Always ≥2 tracks, never single binding directive | "System prescribes X" UX → device |
+| C5 | Sources must be **established / well-understood** (NCCN/ESMO/RCT/regulatory labels) | Novel biomarker discovery without published evidence → device |
+| C6 | Render UI must avoid automation-bias patterns | Pre-selected "accept", buried alternatives, missing rationale → device |
+
+### 15.3. Зміна, яка triggers re-classification
+
+Будь-яка з наступних змін має пройти governance review (§6) **перед**
+implementation:
+
+- Додавання time-critical Indication (toggle `time_critical: true`)
+- Додавання image / signal / raw NGS input pathway
+- Pivot до patient-facing version
+- Видалення алтернативного track ("система обирає одне")
+- Hide chi remove rationale / sources / trace з рендеру
+- Додавання novel biomarker prediction без published primary evidence
+- Перехід на commercial deployment model (триггерить також license
+  audit per `SOURCE_INGESTION_SPEC §4.3`)
+
+### 15.4. Інші юрисдикції
+
+Цей розділ написаний з orientацією на **US FDA** як global gold standard.
+- **Україна:** МОЗ regulation менш формалізована для CDS; принцип
+  "decision-support ≠ decision-making" застосовний.
+- **EU:** MDR (Medical Device Regulation) має схожий carve-out для CDS,
+  але інтерпретація стрімкіша — separate review needed якщо EU launch.
+- **UK:** MHRA загалом узгоджений з FDA по CDS позиції.
+
+OpenOnco's design satisfies the **strictest** common denominator (FDA
+Criterion 4 transparency requirements); інші юрисдикції повинні бути
+strictly easier to clear.
 
 ---
 

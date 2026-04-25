@@ -73,7 +73,13 @@ class Indication(Base):
     sources: list[Citation] = Field(default_factory=list)
     known_controversies: list[KnownControversy] = Field(default_factory=list)
 
-    plan_track: Optional[str] = None  # "standard" | "aggressive" — explicit two-plan tag
+    plan_track: Optional[str] = None  # "standard" | "aggressive" | "trial" | "palliative"
+
+    # FDA non-device CDS positioning (per specs/CHARTER.md §15).
+    # If `time_critical: true`, this Indication falls OUTSIDE the §520(o)(1)(E)
+    # carve-out — HCP cannot meaningfully independently-review-the-basis under
+    # time pressure, so the software function would be device-classified.
+    time_critical: bool = False
 
     last_reviewed: Optional[str] = None
     reviewers: list[str] = Field(default_factory=list)
