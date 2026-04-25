@@ -1,0 +1,41 @@
+id: REG-ADT-APALUTAMIDE
+name: "ADT + apalutamide (continuous)"
+name_ua: "АДТ + апалутамід (безперервно)"
+alternate_names: ["TITAN-style (mHSPC)", "SPARTAN-style (nmCRPC)"]
+
+components:
+  - drug_id: DRUG-LEUPROLIDE
+    dose: "11.25 mg IM q3 months"
+    schedule: "Continuous"
+    route: IM
+  - drug_id: DRUG-APALUTAMIDE
+    dose: "240 mg PO daily"
+    schedule: "Continuous"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression"
+toxicity_profile: low-moderate
+
+premedication: []
+mandatory_supportive_care:
+  - SUP-BONE-HEALTH-PROSTATE
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "G3+ rash"
+    modification: "Hold; resume at 180 mg or 120 mg after resolution"
+  - condition: "Hypothyroidism"
+    modification: "Levothyroxine; continue apalutamide"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Apalutamide registered but not currently NSZU-reimbursed; out-of-pocket. Verify funding pathway pre-start."
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  TITAN: mHSPC benefit. SPARTAN: nmCRPC benefit. Distinguishing AE: rash
+  (~24%); hypothyroidism (~8%) — monitor TSH. Less CNS penetration than
+  enzalutamide.

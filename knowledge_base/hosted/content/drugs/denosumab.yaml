@@ -1,0 +1,36 @@
+id: DRUG-DENOSUMAB
+names:
+  preferred: "Denosumab"
+  ukrainian: "Деносумаб"
+  english: "Denosumab"
+  brand_names: ["Xgeva (oncology)", "Prolia (osteoporosis)"]
+atc_code: M05BX04
+rxnorm_id: null
+drug_class: "RANKL inhibitor (monoclonal antibody)"
+mechanism: >
+  Fully human monoclonal antibody targeting RANKL, blocking osteoclast formation, function, and survival. Reduces skeletal-related events (SREs) in bone-metastatic prostate, breast, and other solid tumors.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: null
+    notes: "Reimbursed for cancer bone-metastasis prophylaxis (Xgeva indication); osteoporosis indication separate. Cancer dosing covered."
+
+typical_dosing: >
+  Bone-metastasis prophylaxis: 120 mg SC q4 weeks. Always combine with calcium 500-1000 mg/day + vitamin D 400-800 IU/day.
+
+key_toxicities:
+  - Hypocalcemia (severe risk if Ca/Vit-D not co-administered)
+  - Osteonecrosis of the jaw (ONJ, ~2-5% — pre-treatment dental evaluation; avoid invasive dental procedures during treatment)
+  - Atypical femur fractures (rare, long-term)
+  - Hypophosphatemia
+  - Rebound vertebral fractures if abruptly stopped after long use
+  - No renal-dose adjustment required (vs zoledronate)
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Preferred over zoledronate in patients with renal impairment. Cancer bone-metastasis dosing distinct from osteoporosis dosing — keep separate. Pre-treatment dental clearance critical to reduce ONJ risk.

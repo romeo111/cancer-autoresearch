@@ -1,0 +1,35 @@
+id: DRUG-NIRAPARIB
+names:
+  preferred: "Niraparib"
+  ukrainian: "Нірапариб"
+  english: "Niraparib"
+  brand_names: ["Zejula", "Akeega (with abiraterone)"]
+atc_code: L01XK02
+rxnorm_id: null
+drug_class: "PARP inhibitor"
+mechanism: >
+  PARP1/2 inhibitor with mCRPC indication in combination with abiraterone for BRCA-mutant disease (MAGNITUDE trial). Akeega is the fixed-dose combination tablet with abiraterone.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not currently registered in Ukraine for prostate indication. Ovarian indication may have separate access."
+
+typical_dosing: >
+  Akeega combination: niraparib 200 mg + abiraterone 1000 mg PO daily + prednisone 10 mg daily.
+
+key_toxicities:
+  - Anemia (~43%)
+  - Thrombocytopenia (~36%) — distinguishing AE; dose-reduce frequently
+  - Hypertension (combination effect with abiraterone)
+  - Fatigue
+  - Nausea
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  BRCA-mutant mCRPC option; thrombocytopenia management more demanding than olaparib. UA-access barrier.

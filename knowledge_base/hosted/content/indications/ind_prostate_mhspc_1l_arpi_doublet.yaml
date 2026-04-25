@@ -1,0 +1,54 @@
+id: IND-PROSTATE-MHSPC-1L-ARPI-DOUBLET
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-PROSTATE
+  disease_state: mHSPC
+  line_of_therapy: 1
+  stage_requirements: ["IV"]
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-ADT-ABIRATERONE
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "PSA decline ≥90% in ~75-80% within 6 months"
+  median_radiographic_pfs_months: 33
+  median_overall_survival_months: 53
+  notes: "LATITUDE high-risk subgroup OS benefit pronounced; ENZAMET / TITAN show similar OS-trends with enzalutamide / apalutamide"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-PROSTATE-HIGH-RISK-BIOLOGY
+required_tests:
+  - TEST-PSA-SERUM
+  - TEST-TESTOSTERONE-SERUM
+  - TEST-BONE-SCAN
+  - TEST-GERMLINE-BRCA-PANEL
+desired_tests:
+  - TEST-PSMA-PET
+  - TEST-SOMATIC-HRR-PANEL
+
+sources:
+  - source_id: SRC-NCCN-PROSTATE-2025
+    weight: primary
+  - source_id: SRC-ESMO-PROSTATE-2024
+    weight: primary
+
+last_reviewed: null
+reviewers: []
+
+notes: >
+  Default for low/intermediate-volume mHSPC. Triplet (ARASENS) reserved
+  for high-volume CHAARTED criteria with docetaxel-eligible patient.
+  Enzalutamide / apalutamide acceptable substitutes for abiraterone
+  in patient-specific contexts (e.g., diabetes / steroid-avoidance
+  preference favors enza / apalu over abi).

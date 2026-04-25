@@ -1,0 +1,75 @@
+id: DIS-PROSTATE
+names:
+  preferred: "Prostate adenocarcinoma"
+  ukrainian: "Аденокарцинома передміхурової залози"
+  english: "Prostate adenocarcinoma"
+  synonyms: ["Prostate cancer", "PCa", "РПЗ"]
+
+codes:
+  icd_o_3_morphology: "8140/3"
+  icd_o_3_topography: ["C61.9"]
+  icd_10: "C61"
+  who_classification: "Acinar adenocarcinoma of the prostate (WHO 5th)"
+
+archetype: line_of_therapy_sequential
+lineage: solid_tumor_prostate
+
+# Sub-strata are line-of-therapy / disease-state combinations rather than
+# molecular subtypes. The Algorithm decision_tree resolves which stratum
+# applies for a given patient.
+disease_states:
+  - id: nmCRPC
+    label: "Non-metastatic castration-resistant prostate cancer"
+    label_ua: "Неметастатичний кастраційно-резистентний РПЗ"
+    definition: "Rising PSA on ADT with castrate testosterone (<50 ng/dL), no radiographic metastases"
+  - id: mHSPC
+    label: "Metastatic hormone-sensitive prostate cancer"
+    label_ua: "Метастатичний гормоночутливий РПЗ"
+    definition: "De-novo or recurrent metastatic disease before castration resistance develops"
+  - id: mCRPC
+    label: "Metastatic castration-resistant prostate cancer"
+    label_ua: "Метастатичний кастраційно-резистентний РПЗ"
+    definition: "Progression on ADT with castrate testosterone; PSA progression and/or radiographic progression"
+
+# Risk-stratification frameworks used downstream
+prognostic_frameworks:
+  - id: NCCN-PROSTATE-RISK
+    label: "NCCN risk groups (very-low / low / intermediate-favorable / intermediate-unfavorable / high / very-high)"
+    used_for: "localized disease — drives RT vs surveillance vs RP decisions; out of scope for this MVP which focuses on advanced disease"
+  - id: CHAARTED-VOLUME
+    label: "CHAARTED volume criteria (high-volume = visceral metastases OR ≥4 bone lesions with ≥1 beyond axial skeleton)"
+    used_for: "mHSPC docetaxel-add decision"
+  - id: LATITUDE-RISK
+    label: "LATITUDE high-risk (≥2 of: Gleason ≥8, ≥3 bone lesions, visceral metastases)"
+    used_for: "mHSPC abiraterone-add decision"
+
+etiological_factors:
+  - "Androgen-driven proliferation — testosterone / DHT via androgen receptor"
+  - "Germline DNA-repair defects (BRCA1/2, ATM, CHEK2, PALB2) ~5-15% of metastatic — predict PARPi response and aggressive course"
+  - "Somatic HRR alterations (BRCA, ATM, CDK12, FANC family) up to 25% in mCRPC"
+  - "TMPRSS2-ERG fusions ~50% but no current therapeutic actionability"
+
+related_diseases: []
+
+epidemiology:
+  context: >
+    Most common solid tumor in men globally (~1.4M/year). Median age at
+    diagnosis ~67. Vast majority (~95%) acinar adenocarcinoma. Localized
+    disease has excellent 10-y OS (>95%); metastatic 5-y OS ~30-40%, but
+    modern combinations (ADT + ARPI ± docetaxel ± PARPi for HRR-mutant)
+    have substantially improved mCRPC OS. Indolent natural history of
+    low-risk localized disease enables active surveillance — large UA
+    practice gap is access to germline BRCA testing for PARPi eligibility.
+
+sources:
+  - SRC-NCCN-PROSTATE-2025
+  - SRC-ESMO-PROSTATE-2024
+  - SRC-EAU-PROSTATE-2024
+
+last_reviewed: null
+reviewers: []
+notes: >
+  Coverage scope MVP: advanced disease (mHSPC + mCRPC + nmCRPC).
+  Localized disease (active surveillance, RP, definitive RT, brachytherapy)
+  intentionally out of scope — would require urology workflow modeling
+  beyond current architecture.

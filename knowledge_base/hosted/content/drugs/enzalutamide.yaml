@@ -1,0 +1,37 @@
+id: DRUG-ENZALUTAMIDE
+names:
+  preferred: "Enzalutamide"
+  ukrainian: "Ензалутамід"
+  english: "Enzalutamide"
+  brand_names: ["Xtandi"]
+atc_code: L02BB04
+rxnorm_id: null
+drug_class: "Androgen receptor pathway inhibitor (ARPI)"
+mechanism: >
+  Direct AR antagonist — competes with androgen for binding, blocks AR nuclear translocation, DNA binding, and coactivator recruitment. Active even in low-androgen castrate environment.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: null
+    notes: "Reimbursed for mCRPC and mHSPC per НСЗУ formulary 2024."
+
+typical_dosing: >
+  160 mg PO once daily, with or without food. Continue until progression or unacceptable toxicity.
+
+key_toxicities:
+  - Fatigue (~50%)
+  - Hot flashes
+  - Hypertension
+  - Falls / dizziness (~10%) — caution in elderly
+  - Cognitive impairment / memory issues (~5-10%)
+  - Seizures (~0.4%) — contraindicated in seizure-history patients
+  - Posterior reversible encephalopathy syndrome (PRES, rare)
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Active in pre-chemotherapy and post-docetaxel mCRPC. CNS penetration > apalutamide / darolutamide; cognitive AEs more common in elderly.

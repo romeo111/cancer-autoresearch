@@ -1,0 +1,32 @@
+id: BIO-HRR-PANEL
+names:
+  preferred: "Homologous recombination repair (HRR) gene panel status"
+  ukrainian: "Панель генів гомологічної рекомбінаційної репарації (HRR)"
+  english: "HRR gene panel status"
+  abbreviations: ["HRR-mutant"]
+codes:
+  loinc: null
+
+biomarker_type: mutation
+mutation_details:
+  genes: ["BRCA1", "BRCA2", "ATM", "BARD1", "BRIP1", "CDK12", "CHEK1", "CHEK2", "FANCL", "PALB2", "RAD51B", "RAD51C", "RAD51D", "RAD54L"]
+  inheritance: "germline OR somatic"
+  type: "loss-of-function variants"
+
+measurement:
+  method: "Tumor-tissue NGS panel (somatic) OR ctDNA OR germline NGS"
+  sensitivity_requirement: "VAF detection threshold ≥5% recommended for ctDNA"
+
+interpretation_notes: >
+  Any pathogenic alteration in HRR pathway genes. PROfound trial defined
+  Cohort A (BRCA1/2 + ATM) where olaparib benefit was largest, vs Cohort B
+  (other HRR genes) where benefit was smaller but still positive. NCCN
+  recommends testing all metastatic patients.
+
+related_biomarkers: ["BIO-BRCA-GERMLINE"]
+
+last_reviewed: null
+notes: >
+  Combined germline + somatic testing yields ~25% HRR-positivity in mCRPC.
+  PARPi benefit greatest in BRCA1/2 (higher rPFS HR). Test infrastructure
+  in UA major bottleneck — flagged for clinician review.

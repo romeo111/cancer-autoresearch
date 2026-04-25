@@ -1,0 +1,15 @@
+id: TEST-PSA-SERUM
+names:
+  preferred: "Serum PSA"
+  ukrainian: "Сироватковий ПСА"
+test_type: serum
+priority_class: critical
+specimen: "Serum (gold-top or red-top tube)"
+turnaround_hours_typical: 24
+measures: ["BIO-PSA"]
+sources: [SRC-NCCN-PROSTATE-2025, SRC-EAU-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Baseline + serial PSA dynamics drive disease-state classification
+  (mHSPC vs mCRPC vs nmCRPC) and treatment-response assessment.
+  Calculate doubling time when ≥3 measurements over ≥8 weeks available.

@@ -1,0 +1,39 @@
+id: SUP-BONE-HEALTH-PROSTATE
+intervention_type: bone_protection
+name: "Prostate-cancer bone-health prophylaxis"
+name_ua: "Профілактика кісткового здоров'я при РПЗ"
+
+rationale: >
+  Prevent skeletal-related events (fractures, spinal cord compression,
+  bone-pain crises) and ADT-induced osteoporosis. Required for all
+  patients on long-term ADT and especially for bone-metastatic disease.
+
+standard_intervention:
+  drug_id: DRUG-DENOSUMAB
+  dose: "120 mg SC q4 weeks (bone-metastatic; Xgeva indication)"
+  alternative_dose: "60 mg SC q6 months (ADT-induced osteoporosis without bone mets; Prolia indication)"
+
+alternatives:
+  - drug_id: DRUG-ZOLEDRONATE
+    dose: "4 mg IV q4 weeks (bone-metastatic)"
+    notes: "Renal dose adjustment required; avoid CrCl <30. Cheaper than denosumab + reimbursed."
+
+co_interventions:
+  - "Calcium 500-1000 mg PO daily"
+  - "Vitamin D 400-800 IU PO daily (or higher if deficient)"
+  - "Pre-treatment dental evaluation (ONJ risk mitigation)"
+  - "Avoid invasive dental procedures during treatment"
+  - "Baseline + serial DEXA scan (if no overt bone mets)"
+
+contraindications:
+  - "Severe renal impairment for zoledronate (CrCl <30)"
+  - "Active dental infection / ONJ history (defer or switch agent)"
+  - "Hypocalcemia (correct before initiation)"
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Denosumab vs zoledronate: denosumab slightly superior SRE delay; no
+  renal-adjustment needed; rebound vertebral fractures if abruptly
+  stopped — taper carefully. Zoledronate cheaper and reimbursed in
+  Ukraine; equivalent for most clinical purposes.

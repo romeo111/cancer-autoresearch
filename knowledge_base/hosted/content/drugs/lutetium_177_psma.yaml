@@ -1,0 +1,36 @@
+id: DRUG-LUTETIUM-177-PSMA
+names:
+  preferred: "Lutetium-177 PSMA-617"
+  ukrainian: "Лютецій-177 PSMA-617"
+  english: "Lutetium-177 PSMA-617"
+  brand_names: ["Pluvicto"]
+atc_code: V10XX05
+rxnorm_id: null
+drug_class: "PSMA-targeted radioligand (β-emitter)"
+mechanism: >
+  Small-molecule PSMA-binding ligand conjugated to β-emitting radionuclide Lu-177. PSMA is expressed on >90% of prostate adenocarcinoma cells; Lu-177-PSMA-617 binds PSMA and delivers cytotoxic β-radiation directly to tumor sites. Requires PSMA-PET-positive disease for selection (VISION criteria).
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not registered in Ukraine; closest access via international referral (EU centers). Major access barrier — flagged for clinical-review queue."
+
+typical_dosing: >
+  7.4 GBq IV q6 weeks × 6 cycles (VISION protocol). Administered in nuclear medicine / radioligand therapy unit with appropriate radiation safety.
+
+key_toxicities:
+  - Dry mouth / xerostomia (most common AE — affects salivary gland uptake)
+  - Fatigue
+  - Anemia
+  - Thrombocytopenia (~10% G3+)
+  - Renal effects (long-term; monitor CrCl)
+  - Bone marrow suppression cumulative — discontinue if persistent G3+
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  VISION trial: significant rPFS + OS benefit in PSMA-PET-positive mCRPC post-ARPI + post-taxane. Requires nuclear medicine infrastructure + PSMA-PET availability — limits access in Ukraine to a few centers.

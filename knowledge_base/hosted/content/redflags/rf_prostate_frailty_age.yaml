@@ -1,0 +1,38 @@
+id: RF-PROSTATE-FRAILTY-AGE
+definition: "Age ≥80 OR ECOG ≥3 with significant comorbidity — docetaxel poorly tolerated; ARPI monotherapy preferred; consider darolutamide for cognitive-AE-sensitive patients."
+definition_ua: "Вік ≥80 АБО ECOG ≥3 із суттєвими коморбідностями — доцетаксель погано переноситься; ARPI монотерапія краща; даролутамід для пацієнтів, чутливих до когнітивних AE."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "age_years"
+      threshold: 80
+      comparator: ">="
+    - all_of:
+        - finding: "ecog_status"
+          threshold: 3
+          comparator: ">="
+        - finding: "comorbidity_count"
+          threshold: 2
+          comparator: ">="
+
+clinical_direction: de-escalate
+severity: major
+priority: 100
+category: frailty-age
+
+relevant_diseases: [DIS-PROSTATE]
+shifts_algorithm: [ALGO-PROSTATE-MHSPC-1L]
+
+sources:
+  - SRC-NCCN-PROSTATE-2025
+  - SRC-ESMO-PROSTATE-2024
+
+last_reviewed: null
+draft: false
+
+notes: >
+  Triplet (ARASENS) carries significant docetaxel toxicity unsuitable
+  for fragile elderly. ARPI monotherapy preserves OS benefit with
+  tolerable AEs. Darolutamide preferred when cognitive AEs / falls
+  are particularly concerning.

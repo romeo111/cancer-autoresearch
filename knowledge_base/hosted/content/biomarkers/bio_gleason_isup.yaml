@@ -1,0 +1,32 @@
+id: BIO-GLEASON-ISUP
+names:
+  preferred: "Gleason score / ISUP grade group"
+  ukrainian: "Бал Глісона / ISUP grade group"
+  english: "Gleason score / ISUP grade group"
+codes:
+  loinc: null
+
+biomarker_type: pathology_grading
+
+measurement:
+  method: "Histopathology of biopsy / RP specimen"
+  units: "Gleason 6-10 / ISUP 1-5"
+  typical_range: [6, 10]
+
+interpretation_notes: >
+  ISUP grade groups (modern):
+  • Grade 1 (Gleason 3+3=6): low-risk
+  • Grade 2 (Gleason 3+4=7): favorable intermediate
+  • Grade 3 (Gleason 4+3=7): unfavorable intermediate
+  • Grade 4 (Gleason 4+4 / 3+5 / 5+3 = 8): high
+  • Grade 5 (Gleason 9-10): very-high
+
+  In mHSPC, Gleason ≥8 is one of the LATITUDE high-risk criteria.
+
+related_biomarkers: []
+
+last_reviewed: null
+notes: >
+  Universal pathology-grading framework. WHO 2022 endorses ISUP grade
+  group nomenclature; older Gleason notation still common in clinical
+  reports.

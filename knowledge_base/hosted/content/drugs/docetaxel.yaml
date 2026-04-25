@@ -1,0 +1,39 @@
+id: DRUG-DOCETAXEL
+names:
+  preferred: "Docetaxel"
+  ukrainian: "Доцетаксель"
+  english: "Docetaxel"
+  brand_names: ["Taxotere"]
+atc_code: L01CD02
+rxnorm_id: null
+drug_class: "Taxane (microtubule stabilizer)"
+mechanism: >
+  Binds β-tubulin and stabilizes microtubules, blocking mitotic spindle disassembly and inducing apoptosis. Pre-medication with corticosteroids critical to prevent fluid retention and hypersensitivity.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: null
+    notes: "Generic; reimbursed for prostate, breast, NSCLC, gastric, and other solid-tumor indications."
+
+typical_dosing: >
+  Prostate (mHSPC + mCRPC): 75 mg/m² IV q3 weeks × 6 cycles (mHSPC) or × 10 cycles (mCRPC, until intolerance). Pre-medication: dexamethasone 8 mg PO BID × 3 days starting day before infusion.
+
+key_toxicities:
+  - Neutropenia (severe in 30-40%; G-CSF support if febrile-neutropenia history)
+  - Febrile neutropenia (~5-15%)
+  - Peripheral neuropathy (~30% any grade; cumulative dose-dependent)
+  - Fluid retention (~50% — pre-medication mandatory)
+  - Alopecia
+  - Mucositis
+  - Nail changes
+  - Hypersensitivity reactions (rare with pre-medication)
+  - Hepatic dysfunction may worsen toxicity — dose-modify or avoid in severe impairment
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Cytotoxic backbone added to ADT for high-volume mHSPC (CHAARTED, STAMPEDE) and as ARASENS triplet partner. mCRPC option but ARPIs typically preferred 1L if no high-volume burden.

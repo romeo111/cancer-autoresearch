@@ -1,0 +1,15 @@
+id: TEST-GERMLINE-BRCA-PANEL
+names:
+  preferred: "Germline BRCA1/2 + HRR panel sequencing"
+  ukrainian: "Гермінальне секвенування BRCA1/2 + HRR панель"
+test_type: molecular_germline
+priority_class: standard
+specimen: "Peripheral blood OR buccal swab"
+turnaround_hours_typical: 504
+measures: ["BIO-BRCA-GERMLINE", "BIO-HRR-PANEL"]
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Recommend for ALL metastatic patients per NCCN 2025. Genetic-counseling
+  consent required pre-test. UA availability concentrated in private labs;
+  add to clinical-review queue for funding pathway tracking.

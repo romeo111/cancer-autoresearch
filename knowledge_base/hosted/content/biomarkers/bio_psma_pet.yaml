@@ -1,0 +1,29 @@
+id: BIO-PSMA-PET
+names:
+  preferred: "PSMA-PET imaging avidity"
+  ukrainian: "ПСМА-ПЕТ-авідність"
+  english: "PSMA-PET imaging avidity"
+  abbreviations: ["PSMA-PET"]
+codes:
+  loinc: null
+
+biomarker_type: protein_expression_imaging
+
+measurement:
+  method: "Ga-68-PSMA-11 OR F-18-PSMA-1007 PET/CT"
+  units: "qualitative (positive / negative) per VISION criteria"
+  typical_range: null
+
+interpretation_notes: >
+  VISION criteria for Lu-177-PSMA eligibility: at least one PSMA-positive
+  metastatic lesion AND no PSMA-negative lesions exceeding the size of the
+  PSMA-positive lesions on the same scan. Threshold uptake: greater than
+  liver mediastinal blood pool.
+
+related_biomarkers: []
+
+last_reviewed: null
+notes: >
+  Drives Lu-PSMA selection. Requires nuclear medicine infrastructure.
+  In Ukraine PSMA-PET availability concentrated in 2-3 academic centers
+  (Kyiv, Dnipro). Access barrier.

@@ -1,0 +1,30 @@
+id: BIO-PSA
+names:
+  preferred: "Prostate-specific antigen (PSA)"
+  ukrainian: "Простатичний специфічний антиген (ПСА)"
+  english: "Prostate-specific antigen"
+  abbreviations: ["PSA"]
+codes:
+  loinc: "2857-1"
+
+biomarker_type: serum_marker
+
+measurement:
+  method: "Immunoassay (ECLIA, CLIA)"
+  units: "ng/mL"
+  typical_range: [0, 1000]
+
+interpretation_notes: >
+  Disease-specific cutoffs:
+  • Screening / surveillance >4 ng/mL → biopsy consideration (varies with age)
+  • mHSPC: PSA >20 with metastatic disease defines high-risk LATITUDE
+  • PSA doubling time <6 months on ADT defines aggressive nmCRPC
+  • PSA progression on castration: ≥25% increase + ≥2 ng/mL absolute, confirmed 3+ weeks later
+
+related_biomarkers: []
+
+last_reviewed: null
+notes: >
+  Workhorse serum biomarker for prostate. Disease-state stratification
+  (mHSPC vs mCRPC vs nmCRPC) and CHAARTED/LATITUDE risk classification
+  rely heavily on PSA dynamics + cross-reference with imaging.

@@ -1,0 +1,14 @@
+id: TEST-BONE-SCAN
+names:
+  preferred: "Whole-body Tc-99m MDP bone scintigraphy"
+  ukrainian: "Сцинтиграфія кісток (Tc-99m MDP)"
+test_type: imaging_nm
+priority_class: standard
+specimen: "IV Tc-99m MDP, whole-body imaging"
+turnaround_hours_typical: 24
+measures: []
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Baseline staging + on-treatment monitoring for skeletal disease.
+  Less sensitive than PSMA-PET but more universally available in Ukraine.

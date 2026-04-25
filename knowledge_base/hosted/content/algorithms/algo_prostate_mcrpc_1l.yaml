@@ -1,0 +1,35 @@
+id: ALGO-PROSTATE-MCRPC-1L
+applicable_to_disease: DIS-PROSTATE
+applicable_to_disease_state: mCRPC
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select 1L mCRPC regimen for patient progressing on ADT (post-mHSPC ARPI
+  exposure assumed). HRR-mutant: PARPi-first (PROfound). Non-HRR-mutant:
+  switch ARPI or docetaxel based on prior exposure and visceral burden.
+  PSMA-PET-positive post-2-prior-line: Lu-PSMA candidacy.
+
+output_indications:
+  - IND-PROSTATE-MCRPC-1L-ARPI
+  - IND-PROSTATE-MCRPC-1L-PARPI
+
+default_indication: IND-PROSTATE-MCRPC-1L-ARPI
+alternative_indication: IND-PROSTATE-MCRPC-1L-PARPI
+
+decision_tree:
+  # Step 1 — HRR-mutant → PARPi (BRCA1/2 largest benefit)
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-PROSTATE-HIGH-RISK-BIOLOGY
+    if_true:
+      result: IND-PROSTATE-MCRPC-1L-PARPI
+    if_false:
+      result: IND-PROSTATE-MCRPC-1L-ARPI
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  PARPi prioritized when HRR-mutant — best evidence (PROfound). Non-HRR
+  mCRPC defaults to ARPI switch (limited data; consider docetaxel if
+  visceral mets or rapid progression). PSMA-Lu typically 2L+ after
+  failure of taxane + ARPI.

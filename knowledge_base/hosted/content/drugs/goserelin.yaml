@@ -1,0 +1,32 @@
+id: DRUG-GOSERELIN
+names:
+  preferred: "Goserelin"
+  ukrainian: "Гозерелін"
+  english: "Goserelin"
+  brand_names: ["Zoladex"]
+atc_code: L02AE03
+rxnorm_id: null
+drug_class: "GnRH agonist (LHRH agonist)"
+mechanism: >
+  GnRH receptor agonist with the same flare-then-suppression mechanism as leuprolide; subcutaneous depot implant preferred at sites where IM injections are inconvenient.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: null
+    notes: "Reimbursed; common alternative to leuprolide for patient/center preference."
+
+typical_dosing: >
+  3.6 mg SC implant monthly OR 10.8 mg SC q3 months. Same flare-protection requirement as leuprolide.
+
+key_toxicities:
+  - Same as leuprolide (class effect)
+  - Local injection-site reaction (depot implant)
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Equivalent efficacy to leuprolide; choice often institutional or based on injection logistics.

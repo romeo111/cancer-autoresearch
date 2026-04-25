@@ -1,0 +1,15 @@
+id: TEST-PSMA-PET
+names:
+  preferred: "PSMA-PET/CT (Ga-68 or F-18)"
+  ukrainian: "ПСМА-ПЕТ/КТ"
+test_type: imaging_pet
+priority_class: standard
+specimen: "Whole-body PSMA-targeted radiotracer"
+turnaround_hours_typical: 48
+measures: ["BIO-PSMA-PET"]
+sources: [SRC-NCCN-PROSTATE-2025, SRC-EAU-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Required for Lu-PSMA eligibility per VISION criteria. Also superior
+  to conventional CT + bone scan for staging and recurrence detection.
+  UA availability limited to 2-3 centers; document referral pathway.

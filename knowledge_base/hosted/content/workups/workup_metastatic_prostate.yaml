@@ -1,0 +1,47 @@
+id: WORKUP-METASTATIC-PROSTATE
+applicable_to:
+  lineage_hints:
+    - solid_tumor_prostate
+    - prostate_cancer_metastatic
+  tissue_locations:
+    - prostate
+    - bone
+    - lymph_nodes_pelvic
+  presentation_keywords:
+    - prostate_cancer_metastatic
+    - rising_psa
+    - bone_metastases
+    - mhspc
+    - mcrpc
+
+required_tests:
+  - TEST-PSA-SERUM
+  - TEST-TESTOSTERONE-SERUM
+  - TEST-BONE-SCAN
+  - TEST-GERMLINE-BRCA-PANEL
+
+desired_tests:
+  - TEST-PSMA-PET
+  - TEST-SOMATIC-HRR-PANEL
+  - TEST-CECT-CAP
+
+triggers_mdt_roles:
+  required:
+    - medical_oncologist
+    - urologist
+  recommended:
+    - nuclear_medicine_specialist
+    - molecular_geneticist
+  rationale_per_role:
+    medical_oncologist: "Systemic therapy planning for mHSPC/mCRPC."
+    urologist: "Local control + ADT initiation; surgical history input."
+    nuclear_medicine_specialist: "PSMA-PET interpretation + Lu-PSMA candidacy assessment."
+    molecular_geneticist: "Germline + somatic HRR testing for PARPi indication."
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024, SRC-EAU-PROSTATE-2024]
+
+last_reviewed: null
+notes: >
+  Modern staging integrates PSMA-PET when available — significantly
+  upstages disease vs conventional CT + bone scan. Germline + somatic
+  HRR testing now routine per NCCN 2025 for all metastatic patients.

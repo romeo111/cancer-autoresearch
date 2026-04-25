@@ -1,0 +1,15 @@
+id: TEST-TESTOSTERONE-SERUM
+names:
+  preferred: "Serum total testosterone"
+  ukrainian: "Сироватковий тестостерон"
+test_type: serum
+priority_class: standard
+specimen: "Serum, morning sample preferred"
+turnaround_hours_typical: 24
+measures: []
+sources: [SRC-NCCN-PROSTATE-2025, SRC-EAU-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Castrate level <50 ng/dL (~1.7 nmol/L) defines castration status —
+  prerequisite for mCRPC vs mHSPC classification. Also confirms ADT
+  pharmacodynamic effect at month 1-2 post-initiation.

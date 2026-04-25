@@ -1,0 +1,33 @@
+id: DRUG-DEGARELIX
+names:
+  preferred: "Degarelix"
+  ukrainian: "Дегарелікс"
+  english: "Degarelix"
+  brand_names: ["Firmagon"]
+atc_code: L02BX02
+rxnorm_id: null
+drug_class: "GnRH antagonist (LHRH antagonist)"
+mechanism: >
+  Direct GnRH-receptor antagonist — immediate (no flare) suppression of LH/FSH and testosterone within days, vs 2-4 weeks for agonists. Preferred when rapid testosterone suppression is required (e.g., spinal cord compression risk, severe bone pain, hyperviscous metastatic burden).
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Registered but not currently NSZU-reimbursed; out-of-pocket. Verify funding pathway pre-start."
+
+typical_dosing: >
+  Loading: 240 mg SC (two 3-mL injections) on day 1; maintenance 80 mg SC monthly.
+
+key_toxicities:
+  - Local injection-site reactions (~40%, more common than agonists)
+  - Hot flashes (similar to agonists)
+  - Hepatic transaminase elevations (~10%)
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  First-choice ADT when rapid suppression matters or when tumor flare is unacceptable. Also slightly lower CV-event risk vs LHRH agonists in some meta-analyses.

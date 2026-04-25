@@ -1,0 +1,15 @@
+id: TEST-SOMATIC-HRR-PANEL
+names:
+  preferred: "Tumor-tissue (or ctDNA) HRR-pathway NGS panel"
+  ukrainian: "Тканинна (або ctDNA) HRR-панель NGS"
+test_type: molecular_somatic
+priority_class: standard
+specimen: "FFPE tumor block (preferred) OR plasma for ctDNA"
+turnaround_hours_typical: 504
+measures: ["BIO-HRR-PANEL"]
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  PROfound trial used tumor-tissue NGS. ctDNA acceptable when tissue
+  unavailable / inadequate. Required for PARPi indication. UA-availability
+  major access barrier.

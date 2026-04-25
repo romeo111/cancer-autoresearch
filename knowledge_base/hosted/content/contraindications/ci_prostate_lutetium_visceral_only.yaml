@@ -1,0 +1,27 @@
+id: CI-PROSTATE-LUTETIUM-VISCERAL-ONLY
+description: "PSMA-PET-negative or insufficient PSMA-positive uptake (per VISION criteria) — Lu-PSMA contraindicated as inadequate target expression."
+description_ua: "ПСМА-ПЕТ-негативне або недостатнє ПСМА-позитивне поглинання (за критеріями VISION) — лютецій-ПСМА протипоказаний через недостатню експресію мішені."
+
+severity: absolute
+
+trigger:
+  type: imaging_finding
+  any_of:
+    - finding: "psma_pet_negative"
+      value: true
+    - finding: "psma_uptake_insufficient_per_vision"
+      value: true
+
+affects_drugs:
+  - DRUG-LUTETIUM-177-PSMA
+affects_regimens:
+  - REG-LUTETIUM-PSMA
+affects_indications:
+  - IND-PROSTATE-MCRPC-2L-LU-PSMA
+
+sources: [SRC-NCCN-PROSTATE-2025]
+last_reviewed: null
+notes: >
+  ~10-15% of mCRPC patients are PSMA-PET-negative or have heterogeneous
+  uptake disqualifying for Lu-PSMA per VISION criteria. Required
+  pre-screening test with significant sensitivity / specificity caveats.

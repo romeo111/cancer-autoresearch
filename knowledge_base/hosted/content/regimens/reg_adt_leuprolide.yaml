@@ -1,0 +1,35 @@
+id: REG-ADT-LEUPROLIDE
+name: "ADT — leuprolide depot (continuous)"
+name_ua: "АДТ — лейпрорелін депо (безперервно)"
+alternate_names: ["LHRH agonist monotherapy", "Leuprolide ADT"]
+
+components:
+  - drug_id: DRUG-LEUPROLIDE
+    dose: "11.25 mg IM q3 months (or 22.5 mg q6 months)"
+    schedule: "Continuous from initiation"
+    route: IM
+
+cycle_length_days: 90
+total_cycles: "Continuous until disease progression to CRPC"
+toxicity_profile: low-moderate
+
+premedication:
+  - "Bicalutamide 50 mg PO daily x 2-4 weeks at initiation if high-volume disease (anti-androgen flare protection)"
+mandatory_supportive_care:
+  - SUP-BONE-HEALTH-PROSTATE
+monitoring_schedule_id: null
+
+dose_adjustments: []
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: "ADT backbone — НСЗУ-reimbursed."
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Backbone for hormone-sensitive disease. Almost always combined with
+  ARPI (abiraterone, enzalutamide, apalutamide, darolutamide) — ADT-mono
+  is the older standard of care, now reserved for patients unable to
+  tolerate ARPI addition.

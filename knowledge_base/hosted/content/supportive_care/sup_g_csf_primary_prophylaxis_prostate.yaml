@@ -1,0 +1,29 @@
+id: SUP-G-CSF-PRIMARY-PROPHYLAXIS-PROSTATE
+intervention_type: growth_factor
+name: "Primary G-CSF prophylaxis for ARASENS triplet (prostate)"
+name_ua: "Первинна профілактика Г-КСФ для трипл ARASENS (РПЗ)"
+
+rationale: >
+  Prevent febrile neutropenia during docetaxel-containing ARASENS triplet
+  in mHSPC (FN risk ≥10-20% with patient risk factors per ESMO/ASCO).
+  Standard of care from cycle 1 in elderly / fragile / prior-chemo
+  patients receiving the triplet.
+
+standard_intervention:
+  drug_id: DRUG-FILGRASTIM
+  dose: "5 mcg/kg SC daily x 7-10 days starting ~24 hours post-chemo"
+
+alternatives: []
+
+co_interventions:
+  - "Patient education on neutropenic-fever symptoms (fever ≥38.3°C OR ≥38.0°C sustained)"
+  - "24/7 access pathway to chemo-experienced medical team"
+
+contraindications: []
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Disease-scoped entry to avoid colliding with potential cross-disease
+  consolidation later. Filgrastim biosimilars НСЗУ-reimbursed in UA;
+  pegfilgrastim alternative not yet in KB.

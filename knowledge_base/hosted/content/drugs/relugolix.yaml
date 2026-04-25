@@ -1,0 +1,35 @@
+id: DRUG-RELUGOLIX
+names:
+  preferred: "Relugolix"
+  ukrainian: "Релуголікс"
+  english: "Relugolix"
+  brand_names: ["Orgovyx"]
+atc_code: L02BX04
+rxnorm_id: null
+drug_class: "GnRH antagonist (oral)"
+mechanism: >
+  Oral GnRH-receptor antagonist — first oral ADT option. Rapid testosterone suppression; cardiovascular profile favorable vs LHRH agonists in HERO trial.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not yet registered in Ukraine as of 2025; access only via off-label import or trials. Add to clinical-review queue for UA-availability tracking."
+
+typical_dosing: >
+  360 mg PO loading dose day 1, then 120 mg PO once daily.
+
+key_toxicities:
+  - Hot flashes
+  - Diarrhea (~12%)
+  - Constipation
+  - Fatigue
+  - Same metabolic / bone class effects as injectable ADT
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Best CV safety profile of any ADT in HERO trial (54% relative MACE reduction vs leuprolide). UA-access major barrier; flagged for clinician review.

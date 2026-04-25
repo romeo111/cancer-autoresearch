@@ -1,0 +1,47 @@
+id: REG-ADT-ABIRATERONE
+name: "ADT + abiraterone + prednisone (continuous)"
+name_ua: "АДТ + абіратерон + преднізолон (безперервно)"
+alternate_names: ["LATITUDE regimen (mHSPC)", "COU-AA-302 regimen (mCRPC)"]
+
+components:
+  - drug_id: DRUG-LEUPROLIDE
+    dose: "11.25 mg IM q3 months"
+    schedule: "Continuous from initiation"
+    route: IM
+  - drug_id: DRUG-ABIRATERONE
+    dose: "1000 mg PO daily on empty stomach"
+    schedule: "Continuous"
+    route: PO
+  - drug_id: DRUG-PREDNISONE
+    dose: "5 mg PO BID (mCRPC) OR 5 mg PO daily (mHSPC)"
+    schedule: "Continuous with abiraterone"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression or unacceptable toxicity"
+toxicity_profile: moderate
+
+premedication: []
+mandatory_supportive_care:
+  - SUP-BONE-HEALTH-PROSTATE
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Severe hepatic impairment (Child-Pugh C)"
+    modification: "Avoid abiraterone"
+  - condition: "Hypokalemia or fluid retention"
+    modification: "Increase prednisone dose, add antihypertensive / K+ supplement"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: "Generic abiraterone widely available; reimbursed for mHSPC + mCRPC."
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  LATITUDE: ADT + abiraterone superior to ADT alone in high-risk mHSPC.
+  COU-AA-302 / COU-AA-301: established in chemo-naive and post-chemo
+  mCRPC. Always with prednisone — NEVER alone (mineralocorticoid syndrome).
+
+  Cross-disease use: same regimen reused for mCRPC 1L and high-risk mHSPC.

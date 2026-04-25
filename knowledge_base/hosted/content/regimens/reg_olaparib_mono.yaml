@@ -1,0 +1,41 @@
+id: REG-OLAPARIB-MONO
+name: "Olaparib monotherapy (mCRPC, HRR-mutant)"
+name_ua: "Олапариб монотерапія (мКРРПЗ, HRR-мутант)"
+alternate_names: ["PROfound regimen"]
+
+components:
+  - drug_id: DRUG-OLAPARIB
+    dose: "300 mg PO BID continuous"
+    schedule: "Until progression or unacceptable toxicity"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression"
+toxicity_profile: moderate
+
+premedication: []
+mandatory_supportive_care:
+  - SUP-BONE-HEALTH-PROSTATE
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "CrCl 31-50 mL/min"
+    modification: "Reduce to 200 mg PO BID"
+  - condition: "CrCl <30 mL/min"
+    modification: "Avoid"
+  - condition: "Anemia ≥G2"
+    modification: "Hold; reduce to 250 mg → 200 mg BID stepwise"
+  - condition: "New respiratory symptoms"
+    modification: "Hold; rule out pneumonitis"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Registered for ovarian/breast indications; prostate reimbursement under negotiation. Out-of-pocket for prostate use until formulary update."
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  PROfound: olaparib superior to enzalutamide / abiraterone in HRR-mutant
+  mCRPC post-ARPI. BRCA1/2 cohort largest benefit. Requires germline +/-
+  somatic HRR testing pre-start.

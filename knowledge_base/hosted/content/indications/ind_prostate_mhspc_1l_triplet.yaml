@@ -1,0 +1,53 @@
+id: IND-PROSTATE-MHSPC-1L-TRIPLET
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-PROSTATE
+  disease_state: mHSPC
+  line_of_therapy: 1
+  stage_requirements: ["IV"]
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 1
+
+recommended_regimen: REG-ADT-DAROLUTAMIDE-DOCETAXEL
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "PSA <0.2 ng/mL at 9 months in ~55-65%"
+  median_radiographic_pfs_months: 36
+  median_overall_survival_months: "Not yet reached (ARASENS final analysis pending)"
+  hr_overall_survival: "0.68"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-PROSTATE-FRAILTY-AGE
+required_tests:
+  - TEST-PSA-SERUM
+  - TEST-TESTOSTERONE-SERUM
+  - TEST-BONE-SCAN
+  - TEST-GERMLINE-BRCA-PANEL
+desired_tests:
+  - TEST-PSMA-PET
+  - TEST-SOMATIC-HRR-PANEL
+
+sources:
+  - source_id: SRC-NCCN-PROSTATE-2025
+    weight: primary
+  - source_id: SRC-ESMO-PROSTATE-2024
+    weight: primary
+
+last_reviewed: null
+reviewers: []
+
+notes: >
+  ARASENS (darolutamide + docetaxel + ADT): OS benefit in high-volume
+  mHSPC. Requires docetaxel-eligible patient. Alternative formulations:
+  ADT + abiraterone + docetaxel (PEACE-1) for centers without
+  darolutamide access.

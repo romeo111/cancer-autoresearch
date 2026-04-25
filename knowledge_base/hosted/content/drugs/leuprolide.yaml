@@ -1,0 +1,37 @@
+id: DRUG-LEUPROLIDE
+names:
+  preferred: "Leuprolide"
+  ukrainian: "Лейпрорелін"
+  english: "Leuprolide"
+  brand_names: ["Lupron", "Eligard"]
+atc_code: L02AE02
+rxnorm_id: null
+drug_class: "GnRH agonist (LHRH agonist)"
+mechanism: >
+  GnRH receptor agonist — initial pituitary stimulation followed by receptor desensitization within 2-4 weeks, suppressing LH/FSH and reducing testicular testosterone production to castrate levels (<50 ng/dL).
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: null
+    notes: "Standard ADT backbone — НСЗУ reimbursed as part of cancer-pathway essential medicines."
+
+typical_dosing: >
+  3.75 mg IM monthly OR 11.25 mg IM q3 months OR 22.5 mg IM q6 months. With initial flare protection — anti-androgen (e.g., bicalutamide 50 mg PO daily x 4 weeks) to prevent tumor flare in patients with high disease burden.
+
+key_toxicities:
+  - Tumor flare in first 2-4 weeks (use anti-androgen pre-treatment)
+  - Hot flashes (~70%)
+  - Loss of libido / erectile dysfunction (~90%)
+  - Bone-mineral-density loss (DEXA monitoring + Ca/Vit-D ± antiresorptives)
+  - Cardiovascular events (modest excess; assess baseline risk)
+  - Hyperglycemia / metabolic syndrome
+  - Mood disturbance
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Workhorse ADT for both mHSPC and mCRPC. Initial flare risk requires anti-androgen overlap — failure to do so can precipitate spinal cord compression in vertebral-metastasis patients.

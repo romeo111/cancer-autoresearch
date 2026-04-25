@@ -1,0 +1,31 @@
+id: RF-PROSTATE-INFECTION-SCREENING
+definition: "Pre-treatment HBV/HCV/HIV serology + dental evaluation (denosumab/zoledronate ONJ risk; lutetium-PSMA xerostomia) standard for mCRPC initiation."
+definition_ua: "Скринінг HBV/HCV/HIV перед початком лікування + стоматологічна оцінка (ризик ONJ при деносумабі/золедронаті; ксеростомія при лютецій-PSMA) — стандарт перед початком mCRPC."
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "dental_clearance_pending"
+      value: true
+    - finding: "hbsag"
+      value: "positive"
+
+clinical_direction: investigate
+severity: minor
+priority: 100
+category: infection-screening
+
+relevant_diseases: [DIS-PROSTATE]
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-PROSTATE-2025
+  - SRC-ESMO-PROSTATE-2024
+
+last_reviewed: null
+draft: false
+
+notes: >
+  Cross-disease HBV reactivation handled by RF-UNIVERSAL-HBV-REACTIVATION-
+  RISK. Dental clearance pre-bone-modifying-agent unique to bone-meta
+  diseases (prostate, breast, MM).

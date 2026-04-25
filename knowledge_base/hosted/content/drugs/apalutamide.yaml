@@ -1,0 +1,36 @@
+id: DRUG-APALUTAMIDE
+names:
+  preferred: "Apalutamide"
+  ukrainian: "Апалутамід"
+  english: "Apalutamide"
+  brand_names: ["Erleada"]
+atc_code: L02BB05
+rxnorm_id: null
+drug_class: "Androgen receptor pathway inhibitor (ARPI)"
+mechanism: >
+  AR antagonist similar to enzalutamide; FDA-approved for nmCRPC (SPARTAN) and mHSPC (TITAN).
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Registered, not currently NSZU-reimbursed; out-of-pocket. Verify funding pathway pre-start."
+
+typical_dosing: >
+  240 mg PO once daily.
+
+key_toxicities:
+  - Fatigue
+  - Rash (~24%) — sometimes severe; manage with topical steroids, dose hold/reduce, or discontinuation
+  - Falls / fractures (especially with concomitant ADT)
+  - Hypothyroidism (~8%) — monitor TSH
+  - Hot flashes
+  - Hypertension
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Distinguishing AE from enzalutamide: rash is class-marker and notable. Fewer cognitive AEs than enzalutamide (less CNS penetration).

@@ -1,0 +1,26 @@
+id: CI-PROSTATE-SEIZURE-HISTORY-ENZALUTAMIDE
+description: "History of seizures or condition predisposing to seizures (e.g., brain metastases, recent stroke) — enzalutamide contraindicated due to dose-dependent seizure risk (~0.4% in pivotal trials)."
+description_ua: "Анамнез судом або стани, що схиляють до них (наприклад, метастази в мозок, нещодавній інсульт) — ензалутамід протипоказаний через дозозалежний ризик судом (~0.4% у реєстраційних дослідженнях)."
+
+severity: absolute
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "seizure_history"
+      value: true
+    - finding: "brain_metastases"
+      value: true
+
+affects_drugs:
+  - DRUG-ENZALUTAMIDE
+affects_regimens:
+  - REG-ADT-ENZALUTAMIDE
+affects_indications: []
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  Apalutamide and darolutamide do NOT carry the same seizure warning
+  (lower CNS penetration). Patients with seizure history can safely
+  receive these alternatives.

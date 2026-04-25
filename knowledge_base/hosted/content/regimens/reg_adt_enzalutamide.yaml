@@ -1,0 +1,41 @@
+id: REG-ADT-ENZALUTAMIDE
+name: "ADT + enzalutamide (continuous)"
+name_ua: "АДТ + ензалутамід (безперервно)"
+alternate_names: ["ENZAMET-style", "PREVAIL regimen", "AFFIRM regimen"]
+
+components:
+  - drug_id: DRUG-LEUPROLIDE
+    dose: "11.25 mg IM q3 months"
+    schedule: "Continuous"
+    route: IM
+  - drug_id: DRUG-ENZALUTAMIDE
+    dose: "160 mg PO daily"
+    schedule: "Continuous"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous until progression or unacceptable toxicity"
+toxicity_profile: low-moderate
+
+premedication: []
+mandatory_supportive_care:
+  - SUP-BONE-HEALTH-PROSTATE
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "History of seizures"
+    modification: "Avoid enzalutamide (alternative: apalutamide / darolutamide)"
+  - condition: "Severe hepatic impairment (Child-Pugh C)"
+    modification: "Reduce to 80 mg PO daily"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: "Reimbursed for mHSPC + mCRPC."
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  ENZAMET established benefit in mHSPC. PREVAIL: 1L mCRPC vs ADT-mono.
+  AFFIRM: post-docetaxel mCRPC. Most CNS penetration of ARPIs — cognitive
+  AEs more common in elderly.

@@ -1,0 +1,56 @@
+id: IND-PROSTATE-MCRPC-1L-ARPI
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-PROSTATE
+  disease_state: mCRPC
+  line_of_therapy: 1
+  stage_requirements: ["IV"]
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded:
+    - biomarker_id: BIO-HRR-PANEL
+      value_constraint: "negative"
+      required: false
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-ADT-ENZALUTAMIDE
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "PSA decline ≥50% in ~78%"
+  median_radiographic_pfs_months: 20
+  median_overall_survival_months: 35
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-PROSTATE-HIGH-RISK-BIOLOGY
+required_tests:
+  - TEST-PSA-SERUM
+  - TEST-TESTOSTERONE-SERUM
+  - TEST-BONE-SCAN
+  - TEST-GERMLINE-BRCA-PANEL
+desired_tests:
+  - TEST-PSMA-PET
+  - TEST-SOMATIC-HRR-PANEL
+
+sources:
+  - source_id: SRC-NCCN-PROSTATE-2025
+    weight: primary
+  - source_id: SRC-ESMO-PROSTATE-2024
+    weight: primary
+
+last_reviewed: null
+reviewers: []
+
+notes: >
+  Workhorse mCRPC 1L for non-HRR-mutant disease with prior ADT exposure.
+  Patients ARPI-naive (rare in modern era — most have had ARPI in mHSPC):
+  enzalutamide / abiraterone preferred. Patients with prior ARPI: switch
+  ARPI not generally recommended; consider docetaxel, PARPi (if HRR+),
+  or Lu-PSMA (if PSMA-PET+).

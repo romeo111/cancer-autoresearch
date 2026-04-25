@@ -1,0 +1,32 @@
+id: BIO-BRCA-GERMLINE
+names:
+  preferred: "Germline BRCA1/2 mutation status"
+  ukrainian: "Гермінальний статус мутацій BRCA1/2"
+  english: "Germline BRCA1/2 mutation status"
+codes:
+  loinc: "94075-3"
+
+biomarker_type: mutation
+mutation_details:
+  gene: "BRCA1, BRCA2"
+  inheritance: germline
+  type: "various pathogenic / likely-pathogenic variants"
+  functional_impact: "loss-of-function (HRR pathway)"
+
+measurement:
+  method: "NGS panel (germline) with Sanger confirmation of variants of interest"
+  sensitivity_requirement: "Pathogenic variants captured per ACMG variant-classification standards"
+
+interpretation_notes: >
+  Pathogenic / likely-pathogenic germline BRCA1 or BRCA2 variant. Confers:
+  • PARPi indication (olaparib, talazoparib, niraparib) in mCRPC
+  • Aggressive natural history — earlier metastasis, shorter response durations
+  • Cascade-testing recommendation for first-degree relatives
+
+related_biomarkers: ["BIO-HRR-PANEL"]
+
+last_reviewed: null
+notes: >
+  Germline testing should be offered to all metastatic prostate patients
+  per NCCN 2025 (regardless of family history). Cascade testing important
+  for relatives. Germline + tumor (somatic) testing complementary.

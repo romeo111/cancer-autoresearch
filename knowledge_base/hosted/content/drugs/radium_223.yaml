@@ -1,0 +1,35 @@
+id: DRUG-RADIUM-223
+names:
+  preferred: "Radium-223 dichloride"
+  ukrainian: "Радій-223 дихлорид"
+  english: "Radium-223 dichloride"
+  brand_names: ["Xofigo"]
+atc_code: V10XX03
+rxnorm_id: null
+drug_class: "Bone-seeking α-emitter"
+mechanism: >
+  Calcium-mimetic α-emitter that incorporates into hydroxyapatite at sites of high bone turnover (osteoblastic metastases). α-radiation has ~100 µm range — high local tumor cell kill with minimal marrow toxicity vs β-emitters.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: null
+    notes: "Not registered in Ukraine. Access via international referral."
+
+typical_dosing: >
+  55 kBq/kg IV q4 weeks × 6 cycles. Symptomatic bone-predominant mCRPC without visceral metastases (visceral mets exclude — ALSYMPCA exclusion criterion).
+
+key_toxicities:
+  - Anemia
+  - Diarrhea
+  - Bone pain (transient flare)
+  - Falls (population is fragile)
+  - Avoid concurrent abiraterone + prednisone — ERA-223 trial showed excess fractures and deaths
+
+sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
+last_reviewed: null
+notes: >
+  ALSYMPCA: OS benefit + symptomatic skeletal-event reduction in bone-predominant mCRPC. ERA-223 caution: avoid combination with abiraterone (use sequentially). UA-access barrier.
