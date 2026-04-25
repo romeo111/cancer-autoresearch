@@ -24,6 +24,14 @@ from .mdt_orchestrator import (
     OpenQuestion,
     orchestrate_mdt,
 )
+from .persistence import (
+    DEFAULT_ROOT as PATIENT_PLANS_ROOT,
+    latest_version_path,
+    list_versions,
+    load_result,
+    save_result,
+    update_superseded_by_on_disk,
+)
 from .plan import PlanResult, generate_plan
 from .provenance import (
     DecisionProvenanceGraph,
@@ -38,13 +46,19 @@ __all__ = [
     "MDTOrchestrationResult",
     "MDTRequiredRole",
     "OpenQuestion",
+    "PATIENT_PLANS_ROOT",
     "PlanResult",
     "ProvenanceEvent",
     "generate_diagnostic_brief",
     "generate_plan",
     "is_diagnostic_profile",
     "is_treatment_profile",
+    "latest_version_path",
+    "list_versions",
+    "load_result",
     "make_event",
     "orchestrate_mdt",
     "revise_plan",
+    "save_result",
+    "update_superseded_by_on_disk",
 ]

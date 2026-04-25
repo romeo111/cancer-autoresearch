@@ -407,9 +407,60 @@ DLBCL confirmed"`. PREV.json — це попередній output `--json-output
 від попереднього run.
 
 **Persistence:** як і раніше, plan instances не у public KB —
-лежать у `patient_plans/<patient_id>/v<N>.{yaml,json}` (gitignored
-per CHARTER §9.3). Revisions тільки **готують** новий артефакт;
-зберігати — задача caller.
+лежать у `patient_plans/<patient_id>/<plan_id>.json` (gitignored
+per CHARTER §9.3). Реалізація — `knowledge_base/engine/persistence.py`
+(див. §7.2).
+
+### 7.2. Persistence layer
+
+`knowledge_base/engine/persistence.py` надає:
+
+| API | Дія |
+|---|---|
+| `save_result(result, root=patient_plans/)` | Серіалізує `PlanResult` / `DiagnosticPlanResult` у `<root>/<patient_id>/<plan_id>.json`. Повертає шлях. |
+| `load_result(path_or_plan_id, root=patient_plans/)` | Реконструює result з file path АБО з plan_id (resolve через glob `<root>/*/<plan_id>.json`). |
+| `list_versions(patient_id, root=patient_plans/)` | Повертає `[{plan_id, version, mode, supersedes, superseded_by, path}]` відсортовано: diagnostic → treatment, потім за `version`. |
+| `update_superseded_by_on_disk(plan_id, new_id, root=patient_plans/)` | In-place мутує `superseded_by` у збереженому файлі. Використовується revisions workflow для синхронізації on-disk chain. |
+| `latest_version_path(patient_id, root=patient_plans/)` | Шлях до найсвіжішої версії або `None`. |
+
+**Hard guarantees:**
+- `patient_plans/` у `.gitignore` за замовчуванням (CHARTER §9.3).
+- `save_result` відмовляє коли `patient_id` відсутній — відмовляється
+  тихо писати в `ANONYMOUS/`.
+- `update_superseded_by_on_disk` raises `FileNotFoundError` якщо
+  попередньої версії немає на диску — caller дізнається явно.
+- Format = JSON (не YAML, бо PlanResult / DiagnosticPlanResult
+  серіалізуються через dataclass `to_dict()` + Pydantic `model_dump()`,
+  що natively JSON).
+
+**CLI integration:**
+
+```bash
+# Generate + auto-save
+python -m knowledge_base.engine.cli patient.json --save
+# → patient_plans/PZ-001/PLAN-PZ-001-V1.json
+
+# Show all saved versions for a patient
+python -m knowledge_base.engine.cli --list-versions PZ-001
+
+# Revise: --revise приймає plan_id (resolves через persistence layer)
+# АБО explicit JSON path. With --save: writes new + updates previous in place.
+python -m knowledge_base.engine.cli patient_v2.json \
+    --revise PLAN-PZ-001-V1 \
+    --revision-trigger "new lab 2026-05-10: FIB-4 worsened" \
+    --save
+# → patient_plans/PZ-001/PLAN-PZ-001-V2.json (new)
+# → patient_plans/PZ-001/PLAN-PZ-001-V1.json (updated: superseded_by=...-V2)
+```
+
+**Що не входить у MVP:**
+- Database backend (SQLite/Postgres) — JSON files достатньо для current scale
+- Encryption-at-rest — patient data але development-only зараз;
+  якщо deployment у хмарі — доcaller'а
+- Network sync / cloud backup — розглядається коли буде > 1 OpenOnco
+  installation
+- Search / cross-patient analytics — окремий "Case cohort matching"
+  workstream у roadmap
 
 ---
 

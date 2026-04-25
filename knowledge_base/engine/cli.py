@@ -34,6 +34,13 @@ from .diagnostic import (
     is_treatment_profile,
 )
 from .mdt_orchestrator import orchestrate_mdt
+from .persistence import (
+    DEFAULT_ROOT as PATIENT_PLANS_ROOT,
+    list_versions,
+    load_result,
+    save_result,
+    update_superseded_by_on_disk,
+)
 from .plan import PlanResult, generate_plan
 from .revisions import revise_plan
 
@@ -155,52 +162,51 @@ def _print_diagnostic_brief(result) -> None:
             print(f"  - {w}")
 
 
-def _load_previous_result(path: Path):
-    """Reconstruct a PlanResult or DiagnosticPlanResult from a JSON file
-    produced by an earlier --json-output run. Returns just the minimum
-    needed by revise_plan(): the wrapped Plan / DiagnosticPlan model."""
-    from knowledge_base.schemas import DiagnosticPlan, Plan
+def _run_list_versions(patient_id: str, root: Path) -> int:
+    versions = list_versions(patient_id, root=root)
+    if not versions:
+        print(f"No saved plans for patient_id={patient_id!r} under {root}/")
+        return 0
+    print(f"Saved plans for patient_id={patient_id!r}  ({len(versions)} total):")
+    print()
+    for v in versions:
+        chain = ""
+        if v["supersedes"]:
+            chain += f" ← {v['supersedes']}"
+        if v["superseded_by"]:
+            chain += f" → {v['superseded_by']}"
+        print(f"  [{v['mode']:11s}] v{v['version']}  {v['plan_id']}{chain}")
+        print(f"               file: {v['path']}")
+    return 0
 
-    raw = json.loads(path.read_text(encoding="utf-8"))
-    if raw.get("diagnostic_plan"):
-        dp = DiagnosticPlan.model_validate(raw["diagnostic_plan"])
-        # Build a minimal DiagnosticPlanResult — fields revise_plan reads
-        return DiagnosticPlanResult(
-            patient_id=raw.get("patient_id"),
-            suspicion=None,
-            diagnostic_plan=dp,
-            matched_workup_id=raw.get("matched_workup_id"),
-            warnings=list(raw.get("warnings") or []),
-        )
-    if raw.get("plan"):
-        plan = Plan.model_validate(raw["plan"])
-        return PlanResult(
-            patient_id=raw.get("patient_id"),
-            disease_id=raw.get("disease_id"),
-            algorithm_id=raw.get("algorithm_id"),
-            plan=plan,
-            default_indication_id=raw.get("default_indication_id"),
-            alternative_indication_id=raw.get("alternative_indication_id"),
-            default_indication=raw.get("default_indication"),
-            alternative_indication=raw.get("alternative_indication"),
-            trace=list(raw.get("trace") or []),
-            warnings=list(raw.get("warnings") or []),
-        )
-    raise ValueError(
-        f"{path} does not look like a CLI --json-output (no `plan` or `diagnostic_plan` key)."
-    )
+
+def _load_previous_result(path_or_id, save_dir: Path = PATIENT_PLANS_ROOT):
+    """Reconstruct a PlanResult or DiagnosticPlanResult.
+
+    Accepts either:
+    - a Path to a JSON file (CLI --json-output dump or persistence file)
+    - a string that is a plan_id (resolved via persistence layer)
+    """
+    return load_result(path_or_id, root=save_dir)
 
 
 def _run_revise(
     patient: dict,
-    prev_path: Path,
+    prev_arg,  # str (path or plan_id) — argparse passed Path, but accept string too
     trigger: str,
     kb_root: Path,
     json_output: Path | None,
     mdt: bool,
+    save: bool = False,
+    save_dir: Path = PATIENT_PLANS_ROOT,
 ) -> int:
     try:
-        previous = _load_previous_result(prev_path)
+        # `prev_arg` is the value of --revise. If the path doesn't exist as
+        # a file, fall back to interpreting it as a plan_id under save_dir.
+        if isinstance(prev_arg, Path) and not prev_arg.is_file():
+            previous = _load_previous_result(str(prev_arg), save_dir=save_dir)
+        else:
+            previous = _load_previous_result(prev_arg, save_dir=save_dir)
     except Exception as e:
         print(f"ERROR loading previous plan: {e}", file=sys.stderr)
         return 2
@@ -271,12 +277,36 @@ def _run_revise(
             encoding="utf-8",
         )
         print(f"\nRevision JSON written to {json_output}")
+
+    if save:
+        try:
+            saved_new = save_result(new_result, root=save_dir)
+            print(f"\nNew plan persisted: {saved_new}")
+            try:
+                updated_prev = update_superseded_by_on_disk(prev_id, new_id, root=save_dir)
+                print(f"Previous plan updated in place (superseded_by={new_id}): {updated_prev}")
+            except FileNotFoundError:
+                print(
+                    f"Warning: previous plan {prev_id} not found in {save_dir}/ — "
+                    "superseded_by chain is in-memory only on disk side. "
+                    "Original was loaded from an explicit file path; persist it via --save first.",
+                    file=sys.stderr,
+                )
+        except (ValueError, OSError) as e:
+            print(f"ERROR persisting plan: {e}", file=sys.stderr)
+            return 2
+
     return 0
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="OpenOnco rule engine — generate a Plan or DiagnosticPlan.")
-    parser.add_argument("patient", type=Path, help="Patient profile JSON")
+    parser.add_argument(
+        "patient",
+        type=Path,
+        nargs="?",
+        help="Patient profile JSON (omit when using --list-versions)",
+    )
     parser.add_argument(
         "--kb",
         type=Path,
@@ -307,8 +337,34 @@ def main() -> int:
         default=None,
         help="Free-text description of what new data triggered this revision (audit hook).",
     )
+    parser.add_argument(
+        "--save",
+        action="store_true",
+        help=("Persist generated plan under patient_plans/<patient_id>/<plan_id>.json "
+              "(gitignored per CHARTER §9.3). With --revise, also updates the previous "
+              "file's superseded_by in place."),
+    )
+    parser.add_argument(
+        "--save-dir",
+        type=Path,
+        default=PATIENT_PLANS_ROOT,
+        help=f"Persistence root (default: {PATIENT_PLANS_ROOT}/)",
+    )
+    parser.add_argument(
+        "--list-versions",
+        type=str,
+        metavar="PATIENT_ID",
+        help="List all saved plan versions for a patient_id, then exit.",
+    )
     args = parser.parse_args()
 
+    # ── List versions and exit (no patient profile needed) ──────────────
+    if args.list_versions:
+        return _run_list_versions(args.list_versions, args.save_dir)
+
+    if args.patient is None:
+        print("ERROR: patient profile is required (or use --list-versions PATIENT_ID)", file=sys.stderr)
+        return 2
     if not args.patient.is_file():
         print(f"ERROR: patient file not found: {args.patient}", file=sys.stderr)
         return 2
@@ -317,14 +373,14 @@ def main() -> int:
 
     # ── Revision mode ────────────────────────────────────────────────────
     if args.revise is not None:
-        if not args.revise.is_file():
-            print(f"ERROR: previous plan file not found: {args.revise}", file=sys.stderr)
-            return 2
         if not args.revision_trigger:
             print("ERROR: --revise requires --revision-trigger \"...\"", file=sys.stderr)
             return 2
+        # `--revise` accepts either an explicit file path or a plan_id.
+        # _run_revise / _load_previous_result handles both; do not pre-check.
         return _run_revise(patient, args.revise, args.revision_trigger, args.kb,
-                           json_output=args.json_output, mdt=args.mdt)
+                           json_output=args.json_output, mdt=args.mdt,
+                           save=args.save, save_dir=args.save_dir)
 
     # Mode dispatch — see DIAGNOSTIC_MDT_SPEC §6.3
     use_diagnostic = args.diagnostic or (
@@ -351,6 +407,13 @@ def main() -> int:
                 encoding="utf-8",
             )
             print(f"\nFull DiagnosticPlan JSON written to {args.json_output}")
+        if args.save and diag_result.diagnostic_plan is not None:
+            try:
+                saved_path = save_result(diag_result, root=args.save_dir)
+                print(f"\nDiagnosticPlan persisted: {saved_path}")
+            except (ValueError, OSError) as e:
+                print(f"ERROR persisting plan: {e}", file=sys.stderr)
+                return 2
         if diag_result.diagnostic_plan is None:
             return 1
         return 0
@@ -407,6 +470,14 @@ def main() -> int:
             encoding="utf-8",
         )
         print(f"\nFull Plan JSON written to {args.json_output}")
+
+    if args.save and result.plan is not None:
+        try:
+            saved_path = save_result(result, root=args.save_dir)
+            print(f"\nPlan persisted: {saved_path}")
+        except (ValueError, OSError) as e:
+            print(f"ERROR persisting plan: {e}", file=sys.stderr)
+            return 2
 
     if not result.default_indication_id:
         return 1
