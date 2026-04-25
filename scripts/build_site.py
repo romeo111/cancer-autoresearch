@@ -398,6 +398,33 @@ def bundle_examples(output_dir: Path) -> dict:
     return {"path": "examples.json", "count": len(payload)}
 
 
+def bundle_questionnaires(output_dir: Path) -> dict:
+    """Pre-render all curated Questionnaire YAML files to a single
+    JSON file at docs/questionnaires.json so the form on /try.html can
+    fetch them with one HTTP request — no Pyodide needed just to render.
+
+    Pyodide is still required for the live evaluator (which runs against
+    the real engine), but the form itself renders from this JSON.
+    """
+    qsrc = REPO_ROOT / "knowledge_base" / "hosted" / "content" / "questionnaires"
+    payload = []
+    if qsrc.is_dir():
+        import yaml as _yaml
+        for path in sorted(qsrc.glob("*.yaml")):
+            try:
+                data = _yaml.safe_load(path.read_text(encoding="utf-8"))
+                if isinstance(data, dict):
+                    payload.append(data)
+            except Exception:
+                continue
+    out = output_dir / "questionnaires.json"
+    out.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    return {"path": "questionnaires.json", "count": len(payload)}
+
+
 # ── Landing page (index.html) ─────────────────────────────────────────────
 
 
@@ -460,8 +487,10 @@ def _render_top_bar(active: str = "", target_lang: str = "uk",
             f'<a href="/specs.html"{cls("specs")}>Специфікації</a>'
         )
 
-    other_lang = "EN" if target_lang == "uk" else "UA"
+    cur_flag = "🇺🇦" if target_lang == "uk" else "🇬🇧"
+    other_flag = "🇬🇧" if target_lang == "uk" else "🇺🇦"
     cur_lang = "UA" if target_lang == "uk" else "EN"
+    other_lang = "EN" if target_lang == "uk" else "UA"
 
     return f"""<header class="top-bar">
   <div class="brand-line">
@@ -475,8 +504,8 @@ def _render_top_bar(active: str = "", target_lang: str = "uk",
   </nav>
   <div class="top-right">
     <div class="lang-switch" role="group" aria-label="Language">
-      <span class="lang-current">{cur_lang}</span>
-      <a class="lang-other" href="{lang_switch_href}">{other_lang}</a>
+      <span class="lang-current"><span class="lang-flag">{cur_flag}</span>{cur_lang}</span>
+      <a class="lang-other" href="{lang_switch_href}"><span class="lang-flag">{other_flag}</span>{other_lang}</a>
     </div>
     <a href="{try_path}" class="btn-cta-try" {'aria-current="page"' if active == "try" else ""}>{labels['try_cta']}</a>
   </div>
@@ -510,7 +539,7 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OpenOnco — Open-source CDS for oncology</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
 </head>
 <body>
 {_render_top_bar(active="home", target_lang=target_lang, lang_switch_href=_lang_switch_href("home", target_lang))}
@@ -687,7 +716,7 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
       правилами і списком джерел.
     </p>
     <figure class="how-fig">
-      <img src="MDT.png" alt="Мультидисциплінарна команда — як спеціалісти спільно ухвалюють план лікування пацієнта" loading="lazy">
+      <img src="/MDT.png" alt="Мультидисциплінарна команда — як спеціалісти спільно ухвалюють план лікування пацієнта" loading="lazy">
       <figcaption>Кожна роль (Хірург-онколог, Хіміотерапевт, Радіолог, Патолог, Молекулярний генетик, Радіотерапевт, Психолог/паліатив тощо) у нашій системі — це <strong>скіл</strong> із власною версією. Активується автоматично при умовах профілю пацієнта і додає до плану свої open-questions, contraindications, supportive care.</figcaption>
     </figure>
   </section>
@@ -1001,6 +1030,9 @@ def _wrap_case_html(rendered_html: str, case: CaseEntry,
         '.case-bar .lang-mini{font-family:JetBrains Mono,monospace;font-size:10px;'
         'background:rgba(255,255,255,.1);padding:3px 7px;border-radius:3px;'
         'margin-left:14px;letter-spacing:.5px;}'
+        '.case-bar .lang-mini-current{font-family:JetBrains Mono,monospace;'
+        'font-size:11px;background:rgba(255,255,255,.18);padding:3px 8px;'
+        'border-radius:3px;letter-spacing:.5px;font-weight:600;}'
         '@media print{.case-bar{display:none;}}'
         '</style>\n'
     )
@@ -1008,18 +1040,22 @@ def _wrap_case_html(rendered_html: str, case: CaseEntry,
     back_label = "← Back to gallery" if target_lang == "en" else "← Назад до галереї"
     feedback_label = "Feedback on this case" if target_lang == "en" else "Feedback на цей кейс"
     gallery_href = "/en/gallery.html" if target_lang == "en" else "/gallery.html"
+    cur_flag = "🇺🇦" if target_lang == "uk" else "🇬🇧"
+    other_flag = "🇬🇧" if target_lang == "uk" else "🇺🇦"
+    cur_lang_label = "UA" if target_lang == "uk" else "EN"
     other_lang_label = "EN" if target_lang == "uk" else "UA"
     other_lang_href = _lang_switch_href("case", target_lang, case.case_id)
 
     bar_html = (
         '<div class="case-bar no-print">'
-        f'<div>OpenOnco · <strong>{case.label_ua}</strong></div>'
+        f'<div><span class="lang-mini-current" title="Active language">{cur_flag} {cur_lang_label}</span>'
+        f' · OpenOnco · <strong>{case.label_ua}</strong></div>'
         '<div>'
         f'<a href="{gallery_href}">{back_label}</a>'
         f'<a href="{GH_NEW_ISSUE}?title=%5Bfeedback%5D+'
         f'{case.case_id}&labels=tester-feedback" target="_blank" rel="noopener">'
         f'{feedback_label}</a>'
-        f'<a class="lang-mini" href="{other_lang_href}">{other_lang_label}</a>'
+        f'<a class="lang-mini" href="{other_lang_href}" title="Switch to {other_lang_label}">{other_flag} {other_lang_label}</a>'
         '</div>'
         '</div>\n'
     )
@@ -1121,6 +1157,10 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
   text-decoration: none; transition: background .12s;
 }
 .lang-switch .lang-other:hover { background: rgba(255,255,255,.12); color: white; }
+.lang-switch .lang-flag {
+  margin-right: 4px; font-size: 13px; line-height: 1;
+  filter: saturate(1.2);
+}
 
 /* CTA "Try it" button — distinct from nav (action, not reading) */
 .btn-cta-try {
@@ -2684,6 +2724,7 @@ def build_site(output_dir: Path) -> dict:
 
     engine_bundle = bundle_engine(output_dir)
     examples_payload = bundle_examples(output_dir)
+    questionnaires_payload = bundle_questionnaires(output_dir)
 
     return {
         "output_dir": str(output_dir),
@@ -2692,6 +2733,7 @@ def build_site(output_dir: Path) -> dict:
         "cases_en": case_paths_en,
         "engine_bundle": engine_bundle,
         "examples_payload": examples_payload,
+        "questionnaires_payload": questionnaires_payload,
         "landing_assets": landing_assets,
     }
 

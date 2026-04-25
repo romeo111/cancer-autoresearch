@@ -87,6 +87,10 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
   text-decoration: none; transition: background .12s;
 }
 .lang-switch .lang-other:hover { background: rgba(255,255,255,.12); color: white; }
+.lang-switch .lang-flag {
+  margin-right: 4px; font-size: 13px; line-height: 1;
+  filter: saturate(1.2);
+}
 
 /* CTA "Try it" button — distinct from nav (action, not reading) */
 .btn-cta-try {

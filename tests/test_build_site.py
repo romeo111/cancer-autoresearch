@@ -296,6 +296,32 @@ def test_try_cta_is_separate_action_button(site_dir: Path):
     assert 'class="top-right"' in html
 
 
+def test_en_pages_load_stylesheet_via_root_relative_path(site_dir: Path):
+    """Regression: /en/index.html that links to a relative `style.css`
+    resolves to /en/style.css and renders unstyled. Every page that lives
+    at non-root depth must use a root-relative `/style.css` link."""
+    for page in ("en/index.html", "en/gallery.html", "en/try.html"):
+        html = (site_dir / page).read_text(encoding="utf-8")
+        assert 'href="/style.css"' in html, (
+            f"{page} must load /style.css via root-relative path"
+        )
+        # The broken pattern (relative without leading slash) must not appear
+        # on the head <link>
+        assert '<link href="style.css"' not in html, (
+            f"{page} has a broken relative style.css link"
+        )
+
+
+def test_lang_switch_shows_flag_for_active_mode(site_dir: Path):
+    """User direction: small flag indicates the active language."""
+    ua = (site_dir / "index.html").read_text(encoding="utf-8")
+    en = (site_dir / "en" / "index.html").read_text(encoding="utf-8")
+    # UA flag on UA page, GB flag on EN page (in the lang-current span)
+    assert "🇺🇦" in ua and "🇬🇧" in ua, "UA page should show both flags"
+    assert "🇺🇦" in en and "🇬🇧" in en, "EN page should show both flags"
+    assert 'class="lang-flag"' in ua and 'class="lang-flag"' in en
+
+
 def test_en_landing_links_use_en_paths(site_dir: Path):
     """Top-bar links on /en/ pages must stay within /en/ scope (so the
     user keeps reading in English unless they explicitly toggle UA)."""
