@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="OpenOnco — Rod of Asclepius">
+  <!-- Rounded brand-green tile -->
+  <rect width="32" height="32" rx="6" fill="#14532d"/>
+  <!-- Staff (vertical) -->
+  <line x1="16" y1="5" x2="16" y2="27" stroke="#dcfce7" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- Snake body wrapping the staff (S-curves) -->
+  <path d="M16 8 C22 10 22 13 16 15 C10 17 10 20 16 22 C20 23.5 19 26 16 26.5"
+        stroke="#22c55e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Snake head -->
+  <circle cx="16" cy="7.5" r="2" fill="#22c55e"/>
+  <!-- Eye highlight -->
+  <circle cx="16.7" cy="7" r="0.45" fill="#dcfce7"/>
+</svg>
