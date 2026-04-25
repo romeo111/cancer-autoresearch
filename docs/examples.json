@@ -1,0 +1,507 @@
+[
+  {
+    "case_id": "hcv-mzl-reference",
+    "label": "HCV-MZL · Reference Case (Patient Zero)",
+    "file": "patient_zero_reference_case.json",
+    "json": {
+      "patient_id": "REFERENCE-CASE-0001",
+      "comment": "Synthetic HCV-MZL reference case per specs/REFERENCE_CASE_SPECIFICATION.md §2. NOT real patient data — fully synthesized for acceptance testing of the §1.3 critical structural criteria. Engine-required fields at top; the clinical_record block carries the spec-§2 patient profile template populated with realistic synthetic values, kept alongside so render layers and downstream tooling can read it.",
+      "disease": {
+        "icd_o_3_morphology": "9699/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-HCV-RNA": "positive"
+      },
+      "demographics": {
+        "age": 49,
+        "sex": "male",
+        "ecog": 1,
+        "decompensated_cirrhosis": false,
+        "fit_for_chemoimmunotherapy": true
+      },
+      "findings": {
+        "dominant_nodal_mass_cm": 5.3,
+        "mediastinal_ratio": 0.12,
+        "symptomatic_b_symptoms_severe": false,
+        "biopsy_shows_dlbcl": false,
+        "ldh_ratio_to_uln": 1.05,
+        "clinical_progression_weeks": 48,
+        "HCV RNA positive": true,
+        "Indolent presentation (non-bulky, asymptomatic or minimally symptomatic)": true
+      },
+      "clinical_record": {
+        "demographics": {
+          "patient_id": "REFERENCE-CASE-0001",
+          "gender": "male",
+          "birth_year_cohort": "1975-1979",
+          "age_at_diagnosis_range": "45-55",
+          "performance_status_ecog": 1,
+          "height_cm": 178,
+          "weight_kg": 82,
+          "bsa_m2": 2.0
+        },
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "HCV-associated marginal zone lymphoma",
+            "icd_o_3": "9699/3",
+            "icd_10": "C88.4",
+            "who_classification_5th_ed": "Extranodal marginal zone lymphoma of mucosa-associated lymphoid tissue",
+            "date_of_histological_confirmation": "[redacted]",
+            "biopsy_site": "root of tongue with tonsil involvement",
+            "diagnostic_method": "histological biopsy with IHC"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "IV-E",
+            "b_symptoms": false,
+            "bulky_disease_over_7cm": false,
+            "extranodal_involvement": true
+          }
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "MNDA": "positive",
+            "BCL2": "positive",
+            "FoxP1": "positive",
+            "c_MYC": "approximately_30_percent",
+            "Ki67_percent": 60,
+            "double_expressor_status": "no"
+          },
+          "molecular_tests": {
+            "NGS_panel": "not_performed",
+            "FISH_tests": "not_performed"
+          }
+        },
+        "infectious_status": {
+          "HCV": {
+            "status": "chronic_infection_confirmed",
+            "RNA_quantitative_IU_mL": 1240000,
+            "genotype": "1b",
+            "duration_known_years": 6,
+            "prior_DAA_treatment": "no"
+          },
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative",
+            "anti_HBs": "positive"
+          },
+          "HIV": "negative"
+        },
+        "laboratory_baseline": {
+          "cbc": {
+            "hemoglobin_g_dl": 13.4,
+            "platelets_k_ul": 198,
+            "anc_k_ul": 3.2,
+            "alc_k_ul": 1.8
+          },
+          "liver_panel": {
+            "AST_U_L": 48,
+            "ALT_U_L": 62,
+            "alkaline_phosphatase_U_L": 102,
+            "GGT_U_L": 85,
+            "total_bilirubin_mg_dL": 0.9,
+            "albumin_g_dL": 4.1,
+            "INR": 1.0
+          },
+          "renal": {
+            "creatinine_mg_dL": 0.95,
+            "eGFR": 92
+          },
+          "other": {
+            "LDH_U_L": 215,
+            "B2_microglobulin_mg_L": 2.1
+          },
+          "calculations": {
+            "FIB_4": 1.65,
+            "CrCl_CockcroftGault_mL_min": 96
+          }
+        },
+        "imaging": {
+          "modality": "MRI + CECT",
+          "date": "[redacted]",
+          "findings": {
+            "primary_lesion": {
+              "location": "root of tongue with tonsil involvement",
+              "dimensions_mm": "33x36x53",
+              "approximate_size_cm": 5.3,
+              "bulky_by_criteria": false
+            },
+            "lymph_nodes": [
+              {
+                "station": "Ia",
+                "size_mm": 10,
+                "suspicious": true
+              },
+              {
+                "station": "IIa",
+                "size_mm": 14,
+                "suspicious": true
+              }
+            ],
+            "bone_destruction": false,
+            "CNS_involvement": false
+          }
+        },
+        "comorbidities_and_meds": {
+          "comorbidities": [
+            "chronic HCV (E11 — managed)",
+            "mild hypertension (I10)"
+          ],
+          "current_medications": [
+            "amlodipine 5 mg daily"
+          ],
+          "allergies": [
+            "none documented"
+          ],
+          "prior_cancer_treatments": []
+        },
+        "symptoms_and_concerns": {
+          "symptoms_onset": "approximately 6 months — gradually enlarging tongue-base mass, mild dysphagia",
+          "b_symptoms": {
+            "fever": false,
+            "night_sweats": false,
+            "weight_loss_over_10_percent": false
+          },
+          "functional_status_changes": "minimal — daily activities preserved, ECOG 1",
+          "clinical_concerns_flagged": {
+            "rapid_progression": false,
+            "suspected_transformation": false,
+            "performance_decline": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "hcv-mzl-indolent",
+    "label": "HCV-MZL · Indolent (стандартний варіант)",
+    "file": "patient_zero_indolent.json",
+    "json": {
+      "patient_id": "PZ-001-INDOLENT",
+      "disease": {
+        "icd_o_3_morphology": "9699/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-HCV-RNA": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 1,
+        "decompensated_cirrhosis": false,
+        "fit_for_chemoimmunotherapy": true
+      },
+      "findings": {
+        "dominant_nodal_mass_cm": 3.5,
+        "mediastinal_ratio": 0.1,
+        "symptomatic_b_symptoms_severe": false,
+        "biopsy_shows_dlbcl": false,
+        "ldh_ratio_to_uln": 1.1,
+        "clinical_progression_weeks": 52,
+        "HCV RNA positive": true,
+        "Indolent presentation (non-bulky, asymptomatic or minimally symptomatic)": true
+      }
+    }
+  },
+  {
+    "case_id": "hcv-mzl-bulky",
+    "label": "HCV-MZL · Bulky (агресивний варіант)",
+    "file": "patient_zero_bulky.json",
+    "json": {
+      "patient_id": "PZ-002-BULKY",
+      "disease": {
+        "icd_o_3_morphology": "9699/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-HCV-RNA": "positive"
+      },
+      "demographics": {
+        "age": 62,
+        "sex": "female",
+        "ecog": 1,
+        "decompensated_cirrhosis": false,
+        "fit_for_chemoimmunotherapy": true
+      },
+      "findings": {
+        "dominant_nodal_mass_cm": 8.2,
+        "mediastinal_ratio": 0.22,
+        "symptomatic_b_symptoms_severe": false,
+        "biopsy_shows_dlbcl": false,
+        "ldh_ratio_to_uln": 1.3,
+        "clinical_progression_weeks": 40,
+        "HCV RNA positive": true,
+        "Indolent presentation (non-bulky, asymptomatic or minimally symptomatic)": false
+      }
+    }
+  },
+  {
+    "case_id": "mm-standard-risk",
+    "label": "Multiple Myeloma · Standard-Risk",
+    "file": "patient_mm_standard_risk.json",
+    "json": {
+      "patient_id": "MM-STD-001",
+      "comment": "Synthetic newly-diagnosed MM patient with standard-risk cytogenetics. Engine should select VRd (standard track) as default.",
+      "disease": {
+        "icd_o_3_morphology": "9732/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-MM-CYTOGENETICS-HR": "negative"
+      },
+      "demographics": {
+        "age": 64,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "mm_cytogenetics_high_risk": false,
+        "del_17p": false,
+        "t_4_14": false,
+        "t_14_16": false,
+        "gain_1q": false,
+        "creatinine_clearance_ml_min": 88,
+        "serum_creatinine_mg_dl": 1.0,
+        "Standard-risk cytogenetics (no high-risk FISH abnormality)": true,
+        "ECOG ≤ 2": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Multiple myeloma, IgG kappa",
+            "icd_o_3": "9732/3",
+            "icd_10": "C90.0",
+            "who_classification_5th_ed": "Plasma cell myeloma (multiple myeloma)"
+          },
+          "staging": {
+            "staging_system": "R-ISS",
+            "stage": "II",
+            "iss_stage": "II",
+            "lytic_lesions_present": true,
+            "skeletal_related_event": false
+          }
+        },
+        "fish_cytogenetics": {
+          "t_4_14": false,
+          "t_14_16": false,
+          "t_14_20": false,
+          "t_11_14": true,
+          "del_17p": false,
+          "gain_1q21": false,
+          "amp_1q21": false,
+          "trisomies_hyperdiploid": true,
+          "risk_category": "standard"
+        },
+        "laboratory_baseline": {
+          "cbc": {
+            "hemoglobin_g_dl": 11.2,
+            "platelets_k_ul": 168,
+            "anc_k_ul": 2.6
+          },
+          "renal": {
+            "creatinine_mg_dL": 1.0,
+            "eGFR": 88
+          },
+          "calcium_albumin_corrected_mg_dl": 9.4,
+          "ldh_U_L": 198,
+          "b2_microglobulin_mg_L": 4.2,
+          "albumin_g_dL": 3.6,
+          "m_protein_g_dl": 3.8,
+          "free_light_chain_ratio": 22.5
+        },
+        "bone_disease": {
+          "lytic_lesions_count": 4,
+          "vertebral_involvement": true,
+          "fracture_history": false
+        },
+        "transplant_eligibility": {
+          "eligible": true,
+          "rationale": "Age 64 + ECOG 1 + no major comorbidity"
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mm-high-risk",
+    "label": "Multiple Myeloma · High-Risk",
+    "file": "patient_mm_high_risk.json",
+    "json": {
+      "patient_id": "MM-HR-001",
+      "comment": "Synthetic newly-diagnosed MM with high-risk cytogenetics (t(4;14) + gain 1q21). Engine should select D-VRd (aggressive track) as default.",
+      "disease": {
+        "icd_o_3_morphology": "9732/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-MM-CYTOGENETICS-HR": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "mm_cytogenetics_high_risk": true,
+        "del_17p": false,
+        "t_4_14": true,
+        "t_14_16": false,
+        "gain_1q": true,
+        "creatinine_clearance_ml_min": 76,
+        "serum_creatinine_mg_dl": 1.1
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Multiple myeloma, IgA lambda",
+            "icd_o_3": "9732/3",
+            "icd_10": "C90.0",
+            "who_classification_5th_ed": "Plasma cell myeloma (multiple myeloma)"
+          },
+          "staging": {
+            "staging_system": "R2-ISS",
+            "stage": "III",
+            "iss_stage": "II",
+            "lytic_lesions_present": true,
+            "skeletal_related_event": true
+          }
+        },
+        "fish_cytogenetics": {
+          "t_4_14": true,
+          "t_14_16": false,
+          "t_14_20": false,
+          "t_11_14": false,
+          "del_17p": false,
+          "gain_1q21": true,
+          "amp_1q21": false,
+          "trisomies_hyperdiploid": false,
+          "risk_category": "high"
+        },
+        "laboratory_baseline": {
+          "cbc": {
+            "hemoglobin_g_dl": 9.8,
+            "platelets_k_ul": 142,
+            "anc_k_ul": 2.1
+          },
+          "renal": {
+            "creatinine_mg_dL": 1.1,
+            "eGFR": 76
+          },
+          "calcium_albumin_corrected_mg_dl": 10.6,
+          "ldh_U_L": 312,
+          "b2_microglobulin_mg_L": 6.8,
+          "albumin_g_dL": 3.2,
+          "m_protein_g_dl": 5.4,
+          "free_light_chain_ratio": 158.0
+        },
+        "bone_disease": {
+          "lytic_lesions_count": 9,
+          "vertebral_involvement": true,
+          "fracture_history": true,
+          "fracture_site": "T8 compression fracture, kyphoplasty performed"
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative",
+            "anti_HBs": "positive"
+          }
+        },
+        "transplant_eligibility": {
+          "eligible": true,
+          "rationale": "Age 58 + ECOG 1 + adequate organ function"
+        }
+      }
+    }
+  },
+  {
+    "case_id": "diagnostic-lymphoma-suspect",
+    "label": "Suspect Lymphoma · Pre-Biopsy (Diagnostic Brief)",
+    "file": "patient_diagnostic_lymphoma_suspect.json",
+    "json": {
+      "patient_id": "PZ-DIAG-001",
+      "disease": {
+        "suspicion": {
+          "lineage_hint": "b_cell_lymphoma",
+          "tissue_locations": [
+            "lymph_node",
+            "spleen"
+          ],
+          "icd_o_3_topography": [
+            "C77.2",
+            "C42.2"
+          ],
+          "presentation": "Splenomegaly + mediastinal lymphadenopathy + cytopenias + B-symptoms (drenching night sweats x 6 weeks)",
+          "working_hypotheses": [
+            "DIS-SPLENIC-MZL",
+            "DIS-DLBCL",
+            "DIS-FOLLICULAR-LYMPHOMA"
+          ]
+        }
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "splenic_mass_cm": 12.0,
+        "ldh_ratio_to_uln": 1.4,
+        "anc": 1200,
+        "platelets": 95000,
+        "hemoglobin_g_dl": 10.2
+      },
+      "history": {
+        "hcv_known_positive": null,
+        "hbv_known_positive": null,
+        "prior_malignancy": null
+      }
+    }
+  },
+  {
+    "case_id": "diagnostic-lymphoma-confirmed",
+    "label": "Lymphoma Confirmed · Post-Biopsy (Treatment Plan)",
+    "file": "patient_diagnostic_lymphoma_confirmed.json",
+    "json": {
+      "_comment": "Same patient as patient_diagnostic_lymphoma_suspect.json, but biopsy came back: HCV-MZL confirmed. For testing diagnostic→treatment promotion (DiagnosticPlan superseded by Plan v1).",
+      "patient_id": "PZ-DIAG-001",
+      "disease": {
+        "id": "DIS-HCV-MZL",
+        "icd_o_3_morphology": "9699/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-HCV-RNA": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 1,
+        "decompensated_cirrhosis": false,
+        "fit_for_chemoimmunotherapy": true
+      },
+      "findings": {
+        "splenic_mass_cm": 12.0,
+        "ldh_ratio_to_uln": 1.4,
+        "anc": 1200,
+        "platelets": 95000,
+        "hemoglobin_g_dl": 10.2,
+        "cd20_ihc_status": "positive",
+        "biopsy_shows_dlbcl": false,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "child_pugh_class": "A",
+        "fib4_index": 2.1,
+        "lugano_stage": "IVE",
+        "Indolent presentation (non-bulky, asymptomatic or minimally symptomatic)": false
+      },
+      "history": {
+        "hcv_known_positive": true,
+        "hbv_known_positive": false,
+        "prior_malignancy": null
+      }
+    }
+  }
+]

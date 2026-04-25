@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenOnco — Open-source CDS for oncology</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<header class="top-bar">
+  <div class="brand-line">
+    <a href="index.html" class="brand-mini">OpenOnco</a>
+    <span class="role-pill">Тестувальник · OSS preview</span>
+  </div>
+  <nav class="top-actions">
+    <a href="index.html" class="active">Головна</a>
+    <a href="try.html">Спробувати</a>
+    <a href="gallery.html">Приклади</a>
+    <a href="https://github.com/romeo111/cancer-autoresearch" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Open-source · MIT · клінічний контент під CHARTER §6.1 dual-review</div>
+      <h1>Структуроване рішення для tumor-board.<br>Без чорних скриньок.</h1>
+      <p class="hero-sub">
+        Лікар завантажує профіль pacієнта → отримує два альтернативні плани лікування
+        (стандартний + агресивний) із повними цитуваннями. Плани оновлюються при появі
+        нових даних. Усе на rule engine + curated knowledge base, без LLM-судження.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="try.html">Спробувати з віртуальним пацієнтом →</a>
+        <a class="btn btn-secondary" href="gallery.html">Дивитись приклади</a>
+      </div>
+      <div class="hero-meta">
+        Жодних реальних пацієнтських даних на цьому деплої · CHARTER §9.3 · FDA non-device CDS positioning per CHARTER §15
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers">
+    <h2>Що вже зроблено</h2>
+    <div class="num-grid">
+      <div class="num-card"><div class="num-big">2</div><div class="num-lbl">Хвороби в KB</div><div class="num-detail">2 з повним ланцюгом · 0 частково</div></div>
+      <div class="num-card"><div class="num-big">4</div><div class="num-lbl">Показання (Indications)</div></div>
+      <div class="num-card"><div class="num-big">5</div><div class="num-lbl">Режими лікування</div></div>
+      <div class="num-card"><div class="num-big">18</div><div class="num-lbl">Препарати</div></div>
+      <div class="num-card"><div class="num-big">40</div><div class="num-lbl">Тести / процедури</div></div>
+      <div class="num-card"><div class="num-big">8</div><div class="num-lbl">Workups (триаж)</div></div>
+      <div class="num-card"><div class="num-big">6</div><div class="num-lbl">Red flags</div></div>
+      <div class="num-card"><div class="num-big">8</div><div class="num-lbl">Supportive care</div></div>
+      <div class="num-card"><div class="num-big">13</div><div class="num-lbl">Джерела (NCCN, ESMO, EHA…)</div></div>
+      <div class="num-card"><div class="num-big">10</div><div class="num-lbl">Специфікації</div></div>
+    </div>
+    <div class="num-foot">
+      Зріз станом на <code>2026-04-25 12:35 UTC</code>.
+      Reviewer sign-offs ≥ 2: <strong>0/4</strong>
+      — увесь клінічний контент позначено як <strong>STUB</strong> до dual-sign-off
+      Clinical Co-Lead. Це інструмент підтримки рішень, не медичний пристрій.
+    </div>
+  </section>
+
+  <section class="problem">
+    <h2>Проблема</h2>
+    <div class="problem-grid">
+      <div>
+        <h3>Підготовка до tumor-board — 2-4 години ручної роботи на пацієнта</h3>
+        <p>Лікар чи клінічний фармаколог відкриває NCCN PDF, ESMO guideline, МОЗ протокол, перевіряє НСЗУ-формуляр, шукає dose adjustments, знаходить supportive care, складає це у документ. Кожен раз. Для кожного пацієнта. Кожна помилка — пропущена контра.</p>
+      </div>
+      <div>
+        <h3>Існуючі CDS — або чорні скриньки, або застарілі чек-листи</h3>
+        <p>IBM Watson провалився, тому що приймав рішення за лікаря на тренованих синтетичних кейсах. Класичні чек-листи — статичні і не оновлюються в темпі літератури. Між ними — порожнеча, де реальна робота лікаря.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach">
+    <h2>Що робимо інакше</h2>
+    <table class="cmp">
+      <thead>
+        <tr><th></th><th>Watson Oncology</th><th>OpenOnco</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Тренування</td><td>Synthetic cases</td><td>Real expert-verified document validation</td></tr>
+        <tr><td>Джерело рекомендацій</td><td>"Single authority" preferences</td><td>Multiple published guidelines (NCCN, ESMO, МОЗ, EASL, EHA, BSH)</td></tr>
+        <tr><td>Scoring</td><td>"Black box"</td><td>Transparent evidence levels (GRADE) + Plan.trace</td></tr>
+        <tr><td>Хто рекомендує</td><td>LLM генерує</td><td>LLM лише форматує; rules + KB генерують</td></tr>
+        <tr><td>Human review per recommendation</td><td>Немає</td><td>Dual medical review mandatory (CHARTER §6.1)</td></tr>
+        <tr><td>Scaling</td><td>Перед валідацією</td><td>Scope обмежений до validated domains</td></tr>
+        <tr><td>Позиціонування</td><td>"Decision maker"</td><td>"Information support" (FDA non-device CDS, CHARTER §15)</td></tr>
+      </tbody>
+    </table>
+    <div class="cmp-cite">Адаптовано з <code>specs/REFERENCE_CASE_SPECIFICATION.md §8.3</code></div>
+  </section>
+
+  <section class="how">
+    <h2>Як це працює</h2>
+    <ol class="steps">
+      <li><strong>Profile</strong> — JSON-структура пацієнта (FHIR/mCODE-compatible): диагноз, ECOG, біомаркери, лаби, supporting findings.</li>
+      <li><strong>Engine</strong> — Pydantic schemas + YAML knowledge base + rule engine. Знаходить applicable Indications, walk-ить Algorithm, оцінює RedFlags.</li>
+      <li><strong>Plan with tracks</strong> — мінімум 2 альтернативи (стандарт + агресив) у одному документі (CHARTER §2). MDT brief: ролі, відкриті питання, provenance.</li>
+      <li><strong>Render</strong> — single-file HTML з повним sourcing, FDA Criterion-4 metadata, "Що НЕ робити", monitoring schedule, timeline. A4 print-friendly.</li>
+      <li><strong>Revisions</strong> — нові дані → нова версія Plan через <code>revise_plan(...)</code>; supersedes/superseded_by chain зберігається immutably.</li>
+    </ol>
+  </section>
+
+  <footer class="page-foot">
+    Open-source · MIT-style usage · <a href="https://github.com/romeo111/cancer-autoresearch">romeo111/cancer-autoresearch</a>
+    <br>
+    Жодних реальних пацієнтських даних · CHARTER §9.3.
+    Це інформаційний інструмент для лікаря, не медичний пристрій (CHARTER §15 + §11).
+  </footer>
+</main>
+</body>
+</html>
