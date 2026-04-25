@@ -1,0 +1,45 @@
+id: REG-MATRIX
+name: "MATRix (HD-Methotrexate + HD-Cytarabine + Thiotepa + Rituximab), 4 cycles"
+name_ua: "MATRix — HD-MTX + HD-Cytarabine + тіотепа + ритуксимаб, 4 цикли"
+alternate_names: ["MATRix", "IELSG32 induction"]
+
+components:
+  - {drug_id: DRUG-METHOTREXATE, dose: "3.5 g/m²", schedule: "IV 24h infusion day 1; leucovorin rescue from h+24", route: IV}
+  - {drug_id: DRUG-CYTARABINE, dose: "2 g/m² BID", schedule: "IV days 2-3 (4 doses total)", route: IV}
+  - {drug_id: DRUG-THIOTEPA, dose: "30 mg/m²", schedule: "IV day 4", route: IV}
+  - {drug_id: DRUG-RITUXIMAB, dose: "375 mg/m²", schedule: "IV days -5, 0", route: IV}
+
+cycle_length_days: 21
+total_cycles: "4 cycles induction; followed by autoSCT consolidation (BCNU + thiotepa)"
+toxicity_profile: high
+
+premedication:
+  - "Standard rituximab premedications first dose"
+  - "HD-MTX hydration + urine alkalinization (NaHCO3) + leucovorin rescue 50 mg q6h"
+  - "Antiemetic regimen + dexamethasone for cytarabine"
+mandatory_supportive_care:
+  - SUP-HBV-PROPHYLAXIS
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-HSV-PROPHYLAXIS
+  - SUP-GCSF-NEUTROPENIA
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "CrCl 50-80 mL/min"
+    modification: "Reduce HD-MTX to 2.5 g/m² OR omit MTX cycle"
+  - condition: "CrCl < 50"
+    modification: "DO NOT give HD-MTX — discuss alternatives (R-MPV at lower MTX dose)"
+  - condition: "Age >65"
+    modification: "Consider R-MPV instead of MATRix"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: "Тіотепа має обмежений import у Україну — потрібна попередня перевірка через Drlz / НСЗУ. Fall back на R-MPV якщо тіотепа недоступна."
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  STUB. IELSG32 trial standard induction. autoSCT BCNU+thiotepa
+  consolidation — окрема phase, не у цьому регімені. Hydration +
+  urine alkalinization mandatory для HD-MTX.

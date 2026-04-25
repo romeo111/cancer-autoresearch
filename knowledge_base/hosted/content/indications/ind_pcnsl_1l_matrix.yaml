@@ -1,0 +1,87 @@
+id: IND-PCNSL-1L-MATRIX
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-PCNSL
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-CD20-IHC
+      required: true
+      value_constraint: "positive"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+    age_max: 70
+    fit_for_transplant: true
+
+recommended_regimen: REG-MATRIX
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~87%"
+  complete_response: "~50%"
+  progression_free_survival: "Median PFS ~36 months (з autoSCT consolidation)"
+  overall_survival_5y: "~65%"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS
+  - CI-RENAL-FAILURE-FOR-HD-MTX
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-CD20-IHC
+  - TEST-MRI-BRAIN-CONTRAST
+  - TEST-CSF-CYTOLOGY-FLOW
+  - TEST-SLIT-LAMP-EYE-EXAM
+  - TEST-ECHO
+  - TEST-PREGNANCY
+desired_tests:
+  - TEST-NGS-LYMPHOID-PANEL  # MYD88 L265P + CD79B confirmation
+
+rationale: >
+  IELSG32 trial довів MATRix induction (R-MTX-Cyt-Thiotepa) > R-MTX-Cyt
+  > R-MTX alone для fit ≤70 пацієнтів з CR ~50% (vs 23% для MTX-only).
+  Followed by autoSCT consolidation (BCNU + thiotepa або carmustine +
+  thiotepa). Уникає WBRT toxicity (severe neurocognitive decline особливо
+  у >60).
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "MATRix induction + autoSCT consolidation is preferred 1L for fit PCNSL ≤70"
+
+known_controversies:
+  - topic: "WBRT vs autoSCT consolidation"
+    positions:
+      - position: "autoSCT preferred — fewer late neurocognitive effects"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "WBRT acceptable якщо autoSCT not feasible"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "autoSCT для fit ≤70; WBRT тільки якщо autoSCT contraindicated"
+
+do_not_do:
+  - "Не давати steroids ПЕРЕД діагностичною біопсією — вони можуть знищити lymphoma morphology (false negative)."
+  - "Не починати HD-MTX без CrCl >50, нормального hydration, leucovorin rescue, urine pH >7 — fatal AKI ризик."
+  - "Не пропускати ophthalmology consult — окулярне залучення ~20% може бути silent."
+  - "Не давати IT chemo рутинно — CSF involvement рідкісне (~15%); IT тільки якщо CSF cytology+/positive flow."
+  - "Не вводити вінкристин (якщо у будь-якому supplementary regimen) інтратекально — фатально."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: >
+  STUB. Тіотепа в Україні може бути обмежена — fall back на R-MPV.
+  HD-MTX потребує hospital admission з мониторингом MTX levels кожні 24h.

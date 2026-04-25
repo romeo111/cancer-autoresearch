@@ -1,0 +1,32 @@
+id: ALGO-PCNSL-1L
+applicable_to_disease: DIS-PCNSL
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select 1L PCNSL induction. MATRix preferred for fit ≤70; R-MPV for
+  less fit / older / тіотепа недоступна.
+
+output_indications:
+  - IND-PCNSL-1L-MATRIX
+  - IND-PCNSL-1L-R-MPV
+
+default_indication: IND-PCNSL-1L-MATRIX
+alternative_indication: IND-PCNSL-1L-R-MPV
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - condition: "Age > 70"
+        - condition: "ECOG > 2"
+        - condition: "Тіотепа недоступна"
+        - condition: "Не кандидат на autoSCT consolidation"
+    if_true:
+      result: IND-PCNSL-1L-R-MPV
+    if_false:
+      result: IND-PCNSL-1L-MATRIX
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Both NCCN Cat 1. Тіотепа bottleneck — Ukraine-specific availability
+  питання. R-MPV — practical default коли немає тіотепи.

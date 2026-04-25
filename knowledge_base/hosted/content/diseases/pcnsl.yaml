@@ -1,0 +1,39 @@
+id: DIS-PCNSL
+names:
+  preferred: "Primary Diffuse Large B-Cell Lymphoma of the CNS"
+  ukrainian: "Первинна дифузна великоклітинна B-клітинна лімфома центральної нервової системи"
+  english: "Primary CNS Lymphoma"
+  synonyms: ["PCNSL", "Primary CNS DLBCL"]
+
+codes:
+  icd_o_3_morphology: "9680/3"
+  icd_10: "C85.7"  # other and unspecified types of NHL
+  who_classification: "Large B-cell lymphomas of immune-privileged sites — Primary diffuse large B-cell lymphoma of the CNS per WHO 5th ed."
+
+archetype: stage_driven
+lineage: b_cell_lymphoma
+
+etiological_factors:
+  - "Activated B-cell (ABC) cell-of-origin in majority"
+  - "MYD88 L265P mutation ~70% (BTK pathway addiction)"
+  - "CD79B mutations ~60%"
+  - "EBV+ in immunocompromised subset (HIV, post-transplant)"
+
+related_diseases:
+  - DIS-DLBCL-NOS
+  - DIS-PTLD  # PCNSL может бути PTLD у transplant patients
+
+epidemiology:
+  context: >
+    ~3-4% of CNS tumors, ~1-2% of NHL. Median age ~65; immunocompromised
+    (HIV, post-transplant) — peak earlier. Без HD-MTX-based induction —
+    median OS ~3-4 місяці. З HD-MTX-based induction + consolidation —
+    5-year OS ~40-50%. Стероїди давати ТІЛЬКИ ПІСЛЯ біопсії (можуть
+    розчинити lymphoma morphologically і unmask diagnosis).
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  STUB. Stereotactic brain biopsy — diagnostic gold standard. CSF
+  cytology + flow + IL-10/IL-6 ratio. Slit-lamp eye exam (ocular
+  involvement ~20%). MRI brain з contrast — staging.

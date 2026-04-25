@@ -1,0 +1,42 @@
+id: REG-R-MPV
+name: "R-MPV (Rituximab + HD-Methotrexate + Procarbazine + Vincristine), 5 cycles q14d"
+name_ua: "R-MPV — ритуксимаб + HD-MTX + прокарбазин + вінкристин, 5 циклів q14d"
+alternate_names: ["R-MPV", "MSKCC PCNSL induction"]
+
+components:
+  - {drug_id: DRUG-RITUXIMAB, dose: "500 mg/m²", schedule: "IV day 1", route: IV}
+  - {drug_id: DRUG-METHOTREXATE, dose: "3.5 g/m²", schedule: "IV 2h infusion day 2; leucovorin rescue", route: IV}
+  - {drug_id: DRUG-VINCRISTINE, dose: "1.4 mg/m² (max 2 mg)", schedule: "IV day 2", route: IV}
+  - {drug_id: DRUG-PROCARBAZINE, dose: "100 mg/m²", schedule: "PO days 1-7 odd cycles only", route: PO}
+
+cycle_length_days: 14
+total_cycles: "5-7 cycles induction; followed by HD-cytarabine consolidation OR reduced-dose WBRT 23.4 Gy для CR"
+toxicity_profile: high
+
+premedication:
+  - "Standard rituximab premedications first dose"
+  - "HD-MTX hydration + leucovorin rescue from h+24"
+  - "MAOI dietary restrictions due procarbazine (avoid tyramine-rich foods, beer, wine)"
+mandatory_supportive_care:
+  - SUP-HBV-PROPHYLAXIS
+  - SUP-PJP-PROPHYLAXIS
+
+dose_adjustments:
+  - condition: "CrCl 30-50 mL/min"
+    modification: "Reduce HD-MTX to 2.5 g/m²; extend leucovorin"
+  - condition: "Age >70"
+    modification: "Consider lower MTX dose (1.5-2 g/m²)"
+  - condition: "Severe peripheral neuropathy from prior cycle"
+    modification: "Hold vincristine OR reduce 50%"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: "Усі компоненти доступні в Україні. Procarbazine — таблетована форма у обмежених аптеках."
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  STUB. MSKCC standard induction (Morris 2013). Default для Ukrainian
+  context коли тіотепа недоступна. Vincristine — НІКОЛИ intrathecally
+  (фатально). MAOI dietary restrictions під procarbazine.

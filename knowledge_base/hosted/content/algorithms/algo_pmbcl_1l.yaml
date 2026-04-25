@@ -1,0 +1,30 @@
+id: ALGO-PMBCL-1L
+applicable_to_disease: DIS-PMBCL
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select 1L PMBCL regimen. DA-EPOCH-R preferred (better PFS, RT-sparing);
+  R-CHOP + ISRT acceptable alternative.
+
+output_indications:
+  - IND-PMBCL-1L-DA-EPOCH-R
+  - IND-PMBCL-1L-RCHOP-RT
+
+default_indication: IND-PMBCL-1L-DA-EPOCH-R
+alternative_indication: IND-PMBCL-1L-RCHOP-RT
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - condition: "Center cannot deliver infusional DA-EPOCH-R safely"
+        - condition: "Patient prefers shorter chemo + RT"
+    if_true:
+      result: IND-PMBCL-1L-RCHOP-RT
+    if_false:
+      result: IND-PMBCL-1L-DA-EPOCH-R
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Both arms NCCN-recommended. End-of-induction PET-CT decides RT для
+  R-CHOP arm — handled у Plan tracking, not algorithm.
