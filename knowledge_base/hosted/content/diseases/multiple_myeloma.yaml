@@ -1,0 +1,53 @@
+id: DIS-MM
+names:
+  preferred: "Multiple Myeloma"
+  ukrainian: "Множинна мієлома"
+  english: "Multiple Myeloma"
+  synonyms:
+    - "MM"
+    - "Plasma cell myeloma"
+    - "Мієломна хвороба"
+    - "Хвороба Рустицького-Калера"
+
+codes:
+  icd_o_3_morphology: "9732/3"  # Multiple myeloma (NOS)
+  icd_o_3_topography: ["C42.1"]  # Bone marrow
+  icd_10: "C90.0"
+  snomed_ct: null
+  who_classification: "Plasma cell neoplasms — Plasma cell myeloma (multiple myeloma)"
+
+archetype: risk_stratified
+lineage: plasma_cell_neoplasm
+
+etiological_factors:
+  - "Chromosomal translocations involving IgH locus (14q32) — t(4;14), t(11;14), t(14;16), t(14;20)"
+  - "Hyperdiploidy (trisomies of odd-numbered chromosomes 3, 5, 7, 9, 11, 15, 19, 21)"
+  - "Secondary genetic events: 1q gain, del(17p)/TP53 loss, MYC translocations, RAS pathway mutations"
+  - "Antecedent MGUS / smoldering myeloma in virtually all cases"
+
+related_diseases:
+  - "DIS-MGUS"
+  - "DIS-SMOLDERING-MYELOMA"
+  - "DIS-PLASMACYTOMA-SOLITARY"
+  - "DIS-WALDENSTROM"
+  - "DIS-AL-AMYLOIDOSIS"
+
+epidemiology:
+  context: >
+    ~1% of all cancers, ~10% of hematologic malignancies. Median age at
+    diagnosis ~70 years; rare under 40. Slightly higher incidence in men
+    and in populations of African descent. R-ISS stage and cytogenetic
+    risk drive prognosis far more than morphology.
+
+sources:
+  - SRC-NCCN-MM-2025
+  - SRC-EHA-WORKUP-2024
+
+last_reviewed: "2026-04-25"
+reviewers: []
+notes: >
+  Risk-stratified archetype — treatment intensity (triplet vs quadruplet,
+  transplant vs no transplant) is shaped by R-ISS stage, cytogenetic risk
+  category, and transplant eligibility. Second disease end-to-end after
+  HCV-MZL; validates that the schema generalizes beyond etiologically_driven
+  archetype (REFERENCE_CASE_SPECIFICATION §7.1 milestone M6).

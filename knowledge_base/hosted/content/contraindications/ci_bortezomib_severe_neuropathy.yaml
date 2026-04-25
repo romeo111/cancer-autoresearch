@@ -1,0 +1,36 @@
+id: CI-BORTEZOMIB-SEVERE-NEUROPATHY
+severity: absolute
+trigger:
+  type: patient_condition
+  conditions:
+    - patient_condition: "Pre-existing Grade ≥2 peripheral neuropathy with pain OR Grade ≥3 peripheral neuropathy"
+  logic: AND
+
+description: "Severe pre-existing peripheral neuropathy is an absolute contraindication to bortezomib — therapy will likely worsen the neuropathy to a disabling and often permanent extent."
+description_ua: "Виражена периферична невропатія до початку терапії — абсолютне протипоказання до бортезомібу. Терапія з високою імовірністю поглибить невропатію до інвалідизуючого та часто стійкого ступеня."
+
+alternative_actions:
+  - "Consider carfilzomib-based regimen (KRd) — different proteasome inhibitor with lower neuropathy rate"
+  - "Consider isatuximab-Rd or daratumumab-Rd quadruplet (anti-CD38 + IMiD without proteasome inhibitor)"
+  - "Neurology consult for baseline workup and reversibility assessment"
+  - "Document neuropathy grade with NCCN/CTCAE before any decision"
+
+affects_indications:
+  - IND-MM-1L-VRD
+  - IND-MM-1L-DVRD
+affects_drugs:
+  - DRUG-BORTEZOMIB
+affects_regimens:
+  - REG-VRD
+  - REG-DARA-VRD
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Mild Grade 1 neuropathy without pain is NOT a contraindication — the SC
+  weekly bortezomib schedule (already standard in REG-VRD and REG-DARA-VRD)
+  has substantially reduced the neuropathy rate vs the older biweekly IV
+  schedule. Document grade carefully — "neuropathy" reported by patient
+  history without clinical exam is insufficient.

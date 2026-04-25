@@ -1,0 +1,49 @@
+id: ALGO-MM-1L
+applicable_to_disease: DIS-MM
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select default + alternative Indication for first-line multiple myeloma
+  based on cytogenetic risk category and patient fitness. Outputs the
+  two-plan pair required by CHARTER §2 — VRd (standard-risk default) vs
+  D-VRd (high-risk default; alternative shown for standard-risk patients
+  with funding pathway).
+
+output_indications:
+  - IND-MM-1L-VRD
+  - IND-MM-1L-DVRD
+
+default_indication: IND-MM-1L-VRD
+alternative_indication: IND-MM-1L-DVRD
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-MM-HIGH-RISK-CYTOGENETICS
+    if_true:
+      result: IND-MM-1L-DVRD
+    if_false:
+      next_step: 2
+  - step: 2
+    evaluate:
+      all_of:
+        - condition: "Standard-risk cytogenetics (no high-risk FISH abnormality)"
+        - condition: "ECOG ≤ 2"
+    if_true:
+      result: IND-MM-1L-VRD
+    if_false:
+      result: IND-MM-1L-VRD
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Cytogenetic risk is the primary determinant; transplant eligibility is
+  a downstream consideration that affects total cycle count and post-
+  induction pathway (ASCT + consolidation + maintenance vs continuous
+  induction-then-maintenance), but not the induction regimen choice. Both
+  Indications carry CI-LENALIDOMIDE-PREGNANCY and
+  CI-BORTEZOMIB-SEVERE-NEUROPATHY; D-VRd additionally carries
+  CI-HBV-NO-PROPHYLAXIS. Renal dysfunction (RF-MM-RENAL-DYSFUNCTION)
+  triggers dose adjustment but does not shift regimen choice.

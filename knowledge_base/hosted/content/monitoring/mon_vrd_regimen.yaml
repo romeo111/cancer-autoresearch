@@ -1,0 +1,105 @@
+id: MON-VRD-REGIMEN
+linked_to_regimen: REG-VRD
+
+phases:
+  - name: baseline
+    window: "Within 2 weeks before cycle 1"
+    tests:
+      - TEST-CBC
+      - TEST-CMP
+      - TEST-LFT
+      - TEST-LDH
+      - TEST-B2-MICROGLOBULIN
+      - TEST-IMMUNOGLOBULINS
+      - TEST-SPEP-UPEP
+      - TEST-FREE-LIGHT-CHAINS
+      - TEST-HBV-SEROLOGY
+      - TEST-FISH-PANEL
+      - TEST-BM-ASPIRATE
+      - TEST-BM-TREPHINE
+      - TEST-WHOLE-BODY-MRI
+      - TEST-ECHO
+    visits: ["Treatment planning visit with hematology and (if D-VRd) infectious disease consult"]
+    checkpoints:
+      - "Confirm CD138+ plasma cell percentage and FISH cytogenetic risk category"
+      - "R-ISS / R2-ISS staging documented"
+      - "Confirm HBV status and prophylaxis plan if anti-CD38 or anti-CD20 in regimen"
+      - "Dental evaluation before zoledronate / denosumab"
+      - "Red-cell phenotyping BEFORE first daratumumab dose"
+
+  - name: on_treatment
+    window: "Day 1 of every 28-day cycle + mid-cycle CBC for high-risk patients"
+    tests:
+      - TEST-CBC
+      - TEST-CMP
+      - TEST-LFT
+      - TEST-FREE-LIGHT-CHAINS
+      - TEST-SPEP-UPEP
+    visits: ["Pre-cycle clinical assessment + infusion-day labs + neuropathy screen each cycle"]
+    checkpoints:
+      - "ANC ≥ 1000/µL and platelets ≥ 75K before each cycle (delay or reduce otherwise)"
+      - "Neuropathy grade documented at each visit (NCCN/CTCAE)"
+      - "Renal function trend (lenalidomide dose adjustment if CrCl drops)"
+      - "Glucose monitoring for steroid-induced hyperglycemia"
+
+  - name: response_assessment
+    window: "After cycles 2 and 4 (before transplant) or every 2-3 cycles (transplant-ineligible)"
+    tests:
+      - TEST-FREE-LIGHT-CHAINS
+      - TEST-SPEP-UPEP
+      - TEST-IMMUNOGLOBULINS
+      - TEST-BM-ASPIRATE
+      - TEST-WHOLE-BODY-MRI
+    visits: ["Restaging visit"]
+    checkpoints:
+      - "IMWG response criteria (sCR, CR, VGPR, PR, MR, SD, PD)"
+      - "MRD assessment by flow cytometry or NGS at suspected CR"
+      - "If <PR after cycle 2 → consider regimen change or trial enrollment"
+
+  - name: post_transplant_consolidation
+    window: "Cycles 5-6 post-transplant (transplant-eligible only)"
+    tests:
+      - TEST-CBC
+      - TEST-CMP
+      - TEST-FREE-LIGHT-CHAINS
+      - TEST-SPEP-UPEP
+    visits: ["Consolidation cycle visits + 100-day post-transplant restaging"]
+    checkpoints:
+      - "Recovery of counts post-transplant before consolidation start"
+      - "Confirm depth of response before starting maintenance"
+
+  - name: maintenance
+    window: "Lenalidomide 10-15 mg daily until progression or intolerance"
+    tests:
+      - TEST-CBC
+      - TEST-CMP
+      - TEST-FREE-LIGHT-CHAINS
+      - TEST-SPEP-UPEP
+    visits: ["Monthly clinical visit + labs for first year, then every 2-3 months"]
+    checkpoints:
+      - "Surveillance for second primary malignancies (annual skin / GU exam)"
+      - "Lenalidomide dose adjustment if cytopenias or worsening renal function"
+      - "Annual influenza + pneumococcal vaccination (non-live only)"
+
+  - name: progression_monitoring
+    window: "On clinical or biochemical progression"
+    tests:
+      - TEST-FREE-LIGHT-CHAINS
+      - TEST-SPEP-UPEP
+      - TEST-BM-ASPIRATE
+      - TEST-FISH-PANEL
+      - TEST-WHOLE-BODY-MRI
+    visits: ["Restaging + cytogenetic re-assessment for clonal evolution"]
+    checkpoints:
+      - "IMWG progression criteria (>25% increase in M-protein, new lytic lesions, hypercalcemia, etc.)"
+      - "Re-do FISH on relapse — high-risk clones may emerge"
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Monitoring schedule covers both VRd and D-VRd induction; D-VRd patients
+  add HBV reactivation surveillance (HBV-DNA quarterly during therapy and
+  for 12 months post-daratumumab). Free light chains + SPEP/UPEP are the
+  primary disease-tracking labs cycle-by-cycle.

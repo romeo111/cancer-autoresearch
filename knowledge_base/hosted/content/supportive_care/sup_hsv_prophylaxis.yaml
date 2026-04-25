@@ -1,0 +1,28 @@
+id: SUP-HSV-PROPHYLAXIS
+intervention_type: prophylaxis
+name: "HSV / VZV prophylaxis during proteasome inhibitor therapy"
+name_ua: "Профілактика реактивації HSV/VZV під час терапії інгібіторами протеасоми"
+
+standard_intervention:
+  drug_id: DRUG-ACYCLOVIR
+  dose: "400 mg PO twice daily"
+  schedule: "Start with cycle 1; continue throughout proteasome inhibitor therapy AND for ≥3 months after final dose"
+  notes: "Renal dose adjustment if CrCl <50 mL/min. Acceptable alternative: valacyclovir 500 mg PO daily (better bioavailability, fewer doses)."
+
+triggers:
+  relevant_regimens:
+    - REG-VRD
+    - REG-DARA-VRD
+  clinical_condition: "Proteasome inhibitor therapy (bortezomib, carfilzomib, ixazomib) — ~10-15% VZV reactivation risk without prophylaxis, dropping to <1% with acyclovir"
+
+rationale: >
+  Proteasome inhibitors disrupt CD8+ T-cell responses required for VZV
+  containment, leading to substantially increased herpes zoster (and
+  occasional disseminated zoster) risk. Acyclovir / valacyclovir
+  prophylaxis is highly effective and inexpensive; this is a hard-rule
+  supportive care item, not optional.
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"

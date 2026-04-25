@@ -1,0 +1,37 @@
+id: RF-MM-HIGH-RISK-CYTOGENETICS
+definition: "Multiple myeloma high-risk cytogenetics: any of t(4;14), t(14;16), t(14;20), del(17p)/TP53 loss, gain or amplification of 1q21 by interphase FISH on CD138-enriched plasma cells"
+definition_ua: "Цитогенетика високого ризику при множинній мієломі: будь-яке з t(4;14), t(14;16), t(14;20), del(17p)/втрата TP53, gain/амплифікація 1q21 за результатами FISH на плазмоцитах, збагачених CD138"
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "BIO-MM-CYTOGENETICS-HR"
+      value: "positive"
+    - finding: "mm_cytogenetics_high_risk"
+      value: true
+    - finding: "del_17p"
+      value: true
+    - finding: "t_4_14"
+      value: true
+    - finding: "t_14_16"
+      value: true
+    - finding: "gain_1q"
+      value: true
+
+clinical_direction: intensify
+
+relevant_diseases:
+  - DIS-MM
+shifts_algorithm:
+  - ALGO-MM-1L
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Primary determinant for selecting quadruplet (D-VRd) over triplet (VRd)
+  in transplant-eligible newly-diagnosed MM. R2-ISS captures most of these
+  abnormalities; gain 1q21 is graded by copy count (≥4 copies = amp1q
+  carries higher risk than 3 copies = gain1q). t(11;14) is NOT high-risk
+  and does not trigger this flag.

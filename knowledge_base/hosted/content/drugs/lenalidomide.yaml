@@ -1,0 +1,69 @@
+id: DRUG-LENALIDOMIDE
+names:
+  preferred: "Lenalidomide"
+  ukrainian: "Леналідомід"
+  english: "Lenalidomide"
+  brand_names:
+    - "Revlimid"
+atc_code: L04AX04
+rxnorm_id: "337535"
+drug_class: "Immunomodulatory imide drug (IMiD); cereblon E3 ligase modulator"
+mechanism: >
+  Binds cereblon (CRBN) within the CRL4-CRBN E3 ubiquitin ligase complex,
+  redirecting it to ubiquitinate IKZF1 and IKZF3 transcription factors.
+  Their degradation is selectively cytotoxic to multiple myeloma cells and
+  has immunomodulatory effects (NK and T-cell activation).
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: "[TBD]"
+    reimbursed_nszu: true
+    reimbursement_indications:
+      - "Множинна мієлома"
+      - "Мієлодиспластичний синдром (del(5q))"
+    last_verified: "2026-04-25"
+
+typical_dosing: "25 mg PO days 1-21 of 28-day cycle (induction); reduced for renal impairment"
+formulations:
+  - "Capsules 2.5 / 5 / 10 / 15 / 20 / 25 mg"
+
+absolute_contraindications:
+  - "Pregnancy (teratogen — REMS / Revlimid Risk Management Programme mandatory)"
+  - "Hypersensitivity"
+black_box_warnings:
+  - "Embryo-fetal toxicity (teratogen)"
+  - "Hematologic toxicity (neutropenia, thrombocytopenia)"
+  - "Venous and arterial thromboembolism (mandatory prophylaxis)"
+major_interactions:
+  - "Digoxin (lenalidomide may increase digoxin levels)"
+  - "Erythropoiesis-stimulating agents may increase thrombosis risk"
+common_adverse_events:
+  - "Neutropenia"
+  - "Thrombocytopenia"
+  - "Diarrhea"
+  - "Fatigue"
+  - "Skin rash"
+  - "Muscle cramps"
+serious_adverse_events:
+  - "Venous thromboembolism (DVT, pulmonary embolism)"
+  - "Second primary malignancies (long-term exposure)"
+  - "Hepatotoxicity"
+  - "Severe skin reactions (Stevens-Johnson, TEN)"
+
+pharmacology:
+  half_life: "~3 hours (longer with renal impairment); ~80% renal excretion"
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Renal dose adjustment is critical: CrCl 30-60 mL/min → 10 mg daily;
+  CrCl <30 (no dialysis) → 15 mg every other day; dialysis → 5 mg post-
+  dialysis on dialysis days. VTE prophylaxis (aspirin 81-325 mg or LMWH
+  in higher-risk patients) is mandatory throughout therapy.

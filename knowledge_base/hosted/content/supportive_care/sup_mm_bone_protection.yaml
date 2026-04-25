@@ -1,0 +1,28 @@
+id: SUP-MM-BONE-PROTECTION
+intervention_type: prophylaxis
+name: "Multiple myeloma bone protection (bisphosphonate)"
+name_ua: "Кісткова протекція при множинній мієломі (бісфосфонат)"
+
+standard_intervention:
+  drug_id: DRUG-ZOLEDRONATE
+  dose: "4 mg IV over ≥15 minutes monthly (every 4 weeks); reduce per CrCl"
+  schedule: "Start with cycle 1; continue monthly for ≤24 months, then re-evaluate"
+  notes: "Calcium 1200 mg + vitamin D 800-1000 IU daily mandatory. Comprehensive dental evaluation BEFORE initiation; avoid invasive dental procedures during therapy. Alternative: denosumab 120 mg SC monthly (no renal dose adjustment, but cost / availability concerns in Ukraine)."
+
+triggers:
+  relevant_regimens:
+    - REG-VRD
+    - REG-DARA-VRD
+  clinical_condition: "All MM patients receiving anti-myeloma therapy with evidence of bone disease (lytic lesions, osteopenia, or prior skeletal-related event); strongly recommended for all MM patients regardless of bone disease status per IMWG / NCCN"
+
+rationale: >
+  Reduces skeletal-related events (pathologic fracture, spinal cord
+  compression, need for radiation or surgery) by ~30-50%, reduces bone
+  pain, and may improve overall survival in some studies. Risk of ONJ
+  (~1-3% over 2 years) is manageable with pre-treatment dental
+  evaluation and avoidance of invasive procedures.
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"

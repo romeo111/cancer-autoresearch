@@ -1,0 +1,32 @@
+id: SUP-MM-VTE-PROPHYLAXIS
+intervention_type: prophylaxis
+name: "VTE prophylaxis for IMiD-based myeloma therapy"
+name_ua: "Профілактика ВТЕ при IMiD-базованій терапії мієломи"
+
+standard_intervention:
+  drug_id: DRUG-ASPIRIN
+  dose: "81-100 mg PO daily (low-risk patients)"
+  schedule: "Start with first cycle; continue throughout IMiD-based therapy and maintenance"
+  notes: >
+    For higher-risk patients (prior VTE, BMI >30, central venous catheter,
+    immobility, active disease at induction, multiple risk factors), use
+    LMWH (enoxaparin 40 mg SC daily) or apixaban 2.5 mg PO BID instead of
+    aspirin. Hold aspirin if platelets <50K.
+
+triggers:
+  relevant_regimens:
+    - REG-VRD
+    - REG-DARA-VRD
+  clinical_condition: "Lenalidomide (or thalidomide / pomalidomide) treatment in MM — ~10-20% baseline VTE risk without prophylaxis, dropping to ~2-5% with appropriate prophylaxis"
+
+rationale: >
+  Lenalidomide + dexamethasone substantially increases VTE risk via
+  multiple mechanisms (endothelial activation, increased thrombin
+  generation, decreased fibrinolysis). Prophylaxis is mandatory; the
+  choice between aspirin and anticoagulation depends on additional risk
+  factors per IMWG VTE risk score.
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"

@@ -1,0 +1,66 @@
+id: DRUG-DEXAMETHASONE
+names:
+  preferred: "Dexamethasone"
+  ukrainian: "Дексаметазон"
+  english: "Dexamethasone"
+  brand_names:
+    - "Decadron"
+    - "Dexamed"
+atc_code: H02AB02
+rxnorm_id: "3264"
+drug_class: "Synthetic glucocorticoid"
+mechanism: >
+  Binds the glucocorticoid receptor; in myeloma cells induces apoptosis
+  through suppression of NF-κB signaling and direct effects on
+  glucocorticoid-responsive plasma cell pathways. Synergistic with
+  proteasome inhibitors and IMiDs.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: "[TBD]"
+    reimbursed_nszu: true
+    last_verified: "2026-04-25"
+
+typical_dosing: "40 mg PO/IV weekly (days 1, 8, 15, 22 of 28-day cycle) in MM induction; 20 mg weekly if age >75 or frail"
+formulations:
+  - "Tablets 0.5 / 0.75 / 1.5 / 4 / 6 mg"
+  - "IV solution 4 mg/mL, 10 mg/mL"
+
+absolute_contraindications:
+  - "Systemic fungal infection (uncontrolled)"
+  - "Hypersensitivity"
+black_box_warnings: []
+major_interactions:
+  - "CYP3A4 substrate — interacts with strong inducers/inhibitors"
+  - "Live vaccines contraindicated during chronic use"
+  - "NSAIDs increase GI ulceration risk"
+common_adverse_events:
+  - "Hyperglycemia"
+  - "Insomnia, mood elevation/agitation"
+  - "Increased appetite, weight gain"
+  - "Fluid retention, hypertension"
+  - "Increased infection susceptibility"
+  - "Muscle weakness (myopathy)"
+serious_adverse_events:
+  - "Adrenal suppression with abrupt discontinuation"
+  - "Severe psychiatric reactions"
+  - "Avascular necrosis (long-term)"
+  - "Opportunistic infections"
+
+pharmacology:
+  half_life: "~4 hours; biological effect 36-72 hours"
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  In frail / elderly (>75 yrs) patients, weekly dose reduced to 20 mg to
+  improve tolerability without compromising efficacy (FRAIL / IFM/HOVON
+  data). PJP prophylaxis indicated when used at induction doses for ≥4
+  weeks combined with other immunosuppressives.

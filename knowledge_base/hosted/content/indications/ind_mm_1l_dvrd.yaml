@@ -1,0 +1,77 @@
+id: IND-MM-1L-DVRD
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-MM
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-DARA-VRD
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~98-100% (≥PR after 4 cycles per PERSEUS)"
+  complete_response: "~50-65% post-induction; ~70-80% post-ASCT consolidation (PERSEUS)"
+  progression_free_survival: "Estimated 4-year PFS ~84% transplant-eligible (PERSEUS); HR ~0.42 vs VRd"
+  overall_survival_5y: ">80% (mature OS data still maturing)"
+
+hard_contraindications:
+  - CI-LENALIDOMIDE-PREGNANCY
+  - CI-BORTEZOMIB-SEVERE-NEUROPATHY
+  - CI-HBV-NO-PROPHYLAXIS
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-IMMUNOGLOBULINS
+  - TEST-SPEP-UPEP
+  - TEST-FREE-LIGHT-CHAINS
+  - TEST-FISH-PANEL
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-WHOLE-BODY-MRI
+  - TEST-HBV-SEROLOGY
+  - TEST-ECHO
+desired_tests: []
+
+rationale: >
+  Aggressive-plan default for newly-diagnosed multiple myeloma with
+  high-risk cytogenetics (any of t(4;14), t(14;16), t(14;20), del(17p),
+  gain/amp 1q21). Adding daratumumab to the VRd backbone (D-VRd
+  quadruplet) substantially improves MRD-negativity rate and PFS per
+  PERSEUS and GRIFFIN trials. For high-risk patients the absolute benefit
+  is largest, justifying the access / cost burden. Concurrent or
+  preceding HBV screening + entecavir prophylaxis if HBsAg+ or anti-HBc+.
+
+sources:
+  - source_id: SRC-NCCN-MM-2025
+    position: supports
+    relevant_quote_paraphrase: "D-VRd is a Category 1 preferred regimen for newly-diagnosed MM, particularly for high-risk cytogenetics; PERSEUS / GRIFFIN data support quadruplet over triplet"
+
+known_controversies: []
+
+time_critical: false  # outpatient cancer planning, not time-critical (FDA non-device CDS criterion 4)
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — requires clinical co-lead signoff before publication. Aggressive
+  counterpart to IND-MM-1L-VRD for two-plan output (CHARTER §2). Major
+  access constraint in Ukraine: daratumumab is not currently НСЗУ-
+  reimbursed — funding pathway must be confirmed BEFORE this Plan is
+  finalized. Red-cell phenotyping (type and screen) BEFORE first
+  daratumumab dose is mandatory due to anti-CD38 interference with
+  crossmatching.

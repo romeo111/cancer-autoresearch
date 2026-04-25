@@ -1,0 +1,35 @@
+id: RF-MM-RENAL-DYSFUNCTION
+definition: "Multiple myeloma with significant renal dysfunction: CrCl <60 mL/min or serum creatinine >177 µmol/L (>2 mg/dL) attributable to myeloma kidney"
+definition_ua: "Множинна мієлома зі значним порушенням функції нирок: CrCl <60 мл/хв або креатинін >177 мкмоль/л на тлі мієломної нефропатії"
+
+trigger:
+  type: lab_result
+  any_of:
+    - finding: "creatinine_clearance_ml_min"
+      threshold: 60
+      comparator: "<"
+    - finding: "serum_creatinine_mg_dl"
+      threshold: 2.0
+      comparator: ">"
+    - finding: "mm_renal_failure"
+      value: true
+
+clinical_direction: investigate
+
+relevant_diseases:
+  - DIS-MM
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Direction "investigate" — triggers lenalidomide dose adjustment in BOTH
+  VRd and D-VRd and demands further workup (24-hr urine, kidney biopsy in
+  selected cases) to distinguish myeloma kidney from other causes. Does
+  not shift the algorithm's regimen choice (proteasome inhibitors are
+  renal-safe and remain effective at recovering renal function), but
+  mandates dose modification surfaced as a particularity in the rendered
+  Plan. The schema enum doesn't have "dose_adjust" — "investigate" is the
+  closest match per §9.

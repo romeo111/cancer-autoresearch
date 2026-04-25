@@ -1,0 +1,34 @@
+id: CI-LENALIDOMIDE-PREGNANCY
+severity: absolute
+trigger:
+  type: patient_condition
+  conditions:
+    - patient_condition: "Pregnant OR planning pregnancy OR not on adequate contraception (women of childbearing potential)"
+  logic: AND
+
+description: "Lenalidomide is a potent teratogen — pregnancy is an absolute contraindication. Adequate contraception (two methods) and pregnancy testing are mandatory throughout therapy and for ≥4 weeks after discontinuation."
+description_ua: "Леналідомід — потужний тератоген. Вагітність є абсолютним протипоказанням. Адекватна контрацепція (дві методи) та тест на вагітність обов'язкові протягом терапії та ≥4 тижнів після завершення."
+
+alternative_actions:
+  - "Confirm negative pregnancy test before each cycle in women of childbearing potential"
+  - "Two methods of contraception throughout therapy and for ≥4 weeks after discontinuation"
+  - "Consider alternative regimen (CyBorD: cyclophosphamide-bortezomib-dexamethasone) if pregnancy potential cannot be excluded"
+  - "REMS / Revlimid Risk Management Programme enrollment mandatory in jurisdictions where required"
+
+affects_indications:
+  - IND-MM-1L-VRD
+  - IND-MM-1L-DVRD
+affects_drugs:
+  - DRUG-LENALIDOMIDE
+affects_regimens:
+  - REG-VRD
+  - REG-DARA-VRD
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Equivalent contraindication applies to thalidomide and pomalidomide.
+  Note: aspirin VTE prophylaxis (mandatory with lenalidomide) is itself
+  contraindicated in active GI bleeding — separate contraindication.

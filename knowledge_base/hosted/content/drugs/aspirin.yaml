@@ -1,0 +1,63 @@
+id: DRUG-ASPIRIN
+names:
+  preferred: "Aspirin (acetylsalicylic acid)"
+  ukrainian: "Ацетилсаліцилова кислота"
+  english: "Aspirin"
+  brand_names:
+    - "Bayer Aspirin"
+    - "Cardiomagnyl"
+atc_code: B01AC06
+rxnorm_id: "1191"
+drug_class: "Non-selective cyclooxygenase (COX-1/COX-2) inhibitor; antiplatelet at low dose"
+mechanism: >
+  Irreversibly acetylates serine-530 of platelet COX-1, blocking
+  thromboxane A2 synthesis for the platelet's lifespan (~7-10 days).
+  At low antiplatelet doses (75-325 mg) produces selective inhibition of
+  platelet aggregation without significant anti-inflammatory effect.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: "OTC"
+    reimbursed_nszu: false
+    last_verified: "2026-04-25"
+
+typical_dosing: "81-100 mg PO daily for VTE prophylaxis in low-risk lenalidomide-treated patients"
+formulations:
+  - "Tablets 75 / 81 / 100 / 325 / 500 mg"
+
+absolute_contraindications:
+  - "Active GI bleeding or peptic ulcer disease"
+  - "Hypersensitivity / aspirin-exacerbated respiratory disease"
+  - "Severe thrombocytopenia (platelets <50K)"
+  - "Severe coagulopathy"
+black_box_warnings: []
+major_interactions:
+  - "Anticoagulants (warfarin, DOACs) — additive bleeding risk"
+  - "NSAIDs (ibuprofen, naproxen) — diminish antiplatelet effect"
+  - "Methotrexate (high dose) — increased toxicity"
+common_adverse_events:
+  - "Dyspepsia"
+  - "Minor bleeding (epistaxis, easy bruising)"
+serious_adverse_events:
+  - "Major GI bleeding"
+  - "Intracranial hemorrhage (rare at antiplatelet doses)"
+  - "Reye syndrome (children with viral illness — not relevant in adult oncology)"
+
+pharmacology:
+  half_life: "Aspirin ~15-20 minutes; salicylate metabolite 2-3 hours at low doses"
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Standard VTE prophylaxis for lenalidomide-treated MM patients without
+  additional VTE risk factors. For higher-risk patients (prior VTE,
+  immobility, central venous catheter, active disease at induction)
+  switch to LMWH (enoxaparin 40 mg SC daily) or apixaban. Hold aspirin
+  if platelets <50K.

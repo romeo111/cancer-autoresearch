@@ -1,0 +1,65 @@
+id: DRUG-ZOLEDRONATE
+names:
+  preferred: "Zoledronic acid"
+  ukrainian: "Золедронова кислота"
+  english: "Zoledronic acid"
+  brand_names:
+    - "Zometa"
+    - "Reclast"
+atc_code: M05BA08
+rxnorm_id: "77655"
+drug_class: "Nitrogen-containing bisphosphonate"
+mechanism: >
+  Binds hydroxyapatite in bone matrix; inhibits osteoclast farnesyl
+  pyrophosphate synthase, disrupting the mevalonate pathway and inducing
+  osteoclast apoptosis. Reduces skeletal-related events in myeloma bone
+  disease.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: "[TBD]"
+    reimbursed_nszu: true
+    last_verified: "2026-04-25"
+
+typical_dosing: "4 mg IV over ≥15 minutes monthly (every 4 weeks); reduced for renal impairment per CrCl"
+formulations:
+  - "IV concentrate 4 mg / 5 mL"
+  - "Pre-mixed IV bag 4 mg / 100 mL"
+
+absolute_contraindications:
+  - "Severe renal impairment (CrCl <30 mL/min) without dose adjustment"
+  - "Hypersensitivity"
+  - "Hypocalcemia (correct before administration)"
+  - "Pregnancy"
+black_box_warnings: []
+major_interactions:
+  - "Aminoglycosides may potentiate hypocalcemia"
+  - "NSAIDs and other nephrotoxic agents increase renal risk"
+common_adverse_events:
+  - "Acute-phase reaction (flu-like symptoms 1-3 days post-infusion)"
+  - "Hypocalcemia, hypophosphatemia"
+  - "Arthralgia, myalgia"
+  - "Fatigue"
+serious_adverse_events:
+  - "Osteonecrosis of the jaw (ONJ) — dental evaluation before initiation"
+  - "Atypical femoral fractures (long-term)"
+  - "Renal impairment / acute kidney injury"
+  - "Severe hypocalcemia (especially with vitamin D deficiency)"
+
+pharmacology:
+  half_life: "Plasma terminal ~146 hours; bone-bound for years"
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  Standard of care for myeloma-related bone disease — reduces skeletal-
+  related events and pain. Calcium + vitamin D supplementation mandatory.
+  Comprehensive dental evaluation BEFORE initiation; avoid invasive dental
+  procedures during therapy. Monthly dosing for ≤2 years, then re-evaluate.

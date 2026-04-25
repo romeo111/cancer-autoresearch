@@ -1,0 +1,93 @@
+id: IND-MM-1L-VRD
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-MM
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded:
+    - biomarker_id: BIO-MM-CYTOGENETICS-HR
+      required: false
+      value_constraint: "high-risk cytogenetics absent (standard-risk only)"
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-VRD
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~95-98% (≥PR after 4 cycles)"
+  complete_response: "~30-40% post-induction; ~50-60% post-ASCT consolidation"
+  progression_free_survival: "Median ~50-60 months (transplant-eligible with ASCT + maintenance); ~43 months transplant-ineligible (SWOG S0777)"
+  overall_survival_5y: "~70-75% transplant-eligible"
+
+hard_contraindications:
+  - CI-LENALIDOMIDE-PREGNANCY
+  - CI-BORTEZOMIB-SEVERE-NEUROPATHY
+red_flags_triggering_alternative:
+  - RF-MM-HIGH-RISK-CYTOGENETICS
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-IMMUNOGLOBULINS
+  - TEST-SPEP-UPEP
+  - TEST-FREE-LIGHT-CHAINS
+  - TEST-FISH-PANEL
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-WHOLE-BODY-MRI
+  - TEST-HBV-SEROLOGY
+desired_tests:
+  - TEST-ECHO
+
+rationale: >
+  Standard-plan default for newly-diagnosed multiple myeloma with
+  standard-risk cytogenetics. Triplet induction with bortezomib +
+  lenalidomide + dexamethasone (VRd) is the long-established backbone
+  for transplant-eligible patients (4 cycles before harvest) and remains
+  acceptable for transplant-ineligible patients per SWOG S0777. Choice of
+  triplet over quadruplet (D-VRd) for standard-risk reflects the smaller
+  absolute MRD-negativity benefit of the quadruplet in the absence of
+  high-risk cytogenetics, plus daratumumab access constraints in Ukraine.
+
+sources:
+  - source_id: SRC-NCCN-MM-2025
+    position: supports
+    relevant_quote_paraphrase: "VRd is a Category 1 preferred regimen for newly-diagnosed MM, transplant-eligible and transplant-ineligible"
+
+known_controversies:
+  - topic: "Triplet (VRd) vs quadruplet (D-VRd) for standard-risk transplant-eligible NDMM"
+    positions:
+      - position: "VRd remains the preferred standard-risk triplet given access and toxicity considerations"
+        sources:
+          - SRC-NCCN-MM-2025
+      - position: "All-comers D-VRd quadruplet improves MRD-negativity and PFS regardless of risk (PERSEUS, GRIFFIN)"
+        sources:
+          - SRC-NCCN-MM-2025
+        evidence_note: "PERSEUS / GRIFFIN trials show MRD-negativity benefit; absolute OS benefit unclear at current follow-up"
+    our_default: "VRd for standard-risk transplant-eligible patients in Ukraine, with explicit discussion of D-VRd benefit + access constraint"
+    rationale: >
+      Daratumumab is not currently reimbursed via НСЗУ; offering D-VRd as
+      default would create an access-driven inequity. The patient should
+      always be told the trade-off and offered D-VRd if a funding pathway
+      exists (clinical trial, charitable scheme, out-of-pocket).
+
+time_critical: false  # outpatient cancer planning, not time-critical (FDA non-device CDS criterion 4)
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — requires clinical co-lead signoff before publication. Standard
+  track for the MM 1L two-plan output (CHARTER §2). Transplant eligibility
+  is assessed separately and shapes total cycle count + post-induction
+  pathway, but does not change the induction regimen at this layer.
