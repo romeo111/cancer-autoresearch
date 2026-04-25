@@ -1,10 +1,16 @@
-"""CLI: generate a treatment plan for a patient profile JSON.
+"""CLI: generate a treatment plan or diagnostic brief for a patient profile.
 
 Usage:
     python -m knowledge_base.engine.cli examples/patient_zero_indolent.json
     python -m knowledge_base.engine.cli patient.json --kb knowledge_base/hosted/content
     python -m knowledge_base.engine.cli patient.json --json-output plan.json --verbose
     python -m knowledge_base.engine.cli patient.json --mdt
+    python -m knowledge_base.engine.cli patient.json --diagnostic --mdt
+
+Mode auto-detect:
+- patient.disease.id OR .icd_o_3_morphology present → treatment mode (Plan)
+- only patient.disease.suspicion present                → diagnostic mode (DiagnosticPlan)
+- --diagnostic flag forces diagnostic mode (errors if confirmed diagnosis present)
 """
 
 from __future__ import annotations
@@ -15,6 +21,12 @@ import json
 import sys
 from pathlib import Path
 
+from .diagnostic import (
+    _DIAGNOSTIC_BANNER,
+    generate_diagnostic_brief,
+    is_diagnostic_profile,
+    is_treatment_profile,
+)
 from .mdt_orchestrator import orchestrate_mdt
 from .plan import generate_plan
 
@@ -98,8 +110,46 @@ def _print_mdt_brief(mdt) -> None:
             print(f"    - {w}")
 
 
+def _print_diagnostic_brief(result) -> None:
+    print()
+    print("=" * 72)
+    print("  " + _DIAGNOSTIC_BANNER)
+    print("=" * 72)
+    print(f"Patient:        {result.patient_id or '<anonymous>'}")
+    if result.suspicion:
+        print(f"Suspicion:      lineage={result.suspicion.lineage_hint}, "
+              f"tissues={', '.join(result.suspicion.tissue_locations) or '-'}")
+        if result.suspicion.working_hypotheses:
+            print(f"Hypotheses:     {', '.join(result.suspicion.working_hypotheses)}")
+    print(f"Matched workup: {result.matched_workup_id or '<none>'}")
+    if result.diagnostic_plan:
+        dp = result.diagnostic_plan
+        print(f"Plan id:        {dp.id}  (v{dp.version})")
+        print(f"Timeline:       ~{dp.expected_timeline_days} днів")
+        print()
+        print(f"Workup steps ({len(dp.workup_steps)}):")
+        for s in dp.workup_steps:
+            line = f"  {s.step}. [{s.category}] {s.description or s.test_id or '?'}"
+            print(line)
+            if s.rationale:
+                print(f"      rationale: {s.rationale[:100]}")
+            if s.biopsy_approach:
+                print(f"      biopsy preferred: {s.biopsy_approach.preferred[:90]}")
+            if s.ihc_panel and s.ihc_panel.baseline:
+                print(f"      IHC baseline: {', '.join(s.ihc_panel.baseline)}")
+        print()
+        if dp.mandatory_questions:
+            print(f"Mandatory questions ({len(dp.mandatory_questions)}):")
+            for q in dp.mandatory_questions:
+                print(f"  - {q}")
+    if result.warnings:
+        print("\nWarnings:")
+        for w in result.warnings:
+            print(f"  - {w}")
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description="OpenOnco rule engine — generate a Plan with multiple tracks.")
+    parser = argparse.ArgumentParser(description="OpenOnco rule engine — generate a Plan or DiagnosticPlan.")
     parser.add_argument("patient", type=Path, help="Patient profile JSON")
     parser.add_argument(
         "--kb",
@@ -114,6 +164,11 @@ def main() -> int:
         action="store_true",
         help="Print MDT brief: required/recommended roles, open questions, data quality",
     )
+    parser.add_argument(
+        "--diagnostic",
+        action="store_true",
+        help="Force diagnostic mode (errors if patient.disease.id present per CHARTER §15.2 C7)",
+    )
     args = parser.parse_args()
 
     if not args.patient.is_file():
@@ -121,6 +176,37 @@ def main() -> int:
         return 2
 
     patient = json.loads(args.patient.read_text(encoding="utf-8"))
+
+    # Mode dispatch — see DIAGNOSTIC_MDT_SPEC §6.3
+    use_diagnostic = args.diagnostic or (
+        is_diagnostic_profile(patient) and not is_treatment_profile(patient)
+    )
+
+    if use_diagnostic:
+        try:
+            diag_result = generate_diagnostic_brief(patient, kb_root=args.kb)
+        except ValueError as e:
+            print(f"ERROR: {e}", file=sys.stderr)
+            return 2
+        _print_diagnostic_brief(diag_result)
+        mdt = None
+        if args.mdt:
+            mdt = orchestrate_mdt(patient, diag_result, kb_root=args.kb)
+            _print_mdt_brief(mdt)
+        if args.json_output:
+            payload = diag_result.to_dict()
+            if mdt is not None:
+                payload["mdt"] = mdt.to_dict()
+            args.json_output.write_text(
+                json.dumps(payload, indent=2, ensure_ascii=False, default=str),
+                encoding="utf-8",
+            )
+            print(f"\nFull DiagnosticPlan JSON written to {args.json_output}")
+        if diag_result.diagnostic_plan is None:
+            return 1
+        return 0
+
+    # Treatment mode (existing flow)
     result = generate_plan(patient, kb_root=args.kb)
 
     print(f"Patient:   {result.patient_id or '<anonymous>'}")

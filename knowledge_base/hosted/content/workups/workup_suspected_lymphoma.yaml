@@ -1,0 +1,89 @@
+id: WORKUP-SUSPECTED-LYMPHOMA
+
+applicable_to:
+  lineage_hints:
+    - lymphoma
+    - b_cell_lymphoma
+    - t_cell_lymphoma
+    - hodgkin_lymphoma
+    - mzl
+  tissue_locations:
+    - lymph_node
+    - spleen
+    - stomach
+    - thyroid
+    - salivary_gland
+    - mediastinum
+    - bone_marrow
+  presentation_keywords:
+    - lymphadenopathy
+    - splenomegaly
+    - cytopenia
+    - b-symptom
+    - night sweats
+    - weight loss
+
+required_tests:
+  - TEST-CBC
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-HBV-SEROLOGY
+  - TEST-PET-CT
+
+biopsy_approach:
+  preferred: "Excisional biopsy of largest accessible peripheral lymph node"
+  alternatives:
+    - "Core needle biopsy if excisional not feasible (deep nodal location)"
+    - "Image-guided biopsy для глибоких або висцеральних локалізацій"
+    - "Splenectomy as diagnostic modality only за умови isolated splenic disease + non-diagnostic less-invasive options"
+  rationale: >
+    Архітектура лімфовузла критична для класифікації лімфоми
+    (follicular vs diffuse, nodular vs interfollicular). FNA
+    зазвичай недостатня — пропускає architectural pattern.
+
+required_ihc_panel:
+  baseline:
+    - CD20
+    - CD3
+    - CD5
+    - CD10
+    - CD23
+    - BCL2
+    - BCL6
+    - Ki67
+  if_b_cell:
+    - MUM1
+    - CyclinD1
+    - EBER-ISH
+  if_aggressive:
+    - MYC
+    - "BCL6 break-apart FISH"
+
+mandatory_questions_to_resolve:
+  - "Чи це лімфома, реактивна гіперплазія, чи інша малігнізація?"
+  - "Якщо лімфома — підтип за WHO Classification 5th ed.?"
+  - "Чи є ознаки трансформації / aggressive component (DLBCL areas)?"
+  - "Чи потрібен молекулярний тест (MYC, BCL2/BCL6 translocations, FISH)?"
+  - "Який HBV/HCV статус? (визначає дозволеність anti-CD20 без prophylaxis)"
+
+expected_timeline_days: 14
+expected_workup_cost_uah_estimate: 12000
+
+triggers_mdt_roles:
+  required:
+    - hematologist
+    - pathologist
+    - radiologist
+  recommended:
+    - infectious_disease_hepatology
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-MZL-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — workup для будь-якої підозри на лімфому. Покриває діагностичну
+  фазу до підтвердження гістології. Після готового патогістологічного
+  висновку patient profile отримує `disease.id` і engine переходить
+  на treatment-mode (`generate_plan()`).

@@ -791,21 +791,206 @@ def _bootstrap_provenance(
     return graph
 
 
+# ── Diagnostic-mode rules (D1-D6 / DQ1-DQ4) ──────────────────────────────
+
+
+def _apply_diagnostic_role_rules(
+    patient: dict,
+    diag_result: "DiagnosticPlanResult",
+    findings: dict[str, Any],
+) -> list[MDTRequiredRole]:
+    """D1-D6 from specs/DIAGNOSTIC_MDT_SPEC.md §4. Operates on the
+    suspicion shape, NOT on Indications/regimens (we have neither yet)."""
+
+    suspicion = diag_result.suspicion
+    if suspicion is None:
+        return []
+
+    roles: dict[str, MDTRequiredRole] = {}
+
+    def add(role_id: str, reason: str, trigger_type: TriggerType,
+            priority: Priority, linked_findings: Optional[list[str]] = None) -> None:
+        existing = roles.get(role_id)
+        if existing is None:
+            roles[role_id] = MDTRequiredRole(
+                role_id=role_id,
+                role_name=_role_name(role_id),
+                reason=reason,
+                trigger_type=trigger_type,
+                priority=priority,
+                linked_findings=list(linked_findings or []),
+            )
+            return
+        if _PRIORITY_RANK[priority] > _PRIORITY_RANK[existing.priority]:
+            existing.priority = priority
+
+    lineage = (suspicion.lineage_hint or "").lower()
+    is_lymph_suspect = "lymphoma" in lineage or lineage in {"mzl", "lymph"}
+    is_solid_suspect = any(t in lineage for t in ("solid_tumor", "carcinoma", "sarcoma", "melanoma"))
+
+    # D1 — lymphoma suspicion → hematologist required
+    if is_lymph_suspect:
+        add(
+            "hematologist",
+            "Підозра на лімфому — провідна спеціальність для diagnostic workup та подальшого ведення.",
+            "diagnosis_complexity",
+            "required",
+            linked_findings=["suspicion.lineage_hint"],
+        )
+
+    # D2 — any suspicion → biopsy → pathologist required
+    add(
+        "pathologist",
+        "Будь-яка підозра вимагає біопсії — патолог планує вибір місця, IHC панель, ancillary tests.",
+        "diagnosis_complexity",
+        "required",
+        linked_findings=["suspicion"],
+    )
+
+    # D3 — tissue locations OR imaging fields present → radiologist required
+    if suspicion.tissue_locations or _has(
+        findings, "dominant_nodal_mass_cm", "splenic_mass_cm", "mediastinal_ratio",
+        "pet_ct_date", "ct_findings", "lugano_stage",
+    ):
+        add(
+            "radiologist",
+            "Stage / restaging imaging + biopsy guidance — радіолог.",
+            "diagnosis_complexity",
+            "required",
+            linked_findings=list(suspicion.tissue_locations) or ["imaging"],
+        )
+
+    # D4 — solid-tumor suspicion → surgical oncologist (resectability, biopsy approach)
+    if is_solid_suspect:
+        add(
+            "surgical_oncologist",
+            "Підозра на солідну пухлину — оцінка resectability, biopsy approach.",
+            "treatment_domain",
+            "recommended",
+            linked_findings=["suspicion.lineage_hint"],
+        )
+
+    # D5 — lymphoma suspicion + HCV/HBV unresolved → infectious disease
+    history = patient.get("history") or {}
+    hcv_known = history.get("hcv_known_positive")
+    hbv_known = history.get("hbv_known_positive")
+    if is_lymph_suspect and (hcv_known is None or hbv_known is None):
+        add(
+            "infectious_disease_hepatology",
+            "Перед anti-CD20 treatment status HCV/HBV має бути відомий — ще на діагностичній фазі.",
+            "molecular_data",
+            "recommended",
+            linked_findings=["history.hcv_known_positive", "history.hbv_known_positive"],
+        )
+
+    # D6 — poor performance / decompensation → palliative for early goals-of-care
+    try:
+        ecog = int(findings.get("ecog") or 0)
+    except (TypeError, ValueError):
+        ecog = 0
+    presentation = (suspicion.presentation or "").lower()
+    if ecog >= 3 or "decompens" in presentation:
+        add(
+            "palliative_care",
+            "Знижений performance status / ознаки декомпенсації — рання оцінка цілей лікування.",
+            "palliative_need",
+            "recommended",
+            linked_findings=["ecog/presentation"],
+        )
+
+    return list(roles.values())
+
+
+def _apply_diagnostic_open_questions(
+    patient: dict,
+    diag_result: "DiagnosticPlanResult",
+    findings: dict[str, Any],
+) -> list[OpenQuestion]:
+    """DQ1-DQ4 from specs/DIAGNOSTIC_MDT_SPEC.md §5."""
+
+    suspicion = diag_result.suspicion
+    if suspicion is None:
+        return []
+
+    questions: list[OpenQuestion] = []
+    lineage = (suspicion.lineage_hint or "").lower()
+    is_lymph = "lymphoma" in lineage or lineage in {"mzl", "lymph"}
+
+    # DQ1 — lymphoma suspect AND CD20 status absent
+    if is_lymph and not _has(findings, "cd20_ihc_status"):
+        questions.append(OpenQuestion(
+            id="DQ-CD20-AFTER-BIOPSY",
+            question="Який результат CD20 IHC буде після біопсії? Без CD20+ rituximab/obinutuzumab не показані.",
+            owner_role="pathologist",
+            blocking=True,
+            rationale="Базис для будь-якого anti-CD20-containing regimen у майбутньому.",
+            linked_findings=["cd20_ihc_status"],
+        ))
+
+    # DQ2 — lymphoma suspect AND HBV serology absent
+    if is_lymph and not _has(findings, "hbsag", "anti_hbc_total"):
+        questions.append(OpenQuestion(
+            id="DQ-HBV-SEROLOGY-EARLY",
+            question="Серологія HBV (HBsAg, anti-HBc) — обов'язкова перед anti-CD20; почати workup зараз.",
+            owner_role="infectious_disease_hepatology",
+            blocking=True,
+            rationale="HBV reactivation risk при anti-CD20 без prophylaxis.",
+            linked_findings=["hbsag", "anti_hbc_total"],
+        ))
+
+    # DQ3 — lymphoma suspect AND staging fields absent
+    if is_lymph and not _has(findings, "lugano_stage", "pet_ct_date"):
+        questions.append(OpenQuestion(
+            id="DQ-STAGING-PLAN",
+            question="Чи запланований повний staging (PET/CT + bone marrow за показаннями)?",
+            owner_role="radiologist",
+            blocking=True,
+            rationale="Stage визначає track і treatment intensity.",
+            linked_findings=["lugano_stage", "pet_ct_date"],
+        ))
+
+    # DQ4 — multiple working_hypotheses → differential plan needed
+    if len(suspicion.working_hypotheses) >= 2:
+        hyps = ", ".join(suspicion.working_hypotheses)
+        questions.append(OpenQuestion(
+            id="DQ-DIFFERENTIAL",
+            question=(
+                f"Який план диференціальної діагностики між гіпотезами: {hyps}? "
+                "Які молекулярні / IHC тести розрізняють?"
+            ),
+            owner_role="pathologist",
+            blocking=False,
+            rationale="Множинні гіпотези — розрізнити їх перед treatment discussion.",
+            linked_findings=list(suspicion.working_hypotheses),
+        ))
+
+    return questions
+
+
 # ── Public entry point ────────────────────────────────────────────────────
 
 
 def orchestrate_mdt(
     patient: dict,
-    plan_result: PlanResult,
+    plan_or_diagnostic,
     kb_root: Path | str = "knowledge_base/hosted/content",
 ) -> MDTOrchestrationResult:
-    """Build an MDT brief for `plan_result`.
+    """Build an MDT brief for either a treatment PlanResult OR a
+    DiagnosticPlanResult. Mode is detected by the type of the second
+    argument.
 
-    Important: this function does NOT modify `plan_result` — it only reads.
-    Callers can rely on `plan_result.default_indication_id` being unchanged
-    after this call (asserted in tests).
+    Important: read-only with respect to the input. Callers can rely on
+    `plan_result.default_indication_id` being unchanged after this call
+    (asserted in tests).
     """
 
+    # Lazy import to avoid a circular dependency at module-load time
+    from .diagnostic import DiagnosticPlanResult
+
+    if isinstance(plan_or_diagnostic, DiagnosticPlanResult):
+        return _orchestrate_mdt_diagnostic(patient, plan_or_diagnostic, kb_root)
+
+    plan_result: PlanResult = plan_or_diagnostic
     findings = _flatten_findings(patient)
 
     load = load_content(Path(kb_root))
@@ -859,6 +1044,129 @@ def orchestrate_mdt(
         aggregation_summary=aggregation,
         warnings=warnings,
         provenance=provenance,
+    )
+
+
+def _orchestrate_mdt_diagnostic(
+    patient: dict,
+    diag_result,
+    kb_root: Path | str,
+) -> MDTOrchestrationResult:
+    """MDT brief for diagnostic-mode (pre-histology) workflow.
+
+    Applies D1-D6 / DQ1-DQ4. Does NOT use treatment-mode rules — there
+    are no Indications, no regimens, no biomarker-requirements yet.
+    """
+
+    from .diagnostic import DiagnosticPlanResult  # for type hint only
+
+    findings = _flatten_findings(patient)
+    load = load_content(Path(kb_root))
+    entities = load.entities_by_id
+    warnings: list[str] = []
+    for path, msg in load.schema_errors:
+        warnings.append(f"schema error in {path.name}: {msg[:120]}")
+    for path, msg in load.ref_errors:
+        warnings.append(f"ref error in {path.name}: {msg}")
+
+    roles = _apply_diagnostic_role_rules(patient, diag_result, findings)
+    questions = _apply_diagnostic_open_questions(patient, diag_result, findings)
+
+    # Cross-link
+    roles_by_id = {r.role_id: r for r in roles}
+    for q in questions:
+        owner = roles_by_id.get(q.owner_role)
+        if owner is not None and q.id not in owner.linked_questions:
+            owner.linked_questions.append(q.id)
+
+    required = sorted([r for r in roles if r.priority == "required"], key=lambda r: r.role_id)
+    recommended = sorted([r for r in roles if r.priority == "recommended"], key=lambda r: r.role_id)
+    optional = sorted([r for r in roles if r.priority == "optional"], key=lambda r: r.role_id)
+
+    # Diagnostic data quality: missing critical fields list mirrors what
+    # DQ1-DQ3 actually test for + a couple of demographic essentials.
+    is_lymph = "lymphoma" in (diag_result.suspicion.lineage_hint or "").lower() if diag_result.suspicion else False
+    critical_fields = ("hbsag", "anti_hbc_total", "cd20_ihc_status", "lugano_stage") if is_lymph else ()
+    quality = {
+        "missing_critical_fields": [f for f in critical_fields if not _has(findings, f)],
+        "missing_recommended_fields": [],
+        "ambiguous_findings": [],
+        "unevaluated_red_flags": [],
+        "fields_present_count": sum(1 for v in findings.values() if v not in (None, "")),
+        "fields_expected_count": len(critical_fields),
+    }
+
+    # Aggregation summary — diagnostic-mode flavour
+    aggregation = {
+        "mode": "diagnostic",
+        "kb_entities_loaded": len(entities),
+        "matched_workup_id": diag_result.matched_workup_id,
+        "workup_steps": (
+            len(diag_result.diagnostic_plan.workup_steps)
+            if diag_result.diagnostic_plan
+            else 0
+        ),
+        "mandatory_questions": (
+            len(diag_result.diagnostic_plan.mandatory_questions)
+            if diag_result.diagnostic_plan
+            else 0
+        ),
+        "open_questions_raised": len(questions),
+        "live_api_clients_available": list(_KNOWN_LIVE_API_CLIENTS),
+        "live_api_clients_invoked": [],
+    }
+
+    # Diagnostic-mode provenance: simpler — no fired_red_flags etc.
+    plan_id = (diag_result.diagnostic_plan.id if diag_result.diagnostic_plan else "DPLAN-UNKNOWN")
+    plan_version = (diag_result.diagnostic_plan.version if diag_result.diagnostic_plan else 1)
+    graph = DecisionProvenanceGraph(plan_version=plan_version)
+
+    counter = 0
+
+    def next_id() -> str:
+        nonlocal counter
+        counter += 1
+        return f"EV-{plan_id}-{counter:03d}"
+
+    graph.add_event(make_event(
+        event_id=next_id(),
+        actor_role="engine",
+        event_type="confirmed",
+        target_type="plan_section",
+        target_id=plan_id,
+        summary=f"Engine згенерував diagnostic brief {plan_id} (версія {plan_version}).",
+    ))
+    for role in (*required, *recommended, *optional):
+        graph.add_event(make_event(
+            event_id=next_id(),
+            actor_role="engine",
+            event_type="requested_data",
+            target_type="plan_section",
+            target_id=role.role_id,
+            summary=f"Запрошено роль '{role.role_name}' (priority={role.priority}): {role.reason}",
+        ))
+    for q in questions:
+        graph.add_event(make_event(
+            event_id=next_id(),
+            actor_role="engine",
+            event_type="added_question",
+            target_type="plan_section",
+            target_id=q.id,
+            summary=f"Підняте питання для {q.owner_role} (blocking={q.blocking}): {q.question}",
+        ))
+
+    return MDTOrchestrationResult(
+        patient_id=diag_result.patient_id,
+        plan_id=plan_id,
+        disease_id=None,  # by definition
+        required_roles=required,
+        recommended_roles=recommended,
+        optional_roles=optional,
+        open_questions=questions,
+        data_quality_summary=quality,
+        aggregation_summary=aggregation,
+        warnings=warnings + list(diag_result.warnings),
+        provenance=graph,
     )
 
 

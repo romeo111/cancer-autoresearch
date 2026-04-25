@@ -1,0 +1,29 @@
+{
+  "patient_id": "PZ-DIAG-001",
+  "disease": {
+    "suspicion": {
+      "lineage_hint": "b_cell_lymphoma",
+      "tissue_locations": ["lymph_node", "spleen"],
+      "icd_o_3_topography": ["C77.2", "C42.2"],
+      "presentation": "Splenomegaly + mediastinal lymphadenopathy + cytopenias + B-symptoms (drenching night sweats x 6 weeks)",
+      "working_hypotheses": ["DIS-SPLENIC-MZL", "DIS-DLBCL", "DIS-FOLLICULAR-LYMPHOMA"]
+    }
+  },
+  "demographics": {
+    "age": 58,
+    "sex": "male",
+    "ecog": 1
+  },
+  "findings": {
+    "splenic_mass_cm": 12.0,
+    "ldh_ratio_to_uln": 1.4,
+    "anc": 1200,
+    "platelets": 95000,
+    "hemoglobin_g_dl": 10.2
+  },
+  "history": {
+    "hcv_known_positive": null,
+    "hbv_known_positive": null,
+    "prior_malignancy": null
+  }
+}

@@ -7,6 +7,14 @@ these models on load. See `validation/loader.py`.
 from .algorithm import Algorithm
 from .biomarker import Biomarker
 from .contraindication import Contraindication
+from .diagnostic import (
+    BiopsyApproach,
+    DiagnosticPlan,
+    DiagnosticWorkup,
+    IHCPanel,
+    SuspicionSnapshot,
+    WorkupStep,
+)
 from .disease import Disease
 from .drug import Drug
 from .indication import Indication
@@ -20,8 +28,9 @@ from .test import Test
 
 # Map content directory name → entity class.
 # Used by the loader to pick the right schema for each YAML file.
-# Plan is NOT included — Plan instances live outside the public KB
-# (in patient_plans/<patient_id>/v<N>.yaml, gitignored per CHARTER §9.3).
+# Plan / DiagnosticPlan are NOT included — instances live outside the
+# public KB (in patient_plans/<patient_id>/v<N>.yaml, gitignored per
+# CHARTER §9.3). Only DiagnosticWorkup (curated content) belongs here.
 ENTITY_BY_DIR: dict[str, type] = {
     "diseases": Disease,
     "drugs": Drug,
@@ -35,16 +44,21 @@ ENTITY_BY_DIR: dict[str, type] = {
     "supportive_care": SupportiveCare,
     "monitoring": MonitoringSchedule,
     "sources": Source,
+    "workups": DiagnosticWorkup,
 }
 
 __all__ = [
     "Algorithm",
     "Biomarker",
+    "BiopsyApproach",
     "Contraindication",
+    "DiagnosticPlan",
+    "DiagnosticWorkup",
     "Disease",
     "Drug",
     "ENTITY_BY_DIR",
     "FDAComplianceMetadata",
+    "IHCPanel",
     "Indication",
     "MonitoringSchedule",
     "Plan",
@@ -54,5 +68,7 @@ __all__ = [
     "Regimen",
     "Source",
     "SupportiveCare",
+    "SuspicionSnapshot",
     "Test",
+    "WorkupStep",
 ]

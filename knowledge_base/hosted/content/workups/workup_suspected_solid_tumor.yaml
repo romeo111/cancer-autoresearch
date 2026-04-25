@@ -1,0 +1,79 @@
+id: WORKUP-SUSPECTED-SOLID-TUMOR
+
+applicable_to:
+  lineage_hints:
+    - solid_tumor
+    - carcinoma
+    - sarcoma
+    - melanoma
+  tissue_locations:
+    - breast
+    - lung
+    - colon
+    - pancreas
+    - liver
+    - kidney
+    - bladder
+    - prostate
+    - skin
+    - bone
+    - soft_tissue
+    - brain
+  presentation_keywords:
+    - mass
+    - lesion
+    - nodule
+    - tumour
+    - suspicious_imaging
+
+required_tests:
+  - TEST-CBC
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-PET-CT
+
+biopsy_approach:
+  preferred: "Image-guided core needle biopsy of primary lesion"
+  alternatives:
+    - "Surgical / excisional biopsy if accessible AND diagnostic yield critical"
+    - "Endoscopic biopsy для GI / bronchial локалізацій"
+    - "Liquid biopsy as adjunct, не replacement, of tissue diagnosis"
+  rationale: >
+    Histology + adequate tissue для immunohistochemistry +
+    molecular profiling (NGS panel) — standard solid-tumor workflow.
+
+required_ihc_panel:
+  baseline:
+    - "Pan-cytokeratin"
+    - Vimentin
+    - "Ki67"
+  if_solid:
+    - "Site-specific markers (CDX2, TTF-1, GATA3, PAX8 etc. per suspected primary)"
+    - "Molecular: actionable mutations panel (EGFR, KRAS, BRAF, HER2 per histology)"
+
+mandatory_questions_to_resolve:
+  - "Чи це malignancy чи benign / inflammatory mimicker?"
+  - "Якщо malignancy — primary site чи metastasis з невідомого primary?"
+  - "Histologic subtype + grade?"
+  - "Stage за відповідною AJCC TNM системою?"
+  - "Actionable mutations присутні? (визначає targeted therapy options)"
+
+expected_timeline_days: 21
+expected_workup_cost_uah_estimate: 18000
+
+triggers_mdt_roles:
+  required:
+    - pathologist
+    - radiologist
+  recommended:
+    - surgical_oncologist
+    - medical_oncologist
+    - molecular_geneticist
+
+sources: []
+
+last_reviewed: "2026-04-25"
+notes: >
+  STUB — generic solid-tumor workup. Per-cancer-type workups
+  (breast, lung, CRC, etc.) — наступні ітерації коли solid tumours
+  потраплять у scope (CHARTER §3 — currently онкогематологія).

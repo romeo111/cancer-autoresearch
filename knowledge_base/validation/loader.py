@@ -57,6 +57,9 @@ REF_FIELDS: dict[str, list[tuple[str, str]]] = {
     "drugs": [],
     "diseases": [],
     "sources": [],
+    "workups": [
+        # required_tests handled specially (list of Test IDs)
+    ],
 }
 
 
@@ -200,6 +203,12 @@ def load_content(root: Path) -> LoadResult:
             for alt in data.get("alternatives") or []:
                 if isinstance(alt, dict):
                     check_ref(path, alt.get("drug_id"), "drugs", "alternatives[].drug_id")
+        elif etype == "workups":
+            for sid in data.get("required_tests") or []:
+                check_ref(path, sid, "tests", "required_tests[]")
+            roles_block = data.get("triggers_mdt_roles") or {}
+            # role IDs are NOT validated against KB entities — they're a
+            # closed enum in mdt_orchestrator._ROLE_CATALOG, not KB content
 
         # Generic top-level sources list (lots of entities have it)
         if etype != "indications":  # already handled above for indications

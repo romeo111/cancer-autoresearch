@@ -470,6 +470,7 @@ Source `SRC-FDA-CDS-2026`). Software, що відповідає всім чот�
 | C4 | Always ≥2 tracks, never single binding directive | "System prescribes X" UX → device |
 | C5 | Sources must be **established / well-understood** (NCCN/ESMO/RCT/regulatory labels) | Novel biomarker discovery without published evidence → device |
 | C6 | Render UI must avoid automation-bias patterns | Pre-selected "accept", buried alternatives, missing rationale → device |
+| C7 | No treatment recommendations without confirmed histology — diagnostic-phase MDT may suggest workup steps and team composition, but treatment Plan generation is mechanically blocked when `patient.disease.id` / `icd_o_3_morphology` absent (per `specs/DIAGNOSTIC_MDT_SPEC.md` §1.2) | Bypassing histology gate to produce treatment tracks → device + clinical-safety risk |
 
 ### 15.3. Зміна, яка triggers re-classification
 

@@ -12,6 +12,12 @@ modify the PlanResult or change clinical recommendations
 (specs/MDT_ORCHESTRATOR_SPEC.md §1.2).
 """
 
+from .diagnostic import (
+    DiagnosticPlanResult,
+    generate_diagnostic_brief,
+    is_diagnostic_profile,
+    is_treatment_profile,
+)
 from .mdt_orchestrator import (
     MDTOrchestrationResult,
     MDTRequiredRole,
@@ -27,12 +33,16 @@ from .provenance import (
 
 __all__ = [
     "DecisionProvenanceGraph",
+    "DiagnosticPlanResult",
     "MDTOrchestrationResult",
     "MDTRequiredRole",
     "OpenQuestion",
     "PlanResult",
     "ProvenanceEvent",
+    "generate_diagnostic_brief",
     "generate_plan",
+    "is_diagnostic_profile",
+    "is_treatment_profile",
     "make_event",
     "orchestrate_mdt",
 ]
