@@ -1316,3 +1316,131 @@ jobs:
 ---
 
 **Pull requests на Schema — welcomed, але через governance CHARTER §6.**
+
+
+---
+
+## 17. PROPOSAL — Solid-tumor extensions (2026-04-26)
+
+**Status:** open. Drives 5 GI diagnoses (CRC, gastric/GEJ, PDAC, HCC,
+esophageal). Each is committed initially as `partial` until the proposal
+resolves.
+
+**Why now:** OpenOnco v0.1 was built around hematolymphoid diseases where
+1L = "pick a chemo regimen + monitoring". Solid tumors introduce three
+patterns the schema does not represent today:
+
+1. **Sequential phases inside one line of therapy.** Periop FLOT
+   (gastric) = neoadjuvant chemo cycles 1–4 → surgery → adjuvant chemo
+   cycles 5–8. CROSS (esophageal) = neoadjuvant CRT → esophagectomy →
+   optional adjuvant ICI. Today `Indication.followed_by` means "next
+   line", not "next phase of this 1L bundle"; engine and render layers
+   don't model intra-line ordering.
+
+2. **Surgery as a treatment modality.** Whipple (PDAC), low-anterior
+   resection (rectum), gastrectomy (gastric), esophagectomy, hepatic
+   resection / transplant (HCC) are first-line treatments. Today there
+   is no Surgery entity. Treating surgery as a `Drug` is wrong; treating
+   it as a free-text note loses the resectability gate, MDT-trigger, and
+   complication linkage.
+
+3. **Radiation therapy as concurrent / sequential treatment.** CROSS =
+   41.4 Gy in 23 fractions concurrent with carbo-paclitaxel; rectal SCRT
+   = 25 Gy / 5 fx; HCC SBRT; definitive CRT for esophageal squamous
+   unresectable. RT dose / fractionation / target volume / OARs / total
+   BED have no representation. Concurrent chemo-RT is doubly
+   unmodellable today.
+
+### 17.1. Proposed entities (sketch — to be ratified)
+
+```yaml
+# entity_type: Surgery
+id: SUR-WHIPPLE
+names: {preferred: "Pancreaticoduodenectomy (Whipple)"}
+type: pancreaticoduodenectomy
+intent: curative  # | palliative | diagnostic | salvage
+target_organ: pancreas_head
+applicable_diseases: [DIS-PDAC]
+operative_mortality_pct: "1-3% in high-volume centers"
+common_complications:
+  - {name: "POPF (pancreatic fistula)", frequency: "10-20%"}
+  - {name: "Delayed gastric emptying", frequency: "15-25%"}
+sources: [SRC-NCCN-PANCREATIC-2025, SRC-ESMO-PANCREATIC-2024]
+
+# entity_type: RadiationCourse
+id: RT-CROSS-NEOADJ
+names: {preferred: "CROSS neoadjuvant CRT"}
+total_dose_gy: 41.4
+fractions: 23
+fraction_size_gy: 1.8
+target_volume: "primary + involved nodes (CTV)"
+schedule: "5 fx/week × 4.6 weeks"
+concurrent_chemo_regimen: REG-CARBOPLATIN-PACLITAXEL-WEEKLY  # optional ID
+intent: neoadjuvant  # | definitive | adjuvant | palliative
+sources: [SRC-CROSS-2012, SRC-NCCN-ESOPHAGEAL-2025]
+
+# Indication addition (extends §7 schema)
+applicable_to:
+  ...existing fields...
+phases:                       # NEW — ordered list within ONE indication
+  - phase: neoadjuvant
+    type: chemotherapy        # | surgery | radiation | chemoradiation
+    regimen_id: REG-FLOT
+    cycles: 4
+  - phase: surgery
+    type: surgery
+    surgery_id: SUR-TOTAL-GASTRECTOMY
+  - phase: adjuvant
+    type: chemotherapy
+    regimen_id: REG-FLOT
+    cycles: 4
+```
+
+### 17.2. Engine + render impact
+
+- `engine.algorithm_eval` already returns one Indication per
+  algorithm; with `phases:` populated, render layer must walk the
+  ordered list and emit a phased timeline (current `_render_timeline`
+  composes induction → response → maintenance from regimen + monitoring;
+  `phases:` is an explicit override).
+- Surgery and RadiationCourse become first-class entity types in
+  `validation/loader.py`. New referential-integrity checks: every
+  `phases[*].surgery_id` resolves to a Surgery; every `radiation_id`
+  resolves to a RadiationCourse.
+- Fixture-level testing: golden fixtures exercise the phased-output
+  contract per disease.
+
+### 17.3. Interim handling (the diseases shipped in this commit)
+
+Until the proposal is ratified by clinical co-leads and engine work
+lands:
+
+- All 5 GI diseases are committed with `archetype: stage_driven` (HCC
+  also keeps `etiological_factors` populated — see §3.3 — but its
+  primary archetype is `stage_driven` via BCLC).
+- Indications use only the existing `applicable_to.stage_requirements`
+  + `recommended_regimen` + `concurrent_therapy` + `followed_by` slots.
+  Where periop sequencing is clinically essential (FLOT, CROSS, mFOLFIRINOX
+  adjuvant), the regimen entry is the "main pharma cycle" and the
+  surgical / RT step is described in `Indication.notes` as free text.
+  This is **lossy** — the engine cannot enforce "did surgery happen
+  before adjuvant?" — and is the explicit reason the diseases are marked
+  `partial`.
+- Each affected disease YAML carries:
+  ```yaml
+  metadata:
+    proposal_status: partial
+    awaiting_proposal: "KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 Solid-tumor extensions"
+  ```
+
+### 17.4. Resolution path
+
+1. Clinical co-leads review §17.1 and either ratify or counter-propose.
+2. Pydantic schemas added: `surgery.py`, `radiation_course.py`,
+   `Indication.phases: list[IndicationPhase]`.
+3. Loader-side referential integrity for surgery/RT IDs.
+4. Engine: pass-through of `phases` into `PlanTrack.indication_data`.
+5. Render: phased-timeline section.
+6. Tests: golden fixtures per disease that assert the phased output.
+7. Re-stamp affected diseases as `proposal_status: full` and remove the
+   `awaiting_proposal` field.
