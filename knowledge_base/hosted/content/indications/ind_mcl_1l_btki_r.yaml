@@ -1,0 +1,68 @@
+id: IND-MCL-1L-BTKI-R
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-MCL
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive"}
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 3}
+
+recommended_regimen: REG-ACALABRUTINIB-RITUXIMAB
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~85-90%"
+  complete_response: "~50%"
+  progression_free_survival: "Median PFS ~3-5 years (longer in TP53-wt subset)"
+  overall_survival_5y: "~70%"
+
+hard_contraindications: [CI-HBV-NO-PROPHYLAXIS]
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-CD20-IHC
+  - TEST-FISH-PANEL
+  - TEST-NGS-LYMPHOID-PANEL
+  - TEST-HBV-SEROLOGY
+  - TEST-HIV-SEROLOGY
+  - TEST-PET-CT
+  - TEST-ECHO
+desired_tests: []
+
+rationale: >
+  Standard 1L for unfit / older / transplant-ineligible MCL OR for
+  TP53-mutant / blastoid high-risk variants where chemoimmuno fails
+  (RF-MCL-BLASTOID-OR-TP53). Continuous BTKi + rituximab × 2 years
+  induction-then-maintenance. Tolerability superior to intensive
+  chemoimmuno; durable in TP53-wt; less effective in TP53-mutant where
+  CAR-T or alloSCT may be needed at progression.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "BTKi-based regimens preferred for older / unfit MCL and for chemoimmuno-resistant variants"
+
+known_controversies: []
+
+do_not_do:
+  - "Не пропускати TP53 / Ki67 — TP53-mutant потребує consideration of CAR-T pathway and alloSCT consultation."
+  - "Не призначати без HBV скринінгу + prophylaxis при HBsAg+ / anti-HBc+."
+  - "Не комбінувати з warfarin без strict monitoring."
+  - "Не призначати при concomitant strong CYP3A4 inhibitor — hold inhibitor or dose-modify acalabrutinib."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: STUB.

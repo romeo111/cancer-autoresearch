@@ -1,0 +1,42 @@
+id: REG-ACALABRUTINIB-RITUXIMAB
+name: "Acalabrutinib + Rituximab (continuous BTKi + R)"
+name_ua: "Акалабрутиніб + Ритуксимаб (безперервна BTKi + R)"
+alternate_names: ["Acala-R", "BTKi-R MCL"]
+
+components:
+  - drug_id: DRUG-ACALABRUTINIB
+    dose: "100 mg PO BID continuous"
+    schedule: "PO twice daily until progression or intolerance"
+    route: PO
+  - drug_id: DRUG-RITUXIMAB
+    dose: "375 mg/m²"
+    schedule: "IV weekly × 4 (induction), then every 8 weeks × 2 years"
+    route: IV
+
+cycle_length_days: 28
+total_cycles: "Acalabrutinib continuous; rituximab × 2 years then off"
+toxicity_profile: low-moderate
+
+premedication: ["Standard rituximab premedications first dose"]
+mandatory_supportive_care: []
+monitoring_schedule_id: MON-CLL-BTKI
+
+dose_adjustments:
+  - condition: "Strong CYP3A4 inhibitor"
+    modification: "Hold or reduce acalabrutinib; consult clinical pharmacy"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Concomitant PPI"
+    modification: "Separate dosing 2h or use acalabrutinib maleate tablet"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Acalabrutinib NOT reimbursed via НСЗУ — funding gap. Ibrutinib + rituximab acceptable substitute (reimbursed)."
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  1L for unfit / older MCL (age >65 OR ECOG ≥2 OR transplant-ineligible)
+  AND for TP53-mutant / blastoid / high-risk where chemoimmuno fails.
+  SHINE trial showed BTKi+R+chemo modestly superior to chemo alone in
+  older fit; access constraints in Ukraine push toward BTKi+R simpler.

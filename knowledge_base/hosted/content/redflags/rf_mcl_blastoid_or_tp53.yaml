@@ -1,0 +1,30 @@
+id: RF-MCL-BLASTOID-OR-TP53
+definition: "Mantle cell lymphoma with blastoid / pleomorphic morphology OR TP53 mutation OR del(17p) — chemoimmuno-resistant aggressive variant; route directly to BTKi-based therapy"
+definition_ua: "MCL з бластоідною/плеоморфною морфологією АБО мутацією TP53 АБО del(17p) — chemoimmuno-резистентний агресивний варіант; прямий маршрут до BTKi-терапії"
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "blastoid_morphology"
+      value: true
+    - finding: "pleomorphic_morphology"
+      value: true
+    - finding: "tp53_mutation"
+      value: true
+    - finding: "del_17p"
+      value: true
+    - finding: "ki67_above_30_percent"
+      value: true
+
+clinical_direction: intensify
+
+relevant_diseases: [DIS-MCL]
+shifts_algorithm: [ALGO-MCL-1L]
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Blastoid/pleomorphic + TP53-mutant MCL has poor response to
+  chemoimmuno (BR/R-CHOP/R-DHAP) — survival impact substantial.
+  Direct route to BTKi-based (acalabrutinib + rituximab; consolidation
+  with allo-SCT or CAR-T at progression).

@@ -1,0 +1,39 @@
+id: DIS-MCL
+names:
+  preferred: "Mantle Cell Lymphoma"
+  ukrainian: "Лімфома з клітин зони мантії"
+  english: "Mantle Cell Lymphoma"
+  synonyms: ["MCL"]
+
+codes:
+  icd_o_3_morphology: "9673/3"
+  icd_10: "C83.1"
+  who_classification: "Mature B-cell neoplasms — Mantle cell lymphoma per WHO 5th ed."
+
+archetype: risk_stratified
+lineage: b_cell_lymphoma
+
+etiological_factors:
+  - "t(11;14)(q13;q32) IGH/CCND1 — cyclin D1 over-expression — defining alteration in ~95%"
+  - "Cyclin D1-negative MCL (~5%): SOX11 expression key marker"
+  - "TP53 mutation (~15-20%) — adverse, predicts chemoimmuno failure"
+  - "Blastoid / pleomorphic morphologic variants — aggressive"
+
+related_diseases: ["DIS-CLL"]  # CD5+ B-cell differential
+
+epidemiology:
+  context: >
+    ~5-7% of NHL (~1-2/100K/year). Median age ~65, strong male predominance
+    (3-4:1). Historically aggressive with poor outcomes; modern era
+    (intensive 1L for fit + BTKi for unfit, autoSCT consolidation,
+    maintenance rituximab) has substantially improved outcomes.
+
+sources: [SRC-NCCN-BCELL-2025, SRC-EHA-WORKUP-2024]
+last_reviewed: "2026-04-25"
+notes: >
+  CD5+ CD20+ CD23- cyclin D1+ SOX11+ classic phenotype. Strong overlap
+  with CLL on flow (both CD5+ B-cell) — IHC + FISH t(11;14) distinguish.
+  Treatment paradigm: fitness-based — fit/transplant-eligible get
+  intensive chemoimmuno + autoSCT; unfit get BTKi-based (acalabrutinib,
+  zanubrutinib) +- rituximab. TP53-mutant: poor response to chemoimmuno;
+  go directly BTKi-based.

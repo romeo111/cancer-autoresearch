@@ -1,0 +1,41 @@
+id: ALGO-MCL-1L
+applicable_to_disease: DIS-MCL
+applicable_to_line_of_therapy: 1
+purpose: >
+  Select default + alternative for first-line MCL based on fitness +
+  TP53/blastoid status. Two tracks: BTKi+R (standard, suitable for most
+  including unfit/high-risk) vs intensive R-CHOP/R-DHAP+autoSCT
+  (aggressive, only for fit transplant-eligible TP53-wt).
+
+output_indications:
+  - IND-MCL-1L-BTKI-R
+  - IND-MCL-1L-INTENSIVE
+
+default_indication: IND-MCL-1L-BTKI-R
+alternative_indication: IND-MCL-1L-INTENSIVE
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-MCL-BLASTOID-OR-TP53
+    if_true:
+      result: IND-MCL-1L-BTKI-R
+    if_false:
+      next_step: 2
+  - step: 2
+    evaluate:
+      all_of:
+        - condition: "fit_for_transplant"
+        - condition: "age_max_65"
+        - condition: "ecog_0_or_1"
+    if_true:
+      result: IND-MCL-1L-INTENSIVE
+    if_false:
+      result: IND-MCL-1L-BTKI-R
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Fitness assessment is decisive. TP53-mutant / blastoid go BTKi+R
+  regardless of fitness — chemoimmuno is ineffective for them.

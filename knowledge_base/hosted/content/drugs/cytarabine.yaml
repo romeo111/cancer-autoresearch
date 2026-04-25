@@ -1,0 +1,60 @@
+id: DRUG-CYTARABINE
+names:
+  preferred: "Cytarabine (Ara-C)"
+  ukrainian: "Цитарабін"
+  english: "Cytarabine"
+  synonyms: ["Ara-C", "Cytosar", "ACR"]
+atc_code: L01BC01
+rxnorm_id: "3041"
+drug_class: "Pyrimidine antimetabolite"
+mechanism: >
+  Phosphorylated intracellularly to ara-CTP, incorporated into DNA,
+  inhibits DNA polymerase, terminates chain elongation. Cell-cycle
+  S-phase specific. Backbone of AML induction; high-dose for
+  consolidation + CNS prophylaxis (crosses BBB at HD).
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    last_verified: "2026-04-25"
+
+typical_dosing: >
+  Standard 7+3 AML: 100-200 mg/m²/day continuous IV days 1-7. HiDAC
+  consolidation: 3 g/m² q12h days 1, 3, 5. R-DHAP/R-DHAOx for MCL/r/r:
+  2 g/m² q12h day 2. Intrathecal: 50-70 mg per dose for CNS prophylaxis.
+formulations: ["IV powder 100 / 500 / 1000 / 2000 mg vials", "Intrathecal preparation 20 / 50 mg/mL"]
+
+absolute_contraindications:
+  - "Severe pre-existing cerebellar dysfunction at HiDAC"
+  - "Active uncontrolled infection"
+  - "Hypersensitivity"
+black_box_warnings:
+  - "Severe myelosuppression"
+  - "Cerebellar toxicity at HiDAC (dose-related, age >50 risk)"
+  - "Conjunctivitis with HiDAC (mandatory steroid eye drops prophylaxis)"
+major_interactions: ["Methotrexate: synergistic + antagonistic depending on sequence"]
+common_adverse_events:
+  - "Myelosuppression (severe, expected)"
+  - "Mucositis"
+  - "Nausea/vomiting"
+  - "Conjunctivitis (HiDAC — mandate eye drops)"
+  - "Cerebellar dysfunction (HiDAC)"
+  - "Cytarabine syndrome (fever, myalgia, rash — give steroids)"
+serious_adverse_events:
+  - "Severe cerebellar toxicity (dose-limiting, often dose-reduce in elderly)"
+  - "Pulmonary toxicity (rare)"
+  - "Severe myelosuppression with infection"
+
+pharmacology: {half_life: "~12 minutes (rapid conversion to ara-U)"}
+
+sources: [SRC-NCCN-BCELL-2025, SRC-NCCN-AML-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Used in: AML induction (7+3), AML consolidation (HiDAC), MCL
+  intensive (R-DHAP / R-DHAOx for fit transplant-eligible), Burkitt
+  (CODOX-M/IVAC), CNS prophylaxis IT. HiDAC requires careful elderly
+  dose selection (1.5 g/m² instead of 3 g/m² over 65) + eye drops
+  + neurologic exam pre each dose.
