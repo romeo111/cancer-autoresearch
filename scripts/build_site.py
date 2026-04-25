@@ -1433,7 +1433,26 @@ if quest is None:
     _preview_result = json.dumps({{'error': f'Questionnaire {{_quest_id}} not found'}})
 else:
     _preview_eval = evaluate_partial(profile, quest, kb_root=KB)
-    _preview_result = json.dumps(_preview_eval.to_dict())
+    _payload = _preview_eval.to_dict()
+    # P4: enrich fired_redflags with definition + sources so the live
+    # impact panel can show meaningful context, not just IDs.
+    _rf_lookup = {{
+        info['data'].get('id'): info['data']
+        for info in ld.entities_by_id.values()
+        if info['type'] == 'redflags' and info['data'].get('id')
+    }}
+    _payload['fired_redflags_detail'] = [
+        {{
+            'id': rid,
+            'definition_ua': (_rf_lookup.get(rid) or {{}}).get('definition_ua'),
+            'definition': (_rf_lookup.get(rid) or {{}}).get('definition'),
+            'clinical_direction': (_rf_lookup.get(rid) or {{}}).get('clinical_direction'),
+            'severity': (_rf_lookup.get(rid) or {{}}).get('severity', 'major'),
+            'sources': (_rf_lookup.get(rid) or {{}}).get('sources') or [],
+        }}
+        for rid in (_payload.get('fired_redflags') or [])
+    ]
+    _preview_result = json.dumps(_payload)
 _preview_result
 `);
     const result = JSON.parse(resultJson);
@@ -1615,8 +1634,31 @@ function updateImpactPanel(result) {{
     : '<li class="muted">Усі critical поля заповнені ✓</li>';
 
   const rfs = result.fired_redflags || [];
+  const rfDetail = result.fired_redflags_detail || [];
+  // Build detail-keyed map so we can join id -> {{definition, sources}}
+  const detailById = {{}};
+  for (const d of rfDetail) detailById[d.id] = d;
+
+  const dirEmoji = {{
+    'hold': '🛑', 'intensify': '⚡', 'de-escalate': '🔻', 'investigate': '🔍'
+  }};
+
   impactRedflags.querySelector('ul').innerHTML = rfs.length
-    ? rfs.map(r => `<li><code>${{escHtml(r)}}</code></li>`).join('')
+    ? rfs.map(r => {{
+        const d = detailById[r] || {{}};
+        const defn = d.definition_ua || d.definition || '';
+        const dir = d.clinical_direction || '';
+        const emoji = dirEmoji[dir] || '';
+        const sources = (d.sources || []).map(
+          s => `<span class="rf-src-chip">${{escHtml(s)}}</span>`
+        ).join('');
+        return `<li class="rf-fired-item">
+          <div class="rf-fired-head"><code>${{escHtml(r)}}</code> ${{emoji}}
+            <span class="rf-dir rf-dir-${{escHtml(dir)}}">${{escHtml(dir)}}</span></div>
+          ${{defn ? `<div class="rf-fired-defn">${{escHtml(defn)}}</div>` : ''}}
+          ${{sources ? `<div class="rf-fired-srcs">${{sources}}</div>` : ''}}
+        </li>`;
+      }}).join('')
     : '<li class="muted">Жодного RedFlag поки не активовано</li>';
 
   impactSelectedText.innerHTML = result.would_select_indication
@@ -2692,6 +2734,38 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
   font-family: var(--font-mono); font-size: 11px;
   background: var(--gray-100); padding: 1px 5px; border-radius: 3px;
   color: var(--green-800);
+}
+
+/* P4: enriched fired-RF item — shows id + direction + definition + sources. */
+.rf-fired-item {
+  background: var(--green-50); border-left: 3px solid var(--green-600);
+  border-radius: 4px; padding: 8px 10px; margin: 6px 0 !important;
+}
+.rf-fired-head {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.rf-fired-head code {
+  font-size: 10.5px;
+}
+.rf-dir {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.5px;
+  padding: 1px 6px; border-radius: 3px; text-transform: uppercase;
+  font-weight: 600;
+}
+.rf-dir-hold        {{ background: var(--red-bg, #fef2f2); color: var(--red, #b91c1c); }}
+.rf-dir-intensify   {{ background: var(--amber-bg, #fef3c7); color: var(--amber, #b45309); }}
+.rf-dir-de-escalate {{ background: var(--gray-100); color: var(--gray-700); }}
+.rf-dir-investigate {{ background: var(--gray-100); color: var(--gray-500); }}
+.rf-fired-defn {
+  font-size: 11.5px; color: var(--gray-700); line-height: 1.45;
+  margin-bottom: 4px;
+}
+.rf-fired-srcs { display: flex; flex-wrap: wrap; gap: 3px; }
+.rf-src-chip {
+  font-family: var(--font-mono); font-size: 9.5px;
+  background: var(--gray-100); color: var(--gray-700);
+  padding: 1px 5px; border-radius: 3px;
 }
 .quest-cta { margin-top: 6px; }
 .quest-cta button { width: 100%; }

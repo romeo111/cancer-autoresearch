@@ -12,6 +12,7 @@
 <header class="top-bar">
   <div class="brand-line">
     <a href="/" class="brand-mini">OpenOnco</a>
+    <span class="brand-version" title="Project version">v0.1.0</span>
   </div>
   <nav class="top-nav">
     <a href="/">Головна</a>
@@ -491,26 +492,7 @@ if quest is None:
     _preview_result = json.dumps({'error': f'Questionnaire {_quest_id} not found'})
 else:
     _preview_eval = evaluate_partial(profile, quest, kb_root=KB)
-    _payload = _preview_eval.to_dict()
-    # P4: enrich fired_redflags with definition + sources so the live
-    # impact panel can show meaningful context, not just IDs.
-    _rf_lookup = {
-        info['data'].get('id'): info['data']
-        for info in ld.entities_by_id.values()
-        if info['type'] == 'redflags' and info['data'].get('id')
-    }
-    _payload['fired_redflags_detail'] = [
-        {
-            'id': rid,
-            'definition_ua': (_rf_lookup.get(rid) or {}).get('definition_ua'),
-            'definition': (_rf_lookup.get(rid) or {}).get('definition'),
-            'clinical_direction': (_rf_lookup.get(rid) or {}).get('clinical_direction'),
-            'severity': (_rf_lookup.get(rid) or {}).get('severity', 'major'),
-            'sources': (_rf_lookup.get(rid) or {}).get('sources') or [],
-        }
-        for rid in (_payload.get('fired_redflags') or [])
-    ]
-    _preview_result = json.dumps(_payload)
+    _preview_result = json.dumps(_preview_eval.to_dict())
 _preview_result
 `);
     const result = JSON.parse(resultJson);
@@ -692,31 +674,8 @@ function updateImpactPanel(result) {
     : '<li class="muted">Усі critical поля заповнені ✓</li>';
 
   const rfs = result.fired_redflags || [];
-  const rfDetail = result.fired_redflags_detail || [];
-  // Build detail-keyed map so we can join id -> {definition, sources}
-  const detailById = {};
-  for (const d of rfDetail) detailById[d.id] = d;
-
-  const dirEmoji = {
-    'hold': '🛑', 'intensify': '⚡', 'de-escalate': '🔻', 'investigate': '🔍'
-  };
-
   impactRedflags.querySelector('ul').innerHTML = rfs.length
-    ? rfs.map(r => {
-        const d = detailById[r] || {};
-        const defn = d.definition_ua || d.definition || '';
-        const dir = d.clinical_direction || '';
-        const emoji = dirEmoji[dir] || '';
-        const sources = (d.sources || []).map(
-          s => `<span class="rf-src-chip">${escHtml(s)}</span>`
-        ).join('');
-        return `<li class="rf-fired-item">
-          <div class="rf-fired-head"><code>${escHtml(r)}</code> ${emoji}
-            <span class="rf-dir rf-dir-${escHtml(dir)}">${escHtml(dir)}</span></div>
-          ${defn ? `<div class="rf-fired-defn">${escHtml(defn)}</div>` : ''}
-          ${sources ? `<div class="rf-fired-srcs">${sources}</div>` : ''}
-        </li>`;
-      }).join('')
+    ? rfs.map(r => `<li><code>${escHtml(r)}</code></li>`).join('')
     : '<li class="muted">Жодного RedFlag поки не активовано</li>';
 
   impactSelectedText.innerHTML = result.would_select_indication
@@ -747,7 +706,11 @@ import micropip
 await micropip.install(['pydantic', 'pyyaml'])
 `);
   setStatus('Завантажую двигун OpenOnco…');
-  const resp = await fetch('/openonco-engine.zip');
+  // Cache-busting: bundle_version is the SHA-256 prefix of the engine
+  // zip, computed at build time. Forces a fresh fetch when KB content
+  // changes, sidestepping CDN/browser cache (GitHub Pages serves
+  // openonco-engine.zip with Cache-Control: max-age=600).
+  const resp = await fetch('/openonco-engine.zip?v=32523f890ba8');
   const buf = await resp.arrayBuffer();
   pyodide.unpackArchive(buf, 'zip');
   const validationSummary = await pyodide.runPythonAsync(`
