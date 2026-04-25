@@ -1,0 +1,2460 @@
+source_id: SRC-ICD-O-3
+version: v2020
+source_url: https://seer.cancer.gov/icd-o-3/
+license: WHO ICD-O-3 — free for academic/clinical use with attribution
+attribution: 'ICD-O-3.2: World Health Organization; morphology codes via NCI SEER'
+note: morphology fully ingested from SEER sitetype file (12K SEER row → unique codes);
+  topography is a curated subset for HCV-MZL seed (expand as needed)
+morphology:
+- code: 8000/0
+  term: Neoplasm, benign
+  behavior: '0'
+- code: 8000/1
+  term: Neoplasm, uncertain whether benign or malignant
+  behavior: '1'
+- code: 8000/3
+  term: Neoplasm, malignant
+  behavior: '3'
+- code: 8001/0
+  term: Tumor cells, benign
+  behavior: '0'
+- code: 8001/1
+  term: Tumor cells, uncertain whether benign or malignant
+  behavior: '1'
+- code: 8001/3
+  term: Tumor cells, malignant
+  behavior: '3'
+- code: 8002/3
+  term: Malignant tumor, small cell type
+  behavior: '3'
+- code: 8003/3
+  term: Malignant tumor, giant cell type
+  behavior: '3'
+- code: 8004/3
+  term: Malignant tumor, spindle cell type
+  behavior: '3'
+- code: 8005/0
+  term: Clear cell tumor, NOS
+  behavior: '0'
+- code: 8005/3
+  term: Malignant tumor, clear cell type
+  behavior: '3'
+- code: 8010/0
+  term: Epithelial tumor, benign
+  behavior: '0'
+- code: 8010/2
+  term: Carcinoma in situ, NOS
+  behavior: '2'
+- code: 8010/3
+  term: Carcinoma, NOS
+  behavior: '3'
+- code: 8011/3
+  term: Epithelioma, malignant
+  behavior: '3'
+- code: 8012/3
+  term: Large cell carcinoma, NOS
+  behavior: '3'
+- code: 8013/3
+  term: Large cell neuroendocrine carcinoma
+  behavior: '3'
+- code: 8014/3
+  term: Large cell carcinoma with rhabdoid phenotype
+  behavior: '3'
+- code: 8015/3
+  term: Glassy cell carcinoma
+  behavior: '3'
+- code: 8020/3
+  term: Carcinoma, undifferentiated type, NOS
+  behavior: '3'
+- code: 8021/3
+  term: Carcinoma, anaplastic type, NOS
+  behavior: '3'
+- code: 8022/3
+  term: Pleomorphic carcinoma
+  behavior: '3'
+- code: 8023/3
+  term: NUT carcinoma
+  behavior: '3'
+- code: 8030/3
+  term: Giant cell and spindle cell carcinoma
+  behavior: '3'
+- code: 8031/3
+  term: Giant cell carcinoma
+  behavior: '3'
+- code: 8032/3
+  term: Spindle cell carcinoma
+  behavior: '3'
+- code: 8033/3
+  term: Pseudosarcomatous carcinoma
+  behavior: '3'
+- code: 8034/3
+  term: Polygonal cell carcinoma
+  behavior: '3'
+- code: 8035/3
+  term: Carcinoma with osteoclast-like giant cells
+  behavior: '3'
+- code: 8041/3
+  term: Small cell carcinoma, NOS
+  behavior: '3'
+- code: 8042/3
+  term: Oat cell carcinoma
+  behavior: '3'
+- code: 8043/3
+  term: Small cell carcinoma, fusiform cell
+  behavior: '3'
+- code: 8044/3
+  term: Small cell carcinoma, intermediate cell
+  behavior: '3'
+- code: 8045/3
+  term: Combined small cell carcinoma
+  behavior: '3'
+- code: 8046/3
+  term: Non-small cell carcinoma
+  behavior: '3'
+- code: 8050/2
+  term: Papillary carcinoma in situ
+  behavior: '2'
+- code: 8050/3
+  term: Papillary carcinoma, NOS
+  behavior: '3'
+- code: 8051/3
+  term: Verrucous carcinoma, NOS
+  behavior: '3'
+- code: 8052/2
+  term: Papillary squamous cell carcinoma, non-invasive
+  behavior: '2'
+- code: 8052/3
+  term: Papillary squamous cell carcinoma
+  behavior: '3'
+- code: 8054/3
+  term: Warty carcinoma
+  behavior: '3'
+- code: 8070/2
+  term: Squamous cell carcinoma in situ, NOS
+  behavior: '2'
+- code: 8070/3
+  term: Squamous cell carcinoma, NOS
+  behavior: '3'
+- code: 8071/2
+  term: Sq. cell carcinoma, keratinizing, NOS, in situ
+  behavior: '2'
+- code: 8071/3
+  term: Sq. cell carcinoma, keratinizing, NOS
+  behavior: '3'
+- code: 8072/2
+  term: Sq. cell carcinoma, lg. cell, non-ker., in situ
+  behavior: '2'
+- code: 8072/3
+  term: Sq. cell carcinoma, lg. cell, non-ker.
+  behavior: '3'
+- code: 8073/3
+  term: Sq. cell carcinoma, sm. cell, non-ker.
+  behavior: '3'
+- code: 8074/3
+  term: Sq. cell carcinoma, spindle cell
+  behavior: '3'
+- code: 8075/3
+  term: Squamous cell carcinoma, adenoid
+  behavior: '3'
+- code: 8076/2
+  term: Sq. cell carc. in situ with question. stromal invas.
+  behavior: '2'
+- code: 8076/3
+  term: Sq. cell carcinoma, micro-invasive
+  behavior: '3'
+- code: 8077/2
+  term: Squamous intraepithelial neoplasia, grade III
+  behavior: '2'
+- code: 8078/3
+  term: Squamous cell carcinoma with horn formation
+  behavior: '3'
+- code: 8080/2
+  term: Queyrat erythroplasia
+  behavior: '2'
+- code: 8081/2
+  term: Bowen disease
+  behavior: '2'
+- code: 8082/3
+  term: Lymphoepithelial carcinoma
+  behavior: '3'
+- code: 8083/3
+  term: Basaloid squamous cell carcinoma
+  behavior: '3'
+- code: 8084/3
+  term: Squamous cell carcinoma, clear cell type
+  behavior: '3'
+- code: 8085/3
+  term: Squamous cell carcinoma, HPV-positive
+  behavior: '3'
+- code: 8086/3
+  term: Squamous cell carcinoma, HPV-negative
+  behavior: '3'
+- code: 8090/3
+  term: Basal cell carcinoma, NOS
+  behavior: '3'
+- code: 8091/3
+  term: Multifocal superficial basal cell carcinoma
+  behavior: '3'
+- code: 8092/3
+  term: Infiltrating basal cell carcinoma, NOS
+  behavior: '3'
+- code: 8093/3
+  term: Basal cell carcinoma, fibroepithelial
+  behavior: '3'
+- code: 8094/3
+  term: Basosquamous carcinoma
+  behavior: '3'
+- code: 8095/3
+  term: Metatypical carcinoma
+  behavior: '3'
+- code: 8097/3
+  term: Basal cell carcinoma, nodular
+  behavior: '3'
+- code: 8098/3
+  term: Adenoid basal cell carcinoma
+  behavior: '3'
+- code: 8102/3
+  term: Trichilemmocarcinoma
+  behavior: '3'
+- code: 8110/3
+  term: Pilomatrix carcinoma
+  behavior: '3'
+- code: 8120/2
+  term: Transitional cell carcinoma in situ
+  behavior: '2'
+- code: 8120/3
+  term: Transitional cell carcinoma, NOS
+  behavior: '3'
+- code: 8121/3
+  term: Schneiderian carcinoma
+  behavior: '3'
+- code: 8122/3
+  term: Trans. cell carcinoma, spindle cell
+  behavior: '3'
+- code: 8123/3
+  term: Basaloid carcinoma
+  behavior: '3'
+- code: 8124/3
+  term: Cloacogenic carcinoma
+  behavior: '3'
+- code: 8130/2
+  term: Papillary trans. cell carcinoma, non-invasive
+  behavior: '2'
+- code: 8130/3
+  term: Papillary trans. cell carcinoma
+  behavior: '3'
+- code: 8131/3
+  term: Transitional cell carcinoma, micropapillary
+  behavior: '3'
+- code: 8140/0
+  term: Adenoma, NOS
+  behavior: '0'
+- code: 8140/2
+  term: Adenocarcinoma in situ
+  behavior: '2'
+- code: 8140/3
+  term: Adenocarcinoma, NOS
+  behavior: '3'
+- code: 8141/3
+  term: Scirrhous adenocarcinoma
+  behavior: '3'
+- code: 8142/3
+  term: Linitis plastica
+  behavior: '3'
+- code: 8143/3
+  term: Superficial spreading adenocarcinoma
+  behavior: '3'
+- code: 8144/2
+  term: Intestinal-type adenoma, high grade
+  behavior: '2'
+- code: 8144/3
+  term: Adenocarcinoma, intestinal type
+  behavior: '3'
+- code: 8145/3
+  term: Carcinoma, diffuse type
+  behavior: '3'
+- code: 8146/0
+  term: Monomorphic adenoma
+  behavior: '0'
+- code: 8147/3
+  term: Basal cell adenocarcinoma
+  behavior: '3'
+- code: 8148/2
+  term: Glandular intraepithelial neoplasia, grade III
+  behavior: '2'
+- code: 8150/3
+  term: Islet cell carcinoma
+  behavior: '3'
+- code: 8151/3
+  term: Insulinoma, malignant
+  behavior: '3'
+- code: 8152/3
+  term: Glucagonoma, malignant
+  behavior: '3'
+- code: 8153/3
+  term: Gastrinoma, malignant
+  behavior: '3'
+- code: 8154/3
+  term: Mixed neuroendocrine non-neuroendocrine neoplasm
+  behavior: '3'
+- code: 8155/3
+  term: Vipoma
+  behavior: '3'
+- code: 8156/3
+  term: Somatostatinoma, malignant
+  behavior: '3'
+- code: 8157/3
+  term: Enteroglucagonoma, malignant
+  behavior: '3'
+- code: 8158/3
+  term: ACTH-producing tumor
+  behavior: '3'
+- code: 8160/3
+  term: Cholangiocarcinoma
+  behavior: '3'
+- code: 8161/3
+  term: Bile duct cystadenocarcinoma
+  behavior: '3'
+- code: 8162/3
+  term: Klatskin tumor
+  behavior: '3'
+- code: 8163/3
+  term: Pancreatobiliary-type carcinoma
+  behavior: '3'
+- code: 8170/3
+  term: Hepatocellular carcinoma, NOS
+  behavior: '3'
+- code: 8171/3
+  term: Hepatocellular carcinoma, fibrolamellar
+  behavior: '3'
+- code: 8172/3
+  term: Hepatocellular carcinoma, scirrhous
+  behavior: '3'
+- code: 8173/3
+  term: Hepatocellular carcinoma, spindle cell variant
+  behavior: '3'
+- code: 8174/3
+  term: Hepatocellular carcinoma, clear cell type
+  behavior: '3'
+- code: 8175/3
+  term: Hepatocellular carcinoma, pleomorphic type
+  behavior: '3'
+- code: 8180/3
+  term: Comb. hepatocel. carcinoma & cholangiocarcinoma
+  behavior: '3'
+- code: 8190/3
+  term: Trabecular adenocarcinoma
+  behavior: '3'
+- code: 8200/3
+  term: Adenoid cystic carcinoma
+  behavior: '3'
+- code: 8201/2
+  term: Cribriform carcinoma in situ
+  behavior: '2'
+- code: 8201/3
+  term: Cribriform carcinoma
+  behavior: '3'
+- code: 8210/2
+  term: Adenocarcinoma in situ in adenomatous polyp
+  behavior: '2'
+- code: 8210/3
+  term: Adenocarcinoma in adenomatous polyp
+  behavior: '3'
+- code: 8211/3
+  term: Tubular adenocarcinoma
+  behavior: '3'
+- code: 8213/2
+  term: Serrated dysplasia, high grade
+  behavior: '2'
+- code: 8213/3
+  term: Serrated adenocarcinoma
+  behavior: '3'
+- code: 8214/3
+  term: Parietal cell carcinoma
+  behavior: '3'
+- code: 8215/3
+  term: Adenocarcinoma of anal glands
+  behavior: '3'
+- code: 8220/2
+  term: Adenocarcinoma in situ in familial polyp. coli
+  behavior: '2'
+- code: 8220/3
+  term: Adenocarcinoma in adenoma. polyposis coli
+  behavior: '3'
+- code: 8221/2
+  term: Adenocarc. in situ in mult. adenomatous polyps
+  behavior: '2'
+- code: 8221/3
+  term: Adenocarcinoma in mult. adenomatous polyps
+  behavior: '3'
+- code: 8230/2
+  term: Duct carcinoma in situ, solid type
+  behavior: '2'
+- code: 8230/3
+  term: Solid carcinoma, NOS
+  behavior: '3'
+- code: 8231/3
+  term: Carcinoma simplex
+  behavior: '3'
+- code: 8240/3
+  term: Carcinoid tumor, malignant
+  behavior: '3'
+- code: 8241/3
+  term: Enterochromaffin cell carcinoid
+  behavior: '3'
+- code: 8242/3
+  term: Enterochromaffin-like cell tumor, malignant
+  behavior: '3'
+- code: 8243/3
+  term: Goblet cell carcinoid
+  behavior: '3'
+- code: 8244/3
+  term: Composite carcinoid
+  behavior: '3'
+- code: 8245/3
+  term: Adenocarcinoid tumor
+  behavior: '3'
+- code: 8246/3
+  term: Neuroendocrine carcinoma
+  behavior: '3'
+- code: 8247/3
+  term: Merkel cell carcinoma
+  behavior: '3'
+- code: 8249/3
+  term: Neuroendocrine tumor
+  behavior: '3'
+- code: 8250/2
+  term: Adenocarcinoma in situ, non-mucinous
+  behavior: '2'
+- code: 8250/3
+  term: Lepidic adenocarcinoma
+  behavior: '3'
+- code: 8251/3
+  term: Alveolar adenocarcinoma
+  behavior: '3'
+- code: 8252/3
+  term: Bronchiolo-alveolar carcinoma, non-mucinous
+  behavior: '3'
+- code: 8253/2
+  term: Adenocarcinoma in situ, mucinous
+  behavior: '2'
+- code: 8253/3
+  term: Invasive mucinous adenocarcinoma
+  behavior: '3'
+- code: 8254/3
+  term: Mixed invasive mucinous and non-mucinous adenocarcinoma
+  behavior: '3'
+- code: 8255/3
+  term: Adenocarcinoma with mixed subtypes
+  behavior: '3'
+- code: 8256/3
+  term: Minimally invasive adenocarcinoma, non-mucinous
+  behavior: '3'
+- code: 8257/3
+  term: Minimally invasive adenocarcinoma, mucinous
+  behavior: '3'
+- code: 8260/0
+  term: Papillary adenoma, NOS
+  behavior: '0'
+- code: 8260/3
+  term: Papillary adenocarcinoma, NOS
+  behavior: '3'
+- code: 8261/2
+  term: Adenocarcinoma in situ in villous adenoma
+  behavior: '2'
+- code: 8261/3
+  term: Adenocarcinoma in villous adenoma
+  behavior: '3'
+- code: 8262/3
+  term: Villous adenocarcinoma
+  behavior: '3'
+- code: 8263/2
+  term: Adenocarcinoma in situ in tubulovillous adenoma
+  behavior: '2'
+- code: 8263/3
+  term: Adenocarcinoma in tubulovillous adenoma
+  behavior: '3'
+- code: 8265/3
+  term: Micropapillary carcinoma, NOS
+  behavior: '3'
+- code: 8270/0
+  term: Chromophobe adenoma
+  behavior: '0'
+- code: 8270/3
+  term: Chromophobe carcinoma
+  behavior: '3'
+- code: 8271/0
+  term: Prolactinoma
+  behavior: '0'
+- code: 8272/0
+  term: Pituitary adenoma, NOS
+  behavior: '0'
+- code: 8272/3
+  term: Pituitary carcinoma, NOS
+  behavior: '3'
+- code: 8273/3
+  term: Pituitary blastoma
+  behavior: '3'
+- code: 8280/0
+  term: Acidophil adenoma
+  behavior: '0'
+- code: 8280/3
+  term: Acidophil carcinoma
+  behavior: '3'
+- code: 8281/0
+  term: Mixed acidophil-basophil adenoma
+  behavior: '0'
+- code: 8281/3
+  term: Mixed acidophil-basophil carcinoma
+  behavior: '3'
+- code: 8290/0
+  term: Oxyphilic adenoma
+  behavior: '0'
+- code: 8290/3
+  term: Oxyphilic adenocarcinoma
+  behavior: '3'
+- code: 8300/0
+  term: Basophil adenoma
+  behavior: '0'
+- code: 8300/3
+  term: Basophil carcinoma
+  behavior: '3'
+- code: 8310/0
+  term: Clear cell adenoma
+  behavior: '0'
+- code: 8310/3
+  term: Clear cell adenocarcinoma, NOS
+  behavior: '3'
+- code: 8311/3
+  term: Hereditary leiomyomatosis and RCC-associated renal cell carcinoma
+  behavior: '3'
+- code: 8312/3
+  term: Renal cell carcinoma
+  behavior: '3'
+- code: 8313/3
+  term: Clear cell adenocarcinofibroma
+  behavior: '3'
+- code: 8314/3
+  term: Lipid-rich carcinoma
+  behavior: '3'
+- code: 8315/3
+  term: Glycogen-rich carcinoma
+  behavior: '3'
+- code: 8316/3
+  term: Cyst-associated renal cell carcinoma
+  behavior: '3'
+- code: 8317/3
+  term: Renal cell carcinoma, chromophobe type
+  behavior: '3'
+- code: 8318/3
+  term: Renal cell carcinoma, sarcomatoid
+  behavior: '3'
+- code: 8319/3
+  term: Collecting duct carcinoma
+  behavior: '3'
+- code: 8320/3
+  term: Granular cell carcinoma
+  behavior: '3'
+- code: 8322/3
+  term: Water-clear cell adenocarcinoma
+  behavior: '3'
+- code: 8323/0
+  term: Mixed cell adenoma
+  behavior: '0'
+- code: 8323/3
+  term: Mixed cell adenocarcinoma
+  behavior: '3'
+- code: 8330/3
+  term: Follicular adenocarcinoma, NOS
+  behavior: '3'
+- code: 8331/3
+  term: Follicular adenocarcinoma well diff.
+  behavior: '3'
+- code: 8332/3
+  term: Follicular adenocarcinoma trabecular
+  behavior: '3'
+- code: 8333/3
+  term: Fetal adenocarcinoma
+  behavior: '3'
+- code: 8335/3
+  term: Follicular carcinoma, minimally invasive
+  behavior: '3'
+- code: 8337/3
+  term: Insular carcinoma
+  behavior: '3'
+- code: 8339/3
+  term: Follicular thyroid carcinoma (FTC), encapsulated angioinvasive
+  behavior: '3'
+- code: 8340/3
+  term: Papillary carcinoma, follicular variant
+  behavior: '3'
+- code: 8341/3
+  term: Papillary microcarcinoma
+  behavior: '3'
+- code: 8342/3
+  term: Papillary carcinoma, oxyphilic cell
+  behavior: '3'
+- code: 8343/2
+  term: Non-invasive EFVPTC
+  behavior: '2'
+- code: 8343/3
+  term: Papillary carcinoma, encapsulated
+  behavior: '3'
+- code: 8344/3
+  term: Papillary carcinoma, columnar cell
+  behavior: '3'
+- code: 8345/3
+  term: Medullary carcinoma with amyloid stroma
+  behavior: '3'
+- code: 8346/3
+  term: Mixed medullary-follicular carcinoma
+  behavior: '3'
+- code: 8347/3
+  term: Mixed medullary-papillary carcinoma
+  behavior: '3'
+- code: 8350/3
+  term: Nonencapsulated sclerosing carcinoma
+  behavior: '3'
+- code: 8370/3
+  term: Adrenal cortical carcinoma
+  behavior: '3'
+- code: 8380/2
+  term: Endometrioid intraepithelial neoplasia
+  behavior: '2'
+- code: 8380/3
+  term: Endometrioid carcinoma
+  behavior: '3'
+- code: 8381/3
+  term: Endometrioid adenofibroma, malignant
+  behavior: '3'
+- code: 8382/3
+  term: Endometrioid adenocarcinoma, secretory variant
+  behavior: '3'
+- code: 8383/3
+  term: Endometrioid adenocarcinoma, ciliated cell variant
+  behavior: '3'
+- code: 8384/3
+  term: Adenocarcinoma, endocervical type
+  behavior: '3'
+- code: 8390/3
+  term: Skin appendage carcinoma
+  behavior: '3'
+- code: 8400/3
+  term: Sweat gland adenocarcinoma
+  behavior: '3'
+- code: 8401/3
+  term: Apocrine adenocarcinoma
+  behavior: '3'
+- code: 8402/3
+  term: Nodular hidradenoma, malignant
+  behavior: '3'
+- code: 8403/3
+  term: Malignant eccrine spiradenoma
+  behavior: '3'
+- code: 8407/3
+  term: Sclerosing sweat duct carcinoma
+  behavior: '3'
+- code: 8408/3
+  term: Eccrine papillary adenocarcinoma
+  behavior: '3'
+- code: 8409/3
+  term: Eccrine poroma, malignant
+  behavior: '3'
+- code: 8410/3
+  term: Sebaceous adenocarcinoma
+  behavior: '3'
+- code: 8413/3
+  term: Eccrine adenocarcinoma
+  behavior: '3'
+- code: 8420/3
+  term: Ceruminous adenocarcinoma
+  behavior: '3'
+- code: 8430/3
+  term: Mucoepidermoid carcinoma
+  behavior: '3'
+- code: 8440/3
+  term: Cystadenocarcinoma, NOS
+  behavior: '3'
+- code: 8441/2
+  term: Serous tubal intraepithelial carcinoma
+  behavior: '2'
+- code: 8441/3
+  term: Serous cystadenocarcinoma
+  behavior: '3'
+- code: 8442/1
+  term: Serous cystadenoma, borderline malignancy (C56.9)
+  behavior: '1'
+- code: 8450/3
+  term: Papillary cystadenocarcinoma, NOS
+  behavior: '3'
+- code: 8451/1
+  term: Papillary cystadenoma, borderline malignancy (C56.9)
+  behavior: '1'
+- code: 8452/3
+  term: Solid pseudopapillary carcinoma
+  behavior: '3'
+- code: 8453/2
+  term: Intraductal papillary-mucinous carcinoma, non-inv.
+  behavior: '2'
+- code: 8453/3
+  term: Intraductal papillary-mucinous carcinoma, invasive
+  behavior: '3'
+- code: 8455/2
+  term: Intraductal oncocytic papillary neoplasm, NOS
+  behavior: '2'
+- code: 8455/3
+  term: Intraductal oncocytic papillary neoplasms with associated invasive carcinoma
+  behavior: '3'
+- code: 8460/2
+  term: Non-invasive low grade serous carcinoma
+  behavior: '2'
+- code: 8460/3
+  term: Low-grade serous carcinoma
+  behavior: '3'
+- code: 8461/3
+  term: High-grade serous carcinoma
+  behavior: '3'
+- code: 8462/1
+  term: Serous papillary cystic tumor of borderline malignancy (C56.9)
+  behavior: '1'
+- code: 8470/2
+  term: Mucinous cystadenocarcinoma, non-invasive
+  behavior: '2'
+- code: 8470/3
+  term: Mucinous cystadenocarcinoma, NOS
+  behavior: '3'
+- code: 8471/3
+  term: Papillary mucinous cystadenocarcinoma
+  behavior: '3'
+- code: 8472/1
+  term: Mucinous cystic tumor of borderline malignancy (C56.9)
+  behavior: '1'
+- code: 8473/1
+  term: Papillary mucinous cystadenoma, borderline malignancy (C56.9)
+  behavior: '1'
+- code: 8474/3
+  term: Seromucinous carcinoma
+  behavior: '3'
+- code: 8480/2
+  term: High grade appendiceal mucinous neoplasm
+  behavior: '2'
+- code: 8480/3
+  term: Mucinous adenocarcinoma
+  behavior: '3'
+- code: 8481/3
+  term: Mucin-producing adenocarcinoma
+  behavior: '3'
+- code: 8482/3
+  term: Mucinous adenocarcinoma, endocervical type
+  behavior: '3'
+- code: 8483/3
+  term: Adenocarcinoma, HPV-associated
+  behavior: '3'
+- code: 8484/3
+  term: Adenocarcinoma, HPV-independent, NOS
+  behavior: '3'
+- code: 8490/3
+  term: Signet ring cell carcinoma
+  behavior: '3'
+- code: 8500/2
+  term: Intraductal carcinoma, noninfiltrating, NOS
+  behavior: '2'
+- code: 8500/3
+  term: Invasive carcinoma of no special type
+  behavior: '3'
+- code: 8501/2
+  term: Comedocarcinoma, non-infiltrating
+  behavior: '2'
+- code: 8501/3
+  term: Comedocarcinoma, NOS
+  behavior: '3'
+- code: 8502/3
+  term: Secretory carcinoma of no special type
+  behavior: '3'
+- code: 8503/2
+  term: Noninfiltrating intraductal papillary adenocarcinoma
+  behavior: '2'
+- code: 8503/3
+  term: Intraductal papillary adenocarcinoma with invasion
+  behavior: '3'
+- code: 8504/2
+  term: Noninfiltrating intracystic carcinoma
+  behavior: '2'
+- code: 8504/3
+  term: Intracystic carcinoma, NOS
+  behavior: '3'
+- code: 8507/2
+  term: Intraductal micropapillary carcinoma
+  behavior: '2'
+- code: 8507/3
+  term: Invasive micropapillary carcinoma
+  behavior: '3'
+- code: 8508/3
+  term: Cystic hypersecretory carcinoma
+  behavior: '3'
+- code: 8509/2
+  term: Solid papillary carcinoma in situ
+  behavior: '2'
+- code: 8509/3
+  term: Solid papillary carcinoma with invasion
+  behavior: '3'
+- code: 8510/3
+  term: Medullary carcinoma, NOS
+  behavior: '3'
+- code: 8512/3
+  term: Medullary carcinoma with lymphoid stroma
+  behavior: '3'
+- code: 8513/3
+  term: Atypical medullary carcinoma
+  behavior: '3'
+- code: 8514/3
+  term: Duct carcinoma, desmoplastic type
+  behavior: '3'
+- code: 8519/2
+  term: Pleomorphic lobular carcinoma in situ
+  behavior: '2'
+- code: 8520/2
+  term: Lobular carcinoma in situ
+  behavior: '2'
+- code: 8520/3
+  term: Lobular carcinoma, NOS
+  behavior: '3'
+- code: 8521/3
+  term: Infiltrating ductular carcinoma
+  behavior: '3'
+- code: 8522/2
+  term: Intraductal and lobular in situ carcinoma
+  behavior: '2'
+- code: 8522/3
+  term: Infiltrating duct and lobular carcinoma
+  behavior: '3'
+- code: 8523/2
+  term: Infiltr. duct mixed with other types of carcinoma, in situ
+  behavior: '2'
+- code: 8523/3
+  term: Infiltr. duct mixed with other types of carcinoma
+  behavior: '3'
+- code: 8524/3
+  term: Infiltrating lobular mixed with other types of carc.
+  behavior: '3'
+- code: 8525/3
+  term: Polymorphous low grade adenocarcinoma
+  behavior: '3'
+- code: 8530/3
+  term: Inflammatory carcinoma
+  behavior: '3'
+- code: 8540/3
+  term: Paget disease, mammary
+  behavior: '3'
+- code: 8541/3
+  term: Paget dis. & infil. duct carcinoma
+  behavior: '3'
+- code: 8542/3
+  term: Paget disease, extramammary
+  behavior: '3'
+- code: 8543/3
+  term: Paget disease and intraductal ca.
+  behavior: '3'
+- code: 8550/3
+  term: Acinar cell carcinoma
+  behavior: '3'
+- code: 8551/3
+  term: Acinar cell cystadenocarcinoma
+  behavior: '3'
+- code: 8552/3
+  term: Mixed acinar ductal carcinoma
+  behavior: '3'
+- code: 8560/3
+  term: Adenosquamous carcinoma
+  behavior: '3'
+- code: 8561/3
+  term: Warthin tumor, malignant
+  behavior: '3'
+- code: 8562/3
+  term: Epithelial-myoepithelial carcinoma
+  behavior: '3'
+- code: 8570/3
+  term: Adenocarcinoma with squamous metaplasia
+  behavior: '3'
+- code: 8571/3
+  term: Adenocarcinoma w cartilag. & oss. metaplas.
+  behavior: '3'
+- code: 8572/3
+  term: Adenocarcinoma with spindle cell mataplasia
+  behavior: '3'
+- code: 8573/3
+  term: Adenocarcinoma with apocrine metaplasia
+  behavior: '3'
+- code: 8574/3
+  term: Adenocarcinoma with neuroendocrine differen.
+  behavior: '3'
+- code: 8575/3
+  term: Metaplastic carcinoma, NOS
+  behavior: '3'
+- code: 8576/3
+  term: Hepatoid adenocarcinoma
+  behavior: '3'
+- code: 8580/3
+  term: Thymoma, malignant, NOS
+  behavior: '3'
+- code: 8581/3
+  term: Thymoma, type A, malignant
+  behavior: '3'
+- code: 8582/3
+  term: Thymoma, type AB, malignant
+  behavior: '3'
+- code: 8583/3
+  term: Thymoma, type B1, malignant
+  behavior: '3'
+- code: 8584/3
+  term: Thymoma, type B2, malignant
+  behavior: '3'
+- code: 8585/3
+  term: Thymoma, type B3, malignant
+  behavior: '3'
+- code: 8586/3
+  term: Thymic carcinoma, NOS
+  behavior: '3'
+- code: 8588/3
+  term: Spindle epithelial tumor with thymus-like element
+  behavior: '3'
+- code: 8589/3
+  term: Carcinoma showing thymus-like element
+  behavior: '3'
+- code: 8590/3
+  term: Ovarian stromal tumor, mal.
+  behavior: '3'
+- code: 8600/3
+  term: Thecoma, malignant
+  behavior: '3'
+- code: 8620/3
+  term: Granulosa cell tumor, malignant
+  behavior: '3'
+- code: 8621/3
+  term: Granulosa cell-theca cell tumor, mal.
+  behavior: '3'
+- code: 8630/3
+  term: Androblastoma, malignant
+  behavior: '3'
+- code: 8631/3
+  term: Sertoli-Leydig cell tumor, poorly differentiated
+  behavior: '3'
+- code: 8632/3
+  term: Gynandroblastoma, malignant
+  behavior: '3'
+- code: 8634/3
+  term: Sertoli-Leydig cl tum., p.d. w heterologous elements
+  behavior: '3'
+- code: 8640/3
+  term: Sertoli cell carcinoma
+  behavior: '3'
+- code: 8650/3
+  term: Leydig cell tumor, malignant
+  behavior: '3'
+- code: 8670/3
+  term: Steroid cell tumor, malignant
+  behavior: '3'
+- code: 8680/1
+  term: Paraganglioma, NOS
+  behavior: '1'
+- code: 8680/3
+  term: Paraganglioma, malignant
+  behavior: '3'
+- code: 8681/3
+  term: Sympathetic paraganglioma
+  behavior: '3'
+- code: 8682/3
+  term: Parasympathetic paraganglioma
+  behavior: '3'
+- code: 8690/3
+  term: Middle ear paraganglioma
+  behavior: '3'
+- code: 8691/3
+  term: Aortic body tumor, malignant
+  behavior: '3'
+- code: 8692/3
+  term: Carotid body tumor, malignant
+  behavior: '3'
+- code: 8693/3
+  term: Extra-adrenal paraganglioma, malignant
+  behavior: '3'
+- code: 8700/3
+  term: Pheochromocytoma
+  behavior: '3'
+- code: 8710/3
+  term: Glomangiosarcoma
+  behavior: '3'
+- code: 8714/3
+  term: PEComa, malignant
+  behavior: '3'
+- code: 8720/2
+  term: Melanoma in situ
+  behavior: '2'
+- code: 8720/3
+  term: Malignant melanoma, NOS
+  behavior: '3'
+- code: 8721/3
+  term: Nodular melanoma
+  behavior: '3'
+- code: 8722/3
+  term: Balloon cell melanoma
+  behavior: '3'
+- code: 8723/3
+  term: Malignant melanoma, regressing
+  behavior: '3'
+- code: 8728/0
+  term: Diffuse melanocytosis
+  behavior: '0'
+- code: 8728/1
+  term: Meningeal melanocytoma
+  behavior: '1'
+- code: 8728/3
+  term: Meningeal melanomatosis
+  behavior: '3'
+- code: 8730/3
+  term: Amelanotic melanoma
+  behavior: '3'
+- code: 8740/3
+  term: Mal. melanoma in junctional nevus
+  behavior: '3'
+- code: 8741/2
+  term: Precancerous melanosis, NOS
+  behavior: '2'
+- code: 8741/3
+  term: Mal. melanoma in precan. melanosis
+  behavior: '3'
+- code: 8742/2
+  term: Lentigo maligna
+  behavior: '2'
+- code: 8742/3
+  term: Lentigo maligna melanoma
+  behavior: '3'
+- code: 8743/2
+  term: Superficial spreading melanoma, in situ
+  behavior: '2'
+- code: 8743/3
+  term: Superficial spreading melanoma
+  behavior: '3'
+- code: 8744/3
+  term: Acral lentiginous melanoma, malig.
+  behavior: '3'
+- code: 8745/3
+  term: Desmoplastic melanoma, malignant
+  behavior: '3'
+- code: 8746/3
+  term: Mucosal lentiginous melanoma
+  behavior: '3'
+- code: 8761/3
+  term: Mal. melanoma in giant pigmented nevus
+  behavior: '3'
+- code: 8770/3
+  term: Mixed epithel. & spindle cell melanoma
+  behavior: '3'
+- code: 8771/3
+  term: Epithelioid cell melanoma
+  behavior: '3'
+- code: 8772/3
+  term: Spindle cell melanoma, NOS
+  behavior: '3'
+- code: 8773/3
+  term: Spindle cell melanoma, type A
+  behavior: '3'
+- code: 8774/3
+  term: Spindle cell melanoma, type B
+  behavior: '3'
+- code: 8780/3
+  term: Blue nevus, malignant
+  behavior: '3'
+- code: 8800/0
+  term: Soft tissue tumor, benign
+  behavior: '0'
+- code: 8800/3
+  term: Sarcoma, NOS
+  behavior: '3'
+- code: 8801/3
+  term: Spindle cell sarcoma
+  behavior: '3'
+- code: 8802/3
+  term: Giant cell sarcoma
+  behavior: '3'
+- code: 8803/3
+  term: Small cell sarcoma
+  behavior: '3'
+- code: 8804/3
+  term: Epithelioid sarcoma
+  behavior: '3'
+- code: 8805/3
+  term: Undifferentiated sarcoma
+  behavior: '3'
+- code: 8806/3
+  term: Desmoplastic small round cell tumor
+  behavior: '3'
+- code: 8810/0
+  term: Fibroma, NOS
+  behavior: '0'
+- code: 8810/3
+  term: Fibrosarcoma, NOS
+  behavior: '3'
+- code: 8811/3
+  term: Fibromyxosarcoma
+  behavior: '3'
+- code: 8812/3
+  term: Periosteal fibrosarcoma
+  behavior: '3'
+- code: 8813/3
+  term: Fascial fibrosarcoma
+  behavior: '3'
+- code: 8814/3
+  term: Infantile fibrosarcoma
+  behavior: '3'
+- code: 8815/0
+  term: Solitary fibrous tumor
+  behavior: '0'
+- code: '8815/1 '
+  term: Solitary fibrous tumor/hemangiopericytoma Grade 2
+  behavior: '1 '
+- code: 8815/3
+  term: Solitary fibrous tumor, malignant
+  behavior: '3'
+- code: 8825/3
+  term: Myofibroblastic sarcoma
+  behavior: '3'
+- code: 8830/3
+  term: Fibrous histiocytoma, malignant
+  behavior: '3'
+- code: 8832/3
+  term: Dermatofibrosarcoma, NOS
+  behavior: '3'
+- code: 8833/3
+  term: Pigmented dermatofibrosarcoma protuberans
+  behavior: '3'
+- code: 8840/3
+  term: Myxosarcoma
+  behavior: '3'
+- code: 8842/3
+  term: Pulmonary myxoid sarcoma with EWSR1-CREB1 translocation
+  behavior: '3'
+- code: 8850/0
+  term: Lipoma, NOS
+  behavior: '0'
+- code: 8850/1
+  term: Atypical lipoma
+  behavior: '1'
+- code: 8850/3
+  term: Liposarcoma, NOS
+  behavior: '3'
+- code: 8851/0
+  term: Fibrolipoma
+  behavior: '0'
+- code: 8851/3
+  term: Liposarcoma, well differentiated
+  behavior: '3'
+- code: 8852/3
+  term: Myxoid liposarcoma
+  behavior: '3'
+- code: 8853/3
+  term: Round cell liposarcoma
+  behavior: '3'
+- code: 8854/3
+  term: Pleomorphic liposarcoma
+  behavior: '3'
+- code: 8855/3
+  term: Mixed type liposarcoma
+  behavior: '3'
+- code: 8857/3
+  term: Fibroblastic liposarcoma
+  behavior: '3'
+- code: 8858/3
+  term: Dedifferentiated liposarcoma
+  behavior: '3'
+- code: 8859/3
+  term: Myxoid pleomorphic liposarcoma
+  behavior: '3'
+- code: 8861/0
+  term: Angiolipoma, NOS
+  behavior: '0'
+- code: 8890/0
+  term: Leiomyoma, NOS
+  behavior: '0'
+- code: 8890/1
+  term: Leiomyomatosis, nOS
+  behavior: '1'
+- code: 8890/3
+  term: Leiomyosarcoma, NOS
+  behavior: '3'
+- code: 8891/3
+  term: Epithelioid leiomyosarcoma
+  behavior: '3'
+- code: 8894/3
+  term: Angiomyosarcoma
+  behavior: '3'
+- code: 8895/3
+  term: Myosarcoma
+  behavior: '3'
+- code: 8896/3
+  term: Myxoid leiomyosarcoma
+  behavior: '3'
+- code: 8897/1
+  term: Smooth muscle tumor, NOS
+  behavior: '1'
+- code: 8900/0
+  term: Rhabdomyoma, NOS
+  behavior: '0'
+- code: 8900/3
+  term: Rhabdomyosarcoma, NOS
+  behavior: '3'
+- code: 8901/3
+  term: Pleomorphic rhabdomyosarcoma, adult type
+  behavior: '3'
+- code: 8902/3
+  term: Mixed type rhabdomyosarcoma
+  behavior: '3'
+- code: 8910/3
+  term: Embryonal rhabdomyosarcoma
+  behavior: '3'
+- code: 8912/3
+  term: Spindle cell rhabdomyosarcoma
+  behavior: '3'
+- code: 8920/3
+  term: Alveolar rhabdomyosarcoma
+  behavior: '3'
+- code: 8921/3
+  term: Rhabdomyosarcoma with ganglionic differentiation
+  behavior: '3'
+- code: 8930/3
+  term: Endometrial stromal sarcoma
+  behavior: '3'
+- code: 8931/3
+  term: Endometrial stromal sarcoma, low grade
+  behavior: '3'
+- code: 8933/3
+  term: Adenosarcoma
+  behavior: '3'
+- code: 8934/3
+  term: Carcinofibroma
+  behavior: '3'
+- code: 8935/3
+  term: Stromal sarcoma, NOS
+  behavior: '3'
+- code: 8936/3
+  term: Gastrointestinal stromal sarcoma
+  behavior: '3'
+- code: 8940/3
+  term: Mixed tumor, malignant, NOS
+  behavior: '3'
+- code: 8941/3
+  term: Carcinoma in pleomorphic adenoma
+  behavior: '3'
+- code: 8950/3
+  term: Mullerian mixed tumor
+  behavior: '3'
+- code: 8951/3
+  term: Mesodermal mixed tumor
+  behavior: '3'
+- code: 8959/3
+  term: Malignant cystic nephroma
+  behavior: '3'
+- code: 8960/3
+  term: Nephroblastoma, NOS
+  behavior: '3'
+- code: 8963/3
+  term: Malignant rhabdoid tumor
+  behavior: '3'
+- code: 8964/3
+  term: Clear cell sarcoma of kidney
+  behavior: '3'
+- code: 8970/3
+  term: Hepatoblastoma
+  behavior: '3'
+- code: 8971/3
+  term: Pancreatoblastoma
+  behavior: '3'
+- code: 8972/3
+  term: Pulmonary blastoma
+  behavior: '3'
+- code: 8973/3
+  term: Pleuropulmonary blastoma
+  behavior: '3'
+- code: 8976/3
+  term: Gastroblastoma
+  behavior: '3'
+- code: 8980/3
+  term: Carcinosarcoma, NOS
+  behavior: '3'
+- code: 8981/3
+  term: Carcinosarcoma, embryonal type
+  behavior: '3'
+- code: 8982/3
+  term: Malignant myoepithelioma
+  behavior: '3'
+- code: 8983/3
+  term: Adenomyoepithelioma with carcinoma
+  behavior: '3'
+- code: 8990/3
+  term: Mesenchymoma, malignant
+  behavior: '3'
+- code: 8991/3
+  term: Embryonal sarcoma
+  behavior: '3'
+- code: 9000/3
+  term: Brenner tumor, malignant
+  behavior: '3'
+- code: 9014/3
+  term: Serous adenocarcinofibroma
+  behavior: '3'
+- code: 9015/3
+  term: Mucinous adenocarcinofibroma
+  behavior: '3'
+- code: 9020/3
+  term: Phyllodes tumor, malignant
+  behavior: '3'
+- code: 9040/3
+  term: Synovial sarcoma, NOS
+  behavior: '3'
+- code: 9041/3
+  term: Synovial sarcoma, spindle cell
+  behavior: '3'
+- code: 9042/3
+  term: Synovial sarcoma, epithelioid cell
+  behavior: '3'
+- code: 9043/3
+  term: Synovial sarcoma, biphasic
+  behavior: '3'
+- code: 9044/3
+  term: Clear cell sarcoma,NOS (except of kidney M-8964/3)
+  behavior: '3'
+- code: 9045/3
+  term: Biphenotypic sinonasal sarcoma
+  behavior: '3'
+- code: 9050/2
+  term: Mesothelioma, in situ
+  behavior: '2'
+- code: 9050/3
+  term: Mesothelioma, malignant
+  behavior: '3'
+- code: 9051/3
+  term: Fibrous mesothelioma, malignant
+  behavior: '3'
+- code: 9052/3
+  term: Epithel. mesothelioma, mal.
+  behavior: '3'
+- code: 9053/3
+  term: Mesothelioma, biphasic, malignant
+  behavior: '3'
+- code: 9060/3
+  term: Dysgerminoma
+  behavior: '3'
+- code: 9061/3
+  term: Seminoma, NOS
+  behavior: '3'
+- code: 9062/3
+  term: Seminoma, anaplastic
+  behavior: '3'
+- code: 9063/3
+  term: Spermatocytic seminoma
+  behavior: '3'
+- code: 9064/2
+  term: Intratubular malignant germ cells
+  behavior: '2'
+- code: 9064/3
+  term: Germinoma
+  behavior: '3'
+- code: 9065/3
+  term: Germ cell tumor, nonseminomatous
+  behavior: '3'
+- code: 9070/3
+  term: Embryonal carcinoma, NOS
+  behavior: '3'
+- code: 9071/3
+  term: Yolk sac tumor
+  behavior: '3'
+- code: 9072/3
+  term: Polyembryoma
+  behavior: '3'
+- code: 9080/0
+  term: Teratoma, benign
+  behavior: '0'
+- code: 9080/1
+  term: Teratoma, NOS
+  behavior: '1'
+- code: 9080/3
+  term: Teratoma, malignant, NOS
+  behavior: '3'
+- code: 9081/3
+  term: Teratocarcinoma
+  behavior: '3'
+- code: 9082/3
+  term: Malignant teratoma, undiff.
+  behavior: '3'
+- code: 9083/3
+  term: Malignant teratoma, intermediate
+  behavior: '3'
+- code: 9084/0
+  term: Dermoid cyst, NOS
+  behavior: '0'
+- code: 9084/3
+  term: Teratoma with malig. transformation
+  behavior: '3'
+- code: 9085/3
+  term: Mixed germ cell tumor
+  behavior: '3'
+- code: 9086/3
+  term: Germ cell tumors with associated hematological malignancy
+  behavior: '3'
+- code: 9090/3
+  term: Struma ovarii, malignant
+  behavior: '3'
+- code: 9092/3
+  term: Phyllodes tumor, malignant
+  behavior: '3'
+- code: 9100/3
+  term: Choriocarcinoma
+  behavior: '3'
+- code: 9101/3
+  term: Choriocarcinoma combined w/ other germ cell elements
+  behavior: '3'
+- code: 9102/3
+  term: Malignant teratoma, trophoblastic
+  behavior: '3'
+- code: 9104/3
+  term: Malignant placental site trophoblastic tumor
+  behavior: '3'
+- code: 9105/3
+  term: Trophoblastic tumor, epithelioid
+  behavior: '3'
+- code: 9110/3
+  term: Mesonephroma, malignant
+  behavior: '3'
+- code: 9111/3
+  term: Mesonephric-like adenocarcinoma
+  behavior: '3'
+- code: 9120/0
+  term: Hemangioma, NOS
+  behavior: '0'
+- code: 9120/3
+  term: Hemangiosarcoma
+  behavior: '3'
+- code: 9121/0
+  term: Cavernous hemangioma
+  behavior: '0'
+- code: 9122/0
+  term: Venous hemangioma
+  behavior: '0'
+- code: 9124/3
+  term: Kupffer cell sarcoma
+  behavior: '3'
+- code: 9130/0
+  term: Hemangioendothelioma, benign
+  behavior: '0'
+- code: 9130/1
+  term: Hemangioendothelioma, NOS
+  behavior: '1'
+- code: 9130/3
+  term: Hemangioendothelioma, malignant
+  behavior: '3'
+- code: 9131/0
+  term: Capillary hemangioma
+  behavior: '0'
+- code: 9133/3
+  term: Epithelioid hemangioendothelioma, malignant
+  behavior: '3'
+- code: 9137/3
+  term: Intimal sarcoma
+  behavior: '3'
+- code: 9140/3
+  term: Kaposi sarcoma
+  behavior: '3'
+- code: 9150/0
+  term: Hemangiopericytoma, benign
+  behavior: '0'
+- code: 9150/1
+  term: Hemangiopericytoma, NOS
+  behavior: '1'
+- code: 9150/3
+  term: Hemangiopericytoma, malignant
+  behavior: '3'
+- code: 9161/1
+  term: Hemangioblastoma
+  behavior: '1'
+- code: 9170/3
+  term: Lymphangiosarcoma
+  behavior: '3'
+- code: 9174/3
+  term: Lymphangioleiomyomatosis
+  behavior: '3'
+- code: 9180/3
+  term: Osteosarcoma, NOS
+  behavior: '3'
+- code: 9181/3
+  term: Chondroblastic osteosarcoma
+  behavior: '3'
+- code: 9182/3
+  term: Fibroblastic osteosarcoma
+  behavior: '3'
+- code: 9183/3
+  term: Telangiectatic osteosarcoma
+  behavior: '3'
+- code: 9184/3
+  term: Osteosarcoma in Paget disease
+  behavior: '3'
+- code: 9185/3
+  term: Small cell osteosarcoma
+  behavior: '3'
+- code: 9186/3
+  term: Central osteosarcoma
+  behavior: '3'
+- code: 9187/3
+  term: Instrosseous well differentiated osteosarcoma
+  behavior: '3'
+- code: 9192/3
+  term: Parosteal osteosarcoma
+  behavior: '3'
+- code: 9193/3
+  term: Periosteal osteosarcoma
+  behavior: '3'
+- code: 9194/3
+  term: High grade surface osteosarcoma
+  behavior: '3'
+- code: 9195/3
+  term: Intracortical osteosarcoma
+  behavior: '3'
+- code: 9220/3
+  term: Chondrosarcoma, NOS
+  behavior: '3'
+- code: 9221/3
+  term: Juxtacortical chondrosarcoma
+  behavior: '3'
+- code: 9230/3
+  term: Chondroblastoma, malignant
+  behavior: '3'
+- code: 9231/3
+  term: Myxoid chondrosarcoma
+  behavior: '3'
+- code: 9240/3
+  term: Mesenchymal chondrosarcoma
+  behavior: '3'
+- code: 9242/3
+  term: Clear cell chondrosarcoma
+  behavior: '3'
+- code: 9243/3
+  term: Dedifferentiated chondrosarcoma
+  behavior: '3'
+- code: 9250/3
+  term: Giant cell tumor of bone, malignant
+  behavior: '3'
+- code: 9251/3
+  term: Malignant giant cell tumor of soft parts
+  behavior: '3'
+- code: 9252/3
+  term: Malignant tenosynovial giant cell tumor
+  behavior: '3'
+- code: 9260/3
+  term: Ewing sarcoma
+  behavior: '3'
+- code: 9261/3
+  term: Adamantinoma of long bones
+  behavior: '3'
+- code: 9270/3
+  term: Odontogenic tumor, malignant
+  behavior: '3'
+- code: 9290/3
+  term: Ameloblastic odontosarcoma
+  behavior: '3'
+- code: 9302/3
+  term: Ghost cell odontogenic carcinoma
+  behavior: '3'
+- code: 9310/3
+  term: Ameloblastoma, malignant
+  behavior: '3'
+- code: 9330/3
+  term: Ameloblastic fibrosarcoma
+  behavior: '3'
+- code: 9341/3
+  term: Clear cell odontogenic carcinoma
+  behavior: '3'
+- code: 9342/3
+  term: Odontogenic carcinosarcoma
+  behavior: '3'
+- code: 9350/1
+  term: Craniopharyngioma
+  behavior: '1'
+- code: 9351/1
+  term: Adamantinomatous craniopharyngioma
+  behavior: '1'
+- code: 9352/1
+  term: Papillary craniopharyngioma
+  behavior: '1'
+- code: 9360/1
+  term: Pinealoma, NOS
+  behavior: '1'
+- code: 9361/1
+  term: Pineocytoma
+  behavior: '1'
+- code: 9362/3
+  term: Pineoblastoma
+  behavior: '3'
+- code: 9364/3
+  term: Peripheral neuroectodermal tumor
+  behavior: '3'
+- code: 9365/3
+  term: Askin tumor
+  behavior: '3'
+- code: 9366/3
+  term: Round cell sarcoma with EWSR1-non-ETS fusions
+  behavior: '3'
+- code: 9367/3
+  term: CIC-rearranged sarcoma
+  behavior: '3'
+- code: 9368/3
+  term: Sarcoma with BCOR genetic alterations
+  behavior: '3'
+- code: 9370/3
+  term: Chordoma, NOS
+  behavior: '3'
+- code: 9371/3
+  term: Chondroid chordoma
+  behavior: '3'
+- code: 9372/3
+  term: Dedifferentiated chordoma
+  behavior: '3'
+- code: 9380/3
+  term: Glioma, malignant
+  behavior: '3'
+- code: 9381/3
+  term: Gliomatosis cerebri
+  behavior: '3'
+- code: 9382/3
+  term: Mixed glioma
+  behavior: '3'
+- code: 9383/1
+  term: Subependymoma
+  behavior: '1'
+- code: 9384/1
+  term: Supependymal giant cell astrocytoma
+  behavior: '1'
+- code: 9385/3
+  term: Diffuse midline glioma, H3 K27M-mutant
+  behavior: '3'
+- code: 9390/0
+  term: Choroid plexus papilloma, NOS
+  behavior: '0'
+- code: 9390/1
+  term: Atypical choroid plexus papilloma
+  behavior: '1'
+- code: 9390/3
+  term: Choroid plexus papilloma, malignant
+  behavior: '3'
+- code: 9391/1
+  term: Sellar ependymoma
+  behavior: '1'
+- code: 9391/3
+  term: Ependymoma, NOS
+  behavior: '3'
+- code: 9392/3
+  term: Ependymoma, anaplastic
+  behavior: '3'
+- code: 9393/3
+  term: Papillary ependymoma
+  behavior: '3'
+- code: 9394/1
+  term: Myxopapillary ependymoma
+  behavior: '1'
+- code: 9395/3
+  term: Papillary tumor of pineal region
+  behavior: '3'
+- code: 9396/3
+  term: Ependymoma, RELA fusion-positive
+  behavior: '3'
+- code: 9400/3
+  term: Astrocytoma, NOS
+  behavior: '3'
+- code: 9401/3
+  term: Astrocytoma, anaplastic
+  behavior: '3'
+- code: 9410/3
+  term: Protoplasmic astrocytoma
+  behavior: '3'
+- code: 9411/3
+  term: Gemistocytic astrocytoma
+  behavior: '3'
+- code: 9412/1
+  term: Desmoplastic infantile astrocytoma
+  behavior: '1'
+- code: 9413/0
+  term: Dysembryoplastic neuroepithelial tumor
+  behavior: '0'
+- code: 9420/3
+  term: Fibrillary astrocytoma
+  behavior: '3'
+- code: 9421/1
+  term: Pilocytic astrocytoma
+  behavior: '1'
+- code: 9421/3
+  term: Pilocytic astrocytoma
+  behavior: '3'
+- code: 9423/3
+  term: Polar spongioblastoma
+  behavior: '3'
+- code: 9424/3
+  term: Pleomorphic xanthoastrocytoma
+  behavior: '3'
+- code: 9425/3
+  term: Pilomyxoid astrocytoma
+  behavior: '3'
+- code: 9430/3
+  term: Astroblastoma
+  behavior: '3'
+- code: 9431/1
+  term: Angiocentric glioma
+  behavior: '1'
+- code: 9432/1
+  term: Pituicytoma
+  behavior: '1'
+- code: 9440/3
+  term: Glioblastoma, NOS
+  behavior: '3'
+- code: 9441/3
+  term: Giant cell glioblastoma
+  behavior: '3'
+- code: 9442/1
+  term: Gliofibroma
+  behavior: '1'
+- code: 9442/3
+  term: Gliosarcoma
+  behavior: '3'
+- code: 9444/1
+  term: Chordoid glioma
+  behavior: '1'
+- code: 9445/3
+  term: Glioblastoma, IDH-mutant
+  behavior: '3'
+- code: 9450/3
+  term: Oligodendroglioma, NOS
+  behavior: '3'
+- code: 9451/3
+  term: Oligodendroglioma, anaplastic
+  behavior: '3'
+- code: 9460/3
+  term: Oligodendroblastoma
+  behavior: '3'
+- code: 9470/3
+  term: Medulloblastoma, NOS
+  behavior: '3'
+- code: 9471/3
+  term: Desmoplastic medulloblastoma
+  behavior: '3'
+- code: 9472/3
+  term: Medullomyoblastoma
+  behavior: '3'
+- code: 9473/3
+  term: Primitive neuroectodermal tumor
+  behavior: '3'
+- code: 9474/3
+  term: Large cell medulloblastoma
+  behavior: '3'
+- code: 9475/3
+  term: Medulloblastoma, WNT-activated
+  behavior: '3'
+- code: 9476/3
+  term: Medulloblastoma, SHH-activated and TP53-mutant
+  behavior: '3'
+- code: 9477/3
+  term: Medulloblastoma, non-WNT/non-SHH
+  behavior: '3'
+- code: 9478/3
+  term: Embryonal tumor with multilayered rosettes, NOS
+  behavior: '3'
+- code: 9480/3
+  term: Cerebellar sarcoma, NOS
+  behavior: '3'
+- code: 9490/0
+  term: Ganglioneuroma
+  behavior: '0'
+- code: 9490/3
+  term: Ganglioneuroblastoma
+  behavior: '3'
+- code: 9492/0
+  term: Gangliocytoma
+  behavior: '0'
+- code: 9493/0
+  term: Dysplastic gangliocytoma of cerebellum (Lhermitte-Duclos)
+  behavior: '0'
+- code: 9500/3
+  term: Neuroblastoma, NOS
+  behavior: '3'
+- code: 9501/3
+  term: Medulloepithelioma, NOS
+  behavior: '3'
+- code: 9502/3
+  term: Teratoid medulloepithelioma
+  behavior: '3'
+- code: 9503/3
+  term: Neuroepithelioma, NOS
+  behavior: '3'
+- code: 9504/3
+  term: Spongioneuroblastoma
+  behavior: '3'
+- code: 9505/0
+  term: Multinodular and vascolating neuronal tumor
+  behavior: '0'
+- code: 9505/1
+  term: Ganglioglioma, NOS
+  behavior: '1'
+- code: 9505/3
+  term: Ganglioglioma, anaplastic
+  behavior: '3'
+- code: 9506/1
+  term: Centrol neurocytoma
+  behavior: '1'
+- code: 9508/3
+  term: Atypical teratoid/rhabdoid tumor
+  behavior: '3'
+- code: 9509/0
+  term: Multinodular and vacuolating neuronal tumor
+  behavior: '0'
+- code: 9509/1
+  term: Papillary glioneuronal tumor
+  behavior: '1'
+- code: 9509/3
+  term: Diffuse leptomeningeal glioneuronal tumor
+  behavior: '3'
+- code: 9510/3
+  term: Retinoblastoma, NOS
+  behavior: '3'
+- code: 9511/3
+  term: Retinoblastoma, differentiated
+  behavior: '3'
+- code: 9512/3
+  term: Retinoblastoma, undifferentiated
+  behavior: '3'
+- code: 9513/3
+  term: Retinoblastoma, diffuse
+  behavior: '3'
+- code: 9520/3
+  term: Olfactory neurogenic tumor
+  behavior: '3'
+- code: 9521/3
+  term: Olfactory neurcytoma
+  behavior: '3'
+- code: 9522/3
+  term: Olfactory neuroblastoma
+  behavior: '3'
+- code: 9523/3
+  term: Olfactory neuroepithelioma
+  behavior: '3'
+- code: 9530/0
+  term: Meningioma, NOS
+  behavior: '0'
+- code: 9530/1
+  term: Meningiomatosis, NOS
+  behavior: '1'
+- code: 9530/3
+  term: Meningioma, malignant
+  behavior: '3'
+- code: 9531/0
+  term: Meningothelial meningioma
+  behavior: '0'
+- code: 9532/0
+  term: Fibrous meningioma
+  behavior: '0'
+- code: 9533/0
+  term: Psammomatous meningioma
+  behavior: '0'
+- code: 9534/0
+  term: Angiomatous meningioma
+  behavior: '0'
+- code: 9537/0
+  term: Transitional meningioma
+  behavior: '0'
+- code: 9538/1
+  term: Clear cell meningioma
+  behavior: '1'
+- code: 9538/3
+  term: Papillary meningioma
+  behavior: '3'
+- code: 9539/1
+  term: Atypical meningioma
+  behavior: '1'
+- code: 9539/3
+  term: Meningeal sarcomatosis
+  behavior: '3'
+- code: 9540/0
+  term: Neurofibroma, NOS
+  behavior: '0'
+- code: 9540/1
+  term: Neurofibromatosis, NOS
+  behavior: '1'
+- code: 9540/3
+  term: Malignant peripheral nerve sheath tumor
+  behavior: '3'
+- code: 9541/0
+  term: Melanotic neurofibroma
+  behavior: '0'
+- code: 9542/3
+  term: Epithelioid malignant peripheral nerve sheath tumor
+  behavior: '3'
+- code: 9550/0
+  term: Plexiform neurofibroma
+  behavior: '0'
+- code: 9560/0
+  term: Neurilemoma, NOS
+  behavior: '0'
+- code: 9560/1
+  term: Melanotic schwannoma
+  behavior: '1'
+- code: 9560/3
+  term: Neurilemmoma, malignant
+  behavior: '3'
+- code: 9561/3
+  term: MPNST with rhabdomyoblastic differentiation
+  behavior: '3'
+- code: 9562/0
+  term: Neurothekeoma
+  behavior: '0'
+- code: 9570/0
+  term: Neuroma, NOS
+  behavior: '0'
+- code: 9571/0
+  term: Perineurioma, NOS
+  behavior: '0'
+- code: 9571/3
+  term: Perineurioma, malignant
+  behavior: '3'
+- code: 9580/0
+  term: Granular cell tumor, NOS
+  behavior: '0'
+- code: 9580/3
+  term: Granular cell tumor, malignant
+  behavior: '3'
+- code: 9581/3
+  term: Alveolar soft part sarcoma
+  behavior: '3'
+- code: 9582/0
+  term: Granular cell tumor of the sellar region
+  behavior: '0'
+- code: 9590/3
+  term: Malignant lymphoma, NOS
+  behavior: '3'
+- code: 9591/3
+  term: Malignant lymphoma, non-Hodgkin
+  behavior: '3'
+- code: 9596/3
+  term: Composite Hodgkin and non-Hodgkin lymphoma
+  behavior: '3'
+- code: 9597/3
+  term: Primary Cutaneous follicle centre lymphoma
+  behavior: '3'
+- code: 9650/3
+  term: Hodgkin lymphoma, NOS
+  behavior: '3'
+- code: 9651/3
+  term: Hodgkin lymphoma, lymphocyte-rich
+  behavior: '3'
+- code: 9652/3
+  term: Hodgkin lymphoma, mixed cellularity, NOS
+  behavior: '3'
+- code: 9653/3
+  term: Hodgkin lymphoma, lymphocytic deplet., NOS
+  behavior: '3'
+- code: 9654/3
+  term: Hodgkin lymph., lymphocyt. deplet., diffuse fibrosis
+  behavior: '3'
+- code: 9655/3
+  term: Hodgkin lymphoma, lymphocyt. deplet., reticular
+  behavior: '3'
+- code: 9659/3
+  term: Hodgkin lymph., nodular lymphocyte predom.
+  behavior: '3'
+- code: 9661/3
+  term: Hodgkin granuloma [obs]
+  behavior: '3'
+- code: 9662/3
+  term: Hodgkin sarcoma [obs]
+  behavior: '3'
+- code: 9663/3
+  term: Hodgkin lymphoma, nodular sclerosis, NOS
+  behavior: '3'
+- code: 9664/3
+  term: Hodgkin lymphoma, nod. scler., cellular phase
+  behavior: '3'
+- code: 9665/3
+  term: Hodgkin lymphoma, nod. scler., grade 1
+  behavior: '3'
+- code: 9667/3
+  term: Hodgkin lymphoma, nod. scler., grade 2
+  behavior: '3'
+- code: 9670/3
+  term: ML, small B lymphocytic, NOS
+  behavior: '3'
+- code: 9671/3
+  term: ML, lymphoplasmacytic
+  behavior: '3'
+- code: 9673/3
+  term: Mantle cell lymphoma
+  behavior: '3'
+- code: 9675/3
+  term: ML, mixed sm. and lg. cell, diffuse
+  behavior: '3'
+- code: 9678/3
+  term: Primary effusion lymphoma
+  behavior: '3'
+- code: 9679/3
+  term: Mediastinal large B-cell lymphoma
+  behavior: '3'
+- code: 9680/3
+  term: ML, large B-cell, diffuse
+  behavior: '3'
+- code: 9684/3
+  term: ML, large B-cell, diffuse, immunoblastic, NOS
+  behavior: '3'
+- code: 9687/3
+  term: Burkitt lymphoma, NOS
+  behavior: '3'
+- code: 9688/3
+  term: T-cell histiocyte rich large B-cell lymphoma
+  behavior: '3'
+- code: 9689/3
+  term: Splenic marginal zone B-cell lymphoma
+  behavior: '3'
+- code: 9690/3
+  term: Follicular lymphoma, NOS
+  behavior: '3'
+- code: 9691/3
+  term: Follicular lymphoma, grade 2
+  behavior: '3'
+- code: 9695/3
+  term: Follicular lymphoma, grade 1
+  behavior: '3'
+- code: 9698/3
+  term: Follicular lymphoma, grade 3
+  behavior: '3'
+- code: 9699/3
+  term: Marginal zone B-cell lymphoma, NOS
+  behavior: '3'
+- code: 9700/3
+  term: Mycosis fungoides
+  behavior: '3'
+- code: 9701/3
+  term: Sezary syndrome
+  behavior: '3'
+- code: 9702/3
+  term: Mature T-cell lymphoma, NOS
+  behavior: '3'
+- code: 9705/3
+  term: Angioimmunoblastic T-cell lymphoma
+  behavior: '3'
+- code: 9708/3
+  term: Subcutaneous panniculitis-like T-cell lymphoma
+  behavior: '3'
+- code: 9709/3
+  term: Cutaneous T-cell lymphoma, NOS
+  behavior: '3'
+- code: 9712/3
+  term: Intravascular large B-cell lymphoma
+  behavior: '3'
+- code: 9714/3
+  term: Anaplastic large cell lymphoma, T-cell and Null cell type
+  behavior: '3'
+- code: 9715/3
+  term: Anaplastic large cell lymphoma, ALK negative
+  behavior: '3'
+- code: 9716/3
+  term: Hepatosplenic gamma-delta cell lymphoma
+  behavior: '3'
+- code: 9717/3
+  term: Intestinal T-cell lymphoma
+  behavior: '3'
+- code: 9718/3
+  term: Primary cutan. CD30+ T-cell lymphoprolif. disorder
+  behavior: '3'
+- code: 9719/3
+  term: NK/T-cell lymphoma, nasal and nasal-type
+  behavior: '3'
+- code: 9724/3
+  term: SystemicEBV pos. T-cell lymphoproliferative disease of childhood
+  behavior: '3'
+- code: 9725/3
+  term: Hydroa vacciniforme-like lymphoma
+  behavior: '3'
+- code: 9726/3
+  term: Primary Cutaneous gamma-delta T-cell lymphoma
+  behavior: '3'
+- code: 9727/3
+  term: Precursor cell lymphoblastic lymphoma, NOS
+  behavior: '3'
+- code: 9728/3
+  term: Precursor B-cell lymphoblastic lymphoma
+  behavior: '3'
+- code: 9729/3
+  term: Precursor T-cell lymphoblastic lymphoma
+  behavior: '3'
+- code: 9731/3
+  term: Plasmacytoma, NOS
+  behavior: '3'
+- code: 9732/3
+  term: Multiple myeloma
+  behavior: '3'
+- code: 9733/3
+  term: Plasma cell leukemia
+  behavior: '3'
+- code: 9734/3
+  term: Plasmacytoma, extramedullary
+  behavior: '3'
+- code: 9735/3
+  term: Plasmablastic lymphoma
+  behavior: '3'
+- code: 9737/3
+  term: ALK positive large B-cell lymphoma
+  behavior: '3'
+- code: 9738/3
+  term: Lrg B-cell lymphoma in HHV8-assoc. multicentric Castleman DZ
+  behavior: '3'
+- code: 9740/3
+  term: Mast cell sarcoma
+  behavior: '3'
+- code: 9741/3
+  term: Malignant mastocytosis
+  behavior: '3'
+- code: 9742/3
+  term: Mast cell leukemia
+  behavior: '3'
+- code: 9749/1
+  term: Juvenile xanthogranuloma
+  behavior: '1'
+- code: 9749/3
+  term: Erdhiem-Chester Disease
+  behavior: '3'
+- code: 9750/3
+  term: Malignant histiocytosis
+  behavior: '3'
+- code: 9751/3
+  term: Langerhans cell histiocytosis, NOS
+  behavior: '3'
+- code: 9754/3
+  term: Langerhans cell histiocytosis, disseminated
+  behavior: '3'
+- code: 9755/3
+  term: Histiocytic sarcoma
+  behavior: '3'
+- code: 9756/3
+  term: Langerhans cell sarcoma
+  behavior: '3'
+- code: 9757/3
+  term: Interdigitating dendritic cell sarcoma
+  behavior: '3'
+- code: 9758/3
+  term: Follicular dendritic cell sarcoma
+  behavior: '3'
+- code: 9759/3
+  term: Fibroblastic reticular cell tumor
+  behavior: '3'
+- code: 9760/3
+  term: Immunoproliferative disease, NOS
+  behavior: '3'
+- code: 9761/3
+  term: Waldenstrom macroglobulinemia
+  behavior: '3'
+- code: 9762/3
+  term: Heavy chain disease, NOS
+  behavior: '3'
+- code: 9764/3
+  term: Immunoproliferative small intestinal disease
+  behavior: '3'
+- code: 9766/3
+  term: Lymphomatoid granulomatosis, grade 3
+  behavior: '3'
+- code: 9800/3
+  term: Leukemia, NOS
+  behavior: '3'
+- code: 9801/3
+  term: Acute leukemia, NOS
+  behavior: '3'
+- code: 9805/3
+  term: Acute biphenotypic leukemia
+  behavior: '3'
+- code: 9806/3
+  term: Mixed phenotype acute leukemia with t(9;22)(q34;q11.2);BCR-ABL1
+  behavior: '3'
+- code: 9807/3
+  term: Mixed phenotype acute leukemia with t(v;11q23);MLL rearranged
+  behavior: '3'
+- code: 9808/3
+  term: Mixed phenotype acute leukemia, B/myeloid, NOS
+  behavior: '3'
+- code: 9809/3
+  term: Mixed phenotype acute leukemia, T/myeloid, NOS
+  behavior: '3'
+- code: 9811/3
+  term: B lymphoblastic leukemia/lymphoma, NOS
+  behavior: '3'
+- code: 9812/3
+  term: Leukemia/lymphoma with t(9;22)(q34;q11.2);BCR-ABL1
+  behavior: '3'
+- code: 9813/3
+  term: Leukemia/lymphoma with t(v;11q23);MLL rearranged
+  behavior: '3'
+- code: 9814/3
+  term: Leukemia/lymphoma with t(12;21)(p13;q22);TEL-AML1(ETV6-RUNX1)
+  behavior: '3'
+- code: 9815/3
+  term: B lymphoblastic leukemia/lymphoma with hyperdiploidy
+  behavior: '3'
+- code: 9816/3
+  term: Leukemia/lymphoma with hypodiploidy (hypodiploid ALL)
+  behavior: '3'
+- code: 9817/3
+  term: B lymphblastic leukemia/lymphoma with t(5;14)(q31;q32);IL3-IGH
+  behavior: '3'
+- code: 9818/3
+  term: Leukemia/lymphoma with t(1;19)(q23;p13.3); E2A PBX1 (TCF3 PBX1)
+  behavior: '3'
+- code: 9819/3
+  term: B-lymphocytic leukemia/lymphoma, BCR-ABL1-like
+  behavior: '3'
+- code: 9820/3
+  term: Lymphoid leukemia, NOS
+  behavior: '3'
+- code: 9823/3
+  term: Chronic lymphocytic leukemia/small lymphocytic lymphoma
+  behavior: '3'
+- code: 9826/3
+  term: Burkitt cell leukemia
+  behavior: '3'
+- code: 9827/3
+  term: Adult T-cell leukemia/lymphoma (HTLV-1 pos.)
+  behavior: '3'
+- code: 9828/3
+  term: Acute lymphoblastic leukemia, L2 type, NOS
+  behavior: '3'
+- code: 9831/3
+  term: T-cell large granular lymphocytic leukemia
+  behavior: '3'
+- code: 9832/3
+  term: Prolymphocytic leukemia, NOS
+  behavior: '3'
+- code: 9833/3
+  term: Prolymphocytic leukemia, B-cell type
+  behavior: '3'
+- code: 9834/3
+  term: Prolymphocytic leukemia, T-cell type
+  behavior: '3'
+- code: 9835/3
+  term: Precursor cell lymphoblastic leukemia, NOS
+  behavior: '3'
+- code: 9836/3
+  term: Precursor B-cell lymphoblastic leukemia
+  behavior: '3'
+- code: 9837/3
+  term: T lymphoblastic leukemia/lymphoma
+  behavior: '3'
+- code: 9840/3
+  term: Acute myeloid leukemia, M6 type
+  behavior: '3'
+- code: 9860/3
+  term: Myeloid leukemia, NOS
+  behavior: '3'
+- code: 9861/3
+  term: Acute myeloid leukemia
+  behavior: '3'
+- code: 9863/3
+  term: Chronic myeloid leukemia, NOS
+  behavior: '3'
+- code: 9865/3
+  term: Acute myeloid leukemia with t(6;9)(p23;q34) DEK-NUP214
+  behavior: '3'
+- code: 9866/3
+  term: Acute promyelocytic leuk.,t(15;17)(q22;q11-12)
+  behavior: '3'
+- code: 9867/3
+  term: Acute myelomonocytic leukemia
+  behavior: '3'
+- code: 9869/3
+  term: Acute myeloid leukemia with inv(3)(q21q26.2) or t(3;3)(q21;q26.2);RPN1EVI1
+  behavior: '3'
+- code: 9870/3
+  term: Acute basophilic leukemia
+  behavior: '3'
+- code: 9871/3
+  term: Ac. myelomonocytic leuk. w abn. mar. eosinophils
+  behavior: '3'
+- code: 9872/3
+  term: Acute myeloid leukemia, minimal differentiation
+  behavior: '3'
+- code: 9873/3
+  term: Acute myeloid leukemia without maturation
+  behavior: '3'
+- code: 9874/3
+  term: Acute myeloid leukemia with maturation
+  behavior: '3'
+- code: 9875/3
+  term: Chronic myelogenous leukemia, BCR/ABL positive
+  behavior: '3'
+- code: 9876/3
+  term: Atypical chronic myeloid leuk., BCR/ABL negative
+  behavior: '3'
+- code: 9877/3
+  term: Acute myeloid leukemia with mutated NPM1
+  behavior: '3'
+- code: 9878/3
+  term: Acute myeloid leukemia with biallelic mutations of CEBPA
+  behavior: '3'
+- code: 9879/3
+  term: Acute myeloid leukemia with mutated RUNX1
+  behavior: '3'
+- code: 9891/3
+  term: Acute monocytic leukemia
+  behavior: '3'
+- code: 9895/3
+  term: Acute myeloid leuk. with multilineage dysplasia
+  behavior: '3'
+- code: 9896/3
+  term: Acute myeloid leukemia, t(8;21)(q22;q22)
+  behavior: '3'
+- code: 9897/3
+  term: Acute myeloid leukemia, 11q23 abnormalities
+  behavior: '3'
+- code: 9898/3
+  term: Myeloid leukemia associated with Down Syndrome
+  behavior: '3'
+- code: 9910/3
+  term: Acute megakaryoblastic leukemia
+  behavior: '3'
+- code: 9911/3
+  term: Acute myeloid leukemia (megakaryoblastic) with t(1;22)(p13;q13);RBM15-MLK1
+  behavior: '3'
+- code: 9912/3
+  term: Acute myeloid leukemia with BCR-ABL1
+  behavior: '3'
+- code: 9920/3
+  term: Therapy-related acute myeloid leukemia, NOS
+  behavior: '3'
+- code: 9930/3
+  term: Myeloid sarcoma
+  behavior: '3'
+- code: 9931/3
+  term: Acute panmyelosis with myelofibrosis
+  behavior: '3'
+- code: 9940/3
+  term: Hairy cell leukemia
+  behavior: '3'
+- code: 9945/3
+  term: Chronic myelomonocytic leukemia, NOS
+  behavior: '3'
+- code: 9946/3
+  term: Juvenile myelomonocytic leukemia
+  behavior: '3'
+- code: 9948/3
+  term: Aggressive NK-cell leukemia
+  behavior: '3'
+- code: 9950/3
+  term: Polycythemia vera
+  behavior: '3'
+- code: 9960/3
+  term: Chronic myeloproliferative disease, NOS
+  behavior: '3'
+- code: 9961/3
+  term: Myelosclerosis with myeloid metaplasia
+  behavior: '3'
+- code: 9962/3
+  term: Essential thrombocythemia
+  behavior: '3'
+- code: 9963/3
+  term: Chronic neutrophilic leukemia
+  behavior: '3'
+- code: 9964/3
+  term: Hypereosinophilic syndrome
+  behavior: '3'
+- code: 9965/3
+  term: Myeloid and lymphoid neoplasms with PDGFRB rearrangement
+  behavior: '3'
+- code: 9966/3
+  term: Myeloid and lymphoid neoplasms with PDGFRB re arrangement
+  behavior: '3'
+- code: 9967/3
+  term: Myeloid and lymphoid neoplasm with FGFR1 abnormalities
+  behavior: '3'
+- code: 9968/3
+  term: Myeloid/lymphoid neoplasm with PCM1-JAK2
+  behavior: '3'
+- code: 9971/3
+  term: Polymorphic PTLD
+  behavior: '3'
+- code: 9975/3
+  term: Myelodysplastic/Myeloproliferative neoplasm, unclassifiable
+  behavior: '3'
+- code: 9980/3
+  term: Refractory anemia
+  behavior: '3'
+- code: 9982/3
+  term: Refractory anemia with sideroblasts
+  behavior: '3'
+- code: 9983/3
+  term: Refractory anemia with excess blasts
+  behavior: '3'
+- code: 9984/3
+  term: Refract. anemia with excess blasts in transformation
+  behavior: '3'
+- code: 9985/3
+  term: Refractory cytopenia with multilineage dysplasia
+  behavior: '3'
+- code: 9986/3
+  term: Myelodysplastic syndr. with 5q deletion syndrome
+  behavior: '3'
+- code: 9987/3
+  term: Therapy-related myelodysplastic syndrome, NOS
+  behavior: '3'
+- code: 9989/3
+  term: Myelodysplastic syndrome, NOS
+  behavior: '3'
+- code: 9991/3
+  term: Refractory neutropenia
+  behavior: '3'
+- code: 9992/3
+  term: Refractory thrombocytopenia
+  behavior: '3'
+- code: 9993/3
+  term: Myelodysplastic syndrome with ring sideroblasts and multilineage dysplasia
+  behavior: '3'
+topography:
+- code: C09.9
+  term: Tonsil, NOS
+- code: C16.0
+  term: Cardia, NOS
+- code: C16.1
+  term: Fundus of stomach
+- code: C16.2
+  term: Body of stomach
+- code: C16.3
+  term: Gastric antrum
+- code: C16.8
+  term: Overlapping lesion of stomach
+- code: C16.9
+  term: Stomach, NOS
+- code: C42.0
+  term: Blood
+- code: C42.1
+  term: Bone marrow
+- code: C42.2
+  term: Spleen
+- code: C42.4
+  term: Hematopoietic system, NOS
+- code: C44.9
+  term: Skin, NOS
+- code: C50.9
+  term: Breast, NOS
+- code: C77.0
+  term: Lymph nodes of head, face and neck
+- code: C77.1
+  term: Intrathoracic lymph nodes
+- code: C77.2
+  term: Intra-abdominal lymph nodes
+- code: C77.3
+  term: Lymph nodes of axilla or arm
+- code: C77.4
+  term: Lymph nodes of inguinal region or leg
+- code: C77.5
+  term: Pelvic lymph nodes
+- code: C77.8
+  term: Lymph nodes of multiple regions
+- code: C77.9
+  term: Lymph node, NOS

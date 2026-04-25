@@ -58,3 +58,7 @@ desktop.ini
 # Knowledge base: live-API query cache (not source of truth, never commit)
 knowledge_base/cache/
 knowledge_base/**/_fetch_log.json
+
+# Raw downloaded source files — input to ingestion loaders, not committed
+# (parsed YAML output under knowledge_base/hosted/ is what we keep)
+downloads/

@@ -19,24 +19,54 @@ from pathlib import Path
 import yaml
 
 
+def _split_molecular_profile(mp: str) -> tuple[str | None, str | None]:
+    """CIViC `molecular_profile` is typically 'GENE VARIANT' — split conservatively."""
+    if not mp:
+        return None, None
+    parts = mp.strip().split(None, 1)
+    if len(parts) == 1:
+        return parts[0], None
+    return parts[0], parts[1]
+
+
 def parse_civic_tsv(path: Path) -> list[dict]:
+    """Parse CIViC nightly ClinicalEvidenceSummaries TSV.
+
+    Column names per actual TSV header (verified 2026-04-25): molecular_profile,
+    disease, doid, therapies, evidence_type, evidence_direction, evidence_level,
+    significance, citation_id, source_type, evidence_id, rating, evidence_status, ...
+    """
     entries: list[dict] = []
     with path.open(encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f, delimiter="\t")
         for row in reader:
+            gene, variant = _split_molecular_profile(row.get("molecular_profile") or "")
+            therapies = row.get("therapies") or ""
+            # Therapies separated by comma OR semicolon depending on row
+            drugs = [
+                t.strip() for t in therapies.replace(";", ",").split(",") if t.strip()
+            ]
+            citation_id = (row.get("citation_id") or "").strip() or None
+            source_type = (row.get("source_type") or "").strip()
             entries.append({
                 "id": row.get("evidence_id") or row.get("id"),
-                "gene": row.get("gene"),
-                "variant": row.get("variant"),
+                "molecular_profile": row.get("molecular_profile"),
+                "gene": gene,
+                "variant": variant,
                 "disease": row.get("disease"),
                 "doid": row.get("doid"),
-                "drugs": [d.strip() for d in (row.get("drugs") or "").split(",") if d.strip()],
+                "therapies": drugs,
+                "therapy_interaction_type": row.get("therapy_interaction_type") or None,
                 "evidence_level": row.get("evidence_level"),
                 "evidence_type": row.get("evidence_type"),
-                "clinical_significance": row.get("clinical_significance"),
                 "evidence_direction": row.get("evidence_direction"),
-                "pmid": row.get("pubmed_id"),
+                "significance": row.get("significance"),
+                "citation_id": citation_id,
+                "citation_source_type": source_type or None,
+                "pmid": citation_id if source_type.lower() == "pubmed" else None,
                 "rating": row.get("rating"),
+                "evidence_status": row.get("evidence_status"),
+                "civic_url": row.get("evidence_civic_url"),
             })
     return entries
 
