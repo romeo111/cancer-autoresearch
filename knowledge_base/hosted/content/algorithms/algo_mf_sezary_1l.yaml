@@ -1,0 +1,31 @@
+id: ALGO-MF-SEZARY-1L
+applicable_to_disease: DIS-MF-SEZARY
+applicable_to_line_of_therapy: 1
+purpose: >
+  MF/Sézary 1L: stage-driven — early-stage (IA-IIA) skin-directed
+  (placeholder, separate workstream); advanced (IIB+) systemic. For
+  Tier 1 placeholder, route everyone to CHOEP-style systemic — actual
+  MF treatment paradigm requires dedicated cutaneous-lymphoma pathway
+  in future iteration (mogamulizumab, brentuximab if CD30+, ECP, TSEBT).
+
+output_indications: [IND-TCELL-1L-CHOEP, IND-TCELL-1L-CHP-BV]
+default_indication: IND-TCELL-1L-CHOEP
+alternative_indication: IND-TCELL-1L-CHP-BV
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-TCELL-CD30-POSITIVE
+    if_true:
+      result: IND-TCELL-1L-CHP-BV
+    if_false:
+      result: IND-TCELL-1L-CHOEP
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  STUB algorithm — actual MF/Sézary requires stage-driven (TNMB) +
+  skin-directed-first paradigm, not the systemic CHOP-style backbone.
+  Full algorithm deferred. Current entity routes for engine
+  consistency only.

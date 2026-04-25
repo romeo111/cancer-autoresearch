@@ -1,0 +1,32 @@
+id: ALGO-NLPBL-1L
+applicable_to_disease: DIS-NLPBL
+applicable_to_line_of_therapy: 1
+purpose: >
+  NLPBL 1L: early-stage → ISRT alone or observation. Advanced →
+  rituximab-based chemoimmuno (R-CHOP via shared aggressive
+  indication from FL — same biology since reclassified to B-cell).
+
+output_indications:
+  - IND-NLPBL-1L-OBSERVATION-OR-RT
+  - IND-FL-1L-RCHOP-AGGRESSIVE  # shared — for advanced NLPBL
+
+default_indication: IND-NLPBL-1L-OBSERVATION-OR-RT
+alternative_indication: IND-FL-1L-RCHOP-AGGRESSIVE
+
+decision_tree:
+  - step: 1
+    evaluate:
+      all_of:
+        - condition: "Early stage I-II"
+        - condition: "Localized disease amenable to RT"
+    if_true:
+      result: IND-NLPBL-1L-OBSERVATION-OR-RT
+    if_false:
+      result: IND-FL-1L-RCHOP-AGGRESSIVE
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  WHO 5th-ed reclassification (NLPHL → NLPBL) means we treat advanced
+  disease via B-cell pathway, not Hodgkin pathway. Reuses
+  IND-FL-1L-RCHOP-AGGRESSIVE for advanced — same regimen.

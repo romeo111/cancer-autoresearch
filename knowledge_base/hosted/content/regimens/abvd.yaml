@@ -1,0 +1,34 @@
+id: REG-ABVD
+name: "ABVD (Adriamycin + Bleomycin + Vinblastine + Dacarbazine), 2-6 cycles"
+name_ua: "ABVD (Доксорубіцин + Блеоміцин + Вінбластин + Дакарбазин), 2-6 циклів"
+alternate_names: ["ABVD"]
+
+components:
+  - {drug_id: DRUG-DOXORUBICIN, dose: "25 mg/m²", schedule: "IV days 1+15 of 28-day cycle", route: IV}
+  - {drug_id: DRUG-BLEOMYCIN, dose: "10 units/m²", schedule: "IV days 1+15 of 28-day cycle", route: IV}
+  - {drug_id: DRUG-VINBLASTINE, dose: "6 mg/m²", schedule: "IV days 1+15 of 28-day cycle", route: IV}
+  - {drug_id: DRUG-DACARBAZINE, dose: "375 mg/m²", schedule: "IV days 1+15 of 28-day cycle", route: IV}
+
+cycle_length_days: 28
+total_cycles: "2-4 (early-stage + ISRT) OR 6 (advanced); response-adapted per interim PET-CT Deauville"
+toxicity_profile: moderate
+
+premedication: ["Aprepitant + dexamethasone + 5-HT3 antagonist (high emetogenicity from dacarbazine)", "Bleomycin test dose 1-2 units before first full dose (anaphylactoid risk)"]
+mandatory_supportive_care: [SUP-ANTIEMETIC-PREMED]
+monitoring_schedule_id: MON-R-CHOP-REGIMEN  # reuse for now
+
+dose_adjustments:
+  - {condition: "DLCO drop ≥25% from baseline OR pulmonary symptoms", modification: "DISCONTINUE bleomycin permanently; consider AVD (drop bleomycin) for remaining cycles"}
+  - {condition: "Cumulative bleomycin >300 units", modification: "Stop bleomycin (risk of progressive fibrosis)"}
+  - {condition: "Cumulative anthracycline >300 mg/m²", modification: "Echo + LVEF check"}
+
+ukraine_availability: {all_components_registered: true, all_components_reimbursed: true}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Long-standing 1L Hodgkin standard (40+ years). Pulmonary toxicity
+  (BPT) ~5-10% — DLCO mandatory pre-treatment + serial. NEVER combine
+  with brentuximab (additive lung toxicity). G-CSF avoided on ABVD
+  (increases pulmonary toxicity). Modern alternative for advanced
+  Hodgkin: A+AVD (ECHELON-1) — brentuximab replaces bleomycin,
+  superior OS in advanced disease.

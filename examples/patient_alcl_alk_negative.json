@@ -1,0 +1,15 @@
+{
+  "patient_id": "ALCL-ALKNEG-001",
+  "comment": "Systemic ALCL ALK-negative (worse prognosis subtype, universally CD30+). Engine should select CHP-Bv (ECHELON-2) as default.",
+  "disease": {"icd_o_3_morphology": "9714/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD30-IHC": "positive"},
+  "demographics": {"age": 56, "sex": "male", "ecog": 1},
+  "findings": {
+    "alk_status": "negative",
+    "cd30_positive": true,
+    "lvef_percent": 60,
+    "CD30+ (universal in systemic ALCL)": true,
+    "Brentuximab accessible (funding pathway)": true
+  }
+}

@@ -641,7 +641,7 @@ def _apply_role_rules(
     if has_aggressive:
         add(
             "clinical_pharmacist",
-            "Хіміоімунотерапевтичний регімен — drug-drug interactions, dose adjustments, premedication.",
+            "Хіміоімунотерапевтичний схема — drug-drug interactions, dose adjustments, premedication.",
             "treatment_domain",
             "recommended",
             linked_findings=["aggressive-track"],
@@ -794,7 +794,7 @@ def _apply_open_question_rules(
             blocking=True,
             rationale=(
                 "Декомпенсований цироз — RF-DECOMP-CIRRHOSIS, "
-                "вимагає змін у регімені."
+                "вимагає змін у схемі."
             ),
             linked_findings=["child_pugh_class", "fib4_index"],
         ))
@@ -854,7 +854,7 @@ def _apply_open_question_rules(
             question=(
                 "Чи доступні препарати без реімбурсації НСЗУ для пацієнта "
                 f"({', '.join(sorted(set(non_reimbursed)))})? "
-                "Чи потрібна social work consult / альтернативний регімен?"
+                "Чи потрібна social work consult / альтернативний схема?"
             ),
             owner_role="social_worker_case_manager",
             blocking=False,

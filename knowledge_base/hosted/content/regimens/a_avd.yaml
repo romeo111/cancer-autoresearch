@@ -1,0 +1,33 @@
+id: REG-A-AVD
+name: "A+AVD (Brentuximab vedotin + Adriamycin + Vinblastine + Dacarbazine), 6 cycles"
+name_ua: "A+AVD (Брентуксимаб + Доксорубіцин + Вінбластин + Дакарбазин), 6 циклів"
+alternate_names: ["A+AVD", "BV-AVD", "ECHELON-1"]
+
+components:
+  - {drug_id: DRUG-BRENTUXIMAB-VEDOTIN, dose: "1.2 mg/kg", schedule: "IV days 1+15 of 28-day cycle × 6", route: IV}
+  - {drug_id: DRUG-DOXORUBICIN, dose: "25 mg/m²", schedule: "IV days 1+15 of 28-day cycle", route: IV}
+  - {drug_id: DRUG-VINBLASTINE, dose: "6 mg/m²", schedule: "IV days 1+15 of 28-day cycle", route: IV}
+  - {drug_id: DRUG-DACARBAZINE, dose: "375 mg/m²", schedule: "IV days 1+15 of 28-day cycle", route: IV}
+
+cycle_length_days: 28
+total_cycles: "6"
+toxicity_profile: moderate-high
+
+premedication: ["Aprepitant + dexamethasone + 5-HT3 antagonist", "Brentuximab premedications first dose"]
+mandatory_supportive_care: [SUP-ANTIEMETIC-PREMED, SUP-GCSF-NEUTROPENIA]
+monitoring_schedule_id: MON-R-CHOP-REGIMEN
+
+dose_adjustments:
+  - {condition: "Grade ≥2 peripheral neuropathy", modification: "Hold or reduce brentuximab"}
+  - {condition: "Cumulative anthracycline >300 mg/m²", modification: "Echo + LVEF check"}
+  - {condition: "ABSOLUTE: NEVER combine with bleomycin", modification: "Removal of bleomycin from ABVD is the entire point of A+AVD — additive lung toxicity is fatal"}
+
+ukraine_availability: {all_components_registered: true, all_components_reimbursed: false, notes: "Brentuximab not НСЗУ-reimbursed; ABVD fallback when access blocking"}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  ECHELON-1 trial (Connors 2018, follow-up 2022): superior OS for
+  advanced cHL vs ABVD (HR ~0.59 for OS at 6 years). Bleomycin replaced
+  by brentuximab → eliminates BPT risk. G-CSF mandatory (vs ABVD where
+  G-CSF avoided). Preferred 1L for advanced Hodgkin per NCCN where
+  brentuximab accessible.

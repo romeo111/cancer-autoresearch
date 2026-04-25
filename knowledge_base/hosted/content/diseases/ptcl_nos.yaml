@@ -1,0 +1,18 @@
+id: DIS-PTCL-NOS
+names:
+  preferred: "Peripheral T-Cell Lymphoma, Not Otherwise Specified"
+  ukrainian: "Периферична T-клітинна лімфома, неуточнена"
+  english: "Peripheral T-Cell Lymphoma, NOS"
+  synonyms: ["PTCL NOS", "PTCL-U"]
+codes: {icd_o_3_morphology: "9702/3", icd_10: "C84.4", who_classification: "Mature T-cell neoplasms — Peripheral T-cell lymphoma, NOS per WHO 5th ed."}
+archetype: risk_stratified
+lineage: t_cell_lymphoma
+etiological_factors: ["Heterogeneous; subset of T-cell receptor genotypes; some subsets EBV-associated"]
+related_diseases: [DIS-AITL, DIS-ALCL]
+epidemiology: {context: "Most common T-cell NHL adult (~30-40% of T-cell). Median age ~60. Aggressive; ~30-40% 5y OS with CHOP/CHOEP +- autoSCT consolidation."}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Diagnosis-of-exclusion — once specific T-cell entities (AITL, ALCL,
+  EATL, NK/T, hepatosplenic, cutaneous) ruled out. CD30 expression in
+  ~40-60% — qualifies for brentuximab-CHP per ECHELON-2.

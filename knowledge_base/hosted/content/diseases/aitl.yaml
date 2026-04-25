@@ -1,0 +1,18 @@
+id: DIS-AITL
+names:
+  preferred: "Angioimmunoblastic T-Cell Lymphoma / Nodal TFH-cell lymphoma"
+  ukrainian: "Ангіоімунобластна T-клітинна лімфома / нодальна TFH-лімфома"
+  english: "Angioimmunoblastic T-Cell Lymphoma"
+  synonyms: ["AITL", "AILT", "Nodal TFH-cell lymphoma"]
+codes: {icd_o_3_morphology: "9705/3", icd_10: "C84.4", who_classification: "Mature T-cell neoplasms — Nodal T-follicular helper (TFH) cell lymphoma, angioimmunoblastic-type per WHO 5th ed."}
+archetype: risk_stratified
+lineage: t_cell_lymphoma
+etiological_factors: ["TFH cell-of-origin", "TET2, IDH2, DNMT3A mutations (clonal hematopoiesis-like)", "EBV-associated B-cells frequent in microenvironment", "RHOA G17V mutation in ~70%"]
+related_diseases: [DIS-PTCL-NOS, DIS-ALCL]
+epidemiology: {context: "~15-20% of T-cell NHL. Median age ~65. Aggressive with diverse extranodal involvement, autoimmune phenomena, hypergammaglobulinemia. ~30-40% 5y OS with CHOP/CHOEP +- autoSCT."}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  CD30 positive in ~40-50% — eligible for brentuximab-CHP. EBV-driven
+  B-cell secondary lymphomas can develop during AITL — separate
+  consideration. Hypogammaglobulinemia + autoimmune cytopenias common.

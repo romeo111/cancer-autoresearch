@@ -1,0 +1,11 @@
+id: BIO-CD30-IHC
+names:
+  preferred: "CD30 expression by IHC"
+  ukrainian: "Експресія CD30 (імуногістохімія)"
+  english: "CD30 expression"
+biomarker_type: protein_expression_ihc
+measurement: {method: "IHC on FFPE biopsy", units: "categorical (positive ≥10% | negative)"}
+specimen_requirements: ["FFPE biopsy block"]
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: "Universal CD30+ in systemic ALCL. ~40-60% PTCL NOS / AITL. Required for brentuximab vedotin-based regimens (CHP-Bv, A+AVD)."

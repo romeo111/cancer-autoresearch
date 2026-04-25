@@ -1,0 +1,33 @@
+id: REG-CHOEP
+name: "CHOEP (cyclophosphamide + doxorubicin + vincristine + etoposide + prednisone), 6 cycles"
+name_ua: "CHOEP (циклофосфамід + доксорубіцин + вінкристин + етопозид + преднізон), 6 циклів"
+alternate_names: ["CHOEP", "CHOP-E"]
+
+components:
+  - {drug_id: DRUG-CYCLOPHOSPHAMIDE, dose: "750 mg/m²", schedule: "IV day 1 each 21-day cycle", route: IV}
+  - {drug_id: DRUG-DOXORUBICIN, dose: "50 mg/m²", schedule: "IV day 1 each cycle", route: IV}
+  - {drug_id: DRUG-VINCRISTINE, dose: "1.4 mg/m² (cap 2 mg)", schedule: "IV day 1 each cycle", route: IV}
+  - {drug_id: DRUG-ETOPOSIDE, dose: "100 mg/m²", schedule: "IV days 1-3 each cycle", route: IV}
+  - {drug_id: DRUG-PREDNISONE, dose: "100 mg", schedule: "PO days 1-5 each cycle", route: PO}
+
+cycle_length_days: 21
+total_cycles: "6 (consider autoSCT consolidation in fit younger)"
+toxicity_profile: moderate-high
+
+premedication: ["Antiemetic premedications", "TLS prophylaxis cycle 1"]
+mandatory_supportive_care: [SUP-PJP-PROPHYLAXIS, SUP-ANTIEMETIC-PREMED, SUP-GCSF-NEUTROPENIA]
+monitoring_schedule_id: MON-R-CHOP-REGIMEN
+
+dose_adjustments:
+  - {condition: "Age >60 OR cardiac issues", modification: "CHOP without etoposide; less toxicity but lower efficacy"}
+  - {condition: "Grade ≥2 peripheral neuropathy", modification: "Reduce vincristine; consider non-vincristine regimen"}
+
+ukraine_availability: {all_components_registered: true, all_components_reimbursed: true}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Used for fit younger PTCL NOS / AITL when CD30 negative or brentuximab
+  not accessible. CHOEP (with etoposide) showed improvement over CHOP
+  in younger T-cell patients per Nordic data. 6 cycles + autoSCT
+  consolidation in fit transplant-eligible — practice standard for
+  PTCL/AITL despite limited RCT evidence.

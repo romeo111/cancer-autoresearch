@@ -1118,5 +1118,158 @@
         "lvef_percent": 60
       }
     }
+  },
+  {
+    "case_id": "alcl-alk-negative",
+    "label": "ALCL · ALK-negative (CHP-Bv)",
+    "file": "patient_alcl_alk_negative.json",
+    "json": {
+      "patient_id": "ALCL-ALKNEG-001",
+      "comment": "Systemic ALCL ALK-negative (worse prognosis subtype, universally CD30+). Engine should select CHP-Bv (ECHELON-2) as default.",
+      "disease": {
+        "icd_o_3_morphology": "9714/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD30-IHC": "positive"
+      },
+      "demographics": {
+        "age": 56,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "alk_status": "negative",
+        "cd30_positive": true,
+        "lvef_percent": 60,
+        "CD30+ (universal in systemic ALCL)": true,
+        "Brentuximab accessible (funding pathway)": true
+      }
+    }
+  },
+  {
+    "case_id": "ptcl-cd30-negative",
+    "label": "PTCL NOS · CD30-negative (CHOEP)",
+    "file": "patient_ptcl_cd30_negative.json",
+    "json": {
+      "patient_id": "PTCL-CD30NEG-001",
+      "comment": "PTCL NOS, CD30-negative. Engine should select CHOEP standard (CHP-Bv would be alternative if CD30+).",
+      "disease": {
+        "icd_o_3_morphology": "9702/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD30-IHC": "negative"
+      },
+      "demographics": {
+        "age": 62,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "cd30_positive": false,
+        "lvef_percent": 60
+      }
+    }
+  },
+  {
+    "case_id": "aitl-cd30-positive",
+    "label": "AITL · CD30-positive (CHP-Bv)",
+    "file": "patient_aitl_cd30_positive.json",
+    "json": {
+      "patient_id": "AITL-CD30POS-001",
+      "comment": "AITL with CD30+. Engine should select CHP-Bv (RF-TCELL-CD30-POSITIVE fired).",
+      "disease": {
+        "icd_o_3_morphology": "9705/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD30-IHC": "positive"
+      },
+      "demographics": {
+        "age": 64,
+        "sex": "male",
+        "ecog": 2
+      },
+      "findings": {
+        "cd30_positive": true,
+        "lvef_percent": 58
+      }
+    }
+  },
+  {
+    "case_id": "chl-advanced",
+    "label": "Classical Hodgkin · Advanced (A+AVD)",
+    "file": "patient_chl_advanced.json",
+    "json": {
+      "patient_id": "CHL-ADV-001",
+      "comment": "Classical Hodgkin Lymphoma stage IV. Engine should select A+AVD as default.",
+      "disease": {
+        "icd_o_3_morphology": "9650/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 32,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "stage_3_or_4": true,
+        "advanced_stage_chl": true,
+        "lvef_percent": 65,
+        "dlco_percent": 90
+      }
+    }
+  },
+  {
+    "case_id": "chl-early",
+    "label": "Classical Hodgkin · Early Stage (ABVD)",
+    "file": "patient_chl_early.json",
+    "json": {
+      "patient_id": "CHL-EARLY-001",
+      "comment": "Classical Hodgkin Lymphoma stage IIA. Engine should select ABVD as default.",
+      "disease": {
+        "icd_o_3_morphology": "9650/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 28,
+        "sex": "female",
+        "ecog": 0
+      },
+      "findings": {
+        "stage_3_or_4": false,
+        "advanced_stage_chl": false,
+        "lvef_percent": 70,
+        "dlco_percent": 95
+      }
+    }
+  },
+  {
+    "case_id": "nlpbl-early",
+    "label": "NLPBL · Early Stage (Observation / RT)",
+    "file": "patient_nlpbl_early.json",
+    "json": {
+      "patient_id": "NLPBL-EARLY-001",
+      "comment": "NLPBL stage IA, localized. Engine should select observation/RT as default (surveillance track).",
+      "disease": {
+        "icd_o_3_morphology": "9659/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 38,
+        "sex": "male",
+        "ecog": 0
+      },
+      "findings": {
+        "Early stage I-II": true,
+        "Localized disease amenable to RT": true
+      }
+    }
   }
 ]

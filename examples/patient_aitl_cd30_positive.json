@@ -1,0 +1,12 @@
+{
+  "patient_id": "AITL-CD30POS-001",
+  "comment": "AITL with CD30+. Engine should select CHP-Bv (RF-TCELL-CD30-POSITIVE fired).",
+  "disease": {"icd_o_3_morphology": "9705/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD30-IHC": "positive"},
+  "demographics": {"age": 64, "sex": "male", "ecog": 2},
+  "findings": {
+    "cd30_positive": true,
+    "lvef_percent": 58
+  }
+}

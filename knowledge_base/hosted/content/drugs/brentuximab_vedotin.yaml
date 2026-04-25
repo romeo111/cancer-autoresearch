@@ -1,0 +1,38 @@
+id: DRUG-BRENTUXIMAB-VEDOTIN
+names:
+  preferred: "Brentuximab vedotin"
+  ukrainian: "Брентуксимаб ведотин"
+  english: "Brentuximab vedotin"
+  brand_names: ["Adcetris"]
+atc_code: L01FX05
+rxnorm_id: "1300049"
+drug_class: "Anti-CD30 antibody-drug conjugate (MMAE payload)"
+mechanism: "CD30-targeted IgG1 conjugated to MMAE via cleavable linker — internalized by CD30+ cells, releases MMAE intracellularly → microtubule disruption → apoptosis."
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration: {registered: true, reimbursed_nszu: false, last_verified: "2026-04-25"}
+
+typical_dosing: >
+  ALCL/PTCL CD30+ 1L (CHP-Bv): 1.8 mg/kg IV day 1 of 21-day cycle × 6.
+  Hodgkin 1L (A+AVD): 1.2 mg/kg IV days 1+15 of 28-day cycle × 6.
+  Mycosis fungoides r/r (CD30+ ≥10%): 1.8 mg/kg IV every 3 weeks.
+formulations: ["IV powder 50 mg vials"]
+
+absolute_contraindications: ["Concomitant bleomycin (synergistic pulmonary toxicity)", "Severe pre-existing peripheral neuropathy"]
+black_box_warnings: ["Progressive multifocal leukoencephalopathy (PML, rare)"]
+major_interactions: ["Strong CYP3A4 inhibitors raise MMAE exposure", "Bleomycin: pulmonary toxicity (HARD CI)"]
+common_adverse_events: ["Peripheral neuropathy (sensory, dose-cumulative)", "Neutropenia", "Fatigue", "Nausea", "Infusion reactions"]
+serious_adverse_events: ["Severe peripheral neuropathy (dose-limiting)", "PML (rare)", "Severe neutropenia + infection", "TLS in high-burden CD30+ disease"]
+
+pharmacology: {half_life: "~4-6 days antibody; MMAE released gradually"}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Used in: 1L T-cell lymphomas with CD30+ (ALCL universal CD30+; ~40-60%
+  PTCL NOS / AITL CD30+) — ECHELON-2 trial showed CHP-Bv superior to
+  CHOP. 1L Hodgkin (A+AVD = ABVD with brentuximab replacing bleomycin —
+  ECHELON-1; bleomycin removed due to lung toxicity additive risk).
+  R/R cutaneous lymphomas (MF/Sézary CD30+, primary cutaneous ALCL).
+  NEVER combine with bleomycin. Ukraine: registered, NOT НСЗУ-reimbursed.

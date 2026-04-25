@@ -1,0 +1,13 @@
+id: RF-CHL-ADVANCED-STAGE
+definition: "Classical Hodgkin lymphoma stage III-IV (advanced) — selects A+AVD (ECHELON-1) over ABVD if brentuximab accessible"
+definition_ua: "Класична лімфома Ходжкіна стадія III-IV (просунута) — обирає A+AVD замість ABVD при доступному брентуксимабу"
+trigger:
+  type: composite_clinical
+  any_of:
+    - {finding: "stage_3_or_4", value: true}
+    - {finding: "advanced_stage_chl", value: true}
+clinical_direction: intensify
+relevant_diseases: [DIS-CHL]
+shifts_algorithm: [ALGO-CHL-1L]
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"

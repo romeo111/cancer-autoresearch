@@ -1,0 +1,12 @@
+{
+  "patient_id": "PTCL-CD30NEG-001",
+  "comment": "PTCL NOS, CD30-negative. Engine should select CHOEP standard (CHP-Bv would be alternative if CD30+).",
+  "disease": {"icd_o_3_morphology": "9702/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD30-IHC": "negative"},
+  "demographics": {"age": 62, "sex": "female", "ecog": 1},
+  "findings": {
+    "cd30_positive": false,
+    "lvef_percent": 60
+  }
+}

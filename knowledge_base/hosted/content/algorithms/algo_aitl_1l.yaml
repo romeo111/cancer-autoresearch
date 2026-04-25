@@ -1,0 +1,21 @@
+id: ALGO-AITL-1L
+applicable_to_disease: DIS-AITL
+applicable_to_line_of_therapy: 1
+purpose: AITL 1L mirrors PTCL NOS — CD30+ → CHP-Bv; else CHOEP.
+
+output_indications: [IND-TCELL-1L-CHOEP, IND-TCELL-1L-CHP-BV]
+default_indication: IND-TCELL-1L-CHOEP
+alternative_indication: IND-TCELL-1L-CHP-BV
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-TCELL-CD30-POSITIVE
+    if_true:
+      result: IND-TCELL-1L-CHP-BV
+    if_false:
+      result: IND-TCELL-1L-CHOEP
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"

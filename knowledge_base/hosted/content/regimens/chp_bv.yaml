@@ -1,0 +1,33 @@
+id: REG-CHP-BV
+name: "Brentuximab vedotin + CHP (CHP-Bv), 6 cycles (CD30+ T-cell lymphomas)"
+name_ua: "Брентуксимаб ведотин + CHP (CHP-Bv), 6 циклів (CD30+ T-клітинні лімфоми)"
+alternate_names: ["A+CHP", "Bv-CHP", "ECHELON-2"]
+
+components:
+  - {drug_id: DRUG-BRENTUXIMAB-VEDOTIN, dose: "1.8 mg/kg", schedule: "IV day 1 each 21-day cycle × 6", route: IV}
+  - {drug_id: DRUG-CYCLOPHOSPHAMIDE, dose: "750 mg/m²", schedule: "IV day 1 each cycle", route: IV}
+  - {drug_id: DRUG-DOXORUBICIN, dose: "50 mg/m²", schedule: "IV day 1 each cycle", route: IV}
+  - {drug_id: DRUG-PREDNISONE, dose: "100 mg", schedule: "PO days 1-5 each cycle", route: PO}
+
+cycle_length_days: 21
+total_cycles: "6"
+toxicity_profile: moderate-high
+
+premedication: ["Antihistamine + acetaminophen before brentuximab", "Antiemetic premedications (dexamethasone + 5-HT3 antagonist)"]
+mandatory_supportive_care: [SUP-PJP-PROPHYLAXIS, SUP-ANTIEMETIC-PREMED]
+monitoring_schedule_id: MON-R-CHOP-REGIMEN  # reuse — same baseline + on-treatment structure
+
+dose_adjustments:
+  - {condition: "Grade ≥2 peripheral neuropathy", modification: "Hold or reduce brentuximab; vincristine NOT given (CHP, not CHOP — vincristine omitted to reduce neuropathy stack with brentuximab MMAE)"}
+  - {condition: "Cumulative anthracycline >450-500 mg/m²", modification: "Echo + LVEF check before next dose"}
+
+ukraine_availability: {all_components_registered: true, all_components_reimbursed: false, notes: "Brentuximab not НСЗУ-reimbursed; CHOEP fallback (etoposide replaces brentuximab) when not accessible"}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  ECHELON-2 trial (Horwitz 2019): CHP-Bv superior to CHOP for CD30+
+  systemic ALCL + CD30+ PTCL/AITL — improved PFS + OS (~85% 3y PFS
+  for ALCL ALK-). Vincristine REPLACED by brentuximab (avoiding
+  additive MMAE neuropathy stack). Patients must be CD30+ ≥10% by IHC.
+  ALCL is universally CD30+ → CHP-Bv preferred. PTCL NOS / AITL
+  ~40-60% CD30+ → CHP-Bv if expression confirmed; else CHOEP.

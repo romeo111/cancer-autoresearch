@@ -1,0 +1,20 @@
+id: RF-TCELL-CD30-POSITIVE
+definition: "T-cell lymphoma with CD30 expression ≥10% by IHC — qualifies for brentuximab vedotin-based regimen (CHP-Bv per ECHELON-2)"
+definition_ua: "T-клітинна лімфома з CD30 експресією ≥10% — кваліфікується на brentuximab vedotin-вмісний схема (CHP-Bv per ECHELON-2)"
+
+trigger:
+  type: biomarker
+  any_of:
+    - {finding: "BIO-CD30-IHC", value: "positive"}
+    - {finding: "cd30_positive", value: true}
+
+clinical_direction: intensify
+relevant_diseases: [DIS-PTCL-NOS, DIS-ALCL, DIS-AITL]
+shifts_algorithm: [ALGO-PTCL-1L, ALGO-AITL-1L, ALGO-ALCL-1L, ALGO-MF-SEZARY-1L]
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  ALCL is universally CD30+; PTCL NOS / AITL ~40-60%. Brentuximab
+  replaces vincristine in CHP backbone; ECHELON-2 showed superior
+  outcomes vs standard CHOP. Funding pathway flag — brentuximab not
+  НСЗУ-reimbursed.

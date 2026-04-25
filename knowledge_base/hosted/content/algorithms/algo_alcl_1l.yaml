@@ -1,0 +1,24 @@
+id: ALGO-ALCL-1L
+applicable_to_disease: DIS-ALCL
+applicable_to_line_of_therapy: 1
+purpose: >
+  Systemic ALCL is universally CD30+ → CHP-Bv preferred 1L (ECHELON-2).
+  Fallback to CHOEP if brentuximab not accessible.
+
+output_indications: [IND-TCELL-1L-CHP-BV, IND-TCELL-1L-CHOEP]
+default_indication: IND-TCELL-1L-CHP-BV
+alternative_indication: IND-TCELL-1L-CHOEP
+
+decision_tree:
+  - step: 1
+    evaluate:
+      all_of:
+        - condition: "CD30+ (universal in systemic ALCL)"
+        - condition: "Brentuximab accessible (funding pathway)"
+    if_true:
+      result: IND-TCELL-1L-CHP-BV
+    if_false:
+      result: IND-TCELL-1L-CHOEP
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"

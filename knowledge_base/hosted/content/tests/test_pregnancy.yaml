@@ -5,7 +5,7 @@ names:
   english: "Beta-HCG"
 loinc_codes: ["19080-1"]
 category: lab
-purpose: "Mandatory screen у childbearing-age жінок перед cytotoxic / teratogenic therapy + перед PET-CT, certain imaging. Більшість chemotherapy регіменів teratogenic."
+purpose: "Mandatory screen у childbearing-age жінок перед cytotoxic / teratogenic therapy + перед PET-CT, certain imaging. Більшість chemotherapy схем teratogenic."
 specimen: "Serum or urine"
 turnaround_time: "Same day (urine), <4 hours (serum)"
 priority_class: critical

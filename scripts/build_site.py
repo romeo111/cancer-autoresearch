@@ -268,7 +268,56 @@ CASES: list[CaseEntry] = [
         case_id="hgbl-double-hit",
         file="patient_hgbl_double_hit.json",
         label_ua="HGBL · Double-Hit (DA-EPOCH-R)",
-        summary_ua="High-Grade B-Cell Lymphoma з MYC + BCL2 break-apart — engine обирає DA-EPOCH-R (substantial OS improvement vs R-CHOP); reuse регіму з Burkitt.",
+        summary_ua="High-Grade B-Cell Lymphoma з MYC + BCL2 break-apart — engine обирає DA-EPOCH-R (substantial OS improvement vs R-CHOP); reuse схеми з Burkitt.",
+        badge="Treatment Plan",
+        badge_class="bdg-plan",
+    ),
+    # ── T-cell block + Hodgkin (final marathon block) ──────────────────────
+    CaseEntry(
+        case_id="alcl-alk-negative",
+        file="patient_alcl_alk_negative.json",
+        label_ua="ALCL · ALK-negative (CHP-Bv)",
+        summary_ua="Системна анапластична великоклітинна лімфома, ALK-negative — universally CD30+. Engine обирає CHP-Bv (ECHELON-2: brentuximab замість vincristine).",
+        badge="Treatment Plan",
+        badge_class="bdg-plan",
+    ),
+    CaseEntry(
+        case_id="ptcl-cd30-negative",
+        file="patient_ptcl_cd30_negative.json",
+        label_ua="PTCL NOS · CD30-negative (CHOEP)",
+        summary_ua="Периферична T-клітинна лімфома, CD30-negative — engine обирає CHOEP (CHOP + etoposide). CD30+ варіант ескалював би до CHP-Bv.",
+        badge="Treatment Plan",
+        badge_class="bdg-plan",
+    ),
+    CaseEntry(
+        case_id="aitl-cd30-positive",
+        file="patient_aitl_cd30_positive.json",
+        label_ua="AITL · CD30-positive (CHP-Bv)",
+        summary_ua="Ангіоімунобластна T-клітинна лімфома, CD30+ — RF-TCELL-CD30-POSITIVE fired. Engine обирає CHP-Bv.",
+        badge="Treatment Plan",
+        badge_class="bdg-plan",
+    ),
+    CaseEntry(
+        case_id="chl-advanced",
+        file="patient_chl_advanced.json",
+        label_ua="Classical Hodgkin · Advanced (A+AVD)",
+        summary_ua="Стадія IV cHL — RF-CHL-ADVANCED-STAGE fired. Engine обирає A+AVD (ECHELON-1: brentuximab замість bleomycin, superior OS).",
+        badge="Treatment Plan",
+        badge_class="bdg-plan",
+    ),
+    CaseEntry(
+        case_id="chl-early",
+        file="patient_chl_early.json",
+        label_ua="Classical Hodgkin · Early Stage (ABVD)",
+        summary_ua="Стадія IIA cHL, без advanced criteria — engine обирає ABVD × 2-4 + ISRT (response-adapted).",
+        badge="Treatment Plan",
+        badge_class="bdg-plan",
+    ),
+    CaseEntry(
+        case_id="nlpbl-early",
+        file="patient_nlpbl_early.json",
+        label_ua="NLPBL · Early Stage (Observation / RT)",
+        summary_ua="Нодулярна лімфоцит-домінантна B-клітинна лімфома (перекласифіковано WHO 5th-ed з NLPHL у B-cell) — early stage. Engine обирає observation / ISRT alone.",
         badge="Treatment Plan",
         badge_class="bdg-plan",
     ),
@@ -361,6 +410,8 @@ def _render_top_bar(active: str = "") -> str:
   </div>
   <nav class="top-actions">
     <a href="index.html"{cls("home")}>Головна</a>
+    <a href="capabilities.html"{cls("capabilities")}>Можливості</a>
+    <a href="limitations.html"{cls("limitations")}>Обмеження</a>
     <a href="try.html"{cls("try")}>Спробувати</a>
     <a href="gallery.html"{cls("gallery")}>Приклади</a>
     <a href="https://github.com/{GH_REPO}" target="_blank" rel="noopener">GitHub</a>
@@ -471,7 +522,7 @@ def render_landing(stats) -> str:
         <div class="num-big">{n_regimens}</div>
         <div class="num-lbl">Режими лікування</div>
         <p class="num-text">
-          Кожен регімен — список drugs з дозами, шкалою циклів, dose adjustments
+          Кожен схема — список drugs з дозами, шкалою циклів, dose adjustments
           (для renal impairment, FIB-4, frailty), premedications, mandatory supportive
           care та monitoring schedule.
         </p>
@@ -1169,6 +1220,118 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
 @media (max-width: 800px) {
   .hero h1 { font-size: 32px; }
   .problem-grid, .try-grid { grid-template-columns: 1fr; }
+}
+
+/* Info pages (capabilities / limitations) */
+.info-page { padding: 32px 0 48px; }
+.info-page h1 {
+  font-family: var(--font-display); font-size: 36px;
+  color: var(--green-900); margin-bottom: 10px;
+}
+.info-page .lead {
+  font-size: 16px; color: var(--gray-700); max-width: 820px;
+  margin-bottom: 28px; line-height: 1.6;
+}
+.info-section { margin-top: 36px; }
+.info-section h2 {
+  font-family: var(--font-display); font-size: 24px;
+  color: var(--green-900); margin-bottom: 14px;
+}
+.info-section p { font-size: 14.5px; color: var(--gray-700); margin-bottom: 12px; }
+.info-section .info-text {
+  max-width: 820px; line-height: 1.6;
+}
+.flow-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px; margin: 18px 0;
+}
+.flow-step {
+  background: white; border: 1px solid var(--gray-200);
+  border-radius: 10px; padding: 14px 14px;
+  border-top: 3px solid var(--green-600);
+}
+.flow-step .flow-num {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--green-700); margin-bottom: 6px;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.flow-step .flow-title {
+  font-weight: 700; font-size: 14px;
+  color: var(--gray-900); margin-bottom: 6px;
+  font-family: var(--font-display);
+}
+.flow-step .flow-desc {
+  font-size: 12.5px; color: var(--gray-700); line-height: 1.45;
+}
+.flow-step code {
+  font-family: var(--font-mono); font-size: 11px;
+  background: var(--gray-100); padding: 1px 5px; border-radius: 3px;
+}
+.gap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.gap-card {
+  background: white; border: 1px solid var(--gray-200);
+  border-radius: 10px; padding: 16px 18px;
+  border-left: 3px solid var(--amber);
+}
+.gap-card .gap-tag {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--amber); letter-spacing: 0.5px; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.gap-card h3 {
+  font-family: var(--font-display); font-size: 17px;
+  color: var(--green-900); margin-bottom: 8px;
+}
+.gap-card p { font-size: 13px; color: var(--gray-700); line-height: 1.5; }
+.gap-card.gap-hard { border-left-color: var(--red); }
+.gap-card.gap-hard .gap-tag { color: var(--red); }
+.q-list {
+  background: var(--green-50); border: 1px solid var(--green-100);
+  border-radius: 8px; padding: 14px 18px; margin: 12px 0;
+}
+.q-list h4 {
+  font-family: var(--font-display); font-size: 15px;
+  color: var(--green-900); margin-bottom: 8px;
+}
+.q-list ul { padding-left: 18px; font-size: 13px; color: var(--gray-700); }
+.q-list li { margin-bottom: 4px; line-height: 1.5; }
+.q-list code {
+  font-family: var(--font-mono); font-size: 11px;
+  background: white; padding: 1px 5px; border-radius: 3px;
+  color: var(--green-800);
+}
+.callout {
+  background: var(--amber-bg); border-left: 3px solid var(--amber);
+  padding: 12px 16px; border-radius: 4px; margin: 16px 0;
+  font-size: 13.5px; color: var(--gray-900); line-height: 1.55;
+}
+.callout.callout-good {
+  background: var(--green-50); border-left-color: var(--green-600);
+}
+.callout.callout-hard {
+  background: var(--red-bg); border-left-color: var(--red);
+}
+.kv-table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+  margin-top: 10px;
+}
+.kv-table th, .kv-table td {
+  text-align: left; padding: 8px 10px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.kv-table th {
+  background: var(--gray-50); font-weight: 600;
+  color: var(--gray-700); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.kv-table code {
+  font-family: var(--font-mono); font-size: 11px;
+  background: var(--gray-100); padding: 1px 5px; border-radius: 3px;
 }
 
 /* Page footer */

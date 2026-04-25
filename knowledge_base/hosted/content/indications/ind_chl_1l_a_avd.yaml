@@ -1,0 +1,61 @@
+id: IND-CHL-1L-A-AVD
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-CHL
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 2}
+
+recommended_regimen: REG-A-AVD
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~96%"
+  complete_response: "~85%"
+  progression_free_survival: "6y PFS ~83% (ECHELON-1 advanced cHL)"
+  overall_survival_5y: "~93% (ECHELON-1 OS HR 0.59 vs ABVD)"
+
+hard_contraindications: [CI-LVEF-LOW-FOR-ANTHRACYCLINE, CI-BORTEZOMIB-SEVERE-NEUROPATHY]
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-PET-CT
+  - TEST-LN-EXCISIONAL-BIOPSY
+  - TEST-ECHO
+  - TEST-PREGNANCY
+  - TEST-HBV-SEROLOGY
+  - TEST-HIV-SEROLOGY
+desired_tests: []
+
+rationale: >
+  A+AVD is preferred 1L for advanced cHL per ECHELON-1 — brentuximab
+  REPLACES bleomycin (eliminating BPT risk). Superior OS at 6-year
+  follow-up. Mandatory G-CSF support (vs ABVD where G-CSF AVOIDED for
+  bleomycin reasons). Funding pathway critical in Ukraine (brentuximab
+  not НСЗУ-reimbursed).
+
+sources: [{source_id: SRC-NCCN-BCELL-2025, position: supports}]
+known_controversies: []
+
+do_not_do:
+  - "НЕ комбінувати brentuximab з bleomycin — ABSOLUTE; lethality risk."
+  - "НЕ пропускати G-CSF support — neutropenia з brentuximab + анти-mitotic вища."
+  - "НЕ ігнорувати pre-existing peripheral neuropathy — Grade ≥2 = absolute CI."
+  - "НЕ призначати без verifiedного funding pathway — brentuximab не НСЗУ-reimbursed."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: STUB.

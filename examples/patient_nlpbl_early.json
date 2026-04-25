@@ -1,0 +1,12 @@
+{
+  "patient_id": "NLPBL-EARLY-001",
+  "comment": "NLPBL stage IA, localized. Engine should select observation/RT as default (surveillance track).",
+  "disease": {"icd_o_3_morphology": "9659/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD20-IHC": "positive"},
+  "demographics": {"age": 38, "sex": "male", "ecog": 0},
+  "findings": {
+    "Early stage I-II": true,
+    "Localized disease amenable to RT": true
+  }
+}

@@ -1,0 +1,20 @@
+id: DRUG-DACARBAZINE
+names: {preferred: "Dacarbazine", ukrainian: "Дакарбазин", english: "Dacarbazine", brand_names: ["DTIC-Dome"]}
+atc_code: L01AX04
+rxnorm_id: "3098"
+drug_class: "Imidazole-carboxamide alkylating agent"
+mechanism: "Activated to MTIC (methyl-triazenyl-imidazole carboxamide) which methylates DNA → strand breaks + apoptosis."
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration: {registered: true, reimbursed_nszu: true, last_verified: "2026-04-25"}
+typical_dosing: "ABVD: 375 mg/m² IV days 1+15 of 28-day cycle"
+formulations: ["IV powder 200 / 500 mg vials"]
+absolute_contraindications: ["Severe pre-existing myelosuppression", "Hypersensitivity"]
+black_box_warnings: []
+common_adverse_events: ["Severe nausea/vomiting (high emetogenicity — mandate aprepitant + dexamethasone + 5-HT3)", "Myelosuppression", "Fatigue", "Flu-like syndrome", "Photosensitivity"]
+serious_adverse_events: ["Hepatotoxicity (rare, severe)", "Severe myelosuppression"]
+pharmacology: {half_life: "~5 hours"}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: "ABVD (Hodgkin) component. Highly emetogenic — triple-combo antiemetic prophylaxis. Avoid sun exposure during therapy + 1 week after."

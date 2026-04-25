@@ -1,0 +1,26 @@
+id: DRUG-BLEOMYCIN
+names: {preferred: "Bleomycin", ukrainian: "Блеоміцин", english: "Bleomycin", brand_names: ["Blenoxane"]}
+atc_code: L01DC01
+rxnorm_id: "1366"
+drug_class: "Glycopeptide antitumor antibiotic"
+mechanism: "Generates free radicals causing DNA strand breaks. G2 cell-cycle phase active. Lung tissue lacks bleomycin hydrolase → accumulates → pulmonary toxicity."
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration: {registered: true, reimbursed_nszu: true, last_verified: "2026-04-25"}
+typical_dosing: "ABVD: 10 units/m² IV days 1+15 of 28-day cycle. Cumulative lifetime limit ~400 units (pulmonary toxicity)."
+formulations: ["IV/IM/SC powder 15 / 30 unit vials"]
+absolute_contraindications: ["Severe pre-existing pulmonary disease (DLCO <40%)", "Concomitant brentuximab vedotin (synergistic pulmonary toxicity — HARD CI)", "Hypersensitivity"]
+black_box_warnings: ["Pulmonary fibrosis (cumulative-dose-dependent, often progressive after exposure)", "Anaphylactoid reactions (test dose advised first)"]
+major_interactions: ["Brentuximab vedotin: HARD CI (additive lung toxicity)", "G-CSF: increases pulmonary toxicity (avoid in ABVD)", "Oxygen exposure (anesthesia): post-bleomycin pulmonary insult"]
+common_adverse_events: ["Pulmonary toxicity (pneumonitis, fibrosis)", "Skin reactions (hyperpigmentation, alopecia)", "Mucositis", "Fever after first doses (test dose 1-2 units)"]
+serious_adverse_events: ["Bleomycin-induced pulmonary toxicity (BPT — 5-10% on ABVD; mortality ~3%)", "Anaphylactoid reaction"]
+pharmacology: {half_life: "~3 hours; longer in renal impairment"}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  Replaced in modern Hodgkin 1L by brentuximab vedotin (A+AVD per
+  ECHELON-1) due to pulmonary toxicity. NEVER combine with brentuximab
+  (additive lung toxicity). Avoid G-CSF on ABVD (increases pulmonary
+  toxicity). Pre-treatment PFT (DLCO) baseline + serial monitoring.
+  Avoid high-flow O2 during anesthesia post-bleomycin (lifetime).

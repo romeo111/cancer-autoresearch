@@ -1,0 +1,24 @@
+id: ALGO-CHL-1L
+applicable_to_disease: DIS-CHL
+applicable_to_line_of_therapy: 1
+purpose: >
+  Classical Hodgkin 1L: stage-driven. Advanced (III-IV) — A+AVD preferred
+  per ECHELON-1; ABVD fallback. Early-stage (I-II) — ABVD × 2-4 + ISRT
+  (response-adapted, but represented here as ABVD for simplicity).
+
+output_indications: [IND-CHL-1L-ABVD, IND-CHL-1L-A-AVD]
+default_indication: IND-CHL-1L-ABVD
+alternative_indication: IND-CHL-1L-A-AVD
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-CHL-ADVANCED-STAGE
+    if_true:
+      result: IND-CHL-1L-A-AVD
+    if_false:
+      result: IND-CHL-1L-ABVD
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"

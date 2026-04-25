@@ -1,0 +1,67 @@
+id: IND-TCELL-1L-CHP-BV
+plan_track: aggressive  # NCCN-preferred for CD30+; "aggressive" = engine slot, not preference order
+
+applicable_to:
+  disease_id: DIS-ALCL  # primary; PTCL NOS + AITL also use this if CD30+
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-CD30-IHC, required: true, value_constraint: "positive"}
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 3}
+
+recommended_regimen: REG-CHP-BV
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~85%"
+  complete_response: "~70%"
+  progression_free_survival: "3-year PFS ~57% (CHP-Bv) vs ~44% (CHOP) in ECHELON-2 — substantial benefit in ALCL ALK-"
+  overall_survival_5y: "~70-85% (varies sharply by ALK status + IPI)"
+
+hard_contraindications: [CI-HBV-NO-PROPHYLAXIS, CI-LVEF-LOW-FOR-ANTHRACYCLINE, CI-BORTEZOMIB-SEVERE-NEUROPATHY]
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-NGS-LYMPHOID-PANEL
+  - TEST-PET-CT
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-LN-EXCISIONAL-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-ECHO
+  - TEST-PREGNANCY
+desired_tests: []
+
+rationale: >
+  Standard 1L for systemic ALCL (universal CD30+) + CD30+ PTCL NOS +
+  CD30+ AITL per ECHELON-2 (Horwitz 2019). Brentuximab REPLACES
+  vincristine — avoids additive MMAE neuropathy. AutoSCT consolidation
+  recommended for ALCL ALK- + high-IPI PTCL NOS in fit younger.
+
+sources: [{source_id: SRC-NCCN-BCELL-2025, position: supports}]
+known_controversies: []
+
+do_not_do:
+  - "НЕ комбінувати brentuximab з bleomycin — летальна пульмонарна токсичність."
+  - "НЕ призначати без CD30 IHC ≥10% confirmation — ECHELON-2 inclusion criterion."
+  - "НЕ пропускати baseline LVEF ≥50% (anthracycline)."
+  - "НЕ пропускати HBV скринінг + entecavir prophylaxis."
+  - "НЕ ігнорувати pre-existing neuropathy — Grade ≥2 baseline = absolute CI."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: STUB.

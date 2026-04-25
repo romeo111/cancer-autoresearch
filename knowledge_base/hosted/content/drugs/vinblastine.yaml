@@ -1,0 +1,20 @@
+id: DRUG-VINBLASTINE
+names: {preferred: "Vinblastine", ukrainian: "Вінбластин", english: "Vinblastine", brand_names: ["Velban"]}
+atc_code: L01CA01
+rxnorm_id: "11199"
+drug_class: "Vinca alkaloid (microtubule inhibitor)"
+mechanism: "Binds tubulin → blocks microtubule polymerization + mitotic spindle → metaphase arrest + apoptosis. Less neurotoxic than vincristine, more myelotoxic."
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration: {registered: true, reimbursed_nszu: true, last_verified: "2026-04-25"}
+typical_dosing: "ABVD: 6 mg/m² IV days 1+15 of 28-day cycle"
+formulations: ["IV solution 1 mg/mL"]
+absolute_contraindications: ["Severe pre-existing myelosuppression", "Hypersensitivity"]
+black_box_warnings: ["FATAL if intrathecal — never inject into CNS"]
+common_adverse_events: ["Myelosuppression (neutropenia primary)", "Mild peripheral neuropathy", "Mucositis"]
+serious_adverse_events: ["Severe neutropenia + infection", "Severe neuropathy at high doses"]
+pharmacology: {half_life: "~25 hours"}
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: "Used in ABVD (Hodgkin), other regimens. Cap at 12 mg total dose typical. Hepatic dose adjustment for total bilirubin >3 mg/dL."

@@ -1256,9 +1256,9 @@ known_controversies:
 ### 24.2. Особливі правила
 
 **Правило 1 — Ukraine availability блокує рекомендацію.** Якщо препарат
-не зареєстрований в Україні АБО не реімбурсований, регімен не може
+не зареєстрований в Україні АБО не реімбурсований, схема не може
 бути `default_regimen` для Ukraine deployment. Alternative path:
-регімен лишається в Indication як `alternative_regimen` з explicit
+схема лишається в Indication як `alternative_regimen` з explicit
 note "доступний в Україні за off-label import".
 
 **Правило 2 — FDA/EMA black box трактується як абсолютне contraindication.**
@@ -1348,7 +1348,7 @@ override default.
 ### 26.3. "Why not Y?" pattern
 
 Для кожного плану, якщо є rejected alternative, одноклікове пояснення:
-"Чому не R-CHOP? — Агресивніший регімен, для цього пацієнта з HCV-MZL
+"Чому не R-CHOP? — Агресивніший схема, для цього пацієнта з HCV-MZL
 спочатку DAA. Див. ESMO 2024. Якщо non-response через 6 місяців —
 переоцінка."
 

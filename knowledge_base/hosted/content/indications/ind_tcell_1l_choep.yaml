@@ -1,0 +1,71 @@
+id: IND-TCELL-1L-CHOEP
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-PTCL-NOS
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 3}
+
+recommended_regimen: REG-CHOEP
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: strong
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~75%"
+  complete_response: "~50%"
+  progression_free_survival: "Median PFS ~2-3 years"
+  overall_survival_5y: "~30-40%"
+
+hard_contraindications: [CI-HBV-NO-PROPHYLAXIS, CI-LVEF-LOW-FOR-ANTHRACYCLINE]
+red_flags_triggering_alternative: [RF-TCELL-CD30-POSITIVE]
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-NGS-LYMPHOID-PANEL
+  - TEST-PET-CT
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-LN-EXCISIONAL-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-HBV-SEROLOGY
+  - TEST-HIV-SEROLOGY
+  - TEST-ECHO
+  - TEST-PREGNANCY
+desired_tests: []
+
+rationale: >
+  Standard 1L for CD30-negative PTCL NOS / AITL OR when brentuximab
+  not accessible. CHOEP (CHOP + etoposide) is preferred over CHOP for
+  fit younger T-cell patients per Nordic data. AutoSCT consolidation
+  in fit transplant-eligible — practice standard despite limited RCT
+  evidence.
+
+sources: [{source_id: SRC-NCCN-BCELL-2025, position: supports}]
+known_controversies:
+  - topic: "AutoSCT consolidation for fit younger T-cell"
+    positions:
+      - position: "AutoSCT in CR1 — durable remission in fit younger PTCL"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Skip autoSCT — RCT evidence limited; outcomes comparable in some series"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "AutoSCT consolidation for fit younger ALCL ALK-, PTCL NOS, AITL with CR after induction"
+
+do_not_do:
+  - "НЕ пропускати CD30 IHC — якщо ≥10%, route to CHP-Bv (ECHELON-2 evidence)."
+  - "НЕ пропускати HBV скринінг."
+  - "НЕ використовувати у age >60 — CHOP без etoposide більш переносимий."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewer_signoffs: 0
+notes: STUB.
