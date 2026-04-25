@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenOnco · Можливості</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<header class="top-bar">
+  <div class="brand-line">
+    <a href="index.html" class="brand-mini">OpenOnco</a>
+  </div>
+  <nav class="top-actions">
+    <a href="index.html">Головна</a>
+    <a href="capabilities.html" class="active">Можливості</a>
+    <a href="limitations.html">Обмеження</a>
+    <a href="try.html">Спробувати</a>
+    <a href="gallery.html">Приклади</a>
+    <a href="https://github.com/romeo111/cancer-autoresearch" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <section class="info-page">
+    <h1>Можливості</h1>
+    <p class="lead">
+      OpenOnco приймає JSON-профіль пацієнта і повертає структурований план
+      лікування або діагностичний brief, з повним trace кожного рішення і
+      цитуваннями всіх джерел. Жодного «чорного ящика»: усе рішення складається
+      з декларативних правил, які можна прочитати у KB і відстежити в trace.
+      Нижче — детально, як ми працюємо з даними, джерелами і запитами.
+    </p>
+
+    <div class="info-section">
+      <h2>1. Як обробляється запит</h2>
+      <p class="info-text">
+        Лікар дає engine'у JSON-профіль пацієнта (FHIR/mCODE-сумісний у
+        майбутньому, спрощений dict у MVP). Engine виконує 6 послідовних
+        стадій і повертає Plan з ≥2 альтернативними tracks (CHARTER §2 —
+        обидва треки в одному документі, alternative не сховано).
+      </p>
+      <div class="flow-strip">
+        <div class="flow-step">
+          <div class="flow-num">Stage 1</div>
+          <div class="flow-title">Disease + Algorithm resolve</div>
+          <div class="flow-desc">
+            <code>disease.icd_o_3_morphology</code> або <code>disease.id</code>
+            → знайти Disease entity. Disease + <code>line_of_therapy</code>
+            → знайти відповідний Algorithm.
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">Stage 2</div>
+          <div class="flow-title">Findings flattening</div>
+          <div class="flow-desc">
+            Об'єднує <code>demographics</code> + <code>biomarkers</code>
+            + <code>findings</code> в один flat dict для evaluation.
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">Stage 3</div>
+          <div class="flow-title">RedFlag evaluation</div>
+          <div class="flow-desc">
+            Кожен з 16 RedFlag-ів перевіряється проти findings.
+            Boolean rule engine: <code>any_of</code>/<code>all_of</code>/<code>none_of</code>
+            clauses з threshold-ами.
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">Stage 4</div>
+          <div class="flow-title">Algorithm walk</div>
+          <div class="flow-desc">
+            Decision tree крок за кроком. Кожен step → outcome → branch
+            (<code>result</code> або <code>next_step</code>). Trace зберігає
+            всі fired_red_flags на кожному кроці.
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">Stage 5</div>
+          <div class="flow-title">Tracks materialization</div>
+          <div class="flow-desc">
+            ВСІ Indication з <code>algorithm.output_indications</code> стають
+            окремими tracks (standard / aggressive / surveillance). Selected
+            = default, перший. Решта — alternative.
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">Stage 6</div>
+          <div class="flow-title">Per-track resolution</div>
+          <div class="flow-desc">
+            Indication → Regimen → MonitoringSchedule + SupportiveCare +
+            Contraindications. Все resolve'иться з KB readonly.
+          </div>
+        </div>
+      </div>
+      <p class="info-text">
+        Час обробки одного пацієнта — 50-200&nbsp;ms (KB load домінує). У
+        Pyodide перший запуск 8-15&nbsp;сек (завантаження runtime), наступні
+        — як локальний CLI. <strong>Серверу немає</strong> — engine крутиться
+        локально (CLI) або у браузері користувача (Pyodide). Patient JSON
+        ніколи не залишає машину.
+      </p>
+    </div>
+
+    <div class="info-section">
+      <h2>2. Як ми працюємо з даними пацієнта</h2>
+      <p class="info-text">
+        Engine читає лише структуровані поля з patient profile. Кожне поле
+        має чітку семантику: або тригерить RedFlag, або filter'ує доступні
+        Indications, або configurує Regimen materialization. Невпізнані поля
+        ігноруються — ніяких «прихованих ефектів».
+      </p>
+      <table class="kv-table">
+        <thead><tr><th>Категорія</th><th>Що читаємо</th><th>Як використовуємо</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Disease (вхідна точка)</td>
+            <td><code>disease.id</code> · <code>icd_o_3_morphology</code> · <code>line_of_therapy</code></td>
+            <td>визначає який Algorithm запускати</td>
+          </tr>
+          <tr>
+            <td>Diagnostic mode trigger</td>
+            <td><code>disease.suspicion.lineage_hint</code> · <code>tissue_locations</code> · <code>presentation</code></td>
+            <td>вмикає DiagnosticPlan замість Plan (workup brief)</td>
+          </tr>
+          <tr>
+            <td>Demographics</td>
+            <td><code>age</code> · <code>sex</code> · <code>ecog</code> · <code>fit_for_transplant</code> · <code>decompensated_cirrhosis</code> · <code>pregnancy_status</code></td>
+            <td>filter в <code>Indication.applicable_to.demographic_constraints</code></td>
+          </tr>
+          <tr>
+            <td>Biomarkers</td>
+            <td>будь-які <code>BIO-X</code> з KB як ключі: <code>BIO-CLL-HIGH-RISK-GENETICS</code>, <code>BIO-MM-CYTOGENETICS-HR</code>, <code>BIO-HCV-RNA</code>, ...</td>
+            <td>тригерять RedFlags, filter'ять Indications</td>
+          </tr>
+          <tr>
+            <td>Findings</td>
+            <td>16+ структурованих полів — <code>dominant_nodal_mass_cm</code>, <code>ldh_ratio_to_uln</code>, <code>creatinine_clearance_ml_min</code>, <code>blastoid_morphology</code>, <code>tp53_mutation</code>, <code>del_17p</code>, ...</td>
+            <td>thresholds у RedFlag triggers</td>
+          </tr>
+          <tr>
+            <td>Prior tests completed</td>
+            <td><code>prior_tests_completed: [TEST-IDs]</code></td>
+            <td>виключає вже зроблені тести з generated workup_steps</td>
+          </tr>
+          <tr>
+            <td>Clinical record (free-form)</td>
+            <td>будь-який <code>clinical_record</code> envelope</td>
+            <td>не читається engine'ом — використовується тільки render layer для context</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-section">
+      <h2>3. Як ми працюємо з джерелами</h2>
+      <p class="info-text">
+        Зараз у KB <strong>13</strong> джерел: NCCN B-cell/AML/MM/MPN
+        Guidelines 2025, ESMO MZL 2024, BSH MZL 2024, EHA Workup 2024,
+        EASL HCV 2023, WHO LNSC 2023, МОЗ Україна Лімфома 2024, FDA CDS Guidance
+        2026, CTCAE v5.0, SRC-ARCAINI-2014. Кожне джерело мapp'иться на
+        Source entity з ID (наприклад <code>SRC-NCCN-BCELL-2025</code>),
+        title, version, license, access mode (referenced vs hosted per
+        SOURCE_INGESTION_SPEC §1.4).
+      </p>
+      <p class="info-text">
+        <strong>Кожна клінічна claim у KB має citation</strong>. Indication,
+        Regimen, RedFlag, Algorithm — всі мають поле <code>sources: list</code>
+        де для кожного джерела вказано:
+      </p>
+      <div class="q-list">
+        <h4>Структура citation</h4>
+        <ul>
+          <li><code>source_id</code> — посилання на Source entity</li>
+          <li><code>position</code> — <em>supports</em> / <em>contradicts</em> / <em>context</em></li>
+          <li><code>relevant_quote_paraphrase</code> — паніфразоване твердження з guideline (не дослівне copy-paste для license safety)</li>
+          <li><code>page_or_section</code> — точна локалізація в документі</li>
+        </ul>
+      </div>
+      <p class="info-text">
+        Render layer показує <strong>повний список cited sources</strong>
+        під кожною Indication у Plan. Це і є FDA Criterion 4 (CHARTER §15.2):
+        лікар може незалежно перевірити підставу кожної рекомендації, не
+        довіряючись engine на віру.
+      </p>
+      <div class="callout callout-good">
+        <strong>Source hosting за замовчуванням — referenced.</strong>
+        Ми не дублюємо бази (NCCN, ESMO, etc.) — посилаємось. Hosting
+        потребує explicit H1-H5 justification (CHARTER §15.2 referenced
+        vs hosted vs mixed). Виключення: PDF документи (FDA CDS, CTCAE)
+        збережено локально для archive stability.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>4. Як ми обробляємо запити</h2>
+      <p class="info-text">
+        Три способи запустити engine, жоден не серверний:
+      </p>
+      <div class="num-grid num-grid--rich">
+        <div class="num-card">
+          <div class="num-big">CLI</div>
+          <div class="num-lbl">Локально на машині лікаря</div>
+          <p class="num-text">
+            <code>python -m knowledge_base.engine.cli --patient profile.json --render plan.html</code>.
+            Працює offline, не потребує мережі. Profile залишається на диску.
+          </p>
+        </div>
+        <div class="num-card num-card--accent">
+          <div class="num-big">Pyodide</div>
+          <div class="num-lbl">У браузері (try.html)</div>
+          <p class="num-text">
+            Pyodide v0.26.4 завантажує Python WebAssembly runtime, micropip
+            ставить pydantic+pyyaml, розпаковує engine bundle (~302KB) у
+            in-memory FS. Engine крутиться у браузері. Patient JSON не
+            покидає машину.
+          </p>
+        </div>
+        <div class="num-card">
+          <div class="num-big">Library</div>
+          <div class="num-lbl">Python import</div>
+          <p class="num-text">
+            <code>from knowledge_base.engine import generate_plan, revise_plan</code>
+            — інтеграція з EHR, CSV pipelines, batch testing. Stateless, deterministic.
+          </p>
+        </div>
+      </div>
+      <div class="callout callout-good">
+        <strong>Privacy by design.</strong> Patient JSON ніколи не залишає
+        машину користувача. Немає логів, немає БД, немає accidental
+        leakage. Reproducibility: <code>Plan.knowledge_base_state.algorithm_version</code>
+        фіксує версію KB → same input + same KB = same output.
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>5. Що повертаємо назад</h2>
+      <p class="info-text">
+        Engine повертає <strong>Plan</strong> (treatment mode) або
+        <strong>DiagnosticPlan</strong> (workup brief). Кожен Plan містить:
+      </p>
+      <table class="kv-table">
+        <thead><tr><th>Поле</th><th>Що містить</th></tr></thead>
+        <tbody>
+          <tr><td><code>tracks[]</code></td><td>≥2 alternative tracks (default first), кожен з indication + regimen + monitoring + supportive_care + contraindications</td></tr>
+          <tr><td><code>fda_compliance</code></td><td>FDA Criterion 4 fields: intended_use, hcp_user_specification, patient_population_match, algorithm_summary, data_sources_summary, data_limitations, automation_bias_warning</td></tr>
+          <tr><td><code>trace</code></td><td>покрокова історія walk_algorithm: step / outcome / branch / fired_red_flags для кожного кроку</td></tr>
+          <tr><td><code>knowledge_base_state</code></td><td>snapshot версії KB на момент генерації (audit per CHARTER §10.2)</td></tr>
+          <tr><td><code>kb_resolved</code></td><td>всі referenced entities (Disease, Tests, RedFlags, Algorithm) для render layer</td></tr>
+          <tr><td><code>warnings</code></td><td>schema/ref errors, time_critical disqualifications, missing data hints</td></tr>
+          <tr><td><code>supersedes</code> / <code>superseded_by</code></td><td>версійний chain між plans для тієї ж пацієнта</td></tr>
+        </tbody>
+      </table>
+      <p class="info-text">
+        Опціонально вмикається <strong>MDT brief</strong> — orchestrate_mdt() читає Plan +
+        патієнтський профіль і додає required/recommended/optional ролі (з 16
+        віртуальних спеціалістів), open questions, provenance graph. Renders як inline
+        section у Plan HTML.
+      </p>
+    </div>
+
+    <div class="info-section">
+      <h2>6. Як план оновлюється при появі нових даних</h2>
+      <p class="info-text">
+        <code>revise_plan(updated_patient, previous_plan, revision_trigger)</code>
+        приймає оновлений профіль і генерує нову версію плану з
+        <code>supersedes</code>/<code>superseded_by</code> chain. Три легальні
+        переходи + одна заборона:
+      </p>
+      <table class="kv-table">
+        <thead><tr><th>Із</th><th>Зі змінами</th><th>Перехід</th><th>Результат</th></tr></thead>
+        <tbody>
+          <tr><td>DiagnosticPlan vN</td><td>тільки suspicion (без histology)</td><td>diagnostic → diagnostic</td><td>DiagnosticPlan v(N+1)</td></tr>
+          <tr><td>DiagnosticPlan vN</td><td>підтверджена histology</td><td>diagnostic → treatment <strong>(promotion)</strong></td><td>Plan v1 (перший treatment)</td></tr>
+          <tr><td>Plan vN</td><td>будь-яке оновлення з histology</td><td>treatment → treatment</td><td>Plan v(N+1)</td></tr>
+          <tr><td>Plan vN</td><td>видалено histology</td><td colspan="2"><span style="color:var(--red);font-weight:600;">ILLEGAL — ValueError, CHARTER §15.2 C7</span></td></tr>
+        </tbody>
+      </table>
+      <p class="info-text">
+        Попередній plan <strong>не мутується</strong> — повертається deep copy
+        з <code>superseded_by</code> заповненим. Caller (CLI / EHR) сам вирішує
+        що робити з обома версіями. Per CHARTER §10.2 — стара версія
+        зберігається indefinitely.
+      </p>
+      <div class="callout callout-good">
+        <strong>Що тригерить новий plan:</strong> зміна будь-якого з ~30 структурованих
+        полів — нові biomarkers (del(17p) виявлено), нова стадія (ECOG 1→3),
+        нові findings (bulky disease на restaging), нові infectious flags (HBV
+        reactivation), pregnancy detected. Зміна <code>clinical_record</code>
+        free-text НЕ тригерить regeneration (engine не читає free text).
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>7. Що ще робимо</h2>
+      <div class="num-grid num-grid--rich">
+        <div class="num-card">
+          <div class="num-big">8</div>
+          <div class="num-lbl">Diagnostic workups</div>
+          <p class="num-text">
+            Pre-biopsy режим: коли histology ще немає, engine видає
+            <strong>Workup Brief</strong> зі списком тестів, biopsy approach,
+            IHC panel і ролей triage MDT. Per CHARTER §15.2 C7 — без
+            histology treatment Plan не генерується.
+          </p>
+        </div>
+        <div class="num-card">
+          <div class="num-big">MDT</div>
+          <div class="num-lbl">Multidisciplinary brief</div>
+          <p class="num-text">
+            Orchestrator читає Plan + profile і призначає required/recommended/
+            optional ролі (16 catalog), формулює open questions
+            (Q1-Q6 + DQ1-DQ4), будує decision provenance graph.
+          </p>
+        </div>
+        <div class="num-card">
+          <div class="num-big">stats</div>
+          <div class="num-lbl">KB dashboard</div>
+          <p class="num-text">
+            <code>python -m knowledge_base.stats</code> — actual entity counts
+            + per-disease coverage matrix + reviewer signoff ratio. Доступне
+            як CLI / JSON / embeddable HTML widget для landing page.
+          </p>
+        </div>
+        <div class="num-card">
+          <div class="num-big">render</div>
+          <div class="num-lbl">A4 print-friendly HTML</div>
+          <p class="num-text">
+            Single-file HTML з embedded CSS, без external assets крім Google Fonts.
+            Adapt'ується під A4 print через <code>@page</code> + <code>@media print</code>.
+            Tracks side-by-side, alternative не сховано (anti automation-bias per CHARTER §15.2 C6).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-foot">
+    Open-source · MIT-style usage · <a href="https://github.com/romeo111/cancer-autoresearch">romeo111/cancer-autoresearch</a>
+    <br>
+    Жодних реальних пацієнтських даних · CHARTER §9.3.
+    Це інформаційний інструмент для лікаря, не медичний пристрій (CHARTER §15 + §11).
+  </footer>
+</main>
+</body>
+</html>
