@@ -1,0 +1,160 @@
+{
+  "patient_id": "REFERENCE-CASE-0001",
+  "comment": "Synthetic HCV-MZL reference case per specs/REFERENCE_CASE_SPECIFICATION.md §2. NOT real patient data — fully synthesized for acceptance testing of the §1.3 critical structural criteria. Engine-required fields at top; the clinical_record block carries the spec-§2 patient profile template populated with realistic synthetic values, kept alongside so render layers and downstream tooling can read it.",
+
+  "disease": {
+    "icd_o_3_morphology": "9699/3"
+  },
+  "line_of_therapy": 1,
+
+  "biomarkers": {
+    "BIO-HCV-RNA": "positive"
+  },
+
+  "demographics": {
+    "age": 49,
+    "sex": "male",
+    "ecog": 1,
+    "decompensated_cirrhosis": false,
+    "fit_for_chemoimmunotherapy": true
+  },
+
+  "findings": {
+    "dominant_nodal_mass_cm": 5.3,
+    "mediastinal_ratio": 0.12,
+    "symptomatic_b_symptoms_severe": false,
+    "biopsy_shows_dlbcl": false,
+    "ldh_ratio_to_uln": 1.05,
+    "clinical_progression_weeks": 48,
+    "HCV RNA positive": true,
+    "Indolent presentation (non-bulky, asymptomatic or minimally symptomatic)": true
+  },
+
+  "clinical_record": {
+    "demographics": {
+      "patient_id": "REFERENCE-CASE-0001",
+      "gender": "male",
+      "birth_year_cohort": "1975-1979",
+      "age_at_diagnosis_range": "45-55",
+      "performance_status_ecog": 1,
+      "height_cm": 178,
+      "weight_kg": 82,
+      "bsa_m2": 2.0
+    },
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "HCV-associated marginal zone lymphoma",
+        "icd_o_3": "9699/3",
+        "icd_10": "C88.4",
+        "who_classification_5th_ed": "Extranodal marginal zone lymphoma of mucosa-associated lymphoid tissue",
+        "date_of_histological_confirmation": "[redacted]",
+        "biopsy_site": "root of tongue with tonsil involvement",
+        "diagnostic_method": "histological biopsy with IHC"
+      },
+      "staging": {
+        "staging_system": "Lugano",
+        "stage": "IV-E",
+        "b_symptoms": false,
+        "bulky_disease_over_7cm": false,
+        "extranodal_involvement": true
+      }
+    },
+    "ihc_and_molecular": {
+      "ihc_markers": {
+        "CD20": "positive",
+        "MNDA": "positive",
+        "BCL2": "positive",
+        "FoxP1": "positive",
+        "c_MYC": "approximately_30_percent",
+        "Ki67_percent": 60,
+        "double_expressor_status": "no"
+      },
+      "molecular_tests": {
+        "NGS_panel": "not_performed",
+        "FISH_tests": "not_performed"
+      }
+    },
+    "infectious_status": {
+      "HCV": {
+        "status": "chronic_infection_confirmed",
+        "RNA_quantitative_IU_mL": 1240000,
+        "genotype": "1b",
+        "duration_known_years": 6,
+        "prior_DAA_treatment": "no"
+      },
+      "HBV": {
+        "HBsAg": "negative",
+        "anti_HBc": "negative",
+        "anti_HBs": "positive"
+      },
+      "HIV": "negative"
+    },
+    "laboratory_baseline": {
+      "cbc": {
+        "hemoglobin_g_dl": 13.4,
+        "platelets_k_ul": 198,
+        "anc_k_ul": 3.2,
+        "alc_k_ul": 1.8
+      },
+      "liver_panel": {
+        "AST_U_L": 48,
+        "ALT_U_L": 62,
+        "alkaline_phosphatase_U_L": 102,
+        "GGT_U_L": 85,
+        "total_bilirubin_mg_dL": 0.9,
+        "albumin_g_dL": 4.1,
+        "INR": 1.0
+      },
+      "renal": {
+        "creatinine_mg_dL": 0.95,
+        "eGFR": 92
+      },
+      "other": {
+        "LDH_U_L": 215,
+        "B2_microglobulin_mg_L": 2.1
+      },
+      "calculations": {
+        "FIB_4": 1.65,
+        "CrCl_CockcroftGault_mL_min": 96
+      }
+    },
+    "imaging": {
+      "modality": "MRI + CECT",
+      "date": "[redacted]",
+      "findings": {
+        "primary_lesion": {
+          "location": "root of tongue with tonsil involvement",
+          "dimensions_mm": "33x36x53",
+          "approximate_size_cm": 5.3,
+          "bulky_by_criteria": false
+        },
+        "lymph_nodes": [
+          {"station": "Ia", "size_mm": 10, "suspicious": true},
+          {"station": "IIa", "size_mm": 14, "suspicious": true}
+        ],
+        "bone_destruction": false,
+        "CNS_involvement": false
+      }
+    },
+    "comorbidities_and_meds": {
+      "comorbidities": ["chronic HCV (E11 — managed)", "mild hypertension (I10)"],
+      "current_medications": ["amlodipine 5 mg daily"],
+      "allergies": ["none documented"],
+      "prior_cancer_treatments": []
+    },
+    "symptoms_and_concerns": {
+      "symptoms_onset": "approximately 6 months — gradually enlarging tongue-base mass, mild dysphagia",
+      "b_symptoms": {
+        "fever": false,
+        "night_sweats": false,
+        "weight_loss_over_10_percent": false
+      },
+      "functional_status_changes": "minimal — daily activities preserved, ECOG 1",
+      "clinical_concerns_flagged": {
+        "rapid_progression": false,
+        "suspected_transformation": false,
+        "performance_decline": false
+      }
+    }
+  }
+}
