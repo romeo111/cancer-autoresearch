@@ -79,6 +79,19 @@ def _print_mdt_brief(mdt) -> None:
     if dq.get("missing_critical_fields"):
         print(f"      → {', '.join(dq['missing_critical_fields'])}")
 
+    agg = mdt.aggregation_summary or {}
+    if agg:
+        print("  AI-агрегація (step 2 per project infographic):")
+        print(f"    KB entities loaded:       {agg.get('kb_entities_loaded')}")
+        print(f"    Indications evaluated:    {agg.get('indications_evaluated')}")
+        print(f"    Sources cited:            {len(agg.get('kb_sources_cited') or [])}")
+        print(f"    Biomarkers referenced:    {len(agg.get('biomarkers_referenced') or [])}")
+        print(f"    RedFlags fired / total:   {len(agg.get('red_flags_fired') or [])} / {agg.get('red_flags_total_in_kb')}")
+        print(f"    Open questions raised:    {agg.get('open_questions_raised')}")
+        clients = agg.get("live_api_clients_available") or []
+        if clients:
+            print(f"    Live API clients ready:   {', '.join(clients)}")
+
     if mdt.warnings:
         print("  Warnings:")
         for w in mdt.warnings:

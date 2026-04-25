@@ -84,6 +84,7 @@ class MDTOrchestrationResult:
     optional_roles: list[MDTRequiredRole] = field(default_factory=list)
     open_questions: list[OpenQuestion] = field(default_factory=list)
     data_quality_summary: dict = field(default_factory=dict)
+    aggregation_summary: dict = field(default_factory=dict)
     warnings: list[str] = field(default_factory=list)
     provenance: Optional[DecisionProvenanceGraph] = None
 
@@ -97,6 +98,7 @@ class MDTOrchestrationResult:
             "optional_roles": [r.to_dict() for r in self.optional_roles],
             "open_questions": [q.to_dict() for q in self.open_questions],
             "data_quality_summary": dict(self.data_quality_summary),
+            "aggregation_summary": dict(self.aggregation_summary),
             "warnings": list(self.warnings),
             "provenance": self.provenance.to_dict() if self.provenance else None,
         }
@@ -161,15 +163,34 @@ def _is_extranodal_malt(disease: Optional[dict]) -> bool:
 
 _ROLE_CATALOG: dict[str, str] = {
     "hematologist": "Гематолог / онкогематолог",
+    "medical_oncologist": "Медичний онколог (хіміотерапевт солідних пухлин)",
     "infectious_disease_hepatology": "Інфекціоніст / гепатолог",
     "radiologist": "Лікар-радіолог",
     "pathologist": "Патолог / гематопатолог",
+    "molecular_geneticist": "Молекулярний генетик / молекулярний онколог",
     "clinical_pharmacist": "Клінічний фармацевт",
     "radiation_oncologist": "Радіотерапевт (променева терапія)",
     "surgical_oncologist": "Хірург-онколог",
+    "psychologist": "Психолог / онкопсихолог",
     "palliative_care": "Паліативна допомога",
     "social_worker_case_manager": "Соціальний працівник / кейс-менеджер",
     "primary_care": "Сімейний лікар / терапевт",
+}
+
+
+# Biomarker types that warrant molecular-genetics expertise. Viral loads,
+# CBC-derived markers, and basic IHC do NOT trigger — those stay in
+# pathologist / infectious-disease scope.
+_ACTIONABLE_GENOMIC_TYPES = {
+    "gene_mutation",
+    "fusion",
+    "gene_fusion",
+    "amplification",
+    "deletion",
+    "copy_number",
+    "msi_status",
+    "tmb",
+    "methylation",
 }
 
 
@@ -353,6 +374,27 @@ def _apply_role_rules(
             "local_availability",
             "recommended",
             linked_findings=sorted(set(non_reimbursed_drugs)),
+        )
+
+    # R9 — actionable genomic biomarker required → molecular geneticist
+    actionable_biomarkers: list[str] = []
+    for t in tracks:
+        applicable = (t.indication_data or {}).get("applicable_to") or {}
+        for req in applicable.get("biomarker_requirements_required") or []:
+            bm_id = req.get("biomarker_id") if isinstance(req, dict) else None
+            if not bm_id:
+                continue
+            bm = entities.get(bm_id, {}).get("data") if isinstance(entities, dict) else None
+            bm_type = (bm or {}).get("biomarker_type") or ""
+            if bm_type in _ACTIONABLE_GENOMIC_TYPES:
+                actionable_biomarkers.append(bm_id)
+    if actionable_biomarkers:
+        add(
+            "molecular_geneticist",
+            "Indication посилається на actionable геномний біомаркер — потрібна інтерпретація мутації / target / actionability.",
+            "molecular_data",
+            "recommended",
+            linked_findings=sorted(set(actionable_biomarkers)),
         )
 
     # R8 — palliative care for poor performance status / decompensation
@@ -604,6 +646,65 @@ def _data_quality(
     }
 
 
+# ── Aggregation summary ───────────────────────────────────────────────────
+
+
+# Live-API clients available in knowledge_base/clients/. Listed by source_id;
+# this is what the engine *would* call during evaluation. Used in
+# aggregation_summary so the MDT brief shows step 2 ("AI-агрегація")
+# explicitly per the project infographic.
+_KNOWN_LIVE_API_CLIENTS = (
+    "SRC-CTGOV-REGISTRY",
+    "SRC-PUBMED",
+    "SRC-DAILYMED",
+    "SRC-OPENFDA",
+)
+
+
+def _build_aggregation_summary(
+    plan_result: PlanResult,
+    entities: dict,
+    questions: list[OpenQuestion],
+    fired_red_flags: list[str],
+) -> dict:
+    """Make the implicit "AI-агрегація" step explicit per the project
+    infographic. Counters describe what the engine pulled together for
+    this run — surface for HCP transparency, not for clinical reasoning."""
+
+    plan = plan_result.plan
+    cited_sources: set[str] = set()
+    indications_evaluated = 0
+    biomarker_refs: set[str] = set()
+
+    if plan:
+        for t in plan.tracks:
+            indications_evaluated += 1
+            ind = t.indication_data or {}
+            for s in ind.get("sources") or []:
+                if isinstance(s, dict) and s.get("source_id"):
+                    cited_sources.add(s["source_id"])
+                elif isinstance(s, str):
+                    cited_sources.add(s)
+            applicable = ind.get("applicable_to") or {}
+            for req in applicable.get("biomarker_requirements_required") or []:
+                if isinstance(req, dict) and req.get("biomarker_id"):
+                    biomarker_refs.add(req["biomarker_id"])
+
+    rf_count = sum(1 for info in (entities or {}).values() if info.get("type") == "redflags")
+
+    return {
+        "kb_entities_loaded": len(entities or {}),
+        "kb_sources_cited": sorted(cited_sources),
+        "indications_evaluated": indications_evaluated,
+        "biomarkers_referenced": sorted(biomarker_refs),
+        "red_flags_total_in_kb": rf_count,
+        "red_flags_fired": list(fired_red_flags),
+        "open_questions_raised": len(questions),
+        "live_api_clients_available": list(_KNOWN_LIVE_API_CLIENTS),
+        "live_api_clients_invoked": [],  # MVP: clients not auto-invoked yet
+    }
+
+
 # ── Provenance bootstrap ──────────────────────────────────────────────────
 
 
@@ -724,6 +825,8 @@ def orchestrate_mdt(
     roles = _apply_role_rules(patient, plan_result, findings, disease_data, entities)
     questions = _apply_open_question_rules(patient, plan_result, findings, disease_data)
     quality = _data_quality(findings, disease_data, entities)
+    fired = _collect_fired_red_flags(plan_result)
+    aggregation = _build_aggregation_summary(plan_result, entities, questions, fired)
 
     # Cross-link: roles that own questions get question IDs in linked_questions
     roles_by_id = {r.role_id: r for r in roles}
@@ -753,6 +856,7 @@ def orchestrate_mdt(
         optional_roles=optional,
         open_questions=questions,
         data_quality_summary=quality,
+        aggregation_summary=aggregation,
         warnings=warnings,
         provenance=provenance,
     )

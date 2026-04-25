@@ -232,3 +232,104 @@ def test_data_quality_lists_unevaluated_red_flags():
     )
     # RF-HBV-COINFECTION trigger references hbsag and anti_hbc_total — must surface
     assert "RF-HBV-COINFECTION" in unevaluated
+
+
+# ── Infographic-alignment fixes ───────────────────────────────────────────
+
+
+def test_aggregation_summary_populated():
+    """Per spec §2.3, every MDT brief carries an explicit aggregation_summary
+    (the infographic step 2: 'AI-агрегація'). Smoke-check core counters."""
+
+    patient = _patient("patient_zero_indolent.json")
+    plan_result = generate_plan(patient, kb_root=KB_ROOT)
+    mdt = orchestrate_mdt(patient, plan_result, kb_root=KB_ROOT)
+
+    agg = mdt.aggregation_summary
+    assert agg, "aggregation_summary must be populated, not empty dict"
+    assert agg["kb_entities_loaded"] >= 16
+    assert agg["indications_evaluated"] == len(plan_result.plan.tracks)
+    assert agg["red_flags_total_in_kb"] >= 1
+    # BIO-HCV-RNA referenced by IND-HCV-MZL-1L-ANTIVIRAL biomarker_requirements_required
+    assert "BIO-HCV-RNA" in agg["biomarkers_referenced"]
+    assert "SRC-CTGOV-REGISTRY" in agg["live_api_clients_available"]
+    assert "SRC-PUBMED" in agg["live_api_clients_available"]
+
+
+def test_molecular_geneticist_triggers_on_genomic_biomarker():
+    """R9: when an Indication.applicable_to.biomarker_requirements_required
+    references a Biomarker with biomarker_type in _ACTIONABLE_GENOMIC_TYPES,
+    molecular_geneticist gets recommended.
+
+    Tested by injecting a synthetic gene-mutation biomarker requirement
+    into the default track's indication_data, plus a transient Biomarker
+    entity via a load_content monkey-patch — does not modify any KB on disk."""
+
+    patient = _patient("patient_zero_indolent.json")
+    plan_result = generate_plan(patient, kb_root=KB_ROOT)
+    default = next(t for t in plan_result.plan.tracks if t.is_default)
+    base_ind = dict(default.indication_data or {})
+    applicable = dict(base_ind.get("applicable_to") or {})
+    applicable["biomarker_requirements_required"] = list(
+        applicable.get("biomarker_requirements_required") or []
+    ) + [{"biomarker_id": "BIO-TEST-BRAF-V600E", "required": True}]
+    base_ind["applicable_to"] = applicable
+    default.indication_data = base_ind
+
+    from knowledge_base.engine import mdt_orchestrator as _mod
+
+    real_load = _mod.load_content
+
+    def fake_load(root):
+        result = real_load(root)
+        result.entities_by_id["BIO-TEST-BRAF-V600E"] = {
+            "type": "biomarkers",
+            "data": {
+                "id": "BIO-TEST-BRAF-V600E",
+                "biomarker_type": "gene_mutation",
+                "names": {"preferred": "BRAF V600E (test)"},
+            },
+            "path": None,
+        }
+        return result
+
+    _mod.load_content = fake_load
+    try:
+        mdt = orchestrate_mdt(patient, plan_result, kb_root=KB_ROOT)
+    finally:
+        _mod.load_content = real_load
+
+    role_ids = (
+        {r.role_id for r in mdt.required_roles}
+        | {r.role_id for r in mdt.recommended_roles}
+        | {r.role_id for r in mdt.optional_roles}
+    )
+    assert "molecular_geneticist" in role_ids
+    mg = next(
+        r for r in mdt.recommended_roles + mdt.required_roles + mdt.optional_roles
+        if r.role_id == "molecular_geneticist"
+    )
+    assert "BIO-TEST-BRAF-V600E" in mg.linked_findings
+
+
+def test_role_catalog_covers_infographic_team_composition():
+    """Sanity: every role on the project infographic
+    (infograph/mdt_with_ai_layer_light_theme.html) must be representable
+    in our orchestrator catalog. Not all need to fire on every plan;
+    they just need to exist."""
+
+    from knowledge_base.engine.mdt_orchestrator import _ROLE_CATALOG
+
+    expected_roles = {
+        "surgical_oncologist",
+        "medical_oncologist",
+        "hematologist",
+        "radiation_oncologist",
+        "pathologist",
+        "radiologist",
+        "molecular_geneticist",
+        "psychologist",
+        "palliative_care",
+    }
+    missing = expected_roles - set(_ROLE_CATALOG.keys())
+    assert not missing, f"Catalog missing roles from project infographic: {missing}"

@@ -60,7 +60,27 @@ engine (CHARTER §8.3).
 - **Не приймає рішень за пацієнта** і не виходить за scope HCP
   (CHARTER §15.2 C1)
 
-### 1.3. Сумісність з FDA non-device CDS positioning (CHARTER §15)
+### 1.3. Що з інфографічного AI-шару OpenOnco свідомо НЕ робить
+
+Інфографіка `infograph/mdt_with_ai_layer_light_theme.html` показує
+шість блоків AI-шару (бази/гайдлайни, література, геноміка, клінічні
+дослідження, аналіз зображень, подібні випадки). OpenOnco як
+non-device CDS реалізує **не всі** з них:
+
+| Інфографічний блок | OpenOnco | Чому |
+|---|---|---|
+| AI-аналіз баз/гайдлайнів | ✅ rule engine + KB | core scope |
+| Літературний пошук | ✅ live `pubmed_client.py` | structured metadata, не full-text |
+| Геномна інтерпретація | ✅ CIViC hosted, OncoKB client (roadmap) | через established evidence-graded KBs |
+| Клінічні дослідження | ✅ live `clinicaltrials_client.py` | metadata + recruiting status |
+| **Аналіз зображень (CT/MRI/PET pixel-level)** | ❌ **навмисно поза scope** | FDA Criterion 1 (image processing) → device classification (CHARTER §15.2 C3) |
+| **Подібні випадки (cohort matching)** | ❌ не у MVP | потребує persisted patient-plan registry + privacy/de-identification layer; великий окремий roadmap item |
+
+Цей розділ **обмежує** scope orchestrator-а: ані MVP, ані наступні
+ітерації не повинні ingest'ити raw image/signal/NGS reads без явного
+re-classification per CHARTER §15.3.
+
+### 1.4. Сумісність з FDA non-device CDS positioning (CHARTER §15)
 
 MDT Orchestrator **посилює** FDA Criterion 4 ("HCP can independently
 review the basis"):
@@ -125,6 +145,7 @@ Top-level контейнер, що повертає `orchestrate_mdt(...)`.
 | `optional_roles` | `list[MDTRequiredRole]` | priority `optional` |
 | `open_questions` | `list[OpenQuestion]` | Усі питання, у тому числі blocking |
 | `data_quality_summary` | `dict` | Лічильники: missing fields, ambiguous, unknown red-flag inputs |
+| `aggregation_summary` | `dict` | Explicit "AI-агрегація" артефакт (інфографіка step 2): `kb_entities_loaded`, `kb_sources_cited`, `indications_evaluated`, `biomarkers_referenced`, `red_flags_total_in_kb`, `red_flags_fired`, `open_questions_raised`, `live_api_clients_available`, `live_api_clients_invoked` |
 | `warnings` | `list[str]` | Технічні warning'и (entity не знайдено, тощо) |
 | `provenance` | `DecisionProvenanceGraph` | Initial events |
 
@@ -168,6 +189,7 @@ Top-level контейнер, що повертає `orchestrate_mdt(...)`.
 | R6 | Disease — extranodal MALT (ICD-O-3 morphology starts with `9699`) — RT може бути локально-ефективною | `radiation_oncologist` | `optional` | `treatment_domain` |
 | R7 | Лікувальний план потребує препаратів з `reimbursed_nszu == false` | `social_worker_case_manager` | `recommended` | `local_availability` |
 | R8 | ECOG ≥ 3 АБО декомпенсована коморбідність → паліативна оцінка | `palliative_care` | `recommended` | `palliative_need` |
+| R9 | Indication.applicable_to.biomarker_requirements_required посилається на Biomarker з `biomarker_type` у `_ACTIONABLE_GENOMIC_TYPES` (gene_mutation, fusion, amplification, deletion, copy_number, msi_status, tmb, methylation) | `molecular_geneticist` | `recommended` | `molecular_data` |
 
 ### §3-Esc. Ескалація priority через RedFlag
 
