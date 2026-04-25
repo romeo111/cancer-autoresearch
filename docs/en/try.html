@@ -20,8 +20,8 @@
   </nav>
   <div class="top-right">
     <div class="lang-switch" role="group" aria-label="Language">
-      <span class="lang-current"><span class="lang-flag">🇬🇧</span>EN</span>
-      <a class="lang-other" href="/try.html"><span class="lang-flag">🇺🇦</span>UA</a>
+      <span class="lang-current"><span class="lang-flag flag-en" aria-hidden="true"></span>EN</span>
+      <a class="lang-other" href="/try.html"><span class="lang-flag flag-ua" aria-hidden="true"></span>UA</a>
     </div>
     <a href="/en/try.html" class="btn-cta-try" aria-current="page">Try it →</a>
   </div>
@@ -615,15 +615,69 @@ diseaseSelect.addEventListener('change', () => {
   scheduleEval();
 });
 
+function findQuestionnaireForProfile(profile) {
+  // Match by ICD-O-3 morphology stamped in the example's disease block
+  // (questionnaires carry the same code under fixed_fields.disease).
+  const code = profile && profile.disease && profile.disease.icd_o_3_morphology;
+  if (!code) return -1;
+  return questionnaires.findIndex(q =>
+    ((q.fixed_fields || {}).disease || {}).icd_o_3_morphology === code
+  );
+}
+
+function getByPath(obj, dotted) {
+  let cur = obj;
+  for (const seg of dotted.split('.')) {
+    if (cur === null || typeof cur !== 'object') return undefined;
+    cur = cur[seg];
+  }
+  return cur;
+}
+
+function populateFormFromProfile(quest, profile) {
+  // Walk every form question and try to read its dotted-path value
+  // out of the example profile. Unset inputs stay empty (will count as
+  // not-filled so user can finish anything missing).
+  for (const group of quest.groups || []) {
+    for (const q of group.questions || []) {
+      const path = q.field;
+      if (!path) continue;
+      const val = getByPath(profile, path);
+      if (val === undefined || val === null) continue;
+      const inp = formPane.querySelector(`[data-field="${CSS.escape(path)}"]`);
+      if (!inp) continue;
+      if (q.type === 'boolean') inp.value = String(val);
+      else if (q.type === 'enum') inp.value = JSON.stringify(val);
+      else inp.value = val;
+      answers[path] = val;
+    }
+  }
+}
+
 exampleSelect.addEventListener('change', () => {
   const i = exampleSelect.value;
   if (i === '') return;
   const ex = examples[parseInt(i, 10)];
-  // Drop into JSON pane (examples are full JSON profiles)
-  setMode('json');
-  textarea.value = JSON.stringify(ex.json, null, 2);
   setError(null);
+  // Prefer form mode: find a questionnaire that matches this example's
+  // disease and populate it. Fall back to JSON view only when no
+  // matching questionnaire exists (most diseases don't have one yet).
+  const qIdx = findQuestionnaireForProfile(ex.json);
+  if (qIdx >= 0) {
+    diseaseSelect.value = qIdx;
+    renderForm(questionnaires[qIdx]);
+    populateFormFromProfile(questionnaires[qIdx], ex.json);
+    setMode('form');
+    // Keep the JSON mirror in sync so toggling to JSON shows the loaded data
+    textarea.value = JSON.stringify(buildProfile(), null, 2);
+    setStatus('Приклад завантажено у форму ✓', 'ok');
+  } else {
+    setMode('json');
+    textarea.value = JSON.stringify(ex.json, null, 2);
+    setStatus('Приклад завантажено як JSON (ще немає опитувальника для цієї хвороби)', 'ok');
+  }
   saveDraft();
+  scheduleEval();
 });
 
 modeFormBtn.addEventListener('click', () => setMode('form'));

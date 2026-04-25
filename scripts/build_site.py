@@ -528,8 +528,8 @@ def _render_top_bar(active: str = "", target_lang: str = "uk",
             f'<a href="/specs.html"{cls("specs")}>Специфікації</a>'
         )
 
-    cur_flag = "🇺🇦" if target_lang == "uk" else "🇬🇧"
-    other_flag = "🇬🇧" if target_lang == "uk" else "🇺🇦"
+    cur_flag_cls = "flag-ua" if target_lang == "uk" else "flag-en"
+    other_flag_cls = "flag-en" if target_lang == "uk" else "flag-ua"
     cur_lang = "UA" if target_lang == "uk" else "EN"
     other_lang = "EN" if target_lang == "uk" else "UA"
 
@@ -545,8 +545,8 @@ def _render_top_bar(active: str = "", target_lang: str = "uk",
   </nav>
   <div class="top-right">
     <div class="lang-switch" role="group" aria-label="Language">
-      <span class="lang-current"><span class="lang-flag">{cur_flag}</span>{cur_lang}</span>
-      <a class="lang-other" href="{lang_switch_href}"><span class="lang-flag">{other_flag}</span>{other_lang}</a>
+      <span class="lang-current"><span class="lang-flag {cur_flag_cls}" aria-hidden="true"></span>{cur_lang}</span>
+      <a class="lang-other" href="{lang_switch_href}"><span class="lang-flag {other_flag_cls}" aria-hidden="true"></span>{other_lang}</a>
     </div>
     <a href="{try_path}" class="btn-cta-try" {'aria-current="page"' if active == "try" else ""}>{labels['try_cta']}</a>
   </div>
@@ -568,6 +568,31 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
     n_redflags = by_type.get("redflags", 0)
     n_skills = stats.skills_planned_roles  # 13 — full registry of virtual specialists
 
+    if target_lang == "en":
+        hero_h1 = "Open-source infrastructure for oncology clinical decision-making"
+        hero_sub = (
+            "Get clear, evidence-based treatment strategies in minutes. Upload a patient "
+            "profile to receive standard and aggressive options, built on global clinical "
+            "guidelines and references. Transparent and based on internationally recognized "
+            "standards."
+        )
+        cta_primary = "Try with a virtual patient →"
+        cta_secondary = "See examples"
+        try_href = "/en/try.html"
+        gallery_href = "/en/gallery.html"
+    else:
+        hero_h1 = "Open-source інфраструктура клінічних рішень в онкології"
+        hero_sub = (
+            "Отримайте зрозумілі, доказово обґрунтовані стратегії лікування за хвилини. "
+            "Завантажте профіль пацієнта — і отримайте стандартний та агресивний варіанти "
+            "на основі світових клінічних настанов і референсів. Прозоро та відповідно до "
+            "міжнародно визнаних стандартів."
+        )
+        cta_primary = "Спробувати з віртуальним пацієнтом →"
+        cta_secondary = "Дивитись приклади"
+        try_href = "try.html"
+        gallery_href = "gallery.html"
+
     return f"""<!DOCTYPE html>
 <html lang="{'en' if target_lang == 'en' else 'uk'}">
 <head>
@@ -583,16 +608,13 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
 <main>
   <section class="hero">
     <div class="hero-content">
-      <h1>Open-source infrastructure for oncology clinical decision-making</h1>
+      <h1>{hero_h1}</h1>
       <p class="hero-sub">
-        Get clear, evidence-based treatment strategies in minutes. Upload a patient
-        profile to receive standard and aggressive options, built on global clinical
-        guidelines and references. Transparent and based on internationally recognized
-        standards.
+        {hero_sub}
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="try.html">Спробувати з віртуальним пацієнтом →</a>
-        <a class="btn btn-secondary" href="gallery.html">Дивитись приклади</a>
+        <a class="btn btn-primary" href="{try_href}">{cta_primary}</a>
+        <a class="btn btn-secondary" href="{gallery_href}">{cta_secondary}</a>
       </div>
     </div>
   </section>
@@ -1429,15 +1451,69 @@ diseaseSelect.addEventListener('change', () => {{
   scheduleEval();
 }});
 
+function findQuestionnaireForProfile(profile) {{
+  // Match by ICD-O-3 morphology stamped in the example's disease block
+  // (questionnaires carry the same code under fixed_fields.disease).
+  const code = profile && profile.disease && profile.disease.icd_o_3_morphology;
+  if (!code) return -1;
+  return questionnaires.findIndex(q =>
+    ((q.fixed_fields || {{}}).disease || {{}}).icd_o_3_morphology === code
+  );
+}}
+
+function getByPath(obj, dotted) {{
+  let cur = obj;
+  for (const seg of dotted.split('.')) {{
+    if (cur === null || typeof cur !== 'object') return undefined;
+    cur = cur[seg];
+  }}
+  return cur;
+}}
+
+function populateFormFromProfile(quest, profile) {{
+  // Walk every form question and try to read its dotted-path value
+  // out of the example profile. Unset inputs stay empty (will count as
+  // not-filled so user can finish anything missing).
+  for (const group of quest.groups || []) {{
+    for (const q of group.questions || []) {{
+      const path = q.field;
+      if (!path) continue;
+      const val = getByPath(profile, path);
+      if (val === undefined || val === null) continue;
+      const inp = formPane.querySelector(`[data-field="${{CSS.escape(path)}}"]`);
+      if (!inp) continue;
+      if (q.type === 'boolean') inp.value = String(val);
+      else if (q.type === 'enum') inp.value = JSON.stringify(val);
+      else inp.value = val;
+      answers[path] = val;
+    }}
+  }}
+}}
+
 exampleSelect.addEventListener('change', () => {{
   const i = exampleSelect.value;
   if (i === '') return;
   const ex = examples[parseInt(i, 10)];
-  // Drop into JSON pane (examples are full JSON profiles)
-  setMode('json');
-  textarea.value = JSON.stringify(ex.json, null, 2);
   setError(null);
+  // Prefer form mode: find a questionnaire that matches this example's
+  // disease and populate it. Fall back to JSON view only when no
+  // matching questionnaire exists (most diseases don't have one yet).
+  const qIdx = findQuestionnaireForProfile(ex.json);
+  if (qIdx >= 0) {{
+    diseaseSelect.value = qIdx;
+    renderForm(questionnaires[qIdx]);
+    populateFormFromProfile(questionnaires[qIdx], ex.json);
+    setMode('form');
+    // Keep the JSON mirror in sync so toggling to JSON shows the loaded data
+    textarea.value = JSON.stringify(buildProfile(), null, 2);
+    setStatus('Приклад завантажено у форму ✓', 'ok');
+  }} else {{
+    setMode('json');
+    textarea.value = JSON.stringify(ex.json, null, 2);
+    setStatus('Приклад завантажено як JSON (ще немає опитувальника для цієї хвороби)', 'ok');
+  }}
   saveDraft();
+  scheduleEval();
 }});
 
 modeFormBtn.addEventListener('click', () => setMode('form'));
@@ -1489,10 +1565,17 @@ def _wrap_case_html(rendered_html: str, case: CaseEntry,
         '.case-bar a:hover{text-decoration:underline;}'
         '.case-bar .lang-mini{font-family:JetBrains Mono,monospace;font-size:10px;'
         'background:rgba(255,255,255,.1);padding:3px 7px;border-radius:3px;'
-        'margin-left:14px;letter-spacing:.5px;}'
+        'margin-left:14px;letter-spacing:.5px;display:inline-flex;align-items:center;gap:5px;}'
         '.case-bar .lang-mini-current{font-family:JetBrains Mono,monospace;'
         'font-size:11px;background:rgba(255,255,255,.18);padding:3px 8px;'
-        'border-radius:3px;letter-spacing:.5px;font-weight:600;}'
+        'border-radius:3px;letter-spacing:.5px;font-weight:600;'
+        'display:inline-flex;align-items:center;gap:5px;}'
+        '.case-bar .mini-flag{display:inline-block;width:14px;height:10px;'
+        'border-radius:1.5px;vertical-align:middle;'
+        'box-shadow:0 0 0 1px rgba(0,0,0,.25) inset;}'
+        '.case-bar .mini-flag-ua{background:linear-gradient(to bottom,#0057b7 50%,#ffd500 50%);}'
+        '.case-bar .mini-flag-en{background:linear-gradient(to bottom,'
+        '#cf142b 33%,#fff 33%,#fff 67%,#00247d 67%);}'
         '@media print{.case-bar{display:none;}}'
         '</style>\n'
     )
@@ -1500,22 +1583,24 @@ def _wrap_case_html(rendered_html: str, case: CaseEntry,
     back_label = "← Back to gallery" if target_lang == "en" else "← Назад до галереї"
     feedback_label = "Feedback on this case" if target_lang == "en" else "Feedback на цей кейс"
     gallery_href = "/en/gallery.html" if target_lang == "en" else "/gallery.html"
-    cur_flag = "🇺🇦" if target_lang == "uk" else "🇬🇧"
-    other_flag = "🇬🇧" if target_lang == "uk" else "🇺🇦"
+    cur_flag_cls = "mini-flag-ua" if target_lang == "uk" else "mini-flag-en"
+    other_flag_cls = "mini-flag-en" if target_lang == "uk" else "mini-flag-ua"
     cur_lang_label = "UA" if target_lang == "uk" else "EN"
     other_lang_label = "EN" if target_lang == "uk" else "UA"
     other_lang_href = _lang_switch_href("case", target_lang, case.case_id)
 
     bar_html = (
         '<div class="case-bar no-print">'
-        f'<div><span class="lang-mini-current" title="Active language">{cur_flag} {cur_lang_label}</span>'
+        f'<div><span class="lang-mini-current" title="Active language">'
+        f'<span class="mini-flag {cur_flag_cls}" aria-hidden="true"></span>{cur_lang_label}</span>'
         f' · OpenOnco · <strong>{case.label_ua}</strong></div>'
         '<div>'
         f'<a href="{gallery_href}">{back_label}</a>'
         f'<a href="{GH_NEW_ISSUE}?title=%5Bfeedback%5D+'
         f'{case.case_id}&labels=tester-feedback" target="_blank" rel="noopener">'
         f'{feedback_label}</a>'
-        f'<a class="lang-mini" href="{other_lang_href}" title="Switch to {other_lang_label}">{other_flag} {other_lang_label}</a>'
+        f'<a class="lang-mini" href="{other_lang_href}" title="Switch to {other_lang_label}">'
+        f'<span class="mini-flag {other_flag_cls}" aria-hidden="true"></span>{other_lang_label}</a>'
         '</div>'
         '</div>\n'
     )
@@ -1611,15 +1696,25 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
 .lang-switch .lang-current {
   background: rgba(255,255,255,.15); color: white;
   padding: 4px 9px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 5px;
 }
 .lang-switch .lang-other {
   color: var(--green-100); padding: 4px 9px;
   text-decoration: none; transition: background .12s;
+  display: inline-flex; align-items: center; gap: 5px;
 }
 .lang-switch .lang-other:hover { background: rgba(255,255,255,.12); color: white; }
+/* CSS-painted mini flag — works on every OS (Windows doesn't render
+   regional-indicator emoji as flags). 14×10 colored bar. */
 .lang-switch .lang-flag {
-  margin-right: 4px; font-size: 13px; line-height: 1;
-  filter: saturate(1.2);
+  display: inline-block; width: 14px; height: 10px; border-radius: 1.5px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset;
+}
+.lang-switch .lang-flag.flag-ua {
+  background: linear-gradient(to bottom, #0057b7 50%, #ffd500 50%);
+}
+.lang-switch .lang-flag.flag-en {
+  background: linear-gradient(to bottom, #cf142b 33%, #fff 33%, #fff 67%, #00247d 67%);
 }
 
 /* CTA "Try it" button — distinct from nav (action, not reading) */

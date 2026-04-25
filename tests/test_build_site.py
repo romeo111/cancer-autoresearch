@@ -313,13 +313,17 @@ def test_en_pages_load_stylesheet_via_root_relative_path(site_dir: Path):
 
 
 def test_lang_switch_shows_flag_for_active_mode(site_dir: Path):
-    """User direction: small flag indicates the active language."""
+    """User direction: small flag indicates the active language. Uses
+    CSS-painted mini flags (Windows doesn't render flag emoji, so emoji
+    would fall back to letter pairs 'UA'/'GB' next to the labels)."""
     ua = (site_dir / "index.html").read_text(encoding="utf-8")
     en = (site_dir / "en" / "index.html").read_text(encoding="utf-8")
-    # UA flag on UA page, GB flag on EN page (in the lang-current span)
-    assert "🇺🇦" in ua and "🇬🇧" in ua, "UA page should show both flags"
-    assert "🇺🇦" in en and "🇬🇧" in en, "EN page should show both flags"
-    assert 'class="lang-flag"' in ua and 'class="lang-flag"' in en
+    # Both flag classes must appear on every top-level page (one current,
+    # one in the toggle target)
+    for page_html, name in ((ua, "UA index"), (en, "EN index")):
+        assert "flag-ua" in page_html, f"{name} missing flag-ua class"
+        assert "flag-en" in page_html, f"{name} missing flag-en class"
+        assert 'class="lang-flag' in page_html, f"{name} missing lang-flag wrapper"
 
 
 def test_en_landing_links_use_en_paths(site_dir: Path):

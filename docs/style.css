@@ -81,15 +81,25 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
 .lang-switch .lang-current {
   background: rgba(255,255,255,.15); color: white;
   padding: 4px 9px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 5px;
 }
 .lang-switch .lang-other {
   color: var(--green-100); padding: 4px 9px;
   text-decoration: none; transition: background .12s;
+  display: inline-flex; align-items: center; gap: 5px;
 }
 .lang-switch .lang-other:hover { background: rgba(255,255,255,.12); color: white; }
+/* CSS-painted mini flag — works on every OS (Windows doesn't render
+   regional-indicator emoji as flags). 14×10 colored bar. */
 .lang-switch .lang-flag {
-  margin-right: 4px; font-size: 13px; line-height: 1;
-  filter: saturate(1.2);
+  display: inline-block; width: 14px; height: 10px; border-radius: 1.5px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset;
+}
+.lang-switch .lang-flag.flag-ua {
+  background: linear-gradient(to bottom, #0057b7 50%, #ffd500 50%);
+}
+.lang-switch .lang-flag.flag-en {
+  background: linear-gradient(to bottom, #cf142b 33%, #fff 33%, #fff 67%, #00247d 67%);
 }
 
 /* CTA "Try it" button — distinct from nav (action, not reading) */
