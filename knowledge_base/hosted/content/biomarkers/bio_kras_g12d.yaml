@@ -25,6 +25,10 @@ sources: [SRC-NCCN-PANCREATIC-2025, SRC-ESMO-PANCREATIC-2024]
 oncokb_lookup:
   gene: KRAS
   variant: G12D
+external_ids:
+  hgnc_symbol: "KRAS"
+  hgvs_protein: "p.G12D"
+  oncokb_url: "https://www.oncokb.org/gene/KRAS/G12D"
 
 last_reviewed: "2026-04-27"
 notes: >

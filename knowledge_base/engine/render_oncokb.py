@@ -63,35 +63,111 @@ def _format_pmids(pmids: tuple[str, ...]) -> str:
     return f'<span class="oncokb-pmids">{links}</span>'
 
 
-def _format_fda_badge(opt: OncoKBTherapeuticOption) -> str:
-    """Q8: FDA-approval badge."""
-    if not opt.fda_approved:
-        return ""
-    drug_label = opt.drugs[0] if opt.drugs else "agent"
-    year = f", {opt.fda_approval_year}" if opt.fda_approval_year else ""
-    return f'<span class="oncokb-fda-badge">FDA-approved ({_h(drug_label)}{_h(year)})</span>'
+def build_fda_index(drugs_lookup: dict | None) -> dict[str, tuple[bool, int | None]]:
+    """Build {lowercase_drug_name: (fda_approved, year_first_approval)} from
+    plan_result.kb_resolved['drugs'] for fast lookup in render.
+
+    Per Phase 0 mock-mode finding (A3-bis): OncoKB does NOT carry an
+    fdaApproved field on treatments[]. Q8 FDA-approval badge therefore
+    sources truth from the engine's Drug entities instead of from OncoKB.
+
+    Conservative match: lowercase preferred name + every synonym +
+    every brand_name. If a drug isn't in our KB, it gets no badge —
+    the absence is an honest 'we don't know', not 'not approved'."""
+    if not drugs_lookup:
+        return {}
+    index: dict[str, tuple[bool, int | None]] = {}
+    for _drug_id, drug_data in drugs_lookup.items():
+        if not isinstance(drug_data, dict):
+            continue
+        regstat = drug_data.get("regulatory_status") or {}
+        fda = regstat.get("fda") if isinstance(regstat, dict) else None
+        if not isinstance(fda, dict):
+            continue
+        approved = bool(fda.get("approved", False))
+        year = fda.get("year_first_approval")
+        if isinstance(year, str) and year.isdigit():
+            year = int(year)
+        if not isinstance(year, int):
+            year = None
+
+        names = drug_data.get("names") or {}
+        candidate_names: set[str] = set()
+        if isinstance(names, dict):
+            for key in ("preferred", "english", "ukrainian"):
+                v = names.get(key)
+                if isinstance(v, str) and v.strip():
+                    candidate_names.add(v.strip().lower())
+            for v in names.get("synonyms") or []:
+                if isinstance(v, str) and v.strip():
+                    candidate_names.add(v.strip().lower())
+            for v in names.get("brand_names") or []:
+                if isinstance(v, str) and v.strip():
+                    candidate_names.add(v.strip().lower())
+
+        for name in candidate_names:
+            # Last write wins — but conflicts unlikely (drug names are unique)
+            index[name] = (approved, year)
+    return index
 
 
-def _format_confidence(opt: OncoKBTherapeuticOption) -> str:
-    """Q8: 'Level 3A · 5 PMIDs · FDA-approved' style."""
+def _format_fda_badge(
+    opt: OncoKBTherapeuticOption,
+    fda_index: dict[str, tuple[bool, int | None]],
+) -> str:
+    """Q8: FDA-approval badge.
+
+    Looks up each drug name in `fda_index` (built once per render via
+    `build_fda_index`). Renders badge for the FIRST drug in opt.drugs
+    that resolves to FDA-approved. Conservative: silent if no match
+    OR if drug is in index but not approved."""
+    for drug_name in opt.drugs:
+        approved, year = fda_index.get(drug_name.lower(), (False, None))
+        if approved:
+            year_str = f", {year}" if year else ""
+            return f'<span class="oncokb-fda-badge">FDA-approved ({_h(drug_name)}{_h(year_str)})</span>'
+    return ""
+
+
+def _format_confidence(
+    opt: OncoKBTherapeuticOption,
+    fda_index: dict[str, tuple[bool, int | None]],
+) -> str:
+    """Q8: 'Level 3A · 5 PMIDs · FDA-approved' style.
+
+    FDA fragment present iff at least one drug in opt.drugs resolves to
+    FDA-approved via build_fda_index over our Drug-entity KB."""
     parts = [f'Level {_h(opt.level)}']
     n_pmids = len(opt.pmids)
     if n_pmids:
         parts.append(f"{n_pmids} PMID{'s' if n_pmids != 1 else ''}")
-    if opt.fda_approved:
-        year = f", {opt.fda_approval_year}" if opt.fda_approval_year else ""
-        parts.append(f'FDA-approved{_h(year)}')
+    fda_year: int | None = None
+    fda_seen = False
+    for drug_name in opt.drugs:
+        approved, year = fda_index.get(drug_name.lower(), (False, None))
+        if approved:
+            fda_seen = True
+            if year and not fda_year:
+                fda_year = year
+            break
+    if fda_seen:
+        year_str = f", {fda_year}" if fda_year else ""
+        parts.append(f'FDA-approved{_h(year_str)}')
     return " · ".join(parts)
 
 
-def _row_html(result: OncoKBResult, opt: OncoKBTherapeuticOption) -> str:
+def _row_html(
+    result: OncoKBResult,
+    opt: OncoKBTherapeuticOption,
+    fda_index: dict[str, tuple[bool, int | None]],
+) -> str:
     """One <tr> for the unified evidence table (Q5: combined biomarker + level)."""
     biomarker_label = f"{_h(result.query.gene)} {_h(result.query.variant)}"
     drugs_label = ", ".join(_h(d) for d in opt.drugs) if opt.drugs else "—"
     desc = _h(opt.description) if opt.description else ""
     pmids = _format_pmids(opt.pmids)
-    fda = _format_fda_badge(opt)
-    confidence = _format_confidence(opt)
+    fda = _format_fda_badge(opt, fda_index)
+    confidence = _format_confidence(opt, fda_index)
     css_class = "oncokb-row"
     if opt.level in RESISTANCE_LEVELS:
         css_class += f" oncokb-row--{opt.level.lower()}"
@@ -177,8 +253,16 @@ def render_oncokb_section(
     *,
     mode: str = "clinician",
     target_lang: str = "uk",
+    drugs_lookup: dict | None = None,
 ) -> str:
     """Render the OncoKB precision-medicine section.
+
+    `drugs_lookup` is the kb_resolved['drugs'] dict from PlanResult —
+    maps Drug.id → drug_data. Used for Q8 FDA-approval badge lookup
+    (Phase 4.1 — sources truth from our Drug entities since OncoKB
+    response does NOT carry an fdaApproved field; see Phase 0
+    evidence A3-bis). Optional: when None, no badges are rendered
+    (silent fallback, not an error).
 
     Returns "" for any non-clinician mode (defense-in-depth for AC-3 —
     patient-mode HTML must contain zero OncoKB content).
@@ -194,6 +278,8 @@ def render_oncokb_section(
     if layer is None or layer.is_empty:
         return ""
 
+    fda_index = build_fda_index(drugs_lookup)
+
     # Build unified table (Q5: combined across biomarkers)
     all_rows: list[tuple[str, str, OncoKBResult, OncoKBTherapeuticOption]] = []
     for r in layer.results:
@@ -205,10 +291,10 @@ def render_oncokb_section(
     visible = all_rows[:_TOP_VISIBLE_ROWS]
     overflow = all_rows[_TOP_VISIBLE_ROWS:]
 
-    visible_html = "".join(_row_html(r, opt) for _, _, r, opt in visible)
+    visible_html = "".join(_row_html(r, opt, fda_index) for _, _, r, opt in visible)
     overflow_html = ""
     if overflow:
-        overflow_rows = "".join(_row_html(r, opt) for _, _, r, opt in overflow)
+        overflow_rows = "".join(_row_html(r, opt, fda_index) for _, _, r, opt in overflow)
         overflow_html = (
             f'<details class="oncokb-overflow">'
             f'<summary>Показати ще {len(overflow)}</summary>'
@@ -391,5 +477,6 @@ ONCOKB_CSS = """
 __all__ = [
     "render_oncokb_section",
     "render_track_resistance_banner",
+    "build_fda_index",
     "ONCOKB_CSS",
 ]
