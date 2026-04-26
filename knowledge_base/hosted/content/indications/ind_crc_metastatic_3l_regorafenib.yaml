@@ -1,0 +1,96 @@
+id: IND-CRC-METASTATIC-3L-REGORAFENIB
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-CRC
+  line_of_therapy: 3
+  stage_requirements:
+    - "Stage IV metastatic mCRC"
+    - "Disease progression on standard chemo (FOLFOX, FOLFIRI) + biologic (anti-VEGF and/or anti-EGFR if RAS-WT)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded:
+    - biomarker_id: BIO-MSI-STATUS
+      value_constraint: "MSI-H excluded — pembrolizumab continues 3L+"
+    - biomarker_id: BIO-BRAF-V600E
+      value_constraint: "BRAF V600E excluded — encorafenib + cetuximab preferred"
+  demographic_constraints:
+    ecog_max: 1  # tighter than TAS-102+bev given AE burden
+
+recommended_regimen: REG-REGORAFENIB
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~1% (CORRECT; biologic effect more on disease stabilization)"
+  progression_free_survival: "Median PFS 1.9 mo (CORRECT; HR 0.49)"
+  overall_survival_5y: "Median OS 6.4 mo (vs 5.0 mo placebo, HR 0.77); 1-year OS ~24%"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-CRC-FRAILTY-AGE  # significant AE burden — careful patient selection
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT  # weekly cycle 1, then q2 weeks — hepatotoxicity surveillance
+  - TEST-CEA
+  - TEST-CT-CHEST-ABDOMEN-PELVIS
+desired_tests: []
+
+rationale: >
+  Regorafenib monotherapy for chemo-refractory mCRC after standard
+  chemo + biologic failure. CORRECT trial: modest OS benefit (6.4 vs
+  5.0 mo, HR 0.77) but well-validated 3L+ option. ReDOS dose-
+  escalation strategy (start 80 mg, escalate weekly to 160 mg if
+  tolerated) preserves efficacy with substantially improved
+  tolerability vs upfront 160 mg. Hand-foot skin reaction is the
+  dominant tolerability issue — patient education + topical urea
+  prophylaxis essential. Hepatotoxicity is the dominant safety signal
+  (boxed warning) — weekly LFT cycle 1 mandatory. In Ukraine context,
+  TAS-102+bev (SUNLIGHT) is the preferred 3L+ where accessible due to
+  better tolerability + slight OS edge; regorafenib is the alternative
+  if TAS-102 funding unavailable OR patient prefers oral monotherapy.
+
+sources:
+  - source_id: SRC-NCCN-COLON-2025
+    position: supports
+    relevant_quote_paraphrase: "Regorafenib (CORRECT) is a Cat 1 option for chemo-refractory mCRC 3L+; ReDOS escalation strategy preferred for tolerability"
+  - source_id: SRC-ESMO-COLON-2024
+    position: supports
+    relevant_quote_paraphrase: "Regorafenib remains a recommended 3L+ option for chemo-refractory mCRC; choice between regorafenib and TAS-102+bev driven by access and tolerability profile"
+
+known_controversies:
+  - topic: "Sequencing TAS-102+bev vs regorafenib in 3L+ vs 4L+ mCRC"
+    positions:
+      - position: "TAS-102+bev 3L → regorafenib 4L (better-tolerated combination first)"
+        sources: [SRC-NCCN-COLON-2025]
+      - position: "Regorafenib 3L → TAS-102+bev 4L (REVERCE trial reversed sequencing data)"
+        sources: [SRC-ESMO-COLON-2024]
+        evidence_note: "REVERCE Phase II suggested regorafenib-first sequencing better OS — but small + post-hoc"
+    our_default: "TAS-102+bev 3L → regorafenib 4L (or ReDOS regorafenib 3L if TAS-102 unavailable / oral preferred)"
+    rationale: "Tolerability + funding access drive sequence in Ukraine"
+
+do_not_do:
+  - "НЕ розпочинати на full 160 mg dose — ReDOS escalation (80→120→160) суттєво краща tolerability."
+  - "НЕ ігнорувати hepatic surveillance — fatal hepatic failure ~1-2%; weekly LFT cycle 1."
+  - "НЕ пропускати topical urea prophylaxis для HFSR — Grade 3 HFSR є treatment-limiting."
+  - "НЕ комбінувати з anticoagulants без strict monitoring — bleeding risk."
+  - "НЕ продовжувати при uncontrolled HTN >160/100."
+  - "НЕ використовувати при Child-Pugh C — severe hepatic impairment contraindicated."
+  - "НЕ розпочинати протягом 2 тижнів від major surgery — wound healing impairment."
+  - "НЕ підтверджувати без funding — препарат не реімбурсується НСЗУ."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 3L+ for
+  chemo-refractory mCRC. Position vs TAS-102+bev: SUNLIGHT preferred
+  3L where accessible; regorafenib alternative when SUNLIGHT funding
+  unavailable. Sequencing decision (3L → 4L) addressed in
+  known_controversies.

@@ -1,0 +1,84 @@
+id: REG-FOLFIRI-BEV
+name: "FOLFIRI + Bevacizumab (or ± cetuximab if RAS-WT left-sided)"
+name_ua: "FOLFIRI + Бевацизумаб (або ± цетуксимаб для RAS-WT лівобічних)"
+alternate_names:
+  - "FOLFIRI-bev"
+  - "FOLFIRI-cetux"
+
+components:
+  - drug_id: DRUG-IRINOTECAN
+    dose: "180 mg/m²"
+    schedule: "IV day 1 of each 14-day cycle"
+    route: IV
+  - drug_id: DRUG-LEUCOVORIN
+    dose: "400 mg/m²"
+    schedule: "IV day 1"
+    route: IV
+  - drug_id: DRUG-5-FLUOROURACIL
+    dose: "400 mg/m² IV bolus + 2400 mg/m² CIV over 46h"
+    schedule: "Day 1 bolus, day 1-2 CIV"
+    route: IV
+  - drug_id: DRUG-BEVACIZUMAB
+    dose: "5 mg/kg (FOLFIRI-bev variant)"
+    schedule: "IV day 1 of each 14-day cycle"
+    route: IV
+
+cycle_length_days: 14
+total_cycles: "Until progression / unacceptable toxicity (mCRC 2L+)"
+toxicity_profile: severe
+
+premedication:
+  - "Atropine 0.25-1 mg SC pre-irinotecan if cholinergic syndrome history (early diarrhea / sweating)"
+  - "Loperamide 4 mg PO at first loose stool then 2 mg q2h until 12h diarrhea-free (delayed diarrhea management)"
+  - "5-HT3 + dexamethasone antiemetics"
+mandatory_supportive_care:
+  - SUP-GCSF-NEUTROPENIA  # if febrile neutropenia history
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "UGT1A1 *28/*28 homozygote"
+    modification: "Reduce irinotecan to 120 mg/m² (~30% reduction); titrate up if tolerated"
+    rationale: "*28/*28 patients have severely impaired SN-38 glucuronidation → increased toxicity"
+    source_refs: [SRC-NCCN-COLON-2025]
+  - condition: "Hypertension Grade ≥2 (SBP ≥150 OR DBP ≥100)"
+    modification: "Optimize antihypertensives; hold bevacizumab if uncontrolled"
+    source_refs: [SRC-NCCN-COLON-2025]
+  - condition: "Proteinuria >3.5 g/24h"
+    modification: "Hold bevacizumab until <2 g/24h"
+    source_refs: [SRC-NCCN-COLON-2025]
+  - condition: "Recent / planned major surgery"
+    modification: "Hold bevacizumab ≥28 days pre-op + ≥28 days post-op until wound healed"
+    source_refs: [SRC-NCCN-COLON-2025]
+  - condition: "Grade 4 neutropenia OR febrile neutropenia"
+    modification: "Reduce irinotecan to 150 mg/m²; G-CSF prophylaxis"
+  - condition: "Severe diarrhea (Grade 3-4 OR >7 stools/day)"
+    modification: "Hold; aggressive loperamide + IV hydration; reduce irinotecan 25-50% next cycle"
+  - condition: "Bilirubin 1.5-3× ULN"
+    modification: "Reduce irinotecan to 120 mg/m²"
+  - condition: "Bilirubin >3× ULN"
+    modification: "Hold irinotecan; consider 5-FU continuation alone OR alternate regimen"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: >
+    Irinotecan + 5-FU + leucovorin all registered + NSZU-reimbursed for
+    CRC. Bevacizumab biosimilars increasingly available; original
+    bevacizumab typically out-of-pocket; biosimilars on НСЗУ list for
+    select indications. Cetuximab variant for RAS-WT left-sided
+    requires separate funding pathway (anti-EGFR agents not
+    reimbursed for 2L+ in mCRC).
+
+sources:
+  - SRC-NCCN-COLON-2025
+  - SRC-ESMO-COLON-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  Standard 2L mCRC after FOLFOX progression. Adding bevacizumab (TML
+  / ML18147 trial) improves PFS (5.7 vs 4.1 mo) + OS (11.2 vs 9.8 mo,
+  HR 0.81) over FOLFIRI alone. Anti-EGFR (cetuximab or panitumumab)
+  alternative add-on for RAS-WT left-sided patients in 2L if not used
+  in 1L (or if patient progressed on bevacizumab). UGT1A1 testing
+  recommended before high-dose irinotecan use. Cholinergic syndrome
+  vs delayed diarrhea — distinct pathophysiology + management.

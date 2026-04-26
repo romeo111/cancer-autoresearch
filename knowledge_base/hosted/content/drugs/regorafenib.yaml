@@ -1,0 +1,82 @@
+id: DRUG-REGORAFENIB
+names:
+  preferred: "Regorafenib"
+  ukrainian: "Регорафеніб"
+  english: "Regorafenib"
+  brand_names:
+    - "Stivarga"
+atc_code: L01EX05
+rxnorm_id: "1297392"
+drug_class: "Multi-kinase inhibitor (VEGFR1-3, TIE2, PDGFR, FGFR, KIT, RET, RAF, BRAF)"
+mechanism: >
+  Oral multi-kinase inhibitor with broad activity vs angiogenic
+  (VEGFR1-3, TIE2), stromal (PDGFR-β, FGFR), and oncogenic (KIT, RET,
+  BRAF, RAF1) kinases. Distinct from sorafenib by inclusion of TIE2
+  + RET inhibition. Approved for chemo-refractory mCRC, advanced GIST,
+  HCC, and select sarcomas.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: null
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-25"
+    notes: "Registered; NOT NSZU-reimbursed for any indication. Out-of-pocket / charitable / clinical-trial access."
+
+typical_dosing: >
+  160 mg PO once daily, days 1-21 of each 28-day cycle (3 weeks on,
+  1 week off). Dose modification protocol: start at 80 mg with weekly
+  escalation to 120-160 mg if tolerated (ReDOS strategy — improves
+  tolerability without efficacy loss).
+formulations:
+  - "Tablet 40 mg"
+
+absolute_contraindications:
+  - "Active uncontrolled severe hemorrhage"
+  - "Severe hepatic impairment (Child-Pugh C)"
+  - "Hypersensitivity"
+black_box_warnings:
+  - "Hepatotoxicity — including fatal hepatic failure (~1-2%)"
+major_interactions:
+  - "Strong CYP3A4 inhibitors / inducers — avoid"
+  - "Concurrent anticoagulants — bleeding risk"
+common_adverse_events:
+  - "Hand-foot skin reaction (palmar-plantar erythrodysesthesia, ~50%)"
+  - "Fatigue (~50%)"
+  - "Diarrhea"
+  - "Hypertension"
+  - "Mucositis"
+  - "Anorexia / weight loss"
+  - "Voice changes (dysphonia)"
+  - "Rash"
+serious_adverse_events:
+  - "Severe hepatotoxicity / hepatic failure"
+  - "Hemorrhage (GI, pulmonary)"
+  - "GI perforation / fistula"
+  - "Severe hypertensive crisis"
+  - "PRES (rare)"
+  - "Cardiac ischemia / MI"
+  - "Severe wound healing impairment"
+
+pharmacology:
+  half_life: "~28 hours (parent); active metabolites M-2, M-5 with longer t½"
+
+sources:
+  - SRC-NCCN-COLON-2025
+  - SRC-ESMO-COLON-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  CORRECT trial (Grothey 2013): 3L+ chemo-refractory mCRC — regorafenib
+  vs placebo improved mOS 6.4 vs 5.0 mo (HR 0.77). Modest absolute
+  benefit; AE profile substantial — ReDOS dose-escalation strategy
+  (start 80 mg, escalate weekly to 160 mg) improves tolerability with
+  preserved efficacy. CONCUR trial (Asian patients) confirmed activity.
+  Hand-foot skin reaction the dominant tolerability issue — patient
+  education + topical urea prophylaxis essential. Liver function
+  monitoring weekly during cycle 1, then q2 weeks.

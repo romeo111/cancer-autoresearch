@@ -1,0 +1,93 @@
+id: IND-CRC-METASTATIC-2L-FOLFIRI-BEV
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-CRC
+  line_of_therapy: 2
+  stage_requirements:
+    - "Stage IV metastatic mCRC"
+    - "Disease progression on 1L FOLFOX-based regimen (FOLFOX, FOLFOX+bev, FOLFOX+cetux/panitumumab)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded:
+    - biomarker_id: BIO-MSI-STATUS
+      value_constraint: "MSI-H excluded — pembrolizumab continues"
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-FOLFIRI-BEV
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~20-30% (FOLFIRI ± targeted)"
+  progression_free_survival: "Median PFS ~5.7 mo (FOLFIRI+bev, TML/ML18147 trial)"
+  overall_survival_5y: "Median OS 11.2 mo (FOLFIRI+bev) vs 9.8 mo (FOLFIRI alone, HR 0.81)"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-CRC-FRAILTY-AGE
+  - RF-CRC-EMERGENCY-OBSTRUCTION-PERFORATION
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-CEA
+  - TEST-CT-CHEST-ABDOMEN-PELVIS
+  - TEST-RAS-EXTENDED  # confirm RAS status — may switch to anti-EGFR if RAS-WT left + bev-naive
+desired_tests: []
+
+rationale: >
+  FOLFIRI + bevacizumab is standard 2L for mCRC after FOLFOX-based 1L
+  progression. TML/ML18147 trial: continuing bevacizumab beyond
+  progression with switched cytotoxic backbone improves OS over
+  cytotoxic switch alone. Anti-EGFR (cetuximab or panitumumab)
+  alternative add-on for RAS-WT left-sided patients in 2L if not used
+  in 1L (e.g. 1L was bevacizumab-containing). Maintains the
+  FOLFOX→FOLFIRI cytotoxic switch + biologic continuation principle.
+  In Ukraine, FOLFIRI core is NSZU-reimbursed; bevacizumab biosimilar
+  + cetuximab are funding-pathway-dependent.
+
+sources:
+  - source_id: SRC-NCCN-COLON-2025
+    position: supports
+    relevant_quote_paraphrase: "FOLFIRI + bevacizumab (or ± cetuximab/panitumumab if RAS-WT left-sided + bev-naive) is recommended 2L for mCRC after 1L FOLFOX progression; Cat 1"
+  - source_id: SRC-ESMO-COLON-2024
+    position: supports
+    relevant_quote_paraphrase: "Cytotoxic switch (FOLFOX↔FOLFIRI) + biologic continuation is the standard 2L approach in mCRC; bevacizumab beyond progression supported by TML"
+
+known_controversies:
+  - topic: "Bevacizumab beyond progression vs anti-EGFR switch in 2L mCRC"
+    positions:
+      - position: "Bevacizumab continued (TML): OS benefit; works regardless of sidedness or RAS"
+        sources: [SRC-NCCN-COLON-2025]
+      - position: "Anti-EGFR switch (RAS-WT left-sided 2L): substantial benefit if 1L was bev-only; left-sided RAS-WT subgroup data"
+        sources: [SRC-ESMO-COLON-2024]
+        evidence_note: "Choice driven by 1L biologic + sidedness + RAS status"
+    our_default: "Bevacizumab continuation for RAS-mut OR right-sided OR prior bev-1L; anti-EGFR for RAS-WT left-sided AND bev-naive 1L"
+    rationale: "Sidedness + biomarker + prior exposure drive 2L biologic choice"
+
+do_not_do:
+  - "НЕ використовувати anti-EGFR в RAS-mutant пацієнтів — minimal benefit + потенційний шкідливий ефект."
+  - "НЕ розпочинати протягом 28 днів від major surgery — bevacizumab perforation/dehiscence ризик."
+  - "НЕ продовжувати bevacizumab при uncontrolled HTN >160/100 — cerebrovascular ризик."
+  - "НЕ ігнорувати UGT1A1 testing якщо доступно — *28/*28 ризик severe neutropenia + diarrhea."
+  - "НЕ пропускати loperamide protocol для irinotecan-induced delayed diarrhea — летальна dehydration можлива."
+  - "НЕ використовувати при high-risk varices / active hemoptysis (bevacizumab)."
+  - "НЕ підтверджувати anti-EGFR без funding — cetuximab / panitumumab не реімбурсуються для 2L."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track 2L mCRC
+  cytotoxic switch + biologic continuation. MSI-H patients remain on
+  pembrolizumab past 1L (separate continuation Indication, future).
+  BRAF V600E patients may instead switch to encorafenib + cetuximab
+  (existing IND-CRC-METASTATIC-2L-BRAF-BEACON) — distinct molecular
+  track.

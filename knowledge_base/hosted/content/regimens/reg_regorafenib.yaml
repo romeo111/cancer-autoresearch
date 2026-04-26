@@ -1,0 +1,70 @@
+id: REG-REGORAFENIB
+name: "Regorafenib monotherapy (CORRECT-style; ReDOS escalation preferred)"
+name_ua: "Регорафеніб монотерапія (CORRECT; ReDOS escalation схема)"
+alternate_names:
+  - "Stivarga"
+  - "Regorafenib mono"
+  - "ReDOS regimen"
+
+components:
+  - drug_id: DRUG-REGORAFENIB
+    dose: >
+      ReDOS escalation: 80 mg PO daily week 1 → 120 mg week 2 → 160 mg
+      week 3 if tolerated; days 1-21 of each 28-day cycle (3 weeks on,
+      1 week off). Standard CORRECT dose: 160 mg PO daily days 1-21.
+    schedule: "PO daily days 1-21 of each 28-day cycle"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Until progression / unacceptable toxicity"
+toxicity_profile: severe
+
+premedication:
+  - "Topical urea 10-20% cream BID to palms + soles starting day 1 (hand-foot prophylaxis)"
+  - "Patient education: report HFSR, fatigue, diarrhea immediately"
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Hand-foot skin reaction Grade 2 (painful but functional)"
+    modification: "Reduce by 1 dose level (160→120→80 mg); aggressive topical care; hold if Grade 3"
+    rationale: "HFSR is the dominant tolerability issue; early hold + reduction restores QoL"
+    source_refs: [SRC-NCCN-COLON-2025]
+  - condition: "Hand-foot skin reaction Grade 3"
+    modification: "Hold; resume at lower dose after recovery to ≤Grade 1; discontinue if recurrent Grade 3"
+  - condition: "ALT/AST >5× ULN OR bilirubin >2× ULN"
+    modification: "Hold; weekly LFT; resume at lower dose after recovery to ≤Grade 1; permanent discontinuation if persistent or worsening"
+    rationale: "Hepatotoxicity is a boxed warning — fatal hepatic failure ~1-2%; aggressive monitoring + early discontinuation"
+    source_refs: [SRC-NCCN-COLON-2025]
+  - condition: "Hypertension Grade ≥2 (SBP ≥150 OR DBP ≥100)"
+    modification: "Optimize antihypertensives; hold if uncontrolled; resume at lower dose"
+  - condition: "Severe hemorrhage"
+    modification: "Permanent discontinuation"
+  - condition: "GI perforation / fistula"
+    modification: "Permanent discontinuation"
+  - condition: "Recent / planned major surgery"
+    modification: "Hold ≥2 weeks pre-op + post-op until wound healed"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: >
+    Regorafenib registered but NOT NSZU-reimbursed for any indication.
+    Out-of-pocket / charitable / clinical-trial access only — major
+    access barrier given long-term continuous dosing requirement.
+
+sources:
+  - SRC-NCCN-COLON-2025
+  - SRC-ESMO-COLON-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  CORRECT trial (Grothey 2013): 3L+ chemo-refractory mCRC — regorafenib
+  vs placebo improved mOS 6.4 vs 5.0 mo (HR 0.77). Modest absolute
+  benefit. ReDOS dose-escalation strategy (Bekaii-Saab 2019) — start
+  80 mg, escalate weekly to 160 mg if tolerated — preserves efficacy
+  while substantially improving tolerability + treatment continuation
+  rate. CONCUR (Asian patients) confirmed activity. CORRECT and
+  SUNLIGHT (TAS-102+bev) outcomes broadly similar; SUNLIGHT now
+  preferred 3L+ where accessible due to better tolerability profile.
+  Hepatotoxicity surveillance critical — weekly LFT cycle 1, then q2w.
