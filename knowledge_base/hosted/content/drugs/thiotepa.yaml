@@ -3,50 +3,109 @@ names:
   preferred: "Thiotepa"
   ukrainian: "Тіотепа"
   english: "Thiotepa"
-  brand_names: ["Tepadina"]
+  synonyms: ["Triethylenethiophosphoramide", "TT", "TESPA", "TSPA"]
+  brand_names: ["Tepadina", "Thioplex"]
 atc_code: L01AC01
 rxnorm_id: "10440"
-drug_class: "Polyfunctional alkylating agent (ethylenimine)"
+drug_class: "alkylating_agent — polyfunctional ethyleneimine (aziridine class)"
 mechanism: >
-  Alkylates DNA via ethylenimine groups, producing inter-strand
-  cross-links. Highly lipid-soluble — crosses CNS readily, hence
-  PCNSL induction (MATRix) and CNS-prophylaxis conditioning. Major
-  metabolite TEPA contributes to prolonged DNA-binding.
+  Polyfunctional alkylating agent: each of three ethyleneimine groups
+  generates an aziridinium intermediate that alkylates DNA primarily at
+  N7 of guanine, producing intra-strand and inter-strand cross-links
+  → DNA replication arrest and apoptosis. Active metabolite TEPA
+  (triethylenephosphoramide, formed by hepatic CYP3A4 / CYP2B6 desulfuration)
+  contributes equally to cytotoxicity. Highly lipid-soluble — penetrates
+  CNS readily (CSF levels ~100% of plasma), the basis of its central role
+  in PCNSL induction (MATRix), CNS-relapse-risk lymphoma conditioning
+  (TBC = thiotepa + busulfan + cyclophosphamide; TT-BCNU), and intrathecal
+  use for leptomeningeal disease.
 
 regulatory_status:
-  fda: {approved: true}
-  ema: {approved: true}
+  fda:
+    approved: true
+    year_first_approval: 1959
+    indications_brief: ["Adenocarcinoma breast / ovary (historical)", "Bladder carcinoma (intravesical)", "Malignant effusions", "Allogeneic / autologous SCT conditioning (Tepadina, 2017)"]
+  ema:
+    approved: true
+    year_first_approval: 2010  # Tepadina conditioning approval
   ukraine_registration:
     registered: true
-    last_verified: "2026-04-25"
+    registration_number: "[verify-clinical-co-lead]"
+    reimbursed_nszu: true
+    reimbursement_indications:
+      - "Кондиціонування перед алло-/авто-ТКМ"
+      - "ПЦНСЛ (MATRix, off-label)"
+    last_verified: "2026-04-26"
 
 typical_dosing: >
-  PCNSL (MATRix): 30 mg/m² IV days 4-5 of cycle 4 induction.
-  Auto-SCT conditioning (TBC): 5 mg/kg IV days -7 to -5.
-formulations: ["IV powder for reconstitution 15 mg, 100 mg"]
+  PCNSL MATRix induction (Ferreri 2016): 30 mg/m² IV days 4-5 of cycle
+  (4 cycles), with rituximab + HD-MTX 3.5 g/m² + cytarabine 2 g/m² q12h.
+  Auto-SCT conditioning (TBC for CNS lymphoma): thiotepa 5 mg/kg IV q12h
+  × 2 doses days -7 and -6, with busulfan + cyclophosphamide.
+  Auto-SCT conditioning (TT-BCNU): thiotepa 250 mg/m² IV days -5 to -3
+  with carmustine 400 mg/m² day -6.
+  Allo-SCT (haploidentical): thiotepa 5 mg/kg IV day -7 with TBI / busulfan
+  / fludarabine.
+  Intrathecal (rare): 1-10 mg per dose.
+formulations:
+  - "IV powder for reconstitution 15 mg, 100 mg vials (Tepadina)"
 
 absolute_contraindications:
-  - "Severe hypersensitivity"
-  - "Severe pre-existing myelosuppression"
-  - "Severe hepatic / renal impairment"
+  - "Severe hypersensitivity to thiotepa"
+  - "Severe pre-existing myelosuppression (outside conditioning context)"
+  - "Severe hepatic impairment (bilirubin >3× ULN)"
+  - "Severe renal impairment (CrCl <30 mL/min — relative)"
+  - "Pregnancy / breastfeeding"
+
+black_box_warnings:
+  - "Severe myelosuppression — universal at conditioning doses; requires stem-cell rescue"
+  - "Hepatic veno-occlusive disease / sinusoidal obstruction syndrome at conditioning doses (especially with busulfan)"
+  - "Skin and mucosal toxicity — drug excreted in sweat; thorough skin washing required at high doses"
 
 common_adverse_events:
-  - "Severe myelosuppression (dose-limiting at high doses)"
-  - "Nausea/vomiting"
-  - "Mucositis"
-  - "Skin reaction at infusion site"
+  - "Severe myelosuppression (universal at high dose; dose-limiting at standard dose)"
+  - "Nausea and vomiting (high emetogenicity)"
+  - "Mucositis — ~70% at conditioning doses"
+  - "Skin reactions (erythroderma, hyperpigmentation, desquamation in skin folds where sweat accumulates) — ~50% at high dose"
+  - "Alopecia — universal at conditioning doses"
+  - "Diarrhea — ~40%"
+  - "Fever — common"
+  - "Hepatic transaminitis — ~30%"
+  - "CNS effects (somnolence, confusion at high dose) — ~20%"
+  - "Conjunctivitis / lacrimation — common"
 
 serious_adverse_events:
-  - "Hepatic veno-occlusive disease (high-dose, conditioning context)"
-  - "Pulmonary toxicity (rare)"
+  - "Hepatic veno-occlusive disease / SOS (high-dose conditioning)"
+  - "Pulmonary toxicity (interstitial pneumonitis, pulmonary edema; rare)"
+  - "Severe neurotoxicity at HD (encephalopathy, confusion, seizure)"
   - "Secondary malignancies (long-term)"
+  - "Cardiac toxicity (rare; arrhythmia, cardiomyopathy at HD with cyclophosphamide)"
+
+major_interactions:
+  - "Strong CYP3A4 / CYP2B6 inducers (rifampin, phenytoin) — increase active TEPA exposure"
+  - "Strong CYP3A4 inhibitors — reduce TEPA formation; clinical impact uncertain"
+  - "Concurrent busulfan — additive hepatotoxicity / VOD risk (manage with defibrotide prophylaxis if available)"
+  - "Live vaccines — contraindicated"
+  - "Other myelosuppressives — additive cytopenia"
+
+pharmacology:
+  half_life_hours: 2  # parent ~2 h; TEPA metabolite ~10 h
+  clearance: "hepatic"
+  protein_binding_pct: 10
+  metabolism: "CYP3A4 and CYP2B6 — desulfuration to active TEPA; renal excretion of unchanged drug ~10%"
 
 sources:
   - SRC-NCCN-BCELL-2025
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
-  STUB — Phase 9. PCNSL: in MATRix (MTX-AraC-Thiotepa-Rituximab) the
-  thiotepa enhances CNS penetration of the regimen. Auto-SCT: BCNU+TT
-  or thiotepa+busulfan are common alternatives to BEAM for CNS-relapse-
-  risk lymphomas. Skin must be washed thoroughly to avoid contact
-  dermatitis from drug excretion in sweat.
+  In MATRix the thiotepa component is what enhances CNS penetration and
+  drives the regimen's superior CR rate vs MTR (Ferreri IELSG32 trial,
+  Lancet Haematol 2016). For CNS-relapse-risk lymphomas autoSCT, TBC
+  (thiotepa + busulfan + cyclophosphamide) and TT-BCNU are preferred over
+  BEAM (Soussain 2008; Cordoba/MSKCC retrospective). Drug is excreted in
+  sweat — patient must shower BID and change linens during HD therapy
+  to avoid contact dermatitis (caregivers also). Defibrotide prophylaxis
+  considered for high-VOD-risk patients (prior abdominal RT, baseline
+  hepatic dysfunction). Intrathecal use largely supplanted by IT-MTX +
+  IT-cytarabine but retained in select pediatric protocols.

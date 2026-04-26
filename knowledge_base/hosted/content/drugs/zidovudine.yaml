@@ -3,54 +3,110 @@ names:
   preferred: "Zidovudine (AZT)"
   ukrainian: "Зидовудин (АЗТ)"
   english: "Zidovudine"
-  brand_names: ["Retrovir"]
+  synonyms: ["AZT", "ZDV", "Azidothymidine"]
+  brand_names: ["Retrovir", "Combivir (with lamivudine)", "Trizivir (with lamivudine + abacavir)"]
 atc_code: J05AF01
 rxnorm_id: "11489"
-drug_class: "Nucleoside reverse transcriptase inhibitor (NRTI)"
+drug_class: "antiviral — nucleoside reverse-transcriptase inhibitor (NRTI), thymidine analog"
 mechanism: >
-  Thymidine analog; phosphorylated intracellularly to ZDV-triphosphate
-  which terminates HTLV-1 (and HIV) reverse transcription. In HTLV-1-driven
-  ATLL, AZT in combination with IFN-α induces apoptosis of leukemic cells
-  via NF-κB pathway suppression and Tax-mediated mechanisms.
+  Thymidine analog; intracellularly phosphorylated by thymidine kinase /
+  thymidylate kinase / nucleoside diphosphate kinase to ZDV-triphosphate,
+  which competes with dTTP for HIV-1 / HTLV-1 reverse transcriptase and
+  acts as an obligate chain terminator (lacks 3'-OH for further
+  elongation). In HTLV-1-driven adult T-cell leukemia / lymphoma (ATLL),
+  AZT combined with IFN-α exerts antineoplastic activity not solely
+  attributable to reverse-transcriptase inhibition: induces apoptosis via
+  NF-κB pathway suppression, downregulates HTLV-1 Tax-mediated cell-cycle
+  drive, and synergizes with type-I interferon antiproliferative signaling
+  (Bazarbachi 2010 meta-analysis: ~50% durable CR in indolent ATLL).
 
 regulatory_status:
-  fda: {approved: true}
-  ema: {approved: true}
+  fda:
+    approved: true
+    year_first_approval: 1987
+    indications_brief: ["HIV-1 infection (treatment, prophylaxis)", "Off-label: ATLL (with IFN-α)"]
+  ema:
+    approved: true
+    year_first_approval: 1987
   ukraine_registration:
     registered: true
-    last_verified: "2026-04-25"
+    registration_number: "[verify-clinical-co-lead]"
+    reimbursed_nszu: true
+    reimbursement_indications:
+      - "ВІЛ-інфекція (АРВТ)"
+      - "ATLL (off-label, у комбінації з IFN-α — індивідуальне погодження)"
+    last_verified: "2026-04-26"
 
 typical_dosing: >
-  ATLL (AZT/IFN-α regimen): 200 mg PO 5× daily (≈1000 mg/day) continuous
-  with IFN-α 5-9 MU/day SC. Dose-reduce for renal impairment.
-formulations: ["Capsules 100 mg, 250 mg", "Tablets 300 mg", "Oral solution 10 mg/mL", "IV 10 mg/mL"]
+  ATLL (AZT/IFN-α regimen, Bazarbachi 2010): zidovudine 200 mg PO 5× daily
+  (≈1000 mg/day) continuous, with IFN-α 5-9 MU SC daily for first 2 months
+  then 3× weekly maintenance. Continue until progression / intolerance.
+  HIV reference dose (for context): 300 mg PO BID or 200 mg PO TID.
+  Dose-reduce for renal impairment (CrCl <15 → 100 mg PO TID); dose-
+  reduce for severe anemia (Hgb <7.5) or neutropenia (ANC <0.75).
+formulations:
+  - "Capsules 100 mg, 250 mg"
+  - "Tablets 300 mg"
+  - "Oral solution 10 mg/mL"
+  - "IV solution 10 mg/mL (20 mL vial)"
 
 absolute_contraindications:
-  - "Severe hypersensitivity"
+  - "Severe hypersensitivity to zidovudine"
   - "Severe pre-existing anemia (Hgb <7.5 g/dL untreated)"
+  - "Severe pre-existing neutropenia (ANC <0.75 ×10⁹/L)"
+  - "Combination with stavudine (antagonistic NRTI competition)"
 
 black_box_warnings:
-  - "Hematologic toxicity (anemia, neutropenia)"
-  - "Myopathy (long-term use)"
-  - "Lactic acidosis with hepatic steatosis"
+  - "Hematologic toxicity — anemia (often severe, transfusion-dependent), neutropenia"
+  - "Symptomatic myopathy with prolonged use"
+  - "Lactic acidosis with severe hepatomegaly / steatosis (mitochondrial toxicity, can be fatal)"
 
 common_adverse_events:
-  - "Macrocytic anemia (universal — MCV rises within weeks)"
-  - "Neutropenia"
-  - "Headache"
-  - "Nausea, fatigue"
+  - "Macrocytic anemia (universal — MCV rises 10-20 fL within 4-8 weeks; surrogate of adherence)"
+  - "Neutropenia — ~40% at oncologic doses"
+  - "Headache — ~50%"
+  - "Nausea — ~50% week 1, attenuates"
+  - "Fatigue, malaise — ~40%"
+  - "Hyperpigmentation of nails / skin / oral mucosa — ~10%"
+  - "Insomnia — ~20%"
+  - "Anorexia — ~30%"
+  - "Myalgia — ~20%"
+  - "Asymptomatic transaminase elevation — ~25%"
 
 serious_adverse_events:
   - "Severe anemia requiring transfusion"
-  - "Lactic acidosis"
-  - "Mitochondrial myopathy"
+  - "Severe neutropenia with infection"
+  - "Lactic acidosis with hepatic steatosis (NRTI class effect)"
+  - "Mitochondrial myopathy (proximal weakness, elevated CK)"
+  - "Pancreatitis (rare)"
+  - "Cardiomyopathy (rare, mitochondrial)"
+
+major_interactions:
+  - "Stavudine — antagonistic; do NOT co-administer"
+  - "Ribavirin — increased risk of anemia and hepatic decompensation"
+  - "Ganciclovir / valganciclovir — additive myelosuppression (often unavoidable in transplant context)"
+  - "Methadone — increases AZT exposure"
+  - "Probenecid / fluconazole — increase AZT exposure (inhibit glucuronidation)"
+  - "Doxorubicin — antagonistic at cellular level (in vitro); clinical impact uncertain in ATLL"
+  - "TMP-SMX (Bactrim) — additive marrow toxicity with prolonged use"
+
+pharmacology:
+  half_life_hours: 1  # parent ~1 h; intracellular ZDV-TP ~7 h
+  clearance: "hepatic with renal elimination of glucuronide metabolite"
+  protein_binding_pct: 30
+  metabolism: "UGT2B7 glucuronidation (~75%) → renal excretion; minor CYP role"
 
 sources:
   - SRC-NCCN-BCELL-2025
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
-  STUB — Phase 9. ATLL indolent (chronic/smoldering): AZT/IFN-α gives
-  durable remissions and OS benefit (Bazarbachi et al. 2010 meta-analysis).
-  Aggressive ATLL: not effective as monotherapy — combine with
-  CHOP-based induction. Macrocytosis is expected (not B12 deficiency)
-  — do not work up unless Hgb is dropping disproportionately.
+  ATLL indolent (chronic / smoldering) subtypes: AZT + IFN-α gives
+  durable remissions and OS benefit (Bazarbachi 2010 international
+  meta-analysis: 5-yr OS 46% AZT/IFN vs 20% chemo in chronic ATLL).
+  Aggressive ATLL (acute / lymphoma type): AZT/IFN inferior to
+  CHOP-based induction; combined modality (chemotherapy → AZT/IFN
+  maintenance) is being studied. Macrocytosis is expected and not
+  a sign of B12 / folate deficiency — do not work up unless Hgb
+  drops disproportionately. Mandatory monitoring: CBC weekly × 4
+  then monthly, lactate if symptomatic, hepatic panel monthly.

@@ -3,57 +3,118 @@ names:
   preferred: "L-Asparaginase (E. coli or Erwinia)"
   ukrainian: "Л-Аспарагіназа"
   english: "L-Asparaginase"
-  brand_names: ["Elspar (E. coli)", "Erwinase (Erwinia)", "PEG-asparaginase: Oncaspar"]
+  synonyms: ["Asparaginase", "Crisantaspase (Erwinia)", "Pegaspargase (PEG-form)"]
+  brand_names:
+    - "Elspar (E. coli native — discontinued US 2012)"
+    - "Erwinase (Erwinia chrysanthemi)"
+    - "Oncaspar (pegaspargase, PEG-E. coli)"
+    - "Asparlas (calaspargase pegol)"
+    - "Rylaze (asparaginase erwinia chrysanthemi recombinant)"
 atc_code: L01XX02
 rxnorm_id: "1116"
-drug_class: "Enzyme (asparagine-depleting)"
+drug_class: "enzyme — asparagine-depleting bacterial enzyme"
 mechanism: >
-  Hydrolyzes circulating L-asparagine to aspartic acid + ammonia.
-  Lymphoblasts and NK/T cells lack asparagine synthetase and depend on
-  exogenous asparagine — depletion causes selective protein-synthesis
-  arrest and apoptosis in malignant lymphoblasts/NK cells.
+  Hydrolyzes circulating L-asparagine to aspartic acid + ammonia, depleting
+  the systemic pool. Lymphoblasts and NK/T-malignant cells lack adequate
+  asparagine synthetase (ASNS) and are uniquely dependent on the exogenous
+  supply; depletion arrests protein synthesis and triggers apoptosis. PEG-
+  asparaginase has prolonged plasma half-life (5-7 days vs ~30 h for native)
+  and lower immunogenicity. Erwinia preparation is used after E. coli
+  hypersensitivity (no antigenic cross-reactivity).
 
 regulatory_status:
-  fda: {approved: true}
-  ema: {approved: true}
+  fda:
+    approved: true
+    year_first_approval: 1978  # native E. coli; pegaspargase 1994
+    indications_brief: ["Acute lymphoblastic leukemia (B-ALL, T-ALL)", "Lymphoblastic lymphoma", "Off-label: NK/T-cell nasal lymphoma (SMILE / AspaMetDex regimens)"]
+  ema:
+    approved: true
+    year_first_approval: 1994
   ukraine_registration:
     registered: true
-    last_verified: "2026-04-25"
+    registration_number: "[verify-clinical-co-lead]"
+    reimbursed_nszu: true
+    reimbursement_indications:
+      - "Гострий лімфобластний лейкоз"
+      - "NK/T-клітинна назальна лімфома (off-label, SMILE)"
+    last_verified: "2026-04-26"
 
 typical_dosing: >
-  ALL induction: 6,000-10,000 IU/m² IM/IV multiple doses per cycle.
-  SMILE (NK/T-nasal): 6,000 IU/m² IM days 2, 4, 6, 8 with dexa+MTX+ifosfamide+etoposide.
-formulations: ["Lyophilized vial 10,000 IU (E. coli or Erwinia)", "PEG: 3,750 IU/5 mL IV"]
+  ALL induction (pediatric): native E. coli 6,000-10,000 IU/m² IM/IV
+  3× weekly × 6-9 doses; or pegaspargase 2,500 IU/m² IM/IV every 2 weeks
+  × 1-4 doses.
+  Adult ALL (HOVON / GMALL / CALGB 10403): pegaspargase 2,000-2,500 IU/m²
+  IV every 2-4 weeks during induction + post-remission.
+  SMILE (NK/T-nasal): native E. coli or Erwinia 6,000 IU/m² IM days 2, 4, 6, 8
+  combined with dexamethasone + methotrexate + ifosfamide + etoposide
+  every 28 days × 2-6 cycles.
+  AspaMetDex (R/R NK/T): pegaspargase 2,000 IU/m² IM day 2 with HD-MTX +
+  dexamethasone, every 21 days.
+formulations:
+  - "Lyophilized vial 10,000 IU (E. coli or Erwinia) for IM/IV"
+  - "Pegaspargase 750 IU/mL (3,750 IU / 5 mL) IV/IM solution"
+  - "Calaspargase pegol 750 IU/mL"
 
 absolute_contraindications:
-  - "Prior pancreatitis on asparaginase"
-  - "Severe hypersensitivity to asparaginase preparations"
-  - "Severe hepatic dysfunction (bilirubin >3× ULN)"
-  - "Active thrombosis"
+  - "Prior pancreatitis on any asparaginase preparation"
+  - "Severe hypersensitivity / anaphylaxis to current preparation (switch to non-cross-reactive form)"
+  - "Severe pre-existing hepatic dysfunction (bilirubin >3× ULN, transaminases >10× ULN)"
+  - "Active or recent thrombosis"
+  - "Active hemorrhage"
 
 black_box_warnings:
-  - "Pancreatitis (can be fulminant)"
-  - "Coagulopathy / thrombosis (depletes antithrombin, plasminogen, fibrinogen)"
-  - "Hepatotoxicity"
-  - "Anaphylaxis (escalating with each dose)"
+  - "Anaphylaxis — risk increases with each dose; resuscitation equipment at bedside"
+  - "Pancreatitis — can be hemorrhagic / fulminant; permanent discontinuation if severe"
+  - "Coagulopathy — depletes antithrombin III, plasminogen, fibrinogen → both thrombosis and bleeding risk"
+  - "Hepatotoxicity — transaminitis, hyperbilirubinemia, hepatic steatosis"
 
 common_adverse_events:
-  - "Hypersensitivity (more with E. coli; switch to Erwinia or PEG)"
-  - "Hyperglycemia"
-  - "Hypoalbuminemia"
-  - "Coagulopathy with elevated PT/PTT"
+  - "Hypersensitivity (~25-30% E. coli native, ~10% pegaspargase, ~5-10% Erwinia)"
+  - "Hyperglycemia (~10-20%)"
+  - "Hypoalbuminemia (universal — secondary to hepatic protein-synthesis arrest)"
+  - "Coagulopathy with elevated PT/PTT, low fibrinogen — universal"
+  - "Hyperammonemia (asymptomatic in most)"
+  - "Hypertriglyceridemia — ~30%"
+  - "Nausea, vomiting — moderate"
+  - "Fatigue — common"
+  - "Transient hepatic transaminitis — ~50%"
+  - "Injection-site reaction (IM) — common"
 
 serious_adverse_events:
-  - "Acute pancreatitis"
-  - "CNS thrombosis (cerebral sinus venous thrombosis)"
+  - "Acute necrotizing pancreatitis"
+  - "CNS thrombosis (cerebral sinus venous thrombosis) — ~2-5% adults"
   - "Anaphylaxis"
-  - "DIC-like coagulopathy"
+  - "DIC-like coagulopathy with intracranial hemorrhage"
+  - "Hepatic failure (rare, more in older adults)"
+  - "Hyperammonemic encephalopathy"
+
+major_interactions:
+  - "Methotrexate — asparaginase given AFTER MTX antagonizes MTX cytotoxicity; ordering of doses is critical (MTX → 24 h gap → asparaginase, NOT reverse)"
+  - "Vincristine — asparaginase given before vincristine increases vincristine neurotoxicity (give vincristine first)"
+  - "Prednisone / dexamethasone — additive hyperglycemia and infection risk"
+  - "Oral contraceptives — effectiveness reduced by hepatic dysfunction"
+  - "Live vaccines — contraindicated"
+
+pharmacology:
+  half_life_hours: 30  # native E. coli ~30 h; Erwinia ~16 h; pegaspargase ~5.5 days = 132 h
+  clearance: "non-renal (reticuloendothelial uptake and proteolysis)"
+  protein_binding_pct: null
+  metabolism: "non-CYP; degraded by tissue proteases; antibody-mediated clearance (silent inactivation common)"
 
 sources:
   - SRC-NCCN-BCELL-2025
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
-  STUB — Phase 9. SMILE for NK/T-nasal lymphoma uses native E. coli or
-  Erwinia preparation; PEG-asparaginase is the modern ALL preparation
-  (Oncaspar). Monitor lipase + amylase before each dose; hold for
-  pancreatitis. Prophylactic antithrombin replacement controversial.
+  Switch native E. coli → Erwinia or pegaspargase after grade ≥2
+  hypersensitivity (no antigenic cross-reactivity between E. coli and
+  Erwinia). Monitor lipase + amylase + glucose + fibrinogen + PT/aPTT
+  + transaminases before each dose; hold for clinical pancreatitis.
+  SMILE for NK/T-nasal lymphoma is the reference regimen (Yamaguchi
+  2008/2011) with ~80% ORR in newly-diagnosed advanced disease.
+  Antithrombin III replacement when ATIII <60% is institutional;
+  fibrinogen replacement (cryo or fibrinogen concentrate) when
+  <100 mg/dL with active bleeding. Avoid prophylactic FFP — does not
+  reduce thrombosis. Silent inactivation: monitor asparaginase activity
+  level (target trough >0.1 IU/mL at day 7-14 post-dose) where lab access
+  exists; switch preparations if subtherapeutic.
