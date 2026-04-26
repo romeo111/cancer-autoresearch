@@ -1,0 +1,19 @@
+{
+  "patient_id": "PTLD-MONO-001",
+  "comment": "Monomorphic DLBCL-like CD20+ PTLD post-cardiac-transplant 7 years prior, high-risk biology. Engine should select R-CHOP 1L (aggressive track per high-risk red flag).",
+  "disease": {"icd_o_3_morphology": "9971/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD20-IHC": "positive"},
+  "demographics": {"age": 58, "sex": "male", "ecog": 2},
+  "findings": {
+    "transplant_type": "cardiac",
+    "years_post_transplant": 7,
+    "ebv_viral_load": "high",
+    "current_immunosuppression": ["tacrolimus", "mycophenolate", "prednisone"],
+    "histology": "monomorphic_dlbcl_like",
+    "cd20_positive": true,
+    "lvef_percent": 55,
+    "hbv_status": "anti_hbc_positive",
+    "high_risk_biology": true
+  }
+}

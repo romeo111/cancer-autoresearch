@@ -1,0 +1,93 @@
+id: IND-PTLD-MAINTENANCE-RITUXIMAB
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-PTLD
+  line_of_therapy: 2
+  stage_requirements:
+    - "CD20+ B-PTLD (polymorphic or monomorphic) in CR or PR after initial rituximab × 4 weekly induction"
+    - "PTLD-1 sequential schedule continuation"
+  biomarker_requirements_required:
+    - biomarker_id: BIO-CD20-IHC
+      required: true
+      value_constraint: "positive"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 3
+
+recommended_regimen: REG-RITUXIMAB-MAINTENANCE-PTLD
+concurrent_therapy:
+  - "Continue reduced immunosuppression per transplant team"
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "Maintenance — sustains pre-existing CR/PR achieved with rituximab induction"
+  complete_response: "~70% sustained CR at 2 years with PTLD-1 sequential schedule (Trappe 2017)"
+  progression_free_survival: "Median PFS >36 months in low-risk responders"
+  overall_survival_5y: "~70-80% in low-risk subset (PTLD-1 stratification)"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-EBV-VIRAL-LOAD
+  - TEST-HBV-SEROLOGY
+  - TEST-CD20-IHC
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PET-CT  # response assessment before maintenance
+desired_tests: []
+
+rationale: >
+  Per PTLD-1 trial (Trappe 2017, JCO) sequential schedule: rituximab
+  monotherapy × 4 weekly, then risk-stratified continuation —
+  CR/PR responders continue with rituximab consolidation × 4 q3w
+  (no chemotherapy required in low-risk). This avoids chemotherapy
+  exposure in patients who respond to rituximab alone. Rituximab
+  maintenance reduces relapse rate vs surveillance after rituximab-
+  only induction response. Coordinate with transplant team
+  throughout — IS modulation continues in parallel. HBV antiviral
+  prophylaxis 12 months post-rituximab mandatory if HBsAg+ or
+  anti-HBc+ baseline.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "PTLD-1 sequential rituximab schedule (4 weekly induction → 4 q3w consolidation in responders) is preferred for CD20+ B-PTLD with response to rituximab monotherapy"
+  - source_id: SRC-ESMO-DLBCL-2024
+    position: supports
+    relevant_quote_paraphrase: "Sequential rituximab consolidation in CD20+ B-PTLD responders avoids chemotherapy exposure; recommended low-risk strategy"
+
+known_controversies:
+  - topic: "Sequential rituximab × 4 vs extended q2-month maintenance × 2 years"
+    positions:
+      - position: "PTLD-1 standard 4 q3w consolidation — sufficient evidence base"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Extended q2-month × 2 years for high-risk responders — extrapolated from FL maintenance paradigm"
+        sources: [SRC-ESMO-DLBCL-2024]
+    our_default: "PTLD-1 schedule (4 q3w) for standard; extend q2-month × up to 2 years only in high-risk responders with persistent EBV viral load"
+
+do_not_do:
+  - "НЕ продовжувати maintenance якщо progressed — switch to R-CHOP."
+  - "НЕ нехтувати HBV prophylaxis throughout + 12 months post."
+  - "НЕ припиняти monitoring graft function — IS modulation triggers concomitant rejection risk."
+  - "НЕ давати rituximab CD20- residual disease — використовувати alternative."
+  - "НЕ ігнорувати persistent EBV viral load — корелює з molecular relapse."
+  - "НЕ забувати про PJP prophylaxis throughout."
+  - "НЕ використовувати без transplant team co-management."
+
+time_critical: false
+last_reviewed: "2026-04-27"
+reviewer_signoffs: 0
+notes: >
+  STUB. PTLD-1 sequential approach is the modern standard. Funded
+  via НСЗУ. Always co-manage with transplant team for ongoing IS
+  modulation.

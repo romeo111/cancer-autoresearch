@@ -1,0 +1,35 @@
+id: ALGO-PTLD-2L
+applicable_to_disease: DIS-PTLD
+applicable_to_line_of_therapy: 2
+purpose: >
+  Post-induction PTLD branch — CR/PR responders to initial rituximab
+  monotherapy continue PTLD-1 sequential consolidation (rituximab
+  × 4 q3w, no chemotherapy in low-risk). Non-responders or
+  high-risk biology escalate to R-CHOP. Refractory after R-CHOP
+  → tabelecleucel (EBV-CTL) referral or CD19 CAR-T (not yet modeled).
+
+output_indications:
+  - IND-PTLD-MAINTENANCE-RITUXIMAB
+  - IND-PTLD-1L-RCHOP
+
+default_indication: IND-PTLD-MAINTENANCE-RITUXIMAB
+alternative_indication: IND-PTLD-1L-RCHOP
+
+decision_tree:
+  - step: 1
+    evaluate:
+      all_of:
+        - condition: "CR or PR after initial rituximab × 4 weekly induction"
+        - condition: "CD20+ B-PTLD"
+    if_true:
+      result: IND-PTLD-MAINTENANCE-RITUXIMAB
+    if_false:
+      result: IND-PTLD-1L-RCHOP
+
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-DLBCL-2024]
+last_reviewed: "2026-04-27"
+notes: >
+  Branch-1 (maintenance) is the low-risk PTLD-1 path. Branch-2
+  (R-CHOP) is escalation for non-responders. Tabelecleucel (EBV-CTL)
+  for refractory monomorphic B-PTLD not yet modeled — referral to
+  transplant center.

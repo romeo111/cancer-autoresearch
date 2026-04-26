@@ -1,0 +1,18 @@
+{
+  "patient_id": "PTLD-POLY-001",
+  "comment": "Polymorphic CD20+ EBV-driven PTLD post-renal-transplant 4 years prior. Engine should select reduce-IS + rituximab 1L (default). On response, route to PTLD-1 sequential maintenance.",
+  "disease": {"icd_o_3_morphology": "9971/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD20-IHC": "positive"},
+  "demographics": {"age": 52, "sex": "female", "ecog": 1},
+  "findings": {
+    "transplant_type": "renal",
+    "years_post_transplant": 4,
+    "ebv_viral_load": "high",
+    "current_immunosuppression": ["tacrolimus", "mycophenolate"],
+    "histology": "polymorphic",
+    "cd20_positive": true,
+    "lvef_percent": 60,
+    "hbv_status": "negative"
+  }
+}
