@@ -1,0 +1,57 @@
+id: RF-WM-TRANSFORMATION-PROGRESSION
+definition: >
+  Waldenström with clinical / biochemical features concerning for
+  transformation to DLBCL: rapid LDH rise, asymmetric / rapidly enlarging
+  nodal or extranodal mass, PET-CT SUVmax >10 (WM rarely PET-avid; high
+  SUV concerning), B-symptoms in previously asymptomatic patient, or
+  hypercalcemia. Mandates urgent excisional biopsy of PET-avid lesion.
+definition_ua: >
+  Вальденстрем з ознаками, що насторожують щодо трансформації в DLBCL:
+  швидке підвищення LDH, асиметричне / швидко зростаюче нодальне або
+  екстранодальне ураження, PET-CT SUVmax >10 (WM рідко PET-avid;
+  висока SUV насторожує), B-симптоми у раніше безсимптомного пацієнта,
+  гіперкальціємія. Мандатна термінова ексцизійна біопсія PET-avid вогнища.
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "ldh_doubled_in_weeks"
+      value: true
+    - finding: "rapid_progression"
+      value: true
+    - finding: "pet_suvmax"
+      threshold: 10
+      comparator: ">"
+    - finding: "wm_richter_like_transformation_suspect"
+      value: true
+    - finding: "biopsy_shows_dlbcl"
+      value: true
+    - finding: "new_b_symptoms"
+      value: true
+
+clinical_direction: intensify
+
+severity: critical
+priority: 50
+category: transformation-progression
+
+relevant_diseases:
+  - DIS-WM
+shifts_algorithm: []  # not yet wired into ALGO-WM-1L.decision_tree — surfaces as plan annotation
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-WM-2024
+
+last_reviewed: "2026-04-27"
+draft: false
+
+notes: >
+  Histologic transformation to DLBCL occurs in 2-10% WM lifetime (lower
+  than CLL Richter). Once confirmed by biopsy, treat as de novo DLBCL
+  with R-CHOP (with HBV / IgM-flare considerations); MYD88 status of
+  the transformed clone informs prognosis but not initial therapy.
+  Distinct from "IgM flare" — transient IgM rise after rituximab — which
+  is not transformation and resolves spontaneously. PET-CT in baseline
+  WM (rarely indicated for staging) becomes essential when transformation
+  suspected — high SUVmax in single asymmetric lesion mandates excisional
+  biopsy of that lesion (core may miss focal transformation).

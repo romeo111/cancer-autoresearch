@@ -48,23 +48,15 @@ SPEC_CATEGORIES = (
     "frailty_age",
 )
 
-DISEASES_WITH_GAPS_BASELINE = {
-    # DIS-DLBCL-NOS — closed by Phase 3 first batch (4 new RFs added 2026-04-25)
-    # DIS-MM — closed by Phase 3 second batch (3 new RFs added 2026-04-25)
-    # 2026-04-26 GI solid-tumor batch — all 5 reached full 5-type matrix
-    # via promotion commit (CRC, HCC, gastric, PDAC, esophageal).
-    # 2026-04-27 5-type matrix promotion (Plan C):
-    #   AITL, ENDOMETRIAL, HCV-MZL, MELANOMA, OVARIAN, RCC, SCLC, UROTHELIAL
-    #   reached full 5-type RF coverage.
-    # 2026-04-27 5-type matrix promotion (Plan A):
-    #   ALCL, BURKITT, CERVICAL, CHL, CLL, FL, GBM closed via single-RF
-    #   diseases promotion to full coverage.
-    # Remaining baseline gaps — workstreams still in progress:
-    "DIS-MCL",
-    "DIS-MF-SEZARY",
-    "DIS-PTCL-NOS",
-    "DIS-WM",
-}
+# 2026-04-27 5-type matrix fully closed across all 28 diseases:
+# - DIS-DLBCL-NOS closed by Phase 3 first batch (4 new RFs added 2026-04-25)
+# - DIS-MM closed by Phase 3 second batch (3 new RFs added 2026-04-25)
+# - 2026-04-26 GI solid-tumor batch — CRC, HCC, gastric, PDAC, esophageal.
+# - 2026-04-27 Plan C: AITL, ENDOMETRIAL, HCV-MZL, MELANOMA, OVARIAN, RCC,
+#   SCLC, UROTHELIAL.
+# - 2026-04-27 Plan A: ALCL, BURKITT, CERVICAL, CHL, CLL, FL, GBM, MCL,
+#   MF-SEZARY, PTCL-NOS, WM.
+DISEASES_WITH_GAPS_BASELINE: set[str] = set()
 
 # Per spec §2: "Якщо для хвороби якась з категорій клінічно нерелевантна
 # ... постав <rf>.notes: з обґрунтуванням замість заглушки." We model that
