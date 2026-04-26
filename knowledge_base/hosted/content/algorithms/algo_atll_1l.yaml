@@ -36,8 +36,41 @@ decision_tree:
     if_false:
       result: IND-ATLL-1L-AGGRESSIVE
 
-sources: [SRC-NCCN-BCELL-2025]
-last_reviewed: "2026-04-25"
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-PTCL-2024]
+last_reviewed: "2026-04-27"
 notes: >
   Shimoyama 1991 classification drives default. Acute / lymphoma type
   завжди → aggressive track. Chronic unfavourable теж до aggressive.
+
+  Etiology rails (HTLV-1 IS the disease etiology — confirmed by
+  serology + PCR at diagnosis; mandatory part of workup, not a side
+  consideration):
+
+  - HTLV-1 confirmation — RF-ATLL-INFECTION-SCREENING fires on positive
+    HTLV-1 serology and Strongyloides endemic exposure. Diagnostic
+    necessity, not an algorithm shifter (without HTLV-1 the disease is
+    not ATLL by definition). Subtype determination (Shimoyama: acute /
+    lymphoma / chronic favourable / chronic unfavourable / smoldering)
+    drives indication — captured in step 2.
+
+  - Strongyloides screening + ivermectin if positive — mandatory before
+    immunosuppressive therapy in HTLV-1-endemic-area exposure;
+    hyperinfection syndrome post-chemo is frequently fatal.
+
+  - HBV co-infection — common in HTLV-1-endemic regions; entecavir
+    prophylaxis if HBsAg+ or anti-HBc+ before mogamulizumab/CHOEP.
+
+  - HIV co-infection — rare but documented; manage via ART continuation
+    + ATLL chemo; mogamulizumab safety unclear in HIV+, MDT decision.
+
+  Both indications already include TEST-HTLV1-SEROLOGY, TEST-HBV-
+  SEROLOGY, TEST-HCV-ANTIBODY, TEST-HIV-SEROLOGY in required_tests.
+  AZT + IFN-α (REG-AZT-IFN-A) acts on HTLV-1 reverse transcriptase +
+  immune modulation — etiology-targeted therapy for indolent subtypes
+  (Bazarbachi 2010 meta-analysis: 5-yr OS 46% vs 20% chemo for
+  chronic/smoldering). Aggressive subtypes do NOT respond to AZT+IFN —
+  routed to CHOEP + mogamulizumab + alloSCT.
+
+  BIO-HTLV-1 missing as a quantitative biomarker — would let us
+  formalize HTLV-1 proviral load monitoring (which correlates with
+  ATLL transformation risk in carriers); flagged for future round.
