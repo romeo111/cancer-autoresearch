@@ -1,0 +1,58 @@
+id: RF-ENDOMETRIAL-INFECTION-SCREENING
+definition: >
+  Active or latent infection requiring resolution / prophylaxis before
+  initiating cytotoxic chemo (carbo+pacli, doxorubicin-containing for
+  carcinosarcoma) or ICI (pembro / dostarlimab) in endometrial cancer:
+  HBsAg-positive (HBV reactivation risk on cytotoxic chemo and on ICI;
+  doxorubicin notable for HBV reactivation in non-lymphoma settings),
+  anti-HBc-positive (occult HBV), HIV-positive, active TB.
+definition_ua: >
+  Активна або латентна інфекція, що потребує лікування / профілактики
+  перед цитотоксичною ХТ (карбо+пацлі, доксорубіцин для карциносаркоми)
+  або ICI (пембро / достарлімаб) при раку ендометрію: HBsAg+ (ризик
+  реактивації HBV на ХТ та ICI; доксорубіцин відомий ризиком HBV-
+  реактивації за межами лімфом), anti-HBc+ (occult HBV), HIV+,
+  активний ТБ.
+
+trigger:
+  type: composite
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hbc_total"
+      value: "positive"
+    - finding: "hcv_rna"
+      value: "positive"
+    - finding: "hiv_status"
+      value: "positive"
+    - finding: "active_tb"
+      value: true
+    - finding: "active_uncontrolled_infection"
+      value: true
+
+clinical_direction: hold
+
+severity: major
+priority: 70
+category: infection-screening
+
+relevant_diseases:
+  - DIS-ENDOMETRIAL
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-UTERINE-2025
+  - SRC-ESMO-ENDOMETRIAL-2022
+
+last_reviewed: "2026-04-27"
+draft: false
+
+notes: >
+  HBV reactivation on doxorubicin-containing carcinosarcoma regimens
+  (ifosfamide-paclitaxel, carbo-paclitaxel-doxorubicin) is documented;
+  HBsAg+ → mandatory entecavir or tenofovir prophylaxis from before
+  first cycle through ≥6 months post-last-chemo (ASCO HBV guidance).
+  ICI (pembro / dostarlimab): chronic HBV not absolute contraindication
+  but suppress viral load with antiviral first; HIV well controlled
+  on ART can receive ICI safely. Direction "hold" surfaces a workup-
+  prerequisite annotation rather than switching indication.

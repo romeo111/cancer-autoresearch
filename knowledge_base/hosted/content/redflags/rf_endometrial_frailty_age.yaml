@@ -1,0 +1,66 @@
+id: RF-ENDOMETRIAL-FRAILTY-AGE
+definition: >
+  Frailty profile precluding standard carbo+pacli ± pembro / dostarlimab
+  in advanced/recurrent endometrial: ECOG ≥3, OR age ≥75 with ≥2
+  comorbidities, OR composite (age ≥70 + albumin <3.0 + Charlson ≥3),
+  OR explicit "unfit for combination chemotherapy". Endometrial cancer
+  median age at diagnosis is ~63 with rising incidence in elderly.
+definition_ua: >
+  Профіль frailty в запущеному/рецидивному раку ендометрію: ECOG ≥3,
+  АБО ≥75 з ≥2 коморбідностями, АБО (≥70 + альбумін <3.0 + Charlson
+  ≥3), АБО клінічне рішення "unfit for combination chemotherapy".
+  Медіана віку при діагностиці раку ендометрію ~63 з ростом частоти
+  у літніх.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "ecog"
+      threshold: 3
+      comparator: ">="
+    - finding: "fit_for_combination_chemo"
+      value: false
+    - all_of:
+        - finding: "age"
+          threshold: 75
+          comparator: ">="
+        - finding: "comorbidity_count"
+          threshold: 2
+          comparator: ">="
+    - all_of:
+        - finding: "age"
+          threshold: 70
+          comparator: ">="
+        - finding: "albumin_g_dl"
+          threshold: 3.0
+          comparator: "<"
+        - finding: "charlson_score"
+          threshold: 3
+          comparator: ">="
+
+clinical_direction: de-escalate
+
+severity: major
+priority: 90
+category: frailty-age
+
+relevant_diseases:
+  - DIS-ENDOMETRIAL
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-UTERINE-2025
+  - SRC-ESMO-ENDOMETRIAL-2022
+
+last_reviewed: "2026-04-27"
+draft: false
+
+notes: >
+  Frail elderly options: single-agent carboplatin (well tolerated, ORR
+  20-30%), weekly paclitaxel, or hormonal therapy (megestrol acetate /
+  medroxyprogesterone) for ER/PR+ low-grade tumors. Pembrolizumab /
+  dostarlimab monotherapy for dMMR/MSI-H is well tolerated even in
+  frail patients (RUBY/NRG-GY018 included elderly subgroup with
+  preserved benefit). Cardiac assessment baseline mandatory before
+  doxorubicin (especially in carcinosarcoma backbone). Geriatric
+  assessment (G8 / CGA) prior to regimen selection.
