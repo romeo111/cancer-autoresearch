@@ -40,6 +40,7 @@ from .questionnaire import (
 )
 from .red_flag import RedFlag
 from .regimen import Regimen
+from .reviewer_profile import ReviewerProfile, SignOffScope
 from .source import Source
 from .supportive_care import SupportiveCare
 from .test import Test
@@ -67,6 +68,7 @@ ENTITY_BY_DIR: dict[str, type] = {
     "questionnaires": Questionnaire,
     "access_pathways": AccessPathway,
     "mdt_skills": MdtSkill,
+    "reviewers": ReviewerProfile,
 }
 
 __all__ = [
@@ -101,6 +103,8 @@ __all__ = [
     "RedFlag",
     "Regimen",
     "RegulatoryApproval",
+    "ReviewerProfile",
+    "SignOffScope",
     "Source",
     "SupportiveCare",
     "SuspicionSnapshot",
