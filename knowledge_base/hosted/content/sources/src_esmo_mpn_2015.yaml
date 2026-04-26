@@ -42,6 +42,13 @@ notes: >
   (HU vs anagrelide vs IFN), JAK inhibitors (ruxolitinib, fedratinib).
   Older than NCCN MPN 2025 but still cited as the structured ESMO
   reference; verify against newer ELN PV/ET 2018 + Tefferi reviews.
+  Freshness check 2026-04-27: ESMO has not published a refreshed
+  Ph-negative MPN guideline (the 2015 Vannucchi/Barbui document remains
+  the ESMO reference). For active clinical use, prefer NCCN-MPN-2025
+  (in KB) and ELN-2018 PV/ET consensus + JAK-inhibitor RCT publications
+  (already cited individually). Source kept for historical / structural
+  reference; treat as level-of-evidence anchor, not as the source of
+  current dosing.
 pages_count: 8
 references_count: 90
 corpus_role: primary_guideline
