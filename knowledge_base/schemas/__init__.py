@@ -38,6 +38,7 @@ from .questionnaire import (
     QuestionOption,
     Questionnaire,
 )
+from ._reviewer_signoff import ReviewerSignoff
 from .red_flag import RedFlag
 from .regimen import Regimen
 from .reviewer_profile import ReviewerProfile, SignOffScope
@@ -104,6 +105,7 @@ __all__ = [
     "Regimen",
     "RegulatoryApproval",
     "ReviewerProfile",
+    "ReviewerSignoff",
     "SignOffScope",
     "Source",
     "SupportiveCare",
