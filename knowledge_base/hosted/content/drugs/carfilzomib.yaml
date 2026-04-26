@@ -1,0 +1,78 @@
+id: DRUG-CARFILZOMIB
+names:
+  preferred: "Carfilzomib"
+  ukrainian: "Карфілзоміб"
+  english: "Carfilzomib"
+  brand_names:
+    - "Kyprolis"
+atc_code: L01XG02
+rxnorm_id: "1302990"
+drug_class: "Second-generation irreversible proteasome inhibitor (epoxyketone)"
+mechanism: >
+  Selective irreversible inhibitor of the chymotrypsin-like activity of
+  the 20S proteasome (β5 / LMP7 subunits). Binds covalently via
+  epoxyketone — distinct from bortezomib's reversible boronate binding —
+  conferring sustained inhibition + activity in bortezomib-refractory
+  myeloma. Single doses can suppress proteasome activity >80% for >24h.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: true
+    registration_number: null
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-25"
+    notes: "Registered; NOT НСЗУ-reimbursed for myeloma. Out-of-pocket / charitable / clinical-trial access. Major access barrier."
+
+typical_dosing: >
+  Multiple schedules. KRd: 27 mg/m² days 1, 2, 8, 9, 15, 16 of 28-day
+  cycle (escalated from 20 mg/m² day 1, 2 of cycle 1). KdW (weekly,
+  CHAMPION-1 / ARROW): 70 mg/m² IV days 1, 8, 15 of 28-day cycle.
+  Hydration 250-500 mL pre + post infusion mandatory.
+formulations:
+  - "IV powder for reconstitution 10 / 30 / 60 mg vials"
+
+absolute_contraindications:
+  - "Hypersensitivity to carfilzomib"
+  - "Severe baseline cardiac dysfunction (LVEF <40%)"
+black_box_warnings: []
+major_interactions:
+  - "Concomitant cardiotoxic drugs (anthracyclines, RT to chest) — additive cardiac risk"
+  - "Stem-cell mobilization may be impaired"
+common_adverse_events:
+  - "Fatigue"
+  - "Anemia"
+  - "Nausea, diarrhea"
+  - "Pyrexia, dyspnea"
+  - "Hypertension"
+  - "Thrombocytopenia"
+serious_adverse_events:
+  - "Cardiac failure / new-onset HF (~5-7%, often within first 2-3 cycles)"
+  - "Hypertensive crisis"
+  - "Pulmonary toxicity / dyspnea"
+  - "Acute kidney injury (TLS-mediated; ~5%)"
+  - "Thrombotic microangiopathy / TTP-HUS (rare)"
+  - "Hepatotoxicity"
+  - "PRES (rare)"
+
+pharmacology:
+  half_life: "~30-60 minutes (rapid clearance; tissue effect persists due to irreversible binding)"
+
+sources:
+  - SRC-NCCN-MM-2025
+  - SRC-ESMO-MM-2023
+
+last_reviewed: "2026-04-25"
+notes: >
+  Cardiac toxicity is THE safety signal — baseline ECG + ECHO mandatory;
+  blood pressure control critical (target <140/90 pre-dose); hydration
+  protocol non-negotiable for first 2 cycles. ENDEAVOR / ASPIRE / CANDOR
+  trials demonstrate superior PFS over bortezomib-based regimens but at
+  the cost of higher cardiac AEs. Particularly active in early-relapse
+  / early-PI-exposed setting. Weekly schedule (70 mg/m²) is now
+  preferred over twice-weekly for tolerability without efficacy loss
+  (ARROW trial).

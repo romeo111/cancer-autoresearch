@@ -1,0 +1,96 @@
+id: IND-MM-POST-ASCT-LENALIDOMIDE-MAINTENANCE
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-MM
+  line_of_therapy: 1
+  stage_requirements: ["Post-ASCT consolidation completed", "≥VGPR achieved post-ASCT (or stable disease — still benefits)"]
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-LENALIDOMIDE-MAINTENANCE
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "Maintenance — measured by depth deepening (~30% achieve ≥CR with maintenance vs without)"
+  complete_response: "MRD-negativity conversion in ~25-35% during first 24 months"
+  progression_free_survival: "Median PFS 46 mo (vs 27 mo placebo, CALGB 100104)"
+  overall_survival_5y: "Median OS 113 mo (vs 84 mo placebo, HR 0.72)"
+
+hard_contraindications:
+  - CI-LENALIDOMIDE-PREGNANCY
+red_flags_triggering_alternative:
+  - RF-MM-HIGH-RISK-CYTOGENETICS  # high-risk → consider bortezomib / ixazomib maintenance + lenalidomide doublet
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-IMMUNOGLOBULINS
+  - TEST-SPEP-UPEP
+  - TEST-FREE-LIGHT-CHAINS
+  - TEST-FISH-PANEL
+  - TEST-PREGNANCY
+desired_tests:
+  - TEST-BM-ASPIRATE  # at baseline maintenance + suspected progression
+  - TEST-WHOLE-BODY-MRI
+
+rationale: >
+  Post-ASCT lenalidomide maintenance is standard of care for all-comers
+  (NCCN Cat 1) per CALGB 100104 + IFM 2005-02 — substantial PFS + OS
+  improvement vs placebo. Initiated 90-100 days post-ASCT after count
+  recovery; 10 mg PO daily, escalate to 15 mg if tolerated. Continued
+  indefinitely until progression OR intolerance. Counsel patient on
+  second primary malignancy risk (~5-7% absolute increase, mostly
+  non-melanoma skin + AML/MDS) BEFORE initiation. Standard-track default
+  for post-ASCT maintenance regardless of cytogenetic risk; high-risk
+  cytogenetics may benefit from PI-doublet maintenance (bortezomib +
+  lenalidomide; FORTE / GMMG-HD7 evidence) — separate future Indication.
+
+sources:
+  - source_id: SRC-NCCN-MM-2025
+    position: supports
+    relevant_quote_paraphrase: "Post-ASCT lenalidomide maintenance is recommended Category 1 for all-comers based on CALGB 100104 + IFM 2005-02 PFS and OS benefit"
+  - source_id: SRC-ESMO-MM-2023
+    position: supports
+    relevant_quote_paraphrase: "Lenalidomide post-ASCT maintenance is standard of care; superior PFS + OS demonstrated in randomized trials"
+
+known_controversies:
+  - topic: "Single-agent lenalidomide vs bortezomib-lenalidomide PI-doublet maintenance for high-risk MM"
+    positions:
+      - position: "Lenalidomide alone: largest evidence base; well-tolerated; PFS + OS benefit established"
+        sources: [SRC-NCCN-MM-2025]
+      - position: "Bortezomib + lenalidomide doublet maintenance: improved PFS in high-risk subgroup (FORTE / EMN02)"
+        sources: [SRC-ESMO-MM-2023]
+        evidence_note: "Limited OS data; toxicity higher; access to bortezomib SC sustained for 2-3 years a logistical challenge"
+    our_default: "Lenalidomide alone for standard-risk; bortezomib + lenalidomide doublet considered for high-risk cytogenetics + clinical trial / access feasibility"
+    rationale: "Standard-risk benefits well-defined; high-risk patient should be offered choice"
+
+do_not_do:
+  - "НЕ розпочинати maintenance без обговорення second primary malignancy ризику (skin + AML/MDS — ~5-7% абсолютне збільшення)."
+  - "НЕ пропускати VTE профілактику (aspirin) — IMiD-induced VTE ризик зберігається на довготривалій терапії."
+  - "НЕ призначати без двох методів контрацепції у жінок репродуктивного віку — леналідомід є потужним тератогеном."
+  - "НЕ ескалувати до 15 mg при ANC <1500 або platelets <100K — ризик cumulative cytopenia."
+  - "НЕ продовжувати maintenance при diagnosed second malignancy без переоцінки risk-benefit."
+  - "НЕ забути dose reduce при CrCl 30-60 (10 mg, не ескалувати) і CrCl <30 (5 mg)."
+  - "НЕ припиняти maintenance при чистих стійких відповідях — користь триває роки."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track post-ASCT
+  consolidation. line_of_therapy: 1 reflects "1L pathway" continuation
+  rather than "2nd line" — maintenance is part of the 1L plan in MM.
+  Engine should activate this Indication after ASCT decision tree
+  completes. Bortezomib / ixazomib / lenalidomide-bortezomib doublet
+  alternatives are separate future Indications.

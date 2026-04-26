@@ -1,0 +1,81 @@
+id: DRUG-TECLISTAMAB
+names:
+  preferred: "Teclistamab"
+  ukrainian: "Теклістамаб"
+  english: "Teclistamab"
+  brand_names:
+    - "Tecvayli"
+atc_code: L01FX25
+rxnorm_id: "2640094"
+drug_class: "BCMA × CD3 bispecific T-cell engager (BiTE-class IgG)"
+mechanism: >
+  Humanized IgG4 bispecific antibody binding BCMA (B-cell maturation
+  antigen, expressed on plasma cells + myeloma) on one arm and CD3 on
+  cytotoxic T-cells on the other. Forms immune synapse → T-cell
+  activation, cytokine release + targeted plasma-cell killing
+  independent of TCR specificity. First off-the-shelf bispecific
+  approved for triple-class refractory multiple myeloma.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: false
+    registration_number: null
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-25"
+    notes: "Not registered in Ukraine. Access requires international referral / clinical trial / charitable scheme — out-of-pocket access prohibitively expensive."
+
+typical_dosing: >
+  Step-up dosing required (CRS mitigation): 0.06 mg/kg SC day 1, 0.3
+  mg/kg SC day 4, 1.5 mg/kg SC day 7 — minimum 48h between doses.
+  Full dose: 1.5 mg/kg SC weekly until progression. May transition to
+  every-2-weeks after ≥6 months sustained ≥VGPR (MajesTEC-1 protocol
+  amendment).
+formulations:
+  - "Pre-filled SC vials 10 mg/mL and 90 mg/mL"
+
+absolute_contraindications:
+  - "Active uncontrolled infection"
+  - "Hypersensitivity to teclistamab"
+black_box_warnings:
+  - "Cytokine release syndrome (CRS) — 72% any grade, ~1% Grade ≥3 in MajesTEC-1"
+  - "Neurologic toxicity / ICANS (~14%)"
+  - "Serious infections — Grade ≥3 ~45%; opportunistic + bacterial; hypogammaglobulinemia universal"
+  - "Hepatotoxicity"
+major_interactions:
+  - "Live vaccines contraindicated"
+  - "Concomitant immunosuppressants — additive infection risk"
+common_adverse_events:
+  - "CRS (vast majority during step-up dosing)"
+  - "Hypogammaglobulinemia (universal)"
+  - "Neutropenia, thrombocytopenia, anemia"
+  - "Fatigue"
+  - "Diarrhea, nausea"
+  - "Headache"
+serious_adverse_events:
+  - "Severe infection — leading cause of treatment-related mortality"
+  - "Severe CRS"
+  - "ICANS"
+  - "Hepatotoxicity"
+  - "PML (rare)"
+
+pharmacology:
+  half_life: "~22 days (steady-state); SC bioavailability good"
+
+sources:
+  - SRC-NCCN-MM-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  MajesTEC-1 (Moreau 2022): triple-class refractory MM after ≥3 prior
+  lines (median 5) — ORR 63%, CR 39%, mPFS ~11 mo, mDOR ~22 mo. Approved
+  4L+ triple-class refractory. Hospitalization REQUIRED for step-up
+  doses (CRS observation 48h after each). Tocilizumab + corticosteroids
+  for CRS management. Mandatory PJP + HSV prophylaxis; IVIG
+  supplementation for IgG <400 (universal hypogammaglobulinemia).
+  Bispecifics are substantially more toxic than CAR-T in infection
+  burden — serial infection screening every visit.

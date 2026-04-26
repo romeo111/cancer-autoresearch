@@ -1,0 +1,109 @@
+id: IND-MM-4L-TECLISTAMAB
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-MM
+  line_of_therapy: 4
+  stage_requirements:
+    - "Triple-class refractory (post-PI, post-IMiD, post-anti-CD38)"
+    - "≥3 prior systemic lines"
+    - "Active progressive disease (IMWG criteria)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+    age_min: 18
+
+recommended_regimen: REG-TECLISTAMAB
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~63% (MajesTEC-1)"
+  complete_response: "~39% sCR / CR"
+  progression_free_survival: "Median PFS ~11 mo"
+  overall_survival_5y: "Median OS ~22 mo (mature follow-up)"
+
+hard_contraindications:
+  - CI-ACTIVE-INFECTION-FOR-ALEMTUZUMAB  # any active infection precludes start
+red_flags_triggering_alternative:
+  - RF-MM-INFECTION-SCREENING  # uncontrolled infection burden — must resolve first
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-IMMUNOGLOBULINS
+  - TEST-SPEP-UPEP
+  - TEST-FREE-LIGHT-CHAINS
+  - TEST-FISH-PANEL
+  - TEST-BM-ASPIRATE
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-CMV-SEROLOGY
+  - TEST-EBV-SEROLOGY
+  - TEST-ECHO
+  - TEST-PREGNANCY
+desired_tests:
+  - TEST-WHOLE-BODY-MRI
+
+rationale: >
+  Teclistamab (BCMA × CD3 bispecific) for triple-class refractory
+  multiple myeloma after ≥3 prior lines including PI, IMiD, and
+  anti-CD38 antibody. MajesTEC-1 trial: ORR 63%, CR 39%, mPFS ~11 mo,
+  mOS ~22 mo — substantially better than historical triple-class-
+  refractory outcomes (mOS ~6 mo with conventional therapy).
+  Off-the-shelf (vs CAR-T's manufacturing window) — major operational
+  advantage in rapidly progressive disease. Step-up dosing with
+  inpatient observation REQUIRED (CRS Grade 1-2 in ~70% during step-up).
+  Universal hypogammaglobulinemia → IVIG support throughout.
+  Key safety dimension: severe infection burden — bispecifics produce
+  more prolonged + severe immunosuppression than CAR-T. Ukraine access:
+  not registered; international referral required.
+
+sources:
+  - source_id: SRC-NCCN-MM-2025
+    position: supports
+    relevant_quote_paraphrase: "Teclistamab is recommended for triple-class refractory MM after ≥3 prior lines (Cat 2A), based on MajesTEC-1 trial efficacy"
+  - source_id: SRC-ESMO-MM-2023
+    position: supports
+    relevant_quote_paraphrase: "BCMA-targeting bispecifics (teclistamab, elranatamab) are emerging standard for triple-class refractory MM where CAR-T not available"
+
+known_controversies:
+  - topic: "Teclistamab vs BCMA CAR-T (cilta-cel, ide-cel) for triple-class refractory MM"
+    positions:
+      - position: "Bispecific: off-the-shelf, no manufacturing window, repeated dosing — useful for fast-progressing disease"
+        sources: [SRC-NCCN-MM-2025]
+      - position: "CAR-T: deeper + more durable responses (cilta-cel CARTITUDE-1: ORR 98%, mPFS ~35 mo) — preferred when manufacturing tolerable"
+        sources: [SRC-NCCN-MM-2025]
+        evidence_note: "Cross-trial comparison only; both products active; toxicity profile differs"
+    our_default: "Bispecific (teclistamab) when CAR-T manufacturing not feasible OR fast progression precludes 4-week wait; CAR-T (cilta-cel) preferred for durable remission goal"
+    rationale: "Both modalities require international referral in Ukraine — choice driven by partner-center availability + disease tempo"
+
+do_not_do:
+  - "НЕ розпочинати поза інпатієнт умовами — step-up doses require ≥48h hospital observation для CRS surveillance."
+  - "НЕ пропускати IVIG для IgG <400 — universal hypogammaglobulinemia + інфекційне навантаження є провідною причиною mortality."
+  - "НЕ пропускати PJP + HSV/VZV профілактику — opportunistic infection ризик дуже високий."
+  - "НЕ продовжувати при active uncontrolled infection — пауза до резолюції є обов'язковою."
+  - "НЕ розпочинати без on-site tocilizumab (≥2 дози) для emergency CRS rescue."
+  - "НЕ призначати при baseline ECOG ≥3 — clinical trial виключав; mortality на терапії дуже висока в frail пацієнтів."
+  - "НЕ забувати про live vaccines — протипоказані під час та ≥6 місяців після лікування."
+  - "НЕ підтверджувати план без international referral pathway + funding — препарат недоступний в Україні."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 4L+ option
+  for triple-class refractory MM. Talquetamab (GPRC5D × CD3),
+  elranatamab (BCMA × CD3), cilta-cel + ide-cel CAR-T are alternative
+  modalities — separate future Indications. International referral
+  pathway is dominant access barrier.

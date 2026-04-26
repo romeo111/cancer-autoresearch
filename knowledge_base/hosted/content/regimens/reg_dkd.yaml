@@ -1,0 +1,80 @@
+id: REG-DKD
+name: "Daratumumab + Carfilzomib + Dexamethasone (DKd / D-Kd / Isa-Kd analog), 28-day cycles"
+name_ua: "Даратумумаб + Карфілзоміб + Дексаметазон (DKd), 28-денні цикли"
+alternate_names:
+  - "DKd"
+  - "D-Kd"
+  - "CANDOR regimen"
+  - "Dara-Kd"
+
+components:
+  - drug_id: DRUG-DARATUMUMAB
+    dose: "16 mg/kg IV (or 1800 mg SC fixed dose)"
+    schedule: "Weekly cycles 1-2 (days 1, 8, 15, 22), q2-weekly cycles 3-6, q4-weekly cycle 7+"
+    route: IV
+  - drug_id: DRUG-CARFILZOMIB
+    dose: "20 mg/m² day 1 cycle 1, then 56 mg/m² (or weekly 70 mg/m² alternative — KdW)"
+    schedule: "IV days 1, 2, 8, 9, 15, 16 of each 28-day cycle"
+    route: IV
+  - drug_id: DRUG-DEXAMETHASONE
+    dose: "40 mg (20 mg if age >75 or frail)"
+    schedule: "PO days 1, 8, 15, 22 of each 28-day cycle"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Until progression or unacceptable toxicity"
+toxicity_profile: severe
+
+premedication:
+  - "Pre-daratumumab: methylprednisolone 100 mg IV (first 2 doses, may reduce later) + diphenhydramine + acetaminophen + montelukast"
+  - "IV hydration 250-500 mL pre + post carfilzomib (cycle 1-2)"
+  - "Acyclovir 400 mg PO BID (HSV/VZV prophylaxis)"
+  - "Aspirin 81 mg PO daily (VTE — IMiD discontinued in DKd, but daratumumab + steroid ↑ VTE risk)"
+mandatory_supportive_care:
+  - SUP-HSV-PROPHYLAXIS
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-MM-VTE-PROPHYLAXIS
+  - SUP-MM-BONE-PROTECTION
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Cardiac AE (new HF, arrhythmia, dyspnea Grade ≥2)"
+    modification: "Hold carfilzomib; cardiology consult; ECHO; resume at reduced dose 27→20 mg/m² OR discontinue"
+    rationale: "Carfilzomib cardiac toxicity (~5-7%) — early recognition + cessation prevents progression"
+    source_refs: [SRC-NCCN-MM-2025, SRC-ESMO-MM-2023]
+  - condition: "Hypertension Grade ≥2 (SBP ≥160 OR DBP ≥100)"
+    modification: "Optimize antihypertensives BEFORE next dose; target <140/90 pre-infusion"
+    source_refs: [SRC-NCCN-MM-2025]
+  - condition: "Acute kidney injury / TLS"
+    modification: "Hold carfilzomib; aggressive hydration + rasburicase if uric acid >7.5; resume at reduced dose"
+  - condition: "Daratumumab infusion reaction"
+    modification: "Slow infusion rate; additional steroid premed; switch to SC formulation if available"
+  - condition: "Grade 3-4 thrombocytopenia / neutropenia"
+    modification: "Hold; G-CSF if neutropenic; resume at reduced dose"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: >
+    Daratumumab + carfilzomib both registered, NEITHER reimbursed via
+    НСЗУ for myeloma. Dexamethasone reimbursed. Combination is an
+    out-of-pocket / charitable / clinical-trial regimen — funding pathway
+    must be verified BEFORE plan finalization.
+
+sources:
+  - SRC-NCCN-MM-2025
+  - SRC-ESMO-MM-2023
+
+last_reviewed: "2026-04-25"
+notes: >
+  CANDOR trial (Dimopoulos 2020): in r/r MM after 1-3 prior lines, DKd
+  (KdW-like schedule) vs Kd alone improved mPFS (28.6 vs 15.2 mo, HR
+  0.59); 2-year PFS ~62% vs 41%. Provides effective PI-switch + anti-CD38
+  add-on for patients progressing on bortezomib-based 1L (VRd or D-VRd).
+  Particularly useful when bortezomib neuropathy precludes PI re-challenge.
+  Cardiac toxicity is the key safety signal; baseline + serial ECHO + BP
+  monitoring mandatory. Isatuximab + carfilzomib + dex (Isa-Kd, IKEMA
+  trial) is a near-equivalent alternative — separate Regimen entity if
+  isatuximab access available. KRd (carfilzomib + lenalidomide + dex,
+  ASPIRE trial) is the alternative if patient is len-naive AND PI-naive
+  in earlier line.
