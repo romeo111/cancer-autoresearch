@@ -1,0 +1,95 @@
+{
+  "patient_id": "CML-BC-PRESENT-001",
+  "comment": "Synthetic CML presenting de novo in myeloid blast crisis (BM blasts 38%, additional clonal evolution +8 / iAMP21). Age 44, ECOG 2. Engine should branch to high-dose imatinib OR ponatinib + AML-style induction + urgent alloHCT bridge (NCCN CML-7). 3rd CML fixture (atypical de novo advanced phase beyond chronic-phase newdx and T315I-CP).",
+
+  "disease": {
+    "id": "DIS-CML",
+    "icd_o_3_morphology": "9863/3"
+  },
+  "line_of_therapy": 1,
+
+  "biomarkers": {
+    "BCR-ABL1": "positive_p210_e14a2"
+  },
+
+  "demographics": {
+    "age": 44,
+    "sex": "male",
+    "ethnicity": "white_european",
+    "weight_kg": 82,
+    "height_cm": 180,
+    "ecog": 2,
+    "fit_for_intensive_chemo": true,
+    "fit_for_transplant": true
+  },
+
+  "findings": {
+    "wbc_k_ul": 165,
+    "platelets_k_ul": 88,
+    "hemoglobin_g_dl": 8.4,
+    "blast_percent_pb": 28,
+    "blast_percent_bm": 38,
+    "basophil_percent_pb": 12,
+    "splenomegaly_cm_below_costal": 18,
+    "philadelphia_chromosome_t9_22": true,
+    "bcr_abl1_p210": true,
+    "bcr_abl1_p190": false,
+    "bcr_abl1_is_percent": 92.0,
+    "phase": "blast_crisis",
+    "cml_phase": "blast_crisis",
+    "blast_lineage": "myeloid",
+    "additional_chromosomal_abnormalities": true,
+    "aca_details": ["+8", "double Ph"],
+    "tp53_mutation": false,
+    "bcr_abl1_kinase_domain_mutation": null,
+    "t315i_mutation": false,
+    "active_uncontrolled_infection": false,
+    "tumor_lysis_risk": "high",
+    "cns_disease": false,
+    "lvef_percent": 58,
+    "qtc_ms": 432,
+    "creatinine_mg_dl": 1.1,
+    "bilirubin_mg_dl": 0.6,
+    "lipase_u_l": 38,
+    "amylase_u_l": 56,
+    "fasting_glucose_mg_dl": 96,
+    "lipid_panel_dyslipidemia": false,
+    "vascular_disease_history": false,
+    "pleural_effusion_history": false,
+    "prior_arterial_event": false,
+    "cardiovascular_risk_factors": [],
+    "blood_pressure_systolic": 132,
+    "ldl_mg_dl": 118,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative",
+    "hcv_ab": "negative",
+    "hiv_ag_ab": "negative"
+  },
+
+  "imaging_summary": "Abdomen US: massive splenomegaly 22 cm; no focal hepatic lesions; PET-CT: diffuse marrow uptake.",
+
+  "comorbidities": [],
+
+  "patient_preferences": {
+    "transplant_acceptable": true,
+    "donor_search_status": "sibling_typing_initiated"
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Chronic Myeloid Leukemia presenting in myeloid blast crisis (BM blasts 38%, ACA: +8, double Ph), BCR-ABL1 p210 e14a2",
+        "icd_o_3": "9863/3",
+        "icd_10": "C92.1",
+        "who_classification_5th_ed": "Chronic myeloid leukemia, BCR::ABL1-positive — blast phase"
+      },
+      "elts_risk": "high",
+      "fitness_assessment": {
+        "ecog": 2,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true,
+        "rationale": "De novo BC → urgent: high-dose imatinib 800 mg or ponatinib 45 mg + AML-style induction (e.g. 7+3 or FLAG-IDA) + immediate donor search + alloHCT consolidation"
+      }
+    }
+  }
+}
