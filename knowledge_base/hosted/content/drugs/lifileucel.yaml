@@ -1,0 +1,112 @@
+id: DRUG-LIFILEUCEL
+names:
+  preferred: "Lifileucel"
+  ukrainian: "Ліфілеуцел"
+  english: "Lifileucel"
+  brand_names: ["Amtagvi"]
+atc_code: L01XL05
+rxnorm_id: null
+drug_class: "Autologous tumor-infiltrating lymphocyte (TIL) cellular therapy"
+mechanism: >
+  Patient-specific autologous TIL product: tumor specimen (~1.5 cm³)
+  is excised, lymphocytes are extracted and expanded ex vivo over
+  ~22 days using IL-2. After non-myeloablative lymphodepletion
+  (cyclophosphamide + fludarabine), expanded TILs (target dose
+  7.5 × 10⁹ to 72 × 10⁹ viable cells) are reinfused as a single IV
+  bolus, followed by short-course high-dose bolus IL-2 (aldesleukin,
+  up to 6 doses). The polyclonal TIL pool is enriched for tumor-
+  reactive clones, restoring antitumor immunity in disease that has
+  escaped checkpoint blockade. First cellular therapy approved for
+  any solid tumor.
+
+regulatory_status:
+  fda:
+    approved: true
+    year_first_approval: 2024
+    indications_brief:
+      - "Unresectable/metastatic melanoma after anti-PD-1 (and BRAFi+MEKi if BRAF V600+) — accelerated approval"
+  ema:
+    approved: false
+  ukraine_registration:
+    registered: false
+    registration_number: null
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-27"
+    notes: "Не зареєстрований в Україні станом на 2026-04. Cellular therapy: pathway = international referral до spec center (US, EU pilot sites). НСЗУ не покриває; loft cost ~USD 515K + lymphodepletion + IL-2 + ICU."
+
+typical_dosing: >
+  Single IV infusion of 7.5 × 10⁹ to 72 × 10⁹ viable autologous TIL
+  cells after lymphodepletion (cyclophosphamide 60 mg/kg/day × 2 days,
+  then fludarabine 25 mg/m²/day × 5 days). Followed by aldesleukin
+  (IL-2) 600,000 IU/kg IV q8-12h, max 6 doses, started within 24 h
+  of TIL infusion. ICU-level monitoring during IL-2 phase.
+
+formulations:
+  - "Cell suspension in cryopreserved infusion bag (patient-specific; manufactured at central US facility ~22-day window)"
+
+absolute_contraindications:
+  - "ECOG ≥2 / poor performance status (cannot tolerate IL-2)"
+  - "Active CNS metastases (untreated)"
+  - "Significant cardiac dysfunction (LVEF <45% or untreated arrhythmia) — IL-2 contraindication"
+  - "Significant pulmonary dysfunction (FEV1 <60% or DLCO <60%) — IL-2 contraindication"
+  - "Active uncontrolled infection"
+  - "Need for chronic systemic immunosuppression"
+  - "Pregnancy"
+
+black_box_warnings:
+  - "Treatment-related mortality (TRM) — fatal events reported during lymphodepletion + IL-2 + early post-infusion period (capillary leak, cytopenias, infection, intracranial hemorrhage)"
+  - "Prolonged severe cytopenia — risk of life-threatening infection"
+  - "Severe infection (sepsis, opportunistic) post-lymphodepletion"
+  - "Capillary leak / cardiopulmonary toxicity from IL-2 — requires ICU"
+  - "Hemorrhage in setting of prolonged thrombocytopenia"
+
+major_interactions:
+  - "Systemic corticosteroids — abrogate TIL function; AVOID before and after infusion (use only for life-threatening irAE)"
+  - "Other immunosuppressants — abrogate efficacy"
+  - "G-CSF — used as supportive care; not contraindicated"
+
+common_adverse_events:
+  - "Chills (~80%)"
+  - "Pyrexia (~75%)"
+  - "Fatigue (~60%)"
+  - "Tachycardia (~60%)"
+  - "Diarrhea (~50%)"
+  - "Febrile neutropenia (~55%)"
+  - "Hypotension (~55%; from IL-2)"
+  - "Edema (~40%)"
+  - "Nausea (~45%)"
+  - "Rash (~40%)"
+  - "Hypoxia (~40%)"
+
+serious_adverse_events:
+  - "Treatment-related mortality (~7.5% overall TRM in C-144-01; mostly during lymphodepletion + IL-2 phase)"
+  - "Capillary leak syndrome with hypotension, hypoxia, oliguria (from IL-2)"
+  - "Severe cytopenia / prolonged pancytopenia"
+  - "Severe infection / sepsis"
+  - "Cardiac arrhythmia (atrial fibrillation common with IL-2)"
+  - "Acute kidney injury"
+  - "Intracranial hemorrhage"
+  - "Respiratory failure"
+
+pharmacology: {notes: "Cellular product; pharmacokinetics not applicable"}
+
+sources:
+  - SRC-NCCN-MELANOMA-2025
+  - SRC-C14401-CHESNEY-2024
+
+last_reviewed: "2026-04-27"
+reviewers: []
+notes: >
+  STUB — promoted from CSD-4 list for melanoma 3L+ TIL pathway. First
+  cellular therapy for a solid tumor (FDA accelerated approval
+  2024-02-16, Iovance Amtagvi). C-144-01 pooled (n=153): ORR 31.4%,
+  mDoR not reached at 27.6 mo, mOS 13.9 mo — durable responses in a
+  population with otherwise grim post-IO + post-targeted prognosis.
+  Single-infusion treatment intent (no maintenance). Specialty-center
+  pathway: tumor procurement → 22-day central manufacturing →
+  lymphodepletion → TIL infusion → 6 doses IL-2 → 4-week recovery.
+  Ukraine access: international referral only; no domestic capability;
+  no NSZU reimbursement. Treatment-related mortality non-trivial
+  (~7%) — patient selection critical (ECOG ≤1, organ function for
+  IL-2, no active infection).

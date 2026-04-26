@@ -1,0 +1,89 @@
+id: DRUG-BINIMETINIB
+names:
+  preferred: "Binimetinib"
+  ukrainian: "Бініметиніб"
+  english: "Binimetinib"
+  brand_names: ["Mektovi"]
+atc_code: L01EE03
+rxnorm_id: "1996073"
+drug_class: "MEK1/MEK2 inhibitor (oral)"
+mechanism: >
+  Selective ATP-uncompetitive inhibitor of MEK1/MEK2 within the
+  RAF-MEK-ERK MAPK pathway. Pairs with BRAF inhibitor encorafenib
+  (COMBI-style doublet) to suppress paradoxical MAPK reactivation
+  in BRAF V600-mutant tumors. Approved with encorafenib for
+  unresectable/metastatic BRAF V600E/K melanoma (COLUMBUS) and BRAF
+  V600E mCRC (BEACON triplet investigational; doublet currently
+  preferred).
+
+regulatory_status:
+  fda:
+    approved: true
+    year_first_approval: 2018
+    indications_brief:
+      - "Unresectable/metastatic BRAF V600E/K melanoma (with encorafenib)"
+  ema:
+    approved: true
+    year_first_approval: 2018
+  ukraine_registration:
+    registered: true
+    registration_number: null
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-27"
+    notes: "Зареєстрований для меланоми BRAF V600 (з енкорафенібом). НСЗУ не покриває станом на 2026-04 — out-of-pocket / charity. Меланома 1L — переважно dabrafenib+trametinib (ширше доступний)."
+typical_dosing: >
+  Melanoma (with encorafenib 450 mg PO daily): 45 mg PO BID continuous,
+  with or without food. Dose reduce to 30 mg BID for Grade 3 toxicity.
+
+formulations:
+  - "Tablets 15 mg"
+
+absolute_contraindications:
+  - "Severe hypersensitivity to binimetinib"
+  - "Pregnancy (teratogenic)"
+
+black_box_warnings: []
+
+major_interactions:
+  - "UGT1A1 substrate — caution with strong UGT1A1 inhibitors"
+  - "Additive hepatotoxicity with concomitant hepatotoxins"
+
+common_adverse_events:
+  - "Fatigue (~30%)"
+  - "Nausea (~25%)"
+  - "Diarrhea (~35%)"
+  - "Vomiting"
+  - "Increased CK (~60%)"
+  - "Hypertension (~15%)"
+  - "Peripheral edema"
+  - "Acneiform rash (less than vemurafenib mono)"
+
+serious_adverse_events:
+  - "Cardiomyopathy / LVEF decline (~7%; baseline + serial ECHO required)"
+  - "Venous thromboembolism (~6%; PE reported)"
+  - "Hemorrhage (~17%; GI/CNS rare)"
+  - "Ocular toxicity — retinal vein occlusion, RPED, uveitis (baseline + symptom-driven ophthalmology)"
+  - "Interstitial lung disease / pneumonitis (rare)"
+  - "Hepatotoxicity (Grade 3-4 LFT elevations ~6%)"
+  - "Rhabdomyolysis (very rare)"
+
+pharmacology:
+  half_life_hours: 3.5
+  metabolism: "UGT1A1 glucuronidation; minor CYP1A2/2C19/3A4"
+  clearance: "biliary > renal"
+
+sources:
+  - SRC-NCCN-MELANOMA-2025
+  - SRC-ESMO-MELANOMA-2024
+  - SRC-COLUMBUS-DUMMETT-2018
+
+last_reviewed: "2026-04-27"
+reviewers: []
+notes: >
+  STUB — promoted from CSD-4 list for melanoma 2L+ post-IO BRAFi+MEKi
+  pathway. COLUMBUS phase 3: encorafenib+binimetinib mPFS 14.9 vs
+  vemurafenib 7.3 mo (HR 0.54); 5-y OS 33.6 vs 16.9 mo. Better
+  tolerated than vemurafenib (less photosensitivity) and dabrafenib
+  +trametinib (less pyrexia). Monitoring: baseline + q2-3 mo ECHO,
+  baseline + symptom-driven ophthalmology, monthly LFT/CK.

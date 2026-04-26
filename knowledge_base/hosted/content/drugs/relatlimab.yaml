@@ -1,0 +1,94 @@
+id: DRUG-RELATLIMAB
+names:
+  preferred: "Relatlimab"
+  ukrainian: "Релатлімаб"
+  english: "Relatlimab"
+  brand_names: ["Opdualag (fixed-dose with nivolumab)"]
+atc_code: L01FX26
+rxnorm_id: "2645233"
+drug_class: "Anti-LAG-3 fully human IgG4 monoclonal antibody (immune checkpoint inhibitor)"
+mechanism: >
+  First-in-class fully human IgG4 monoclonal antibody binding
+  lymphocyte-activation gene 3 (LAG-3, CD223) — a co-inhibitory
+  receptor on activated T and NK cells. LAG-3 blockade restores
+  effector function in TILs and synergizes with PD-1 blockade.
+  Co-formulated 1:3 ratio (relatlimab 160 mg + nivolumab 480 mg) as
+  Opdualag — only fixed-dose IO doublet on the market for melanoma.
+
+regulatory_status:
+  fda:
+    approved: true
+    year_first_approval: 2022
+    indications_brief:
+      - "Unresectable/metastatic melanoma 1L (Opdualag fixed-dose with nivolumab)"
+  ema:
+    approved: true
+    year_first_approval: 2022
+  ukraine_registration:
+    registered: false
+    registration_number: null
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-27"
+    notes: "Не зареєстрований в Україні станом на 2026-04. Pathway: named-patient import / clinical trial. НСЗУ не покриває."
+
+typical_dosing: >
+  Opdualag fixed dose: relatlimab 160 mg + nivolumab 480 mg IV q4w
+  (over 30 min). Continue until progression or unacceptable toxicity.
+
+formulations:
+  - "IV solution: fixed-dose co-formulation 160 mg relatlimab + 480 mg nivolumab in 20 mL vial (Opdualag)"
+
+absolute_contraindications:
+  - "Severe hypersensitivity to relatlimab or nivolumab"
+  - "Active autoimmune disease on systemic immunosuppression (relative)"
+  - "Pregnancy"
+
+black_box_warnings:
+  - "Severe and fatal immune-mediated adverse reactions (any organ)"
+
+major_interactions:
+  - "Systemic corticosteroids (>10 mg/d prednisone) before initiation — may reduce efficacy; acceptable for irAE management"
+  - "Other immunosuppressants — may reduce efficacy"
+  - "Live vaccines — avoid during and up to 3 months after"
+
+common_adverse_events:
+  - "Fatigue (~40%)"
+  - "Musculoskeletal pain (~30%)"
+  - "Pruritus / rash (~25%)"
+  - "Diarrhea (~20%)"
+  - "Hypothyroidism (~17%)"
+  - "Headache (~15%)"
+  - "Decreased appetite (~15%)"
+
+serious_adverse_events:
+  - "Immune-mediated myocarditis (~1.7%; can be fatal — Grade 3-4 cases reported, higher than nivo mono)"
+  - "Immune-mediated pneumonitis (~3%)"
+  - "Immune-mediated hepatitis (~6%)"
+  - "Immune-mediated colitis (~7%)"
+  - "Immune-mediated endocrinopathies — adrenal insufficiency, hypophysitis, T1DM"
+  - "Immune-mediated nephritis (~2%)"
+  - "Severe infusion reactions (~7%)"
+  - "Severe dermatologic reactions — SJS, TEN"
+
+pharmacology:
+  half_life_hours: 264
+  metabolism: "non-CYP; antibody catabolism"
+
+sources:
+  - SRC-NCCN-MELANOMA-2025
+  - SRC-ESMO-MELANOMA-2024
+  - SRC-RELATIVITY-047-TAWBI-2022
+
+last_reviewed: "2026-04-27"
+reviewers: []
+notes: >
+  STUB — promoted from CSD-4 list for melanoma IO doublet alternative.
+  RELATIVITY-047: nivolumab + relatlimab vs nivolumab mono in 1L
+  melanoma — mPFS 10.1 vs 4.6 mo (HR 0.75). Major selling point:
+  Grade 3-4 irAE 18.9% vs ipi+nivo ~50% — substantially better
+  tolerated. Note: trial was 1L; positioned in our 2L+ algorithm as
+  IO-naive alternative for patients who received 1L BRAFi+MEKi (and
+  so have not yet exhausted PD-1/LAG-3 axis), particularly when
+  ipi-grade irAE risk is unacceptable. Myocarditis surveillance
+  (baseline + serial troponin, ECG with symptoms) mandatory.
