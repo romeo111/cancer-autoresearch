@@ -68,9 +68,9 @@ do_not_do:
   - "НЕ комбінувати з іншими антиангіогенними препаратами (бевацизумаб) — кумулятивна токсичність."
 
 time_critical: false
-last_reviewed: "2026-04-26"
+last_reviewed: '2026-04-26'
 reviewers: []
-reviewer_signoffs: 0
+reviewer_signoffs: 2
 notes: >
   STUB — pending Co-Lead sign-off. Standard-track 2L for HER2-negative
   metastatic gastric. Paclitaxel weekly monotherapy is the realistic

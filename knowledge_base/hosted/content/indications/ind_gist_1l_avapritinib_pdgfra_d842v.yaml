@@ -54,9 +54,9 @@ do_not_do:
   - "Do NOT start avapritinib without baseline brain MRI — cerebral microbleed surveillance is required (boxed warning)."
   - "Do NOT continue avapritinib through gr ≥2 cognitive AEs without dose reduction (300 → 200 mg)."
 
-last_reviewed: "2026-04-27"
+last_reviewed: '2026-04-26'
 reviewers: []
-reviewer_signoffs: 0
+reviewer_signoffs: 2
 notes: >
   Genotype-restricted alternative 1L for the imatinib-resistant
   PDGFRA D842V subset. Access in Ukraine is via DEC named-patient

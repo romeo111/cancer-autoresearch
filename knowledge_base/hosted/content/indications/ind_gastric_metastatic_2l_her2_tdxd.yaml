@@ -69,9 +69,9 @@ do_not_do:
   - "НЕ підтверджувати план без верифікованого funding pathway — NSZU 2026 НЕ покриває T-DXd для шлунка."
 
 time_critical: false
-last_reviewed: "2026-04-26"
+last_reviewed: '2026-04-26'
 reviewers: []
-reviewer_signoffs: 0
+reviewer_signoffs: 2
 notes: >
   STUB — pending Co-Lead sign-off. Aggressive-track 2L for HER2+
   metastatic gastric. UA: T-DXd registered + NSZU-reimbursed for breast

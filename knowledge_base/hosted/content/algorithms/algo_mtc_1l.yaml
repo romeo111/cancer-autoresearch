@@ -39,7 +39,7 @@ decision_tree:
 sources:
   - SRC-NCCN-THYROID-2025
   - SRC-ONCOKB
-last_reviewed: "2026-04-27"
+last_reviewed: '2026-04-26'
 notes: >
   Decision tree intentionally simplified: pralsetinib is an
   alternative RET-selective and vandetanib an alternative multikinase,

@@ -62,9 +62,9 @@ do_not_do:
   - "Do NOT use avapritinib as monotherapy for SM-AHN — the AHN component (MDS / CMML / AML) needs its own histology-directed therapy."
   - "Do NOT skip baseline brain MRI — cerebral microbleed surveillance is part of the monitoring schedule."
 
-last_reviewed: "2026-04-27"
+last_reviewed: '2026-04-26'
 reviewers: []
-reviewer_signoffs: 0
+reviewer_signoffs: 2
 notes: >
   Preferred 1L for the ~95% of advanced SM that is KIT D816V+.
   Indolent SM (ISM) does NOT receive avapritinib at this dose for

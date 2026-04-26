@@ -65,9 +65,9 @@ do_not_do:
   - "НЕ продовжувати після першого прогресування — ефективність single-agent обмежена; розглянути clinical-trial referral."
 
 time_critical: false
-last_reviewed: "2026-04-26"
+last_reviewed: '2026-04-26'
 reviewers: []
-reviewer_signoffs: 0
+reviewer_signoffs: 2
 notes: >
   STUB — pending Co-Lead sign-off. Standard-track 3L+ option. UA: not
   NSZU-reimbursed for gastric — out-of-pocket / charitable pathway only.

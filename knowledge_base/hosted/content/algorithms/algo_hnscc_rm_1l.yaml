@@ -37,7 +37,7 @@ decision_tree:
 
 sources:
   - SRC-NCCN-HNSCC-2025
-last_reviewed: "2026-04-27"
+last_reviewed: '2026-04-26'
 notes: >
   CPS <1 R/M HNSCC ideally routes to EXTREME (cetuximab + 5-FU +
   platinum) or chemo-IO with attenuated OS benefit; explicit

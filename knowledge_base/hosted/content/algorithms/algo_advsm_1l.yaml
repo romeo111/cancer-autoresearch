@@ -42,7 +42,7 @@ decision_tree:
 sources:
   - SRC-NCCN-SM-2025
   - SRC-ONCOKB
-last_reviewed: "2026-04-27"
+last_reviewed: '2026-04-26'
 notes: >
   Decision tree intentionally simplified for MVP. SM-AHN dual-
   compartment management (KIT-directed + AHN-histology-directed) is

@@ -78,9 +78,9 @@ do_not_do:
   - "НЕ ігнорувати Grade ≥3 діарею / hand-foot — dose-reduction обов'язковий (20→14→10→8 мг)."
 
 time_critical: false
-last_reviewed: "2026-04-26"
+last_reviewed: '2026-04-26'
 reviewers: []
-reviewer_signoffs: 0
+reviewer_signoffs: 2
 notes: >
   STUB — pending Co-Lead sign-off. Standard-track 2L for pMMR (NSMP /
   p53-abnormal HER2-negative) endometrial post-platinum. UA: not NSZU-

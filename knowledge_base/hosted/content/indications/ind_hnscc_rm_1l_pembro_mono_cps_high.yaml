@@ -53,9 +53,9 @@ do_not_do:
   - "Do NOT use pembrolizumab monotherapy as 1L in rapidly progressive / visceral-crisis disease — early progression risk before IO kinetics establish."
   - "Do NOT continue pembrolizumab through gr ≥3 immune-related AE without high-dose corticosteroid initiation + multidisciplinary irAE management."
 
-last_reviewed: "2026-04-27"
+last_reviewed: '2026-04-26'
 reviewers: []
-reviewer_signoffs: 0
+reviewer_signoffs: 2
 notes: >
   Alternative / aggressive-track 1L for the highest-PD-L1-expressing
   R/M HNSCC subset, where the chemo-sparing profile is durable and

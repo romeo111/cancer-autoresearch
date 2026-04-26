@@ -47,7 +47,7 @@ decision_tree:
 sources:
   - SRC-NCCN-GIST-2025
   - SRC-ONCOKB
-last_reviewed: "2026-04-27"
+last_reviewed: '2026-04-26'
 notes: >
   Decision tree intentionally simplified for MVP: KIT/PDGFRA-WT
   (SDH-deficient or NF1-mutant) GIST is routed to imatinib as the

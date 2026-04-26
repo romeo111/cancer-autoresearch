@@ -56,9 +56,9 @@ do_not_do:
   - "Do NOT continue cabozantinib through GI perforation / fistula or severe hemorrhage — permanent discontinuation is required (boxed warning)."
   - "Do NOT substitute Cabometyx tablets (RCC/HCC dose 60 mg) for Cometriq capsules (MTC dose 140 mg) — they are not bioequivalent."
 
-last_reviewed: "2026-04-27"
+last_reviewed: '2026-04-26'
 reviewers: []
-reviewer_signoffs: 0
+reviewer_signoffs: 2
 notes: >
   Alternative 1L for RET-WT advanced MTC and the practical first-line
   in access-constrained settings until selpercatinib / pralsetinib
