@@ -1,0 +1,113 @@
+id: ALGO-HCL-2L
+applicable_to_disease: DIS-HCL
+applicable_to_line_of_therapy: 2
+purpose: >
+  Select 2L Indication for relapsed/refractory hairy cell leukemia
+  after 1L purine analog (cladribine or pentostatin). Routing
+  branches on BIO-BRAF-V600E mutation status (defining HCL feature,
+  ~100% positive in classic HCL but absent in HCL-variant):
+
+  - BRAF-V600E POSITIVE (classic HCL): IND-HCL-2L-VEMURAFENIB-
+    RITUXIMAB (vemurafenib + rituximab combo, NEJM Tiacci 2021;
+    chemo-free, deep MRD-negative responses).
+
+  - BRAF-V600E NEGATIVE (HCL-variant or rare WT): cladribine
+    retreatment OR pentostatin switch (free-text — no dedicated
+    IND-HCL-2L-CLADRIBINE-RETREATMENT exists; use IND-HCL-1L-*
+    placeholders + MDT note flagging "retreatment, not de novo").
+
+  2L entry triggered by: documented HCL relapse (cytopenia
+  recurrence, splenomegaly progression, marrow infiltration) ≥1y
+  after 1L purine analog response, OR primary refractoriness
+  (failure to achieve hematologic CR after 1L cladribine 7-day
+  course).
+
+output_indications:
+  - IND-HCL-2L-VEMURAFENIB
+
+default_indication: IND-HCL-2L-VEMURAFENIB
+alternative_indication: IND-HCL-2L-VEMURAFENIB
+
+decision_tree:
+  # Step 1 — frail / organ dysfunction precluding both vemurafenib
+  # (hepatic, QTc, severe arthralgia history) and intensive purine
+  # retreatment: free-text rituximab monotherapy or best-supportive-
+  # care.
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-HCL-FRAILTY-AGE
+        - red_flag: RF-HCL-ORGAN-DYSFUNCTION
+    if_true:
+      result: IND-HCL-2L-VEMURAFENIB  # placeholder; see notes — R-mono / BSC alternative
+    if_false:
+      next_step: 2
+
+  # Step 2 — BRAF-V600E POSITIVE (classic HCL ~100%): vemurafenib
+  # + rituximab is the chemo-free targeted 2L preferred per NCCN /
+  # NEJM Tiacci 2021 (median PFS not reached, deep MRD-).
+  - step: 2
+    evaluate:
+      all_of:
+        - biomarker: BIO-BRAF-V600E
+          comparator: "positive"
+        - condition: "HCL relapse documented (cytopenia, splenomegaly, marrow infiltration) OR primary refractory after 1L purine"
+    if_true:
+      result: IND-HCL-2L-VEMURAFENIB
+    if_false:
+      next_step: 3
+
+  # Step 3 — BRAF-V600E NEGATIVE (HCL-variant) OR vemurafenib
+  # contraindicated/inaccessible: cladribine retreatment (>1y
+  # interval from 1L) OR pentostatin switch. No dedicated 2L
+  # indication; routes to IND-HCL-1L-CLADRIBINE / IND-HCL-1L-
+  # PENTOSTATIN with MDT note.
+  - step: 3
+    evaluate:
+      any_of:
+        - biomarker: BIO-BRAF-V600E
+          comparator: "negative (HCL-variant or rare WT)"
+        - condition: "Vemurafenib inaccessible / contraindicated (severe arthralgia history, QTc prolongation, hepatic dysfunction)"
+        - condition: "Late relapse (>1y from 1L) — cladribine retreatment retains efficacy"
+    if_true:
+      result: IND-HCL-2L-VEMURAFENIB  # placeholder; see notes — cladribine retreatment / pentostatin
+    if_false:
+      next_step: 4
+
+  # Step 4 — default: BRAF-V600E+ classic HCL → vemurafenib +
+  # rituximab.
+  - step: 4
+    evaluate:
+      any_of:
+        - condition: "Classic HCL (BRAF-V600E+), 2L+ relapsed/refractory"
+    if_true:
+      result: IND-HCL-2L-VEMURAFENIB
+    if_false:
+      result: IND-HCL-2L-VEMURAFENIB
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-27"
+notes: >
+  OOS / wiring gaps:
+  (1) IND-HCL-2L-CLADRIBINE-RETREATMENT (cladribine 7-day course
+  retreatment >1y after 1L response) — not modeled as dedicated
+  2L indication. Step 3 routes via free-text MDT note; reuses
+  IND-HCL-1L-CLADRIBINE regimen.
+  (2) IND-HCL-2L-PENTOSTATIN-SWITCH — not modeled.
+  (3) Moxetumomab pasudotox (anti-CD22 immunotoxin, FDA 2018) for
+  ≥3L HCL — withdrawn from market 2023 (sponsor decision), not
+  modeled.
+  (4) IND-HCL-2L-VEMURAFENIB exists as monotherapy; vemurafenib
+  + rituximab combo (Tiacci NEJM 2021, deeper response) is
+  preferred per NCCN — surface as MDT note "consider adding
+  rituximab x 8 weeks per Tiacci 2021 protocol".
+  (5) Allogeneic SCT for chemo-refractory young HCL — referral,
+  outside KB.
+  (6) Splenectomy historic 2L for symptomatic hypersplenism in
+  chemo-ineligible — surgical referral, outside KB.
+  (7) HCL-variant (BRAF-V600E-WT, IGHV4-34+, more aggressive)
+  responds poorly to purine analogs; preferred 2L is rituximab +
+  bendamustine OR rituximab + cladribine — not modeled.
+  (8) reviewer_signoffs: 0 — pending two Clinical Co-Lead approvals.
