@@ -1,0 +1,18 @@
+{
+  "patient_id": "ATLL-SMOLD-001",
+  "comment": "Indolent smoldering ATLL: mild lymphocytosis, asymptomatic skin lesions, no organ dysfunction, normal LDH. Engine should select AZT + IFN-α 1L (indolent track).",
+  "disease": {"icd_o_3_morphology": "9827/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {},
+  "demographics": {"age": 64, "sex": "male", "ecog": 0},
+  "findings": {
+    "htlv1_serology": "positive",
+    "shimoyama_subtype": "smoldering",
+    "lymphocyte_count": 5.5,
+    "ldh_uln_multiple": 0.9,
+    "calcium_corrected_mg_dl": 9.4,
+    "skin_lesions": true,
+    "hepatosplenomegaly": false,
+    "lvef_percent": 60
+  }
+}

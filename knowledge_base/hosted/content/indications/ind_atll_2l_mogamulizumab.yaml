@@ -1,0 +1,99 @@
+id: IND-ATLL-2L-MOGAMULIZUMAB
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-ATLL
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory aggressive ATLL after CHOEP-based ± mLSG15 induction"
+    - "Or relapsed indolent ATLL after AZT+IFN-α"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-MOGAMULIZUMAB
+concurrent_therapy: []
+followed_by:
+  - "AlloSCT consolidation in fit responders — only curative path for aggressive ATLL"
+
+evidence_level: high  # Ishida 2012 phase 2; FDA-approved for r/r ATLL
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~50% (Ishida 2012 phase 2; r/r ATLL)"
+  complete_response: "~30%"
+  progression_free_survival: "Median PFS ~5 months without alloSCT consolidation"
+  overall_survival_5y: "<10% chemo-only; ~25-30% if successful bridge to alloSCT in CR"
+
+hard_contraindications: []
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-HTLV1-SEROLOGY
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-FLOW-CYTOMETRY  # CCR4 expression confirmation
+  - TEST-PET-CT
+  - TEST-CECT-CAP
+  - TEST-ECHO
+  - TEST-PREGNANCY
+desired_tests:
+  - TEST-NGS-LYMPHOID-PANEL
+
+rationale: >
+  Mogamulizumab (anti-CCR4) — disease-defining antibody for ATLL
+  (CCR4 expressed in essentially all ATLL clones, often very bright).
+  Ishida 2012 phase 2 in r/r ATLL: ORR 50%, CR 31%, FDA-approved for
+  r/r ATLL. Distinct mechanism (ADCC vs CCR4+ Treg-like clone) from
+  cytotoxic chemotherapy. Used as bridge to alloSCT in fit fit
+  responders — sustained response without consolidation uncommon
+  given aggressive natural history. Black-box warning: severe GVHD
+  if alloSCT performed within 50 days of last mogamulizumab dose —
+  mandatory wash-out period required.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "Mogamulizumab is Category 1 for r/r ATLL after prior systemic therapy; bridge to alloSCT in fit responders"
+  - source_id: SRC-ESMO-PTCL-2024
+    position: supports
+    relevant_quote_paraphrase: "Mogamulizumab is preferred 2L+ option for r/r ATLL given universal CCR4 expression and FDA approval"
+
+known_controversies:
+  - topic: "Mogamulizumab pre-alloSCT — wash-out duration"
+    positions:
+      - position: "≥50 days wash-out per FDA black box — minimizes severe GVHD"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Some centers extend to 90 days when feasible — further reduce GVHD risk; balance disease control"
+        sources: [SRC-ESMO-PTCL-2024]
+    our_default: "Minimum 50 days wash-out; extend to 90 days if disease control permits"
+  - topic: "Mogamulizumab vs lenalidomide for r/r ATLL"
+    positions:
+      - position: "Mogamulizumab — established phase 2 / registration data; strong CCR4 rationale"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Lenalidomide — Japanese phase 2 in indolent ATLL; alternative mechanism"
+        sources: [SRC-ESMO-PTCL-2024]
+    our_default: "Mogamulizumab first-line salvage; lenalidomide when mogamulizumab inaccessible or in indolent disease"
+
+do_not_do:
+  - "НЕ давати mogamulizumab у межах 50 днів до planned alloSCT — fatal GVHD risk per FDA black box."
+  - "НЕ ігнорувати skin reactions (drug rash до 25%) — біопсія для distinguish drug rash vs cutaneous progression."
+  - "НЕ пропускати hypercalcemia management — ATLL-specific paraneoplastic; bisphosphonates + hydration mandatory."
+  - "НЕ давати без CCR4 confirmation IHC — confirmatory step required для funding."
+  - "НЕ нехтувати donor search паралельно — alloSCT — єдиний curative варіант для aggressive ATLL."
+  - "НЕ використовувати у пацієнтів з prior severe drug reactions — anaphylactoid risk."
+  - "НЕ забувати про опортуністичні інфекції — CCR4-targeted therapy reduces Treg, increases autoimmune-like AE risk."
+
+time_critical: false
+last_reviewed: "2026-04-27"
+reviewer_signoffs: 0
+notes: >
+  STUB. Major UA access barrier — not registered. Always plan as
+  bridge to alloSCT in fit aggressive ATLL.

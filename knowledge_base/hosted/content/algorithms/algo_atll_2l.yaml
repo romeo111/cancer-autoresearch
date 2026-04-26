@@ -1,0 +1,34 @@
+id: ALGO-ATLL-2L
+applicable_to_disease: DIS-ATLL
+applicable_to_line_of_therapy: 2
+purpose: >
+  Relapsed/refractory ATLL — single-track default to mogamulizumab
+  monotherapy (Category 1, FDA-approved per Ishida 2012). CCR4
+  expression universal in ATLL → strongest disease-defining target.
+  Bridge to alloSCT in fit aggressive ATLL responders. Wash-out
+  ≥50 days before alloSCT mandatory (FDA black box: severe GVHD).
+
+output_indications:
+  - IND-ATLL-2L-MOGAMULIZUMAB
+
+default_indication: IND-ATLL-2L-MOGAMULIZUMAB
+alternative_indication: IND-ATLL-2L-MOGAMULIZUMAB
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - condition: "R/R aggressive ATLL after CHOEP / mLSG15"
+        - condition: "R/R indolent ATLL after AZT+IFN-α"
+    if_true:
+      result: IND-ATLL-2L-MOGAMULIZUMAB
+    if_false:
+      result: IND-ATLL-2L-MOGAMULIZUMAB
+
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-PTCL-2024]
+last_reviewed: "2026-04-27"
+notes: >
+  Single-track default. Lenalidomide alternative for relapsed indolent
+  ATLL not yet authored as separate indication. Allo-SCT remains the
+  only curative path for aggressive disease and is surfaced via MDT
+  brief.

@@ -1,0 +1,19 @@
+{
+  "patient_id": "ATLL-ACUTE-001",
+  "comment": "Aggressive (acute) ATLL with hypercalcemia and high LDH in HTLV-1+ patient. Engine should select aggressive 1L pathway (CHOEP + mogamulizumab + alloSCT planning).",
+  "disease": {"icd_o_3_morphology": "9827/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {},
+  "demographics": {"age": 56, "sex": "female", "ecog": 2},
+  "findings": {
+    "htlv1_serology": "positive",
+    "shimoyama_subtype": "acute",
+    "lymphocyte_count": 35.0,
+    "ldh_uln_multiple": 3.5,
+    "calcium_corrected_mg_dl": 13.2,
+    "skin_lesions": true,
+    "hepatosplenomegaly": true,
+    "lvef_percent": 60,
+    "transplant_candidate": true
+  }
+}
