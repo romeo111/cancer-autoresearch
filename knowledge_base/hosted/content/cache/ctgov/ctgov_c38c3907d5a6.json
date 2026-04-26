@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:40:12.279310+00:00",
+  "option": {
+    "id": "EXPER-DIS-WM-CXCR4_WHIM-L2-2026-04",
+    "disease_id": "DIS-WM",
+    "molecular_subtype": "cxcr4 whim",
+    "stage_stratum": null,
+    "line_of_therapy": 2,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

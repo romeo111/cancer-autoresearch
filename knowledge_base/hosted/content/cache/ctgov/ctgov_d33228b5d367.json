@@ -1,0 +1,188 @@
+{
+  "cached_at": "2026-04-26T15:39:50.066018+00:00",
+  "option": {
+    "id": "EXPER-DIS-B-ALL-ALL-L1-2026-04",
+    "disease_id": "DIS-B-ALL",
+    "molecular_subtype": null,
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [
+      {
+        "nct_id": "NCT07106749",
+        "title": "CD180 CART for Relapsed or Refractory CD180 Positive Hematologic Malignancies",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "Institute of Hematology & Blood Diseases Hospital, China",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06708897",
+        "title": "A Phase 1 Study of ZE50-0134 in Relapsed and Refractory Chronic Lymphocytic Leukemia, Small Lymphocytic Lymphoma, and Select Low-grad Lymphomas",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "Lomond Therapeutics Holdings, Inc.",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05371808",
+        "title": "Economic Analysis of Early vs Delayed Therapy in Newly Diagnosed Asymptomatic High-Risk Patients With Chronic Lymphocytic Leukemia/Small Lymphocytic Lymphoma:",
+        "status": "RECRUITING",
+        "phase": "N/A",
+        "sponsor": "Canadian Cancer Trials Group",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Canada"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT07134088",
+        "title": "A Study of Subcutaneous Blinatumomab in Children With R/R and and MRD+ B-Cell Precursor Acute Lymphoblastic Leukemia",
+        "status": "RECRUITING",
+        "phase": "PHASE1 / PHASE2",
+        "sponsor": "Amgen",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Japan",
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT03676504",
+        "title": "Treatment of Patients With Relapsed or Refractory CD19+ Lymphoid Disease With T Cells Expressing a Third-generation CAR",
+        "status": "RECRUITING",
+        "phase": "PHASE1 / PHASE2",
+        "sponsor": "University Hospital Heidelberg",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Germany"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT04094311",
+        "title": "Study of Out of Specification for Tisagenlecleucel",
+        "status": "RECRUITING",
+        "phase": "PHASE3",
+        "sponsor": "Novartis Pharmaceuticals",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Canada",
+          "Japan"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT07145411",
+        "title": "HPC Offered for PRESERVE Expansion",
+        "status": "RECRUITING",
+        "phase": "N/A",
+        "sponsor": "Ossium Health, Inc.",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05602363",
+        "title": "AS-1763 in Patients With Previously Treated CLL/SLL or Non-Hodgkin Lymphoma",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "Carna Biosciences, Inc.",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05618028",
+        "title": "Study to Evaluate Adverse Events and Change in Disease Activity in Adult Participants With B-Cell Malignancies Receiving Oral ABBV-525 Tablets",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "AbbVie",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States",
+          "Australia",
+          "Germany",
+          "South Korea",
+          "Taiwan",
+          "France",
+          "United Kingdom",
+          "Belgium",
+          "Israel",
+          "Spain"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT04532281",
+        "title": "A Study of Murine CD19 CAR-T Therapy for Patients With Relapsed or Refractory CD19+ B-cell Hematological Malignancies",
+        "status": "RECRUITING",
+        "phase": "EARLY_PHASE1",
+        "sponsor": "Zhejiang University",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      }
+    ],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

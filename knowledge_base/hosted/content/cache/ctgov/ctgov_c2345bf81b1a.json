@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:38:56.478455+00:00",
+  "option": {
+    "id": "EXPER-DIS-ALCL-CD30_IHC-L2-2026-04",
+    "disease_id": "DIS-ALCL",
+    "molecular_subtype": "cd30 ihc",
+    "stage_stratum": null,
+    "line_of_therapy": 2,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:39:07.207892+00:00",
+  "option": {
+    "id": "EXPER-DIS-BURKITT-CD20_IHC-L1-2026-04",
+    "disease_id": "DIS-BURKITT",
+    "molecular_subtype": "cd20 ihc",
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

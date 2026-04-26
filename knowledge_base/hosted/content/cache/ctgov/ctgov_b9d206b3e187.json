@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:39:19.003728+00:00",
+  "option": {
+    "id": "EXPER-DIS-HCL-BRAF_V600E-L1-2026-04",
+    "disease_id": "DIS-HCL",
+    "molecular_subtype": "braf v600e",
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

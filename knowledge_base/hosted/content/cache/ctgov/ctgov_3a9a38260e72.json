@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:39:49.752003+00:00",
+  "option": {
+    "id": "EXPER-DIS-DLBCL-NOS-CD20_IHC-L2-2026-04",
+    "disease_id": "DIS-DLBCL-NOS",
+    "molecular_subtype": "cd20 ihc",
+    "stage_stratum": null,
+    "line_of_therapy": 2,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

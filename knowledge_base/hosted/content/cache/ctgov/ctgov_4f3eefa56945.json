@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:39:07.077351+00:00",
+  "option": {
+    "id": "EXPER-DIS-SPLENIC-MZL-HCV_RNA-L1-2026-04",
+    "disease_id": "DIS-SPLENIC-MZL",
+    "molecular_subtype": "hcv rna",
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "cached_at": "2026-04-26T15:40:37.170375+00:00",
+  "option": {
+    "id": "EXPER-DIS-PMF-ALL-L2-2026-04",
+    "disease_id": "DIS-PMF",
+    "molecular_subtype": null,
+    "stage_stratum": null,
+    "line_of_therapy": 2,
+    "trials": [
+      {
+        "nct_id": "NCT07362225",
+        "title": "MPN PROGRESSion Registry: Observational Study Tracking Symptoms, Treatments, and Disease Progression in People With Myeloproliferative Neoplasms (MPNs)",
+        "status": "RECRUITING",
+        "phase": "N/A",
+        "sponsor": "MPN Research Foundation",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT07443306",
+        "title": "A Clinical Trial of Flonoltinib Maleate Tablets in the Treatment of JAK Inhibitor Refractory/Relapsed/Intolerant Patients With Medium to High Risk Myelofibrosis",
+        "status": "RECRUITING",
+        "phase": "PHASE2",
+        "sponsor": "Chengdu Zenitar Biomedical Technology Co., Ltd",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05710211",
+        "title": "Clonal Architecture of ASXL1-mutated Myelofibrosis",
+        "status": "RECRUITING",
+        "phase": "NA",
+        "sponsor": "University Hospital, Angers",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "France"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT01973881",
+        "title": "Quantitative MRI for Myelofibrosis",
+        "status": "RECRUITING",
+        "phase": "N/A",
+        "sponsor": "University of Michigan Rogel Cancer Center",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05423691",
+        "title": "Leading in MPNs Beyond Ruxolitinib in Combo With T-Regs",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "Cellenkos, Inc.",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT02934477",
+        "title": "Prospective Assessment of Allogeneic Hematopoietic Cell Transplantation in Patients With Myelofibrosis",
+        "status": "RECRUITING",
+        "phase": "N/A",
+        "sponsor": "Center for International Blood and Marrow Transplant Research",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06541249",
+        "title": "MethoTRExATE in MyelOpRolifErative Neoplasms (TREATMORE) Trial",
+        "status": "RECRUITING",
+        "phase": "PHASE2",
+        "sponsor": "Icahn School of Medicine at Mount Sinai",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT04771572",
+        "title": "Study of Oral Administration of LP-118 in Patients With Relapsed or Refractory CLL, SLL, MDS, MDS/MPN, AML, CMML-2, MPN-BP, ALL, MF, NHL, RT, MM or T-PLL.",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "Newave Pharmaceutical Inc",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05835466",
+        "title": "Reparixin in Patients With Myelofibrosis Myeloproliferative Neoplasms Research Consortium (MPN-RC 120)",
+        "status": "RECRUITING",
+        "phase": "PHASE2",
+        "sponsor": "Icahn School of Medicine at Mount Sinai",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06034002",
+        "title": "A Study to Evaluate INCA033989 Administered as a Monotherapy or in Combination With Ruxolitinib in Participants With Myeloproliferative Neoplasms",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "Incyte Corporation",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      }
+    ],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

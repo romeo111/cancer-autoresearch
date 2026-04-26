@@ -1,0 +1,34 @@
+{
+  "cached_at": "2026-04-26T15:39:29.220611+00:00",
+  "option": {
+    "id": "EXPER-DIS-WM-MYD88_L265P-L1-2026-04",
+    "disease_id": "DIS-WM",
+    "molecular_subtype": "myd88 l265p",
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [
+      {
+        "nct_id": "NCT05640102",
+        "title": "Observational Study Evaluating the Efficacy and Safety of Zanubrutinib in Participants With Waldenström Macroglobulinemia",
+        "status": "RECRUITING",
+        "phase": "N/A",
+        "sponsor": "BeiGene",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States",
+          "Puerto Rico"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      }
+    ],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

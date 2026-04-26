@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:40:00.145463+00:00",
+  "option": {
+    "id": "EXPER-DIS-MF-SEZARY-CD30_IHC-L1-2026-04",
+    "disease_id": "DIS-MF-SEZARY",
+    "molecular_subtype": "cd30 ihc",
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

@@ -52,6 +52,7 @@ from knowledge_base.engine import (
     render_diagnostic_brief_html,
     render_plan_html,
 )
+from knowledge_base.clients.ctgov_client import search_trials
 from knowledge_base import __version__ as OPENONCO_VERSION
 from knowledge_base.stats import collect_stats, format_html_widget
 
@@ -59,6 +60,7 @@ from knowledge_base.stats import collect_stats, format_html_widget
 REPO_ROOT = Path(__file__).resolve().parent.parent
 KB_ROOT = REPO_ROOT / "knowledge_base" / "hosted" / "content"
 EXAMPLES = REPO_ROOT / "examples"
+CTGOV_CACHE = KB_ROOT / "cache" / "ctgov"
 
 GH_REPO = "romeo111/OpenOnco"
 GH_NEW_ISSUE = f"https://github.com/{GH_REPO}/issues/new"
@@ -2855,7 +2857,12 @@ if is_diagnostic_profile(patient):
     _oo_mode = 'diagnostic'
     html = render_diagnostic_brief_html(_oo_result, mdt=_oo_mdt, target_lang=_target_lang)
 else:
-    _oo_result = generate_plan(patient, kb_root=KB)
+    # Pyodide can't reach api.clinicaltrials.gov directly — pass the
+    # baked cache_root only (no search_fn). Cache hits surface trials;
+    # misses fall through to the "search not configured" empty bundle.
+    _oo_result = generate_plan(
+        patient, kb_root=KB, experimental_cache_root=KB / 'cache' / 'ctgov',
+    )
     _oo_mdt = orchestrate_mdt(patient, _oo_result, kb_root=KB)
     _oo_mode = 'treatment'
     html = render_plan_html(_oo_result, mdt=_oo_mdt, target_lang=_target_lang)
@@ -7188,7 +7195,12 @@ def build_one_case(case: CaseEntry, output_dir: Path,
         mdt = orchestrate_mdt(patient, result, kb_root=KB_ROOT)
         html = render_diagnostic_brief_html(result, mdt=mdt, target_lang=target_lang)
     else:
-        result = generate_plan(patient, kb_root=KB_ROOT)
+        result = generate_plan(
+            patient,
+            kb_root=KB_ROOT,
+            experimental_search_fn=search_trials,
+            experimental_cache_root=CTGOV_CACHE,
+        )
         mdt = orchestrate_mdt(patient, result, kb_root=KB_ROOT)
         html = render_plan_html(result, mdt=mdt, target_lang=target_lang)
 

@@ -1,0 +1,207 @@
+{
+  "cached_at": "2026-04-26T15:39:07.185611+00:00",
+  "option": {
+    "id": "EXPER-DIS-MM-ALL-L1-2026-04",
+    "disease_id": "DIS-MM",
+    "molecular_subtype": null,
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [
+      {
+        "nct_id": "NCT05737732",
+        "title": "The Ambient Light Multiple Myeloma Study",
+        "status": "RECRUITING",
+        "phase": "NA",
+        "sponsor": "Icahn School of Medicine at Mount Sinai",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06896916",
+        "title": "Study of Intravenously (IV) Infused Etentamig in Combination With an Oral Cereblon E3 Ligase Modulatory Drug (CELMoD) Agent Assessing Adverse Events and Change in Disease Activity in Adult Participants With Relapsed or Refractory Multiple Myeloma",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "AbbVie",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "France",
+          "Japan",
+          "Norway",
+          "Canada",
+          "Australia",
+          "Netherlands",
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05552222",
+        "title": "A Study of Teclistamab in Combination With Daratumumab and Lenalidomide (Tec-DR) and Talquetamab in Combination With Daratumumab and Lenalidomide (Tal-DR) in Participants With Newly Diagnosed Multiple Myeloma",
+        "status": "RECRUITING",
+        "phase": "PHASE3",
+        "sponsor": "Janssen Research & Development, LLC",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "France",
+          "Portugal",
+          "Australia",
+          "China",
+          "Brazil",
+          "Germany",
+          "Japan",
+          "Norway",
+          "Belgium",
+          "Denmark",
+          "Poland",
+          "Italy",
+          "Czechia",
+          "Canada",
+          "Turkey (Türkiye)",
+          "Israel",
+          "Sweden",
+          "Netherlands",
+          "Austria",
+          "Switzerland",
+          "United Kingdom",
+          "South Korea",
+          "Greece",
+          "Spain",
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06270888",
+        "title": "Hypofractionation (Radiation) Trial for Multiple Myeloma",
+        "status": "RECRUITING",
+        "phase": "PHASE1",
+        "sponsor": "University of Chicago",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06145581",
+        "title": "Remote Monitoring With Health-Coaching to Improve Quality of Life in Older Patients With Multiple Myeloma",
+        "status": "RECRUITING",
+        "phase": "NA",
+        "sponsor": "Mayo Clinic",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05243212",
+        "title": "Study of CAR-BCMA, a Chimeric Antigen Receptor T Cell (CAR-T) Therapy Directed Against BCMA in Subjects With Multiple Myeloma",
+        "status": "RECRUITING",
+        "phase": "PHASE1 / PHASE2",
+        "sponsor": "Sheba Medical Center",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Israel"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06182696",
+        "title": "OriCAR-017 Chimeric Antigen Receptor (CAR) Modified T Cells for the Treatment of R/RMM",
+        "status": "RECRUITING",
+        "phase": "PHASE1 / PHASE2",
+        "sponsor": "OriCell Therapeutics Co., Ltd.",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06636552",
+        "title": "An Investigator-Initiated, Phase II, Multicenter, Open-Label, Single-Arm, Prospective Clinical Trial to Evaluate the Efficacy and Safety of Alternating Bortezomib-Based Regimens in Combination With DaratUMumab Followed by Maintenance With Daratumumab in the Frontline Setting of Primary Plasma CEll L",
+        "status": "RECRUITING",
+        "phase": "PHASE2",
+        "sponsor": "Hellenic Society of Hematology",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Greece"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT07052916",
+        "title": "A Music Therapy Study for Blood Cancer Survivors With Cognitive Difficulties",
+        "status": "RECRUITING",
+        "phase": "NA",
+        "sponsor": "Memorial Sloan Kettering Cancer Center",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT07489534",
+        "title": "Study of PD-1Ab21-BCMA CAR-T Therapy for Consolidation of Multiple Myelomawith Renal Dysfunction",
+        "status": "RECRUITING",
+        "phase": "PHASE2",
+        "sponsor": "Daihong Liu",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      }
+    ],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:41:29.807385+00:00",
+  "option": {
+    "id": "EXPER-DIS-ET-JAK2_V617F-L1-2026-04",
+    "disease_id": "DIS-ET",
+    "molecular_subtype": "jak2 v617f",
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

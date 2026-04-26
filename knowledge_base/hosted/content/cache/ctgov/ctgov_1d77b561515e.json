@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:40:01.254285+00:00",
+  "option": {
+    "id": "EXPER-DIS-T-PLL-CD52_IHC-L1-2026-04",
+    "disease_id": "DIS-T-PLL",
+    "molecular_subtype": "cd52 ihc",
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

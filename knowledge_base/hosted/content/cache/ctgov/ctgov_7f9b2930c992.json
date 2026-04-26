@@ -1,0 +1,200 @@
+{
+  "cached_at": "2026-04-26T15:40:23.812788+00:00",
+  "option": {
+    "id": "EXPER-DIS-PTCL-NOS-ALL-L2-2026-04",
+    "disease_id": "DIS-PTCL-NOS",
+    "molecular_subtype": null,
+    "stage_stratum": null,
+    "line_of_therapy": 2,
+    "trials": [
+      {
+        "nct_id": "NCT06739265",
+        "title": "Golidocitinib Plus CHOP in Newly Diagnosed PTCL",
+        "status": "RECRUITING",
+        "phase": "PHASE1 / PHASE2",
+        "sponsor": "Peking Union Medical College Hospital",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06522737",
+        "title": "A Study of Duvelisib Versus Gemcitabine or Bendamustine in Participants With Relapsed/Refractory Nodal T Cell Lymphoma With T Follicular Helper (TFH) Phenotype",
+        "status": "RECRUITING",
+        "phase": "PHASE3",
+        "sponsor": "SecuraBio",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Netherlands",
+          "Belgium",
+          "Italy",
+          "France",
+          "Spain",
+          "Poland",
+          "Germany",
+          "Czechia",
+          "Denmark",
+          "United Kingdom"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06072131",
+        "title": "To Evaluate Efficacy of Belinostat or Pralatrexate in Combination Against CHOP Alone in PTCL",
+        "status": "RECRUITING",
+        "phase": "PHASE3",
+        "sponsor": "Acrotech Biopharma Inc.",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Italy",
+          "Spain",
+          "Canada",
+          "South Korea",
+          "Hungary",
+          "Taiwan",
+          "Poland",
+          "Germany",
+          "United States",
+          "Turkey (Türkiye)"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06909877",
+        "title": "Study to Evaluate Efficacy and Safety of HH2853 in Relapsed/Refractory Peripheral T-cell Lymphoma",
+        "status": "RECRUITING",
+        "phase": "PHASE1 / PHASE2",
+        "sponsor": "Haihe Biopharma Co., Ltd.",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT07093710",
+        "title": "Golidocitinib Combined With Mitoxantrone Hydrochloride Liposome or Chidamide in the Treatment of Relapsed or Refractory Peripheral T-cell Lymphoma",
+        "status": "RECRUITING",
+        "phase": "PHASE1 / PHASE2",
+        "sponsor": "Sun Yat-sen University",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT03964480",
+        "title": "Prospective Observational International Registry of Patients With Newly Diagnosed Peripheral T Cell Lymphoma.",
+        "status": "RECRUITING",
+        "phase": "N/A",
+        "sponsor": "Associazione Angela Serra per la ricerca sul cancro",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Romania",
+          "Italy",
+          "Ukraine",
+          "United States"
+        ],
+        "sites_ua": [
+          "UA"
+        ],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05833724",
+        "title": "Chidamide in Patients With Relapsed or Refractory Peripheral T-cell Lymphoma (R/R PTCL)",
+        "status": "RECRUITING",
+        "phase": "PHASE2",
+        "sponsor": "Great Novel Therapeutics Biotech & Medicals Corporation",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "Taiwan"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT07074457",
+        "title": "Chidamide Combined With Brentuximab Vedotin Regimen for CD30+ PTCL Patients",
+        "status": "RECRUITING",
+        "phase": "NA",
+        "sponsor": "The First Affiliated Hospital of Soochow University",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "China"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT06810778",
+        "title": "Duvelisib and Venetoclax in Patients With Relapsed or Refractory Peripheral T-cell Lymphoma (PTCL)",
+        "status": "RECRUITING",
+        "phase": "PHASE1 / PHASE2",
+        "sponsor": "Jonsson Comprehensive Cancer Center",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      },
+      {
+        "nct_id": "NCT05978141",
+        "title": "A Registry for People With T-cell Lymphoma",
+        "status": "RECRUITING",
+        "phase": "N/A",
+        "sponsor": "Memorial Sloan Kettering Cancer Center",
+        "summary": null,
+        "inclusion_summary": null,
+        "exclusion_summary": null,
+        "countries": [
+          "United States"
+        ],
+        "sites_ua": [],
+        "sites_global_count": null,
+        "last_synced": "2026-04-26"
+      }
+    ],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}

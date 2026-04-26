@@ -1,0 +1,16 @@
+{
+  "cached_at": "2026-04-26T15:40:12.159044+00:00",
+  "option": {
+    "id": "EXPER-DIS-PTCL-NOS-CD30_IHC-L1-2026-04",
+    "disease_id": "DIS-PTCL-NOS",
+    "molecular_subtype": "cd30 ihc",
+    "stage_stratum": null,
+    "line_of_therapy": 1,
+    "trials": [],
+    "last_synced": "2026-04-26",
+    "notes": null,
+    "sources": [
+      "SRC-CTGOV"
+    ]
+  }
+}
