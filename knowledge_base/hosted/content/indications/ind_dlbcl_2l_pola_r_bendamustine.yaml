@@ -1,0 +1,100 @@
+id: IND-DLBCL-2L-POLA-R-BENDAMUSTINE
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-DLBCL-NOS
+  line_of_therapy: 2
+  stage_requirements: ["Relapsed/refractory after 1L R-CHOP-like regimen", "Transplant-ineligible (age >70 OR comorbidity OR ECOG ≥2)"]
+  biomarker_requirements_required:
+    - biomarker_id: BIO-CD20-IHC
+      required: true
+      value_constraint: "positive (CD20+)"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-POLA-R-BENDAMUSTINE
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~63% (GO29365)"
+  complete_response: "~40% (vs 18% BR alone)"
+  progression_free_survival: "Median PFS ~9.5 mo (vs 3.7 mo BR)"
+  overall_survival_5y: "mOS ~12.4 mo (vs 4.7 mo BR; 2-year OS ~28%)"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS
+  - CI-BORTEZOMIB-SEVERE-NEUROPATHY  # MMAE neuropathy concern (reused conceptually)
+  - CI-SEVERE-CYTOPENIA-BR
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-CD20-IHC
+  - TEST-PET-CT
+  - TEST-LN-CORE-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PREGNANCY
+desired_tests:
+  - TEST-ECHO
+
+rationale: >
+  Polatuzumab + rituximab + bendamustine (Pola-BR) for r/r DLBCL after
+  1L R-CHOP failure in patients NOT eligible for autoSCT (age >70,
+  comorbidity, ECOG ≥2, or autoSCT-failed). Per GO29365 trial, Pola-BR
+  more than doubled CR rate vs BR alone (40% vs 18%) with substantial
+  PFS + OS gains. Position: standard-track 2L for transplant-ineligible
+  cohort; transplant-eligible patients still go to salvage chemo (R-DHAP
+  / R-ICE) → autoSCT first per NCCN. Major UA access barrier:
+  polatuzumab not НСЗУ-reimbursed.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "Pola-BR is a Category 1 preferred regimen for r/r DLBCL in patients ineligible for autoSCT (GO29365 evidence)"
+  - source_id: SRC-ESMO-DLBCL-2024
+    position: supports
+    relevant_quote_paraphrase: "Polatuzumab vedotin + rituximab + bendamustine is recommended 2L+ for transplant-ineligible r/r DLBCL"
+
+known_controversies:
+  - topic: "Pola-BR vs CAR-T as preferred 2L+ for transplant-ineligible r/r DLBCL"
+    positions:
+      - position: "Pola-BR delivers higher CR than BR alone; manageable in standard hematology unit"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "CAR-T (axi-cel, liso-cel) offers ~40% durable remission — only curative option in 2L+"
+        sources: [SRC-NCCN-BCELL-2025]
+        evidence_note: "ZUMA-7 / TRANSFORM in early-relapse / primary-refractory; requires CAR-T center access"
+    our_default: "Pola-BR for transplant-ineligible patients without CAR-T pathway access; CAR-T preferred when accessible (international referral required in Ukraine)"
+    rationale: "CAR-T access is dominant rate-limiter in Ukraine; Pola-BR is the realistic 2L for most patients"
+
+do_not_do:
+  - "НЕ призначати при baseline Grade ≥2 peripheral neuropathy — MMAE токсичність прогресуватиме до permanent disability."
+  - "НЕ починати без HBV скринінгу + entecavir prophylaxis при HBsAg+ або anti-HBc+ — anti-CD20 reactivation."
+  - "НЕ призначати при CrCl <30 — bendamustine renal-cleared метаболіти небезпечні; розгляньте Pola-R без bendamustine."
+  - "НЕ пропускати GCSF prophylaxis — комбінована myelosuppression bendamustine + polatuzumab."
+  - "НЕ призначати при concomitant strong CYP3A4 inhibitor без monitoring — підвищена MMAE токсичність."
+  - "НЕ підтверджувати план без верифікованого funding pathway для polatuzumab."
+  - "НЕ використовувати в transplant-eligible пацієнтів як 2L — спочатку salvage R-DHAP/R-ICE → autoSCT."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track 2L for
+  transplant-ineligible r/r DLBCL. For transplant-eligible patients,
+  IND-DLBCL-2L-RDHAP-AUTOSCT (existing REG-R-DHAP-AUTOSCT regimen)
+  remains the preferred salvage pathway. Polatuzumab access constraint
+  is dominant barrier in Ukraine.
