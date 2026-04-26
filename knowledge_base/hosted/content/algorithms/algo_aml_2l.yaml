@@ -1,0 +1,85 @@
+id: ALGO-AML-2L
+applicable_to_disease: DIS-AML
+applicable_to_line_of_therapy: 2
+purpose: >
+  Select default + alternative Indication for relapsed/refractory AML
+  after ≥1 prior line (typically post 7+3 induction failure or post
+  ven+aza progression). Outputs gilteritinib (default for FLT3-actionable
+  R/R AML per ADMIRAL) vs re-induction / clinical-trial / BSC pathway
+  for FLT3 wild-type. CPX-351 and quizartinib are 1L-variant indications
+  for AML-MRC/secondary and de-novo FLT3-ITD respectively, surfaced via
+  ALGO-AML-1L stratification — they are not 2L+ branches here.
+  CRITICAL: re-test FLT3 at relapse (clones evolve; ~25% of FLT3-mut
+  relapses lose detectable FLT3).
+
+output_indications:
+  - IND-AML-2L-GILTERITINIB-FLT3
+  - IND-AML-1L-VEN-AZA
+
+default_indication: IND-AML-1L-VEN-AZA
+alternative_indication: IND-AML-2L-GILTERITINIB-FLT3
+
+decision_tree:
+  # Step 1 — emergency at relapse (TLS / leukostasis): pin to lower-
+  # toxicity hypomethylating-style backbone; surface emergency workup.
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-AML-EMERGENCY-TLS-LEUKOSTASIS
+    if_true:
+      result: IND-AML-1L-VEN-AZA
+    if_false:
+      next_step: 2
+
+  # Step 2 — FLT3 actionable at relapse → gilteritinib (FDA-approved
+  # 2L+; ADMIRAL OS benefit; bridge to alloHCT for fit responders).
+  - step: 2
+    evaluate:
+      any_of:
+        - red_flag: RF-AML-FLT3-ACTIONABLE
+    if_true:
+      result: IND-AML-2L-GILTERITINIB-FLT3
+    if_false:
+      next_step: 3
+
+  # Step 3 — frailty / organ dysfunction at relapse → ven+aza (lower
+  # toxicity than re-induction; also covers FLT3-WT R/R unfit).
+  - step: 3
+    evaluate:
+      any_of:
+        - red_flag: RF-AML-FRAILTY-AGE
+        - red_flag: RF-AML-ORGAN-DYSFUNCTION
+    if_true:
+      result: IND-AML-1L-VEN-AZA
+    if_false:
+      next_step: 4
+
+  # Step 4 — default FLT3 wild-type R/R: ven+aza for unfit / fallback;
+  # re-induction (off-algorithm) or clinical trial preferred for fit
+  # patients. Algorithm pins to ven+aza so plan generator surfaces the
+  # clinical-trial / BSC annotation rather than silently failing.
+  - step: 4
+    evaluate:
+      all_of:
+        - condition: "FLT3 wild-type R/R AML; clinical-trial / re-induction / BSC routing surfaced as annotation"
+    if_true:
+      result: IND-AML-1L-VEN-AZA
+    if_false:
+      result: IND-AML-1L-VEN-AZA
+
+sources:
+  - SRC-NCCN-AML-2025
+  - SRC-ELN-AML-2022
+  - SRC-ADMIRAL-PERL-2019
+
+last_reviewed: "2026-04-25"
+notes: >
+  ALGO-AML-2L primarily routes FLT3-actionable patients to gilteritinib;
+  non-actionable (FLT3-WT) patients fall back to ven+aza or are routed
+  off-algorithm to clinical trial / re-induction (7+3 / FLAG-IDA) / BSC.
+  CPX-351 (IND-AML-1L-CPX351-SECONDARY) and quizartinib
+  (IND-AML-1L-QUIZARTINIB-FLT3ITD) belong to ALGO-AML-1L stratification
+  (AML-MRC / therapy-related; de-novo FLT3-ITD respectively), not 2L.
+  AlloHCT bridge is parallel layer for any responder. RF re-test of
+  FLT3 at relapse is mandatory before gilteritinib selection. STUB —
+  requires clinical co-lead signoff.
