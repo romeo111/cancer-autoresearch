@@ -785,6 +785,17 @@ def main() -> int:
         "--kb-root", type=Path, default=KB_ROOT,
         help=f"KB content root (default: {KB_ROOT}).",
     )
+    parser.add_argument(
+        "--persist", action="store_true",
+        help=(
+            "Phase B: write audit log markdown + state file + metrics CSV "
+            "(does NOT execute git/gh actions — that's --execute, Phase C)."
+        ),
+    )
+    parser.add_argument(
+        "--audit-log-dir", type=Path, default=AUDIT_LOG_DIR,
+        help=f"Directory for audit log markdown (default: {AUDIT_LOG_DIR}).",
+    )
     args = parser.parse_args()
 
     today_override: Optional[date] = None
@@ -807,6 +818,23 @@ def main() -> int:
         args.output.write_text(out, encoding="utf-8")
     else:
         sys.stdout.write(out)
+
+    if args.persist:
+        from scripts.audit_writers import persist_plan_outputs
+        previous = _load_previous_state()
+        previous_open = previous.get("open_issues", {}) or {}
+        written = persist_plan_outputs(
+            plan,
+            audit_log_dir=args.audit_log_dir,
+            state_file=STATE_FILE,
+            metrics_csv=args.audit_log_dir / ".metrics.csv",
+            previous_open_issues=previous_open,
+        )
+        print(
+            f"[persist] wrote: log={written['audit_log']} "
+            f"state={written['state_file']} metrics={written['metrics_csv']}",
+            file=sys.stderr,
+        )
 
     if plan["diagnostics"].get("preflight_aborted"):
         return 2
