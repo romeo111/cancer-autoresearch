@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Female Genital Tumours 5th ed (2020): Cervical squamous cell carcinoma + cervical adenocarcinoma"
 
 archetype: etiologically_driven
+oncotree_code: CESC
 lineage: "carcinoma"
 
 etiological_factors:

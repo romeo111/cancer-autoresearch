@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Soft Tissue Tumours 5th ed (2020): Infantile fibrosarcoma (NTRK-rearranged spindle cell neoplasm — pediatric)"
 
 archetype: biomarker_driven
+oncotree_code: IFS
 lineage: "sarcoma"
 
 etiological_factors:

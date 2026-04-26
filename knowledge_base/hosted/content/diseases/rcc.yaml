@@ -10,6 +10,7 @@ codes:
   icd_10: "C64"
   who_classification: "Renal cell carcinoma — clear-cell / papillary / chromophobe (WHO 5th 2022)"
 archetype: biomarker_driven
+oncotree_code: RCC
 lineage: solid_tumor_kidney_rcc
 histologic_subtypes:
   - {id: CLEAR_CELL, label: "Clear-cell RCC", definition: "~75%; VHL-driven; ICI/TKI-responsive"}

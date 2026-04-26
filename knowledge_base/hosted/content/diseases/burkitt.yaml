@@ -11,6 +11,7 @@ codes:
   who_classification: "Aggressive B-cell lymphomas — Burkitt lymphoma per WHO 5th ed."
 
 archetype: biomarker_driven  # MYC translocation defining
+oncotree_code: BL
 lineage: b_cell_lymphoma
 
 etiological_factors:

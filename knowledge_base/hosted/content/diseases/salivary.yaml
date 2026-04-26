@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Head and Neck Tumours 5th ed (2024): Salivary gland tumours (>25 distinct histologic entities)"
 
 archetype: biomarker_driven
+oncotree_code: SACA
 lineage: "carcinoma"
 
 etiological_factors:

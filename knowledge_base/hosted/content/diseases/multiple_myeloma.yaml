@@ -17,6 +17,7 @@ codes:
   who_classification: "Plasma cell neoplasms — Plasma cell myeloma (multiple myeloma)"
 
 archetype: risk_stratified
+oncotree_code: MM
 lineage: plasma_cell_neoplasm
 
 etiological_factors:

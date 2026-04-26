@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Endocrine Tumours 5th ed (2022): Anaplastic thyroid carcinoma"
 
 archetype: biomarker_driven
+oncotree_code: ATC
 lineage: "carcinoma"
 
 etiological_factors:

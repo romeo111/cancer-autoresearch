@@ -10,6 +10,7 @@ codes:
   icd_10: "C67"
   who_classification: "Urothelial carcinoma (WHO 5th 2022)"
 archetype: line_of_therapy_sequential
+oncotree_code: BLCA
 lineage: solid_tumor_urothelial
 disease_states:
   - {id: NMIBC, label: "Non-muscle-invasive (Ta/T1/CIS)", definition: "~75% at presentation. TURBT + intravesical BCG/mitomycin/gem"}

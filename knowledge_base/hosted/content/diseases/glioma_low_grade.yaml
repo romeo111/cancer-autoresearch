@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO CNS 5th ed (2021): Astrocytoma IDH-mutant grade 2 (9400/3) + Oligodendroglioma IDH-mutant 1p/19q-codeleted grade 2 (9450/3)"
 
 archetype: biomarker_driven
+oncotree_code: DIFG
 lineage: "carcinoma"  # glioma is a CNS tumor — schema lacks a "cns" lineage; using closest
 
 etiological_factors:

@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Soft Tissue Tumours 5th ed (2020): Inflammatory myofibroblastic tumour (intermediate, rarely metastasizing)"
 
 archetype: biomarker_driven
+oncotree_code: IMT
 lineage: "sarcoma"  # mesenchymal / soft-tissue (intermediate behavior)
 
 etiological_factors:

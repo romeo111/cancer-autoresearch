@@ -17,6 +17,7 @@ codes:
 # This combination is explicitly allowed per spec §3.3 — archetype is
 # the PRIMARY axis; etiological_factors is descriptive.
 archetype: stage_driven
+oncotree_code: HCC
 lineage: "carcinoma"
 
 etiological_factors:

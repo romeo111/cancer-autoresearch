@@ -17,6 +17,7 @@ codes:
   who_classification: "Chronic myeloid leukaemia, BCR::ABL1-positive (per WHO 5th ed.) — chronic, accelerated, blast phase"
 
 archetype: etiologically_driven
+oncotree_code: CML
 lineage: myeloid_neoplasm
 
 etiological_factors:

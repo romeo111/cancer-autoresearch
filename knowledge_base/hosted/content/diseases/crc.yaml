@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Digestive System Tumours 5th ed (2019): Adenocarcinoma of the colon and rectum"
 
 archetype: stage_driven
+oncotree_code: COADREAD
 lineage: "carcinoma"
 
 etiological_factors:

@@ -18,6 +18,7 @@ codes:
   who_classification: "Primary myelofibrosis (PMF) — Ph-negative myeloproliferative neoplasm; prefibrotic/early stage and overt fibrotic stage (per WHO 5th ed.)"
 
 archetype: risk_stratified
+oncotree_code: PMF
 lineage: myeloid_neoplasm
 
 etiological_factors:

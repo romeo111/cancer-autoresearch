@@ -12,6 +12,7 @@ codes:
   who_classification: "Acinar adenocarcinoma of the prostate (WHO 5th)"
 
 archetype: line_of_therapy_sequential
+oncotree_code: PRAD
 lineage: solid_tumor_prostate
 
 # Sub-strata are line-of-therapy / disease-state combinations rather than

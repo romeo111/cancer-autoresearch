@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO CNS Tumours 5th ed (2021): Glioblastoma, IDH-wildtype, grade 4 (the IDH-mutant grade-4 astrocytoma is a distinct entity)"
 
 archetype: stage_driven
+oncotree_code: GBM
 lineage: "carcinoma"  # neuroepithelial; "carcinoma" is the closest existing lineage value — see notes
 
 etiological_factors:

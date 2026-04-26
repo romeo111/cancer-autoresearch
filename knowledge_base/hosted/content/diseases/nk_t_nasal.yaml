@@ -11,6 +11,7 @@ codes:
   who_classification: "Mature T-cell and NK-cell neoplasms — Extranodal NK/T-cell lymphoma, nasal type per WHO 5th ed."
 
 archetype: etiologically_driven
+oncotree_code: NKCL
 lineage: nk_cell_lymphoma  # NK > T-cell у більшості
 
 etiological_factors:
