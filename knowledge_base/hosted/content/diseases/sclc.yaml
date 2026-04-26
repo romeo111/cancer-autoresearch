@@ -12,6 +12,7 @@ codes:
   who_classification: "Small cell lung carcinoma — neuroendocrine tumor (WHO 5th 2021)"
 
 archetype: stage_driven
+oncotree_code: SCLC
 lineage: solid_tumor_lung_sclc
 
 stage_strata:

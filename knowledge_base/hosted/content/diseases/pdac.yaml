@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Digestive System Tumours 5th ed: Ductal adenocarcinoma of pancreas"
 
 archetype: stage_driven
+oncotree_code: PAAD
 lineage: "carcinoma"
 
 etiological_factors:

@@ -681,4 +681,15 @@ PATIENT_MODE_CSS = """
 """
 
 
+# Phase 4 of OncoKB safe-rollout v3 — append OncoKB-section CSS to the
+# main stylesheet. Kept in render_oncokb.py so the integration's visual
+# rules live with the integration code; here we splice it in so the
+# single-file HTML render carries everything.
+try:
+    from .render_oncokb import ONCOKB_CSS as _ONCOKB_CSS
+    STYLESHEET = STYLESHEET + "\n" + _ONCOKB_CSS
+except Exception:
+    pass
+
+
 __all__ = ["STYLESHEET", "PATIENT_MODE_CSS"]

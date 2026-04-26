@@ -10,6 +10,7 @@ codes:
   icd_10: "C54"
   who_classification: "Endometrial adenocarcinoma + TCGA molecular classification (WHO 5th 2020)"
 archetype: biomarker_driven
+oncotree_code: UCEC
 lineage: solid_tumor_endometrial
 molecular_subtypes:
   - {id: POLE_MUT, label: "POLE-ultramutated", definition: "~7%; excellent prognosis"}

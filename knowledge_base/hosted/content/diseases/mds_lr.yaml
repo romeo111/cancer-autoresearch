@@ -17,6 +17,7 @@ codes:
   who_classification: "Myelodysplastic neoplasms (per WHO 5th ed.) — lower-risk subgroup by IPSS-R / IPSS-M"
 
 archetype: risk_stratified
+oncotree_code: MDS
 lineage: myeloid_neoplasm
 
 etiological_factors:

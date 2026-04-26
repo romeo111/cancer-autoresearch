@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Hematolymphoid 5th ed (2022): Systemic mastocytosis with subtypes (ISM / SSM / SM-AHN / ASM / MCL)"
 
 archetype: biomarker_driven
+oncotree_code: MASTSC
 lineage: "myeloid"
 
 etiological_factors:

@@ -16,6 +16,7 @@ codes:
   who_classification: "Acute promyelocytic leukemia with PML::RARA fusion (per WHO 5th ed.)"
 
 archetype: molecularly_defined_emergency
+oncotree_code: APLPMLRARA
 lineage: myeloid_neoplasm
 
 etiological_factors:

@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Endocrine Tumours 5th ed (2022): Medullary thyroid carcinoma (parafollicular / C-cell origin)"
 
 archetype: biomarker_driven
+oncotree_code: MTC
 lineage: "carcinoma"
 
 etiological_factors:

@@ -12,6 +12,7 @@ codes:
   who_classification: "Invasive carcinoma of the breast (WHO 5th)"
 
 archetype: biomarker_driven
+oncotree_code: BREAST
 lineage: solid_tumor_breast
 
 # Receptor subtypes are the dominant treatment branch — captured as

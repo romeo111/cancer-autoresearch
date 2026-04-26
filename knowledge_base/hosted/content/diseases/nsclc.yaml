@@ -12,6 +12,7 @@ codes:
   who_classification: "Non-small cell lung carcinoma — adenocarcinoma / squamous / large cell (WHO 5th 2021)"
 
 archetype: biomarker_driven
+oncotree_code: NSCLC
 lineage: solid_tumor_lung_nsclc
 
 # Molecular subtypes — drive Algorithm decision_tree

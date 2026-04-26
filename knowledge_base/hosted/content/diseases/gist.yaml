@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Soft Tissue Tumours 5th ed (2020): Gastrointestinal stromal tumour"
 
 archetype: biomarker_driven
+oncotree_code: GIST
 lineage: "sarcoma"
 
 etiological_factors:

@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Soft Tissue and Bone Tumours 5th ed (2020): Chondrosarcoma — conventional, dedifferentiated, mesenchymal, clear cell subtypes"
 
 archetype: stage_driven
+oncotree_code: CHS
 lineage: "sarcoma"
 
 etiological_factors:

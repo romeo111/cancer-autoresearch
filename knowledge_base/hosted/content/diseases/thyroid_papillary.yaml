@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Endocrine Tumours 5th ed (2022): Papillary thyroid carcinoma (follicular cell origin)"
 
 archetype: stage_driven
+oncotree_code: PTC
 lineage: "carcinoma"
 
 etiological_factors:

@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Head and Neck Tumours 5th ed (2024): Squamous cell carcinoma of upper aerodigestive tract"
 
 archetype: etiologically_driven
+oncotree_code: HNSC
 lineage: "carcinoma"
 
 etiological_factors:

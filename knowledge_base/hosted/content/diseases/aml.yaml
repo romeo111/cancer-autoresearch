@@ -17,6 +17,7 @@ codes:
   who_classification: "Acute myeloid leukemia (per WHO 5th ed. / ICC 2022) — non-APL subtypes"
 
 archetype: risk_stratified
+oncotree_code: AML
 lineage: myeloid_neoplasm
 
 etiological_factors:

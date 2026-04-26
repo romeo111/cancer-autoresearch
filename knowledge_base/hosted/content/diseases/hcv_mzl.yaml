@@ -16,6 +16,7 @@ codes:
   who_classification: "B-cell neoplasms — Extranodal marginal zone lymphoma of mucosa-associated lymphoid tissue (MALT lymphoma)"
 
 archetype: etiologically_driven
+oncotree_code: MZL
 lineage: b_cell_lymphoma
 
 etiological_factors:

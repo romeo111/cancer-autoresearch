@@ -539,6 +539,78 @@ h3 {
 .drug-list .drug-id { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
 .drug-list .drug-dose { color: var(--gray-700); font-size: 12px; margin-left: 4px; }
 
+
+/* OncoKB layer — distinct from engine track palette to mitigate
+   automation bias (CHARTER §15.2 C6) */
+.oncokb-layer {
+  margin: 24px 0;
+  padding: 20px;
+  border-left: 4px solid #6b7280;
+  background: #f9fafb;
+  border-radius: 4px;
+}
+.oncokb-section-header h2 { margin: 0 0 8px; color: #374151; font-size: 18px; }
+.oncokb-disclaimer { margin: 4px 0; color: #b45309; font-size: 14px; }
+.oncokb-attribution { margin: 8px 0; color: #6b7280; font-size: 12px; font-style: italic; }
+.oncokb-pan-tumor-badge {
+  display: inline-block; margin-top: 8px; padding: 2px 8px;
+  background: #fef3c7; color: #92400e; border-radius: 12px; font-size: 12px;
+}
+
+/* Resistance block at top */
+.oncokb-conflicts-block {
+  margin: 12px 0; padding: 12px; background: #fef2f2;
+  border: 1px solid #fecaca; border-radius: 4px;
+}
+.oncokb-conflicts-block h3 { margin: 0 0 8px; color: #991b1b; font-size: 15px; }
+.oncokb-conflicts-block ul { margin: 0; padding-left: 18px; }
+.oncokb-conflict-r1 { color: #991b1b; }
+.oncokb-conflict-r2 { color: #b45309; }
+.oncokb-conflict-icon { font-size: 16px; }
+
+/* Inline track-card banners */
+.oncokb-inline-banner {
+  margin: 8px 0; padding: 8px 12px; border-radius: 4px; font-size: 13px;
+}
+.oncokb-inline-banner--r1 { background: #fee2e2; color: #991b1b; border-left: 3px solid #dc2626; }
+.oncokb-inline-banner--r2 { background: #fef3c7; color: #92400e; border-left: 3px solid #f59e0b; }
+.oncokb-inline-icon { font-size: 14px; }
+
+/* Main evidence table */
+.oncokb-table {
+  width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px;
+}
+.oncokb-table th {
+  text-align: left; padding: 6px 8px; background: #e5e7eb;
+  border-bottom: 1px solid #d1d5db; font-weight: 600;
+}
+.oncokb-table td { padding: 6px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+.oncokb-row--r1 { background: #fef2f2; }
+.oncokb-row--r2 { background: #fffbeb; }
+.oncokb-confidence { white-space: nowrap; color: #4b5563; }
+.oncokb-pmid { color: #2563eb; text-decoration: none; font-size: 12px; }
+.oncokb-pmid:hover { text-decoration: underline; }
+.oncokb-fda-badge {
+  display: inline-block; padding: 1px 6px; background: #dcfce7;
+  color: #166534; border-radius: 8px; font-size: 11px; margin-left: 4px;
+}
+
+/* Overflow details */
+.oncokb-overflow { margin: 8px 0; }
+.oncokb-overflow summary { cursor: pointer; color: #374151; font-size: 13px; padding: 4px 0; }
+.oncokb-table--overflow { margin-top: 4px; }
+
+/* Cross-biomarker analysis */
+.oncokb-cross-analysis {
+  margin: 12px 0; padding: 10px; background: #ecfdf5;
+  border-left: 3px solid #10b981; border-radius: 4px;
+}
+.oncokb-cross-analysis h4 { margin: 0 0 6px; color: #065f46; font-size: 14px; }
+.oncokb-cross-analysis ul { margin: 0; padding-left: 18px; font-size: 13px; }
+.oncokb-overlap-tag { color: #047857; font-size: 11px; }
+
+.oncokb-errors-note { color: #6b7280; font-size: 12px; font-style: italic; margin-top: 8px; }
+
 /* ── Patient mode ──────────────────────────────────────────────────
    Patient-facing renderer styles. Distinct typography (larger body
    text, longer line-height) and a calmer palette than the clinician
@@ -827,6 +899,109 @@ body {
   margin: 0 !important;
 }
 
+/* Patient sign-off panel — friendly per-track confirmation status */
+.patient-signoff-panel {
+  background: var(--green-50);
+  border-left: 4px solid var(--green-600);
+  border-radius: 0 6px 6px 0;
+  padding: 16px 20px;
+  margin: 0 0 22px;
+}
+.patient-signoff-panel h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  color: #14532d;
+  margin: 0 0 6px;
+}
+.signoff-intro {
+  font-size: 14px;
+  color: var(--gray-700);
+  margin: 0 0 12px;
+  line-height: 1.55;
+}
+.signoff-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.signoff-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-200);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.signoff-track {
+  font-weight: 600;
+  color: var(--gray-900);
+  font-size: 14px;
+}
+.signoff-pill {
+  display: inline-block;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.signoff-pill--complete {
+  background: var(--green-100);
+  color: #14532d;
+  border: 1px solid var(--green-600);
+}
+.signoff-pill--partial {
+  background: #fef3c7;
+  color: #78350f;
+  border: 1px solid #d97706;
+}
+.signoff-pill--pending {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #dc2626;
+}
+
+/* Engineering metrics — collapsible technical block above main disclaimer */
+.engineering-metrics {
+  margin: 22px 0 12px;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: left;
+}
+.engineering-metrics summary {
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  color: var(--gray-700);
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 2px 0;
+}
+.engineering-metrics summary:hover { color: var(--green-700); }
+.engineering-metrics ul {
+  list-style: none; padding: 0; margin: 8px 0 0;
+}
+.engineering-metrics li {
+  padding: 3px 0;
+  line-height: 1.5;
+  color: var(--gray-700);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  border-top: 1px dashed var(--gray-200);
+}
+.engineering-metrics li:first-child { border-top: none; }
+.engineering-metrics a { color: var(--green-700); text-decoration: none; }
+.engineering-metrics a:hover { text-decoration: underline; }
+
 /* Demo footer */
 .demo-footer {
   margin-top: 32px;
@@ -869,14 +1044,29 @@ body {
     <aside class="lab-letter">
       <p>Шановний пацієнте,</p>
       <p>Ваш генетичний аналіз готовий. Цей звіт пояснює прості висновки на основі результатів. Не замінює консультацію з лікарем — це додатковий інструмент розуміння.</p>
-      <p class="lab-attribution">Лабораторія CSD · MyAction PanCancer 524-gene NGS · код M367 · 2026-04-27 · демо-приклад 2-ї лінії (BRAF V600E)</p>
+      <p class="lab-attribution">Лабораторія CSD · MyAction PanCancer 524-gene NGS · код M367 · 2026-04-27 · демо-приклад 1-ї лінії</p>
     </aside>
 
-    <div class="qr-panel"><img class="qr-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABCgAAAQoAQAAAADgE9JRAAAWuklEQVR4nO1dy7IjuY4Db9T//zJnQQKgfXo91gKobpftfBihiFRRJEBV4wH879cEAITFRVgYYWGEhREWRlgYYWGEhREWRlgYYWGEhREWRlgYYWH8A4Ca912NQs/nRgENVOvPXtJAzWHgZj8KjZrLqlENzNXzA41C115SvR/28xtjERZGWBhhYfwDsI998Zlu7MPc1eg92OidQFDoKt3B77owU0EB1aguoFBdPbPN3rd6/uev4pWxCAsjLIywMJZF7QTgGWOefRRqHumqQndVTQgCdDu62PecADjDAI3e+GJvPR+76/7qW2PxY4SFERbGGyz+3Q/Vu9Co7l2M9K5S5nnfdQUmUOjqQs/So2cx0uWFx8w8PE8TxvzUZxn3jbEICyMsjLAw/n19nuCCeYedHJRpmNRFFZTO0MzgqxiBdM0EUzMRnemoGaMQb4xFWBhhYYSFsfPFPr3F1MWsL4qrjAaqlAjdN+idAWbRciaALkzOgtc5vVl9ch+65I2xCAsjLIywOOhuPrb9//zHBN4Yi7AwwsIIC+Mf8JFMmGXIhg/NlYSDiALasQJrJphg4n7fynyywoLPasv91TfGIiyMsDDC4qC7G60Cx7zfQ9i0J0+co3yBn/nek+el/wQQUyVpn6gLO/HFF8LCCAvjDRZaj3DK+HqecZcp8DkzrXDe0HRwvp3TzzzjA81jJPDGWISFERZGWBhk0SjnLFcooSmk9s+UVGc62aVHNbrny8lpFnoVG81ay1ZPuks6re4qMO54bSx+i7AwwsJ4iIXVVspIjKqi5innQqVGj4FVcnXXKrjm6Z9nv+eirgK14VtRmelop5M9u8zi5wgLIyyMsDCGRaO2NCot+AomqtYAIk/JXjDPe02Ws5rSzjmxVsPZMwFNBbWo+Jo31Y5oXhqLXyMsjLAw3mAx+ovRc1YdIRVFndRprjhjj6FoCZHtTMpNaTOagcQqO0sFl3LU0cArYxEWRlgYYWGUdFl1wwepPKHj9KPNJFCfEwq1mzSu1fnGKvCZZNriTh56YyzCwggLIyyMUhphtd5j+LCAwjGHVd8fs4BDh/3EO9NkotlEv/ehOQdeGYuwMMLCCAtjWBR6zKIl09gWWTeGKPlVa9MUR3xh2wg2ATrX8pr1kPAuLKF0sZLy1Fj8GmFhhIXxBovq+5fXHKeyCkAWMbbFmD/4yGF8vLZa5TAMYcGVCx3AK5M3xiIsjLAwwsJYFlOxwFFS8TNtqOtDbcUTcw11njufdFH/VXKunVoqppxaRwKWfjlfCAsjLIw3WLBdHm4IcZtWuMMelNnwXFD6pn1DBSdcqbRSHyqttL/EK2MRFkZYGGFhrF4Lq8aqYoghTVVtdnJnj5kopNHQPFBMYNRqN4oGteo9fxp02YeW+OK/EBZGWBhvsNA/+zfQ+CiQlhMOKpkoeeG6h/twlaqt7fsrCmEeY5MaFf3FF8LCCAvjJRZdE0A4e1FTDGlNIZxOutkdZ4INyTcxAcQmNMoTyXTMme+35dbeBcyPvjQWv0ZYGGFhvMFi+1+wY0WzhR6tHgC4gNiuWVAOcwKTtYrQgVJsAY7TjuskQ5jOAOhQwStjERZGWBhhYVBztaXOI6ySiJMZy73gQ+vpeqxKqxJ+A8qcchkDfBzW9W+MRVgYYWGEhbHrkXGvq7E3tgMWy6hnZ4F1kMjQWrUrjokWtqH4hh7tEOJcLcvrJj/fGotfIyyMsDDeYLF+s3Wh75fsUqFlibwi3C7Ar7bCrwnV/X1bXlRWXifzwRDFbYDfGIuwMMLCCIuDbYkFttM7JtR7AHq/Aq2vv6AufedENvBTWy69p8irkf5aXwgLIyyMN1hwP8QPbyooq9q4QV167R/bcxWanCQotZ9cwvRuLgBpxGeZY+fZI2MRFkZYGGFhyNxxZgMcaebmQEFPCPSMyxDiOeQmMmdukFyDv/clFI2+8w/CwggL4w0W2m/5VjiUjJgeOiyEeqXy2dtCSY3ttFU7p2hp4/pKzb4Dc5M9hFfGIiyMsDDCwvgHUM7dn4HEcX1QuM2yxiivmqcxxalYQm2CN4ZYpZa/b/6XeuofhIURFsYbLKyfmM+OHbz8uEdsWKfzbA8CMoaAdRRfeUommi72nsArYxEWRlgYYWFMfNGntyZcQGVEQRWFJOJSf/I6r0CYAOX0YEGHLm0uWNgu55GxCAsjLIywMA6LSVloj5AVUDAfMe5SnI+AN2GexlpjFukTXCj+2GwHdseSDVyiv/iLsDDCwniIhZKZbJ7nSghtYXfJsb1uqru3ljrn9F62W5mxUELxRWm+KQUjqY/8QVgYYWG8wcJ+doD5ytNpb08CoNIJ5BwrrVvaX7KuemqovvpPtqTSH/wbYWGEhfEGCz7ico85Y7FNLdx+kyru0+aCQu/NcRxhxt5+hRZuoHGqsOnf+V8ICyMsjDdYOCQA/DxbvmVRluYGP+ZwSx1VYudrnn5nF8YVbsZXiS/+IiyMsDDeYKFA4gYZVnBC6447o3gucBMLKi4camwJRHpR3cfCzug7/yIsjLAw3mDh+YLpiBM6wDMJFBnsZUxvfLTGuC6Sz5Z73kEArMTahvLIWISFERZGWBjsf8FayO5ING+KRRPuuswgorYAIqcZ2+zNnLEu1+3Ux+mCbX8BXqWPL43FrxEWRlgYb7A4Kcrr9viTiVDRVH+dlcvJf3DFAdZlcVIVDFDYOCP5i/9AWBhhYbzBYv1mtIhoccFsA+VZX/UT8BuaTPQVJV3uAdorH6fZBDK7S1D+xliEhREWRlgYw6IcImBTC3yUnceYHUWwvb1nddHqJ069eHeVDGqbtrASg2kM6GfjH/lCWBhhYTzEoma3IuYiLL6AFJrsl8U2OJOamOadlISzKuIaqwQaXT0bIs2duHVJ8p1/ERZGWBhvsCjnLOQcU3MLphnmlKMBPTsDsL3WR1W1WVilobWdr9DJ7RzqG2MRFkZYGGFhqKQpjdbAuk1AxdYj71JrLGvJ5y5HdcE55eOILLDOkbwyFmFhhIURFsaxfNQtfVrercKItRhHhiX1luXgCix8Y1vbLTi/Yo83xiIsjLAwwsI4eq1P7ZarniywfvXxVJzAmcITAUWhd4K5LrQj+ZwPb4xFWBhhYYSFcR9n20w/RBLqi3UEmRR7a/EhS9ldl5wpwTPMh+xzZ6o3xiIsjLAwwsJwn4vTVQuAxZft9KW8YnDt5NtrItfZx+ttBq6MSPwj/4WwMMLCeInFPtT7JO+uQ+po0+WtEbvuKTNzsJAKZz9ny/aiamOumP5bhaML/2Dxa4SFERZGWBj/A2YC6FFXHMfY52YkNZuVobcJX3l+WQnG9s3qPePUWntUGg1QctFVXXbKPzQWP0dYGGFhvMHi3/59hBE7J8iCPlsBuDcfn/JbLaXmmx+k/Z5bWrsBzkrXcPLIWISFERZGWBjWSHzvR9Y3nXmdZ8x+FpQXVQVVtjIoD0rXmb4/5ZjKfPEHYWGEhfEGi39+uz51q7MkmfACxTsPtI2ndpxtxrMcrkh8gQ/xJyeKrEf+ICyMsDDeYFEOHlgO/dByS1b16Wj3NCF9J/rMAq60SLYxv3Magp4CyhtjERZGWBhhYbA+MuFCaxHCzIMNqVvZ2Ghhcp/Fosi2yvEkUc30pouxdWMQFH8Eb43FrxEWRlgYb7GoeeKrpxVGnzUGe2fts88YoqrQngzQvYsUaC0zm42A3bbOr8wFyqC+NRa/RVgYYWG8wWLyFyc0AAAWMRgRgOIKSTz1uk356nS72GCCYcTY2Flg6dIK5fziG2MRFkZYGGFhbL5zLSGneW8DmjS8QuGswI0G+q5eqARd4cXp2TUJ0lr9l9YmxXnpjbEICyMsjLAwpl/OecxXx7naKyi0gCWfTIhuAqNW7cV1iBvmcH5hKFGzisE2zXGI8dBY/BxhYYSF8RIL+c8xCkyquQtuu7U4tvdyxIBNlir/WXf/VM5Ije4+myiqjPLSWPwaYWGEhfEGC/fLAUABFgumrJGCxzRXWKKlWqp8ZjK4Yq/jGX3rrPvl4I2xCAsjLIywMDa+YGBxHv8phXCPkaPjtpxirWhHwLVHpx04g4vubkUjU4kFEx+V/MUXwsIIC+MNFu6vBYDTAKsczVO4BwCjhw9h5+mPI20Xy6xcfDiKaf+um+e8MRZhYYSFERbG1kfYnvOjqVZLFk6T6fQR985DddppwelSK8BLYs/NX2iZ8pEJfWMswsIICyMsDIuzbQcD6ClVX08rv5XvZDvgU1p1Z3HGI+q9JTOarGxA8hf/hbAwwsJ4g8Xub8aXsxJhbwpNB7sZ0cYIJ9lR/bEIUXNfmVxXqsUoRrOKpqc3xiIsjLAwwsIY/cW2xEHtfkKcQbiu2OYXLVvJCsUxflXGIbt82cIqW+PM6d0qvCpAmc94aix+jrAwwsJ4isVkIeZffbXF2VNqgwKrM0ep1d0nTlC/ndk2sa+bveeesxY5SVQZzp4aix8jLIywMN5gYf2Fu4DP5/nLLvaTi2BMoa5Z7Ihz8h1HoGE9xlF1fKRM3hiLsDDCwggLw/qLDS16Rdu9llTtpspkBTcgWoxgcwKN6adzJpyxv19DGlrdflvzx1Nj8WuEhREWxkMsrJOQFov7s5cijtV70yfiUgob7dROJTrWm+CYDMbIwfYHZFg5LH6OsDDCwggLQ/216B6pj+WF9Vzc1gyqhBy5FjUXWqfsTVlLOaJxrUt2PRK91hfCwggL4yEW42XfZGR7+tBCQskM1kcG1VqosEYKfJ5filjupiPFDqF1WPwcYWGEhREWBln01lHlF5F9tBgVFKqajg90dQNVcoOc7hc0ikDVVZlca4ysbK2R9cgfhIURFsYbLHajon0/X6xYQq6wc7h3z6Kma6yZF90E6d5gz9Xd+RH7Hd8sgTfGIiyMsDDCwmA/70/L2BZDN09hJebZpP2IrigYtxtN5VnJv3mB0hpnGfPKWISFERZGWBhHDz4Fz7Ghc66AhRQbarAXV2vlUjSScdej2gSou/Ds2sY6MHtZo7/4QlgYYWG8waI8O3z18uVkcc5jItO1kLMJiW7Djr62lygXamfrMbrhlbEICyMsjLAw/gdgtwKo2o2TmbLcdrzsgVO7kpj0RLneUXN1NYqZCYrHaSFRG51TRMn+I/+JsDDCwniDxe4nQDE4wIRFMQuq1pvzrGt1wmXIlmB3Fjlhxa43NgeyfTF26TPtgSkKe2QswsIICyMsjM1fsGHF7Dm0wgpayJhwoHxT8YOmF2c4dkpotd5RN4yRkrOJ+If065GxCAsjLIywMEavxeY39JyP+7SaXjLpr7QPQHVje4KjtjdncwWDbcUFbTMwd2W8UXBS1Cx+jrAwwsIIC4N+dkiUyZY5s9y4XToxSQyKNZvdc7hLwN5qWvZtCWVnD4YjNc626rpl2LfG4scICyMsjDdY3ALIdyM99uaEvOzq3utWvTqiFQs+rO17uroCH+c7or/4D4SFERbGGyxUQuWS46M0SovIHHErYDi/caxklFS4drp3tADMpdv9ufnrjbEICyMsjLAw/gE2jaybzPOAPadykW1FdFMdbN3poESvnHCqmfpUoCHrKgOYN8YiLIywMMLCWP3F5jHX1NHSc1JCsYqM3t56+/BDOwVM1gLTIWNLqdR+nkbhqwY/G7MeFj9HWBhhYYSFQRZFubeqHVgBFwOFZriArZIwP0E56PTXkr+1VDld89okSUeYUdJ9RQ/+hbAwwsJ4g8Xf/IXyC8fnscfAeeWoyPfIzXb0uZ9SG9oRSR155ueS7/xCWBhhYbzBYtzla0FfXzq/nn/+vT9787V99a5h+AF0szc7atD+Lis8zpYFvb//xliEhREWRlgYo9cCQKEVH2+JMbEhwkguANlIpOZi084JTD77A8+7lWlAnpTm9s3Rd34jLIywMN5gUcpKsqghT9ipdpQXEdo9VVHGtbZaeuE1Sd9VyFV5WLD1xliEhREWRlgYu9+y9JZbwdgpgXUQFkCPeV2TCt/vFOJCi2oie8sRkfscOP/xxliEhREWRlgYDCtsUHWFQ9MERRfADRnmnUWfpUqJboy6CVRHJKdTOIBXxiIsjLAwwsIY/cWsFexQb2UddtvCqj62sk1suokvs6PrM1NTYEBBRHfLT3I05kj+4gthYYSF8QaLf3zDCaNkOd+vtTRpde/cjIUsIftavXFK89JWn09tWeIbMQWKV8YiLIywMMLCWD34vlJwJRcaNjmxwm41vJGC4mOZUlqmHO3mKY6AhlbvP5L1yDfCwggL4yUW++g2WAJRrzwGFKXEBfOi6Akwej3uZbVGsd66PfrmeCnvuaqMkuLrpbH4NcLCCAvjDRZqZsMuF2qV9VE1VZver2vd5/tUVaFE6SnSMhmq0q1+A6+MRVgYYWGEhXH64jnrUJJGfE4ArJpKBu4mGB8icGnMqbb4KKFYoZH8xX8gLIywMN5gQf0FVCrdRQYAKIEJaKsA+sSo3oLOV7SwHrWil8TTS1+n2Zky3hiLsDDCwgiLA5ZCQRvJOj3kHzkbGY7HxBsegk6RnVL8zXWj9N1dUaXY+aX4R/4gLIywMB5iwX/ri7pMYDp1uhXWSsNr/SGcGCTnshAD3nm9etsF73SCbZJhxD/yB2FhhIXxBgv72dUxj0rvLXQokbnpTS9bmOY8elA33+OCBUfDcTIkujb+kS+EhREWxkMsyh4RJh1AtyqYvqw5p3pXGm6XszVVOlWry9aS2fdsqrVdpbIqfyHxxTfCwggL4w0WCiX4ib5RThOsaChWUHzAYMI+1jqRyJFqfNZbXJVVM/JHxiIsjLAwwsIYFqV/70dgpd0QN6RgJbRkT4NXL5RgyeFejFgArKukWzWX+al1q0bf+QdhYYSF8QaL3Q+RL41dO7Bl+Eo/t7xa1zqiKMJzhWIKSjXQ1dSSz4lN/8jeK/mLL4SFERbGGyy03zI3GmL40MWO3yveho5Da5XNWkqH4cznHGcIwiLJbupOyfhaYl8Zi7AwwsIIC4MsZqPlkn2EE0FVq7banB8UhQC73hgl1uwlAO2HyITodZ+dThhVlHy8NRa/RVgYYWE8xIJPL8un2/BCrrGWnrNoRJ2dAbYFF0Vc7WvgSKOsG+/SEobfpz7yhbAwwsJ4iMXpTmGN5xZItcSYHdmB3sXHGtwnzthWOi668v4rAF/Ha7GXsCq48ad+IyyMsDDeYDF68N5XbIzgTQEULYDfrFK8b6rCmwbgXK6rvsTk7Xvub78xFmFhhIURFsaHR/2kGz7M6yUh57fP1CnPW2gF6yOt2EX6UZnSKB9NvvMTYWGEhfEGC8hldvxjYMSwJ/AtTqbiw4p2NyDipQo30Lpt6xYOXhJffCIsjLAw3mBx9Bdq7K32WtuhTxURcIuBonCTocbOBNuzj8USllQmtDh6DddIBm+MRVgYYWGExUE3dynEZ0AgMRVP1BO+kUN/hCba5NC5C73enMXHdoqb7Uh8cRAWRlgYD7LoLpZBaoWdnBqkysBseTgdPdmzEyyZsnNON/dP7Lmh90dc7xnnpegvvhAWRlgYL7KYmugkFWggBVZ2sX16T/hRswBBK53JsmudW1adjjosq9IVX9FffCEsjLAw3mBx/KmfrTy3BKJjVF3xgjrJC2DKKn12X6UaHHp/z9nqCM2tb4xFWBhhYYSFsf6R+eCGOWDRFJ/9fbewqlwn7HhfJRcTppJzqpba+gH+pLKeb4xFWBhhYYSF8b1HwG/wxliEhREWRlgYYWGEhREWRlgYYWGEhREWRlgYYWGEhREWRlgY/weswOpGpeg7QgAAAABJRU5ErkJggg==" alt="QR-код для відкриття звіту на телефоні"><p class="qr-caption">Скануйте, щоб відкрити цей звіт на телефоні / поділитися з родиною / показати другому лікарю.</p><div class="qr-url" title="https://openonco.info/try.html#p=H4sIAFZw7mkC_41UYW_aMBD9K5Y_tVNCSQil48MkBu1WqRRE0mnSNkXGOYK12I5sw4Yq_vvOhm6jnbR-S-6d7717d_YjXQotmfkOxtLhIx3Nx3RIW-bWugYlOI3o-9tZPM1v47wYFQ85otaxZQNHpJi-p8Mr_F6MbhD7dNntXiOUT0eTzP_jiYgW837vtOw-olxLCcphPN8ptwYnOBnnE3LHlqRlximUtBYtqUBqDDiByeTrJu0mGZHjxZj8EG5NPC8JrB2St8AF1iSt0SvRALF6YzhUZGW0JIys2NIIzhxGprsRd0IrMmdqzBQHQ876aRajOiD3H_JzYqDVxnXI_azAowZY8ySiQx6sL6oNQdlec5y8VPyxmN4R5kilub1oG6bsBbdVmZQeLY_V1042HTTIx2rD2rXgYQysBjq8zCIKXNd0mETUwk90SjI0Hr2rhAVmwaeKCuOT2zxGSzy0EqoSqg5lOLBS1aVs6DBL0og2zNRgXdmAxd5LLjHe8XGxBfM7qjd-Kr2ISnAMh42DKa1wgCW_HFLpt4i2RuDe7AKCCgxwp62opUZBAdVYUahw6pEuPa0B22rlZdP5ApP4jjcev_IKFIQ-9cbhYoSUibevT6TGVAO1nyyGb2Z3N7PPdI8SUFsNpdjSoTMb2B-qlHpV4ljQzB0dYm9oxdFt70jDlljjac0evhvmibFVK35vNjmb5vm5b4IpQOvof5cl5IbdKMM45kWcdtPLuJulg3hyPZ2FDryGsmLBriMcp32E7HFvfXc382vCdaO9n7hyeDtbu4vI0W3i3SZnf5vtyZ13l-vKV572Lgc-JJclb5hFe6lQDoyESnjuAyQ3rmxx5nIZ7HcbiePi0DQb3BHhdh7k4XYOuhHdYowpdxhlqCpW_iKhJ89fC-8JxsJzENF1vbUlx3_eSQZv3xbvRk_B1h_sPD0XW7b6w5il--iVNP65OmHJetnV-F1xyrJIsn73zXOa3tWracL7dcKD4__wvJlFMuh_fNFM8k-Ww7t4LH94LE_d6vaTFwSTXj-5f06Qpvtv-1fsX7gsiN1-ovtfi0M5cPYFAAA">https://openonco.info/try.html#p=H4sIAFZw7mkC_41UYW_aMBD…5cPYFAAA</div></div>
+    <div class="qr-panel"><img class="qr-img" src="data:image/png;base64,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" alt="QR-код для відкриття звіту на телефоні"><p class="qr-caption">Скануйте, щоб відкрити цей звіт на телефоні / поділитися з родиною / показати другому лікарю.</p><div class="qr-url" title="https://openonco.info/try.html#p=H4sIAKWB7mkC_41UYW_aMBD9K5Y_tVNCSQil48MkBu1WqRRE0mnSNkXGOYK12I5sw4Yq_vvOhm6jnbR-S-6d7717d_YjXQotmfkOxtLhIx3Nx3RIW-bWugYlOI3o-9tZPM1v47wYFQ85otaxZQNHpJi-p8Mr_F6MbhD7dNntXiOUT0eTzP_jiYgW837vtOw-olxLCcphPN8ptwYnOBnnE3LHlqRlximUtBYtqUBqDDiByeTrJu0mGZHjxZj8EG5NPC8JrB2St8AF1iSt0SvRALF6YzhUZGW0JIys2NIIzhxGprsRd0IrMmdqzBQHQ876aRajOiD3H_JzYqDVxnXI_azAowZY8ySiQx6sL6oNQdlec5y8VPyxmN4R5kilub1oG6bsBbdVmZQeLY_V1042HTTIx2rD2rXgYQysBjq8zCIKXNd0mETUwk90SjI0Hr2rhAVmwaeKCuOT2zxGSzy0EqoSqg5lOLBS1aVs6DBL0og2zNRgXdmAxd5LLjHe8XGxBfM7qjd-Kr2ISnAMh42DKa1wgCW_HFLpt4i2RuDe7AKCCgxwp62opUZBAdVYUahw6pEuPa0B22rlZdP5ApP4jjcev_IKFIQ-9cbhYoSUibevT6TGVAO1nyyGb2Z3N7PPdI8SUFsNpdjSoTMb2B-qlHpV4ljQzF0oiFYc3faONGyJNZ7W7OG7YZ4YW7Xi92aTs2men_smmAK0jv53WUJu2I0yjGNexGk3vYy7WTqIJ9fTWejAaygrFuw6wnHaR8ge99Z3dzO_Jlw32vuJK4e3s7W7iBzdJt5tcva32Z7ceXe5rnzlae9y4ENyWfKGWbSXCuXASKiE5z5AcuPKFmcul8F-t5E4Lg5Ns8EdEW7nQR5u56Ab0S3GmHKHUYaqYuUvEnry_LXwnmAsPAcRXddbW3L8551k8PZt8W70FGz9wc7Tc7Flqz-MWbqPXknjn6sTlqyXXY3fFacsiyTrd988p-ldvZomvF8nPDj-D8-bWSSD_scXzST_ZDm8i8fyh8fy1K1uP3lBMOn1k_vnBGm6_7Z_xf6Fy4LY7Se6_wU3-ojW9gUAAA">https://openonco.info/try.html#p=H4sIAKWB7mkC_41UYW_aMBD…jW9gUAAA</div></div>
+
+    <aside class="patient-signoff-panel"><h2>Хто перевірив цю рекомендацію</h2><p class="signoff-intro">Ми позначаємо кожну рекомендацію статусом перевірки лікарями. Будь-яка терапія, яка ще не отримала зеленої позначки, потребує обов'язкового обговорення з вашим онкологом.</p><ul class="signoff-list"><li class="signoff-row"><span class="signoff-track">Альтернативний варіант</span><span class="signoff-pill signoff-pill--pending">🔴 Лікарі ще перевіряють цю рекомендацію</span></li><li class="signoff-row"><span class="signoff-track">Альтернативний варіант</span><span class="signoff-pill signoff-pill--pending">🔴 Лікарі ще перевіряють цю рекомендацію</span></li><li class="signoff-row"><span class="signoff-track">Стандартний варіант</span><span class="signoff-pill signoff-pill--pending">🔴 Лікарі ще перевіряють цю рекомендацію</span></li></ul></aside>
 
     <article class="patient-plan">
-      <div class="patient-report"><header><h1>Ваш персональний план</h1><p class="patient-subhead">Що показав аналіз і що це означає для вас</p><p><strong>Діагноз:</strong> Колоректальний рак</p></header><section class="what-was-found"><h2>Що знайдено в результаті</h2><ul class="findings-list"><li><strong>BRAF V600E</strong> — конкретна заміна валіну на глутамат у позиції 600 BRAF — найчастіша &#x27;driver&#x27; мутація. <span class="patient-badge patient-info">Дуже високий — у комбінації</span></li><li><strong>TP53 any pathogenic</strong>. <span class="patient-badge patient-info">Цільовий препарат для іншого типу — trial-only</span></li></ul></section><section class="what-now"><h2>Що це означає для лікування</h2><div class="drug-explanation"><h3>Трифлуридин + Типірацил</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-oop" data-nszu-status="oop">Платно (з кишені)</div></div><div class="drug-explanation"><h3>Бевацизумаб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>Пембролізумаб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-partial" data-nszu-status="partial">НСЗУ покриває препарат, але не для цього діагнозу</div></div><div class="drug-explanation"><h3>Енкорафеніб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-oop" data-nszu-status="oop">Платно (з кишені)</div></div><div class="drug-explanation"><h3>Цетуксимаб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>Сотерасіб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-not-registered" data-nszu-status="not-registered">Не зареєстровано в Україні</div></div><div class="drug-explanation"><h3>Тукатиніб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-not-registered" data-nszu-status="not-registered">Не зареєстровано в Україні</div></div><div class="drug-explanation"><h3>Трастузумаб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-partial" data-nszu-status="partial">НСЗУ покриває препарат, але не для цього діагнозу</div></div><div class="drug-explanation"><h3>Трастузумаб дерукстекан</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-partial" data-nszu-status="partial">НСЗУ покриває препарат, але не для цього діагнозу</div></div><div class="drug-explanation"><h3>Оксаліплатин</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>Лейковорин (Фолінова кислота)</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>5-Фторурацил</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>Іринотекан</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>Регорафеніб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-partial" data-nszu-status="partial">НСЗУ покриває препарат, але не для цього діагнозу</div></div></section><section class="emergency-signals"><h2>Сигнали, що вимагають негайної уваги</h2><p>Якщо у вас з'явилися ці симптоми — зверніться у лікарню негайно, не чекайте планового візиту:</p><ul class="emergency-list"><li data-rf-id="RF-CRC-EMERGENCY-OBSTRUCTION-PERFORATION">🚨 Хірургічна невідкладність при КРР: повна кишкова непрохідність, перфорація з перитонітом, або масивна нижня ШКТ-кровотеча</li><li data-rf-id="RF-CRC-MSI-H-ACTIONABILITY">🚨 MSI-high / dMMR метастатичний КРР — лікування-визначальний маркер</li></ul></section><div class="ask-doctor"><h2>Про що варто запитати лікаря</h2><ul><li>Чи варто отримати другу думку молекулярного онколога перед початком лікування?</li><li>Скільки циклів триватиме лікування? Як ми зрозуміємо, що воно працює?</li><li>Які побічні ефекти найбільш імовірні саме для мене? Які я можу запобігти?</li><li>Чи є групи підтримки або психолог для онкологічних пацієнтів, які я можу відвідувати?</li><li>Чи доступний цей препарат у моєму регіоні? Якщо ні — як можна його отримати?</li><li>Чи є клінічні випробування, у яких я міг би взяти участь?</li></ul></div><footer class="patient-disclaimer"><p>Цей звіт — інформаційний інструмент, не медичний прилад. Усі рішення про лікування приймає ваш онколог. Звіт оновлюється, коли з'являються нові аналізи. Не змінюйте призначене лікування на основі лише цього звіту.</p><p>Якщо у вас виникли термінові симптоми, перелічені вище — звертайтесь у лікарню негайно, не чекайте планового візиту.</p><p>Питання про сам інструмент: <a href="https://github.com/romeo111/OpenOnco/issues">github.com/romeo111/OpenOnco</a></p></footer></div>
+      <div class="patient-report"><header><h1>Ваш персональний план</h1><p class="patient-subhead">Що показав аналіз і що це означає для вас</p><p><strong>Діагноз:</strong> Колоректальний рак</p></header><section class="what-was-found"><h2>Що знайдено в результаті</h2><ul class="findings-list"><li><strong>BRAF V600E</strong> — конкретна заміна валіну на глутамат у позиції 600 BRAF — найчастіша &#x27;driver&#x27; мутація. <span class="patient-badge patient-info">Дуже високий — у комбінації</span></li><li><strong>TP53 any pathogenic</strong>. <span class="patient-badge patient-info">Цільовий препарат для іншого типу — trial-only</span></li></ul></section><section class="what-now"><h2>Що це означає для лікування</h2><div class="drug-explanation"><h3>Оксаліплатин</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>Лейковорин (Фолінова кислота)</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>5-Фторурацил</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>Бевацизумаб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div><div class="drug-explanation"><h3>Пембролізумаб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-partial" data-nszu-status="partial">НСЗУ покриває препарат, але не для цього діагнозу</div></div><div class="drug-explanation"><h3>Цетуксимаб</h3><p class="lay-language">препарат для лікування вашого захворювання — деталі обговоріть з лікарем</p><div class="patient-nszu patient-nszu-covered" data-nszu-status="covered">Безкоштовно за програмою НСЗУ</div></div></section><section class="emergency-signals"><h2>Сигнали, що вимагають негайної уваги</h2><p>Якщо у вас з'явилися ці симптоми — зверніться у лікарню негайно, не чекайте планового візиту:</p><ul class="emergency-list"><li data-rf-id="RF-CRC-MSI-H-ACTIONABILITY">🚨 MSI-high / dMMR метастатичний КРР — лікування-визначальний маркер</li></ul></section><div class="ask-doctor"><h2>Про що варто запитати лікаря</h2><ul><li>Чи варто отримати другу думку молекулярного онколога перед початком лікування?</li><li>Скільки циклів триватиме лікування? Як ми зрозуміємо, що воно працює?</li><li>Які побічні ефекти найбільш імовірні саме для мене? Які я можу запобігти?</li><li>Чи є групи підтримки або психолог для онкологічних пацієнтів, які я можу відвідувати?</li><li>Чи є клінічні випробування, у яких я міг би взяти участь?</li><li>Чому ви рекомендуєте саме цей план, а не альтернативний?</li></ul></div><footer class="patient-disclaimer"><p>Цей звіт — інформаційний інструмент, не медичний прилад. Усі рішення про лікування приймає ваш онколог. Звіт оновлюється, коли з'являються нові аналізи. Не змінюйте призначене лікування на основі лише цього звіту.</p><p>Якщо у вас виникли термінові симптоми, перелічені вище — звертайтесь у лікарню негайно, не чекайте планового візиту.</p><p>Питання про сам інструмент: <a href="https://github.com/romeo111/OpenOnco/issues">github.com/romeo111/OpenOnco</a></p></footer></div>
     </article>
+
+    
+    <details class="engineering-metrics">
+      <summary>Інженерні метрики (для технічної аудиторії)</summary>
+      <ul>
+        <li>Engine bundle: lazy-load split — core 1.4 MB + per-disease module ~38 KB max (CSD-5B)</li>
+        <li>Initial /try.html load: ~3-5 сек (Pyodide + core bundle)</li>
+        <li>Per-disease module fetch: &lt;100 ms (browser cache after first visit)</li>
+        <li>KB snapshot: 1899 entities (50% growth у CSD-1..4)</li>
+        <li>Sign-off coverage: див. <a href="signoff_status_2026-04-27.md">dashboard</a></li>
+      </ul>
+    </details>
+    
 
     <footer class="demo-footer">
       <p>OpenOnco · <a href="https://openonco.info">openonco.info</a> · MIT-style usage · <a href="https://github.com/romeo111/OpenOnco">github.com/romeo111/OpenOnco</a></p>

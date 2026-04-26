@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Soft Tissue Tumours 5th ed (2020): Malignant peripheral nerve sheath tumour"
 
 archetype: biomarker_driven
+oncotree_code: MPNST
 lineage: "sarcoma"
 
 etiological_factors:

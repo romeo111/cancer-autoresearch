@@ -10,6 +10,7 @@ codes:
   icd_10: "C43"
   who_classification: "Malignant melanoma of skin (WHO 5th 2023)"
 archetype: biomarker_driven
+oncotree_code: MEL
 lineage: solid_tumor_skin_melanoma
 molecular_subtypes:
   - {id: BRAF_V600, label: "BRAF V600E/K mutation", definition: "~40-50%; targetable by BRAFi+MEKi"}

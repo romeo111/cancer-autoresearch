@@ -17,6 +17,7 @@ codes:
   who_classification: "Polycythaemia vera (PV) — Ph-negative myeloproliferative neoplasm (per WHO 5th ed.)"
 
 archetype: risk_stratified
+oncotree_code: PV
 lineage: myeloid_neoplasm
 
 etiological_factors:

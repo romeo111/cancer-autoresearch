@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Digestive System Tumours 5th ed: Gastric adenocarcinoma + GEJ adenocarcinoma"
 
 archetype: stage_driven
+oncotree_code: STAD
 lineage: "carcinoma"
 
 etiological_factors:

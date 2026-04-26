@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Digestive System Tumours 5th ed: Esophageal squamous cell carcinoma + esophageal adenocarcinoma"
 
 archetype: stage_driven
+oncotree_code: ESCA
 lineage: "carcinoma"
 
 etiological_factors:

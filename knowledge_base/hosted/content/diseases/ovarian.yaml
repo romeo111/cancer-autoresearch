@@ -12,6 +12,7 @@ codes:
   who_classification: "WHO Female Genital Tumours 5th ed (2020): High-grade serous carcinoma of tubo-ovarian / peritoneal origin"
 
 archetype: biomarker_driven
+oncotree_code: OV
 lineage: "carcinoma"
 
 etiological_factors:
