@@ -9,6 +9,9 @@ applicable_to:
     - biomarker_id: BIO-CD20-IHC
       required: true
       value_constraint: "positive"
+    - biomarker_id: BIO-FL-FLIPI
+      required: true
+      value_constraint: "FLIPI 3-5 (high-risk) typically supports R-CHOP intensification over BR; required risk stratifier"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 2

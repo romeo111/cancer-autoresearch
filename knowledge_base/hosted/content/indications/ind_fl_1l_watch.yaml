@@ -9,6 +9,9 @@ applicable_to:
     - biomarker_id: BIO-CD20-IHC
       required: true
       value_constraint: "positive"
+    - biomarker_id: BIO-FL-FLIPI
+      required: true
+      value_constraint: "FLIPI 0-2 (low/intermediate-risk) — watch-and-wait reserved for low-burden, asymptomatic disease (GELF-criteria-negative); high-FLIPI typically routes to active treatment"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 2

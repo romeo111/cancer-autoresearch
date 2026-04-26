@@ -9,6 +9,9 @@ applicable_to:
     - biomarker_id: BIO-CD20-IHC
       required: true
       value_constraint: "positive"
+    - biomarker_id: BIO-FL-FLIPI
+      required: true
+      value_constraint: "FLIPI 0-5 — required risk stratifier; high-burden / GELF-positive / FLIPI 3-5 routes to BR or R-CHOP active treatment"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 2
