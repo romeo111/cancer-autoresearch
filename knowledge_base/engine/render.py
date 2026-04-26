@@ -1436,9 +1436,23 @@ def render_plan_html(
         drugs_dd = _render_track_drug_list(
             t, drugs_lookup, plan_result.disease_id or "", disease_names, target_lang
         )
+        # Phase 4: OncoKB resistance-conflict inline banner (Q2 — surfaces
+        # R1/R2 next to the recommended regimen so it cannot be missed).
+        oncokb_layer_for_inline = getattr(plan_result, "oncokb_layer", None)
+        oncokb_inline = ""
+        if oncokb_layer_for_inline is not None:
+            try:
+                from .render_oncokb import render_track_resistance_banner
+                oncokb_inline = render_track_resistance_banner(
+                    t.track_id or t.label or "",
+                    oncokb_layer_for_inline.resistance_conflicts,
+                )
+            except Exception:
+                oncokb_inline = ""
         track_html.append(
             f'<div class="{track_class}">'
             f'<div class="track-head"><div class="track-name">{_h(t.label)}</div>{badge}</div>'
+            f'{oncokb_inline}'
             f'<dl>'
             f'<dt>Indication</dt><dd>{_h(t.indication_id)}</dd>'
             f'<dt>Regimen</dt><dd>{_h(regimen_str)}</dd>'
@@ -1464,6 +1478,19 @@ def render_plan_html(
     body.append(_render_pretreatment_investigations(plan, plan_result.kb_resolved))
     body.append(_render_red_flags_pro_contra(plan, plan_result.kb_resolved, target_lang))
     body.append(_render_what_not_to_do(plan, target_lang))
+
+    # Phase 4: OncoKB precision-medicine layer (HCP-only; surface-only).
+    # Per safe-rollout v3 §4.1: section sits AFTER tracks + supportive-care,
+    # BEFORE monitoring. CHARTER §8.3 invariant — engine never reads this.
+    oncokb_layer = getattr(plan_result, "oncokb_layer", None)
+    if oncokb_layer is not None:
+        try:
+            from .render_oncokb import render_oncokb_section
+            body.append(render_oncokb_section(oncokb_layer, mode="clinician", target_lang=target_lang))
+        except Exception as exc:
+            # Fail-open: missing oncokb section is preferable to a broken plan
+            body.append(f"<!-- oncokb section error: {exc} -->")
+
     body.append(_render_monitoring_phases(plan))
     body.append(_render_timeline(plan))
 
