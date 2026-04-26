@@ -137,38 +137,161 @@ def test_pmid_renders_as_clickable_pubmed_link():
     assert "PMID:29151359" in out
 
 
-# ── AC-20 (Q8): FDA-approval badge ──────────────────────────────────────
+# ── AC-20 (Q8): FDA-approval badge via Drug-entity lookup (Phase 4.1) ──
+#
+# Per Phase 0 mock-mode finding A3-bis: OncoKB response does NOT carry an
+# fdaApproved field on treatments[]. Q8 FDA badge sources truth from our
+# own Drug entities (Drug.regulatory_status.fda.{approved, year_first_approval}).
+# Render layer receives `drugs_lookup` = kb_resolved.drugs and matches
+# OncoKB drug names against Drug.names case-insensitively.
 
 
-def test_fda_approval_badge_renders_with_year():
+def _drug_lookup(approved: bool, year: int | None, *, name: str, synonyms: list[str] | None = None) -> dict:
+    """Helper: build a minimal kb_resolved.drugs-shaped dict."""
+    return {
+        f"DRUG-{name.upper()}": {
+            "names": {"preferred": name, "synonyms": synonyms or []},
+            "regulatory_status": {"fda": {"approved": approved, "year_first_approval": year}},
+        }
+    }
+
+
+def test_fda_approval_badge_renders_via_drug_lookup_with_year():
     layer = OncoKBLayer(
         results=[
             _make_result(
                 "KRAS", "G12C",
-                [{
-                    "level": "3A", "drugs": ["sotorasib"],
-                    "fda_approved": True, "fda_approval_year": 2021,
-                }],
+                [{"level": "3A", "drugs": ["sotorasib"]}],  # no fda_approved on opt — sourced from drug_lookup
             )
         ]
     )
-    out = render_oncokb_section(layer, mode="clinician")
+    drugs = _drug_lookup(approved=True, year=2021, name="sotorasib")
+    out = render_oncokb_section(layer, mode="clinician", drugs_lookup=drugs)
     assert "FDA-approved" in out
     assert "2021" in out
     assert "sotorasib" in out
 
 
-def test_fda_approval_badge_absent_when_not_approved():
+def test_fda_approval_badge_absent_when_drug_not_in_kb():
+    """Conservative behaviour: drug name unknown to our KB → no badge.
+    Absence is honest 'we don't know', not 'not approved'."""
+    layer = OncoKBLayer(
+        results=[
+            _make_result("KRAS", "G12C", [{"level": "3A", "drugs": ["unknown-investigational"]}])
+        ]
+    )
+    out = render_oncokb_section(layer, mode="clinician", drugs_lookup={})
+    assert "FDA-approved" not in out
+
+
+def test_fda_approval_badge_absent_when_drug_known_but_not_approved():
+    layer = OncoKBLayer(
+        results=[
+            _make_result("TP53", "R175H", [{"level": "4", "drugs": ["MRTX1133"]}])
+        ]
+    )
+    drugs = _drug_lookup(approved=False, year=None, name="MRTX1133")
+    out = render_oncokb_section(layer, mode="clinician", drugs_lookup=drugs)
+    assert "FDA-approved" not in out
+
+
+def test_fda_lookup_is_case_insensitive():
+    """OncoKB capitalizes drug names ('Vemurafenib'); our Drug.names.preferred
+    may use lowercase. Lookup must work either way."""
+    layer = OncoKBLayer(
+        results=[
+            _make_result("BRAF", "V600E", [{"level": "3A", "drugs": ["Vemurafenib"]}])
+        ]
+    )
+    drugs = _drug_lookup(approved=True, year=2011, name="vemurafenib")
+    out = render_oncokb_section(layer, mode="clinician", drugs_lookup=drugs)
+    assert "FDA-approved" in out
+
+
+def test_fda_lookup_matches_synonym():
+    """Drug.names.synonyms is also indexed — useful for trade-vs-generic."""
+    layer = OncoKBLayer(
+        results=[
+            _make_result("BRAF", "V600E", [{"level": "3A", "drugs": ["Zelboraf"]}])
+        ]
+    )
+    drugs = _drug_lookup(
+        approved=True, year=2011, name="vemurafenib", synonyms=["Zelboraf"]
+    )
+    out = render_oncokb_section(layer, mode="clinician", drugs_lookup=drugs)
+    assert "FDA-approved" in out
+    assert "Zelboraf" in out
+
+
+def test_fda_badge_uses_first_approved_drug_in_combo():
+    """Combo regimen with one approved + one investigational — badge fires
+    on the first approved drug found."""
     layer = OncoKBLayer(
         results=[
             _make_result(
-                "TP53", "R175H",
-                [{"level": "4", "drugs": ["arsenic trioxide"], "fda_approved": False}],
+                "BRAF", "V600E",
+                [{"level": "3A", "drugs": ["Vemurafenib", "investigational-x"]}],
             )
         ]
     )
-    out = render_oncokb_section(layer, mode="clinician")
-    assert "FDA-approved" not in out
+    drugs = _drug_lookup(approved=True, year=2011, name="vemurafenib")
+    out = render_oncokb_section(layer, mode="clinician", drugs_lookup=drugs)
+    assert "FDA-approved" in out
+    assert "Vemurafenib" in out
+
+
+def test_fda_badge_silent_with_no_drugs_lookup_arg():
+    """Backward-compat: callers that don't pass drugs_lookup get no badge,
+    but the section still renders normally."""
+    layer = OncoKBLayer(
+        results=[_make_result("BRAF", "V600E", [{"level": "3A", "drugs": ["sotorasib"]}])]
+    )
+    out = render_oncokb_section(layer, mode="clinician")  # no drugs_lookup
+    assert out != ""  # section still rendered
+    assert "FDA-approved" not in out  # but no badges
+    assert "sotorasib" in out
+
+
+def test_build_fda_index_handles_missing_or_malformed_drugs():
+    """Robustness: malformed drug entries in kb_resolved should not crash."""
+    from knowledge_base.engine.render_oncokb import build_fda_index
+
+    # None
+    assert build_fda_index(None) == {}
+    # Empty
+    assert build_fda_index({}) == {}
+    # Missing regulatory_status
+    assert build_fda_index({"DRUG-X": {"names": {"preferred": "x"}}}) == {}
+    # regulatory_status without fda
+    assert build_fda_index({"DRUG-X": {"names": {"preferred": "x"}, "regulatory_status": {}}}) == {}
+    # fda without approved key
+    assert build_fda_index({"DRUG-X": {"names": {"preferred": "x"}, "regulatory_status": {"fda": {}}}}) != {}
+    # year as string digit — coerced to int
+    idx = build_fda_index({
+        "DRUG-X": {"names": {"preferred": "x"}, "regulatory_status": {"fda": {"approved": True, "year_first_approval": "2020"}}}
+    })
+    assert idx["x"] == (True, 2020)
+
+
+def test_confidence_string_includes_fda_via_drug_lookup():
+    """The 'Level 3A · 5 PMIDs · FDA-approved' confidence string also uses
+    drug_lookup, not the synthetic fda_approved field."""
+    layer = OncoKBLayer(
+        results=[
+            _make_result(
+                "KRAS", "G12C",
+                [{"level": "3A", "drugs": ["sotorasib"], "pmids": ["32955176"]}],
+            )
+        ]
+    )
+    drugs = _drug_lookup(approved=True, year=2021, name="sotorasib")
+    out = render_oncokb_section(layer, mode="clinician", drugs_lookup=drugs)
+    # Confidence string format: 'Level 3A · 1 PMID · FDA-approved, 2021'
+    assert "Level 3A" in out
+    assert "1 PMID" in out
+    # FDA fragment in confidence
+    import re
+    assert re.search(r"FDA-approved.*2021", out)
 
 
 # ── AC-8: Attribution in header, not footnote ───────────────────────────

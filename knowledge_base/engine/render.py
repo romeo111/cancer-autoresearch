@@ -1482,11 +1482,19 @@ def render_plan_html(
     # Phase 4: OncoKB precision-medicine layer (HCP-only; surface-only).
     # Per safe-rollout v3 §4.1: section sits AFTER tracks + supportive-care,
     # BEFORE monitoring. CHARTER §8.3 invariant — engine never reads this.
+    # Phase 4.1: pass kb_resolved.drugs so the render layer can source FDA-
+    # approval truth from our Drug entities (OncoKB doesn't carry fdaApproved
+    # on treatments[] — see oncokb_api_evidence.md A3-bis).
     oncokb_layer = getattr(plan_result, "oncokb_layer", None)
     if oncokb_layer is not None:
         try:
             from .render_oncokb import render_oncokb_section
-            body.append(render_oncokb_section(oncokb_layer, mode="clinician", target_lang=target_lang))
+            body.append(render_oncokb_section(
+                oncokb_layer,
+                mode="clinician",
+                target_lang=target_lang,
+                drugs_lookup=(plan_result.kb_resolved or {}).get("drugs"),
+            ))
         except Exception as exc:
             # Fail-open: missing oncokb section is preferable to a broken plan
             body.append(f"<!-- oncokb section error: {exc} -->")
