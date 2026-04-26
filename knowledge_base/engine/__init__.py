@@ -18,6 +18,11 @@ from .diagnostic import (
     is_diagnostic_profile,
     is_treatment_profile,
 )
+from .experimental_options import (
+    TrialQuery,
+    clear_cache as clear_experimental_cache,
+    enumerate_experimental_options,
+)
 from .mdt_orchestrator import (
     MDTOrchestrationResult,
     MDTRequiredRole,
@@ -65,7 +70,10 @@ __all__ = [
     "ProvenanceEvent",
     "QPreviewResult",
     "SkillMetadata",
+    "TrialQuery",
     "assemble_profile",
+    "clear_experimental_cache",
+    "enumerate_experimental_options",
     "evaluate_partial",
     "generate_diagnostic_brief",
     "generate_plan",

@@ -17,6 +17,7 @@ from .diagnostic import (
 )
 from .disease import Disease
 from .drug import Drug
+from .experimental_option import ExperimentalOption, ExperimentalTrial
 from .indication import Indication
 from .monitoring import MonitoringSchedule
 from .plan import FDAComplianceMetadata, Plan, PlanAnnotation, PlanTrack
@@ -64,6 +65,8 @@ __all__ = [
     "Disease",
     "Drug",
     "ENTITY_BY_DIR",
+    "ExperimentalOption",
+    "ExperimentalTrial",
     "FDAComplianceMetadata",
     "IHCPanel",
     "Indication",
