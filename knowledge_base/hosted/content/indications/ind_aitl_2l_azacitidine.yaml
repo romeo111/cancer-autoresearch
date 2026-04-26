@@ -1,0 +1,109 @@
+id: IND-AITL-2L-AZACITIDINE
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-AITL
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory after ≥1 prior systemic line (CHOEP / CHP-Bv equivalent)"
+    - "Preferred for AITL with confirmed TET2 / IDH2 / DNMT3A mutation (>70-90% of AITL)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 3
+
+recommended_regimen: REG-AZACITIDINE-AITL
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: conditional
+nccn_category: "2B"
+
+expected_outcomes:
+  overall_response_rate: "~50-75% (RUYUAN-2 / Lemonnier 2018-2023; small AITL series)"
+  complete_response: "~30-40%"
+  progression_free_survival: "Median PFS ~6-15 mo (early data, AITL-specific cohorts)"
+  overall_survival_5y: "Mature OS pending; ~50-60% 18-mo OS in responders"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-AITL-AUTOIMMUNE-CYTOPENIA
+  - RF-AITL-EBV-DRIVEN-B-CELL
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-NGS-LYMPHOID-PANEL  # TET2/IDH2/DNMT3A — predictive biomarkers
+  - TEST-PET-CT
+  - TEST-LN-CORE-BIOPSY
+  - TEST-EBER-ISH
+  - TEST-IMMUNOGLOBULINS
+  - TEST-DAT-COOMBS
+  - TEST-RETICULOCYTE
+  - TEST-HAPTOGLOBIN
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-EBV-SEROLOGY
+desired_tests: []
+
+rationale: >
+  5-Azacitidine (hypomethylating agent) for r/r AITL — emerging
+  epigenetic-targeted therapy with strong mechanistic rationale.
+  AITL has high frequency of TET2 (~80%), IDH2 R172 (~30-45%),
+  DNMT3A (~30%) mutations creating epigenetic dysregulation that
+  hypomethylating agents exploit. RUYUAN-2 (Lemonnier 2018-2023)
+  and other small AITL-specific series show ORR 50-75% — substantially
+  higher than HDAC inhibitor mono in same setting. OFF-LABEL use
+  for AITL — drug FDA/EMA-approved for MDS-HR + AML. Practical
+  advantage in UA: drug is on-shelf via existing AML/MDS supply
+  routes (НСЗУ-reimbursed for MDS-HR + AML), unlike belinostat /
+  romidepsin / pralatrexate (none registered). Slow-onset response
+  — minimum 4-6 cycles before declaring failure.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "5-Azacitidine is an option for r/r PTCL with TFH features (AITL), particularly with TET2/IDH2 mutations; Cat 2B (off-label)"
+  - source_id: SRC-ESMO-PTCL-2024
+    position: supports
+    relevant_quote_paraphrase: "Hypomethylating agents (azacitidine) are emerging therapy for r/r AITL — leverages high prevalence of epigenetic mutations (TET2/IDH2/DNMT3A); RUYUAN-2 + Lemonnier series support ORR 50-75% in AITL specifically"
+
+known_controversies:
+  - topic: "Azacitidine vs HDAC inhibitor (belinostat, romidepsin) as AITL 2L+ first choice"
+    positions:
+      - position: "Azacitidine first — AITL-specific data, mechanistic alignment, UA-accessible"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "HDAC inhibitor first — FDA-approved for r/r PTCL with broader registration data"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "5-Azacitidine first in UA context (access + AITL-specific data); HDACi if 5-aza failed and access can be arranged"
+  - topic: "Optimal cycle count before declaring failure"
+    positions:
+      - position: "≥4 cycles per HMA experience in MDS — slow-onset epigenetic response"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "≥6 cycles given heterogeneity of AITL response timing"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "≥6 cycles before declaring failure unless clear progression earlier"
+
+do_not_do:
+  - "НЕ припиняти раніше 4-6 циклів без явної прогресії — HMA response slow-onset; рання evaluation = false negative."
+  - "НЕ забути monitor cytopenia + delay cycle при ANC <500 / platelets <25K — hematologic toxicity дозо-обмежуюча."
+  - "НЕ ігнорувати renal function — CrCl <60 потребує dose reduction 50%."
+  - "НЕ пропускати re-biopsy при швидкому росту CD20+ mass — secondary EBV-driven DLBCL у AITL мікрооточенні; отдельне routing."
+  - "НЕ забути off-label disclosure — drug registered for MDS/AML; AITL off-label використання потребує MDT documentation + funding pathway clarification."
+  - "НЕ пропускати baseline NGS для TET2/IDH2/DNMT3A — predictive enrichment + future trial routing (IDH2 inhibitor enasidenib для IDH2-mut)."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 2L+
+  for r/r AITL (drug accessibility positions this as preferred over
+  HDACi in UA context). Off-label use — MDT documentation + funding
+  pathway clarification required. RUYUAN-2 mature data and IDH2/IDH1
+  inhibitor combination trials are evolving.

@@ -1,0 +1,60 @@
+id: REG-BELINOSTAT-PTCL
+name: "Belinostat IV days 1-5 q21d (BELIEF schedule) — r/r PTCL incl AITL"
+name_ua: "Белінoстат IV дні 1-5 кожні 21 день (BELIEF) — рефрактерна PTCL/AITL"
+alternate_names: ["Belinostat mono", "BELIEF regimen", "Beleodaq r/r PTCL"]
+
+components:
+  - drug_id: DRUG-BELINOSTAT
+    dose: "1000 mg/m² IV over 30 min"
+    schedule: "Days 1-5 of each 21-day cycle, until progression or unacceptable toxicity"
+    route: IV
+
+cycle_length_days: 21
+total_cycles: "Until progression or unacceptable toxicity (response-driven)"
+toxicity_profile: moderate
+
+premedication:
+  - "5-HT3 antagonist + dexamethasone before each infusion (high emetogenic potential)"
+  - "TLS prophylaxis cycle 1 if high-burden disease (allopurinol + hydration)"
+mandatory_supportive_care:
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-TLS-PROPHYLAXIS
+  - SUP-ANTIEMETIC-PREMED
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Platelets <50K OR ANC <500"
+    modification: "Hold; resume at same dose after recovery; if recurrent, reduce to 750 mg/m²"
+    rationale: "Cytopenia is dose-limiting"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "QTc >500 ms OR baseline >480 ms"
+    modification: "Hold; correct K/Mg; cardiology consult; resume after QTc <480 ms"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Bilirubin >1.5× ULN OR transaminases >3× ULN"
+    modification: "Hold; reduce to 750 mg/m² on resume; monitor LFTs weekly"
+  - condition: "Concomitant strong UGT1A1 inhibitor (atazanavir)"
+    modification: "Avoid OR reduce belinostat dose"
+    rationale: "UGT1A1 is primary metabolic pathway"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: >
+    Belinostat NOT registered in Ukraine; no EMA approval. Access via
+    international supply / clinical trial only — limited. For AITL
+    specifically, where epigenetic dependence (TET2/IDH2/DNMT3A
+    mutations) supports HDAC mechanism, response rates higher than
+    PTCL NOS — but access dominant constraint.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  BELIEF trial (O'Connor 2015): r/r PTCL n=129 (incl AITL ~22%, PTCL
+  NOS ~58%, ALCL ~10%, others) — overall ORR 26%, CR 11%, mDOR 13.6
+  mo, mPFS 1.6 mo (mature responders 13.6 mo). AITL subset response
+  numerically higher than PTCL NOS (small cohort). FDA-approved for
+  r/r PTCL after ≥1 prior line. Key advantage: distinct mechanism
+  from chemo + most targeted agents — useful as bridge or last-line.

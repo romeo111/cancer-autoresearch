@@ -1,0 +1,104 @@
+id: IND-AITL-2L-ROMIDEPSIN
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-AITL
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory after ≥1 prior systemic line (CHOEP / CHP-Bv / R-CHOP-equivalent)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-ROMIDEPSIN-PTCL
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: conditional
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~25-38% (NCI 1312); AITL subset higher (~33%)"
+  complete_response: "~15%"
+  progression_free_survival: "Median PFS ~4 mo; mDOR ~17 mo for responders"
+  overall_survival_5y: "~25-30% (heavily pretreated baseline)"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-AITL-AUTOIMMUNE-CYTOPENIA
+  - RF-AITL-EBV-DRIVEN-B-CELL
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-NGS-LYMPHOID-PANEL  # TET2/IDH2/DNMT3A
+  - TEST-PET-CT
+  - TEST-LN-CORE-BIOPSY
+  - TEST-EBER-ISH
+  - TEST-IMMUNOGLOBULINS
+  - TEST-DAT-COOMBS
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+desired_tests: []
+
+rationale: >
+  Romidepsin (class I-selective HDAC inhibitor) for r/r AITL after ≥1
+  prior line. HDAC mechanism aligns with AITL epigenetic dependence
+  (TET2/IDH2/DNMT3A mutations in 70-90%). NCI 1312: ORR 25-38% with
+  AITL subset higher (~33%) than PTCL NOS. NCCN-listed despite FDA
+  PTCL indication voluntary withdrawal in 2021 (Ro-CHOEP confirmatory
+  trial showed no PFS benefit over CHOP in 1L) — withdrawal reasoning
+  applies to 1L combination, not r/r monotherapy. Modest ORR but
+  durable in responders (~17 mo DOR). Useful bridge or last-line
+  option.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "Romidepsin is option for r/r PTCL incl AITL after ≥1 prior line per NCI 1312; Cat 2A despite FDA PTCL indication withdrawal — NCCN retains as option"
+  - source_id: SRC-ESMO-PTCL-2024
+    position: supports
+    relevant_quote_paraphrase: "HDAC inhibitors recognized 2L+ option for r/r PTCL; AITL response rates higher due to TFH/epigenetic biology"
+
+known_controversies:
+  - topic: "Romidepsin r/r PTCL — NCCN retention vs FDA withdrawal disconnect"
+    positions:
+      - position: "Use per NCCN — FDA withdrawal driven by 1L Ro-CHOEP failure, not r/r monotherapy data"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Avoid given FDA withdrawal optics — choose belinostat (FDA-approved r/r PTCL retained) instead"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "Acceptable per NCCN-listing; full disclosure to patient about FDA-status nuance; belinostat alternative if patient prefers FDA-approved-status"
+  - topic: "Romidepsin vs 5-azacitidine for r/r AITL"
+    positions:
+      - position: "5-azacitidine: AITL-specific RUYUAN-2 data; UA-accessible via MDS/AML supply"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Romidepsin: longer track record; FDA approved (CTCL) — class I HDAC selective"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "5-azacitidine first in UA context (access); romidepsin if access secured + 5-aza failed"
+
+do_not_do:
+  - "НЕ пропускати baseline + serial QTc + correct K/Mg до upper-normal range перед інфузією — romidepsin має cardiac signal."
+  - "НЕ комбінувати з QT-prolonging drugs без strict monitoring."
+  - "НЕ комбінувати з warfarin без modified INR monitoring — INR rises substantially."
+  - "НЕ призначати при concomitant strong CYP3A inhibitor без dose reduction до 10 mg/m²."
+  - "НЕ пропускати TLS prophylaxis в high-burden AITL — IL2-driven hyperactivated stage."
+  - "НЕ забути re-biopsy при швидкому ростанні CD20+ mass — secondary EBV-driven DLBCL часто в AITL мікрооточенні."
+  - "НЕ ігнорувати AIHA / ITP triggers — AITL paraneoplastic; не плутати з drug-induced cytopenia."
+  - "НЕ призначати без funding pathway — препарат не зареєстрований в Україні."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track 2L+ for
+  r/r AITL. NCCN-listed despite FDA PTCL indication withdrawal.
+  ECG ST/T changes during infusion typically benign — distinguish
+  from ischemic via baseline + serial ECGs. UA access barrier
+  dominant.

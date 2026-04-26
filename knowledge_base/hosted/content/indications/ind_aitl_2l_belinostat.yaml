@@ -1,0 +1,100 @@
+id: IND-AITL-2L-BELINOSTAT
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-AITL
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory after ≥1 prior systemic line (CHOEP / CHP-Bv / R-CHOP-equivalent)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-BELINOSTAT-PTCL
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: conditional
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~26% overall (BELIEF); higher in AITL subset (~46%)"
+  complete_response: "~11%"
+  progression_free_survival: "Median PFS ~1.6 mo overall; mDOR for responders ~13.6 mo"
+  overall_survival_5y: "~25-30% (heavily pretreated cohort baseline poor)"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-AITL-AUTOIMMUNE-CYTOPENIA
+  - RF-AITL-EBV-DRIVEN-B-CELL
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-NGS-LYMPHOID-PANEL  # TET2/IDH2/DNMT3A baseline
+  - TEST-PET-CT
+  - TEST-LN-CORE-BIOPSY
+  - TEST-EBER-ISH
+  - TEST-IMMUNOGLOBULINS
+  - TEST-DAT-COOMBS
+  - TEST-RETICULOCYTE
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-PREGNANCY
+desired_tests: []
+
+rationale: >
+  Belinostat (pan-HDAC inhibitor) for r/r AITL after ≥1 prior line per
+  BELIEF (FDA-approved for r/r PTCL). Mechanistic rationale particularly
+  strong in AITL: TFH-cell origin + high frequency of epigenetic
+  mutations (TET2/IDH2/DNMT3A in 70-90%) supports HDAC dependence.
+  Distinct mechanism from chemoimmuno + targeted T-cell drugs — useful
+  bridge or last-line option. Modest overall response rate (26%) but
+  durable in responders (~13.6 mo DOR). Re-biopsy preferred to
+  surveillance for EBV+ B-cell secondary lymphoma development (AITL
+  microenvironment) — if confirmed, route to anti-CD20 + chemo
+  separately.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "Belinostat is option for r/r PTCL incl AITL after ≥1 prior systemic line per BELIEF; Cat 2A"
+  - source_id: SRC-ESMO-PTCL-2024
+    position: supports
+    relevant_quote_paraphrase: "HDAC inhibitors (belinostat, romidepsin) are recognized 2L+ options for r/r PTCL; AITL response rates higher than PTCL NOS due to TFH biology"
+
+known_controversies:
+  - topic: "Belinostat vs romidepsin vs pralatrexate as preferred 2L+ for AITL"
+    positions:
+      - position: "Belinostat: distinct UGT1A1 metabolism — useful when CYP3A interactions concern"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Romidepsin: more selective (HDAC1/2); FDA PTCL indication withdrawn but NCCN-listed"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "5-Azacitidine: emerging AITL-specific data (RUYUAN-2); mechanism aligns with TET2/IDH2 dependence; reimbursed in UA via MDS/AML pathway"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "5-Azacitidine first in UA context (access advantage); belinostat / romidepsin if access can be arranged + 5-aza failed"
+
+do_not_do:
+  - "НЕ пропускати baseline + serial QTc — belinostat має cardiac signal; correct K/Mg перед першою інфузією."
+  - "НЕ комбінувати з QT-prolonging drugs (azoles, certain antiemetics) без strict monitoring."
+  - "НЕ призначати при severe hepatic impairment — UGT1A1-залежний metabolism."
+  - "НЕ пропускати monitoring TLS в high-burden AITL (IL2-driven hyperactivated state) — allopurinol + hydration cycle 1."
+  - "НЕ забути re-biopsy при появі швидкозростаючої CD20+ B-cell mass — secondary EBV-driven DLBCL у AITL мікрооточенні часто."
+  - "НЕ призначати без funding pathway clarification — препарат не зареєстрований в Україні."
+  - "НЕ ігнорувати AIHA / ITP triggers — AITL paraneoplastic phenomena (RF-AITL-AUTOIMMUNE-CYTOPENIA); не плутати з drug-induced cytopenia."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track 2L+ for
+  r/r AITL. UA access barrier dominant — 5-azacitidine off-label is
+  more practical in current UA practice. Belinostat reserved for
+  scenarios where international supply secured.
