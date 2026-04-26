@@ -32,8 +32,35 @@ decision_tree:
     if_false:
       result: IND-BURKITT-1L-DAEPOCHR
 
-sources: [SRC-NCCN-BCELL-2025]
-last_reviewed: "2026-04-25"
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-BURKITT-2024]
+last_reviewed: "2026-04-27"
 notes: >
   CODOX-M/IVAC requires fit younger (age ≤60, ECOG ≤2). If high-risk
   AND not fit younger, falls back to DA-EPOCH-R + supportive care.
+
+  Etiology rails (parallel to indication selection):
+
+  - HIV (HIV-Burkitt — 25-40% of adult Burkitt is HIV-associated) —
+    DA-EPOCH-R is the preferred 1L regimen for HIV-Burkitt per CALGB
+    10002 / Sparano 2010 / AMC 048 — outcomes approach HIV-negative
+    with concurrent ART. CODOX-M/IVAC is reserved for hard high-risk
+    features (CNS+, leukemic phase, LDH>3×ULN, bulky abdomen) regardless
+    of HIV status. RF-BURKITT-HIGH-RISK explicitly includes
+    "HIV+ AND CD4 <100" as one of the intensifiers — this captures the
+    subset where CODOX-M/IVAC may still win. ART continued throughout;
+    integrase-inhibitor backbone preferred (avoid ritonavir-boosted PIs
+    with vincristine + HD-MTX). PJP prophylaxis throughout induction +
+    3-6 mo post. CD4 + HIV-VL pre-cycle.
+
+  - HBV (HBsAg+ OR anti-HBc+) — entecavir prophylaxis before first
+    rituximab dose (DA-EPOCH-R or CODOX-M/IVAC + R) through induction +
+    ≥12 months post. CI-HBV-NO-PROPHYLAXIS hard-blocks both indications.
+
+  - HCV — Treat Burkitt first (extremely rapid disease — Ki67 ~100%);
+    DAA after induction unless CP-A and rapid clearance feasible.
+
+  - EBV (endemic Burkitt EBV+ ~95%; sporadic ~15%) — informational, not
+    treatment-altering. Documented for prognostication.
+
+  All three operate via parallel SUP-* / RF-BURKITT-INFECTION-SCREENING
+  surfaces. BIO-HIV-STATUS, BIO-HBV-STATUS missing — flagged.
