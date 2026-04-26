@@ -5,7 +5,13 @@ applicable_to:
   disease_id: DIS-MM
   line_of_therapy: 1
   stage_requirements: []
-  biomarker_requirements_required: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-HBV-STATUS
+      required: true
+      value_constraint: "any value valid (categorical etiology gate; HBsAg+ or anti-HBc+ → entecavir prophylaxis mandatory before first daratumumab dose; anti-CD38 class effect — fulminant reactivation reported)"
+    - biomarker_id: BIO-HCV-STATUS
+      required: true
+      value_constraint: "any value valid (categorical etiology gate; anti-HCV+ → reflex BIO-HCV-RNA; coordinate DAA with hepatology)"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 2
