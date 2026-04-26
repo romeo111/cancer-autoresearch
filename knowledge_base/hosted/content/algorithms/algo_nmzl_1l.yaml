@@ -9,12 +9,14 @@ purpose: >
 output_indications:
   - IND-NMZL-1L-WATCH
   - IND-NMZL-1L-BR
+  - IND-NMZL-1L-HCV-POSITIVE
   - IND-FL-1L-RCHOP-AGGRESSIVE  # share aggressive with FL — same biology, same regimen
 
 default_indication: IND-NMZL-1L-WATCH
 alternative_indication: IND-NMZL-1L-BR
 
 decision_tree:
+  # Step 1 — transformation suspect overrides everything; aggressive track.
   - step: 1
     evaluate:
       any_of:
@@ -23,7 +25,24 @@ decision_tree:
       result: IND-FL-1L-RCHOP-AGGRESSIVE
     if_false:
       next_step: 2
+
+  # Step 2 — HCV-RNA positive AND compensated liver function AND indolent
+  # presentation (no GELF criteria) → DAA antiviral-first. Mirrors SMZL HCV+
+  # routing; smaller evidence base than HCV-MZL extranodal but same etiology.
   - step: 2
+    evaluate:
+      all_of:
+        - red_flag: RF-NMZL-INFECTION-SCREENING  # HCV serology / RNA positive (and HBV/HIV gating)
+        - condition: "HCV RNA positive (anti-HCV alone insufficient)"
+        - condition: "Compensated liver function (no decompensated cirrhosis)"
+        - condition: "Indolent / low-burden presentation (GELF-negative)"
+    if_true:
+      result: IND-NMZL-1L-HCV-POSITIVE
+    if_false:
+      next_step: 3
+
+  # Step 3 — high tumor burden (GELF) → BR; otherwise watch-and-wait.
+  - step: 3
     evaluate:
       any_of:
         - red_flag: RF-FL-HIGH-TUMOR-BURDEN-GELF
@@ -32,9 +51,13 @@ decision_tree:
     if_false:
       result: IND-NMZL-1L-WATCH
 
-sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-MZL-2024]
-last_reviewed: "2026-04-25"
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-MZL-2024, SRC-ARCAINI-2014]
+last_reviewed: "2026-04-27"
 notes: >
   Reuses GELF + transformation-suspect RedFlags from FL. Aggressive track
   reuses IND-FL-1L-RCHOP-AGGRESSIVE — biology + treatment identical at
-  the transformation point.
+  the transformation point. HCV+ branch (step 2) added 2026-04-27 to mirror
+  SMZL HCV+ etiology-driven routing; uses same REG-DAA-SOF-VEL as HCV-MZL
+  extranodal. Decision intentionally conditional on HCV-RNA (not anti-HCV
+  alone) and indolent/low-burden presentation — DAA-first evidence weaker
+  for nodal localization than for extranodal HCV-MZL.

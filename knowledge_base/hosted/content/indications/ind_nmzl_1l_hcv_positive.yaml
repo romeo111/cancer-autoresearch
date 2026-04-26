@@ -1,0 +1,92 @@
+id: IND-NMZL-1L-HCV-POSITIVE
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-NODAL-MZL
+  line_of_therapy: 1
+  stage_requirements: []
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-HCV-RNA, required: true, value_constraint: "detectable (positive viral load)"}
+    - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive"}
+  biomarker_requirements_excluded: []
+  demographic_constraints: {ecog_max: 2, decompensated_cirrhosis: false}
+
+recommended_regimen: REG-DAA-SOF-VEL  # reuse from HCV-MZL extranodal / SMZL HCV+
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: conditional
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~40-60% lymphoma regression after SVR12 (smaller series than HCV-MZL extranodal/SMZL)"
+  hcv_cure_rate_svr12: ">95% (non-cirrhotic, treatment-naive)"
+  progression_free_survival: "Variable; durable in DAA-responders, otherwise revert to BR"
+  overall_survival_5y: ">80% in non-cirrhotic responders"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-DECOMP-CIRRHOSIS
+  - RF-FL-HIGH-TUMOR-BURDEN-GELF
+  - RF-FL-TRANSFORMATION-SUSPECT
+
+required_tests:
+  - TEST-CBC
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-FIB4
+  - TEST-CD20-IHC
+  - TEST-HBV-SEROLOGY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PET-CT
+  - TEST-LN-EXCISIONAL-BIOPSY
+desired_tests: []
+
+rationale: >
+  HCV-positive nodal MZL is rarer than HCV-associated extranodal MZL or
+  SMZL, but the same etiologic logic applies: chronic HCV antigen
+  stimulation drives the lymphoproliferation, and direct-acting antiviral
+  (DAA) therapy alone produces lymphoma regression in a substantial
+  fraction of indolent low-burden cases (Arcaini et al. 2014; ESMO MZL
+  2024; NCCN B-Cell 2.2025). Treat HCV first; reassess lymphoma at
+  6 months post-SVR12. If insufficient response or high tumor burden at
+  presentation (GELF-positive), escalate to bendamustine-rituximab via
+  the standard NMZL pathway.
+
+sources:
+  - {source_id: SRC-ESMO-MZL-2024, position: supports, relevant_quote_paraphrase: "Antiviral-first reasonable for HCV-associated indolent B-cell lymphomas including nodal MZL"}
+  - {source_id: SRC-NCCN-BCELL-2025, position: supports, relevant_quote_paraphrase: "DAA-based antiviral therapy preferred for HCV+ indolent B-cell lymphomas; response assessment at 6 months"}
+  - {source_id: SRC-EASL-HCV-2023, position: supports}
+  - {source_id: SRC-ARCAINI-2014, position: supports, relevant_quote_paraphrase: "Antiviral therapy of HCV-associated B-cell NHL induces lymphoma response in subset of nodal cases"}
+
+known_controversies:
+  - topic: "Antiviral-first vs immediate BR for HCV+ NMZL"
+    positions:
+      - position: "Antiviral-first acceptable for indolent low-burden HCV+ NMZL — extrapolated from HCV-MZL extranodal data"
+        sources: [SRC-ESMO-MZL-2024]
+      - position: "Direct BR if GELF-positive or aggressive features — DAA monotherapy under-tested for nodal localization"
+        sources: [SRC-NCCN-BCELL-2025]
+        evidence_note: "Smaller case series than extranodal HCV-MZL; uncertainty higher"
+    our_default: "DAA-first for indolent / low-burden HCV+ NMZL with re-staging at 6 months post-SVR12; BR if GELF-positive or DAA non-response"
+    rationale: >
+      Mirror SMZL HCV+ logic; preserves opportunity for chemo-free
+      remission. Re-evaluate at 6 months and shift to IND-NMZL-1L-BR
+      if insufficient response.
+
+do_not_do:
+  - "Не пропускати HCV testing у всіх пацієнтів з NMZL — DAA може уникнути chemoimmunotherapy навіть для нодальної форми."
+  - "Не комбінувати sofosbuvir з аміодароном — ризик важкої брадикардії."
+  - "Не пропускати HBV серологію перед стартом — окультна реактивація можлива (RF-UNIVERSAL-HBV-REACTIVATION-RISK)."
+  - "Не оцінювати лімфомну відповідь раніше ніж через 6 місяців після SVR12."
+  - "Не давати DAA при decompensated cirrhosis (Child-Pugh B/C) без гепатологічного консиліуму."
+
+time_critical: false
+last_reviewed: "2026-04-27"
+reviewer_signoffs: 0
+notes: >
+  STUB — extends NMZL coverage to HCV-positive subset by mirroring
+  SMZL HCV+ / HCV-MZL extranodal logic. Smaller evidence base than
+  HCV-MZL extranodal; clinical co-lead sign-off pending. Open question
+  for hematologist consult: should DAA-first be routed even in
+  GELF-positive HCV+ NMZL, or should BR be added concurrently?
