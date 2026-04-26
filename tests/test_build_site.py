@@ -97,14 +97,14 @@ def test_landing_problem_block_is_single_prose(site_dir: Path):
     assert 'class="problem-grid"' not in html
 
 
-def test_landing_how_section_uses_mdt_infographic(site_dir: Path):
-    """The 'Як це працює' section embeds the MDT infographic
-    (light-mode variant) instead of a 5-step ordered list."""
+def test_landing_how_section_uses_dataflow_stages(site_dir: Path):
+    """The 'Як це працює' section uses a 4-stage dataflow block
+    (INPUT → VERIFY → BIOMARKERS → OUTPUT) — replaced the older
+    MDT infographic embed when the landing was redesigned."""
     html = (site_dir / "index.html").read_text(encoding="utf-8")
-    assert "MDT-light.png" in html
-    assert 'class="how-fig"' in html
-    # Image asset actually copied into docs/
-    assert (site_dir / "MDT-light.png").exists()
+    assert 'class="dataflow"' in html
+    for stage in ("01 · INPUT", "02 · VERIFY", "03 · BIOMARKERS", "04 · OUTPUT"):
+        assert stage in html, f"missing dataflow stage label: {stage}"
     # Old text-list step format removed
     assert '<ol class="steps">' not in html
 

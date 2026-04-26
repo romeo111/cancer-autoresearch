@@ -78,3 +78,9 @@ legacy/source_pdfs/
 # (knowledge_base/engine/persistence.py) writes here by default.
 patient_plans/
 .tmp/
+
+# Claude Code local state — per-machine settings, scheduled-task locks,
+# and agent worktree scratch dirs. Never commit. (scheduled_tasks.lock
+# was tracked historically; leave it tracked but ignore future churn.)
+.claude/settings.local.json
+.claude/worktrees/
