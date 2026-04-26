@@ -5,7 +5,16 @@ applicable_to:
   disease_id: DIS-CLL
   line_of_therapy: 1
   stage_requirements: []
-  biomarker_requirements_required: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-CD5-IHC
+      required: true
+      value_constraint: "positive (CD5+) — CLL immunophenotype panel"
+    - biomarker_id: BIO-CD23-IHC
+      required: true
+      value_constraint: "positive (CD23+) — CLL immunophenotype panel; distinguishes from MCL"
+    - biomarker_id: BIO-NOTCH1-MUTATION
+      required: false
+      value_constraint: "NOTCH1-mutated CLL has reduced response to obinutuzumab in some series; remains acceptable on venetoclax-obinutuzumab; consider closer surveillance"
   biomarker_requirements_excluded: []
   demographic_constraints: {ecog_max: 2}
 
