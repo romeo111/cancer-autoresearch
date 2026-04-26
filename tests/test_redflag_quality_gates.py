@@ -57,10 +57,9 @@ DISEASES_WITH_GAPS_BASELINE = {
     #   AITL, ENDOMETRIAL, HCV-MZL, MELANOMA, OVARIAN, RCC, SCLC, UROTHELIAL
     #   reached full 5-type RF coverage.
     # 2026-04-27 5-type matrix promotion (Plan A):
-    #   ALCL, BURKITT, CERVICAL, CHL, CLL, FL closed via single-RF
+    #   ALCL, BURKITT, CERVICAL, CHL, CLL, FL, GBM closed via single-RF
     #   diseases promotion to full coverage.
     # Remaining baseline gaps — workstreams still in progress:
-    "DIS-GBM",
     "DIS-MCL",
     "DIS-MF-SEZARY",
     "DIS-PTCL-NOS",
