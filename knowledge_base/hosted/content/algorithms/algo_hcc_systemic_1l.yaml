@@ -54,7 +54,7 @@ sources:
   - SRC-NCCN-HCC-2025
   - SRC-AASLD-HCC-2023
 
-last_reviewed: "2026-04-26"
+last_reviewed: "2026-04-27"
 notes: >
   Scaffold systemic-only algorithm. Out of scope for this commit (awaits
   PROPOSAL §17 ratification): hepatic resection (BCLC 0-A, single tumor
@@ -64,3 +64,30 @@ notes: >
   liver-confined unable to undergo other LRT. These are first-line
   curative-or-loco-regional modalities; systemic therapy is a downstream
   fallback.
+
+  Etiology branching (parallel to indication selection, does NOT shift
+  the atezo+bev / durva+treme / sorafenib choice — handled as parallel
+  supportive_care rails):
+
+  - HBV+ (HBsAg+ OR anti-HBc+ OR HBV-DNA detectable) — RF-HCC-HBV-
+    REACTIVATION-RISK fires → entecavir or tenofovir prophylaxis
+    initiated before first systemic dose, continued through treatment
+    + ≥12 months post (per AASLD HCC 2023 §antiviral-during-systemic).
+    Anti-VEGF (bevacizumab) + ICI both trigger reactivation in
+    unprophylaxed HBsAg+ patients with reported decompensation.
+
+  - HCV+ (HCV-RNA detectable, NOT just anti-HCV seropositive) — DAA
+    therapy (sofosbuvir/velpatasvir 12 weeks; alternative glec/pibr if
+    DAA-experienced) should be initiated before or concurrently with
+    atezo+bev when feasible. SVR12 reduces hepatic decompensation risk
+    and may improve OS in HCC-on-HCV-cirrhosis cohorts (Singal et al.
+    Gastroenterology 2019; AASLD HCC 2023). Concurrent DAA + atezo+bev
+    is acceptable when liver function CP-A; defer atezo+bev start by
+    2-4 weeks if rapid HCV clearance feasible AND tumor biology not
+    aggressive (no rapid AFP doubling, no extrahepatic spread). Do
+    NOT combine sofosbuvir with amiodarone (severe bradycardia).
+
+  Both viral pathways operate as parallel SUP-* rails (entecavir +
+  DAA-coordination); the algorithm's indication choice is unchanged.
+  Future round: add SUP-HCV-DAA-PERI-HCC supportive_care entity to
+  formalize this coordination (currently noted in atezo+bev do_not_do).
