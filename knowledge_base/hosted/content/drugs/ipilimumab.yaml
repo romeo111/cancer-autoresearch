@@ -5,7 +5,7 @@ names:
   english: "Ipilimumab"
   brand_names: ["Yervoy"]
 atc_code: L01FX04
-rxnorm_id: null
+rxnorm_id:
 drug_class: "Anti-CTLA-4 monoclonal antibody"
 mechanism: >
   Fully human IgG1 anti-CTLA-4 antibody. Combination with PD-1 inhibitors (CheckMate-067 melanoma; CheckMate-214 RCC).
@@ -14,22 +14,25 @@ regulatory_status:
   fda: {approved: true}
   ema: {approved: true}
   ukraine_registration:
-    registered: false
-    reimbursed_nszu: false
-    last_verified: null
-    notes: "Out-of-pocket / off-label import — major access barrier."
+    registered: true
+    reimbursed_nszu: true
+    last_verified: "2026-04-27"
+    notes: "Зареєстрований; НСЗУ покриває лише в комбо з nivolumab (мономеланома 2L+ — out-of-pocket). Джерело: nszu.gov.ua (2026-04)."
 
+    reimbursement_indications:
+    - 'Програма медичних гарантій 2026: меланома нерезектабельна/метастатична 1L у комбінації з nivolumab'
+    - 'Реімбурсаційний пакет «Онкологія» 2026: НКК нирки проміжний/несприятливий ризик 1L з nivolumab'
 typical_dosing: >
   Melanoma 1L: 3 mg/kg IV q3w x 4 + nivolumab. RCC 1L: 1 mg/kg IV q3w x 4 + nivolumab.
 
 key_toxicities:
-  - Severe immune-mediated AEs more frequent than PD-1
-  - Colitis
-  - Hepatitis
-  - Hypophysitis
-  - Pneumonitis
+- Severe immune-mediated AEs more frequent than PD-1
+- Colitis
+- Hepatitis
+- Hypophysitis
+- Pneumonitis
 
 sources: [SRC-NCCN-NSCLC-2025]
-last_reviewed: null
+last_reviewed:
 notes: >
   STUB. Cross-disease entity. Combinations in melanoma, RCC, mesothelioma, dMMR-MSI-H CRC.

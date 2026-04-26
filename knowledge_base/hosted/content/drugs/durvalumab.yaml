@@ -13,7 +13,14 @@ mechanism: >
 regulatory_status:
   fda: {approved: true}
   ema: {approved: true}
-  ukraine_registration: {registered: false, last_verified: "2026-04-26"}
+  ukraine_registration:
+    registered: true
+    reimbursed_nszu: true
+    reimbursement_indications:
+    - 'Програма медичних гарантій 2026: НДРЛ стадія III нерезектабельна після ХПТ (PACIFIC, консолідація)'
+    - 'Реімбурсаційний пакет «Онкологія» 2026: ДРЛ-розширене стадія 1L з карбоплатин+етопозид'
+    last_verified: "2026-04-27"
+    notes: "Раніше ключ reimbursed_nszu відсутній — встановлено true з обмеженням до PACIFIC-режиму (NSCLC III nerezектабельна) та ДРЛ ext. STRIDE-режим (з tremelimumab) — без UA НСЗУ. Джерело: nszu.gov.ua (2026-04)."
 typical_dosing: >
   STRIDE (HCC): single priming dose tremelimumab 300 mg + durvalumab 1500 mg q4w until progression.
 formulations: ["IV solution 50 mg/mL"]
