@@ -7,16 +7,15 @@ Purpose: single source of truth for which biomarkers OpenOnco's engine actually 
 ## Summary
 
 - **Defined entities:** 62
-- **Referenced by rules:** 59 unique IDs, 169 total citations
-- **Defined + used (✓):** 59
-- **Defined + unused (⚠):** 3
+- **Referenced by rules:** 60 unique IDs, 175 total citations
+- **Defined + used (✓):** 60
+- **Defined + unused (⚠):** 2
 - **Referenced + missing (❌):** 0
 
 ## Issues to resolve
 
 ### ⚠ Defined but no rule consumes them
 
-- `BIO-PSA` — Prostate-specific antigen (PSA). Wire into ≥1 Indication or red-flag, or document why dormant.
 - `BIO-TMB-HIGH` — Tumor mutational burden (TMB-high). Wire into ≥1 Indication or red-flag, or document why dormant.
 - `BIO-VHL-STATUS` — VHL gene status. Wire into ≥1 Indication or red-flag, or document why dormant.
 
@@ -31,9 +30,10 @@ Reference count below is a proxy for how often the engine reads the marker. High
 | `BIO-MYC-REARRANGEMENT` | 7 | Burkitt Lymphoma, High-Grade B-Cell Lympho |
 | `BIO-MSI-STATUS` | 7 | Colorectal carcinoma (CR |
 | `BIO-BRAF-V600E` | 7 | Colorectal carcinoma (CR, Cutaneous melanoma |
+| `BIO-CD30-IHC` | 6 | Anaplastic Large Cell Ly, Angioimmunoblastic T-Cel, Mycosis Fungoides / Séza |
 | `BIO-CD5-IHC` | 6 | Chronic Lymphocytic Leuk, Mantle Cell Lymphoma |
-| `BIO-CD30-IHC` | 5 | Anaplastic Large Cell Ly, Angioimmunoblastic T-Cel, Mycosis Fungoides / Séza |
 | `BIO-GLEASON-ISUP` | 5 | Prostate adenocarcinoma |
+| `BIO-PSA` | 5 | Prostate adenocarcinoma |
 | `BIO-HCV-RNA` | 4 | HCV-associated Marginal , Splenic Marginal Zone Ly |
 | `BIO-ALK-FUSION` | 4 | Non-small cell lung canc |
 | `BIO-BRCA-GERMLINE` | 3 | Breast cancer (invasive) |
@@ -45,7 +45,6 @@ Reference count below is a proxy for how often the engine reads the marker. High
 | `BIO-MCL-MIPI` | 3 | Mantle Cell Lymphoma |
 | `BIO-EGFR-MUTATION` | 3 | Non-small cell lung canc |
 | `BIO-HRD-STATUS` | 3 | Ovarian carcinoma (high- |
-| `BIO-HRR-PANEL` | 3 | Prostate adenocarcinoma |
 
 ## Distribution by measurement method
 
@@ -94,7 +93,7 @@ LOINC required for FHIR R4/R5 + mCODE export. Add `codes.loinc` to each entity b
 - `BIO-DMMR-IHC`
 - ... and 37 more
 
-### No fixture coverage (42 used markers)
+### No fixture coverage (43 used markers)
 
 Markers consumed by rules but never appearing in `examples/*.json`. Either add a patient fixture exercising the marker, or document why no example is needed.
 
@@ -118,7 +117,7 @@ Markers consumed by rules but never appearing in `examples/*.json`. Either add a
 - `BIO-EGFR-MUTATION` (3× refs)
 - `BIO-ESTROGEN-RECEPTOR` (2× refs)
 - `BIO-EZH2-Y641` (1× refs)
-- ... and 22 more
+- ... and 23 more
 
 ## Full catalog
 
@@ -139,7 +138,7 @@ Columns: **Status** = ✓/⚠/❌ from §Issues. **Refs** = total citations. **M
 | `BIO-CCND1-IHC` | ✓ | 3 | Cyclin D1 expression by IHC (encoded by CCND1) | IHC | — | — | medium | Mantle Cell Lymphoma |
 | `BIO-CD20-IHC` | ✓ | 30 | CD20 expression by immunohistochemistry | IHC | — | 17× ✓ | **high** | Burkitt Lymphoma, Diffuse Large B-Cell L, Follicular Lymphoma, High-Grade B-Cell Lymp, Mantle Cell Lymphoma, Nodal Marginal Zone Ly, Nodular Lymphocyte-Pre, Post-Transplant Lympho, Primary Diffuse Large , Primary Mediastinal (T, Splenic Marginal Zone  |
 | `BIO-CD23-IHC` | ✓ | 3 | CD23 expression by IHC / flow cytometry | IHC | — | — | medium | Chronic Lymphocytic Le |
-| `BIO-CD30-IHC` | ✓ | 5 | CD30 expression by IHC | IHC | — | 5× ✓ | **high** | Anaplastic Large Cell , Angioimmunoblastic T-C, Mycosis Fungoides / Sé |
+| `BIO-CD30-IHC` | ✓ | 6 | CD30 expression by IHC | IHC | — | 9× ✓ | **high** | Anaplastic Large Cell , Angioimmunoblastic T-C, Mycosis Fungoides / Sé |
 | `BIO-CD5-IHC` | ✓ | 6 | CD5 expression by IHC / flow cytometry | IHC | — | — | **high** | Chronic Lymphocytic Le, Mantle Cell Lymphoma |
 | `BIO-CD52-IHC` | ✓ | 1 | CD52 expression by IHC / flow | IHC | — | — | low | T-Cell Prolymphocytic  |
 | `BIO-CD79B-IHC` | ✓ | 2 | CD79b expression by IHC (target of polatuzumab vedotin) | IHC | — | — | medium | Diffuse Large B-Cell L |
@@ -178,7 +177,7 @@ Columns: **Status** = ✓/⚠/❌ from §Issues. **Refs** = total citations. **M
 | `BIO-PDL1-TPS` | ✓ | 2 | PD-L1 Tumor Proportion Score (TPS) | IHC | — | — | medium | Non-small cell lung ca |
 | `BIO-PIK3CA-MUTATION` | ✓ | 1 | PIK3CA hotspot mutation | NGS | — | — | low | — |
 | `BIO-PROGESTERONE-RECEPTOR` | ✓ | 1 | Progesterone receptor (PR) | IHC | 16113-3 | — | low | Breast cancer (invasiv |
-| `BIO-PSA` | ⚠ unused | 0 | Prostate-specific antigen (PSA) | serum | 2857-1 | — | low | — |
+| `BIO-PSA` | ✓ | 5 | Prostate-specific antigen (PSA) | serum | 2857-1 | — | **high** | Prostate adenocarcinom |
 | `BIO-PSMA-PET` | ✓ | 1 | PSMA-PET imaging avidity | imaging | — | — | low | Prostate adenocarcinom |
 | `BIO-RAS-MUTATION` | ✓ | 1 | RAS mutation status (KRAS / NRAS exons 2-4) | NGS | — | — | low | Colorectal carcinoma ( |
 | `BIO-RHOA-G17V` | ✓ | 2 | RHOA G17V mutation | NGS | — | — | medium | Angioimmunoblastic T-C |

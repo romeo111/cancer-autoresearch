@@ -10,6 +10,9 @@ applicable_to:
     - biomarker_id: BIO-GLEASON-ISUP
       required: true
       value_constraint: "Gleason / ISUP grade group (1-5) — mandatory stratifier; high-volume metastatic and high-grade (ISUP 4-5) supports triplet (ARASENS / PEACE-1)"
+    - biomarker_id: BIO-PSA
+      required: true
+      value_constraint: "PSA baseline + on-treatment per PCWG3 — mandatory response/progression marker; reportable across all systemic prostate indications"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 1
@@ -31,6 +34,7 @@ expected_outcomes:
 hard_contraindications: []
 red_flags_triggering_alternative:
   - RF-PROSTATE-FRAILTY-AGE
+  - RF-PROSTATE-PSA-PROGRESSION
 required_tests:
   - TEST-PSA-SERUM
   - TEST-TESTOSTERONE-SERUM

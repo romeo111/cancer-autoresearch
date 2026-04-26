@@ -13,6 +13,9 @@ applicable_to:
     - biomarker_id: BIO-GLEASON-ISUP
       required: true
       value_constraint: "Gleason / ISUP grade group (1-5) — mandatory pathologic stratifier across all prostate cancer indications"
+    - biomarker_id: BIO-PSA
+      required: true
+      value_constraint: "PSA baseline + on-treatment per PCWG3 — mandatory response/progression marker; reportable across all systemic prostate indications"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 2
@@ -31,7 +34,8 @@ expected_outcomes:
   median_overall_survival_months: 15.3
 
 hard_contraindications: []
-red_flags_triggering_alternative: []
+red_flags_triggering_alternative:
+  - RF-PROSTATE-PSA-PROGRESSION
 required_tests:
   - TEST-PSMA-PET
   - TEST-PSA-SERUM

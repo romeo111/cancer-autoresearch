@@ -1,0 +1,53 @@
+id: RF-PROSTATE-PSA-PROGRESSION
+definition: >
+  PCWG3-defined PSA progression on systemic prostate-cancer therapy:
+  ≥25% rise from nadir + ≥2 ng/mL absolute increase, confirmed by a
+  second value ≥3 weeks later. Triggers re-imaging + MDT consideration
+  of next-line therapy switch — but NOT alone sufficient to change line
+  if radiographic + clinical disease stable (per PCWG3 + STAR criteria).
+definition_ua: >
+  Прогресія за PSA по PCWG3: зростання ≥25% від nadir + ≥2 нг/мл
+  абсолютного приросту, підтверджено повторним вимірюванням через ≥3
+  тижні. Тригер для переоцінки візуалізацією + MDT. Окремо без
+  радіографічної прогресії — не привід механічно міняти лінію терапії.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "psa_progression_pcwg3_confirmed"
+      value: true
+    - all_of:
+        - finding: "psa_rise_pct_from_nadir"
+          threshold: 25
+          comparator: ">="
+        - finding: "psa_abs_increase_ng_ml"
+          threshold: 2
+          comparator: ">="
+        - finding: "psa_progression_confirmed_3wk"
+          value: true
+
+clinical_direction: investigate
+
+severity: major
+priority: 90
+category: transformation-progression
+
+relevant_diseases:
+  - DIS-PROSTATE
+shifts_algorithm: []  # investigate-only; line switch needs radiographic confirmation
+
+sources:
+  - SRC-NCCN-PROSTATE-2025
+  - SRC-EAU-PROSTATE-2024
+
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  PSA-only progression on ARPI / chemotherapy is common (~30-40% of
+  patients show PSA flare or transient rise). PCWG3 explicitly cautions
+  against line switch on PSA alone — radiographic progression (RECIST 1.1
+  for soft tissue, PCWG3 bone-scan rules) or new symptomatic events
+  must accompany the PSA finding. This RF surfaces the signal for MDT;
+  it does not auto-switch tracks. Action lives in monitoring schedule
+  (re-image at PSA-progression event), not in `shifts_algorithm`.
