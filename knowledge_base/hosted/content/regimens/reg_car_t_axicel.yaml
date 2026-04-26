@@ -1,0 +1,78 @@
+id: REG-CAR-T-AXICEL
+name: "Axicabtagene ciloleucel (axi-cel) CAR-T — single infusion after lymphodepletion"
+name_ua: "Аксікабтаген цилолейцел (axi-cel) CAR-T — одна інфузія після лімфодеплеції"
+alternate_names:
+  - "Axi-cel"
+  - "Yescarta"
+  - "ZUMA-1 regimen"
+  - "ZUMA-7 regimen (2L primary-refractory)"
+
+components:
+  - drug_id: DRUG-CYCLOPHOSPHAMIDE
+    dose: "500 mg/m²/day"
+    schedule: "IV days -5, -4, -3 (lymphodepletion, with fludarabine 30 mg/m²/day same days)"
+    route: IV
+  - drug_id: DRUG-AXICABTAGENE-CILOLEUCEL
+    dose: "Target 2 × 10^6 anti-CD19 CAR+ T-cells/kg (max 2 × 10^8 total)"
+    schedule: "Single IV infusion day 0, after lymphodepletion completed"
+    route: IV
+
+cycle_length_days: null
+total_cycles: "Single infusion (one-time therapy)"
+toxicity_profile: severe
+
+premedication:
+  - "Lymphodepletion: fludarabine 30 mg/m² + cyclophosphamide 500 mg/m² IV days -5 to -3 (NOT a separate component above — fludarabine added as adjunct)"
+  - "Acetaminophen 650 mg PO + diphenhydramine 12.5 mg IV pre-infusion"
+  - "AVOID prophylactic systemic corticosteroids — reduces CAR-T expansion + efficacy"
+  - "Tocilizumab MUST be on-site (≥2 doses available) BEFORE infusion — for emergency CRS rescue"
+mandatory_supportive_care:
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-HSV-PROPHYLAXIS
+  - SUP-IVIG-HYPOGAMMA
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "CRS Grade 2 (hypotension responsive to fluids OR hypoxia requiring low-flow O₂)"
+    modification: "Tocilizumab 8 mg/kg IV (max 800 mg); ± dexamethasone 10 mg IV q6h; supportive care"
+    rationale: "Cytokine release reaction — tocilizumab IL-6R blockade is first-line"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "CRS Grade 3-4 OR ICANS Grade 2+"
+    modification: "Tocilizumab + high-dose dexamethasone (10-20 mg q6h) OR methylprednisolone 1 g/day; ICU; anakinra for refractory ICANS"
+    rationale: "Severe CRS / ICANS may be fatal if untreated; aggressive immunomodulation indicated"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Persistent severe cytopenia >Day +30"
+    modification: "G-CSF support; transfusions; consider ferrokinetics + B-cell aplasia management; IVIG for IgG <400"
+    rationale: "On-target B-cell aplasia + delayed marrow recovery is common; IVIG for symptomatic hypogammaglobulinemia"
+  - condition: "Active uncontrolled infection at planned infusion"
+    modification: "Delay infusion until infection resolved + lymphodepletion repeated if interval >2 weeks"
+    rationale: "Lymphodepletion + CRS in active infection = high mortality"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: >
+    Axi-cel NOT registered in Ukraine; NOT available domestically. Access
+    requires international referral (typical pathway: Israel, Poland,
+    Germany, Spain — manufacturing centers). Estimated USD 350-500K all-in
+    incl. travel + bridging therapy. Charitable funding (e.g.
+    Tabletochki / Help for Children Ukraine) may partially cover pediatric
+    cases; adult cases generally out-of-pocket / clinical-trial.
+    Bridge chemotherapy during 3-4 week manufacturing window must be
+    coordinated with referring center.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-DLBCL-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  ZUMA-1 (r/r DLBCL, ≥2 prior lines): ORR ~83%, CR ~58%, durable ~40%
+  at 5-year follow-up. ZUMA-7 expanded indication to 2L for primary-
+  refractory or early-relapse (<12 mo) DLBCL: superior EFS vs salvage
+  chemo + autoSCT. Centre must be FACT/JACIE/REMS-accredited. Boxed
+  warnings: CRS, ICANS, secondary T-cell malignancy (FDA 2024). Plan
+  bridging therapy + caregiver-presence-for-4-weeks-post-infusion as
+  standard. Tisagenlecleucel (Kymriah) and lisocabtagene maraleucel
+  (Breyanzi) are alternative CD19 CAR-T products — separate Regimen
+  entities (future).

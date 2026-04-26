@@ -1,0 +1,79 @@
+id: DRUG-AXICABTAGENE-CILOLEUCEL
+names:
+  preferred: "Axicabtagene ciloleucel"
+  ukrainian: "Аксікабтаген цилолейцел"
+  english: "Axicabtagene ciloleucel"
+  brand_names:
+    - "Yescarta"
+atc_code: L01XX70
+rxnorm_id: "1986638"
+drug_class: "Anti-CD19 CD28-costimulated CAR-T cell therapy (autologous)"
+mechanism: >
+  Autologous T-cells transduced with retroviral vector encoding a
+  chimeric antigen receptor (CAR) targeting CD19 with CD28
+  costimulatory + CD3-zeta activation domains. Following lymphodepleting
+  conditioning (fludarabine + cyclophosphamide), engineered cells expand
+  in vivo, recognize CD19+ B-cells (malignant + normal), trigger
+  cytotoxic killing + cytokine release. Single infusion; persistence
+  weeks to months.
+
+regulatory_status:
+  fda:
+    approved: true
+  ema:
+    approved: true
+  ukraine_registration:
+    registered: false
+    registration_number: null
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-25"
+    notes: "Not registered; not available in Ukraine. Access via cross-border treatment programs only (clinical trial / charitable / out-of-pocket international referral)."
+
+typical_dosing: "Target dose 2 × 10^6 anti-CD19 CAR+ T-cells/kg (max 2 × 10^8) — single IV infusion, after fludarabine 30 mg/m²/day + cyclophosphamide 500 mg/m²/day × 3 days lymphodepletion (days -5 to -3)"
+formulations:
+  - "Cryopreserved autologous CAR-T cell suspension for IV infusion"
+
+absolute_contraindications:
+  - "Active uncontrolled infection"
+  - "Active CNS disease (relative — CNS-2/3 disease excluded from registration trials)"
+  - "Hypersensitivity to fludarabine or cyclophosphamide"
+black_box_warnings:
+  - "Cytokine release syndrome (CRS) — can be fatal"
+  - "Immune effector cell-associated neurotoxicity syndrome (ICANS) — can be fatal"
+  - "Hemophagocytic lymphohistiocytosis (HLH/MAS)"
+  - "Prolonged cytopenia + B-cell aplasia / hypogammaglobulinemia"
+  - "Secondary malignancies (T-cell lymphoma, FDA boxed 2024)"
+major_interactions:
+  - "Live vaccines contraindicated peri-treatment + 6+ months post"
+  - "Tocilizumab + corticosteroids used FOR CRS / ICANS — but routine prophylactic steroids reduce CAR efficacy"
+common_adverse_events:
+  - "CRS (~93% any grade; ~13% Grade ≥3 in ZUMA-1)"
+  - "ICANS / neurologic AEs (~64% any grade; ~28% Grade ≥3)"
+  - "Prolonged neutropenia, thrombocytopenia, anemia"
+  - "Hypogammaglobulinemia / B-cell aplasia (months)"
+  - "Fever, hypotension, fatigue"
+serious_adverse_events:
+  - "Severe CRS with multi-organ failure"
+  - "Severe ICANS / cerebral edema"
+  - "HLH"
+  - "Tumor lysis syndrome (high disease burden)"
+  - "Secondary T-cell malignancy"
+
+pharmacology:
+  expansion_peak: "~7-14 days post-infusion"
+  persistence: "Weeks to months; CAR DNA detectable in some patients ≥1 year"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-25"
+notes: >
+  ZUMA-1 pivotal trial (r/r DLBCL after ≥2 lines): ~83% ORR, ~58% CR;
+  durable remissions in ~40% at 5 years. ZUMA-7 moved axi-cel to 2L for
+  primary-refractory / early-relapse DLBCL (superior EFS vs salvage +
+  autoSCT). Tocilizumab MUST be on-site BEFORE infusion (anti-IL6R for
+  CRS rescue). Centre must be REMS / FACT-accredited for CAR-T
+  administration. Bridge therapy may be needed during 3-4 week
+  manufacturing window. Major access barrier in Ukraine: not registered;
+  international referral pathway required if patient + funding feasible.

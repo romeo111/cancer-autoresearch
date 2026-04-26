@@ -1,0 +1,95 @@
+id: IND-CRC-METASTATIC-3L-TAS102-BEV
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-CRC
+  line_of_therapy: 3
+  stage_requirements:
+    - "Stage IV metastatic mCRC"
+    - "Disease progression on standard chemo (FOLFOX, FOLFIRI) + anti-VEGF and/or anti-EGFR (if RAS-WT)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded:
+    - biomarker_id: BIO-MSI-STATUS
+      value_constraint: "MSI-H excluded — pembrolizumab continues 3L+"
+    - biomarker_id: BIO-BRAF-V600E
+      value_constraint: "BRAF V600E excluded — encorafenib + cetuximab (BEACON) preferred 2L+"
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-TRIFLURIDINE-TIPIRACIL-BEV
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~6.3% (SUNLIGHT TAS-102+bev vs 1.0% TAS-102 alone)"
+  progression_free_survival: "Median PFS 5.6 mo (vs 2.4 mo TAS-102 alone, HR 0.44)"
+  overall_survival_5y: "Median OS 10.8 mo (vs 7.5 mo, HR 0.61); 1-year OS ~43%"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-CRC-FRAILTY-AGE
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-CEA
+  - TEST-CT-CHEST-ABDOMEN-PELVIS
+desired_tests: []
+
+rationale: >
+  Trifluridine-tipiracil + bevacizumab (SUNLIGHT regimen) is preferred
+  3L+ option for chemo-refractory mCRC after standard FOLFOX/FOLFIRI +
+  biologic exposure. SUNLIGHT trial (2023): combination superior to
+  TAS-102 alone in mOS (10.8 vs 7.5 mo, HR 0.61) — establishing
+  combination as new standard. Distinct mechanism from prior
+  fluoropyrimidine exposure (TS-independent thymidine analog
+  incorporation). Outperforms regorafenib (CORRECT) in absolute OS
+  + tolerability — favored 3L+ where accessible. UA access constraint:
+  TAS-102 not NSZU-reimbursed; bevacizumab biosimilar increasingly
+  accessible.
+
+sources:
+  - source_id: SRC-NCCN-COLON-2025
+    position: supports
+    relevant_quote_paraphrase: "TAS-102 + bevacizumab (SUNLIGHT) is preferred 3L+ regimen for chemo-refractory mCRC; superior OS vs TAS-102 alone; Cat 1"
+  - source_id: SRC-ESMO-COLON-2024
+    position: supports
+    relevant_quote_paraphrase: "Trifluridine-tipiracil + bevacizumab is now the preferred 3L+ regimen for refractory mCRC based on SUNLIGHT trial outcomes"
+
+known_controversies:
+  - topic: "TAS-102+bev (SUNLIGHT) vs regorafenib (CORRECT) 3L+"
+    positions:
+      - position: "TAS-102+bev: superior OS vs TAS-102 alone (SUNLIGHT, 10.8 vs 7.5 mo); better tolerability than regorafenib"
+        sources: [SRC-NCCN-COLON-2025]
+      - position: "Regorafenib: oral monotherapy alternative; outcomes similar; HFSR + fatigue main toxicities"
+        sources: [SRC-ESMO-COLON-2024]
+        evidence_note: "Cross-trial comparison only; SUNLIGHT now preferred where accessible"
+    our_default: "TAS-102+bev preferred where both components accessible; regorafenib (existing REG-REGORAFENIB Indication) alternative when TAS-102+bev funding unavailable"
+    rationale: "Better tolerability + slight OS edge favors SUNLIGHT regimen as 1st choice 3L+"
+
+do_not_do:
+  - "НЕ призначати при ANC <1500 або platelets <75K при cycle start — myelosuppression provavelmente Grade 3+."
+  - "НЕ ескалувати dose без count recovery cycle-to-cycle — neutropenia є dose-limiting."
+  - "НЕ розпочинати bevacizumab протягом 28 днів від major surgery."
+  - "НЕ продовжувати bevacizumab при uncontrolled HTN."
+  - "НЕ використовувати при active hemoptysis / GI bleeding."
+  - "НЕ призначати при ECOG 3-4 — toxicity profile перевищує frail patient tolerance."
+  - "НЕ підтверджувати план без funding pathway для TAS-102."
+  - "НЕ забути reduce dose при CrCl 30-59 (20 mg/m² BID)."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track 3L+ for
+  chemo-refractory mCRC. MSI-H continues pembrolizumab past 3L
+  (separate continuation track). BRAF V600E switches to encorafenib +
+  cetuximab earlier (2L+, existing IND-CRC-METASTATIC-2L-BRAF-BEACON).
+  Regorafenib (IND-CRC-METASTATIC-3L-REGORAFENIB) is the alternative
+  3L+ option when TAS-102+bev funding unavailable.

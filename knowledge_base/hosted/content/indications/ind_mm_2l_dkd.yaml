@@ -1,0 +1,101 @@
+id: IND-MM-2L-DKD
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-MM
+  line_of_therapy: 2
+  stage_requirements: ["Progressive disease after 1L bortezomib-based induction (VRd OR D-VRd) ± ASCT", "Lenalidomide-refractory eligible (preferred for DKd over KRd in this subset)"]
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-DKD
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~84% (CANDOR)"
+  complete_response: "~29% sCR / CR"
+  progression_free_survival: "Median PFS ~28.6 mo (vs 15.2 mo Kd; HR 0.59)"
+  overall_survival_5y: "Mature OS data still maturing; OS HR 0.78 favoring DKd at 3-year follow-up"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS  # daratumumab anti-CD38; HBV reactivation risk
+red_flags_triggering_alternative:
+  - RF-MM-RENAL-DYSFUNCTION  # for severe baseline renal — favor different combo
+  - RF-MM-HIGH-RISK-CYTOGENETICS  # may favor triple-class with anti-CD38
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-B2-MICROGLOBULIN
+  - TEST-IMMUNOGLOBULINS
+  - TEST-SPEP-UPEP
+  - TEST-FREE-LIGHT-CHAINS
+  - TEST-FISH-PANEL
+  - TEST-BM-ASPIRATE
+  - TEST-ECHO
+  - TEST-HBV-SEROLOGY
+  - TEST-DAT-COOMBS  # baseline before daratumumab — anti-CD38 interferes with crossmatch
+desired_tests:
+  - TEST-WHOLE-BODY-MRI
+
+rationale: >
+  DKd (daratumumab + carfilzomib + dexamethasone) for r/r MM after
+  progression on 1L bortezomib-based induction (VRd / D-VRd) ± ASCT,
+  particularly in lenalidomide-refractory patients (where KRd —
+  carfilzomib + len + dex — would not work). PI-switch (bortezomib →
+  carfilzomib, irreversible second-generation) overcomes proteasome
+  resistance, while daratumumab adds anti-CD38 mechanism not used in 1L
+  if patient was VRd-only. CANDOR trial: substantial PFS benefit + OS
+  trend over Kd alone. Alternative isatuximab + carfilzomib + dex
+  (Isa-Kd, IKEMA trial) is near-equivalent if isatuximab accessible.
+  Major UA access constraint: daratumumab + carfilzomib NOT NSZU-
+  reimbursed.
+
+sources:
+  - source_id: SRC-NCCN-MM-2025
+    position: supports
+    relevant_quote_paraphrase: "DKd is a Category 1 preferred regimen for r/r MM after 1-3 prior lines; CANDOR trial demonstrated superior PFS over Kd"
+  - source_id: SRC-ESMO-MM-2023
+    position: supports
+    relevant_quote_paraphrase: "Anti-CD38 + carfilzomib + dexamethasone (DKd or Isa-Kd) is a recommended 2L-3L regimen for r/r MM, particularly in lenalidomide-refractory patients"
+
+known_controversies:
+  - topic: "DKd vs KRd vs DRd for early-relapse r/r MM"
+    positions:
+      - position: "DKd: PI-switch + anti-CD38 — best for len-refractory (CANDOR)"
+        sources: [SRC-NCCN-MM-2025]
+      - position: "KRd: PI-switch + len — preferred if patient is len-naive (ASPIRE)"
+        sources: [SRC-NCCN-MM-2025]
+        evidence_note: "ASPIRE: KRd vs Rd — mPFS 26 vs 17.6 mo"
+      - position: "DRd (dara + len + dex, POLLUX): if PI re-exposure risky AND len-naive"
+        sources: [SRC-ESMO-MM-2023]
+    our_default: "DKd for len-refractory; KRd if len-naive AND patient prefers PI-switch with continued IMiD; DRd if PI-toxicity history"
+    rationale: "Choice driven by prior exposure / refractoriness, not just timing"
+
+do_not_do:
+  - "НЕ призначати без baseline ECG + ECHO + контрольованої гіпертензії — карфілзоміб має 5-7% частоту cardiac AE."
+  - "НЕ пропускати baseline DAT/Coombs + red-cell phenotyping ДО першої dara — анти-CD38 інтерферує з crossmatch на місяці."
+  - "НЕ починати без HBV скринінгу + entecavir prophylaxis при HBsAg+ або anti-HBc+."
+  - "НЕ пропускати IV hydration (250-500 mL pre/post) для першого карфілзомібу — TLS + AKI ризик найвищий cycle 1."
+  - "НЕ підтверджувати план без верифікованого funding pathway — ні daratumumab ні carfilzomib НЕ реімбурсуються НСЗУ."
+  - "НЕ використовувати при baseline LVEF <40% — карфілзомібна кардіотоксичність може стати незворотною."
+  - "НЕ ескалувати карфілзоміб до повної дози без cycle-1 step-up (20 mg/m² days 1-2) — ризик infusion reaction + cardiac event."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track 2L for r/r MM
+  after 1L bortezomib-based progression, particularly lenalidomide-
+  refractory. Isa-Kd is interchangeable equivalent if isatuximab
+  accessible. Both daratumumab + carfilzomib are major UA access barriers.
