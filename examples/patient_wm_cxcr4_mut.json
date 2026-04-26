@@ -1,0 +1,64 @@
+{
+  "patient_id": "WM-2L-CARD-001",
+  "comment": "Synthetic Waldenström macroglobulinemia post-rituximab progression with CXCR4-WHIM-mut detected and pre-existing baseline grade 2 IgM-related neuropathy. Engine should select IND-WM-2L-CARFILZOMIB-CXCR4MUT via line_of_therapy=2 + BIO-CXCR4-WHIM positive.",
+
+  "disease": {
+    "id": "DIS-WM",
+    "icd_o_3_morphology": "9671/3"
+  },
+  "line_of_therapy": 2,
+
+  "biomarkers": {
+    "BIO-CXCR4-WHIM": "positive",
+    "BIO-MYD88-L265P": "positive"
+  },
+
+  "demographics": {
+    "age": 65,
+    "sex": "male",
+    "ecog": 1
+  },
+
+  "findings": {
+    "prior_lines_count": 1,
+    "prior_regimen": "Rituximab x 4 + DRC",
+    "time_to_progression_months": 14,
+    "cxcr4_whim_mutation": true,
+    "myd88_l265p": true,
+    "igm_g_l": 38,
+    "serum_viscosity_cp": 3.4,
+    "hyperviscosity_symptomatic": false,
+    "peripheral_neuropathy_grade": 2,
+    "lvef_percent": 56,
+    "uncontrolled_hypertension": false,
+    "active_uncontrolled_infection": false,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative",
+    "anti_hcv": "negative",
+    "hiv": "negative"
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Waldenström Macroglobulinemia (Lymphoplasmacytic Lymphoma) — relapsed",
+        "icd_o_3": "9671/3"
+      },
+      "treatment_history": {
+        "first_line": {
+          "regimen": "Rituximab x 4 → DRC x 6",
+          "best_response": "PR",
+          "duration_months": 14,
+          "outcome": "biochemical progression (IgM doubled)"
+        }
+      },
+      "molecular": {
+        "myd88_l265p": "mutated",
+        "cxcr4_whim_mutation": "mutated"
+      },
+      "neurological": {
+        "igm_paraneuropathy": "grade 2 sensory peripheral neuropathy at baseline — bortezomib contraindicated"
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "patient_id": "DLBCL-3L-CART-001",
+  "comment": "Synthetic chemorefractory DLBCL post 2 prior lines (R-CHOP → R-ICE failed). Age 58, fit ECOG 1. Engine should select IND-DLBCL-3L-AXICEL-CART via line_of_therapy=3 + CD20+/CD19+ + ECOG 0-1.",
+
+  "disease": {
+    "id": "DIS-DLBCL-NOS",
+    "icd_o_3_morphology": "9680/3"
+  },
+  "line_of_therapy": 3,
+
+  "biomarkers": {
+    "BIO-CD20-IHC": "positive"
+  },
+
+  "demographics": {
+    "age": 58,
+    "sex": "male",
+    "ecog": 1,
+    "fit_for_transplant": true
+  },
+
+  "findings": {
+    "prior_lines_count": 2,
+    "prior_regimens": ["R-CHOP", "R-ICE"],
+    "primary_refractory_or_early_relapse": true,
+    "cd19_positive": true,
+    "cns_disease_present": false,
+    "cns_status": "CNS-1",
+    "active_uncontrolled_infection": false,
+    "ldh_ratio_to_uln": 1.8,
+    "ipi_score": 3,
+    "high_ipi": true,
+    "lvef_percent": 60,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative",
+    "double_expressor_status": true,
+    "biopsy_shows_dlbcl": true
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Diffuse Large B-Cell Lymphoma, NOS — chemorefractory",
+        "icd_o_3": "9680/3"
+      },
+      "treatment_history": {
+        "first_line": {"regimen": "R-CHOP x 6", "best_response": "PR", "progression_at_months": 6},
+        "second_line": {"regimen": "R-ICE x 3", "best_response": "PD"}
+      }
+    },
+    "cd19_status": {"method": "flow", "result": "positive"},
+    "infectious_status": {"HBV": {"HBsAg": "negative", "anti_HBc": "negative"}}
+  }
+}

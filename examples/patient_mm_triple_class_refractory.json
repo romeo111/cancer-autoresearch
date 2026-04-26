@@ -1,0 +1,59 @@
+{
+  "patient_id": "MM-4L-TECLISTAMAB-001",
+  "comment": "Synthetic triple-class refractory MM at 4L (post VRd → DKd → IsaKRD). Age 61, ECOG 1. Engine should select IND-MM-4L-TECLISTAMAB via line_of_therapy=4 + triple-class refractory + no active infection.",
+
+  "disease": {
+    "id": "DIS-MM",
+    "icd_o_3_morphology": "9732/3"
+  },
+  "line_of_therapy": 4,
+
+  "biomarkers": {},
+
+  "demographics": {
+    "age": 61,
+    "sex": "male",
+    "ecog": 1,
+    "fit_for_transplant": false
+  },
+
+  "findings": {
+    "prior_lines_count": 3,
+    "prior_regimens": ["VRd x 6 + ASCT", "DKd x 8", "IsaKRD x 6"],
+    "triple_class_refractory": true,
+    "bortezomib_exposed": true,
+    "lenalidomide_refractory": true,
+    "anti_cd38_refractory": true,
+    "carfilzomib_exposed": true,
+    "active_progressive_disease": true,
+    "active_uncontrolled_infection": false,
+    "absolute_neutrophil_count_k_ul": 1.4,
+    "igg_g_l": 4.5,
+    "creatinine_clearance_ml_min": 70,
+    "lvef_percent": 58,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative",
+    "del_17p": false,
+    "tp53_mutation": false
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Multiple myeloma, IgA lambda — triple-class refractory",
+        "icd_o_3": "9732/3"
+      },
+      "treatment_history": {
+        "first_line": {"regimen": "VRd + ASCT", "best_response": "VGPR", "progression_at_months": 30},
+        "second_line": {"regimen": "DKd x 8", "best_response": "PR", "progression_at_months": 14},
+        "third_line": {"regimen": "IsaKRD x 6", "best_response": "MR", "progression_at_months": 6}
+      }
+    },
+    "infectious_status": {
+      "HBV": {"HBsAg": "negative", "anti_HBc": "negative"},
+      "HCV": {"anti_HCV": "negative"},
+      "HIV": "negative",
+      "active_infection": false
+    }
+  }
+}

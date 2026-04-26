@@ -1,0 +1,60 @@
+{
+  "patient_id": "PMF-MOMELO-001",
+  "comment": "Synthetic PMF DIPSS-Plus int-2, Hb 8.5, transfusion-dependent, post-ruxolitinib. Engine should select IND-PMF-MOMELOTINIB-ANEMIA via line_of_therapy=2 + anemia-dominant + JAKi-experienced.",
+
+  "disease": {
+    "id": "DIS-PMF",
+    "icd_o_3_morphology": "9961/3"
+  },
+  "line_of_therapy": 2,
+
+  "biomarkers": {},
+
+  "demographics": {
+    "age": 67,
+    "sex": "male",
+    "ecog": 2,
+    "fit_for_transplant": false
+  },
+
+  "findings": {
+    "prior_lines_count": 1,
+    "prior_regimen": "Ruxolitinib 15 mg BID (worsened anemia)",
+    "jaki_experienced": true,
+    "hemoglobin_g_dl": 8.5,
+    "rbc_transfusion_dependent": true,
+    "anemia_dominant_pmf": true,
+    "platelet_k_ul": 110,
+    "spleen_size_cm_below_costal_margin": 14,
+    "dipss_plus_score": 3,
+    "dipss_plus_category": "intermediate-2",
+    "blast_percent_pb": 2,
+    "blast_percent_bm": 5,
+    "jak2_v617f": true,
+    "calr_mutation": false,
+    "mpl_mutation": false,
+    "asxl1_mutation": true,
+    "active_uncontrolled_infection": false,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative",
+    "anti_hcv": "negative",
+    "hiv": "negative"
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Primary Myelofibrosis — JAKi-experienced, anemia-dominant",
+        "icd_o_3": "9961/3"
+      },
+      "treatment_history": {
+        "first_line": {
+          "regimen": "Ruxolitinib 15 mg BID",
+          "duration_months": 14,
+          "outcome": "spleen response but worsening anemia (Hb 7.8) → discontinued",
+          "transfusion_dependence_emerged": true
+        }
+      }
+    }
+  }
+}

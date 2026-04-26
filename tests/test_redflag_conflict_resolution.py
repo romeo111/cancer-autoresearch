@@ -200,3 +200,158 @@ def test_three_way_conflict_full_ordering():
         "RF-DLBCL-HIGH-RISK-BIOLOGY",           # intensify second
         "RF-DLBCL-FRAILTY-AGE",                 # de-escalate last
     ], f"Expected fully sorted by direction precedence; got {ordered}"
+
+
+# ── 2L+/relapsed heme scenarios (HEME ALGO-C) ───────────────────────────────
+# Conflict-resolution stress tests for 2L+/relapsed multi-RF patterns. These
+# exercise the same precedence chain in salvage / refractory contexts where
+# multiple intensify-direction RFs compete for the algorithm's attention.
+
+
+# ── Scenario 6 ──────────────────────────────────────────────────────────────
+# DLBCL 2L chemorefractory: RF-DLBCL-HIGH-IPI (intensify, major) +
+# RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION (intensify) both fire.
+# Both directions equal → severity / priority break the tie. Expected: the RF
+# with higher severity / lower priority wins; either way the winner direction
+# stays "intensify" (no de-escalation) — verifying salvage-track stays hot.
+
+
+def test_conflict_2l_dlbcl_chemorefractory_with_high_ipi():
+    rfs = _all_redflags()
+    findings = {
+        # high IPI persists in 2L
+        "high_ipi": True,
+        "ipi_score": 4,
+        # transformation evidence: biopsy + LDH + rapid clinical progression
+        "biopsy_shows_dlbcl": True,
+        "ldh_ratio_to_uln": 2.1,
+        "clinical_progression_weeks": 6,
+    }
+
+    fired = [
+        rf_id
+        for rf_id, rf in rfs.items()
+        if evaluate_redflag_trigger(rf.get("trigger") or {}, findings)
+    ]
+    assert "RF-DLBCL-HIGH-IPI" in fired, (
+        f"Expected RF-DLBCL-HIGH-IPI to fire on 2L chemorefractory profile; "
+        f"fired: {fired}"
+    )
+    assert "RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION" in fired, (
+        f"Expected RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION to fire on biopsy + "
+        f"LDH + rapid progression; fired: {fired}"
+    )
+
+    winner, ordered = resolve_redflag_conflict(
+        ["RF-DLBCL-HIGH-IPI", "RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION"], rfs
+    )
+    # Both intensify → same direction precedence; severity / priority decides.
+    high_ipi = rfs["RF-DLBCL-HIGH-IPI"]
+    transform = rfs["RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION"]
+    assert (
+        high_ipi["clinical_direction"]
+        == transform["clinical_direction"]
+        == "intensify"
+    )
+    # Whichever wins, the winner must keep "intensify" — never de-escalate.
+    assert rfs[winner]["clinical_direction"] == "intensify", (
+        f"Expected intensify-direction winner in 2L chemorefractory conflict; "
+        f"got {winner} with direction {rfs[winner]['clinical_direction']}; "
+        f"ordered: {ordered}"
+    )
+
+
+# ── Scenario 7 ──────────────────────────────────────────────────────────────
+# MM 2L progression with RF-MM-RENAL-DYSFUNCTION (investigate, organ-dysfunction)
+# + RF-MM-HIGH-RISK-CYTOGENETICS (intensify, high-risk-biology).
+# Direction precedence: intensify ≻ investigate, so cytogenetics wins.
+# This protects against renal-dysfunction silently down-graders the regimen
+# tier when high-risk biology demands the aggressive triplet.
+
+
+def test_conflict_2l_mm_relapse_with_renal_dysfunction():
+    rfs = _all_redflags()
+    findings = {
+        # renal dysfunction (myeloma kidney)
+        "creatinine_clearance_ml_min": 38,
+        "serum_creatinine_mg_dl": 2.4,
+        "mm_renal_failure": True,
+        # high-risk cytogenetics
+        "del_17p": True,
+        "tp53_mutation": True,
+        "gain_1q": True,
+        "mm_cytogenetics_high_risk": True,
+    }
+
+    fired = [
+        rf_id
+        for rf_id, rf in rfs.items()
+        if evaluate_redflag_trigger(rf.get("trigger") or {}, findings)
+    ]
+    assert "RF-MM-RENAL-DYSFUNCTION" in fired, (
+        f"Expected RF-MM-RENAL-DYSFUNCTION to fire on CrCl<60 / Cr>2; "
+        f"fired: {fired}"
+    )
+    assert "RF-MM-HIGH-RISK-CYTOGENETICS" in fired, (
+        f"Expected RF-MM-HIGH-RISK-CYTOGENETICS to fire on del(17p) + "
+        f"TP53-mut + gain1q; fired: {fired}"
+    )
+
+    winner, ordered = resolve_redflag_conflict(
+        ["RF-MM-RENAL-DYSFUNCTION", "RF-MM-HIGH-RISK-CYTOGENETICS"], rfs
+    )
+    assert winner == "RF-MM-HIGH-RISK-CYTOGENETICS", (
+        f"Expected intensify (cytogenetics) to outrank investigate "
+        f"(renal dysfunction) per direction precedence; got {winner}; "
+        f"ordering: {ordered}"
+    )
+
+
+# ── Scenario 8 ──────────────────────────────────────────────────────────────
+# AML 2L with RF-AML-FLT3-ACTIONABLE (intensify, major) +
+# RF-AML-HIGH-RISK-BIOLOGY (intensify, critical) both firing.
+# Same direction → severity tiebreak: critical ≻ major ⇒ HIGH-RISK-BIOLOGY wins.
+# This protects against FLT3-only thinking when adverse cytogenetics also
+# present — alloHCT-bridge urgency must dominate.
+
+
+def test_conflict_aml_flt3_with_high_risk_biology():
+    rfs = _all_redflags()
+    findings = {
+        # FLT3 actionable
+        "flt3_itd": True,
+        "flt3_mutation": "positive",
+        # ELN-2022 adverse-risk biology
+        "tp53_mutation": True,
+        "complex_karyotype": True,
+        "monosomal_karyotype": True,
+        "aml_eln_risk": "adverse",
+    }
+
+    fired = [
+        rf_id
+        for rf_id, rf in rfs.items()
+        if evaluate_redflag_trigger(rf.get("trigger") or {}, findings)
+    ]
+    assert "RF-AML-FLT3-ACTIONABLE" in fired, (
+        f"Expected RF-AML-FLT3-ACTIONABLE to fire on FLT3-ITD; fired: {fired}"
+    )
+    assert "RF-AML-HIGH-RISK-BIOLOGY" in fired, (
+        f"Expected RF-AML-HIGH-RISK-BIOLOGY to fire on TP53-mut + complex "
+        f"karyotype + adverse ELN; fired: {fired}"
+    )
+
+    winner, ordered = resolve_redflag_conflict(
+        ["RF-AML-FLT3-ACTIONABLE", "RF-AML-HIGH-RISK-BIOLOGY"], rfs
+    )
+    flt3 = rfs["RF-AML-FLT3-ACTIONABLE"]
+    bio = rfs["RF-AML-HIGH-RISK-BIOLOGY"]
+    assert flt3["clinical_direction"] == bio["clinical_direction"] == "intensify"
+    # Severity tiebreak: critical ≻ major → HIGH-RISK-BIOLOGY wins.
+    assert bio["severity"] == "critical"
+    assert flt3["severity"] == "major"
+    assert winner == "RF-AML-HIGH-RISK-BIOLOGY", (
+        f"Expected critical-severity (HIGH-RISK-BIOLOGY) to outrank major "
+        f"(FLT3-ACTIONABLE) when directions are equal; got {winner}; "
+        f"ordering: {ordered}"
+    )
