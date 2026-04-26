@@ -177,3 +177,143 @@ fall in this bucket. Plus SRC-ONCOKB.
 4. **Annual cadence.** With every source stamped today, the next
    meaningful audit is 2027-04-27 unless a publisher updates push
    earlier.
+
+## 7. Guideline-replacement workstream — 2026-04-27
+
+Follow-up to §2 (12 outdated content) and the FU-A missing-sources flag.
+Each of the 12 outdated guidelines was checked against publisher current
+state; each of the 8 missing sources was authored. Per-source dispositions
+below; commits in branch master `553c05a..HEAD`.
+
+### 7.1 Per-guideline disposition
+
+| Source ID | Old edition | New edition found? | Action taken |
+|---|---|---|---|
+| SRC-ESMO-MPN-2015 | Vannucchi 2015 | No (ESMO has not refreshed) | In-place note + last_verified bump. Pointed users at NCCN-MPN-2025 + ELN-2018 + JAK-inhibitor RCT publications. |
+| SRC-ESMO-CML-2017 | Hochhaus 2017 | No (ESMO has not refreshed) | In-place note. Effective successor is SRC-ELN-CML-2025 (in KB). |
+| SRC-ELN-APL-2019 | Sanz/Fenaux 2019 | No | In-place note + last_verified bump; remains the ELN APL authority. |
+| SRC-ELN-CML-2020 | Hochhaus 2020 | **Yes — ELN 2025 (Apperley et al, Leukemia 39:1797-1813, doi 10.1038/s41375-025-02664-w, PMID 40646132)** | Marked superseded_by SRC-ELN-CML-2025. New source authored. |
+| SRC-ESMO-AML-2020 | Heuser 2020 | No (ESMO has not refreshed) | In-place note. Effective successor: SRC-ELN-AML-2022 + SRC-NCCN-AML-2025. |
+| SRC-ESMO-MDS-2021 | Fenaux 2021 | No (ESMO has not refreshed) | In-place note. IPSS-M (Bernard 2022, in KB) refines risk stratification. |
+| SRC-ESMO-SCLC-2021 | Dingemans 2021 | No (ESMO 2024 was congress-data only) | In-place note. SRC-NCCN-SCLC-2025 is companion reference. |
+| SRC-ELN-AML-2022 | Döhner 2022 | Still current | last_verified note added; remains authoritative. |
+| SRC-ESMO-ENDOMETRIAL-2022 | ESMO-ESGO-ESTRO 2022 | **Yes — ESGO-ESTRO-ESP 2025 (Concin et al, Lancet Oncol 26:e423-e435, doi 10.1016/S1470-2045(25)00167-6, PMID 40744042)** | Marked superseded_by SRC-ESGO-ENDOMETRIAL-2025. New source authored. ESMO no longer co-publisher. |
+| SRC-AASLD-HCC-2023 | AASLD 2023 | Partial — 2025 Critical Update for adjuvant section only (Taddei et al, Hepatology 82:272-274, PMID 39992051) | In-place note. 2023 still primary; adjuvant atezo+bev no longer recommended. |
+| SRC-EASL-HCV-2023 | EASL 2020 final + 2024 follow-up paper | No (DAA cure rates >97% unchanged; EASL has shifted effort to HBV) | In-place note + last_verified bump. |
+| SRC-ESMO-MM-2023 | ESMO 2023 | **Yes — EHA-EMN 2025 (Dimopoulos et al, Nat Rev Clin Oncol 22:680-700, doi 10.1038/s41571-025-01041-x, PMID 40624367)** | Marked superseded_by SRC-EHA-EMN-MM-2025. New source authored. ESMO no longer co-publisher. |
+
+### 7.2 Per-new-source disposition
+
+| Source ID | Citation | Why needed |
+|---|---|---|
+| SRC-ELN-CML-2025 | Apperley JF et al. Leukemia 2025;39(8):1797-1813. PMID 40646132. | Replaces SRC-ELN-CML-2020 for TKI-switching logic + parenting guidance. |
+| SRC-ESGO-ENDOMETRIAL-2025 | Concin N et al. Lancet Oncol 2025;26(8):e423-e435. PMID 40744042. | Replaces SRC-ESMO-ENDOMETRIAL-2022 with FIGO 2023 staging integration. |
+| SRC-EHA-EMN-MM-2025 | Dimopoulos MA et al. Nat Rev Clin Oncol 2025;22(9):680-700. PMID 40624367. | Replaces SRC-ESMO-MM-2023 with 14 new EMA/FDA-approved regimens since 2021. |
+| SRC-AASLD-HBV-2024 | Terrault NA et al. Hepatology Nov 2025; doi 10.1097/HEP.0000000000001549. | First HBV-side authority for the KB; required for HBV reactivation prophylaxis. |
+| SRC-NIH-AIDS-2024 | NIH/HHS/CDC Adult & Adolescent ARV + OI guidelines, ClinicalInfo.HIV.gov. | First HIV-side authority; required for HIV-associated lymphoma management. |
+| SRC-IMC-HTLV-2017 | Cook LB et al. J Clin Oncol 2019;37(8):677-687. PMID 30657736. | First HTLV-1/ATL authority; required for the PTCL/ATL vertical. |
+| SRC-IDSA-EBV-2019 | Allen UD, Preiksaitis JK; AST IDCOP. Clin Transplant 2019;33(9):e13652. PMID 31230381. | First PTLD/EBV authority; required for PTLD entity in DLBCL/B-cell vertical. |
+| SRC-ICARIA-ATTAL-2019 | Attal M et al. Lancet 2019;394(10214):2096-2107. PMID 31735560 (audit's 31806175 was mismatched). | Anchor RCT for isatuximab + Pd in 2L+ R/R MM. |
+| SRC-IKEMA-MOREAU-2021 | Moreau P et al. Lancet 2021;397(10292):2361-2371. PMID 34097854 (audit's 34481559 was mismatched). | Anchor RCT for isatuximab + Kd in R/R MM. |
+| SRC-FDA-ISATUXIMAB-2020 | FDA BLA 761113 (Mar 2020), with 2021 Isa-Kd and 2024 Isa-VRd label expansions. | Regulatory anchor for isatuximab access-pathway + dosing rules. |
+| SRC-IMROZ-FACON-2024 | Facon T et al. NEJM 2024;391(17):1597-1609. PMID 38832972 (audit's 38847600 was mismatched). | Anchor RCT for Isa-VRd in transplant-ineligible 1L NDMM. |
+
+### 7.3 Dependent entries flagged for clinical review
+
+The four supersession events imply downstream content review. Per task
+constraint, ONLY flagged here — not auto-edited.
+
+**A. SRC-ELN-CML-2020 → SRC-ELN-CML-2025** (TKI-switching logic, dose
+reduction vs switch on milestone failure, parenting guidance, WHO
+biphasic reclassification):
+
+- algorithms: `algo_cml_1l.yaml`, `algo_cml_2l.yaml`
+- indications: `ind_cml_1l_imatinib.yaml`, `ind_cml_1l_2gen_tki.yaml`,
+  `ind_cml_2l_ponatinib_t315i.yaml`, `ind_cml_3l_asciminib.yaml`,
+  `ind_cml_advanced_allohct.yaml`
+- redflags (response milestones / progression / mutation handling):
+  `rf_cml_t315i_mutation.yaml`, `rf_cml_transformation_progression.yaml`,
+  `rf_cml_high_risk_elts.yaml`, `rf_cml_comorbidity_complex.yaml`,
+  `rf_cml_organ_dysfunction.yaml`, `rf_cml_frailty_age.yaml`
+- regimens: `imatinib_cml.yaml`, `dasatinib_or_nilotinib_cml.yaml`,
+  `reg_ponatinib_cml.yaml`, `reg_asciminib_cml.yaml`,
+  `reg_allohct_cml_advanced.yaml`
+- drugs: `imatinib.yaml`, `dasatinib.yaml`, `nilotinib.yaml`,
+  `bosutinib.yaml`, `ponatinib.yaml`, `asciminib.yaml`
+- biomarkers: `bio_bcr_abl1.yaml`
+- diseases: `cml.yaml`
+- review priority: **HIGH** (TKI-switching logic affects most CML indications).
+
+**B. SRC-ESMO-ENDOMETRIAL-2022 → SRC-ESGO-ENDOMETRIAL-2025** (FIGO 2023
+staging integration, molecular-class-driven adjuvant choices):
+
+- algorithms: `algo_endometrial_advanced_1l.yaml`
+- regimens: `reg_dostarlimab_carbo_pacli_endom.yaml`
+- workups: `workup_suspected_endometrial.yaml`
+- tests: `test_endometrial_biopsy.yaml`, `test_pelvic_mri.yaml`,
+  `test_transvaginal_us.yaml`
+- redflags: `rf_endometrial_high_risk_biology.yaml`,
+  `rf_endometrial_transformation_progression.yaml`,
+  `rf_endometrial_organ_dysfunction.yaml`,
+  `rf_endometrial_frailty_age.yaml`,
+  `rf_endometrial_infection_screening.yaml`
+- diseases: `endometrial.yaml`
+- review priority: **MEDIUM** (staging change has implications for
+  adjuvant decisions but algorithm structure largely unchanged).
+
+**C. SRC-AASLD-HCC-2023** (2025 Critical Update — adjuvant atezo+bev
+no longer recommended):
+
+- indications: `ind_hcc_systemic_1l_atezo_bev.yaml` — verify this is
+  scoped to *advanced/unresectable* 1L (per IMbrave150) and NOT to
+  adjuvant-after-resection use; if the latter, **must update to remove
+  the recommendation**.
+- algorithms: `algo_hcc_systemic_1l.yaml` — verify it does not include
+  an adjuvant pathway.
+- regimens: `atezolizumab_bevacizumab.yaml` — verify scope
+  (advanced/unresectable only).
+- redflags / biomarkers / drugs / diseases / workup / tests for HCC
+  (`rf_hcc_*`, `bio_hbv_status.yaml`, `bio_afp.yaml`, `atezolizumab.yaml`,
+  `sorafenib.yaml`, `lenvatinib.yaml`, `durvalumab.yaml`, `hcc.yaml`,
+  `workup_suspected_hcc.yaml`, `test_child_pugh.yaml`,
+  `test_afp_serum.yaml`, `sorafenib_mono.yaml`) — only flagged for
+  re-verification; no recommendation change expected.
+- review priority: **HIGH for `ind_hcc_systemic_1l_atezo_bev.yaml`**;
+  LOW for the rest.
+
+**D. SRC-ESMO-MM-2023 → SRC-EHA-EMN-MM-2025** (14 novel regimens
+since 2021; new prognostic factors; transplant-ineligible 1L now
+Isa-VRd per IMROZ; Isa-Kd 2L+; bispecifics; CAR-T):
+
+- algorithms: `algo_mm_1l.yaml`, `algo_mm_2l.yaml` — re-evaluate 1L
+  selection (D-VRd vs Isa-VRd vs VRd by transplant eligibility) and
+  2L+ sequence (anti-CD38 quadruplets, bispecifics, CAR-T).
+- indications: `ind_mm_post_asct_lenalidomide_maintenance.yaml`
+  (likely unchanged), `ind_mm_2l_dkd.yaml` (Isa-Kd alternative now
+  available), `ind_mm_4l_teclistamab.yaml` (review against newer
+  bispecifics + CAR-T positioning).
+- regimens: `reg_dkd.yaml`, `reg_lenalidomide_maintenance.yaml`.
+- drugs: `isatuximab.yaml` (link to new SRC-ICARIA-ATTAL-2019 +
+  SRC-IKEMA-MOREAU-2021 + SRC-IMROZ-FACON-2024 + SRC-FDA-ISATUXIMAB-2020),
+  `carfilzomib.yaml`.
+- redflags: `rf_mm_high_risk_cytogenetics.yaml` (R2-ISS update),
+  `rf_mm_frailty_age.yaml`, `rf_mm_renal_dysfunction.yaml`,
+  `rf_mm_infection_screening.yaml`,
+  `rf_mm_transformation_progression.yaml`.
+- review priority: **HIGH** (transplant-ineligible 1L recommendation
+  has changed; isatuximab now has 1L indication).
+
+### 7.4 PMID corrections
+
+The audit listed three PMIDs that did not match the cited trials.
+Verified via PubMed and corrected when authoring the new sources:
+
+| Source | Audit PMID | Correct PMID |
+|---|---|---|
+| SRC-ICARIA-ATTAL-2019 | 31806175 | **31735560** |
+| SRC-IKEMA-MOREAU-2021 | 34481559 | **34097854** |
+| SRC-IMROZ-FACON-2024 | 38847600 | **38832972** |
+
+### 7.5 Validator state
+
+After every commit in this workstream: `ok=True, errors=0`.
