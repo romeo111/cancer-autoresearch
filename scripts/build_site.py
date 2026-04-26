@@ -629,11 +629,16 @@ def _render_top_bar(active: str = "", target_lang: str = "uk",
 
 
 def render_landing(stats, *, target_lang: str = "uk") -> str:
-    # Live numbers / corpus-mass cards moved to /capabilities.html — landing
-    # is now hero + combined "why + how" with the MDT figure. `stats` is kept
-    # in the signature so build.py can pass the same arg and so future
-    # widgets on the landing can reach for it without a refactor.
-    _ = stats  # noqa: F841 — intentionally unused on landing for now
+    # Most corpus-mass cards live on /capabilities.html. The landing pulls
+    # only the headline counters (diseases, redflags, indications, regimens,
+    # algorithms) so the "Ready for patients today" / "Red flags" cards stay
+    # in lock-step with the KB instead of drifting into stale text.
+    by_type = {e.type: e.count for e in stats.entities}
+    n_diseases = by_type.get("diseases", 0)
+    n_redflags = by_type.get("redflags", 0)
+    n_indications = by_type.get("indications", 0)
+    n_regimens = by_type.get("regimens", 0)
+    n_algorithms = by_type.get("algorithms", 0)
 
     if target_lang == "en":
         hero_h1 = "Open-source infrastructure for oncology clinical decision-making"
@@ -699,7 +704,7 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
             "A declarative rule engine surfaces risks, auto-adjusts dosing, and wires "
             "biomarker → drug → monitoring connections."
         )
-        df3_li_1 = "106 red flags across 28 diseases"
+        df3_li_1 = f"{n_redflags} red flags across {n_diseases} diseases"
         df3_li_2 = "renal / hepatic / age / weight adjustments"
         df3_li_3 = "biomarker ↔ regimen ↔ monitoring"
         df4_title = "Two plans with full citations"
@@ -732,8 +737,11 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
              "means it can&rsquo;t quietly disappear or be locked behind investors "
              "tomorrow."),
             ("Ready for patients today",
-             "28 diseases, 106 RFs, clinical sign-off received. First real-patient "
-             "plans were rated strong by oncologists. There is no reason to wait."),
+             f"{n_diseases} diseases, {n_redflags} red flags, {n_indications} indications, "
+             f"{n_regimens} regimens, {n_algorithms} treatment algorithms — clinical sign-off "
+             "received. The first real-patient plans were rated strong by practising "
+             "oncologists. The KB grows weekly, but it is already the densest open "
+             "evidence-to-plan layer for Ukrainian oncology that exists. No reason to wait."),
         ]
         why_today_foot = (
             "Every missed biomarker can cost a life. Every hour of manual cross-checking "
@@ -806,7 +814,7 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
             "Декларативний rule engine знаходить ризики, автоматично коригує дози й "
             "вибудовує зв&rsquo;язки біомаркер → препарат → моніторинг."
         )
-        df3_li_1 = "106 червоних прапорців по 28 діагнозах"
+        df3_li_1 = f"{n_redflags} червоних прапорців по {n_diseases} діагнозах"
         df3_li_2 = "корекції на нирки, печінку, вік, вагу"
         df3_li_3 = "зв&rsquo;язок біомаркер ↔ режим ↔ моніторинг"
         df4_title = "Два плани з повними цитатами"
@@ -838,8 +846,11 @@ def render_landing(stats, *, target_lang: str = "uk") -> str:
              "гарантує, що завтра воно нікуди не зникне і його не &laquo;закриють&raquo; "
              "інвестори."),
             ("Готово до пацієнтів сьогодні",
-             "28 діагнозів, 106 RF, клінічний sign-off отриманий. Перші реальні плани "
-             "вже верифіковані онкологами як сильні. Немає сенсу чекати."),
+             f"{n_diseases} діагнозів, {n_redflags} червоних прапорців, {n_indications} "
+             f"індикацій, {n_regimens} режимів, {n_algorithms} алгоритмів лікування — "
+             "клінічний sign-off отриманий. Перші реальні плани вже верифіковані "
+             "практикуючими онкологами як сильні. KB росте щотижня, але це вже найщільніший "
+             "відкритий шар «доказ → план» для української онкології, що існує. Немає сенсу чекати."),
         ]
         why_today_foot = (
             "Кожен пропущений біомаркер може коштувати життя. Кожна година ручного "
