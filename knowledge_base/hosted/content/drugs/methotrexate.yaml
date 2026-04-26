@@ -3,34 +3,137 @@ names:
   preferred: "Methotrexate"
   ukrainian: "Метотрексат"
   english: "Methotrexate"
-  brand_names: ["Trexall", "Otrexup"]
+  synonyms: ["MTX", "Amethopterin"]
+  brand_names: ["Trexall", "Otrexup", "Rasuvo", "Methoblastin", "Ledertrexate"]
 atc_code: L01BA01
-rxnorm_id: null
-drug_class: "Antimetabolite (dihydrofolate reductase inhibitor)"
+rxnorm_id: "6851"
+drug_class: "antimetabolite — folate analog (dihydrofolate reductase inhibitor)"
 mechanism: >
-  Folate analog — competitively inhibits dihydrofolate reductase, depleting reduced folate cofactors needed for DNA/RNA synthesis. Multi-disease use; in breast: CMF regimen historical, intrathecal for leptomeningeal disease.
+  Folate analog; competitively inhibits dihydrofolate reductase (DHFR),
+  blocking conversion of dihydrofolate to tetrahydrofolate. Depletes
+  reduced folate cofactors required for thymidylate (dTMP) and purine
+  synthesis → DNA / RNA / protein synthesis arrest, S-phase cytotoxicity.
+  At high doses crosses the blood-brain barrier in therapeutic
+  concentrations (basis of HD-MTX in CNS lymphoma, CNS prophylaxis,
+  intrathecal administration). Polyglutamation in cells prolongs intra-
+  cellular retention. Leucovorin (folinic acid) bypasses the DHFR block
+  and is the obligatory rescue after high-dose exposure.
 
 regulatory_status:
-  fda: {approved: true}
-  ema: {approved: true}
+  fda:
+    approved: true
+    year_first_approval: 1953
+    indications_brief: ["ALL", "Lymphoma (DLBCL CNS prophylaxis, PCNSL, Burkitt)", "Trophoblastic disease", "Osteosarcoma", "Breast cancer (CMF, historical)", "Psoriasis, RA, GVHD prophylaxis"]
+  ema:
+    approved: true
+    year_first_approval: 1959
   ukraine_registration:
     registered: true
+    registration_number: "[verify-clinical-co-lead]"
     reimbursed_nszu: true
-    last_verified: null
-    notes: "Generic; reimbursed."
+    reimbursement_indications:
+      - "Лімфоми (HD-MTX, ПЦНСЛ, профілактика ЦНС, Беркіта)"
+      - "Гострий лімфобластний лейкоз"
+      - "Профілактика РТПХ після алоТКМ"
+      - "Гестаційна трофобластична хвороба"
+      - "Остеосаркома (HD-MTX)"
+    last_verified: "2026-04-26"
+    notes: "Generic widely available; HD-MTX requires specialized institution with leucovorin rescue + level monitoring."
 
 typical_dosing: >
-  CMF regimen: 40 mg/m² IV days 1, 8 of 28-day cycle. Intrathecal: 12-15 mg per dose. High-dose (PCNSL): see PCNSL-specific dosing.
+  HD-MTX (CNS prophylaxis DLBCL/Burkitt): 3-3.5 g/m² IV over 2-4 h with
+  leucovorin rescue + urinary alkalinization (sodium bicarbonate to urine
+  pH ≥7) + hydration 3 L/m²/day.
+  R-MPV (PCNSL induction): 3.5 g/m² IV over 2 h every 14 days × 5 cycles.
+  MATRix (PCNSL induction): 3.5 g/m² day 1 + cytarabine + thiotepa +
+  rituximab × 4 cycles.
+  Intrathecal (CNS prophylaxis ALL / aggressive lymphoma): 12-15 mg per
+  dose (lumbar) or 15 mg per dose (Ommaya) per protocol schedule.
+  GVHD prophylaxis post allo-SCT (mini-MTX): 15 mg/m² IV day 1, 10 mg/m²
+  IV days 3, 6, 11.
+  CMF breast (historical): 40 mg/m² IV days 1, 8 of 28-day cycle.
+  Low-dose oral (RA, psoriasis): 7.5-25 mg PO weekly.
+formulations:
+  - "IV solution 25 mg/mL (50 mg, 1 g, 5 g, 10 g vials — preservative-free for IT)"
+  - "Tablets 2.5 mg, 5 mg, 7.5 mg, 10 mg, 15 mg"
+  - "SC autoinjector 7.5-30 mg (Otrexup, Rasuvo)"
 
-key_toxicities:
-  - Mucositis
-  - Myelosuppression
-  - Hepatotoxicity
-  - Nephrotoxicity (high-dose only — leucovorin rescue + alkalinization)
-  - Pneumonitis (rare)
-  - Avoid in pleural effusion / ascites (third-spacing)
+absolute_contraindications:
+  - "Pregnancy (teratogen, abortifacient)"
+  - "Severe hepatic impairment (transaminases >3× ULN, cirrhosis)"
+  - "Severe renal impairment (CrCl <30 mL/min — toxicity unmanageable at HD)"
+  - "Pleural effusion / ascites (third-space accumulation prolongs exposure → HD-MTX prohibited until drained)"
+  - "Severe pre-existing myelosuppression"
+  - "Active hepatitis"
+  - "Breastfeeding"
+  - "Hypersensitivity to methotrexate"
 
-sources: [SRC-NCCN-BREAST-2025, SRC-ESMO-BREAST-METASTATIC-2024]
-last_reviewed: null
+black_box_warnings:
+  - "Hepatotoxicity (acute transaminitis with HD-MTX; chronic fibrosis/cirrhosis with prolonged low-dose oral)"
+  - "Nephrotoxicity at HD (crystal nephropathy from MTX precipitation in acidic urine; AKI risk)"
+  - "Severe myelosuppression (rescue with leucovorin obligatory after HD)"
+  - "Mucositis / GI toxicity (severe at HD)"
+  - "Pulmonary toxicity (MTX pneumonitis — hypersensitivity-type, can be fatal)"
+  - "Fetal death / teratogenesis"
+  - "Tumor lysis syndrome (high tumor burden)"
+  - "Secondary malignancies (long-term)"
+
+common_adverse_events:
+  - "Mucositis (~50% at HD; ~15% at low-dose oral)"
+  - "Myelosuppression — neutropenia, thrombocytopenia (HD ~70% grade ≥3)"
+  - "Nausea / vomiting — moderate to high emetogenicity at HD (~70%)"
+  - "Hepatic transaminitis (~50% with HD; usually transient)"
+  - "Acute kidney injury (HD; ~5-10% even with adequate hydration / alkalinization)"
+  - "Fatigue — common"
+  - "Diarrhea — ~30%"
+  - "Alopecia (mild, dose-dependent) — ~20%"
+  - "Photosensitivity — ~10%"
+  - "Headache, somnolence (intrathecal)"
+  - "Skin rash — ~10%"
+
+serious_adverse_events:
+  - "MTX-induced acute kidney injury (treat: glucarpidase 50 U/kg IV, continued leucovorin)"
+  - "Severe mucositis with bleeding / sepsis"
+  - "Hepatic fibrosis / cirrhosis (cumulative low-dose; rare with oncologic schedules)"
+  - "MTX pneumonitis (subacute hypersensitivity; corticosteroid-responsive)"
+  - "MTX-induced leukoencephalopathy (delayed; mostly intrathecal/HD combined with cranial RT)"
+  - "Stroke-like syndrome (subacute, transient)"
+  - "Severe TLS with metabolic emergency"
+  - "Severe skin reactions (Stevens-Johnson, TEN)"
+
+major_interactions:
+  - "NSAIDs (ketoprofen, ibuprofen, naproxen, ketorolac) — reduce MTX clearance → severe toxicity at HD; HOLD ≥48 h before HD-MTX and through clearance"
+  - "TMP-SMX (Bactrim) — additive antifolate effect → severe pancytopenia; AVOID during HD-MTX"
+  - "Penicillins, salicylates, probenecid — compete for renal tubular secretion → increased MTX exposure"
+  - "Proton-pump inhibitors (omeprazole) — may delay MTX clearance at HD; some centers hold day of HD-MTX"
+  - "Live vaccines — contraindicated"
+  - "Nephrotoxins (vancomycin, aminoglycosides, IV contrast) — additive AKI at HD"
+  - "Asparaginase BEFORE MTX antagonizes MTX (give MTX → 24 h gap → asparaginase)"
+
+pharmacology:
+  half_life_hours: 8  # biphasic: alpha ~2 h, beta 8-12 h, gamma 8-15 h with retention via polyglutamation
+  clearance: "renal (>90% unchanged via glomerular filtration + tubular secretion)"
+  protein_binding_pct: 50
+  metabolism: "minimal hepatic; intracellular polyglutamation (storage form); renal excretion"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-NCCN-BREAST-2025
+  - SRC-ESMO-BREAST-METASTATIC-2024
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
-  Largely supplanted by anthracycline + taxane in modern adjuvant breast — CMF regimen now reserved for very specific cardiac-contraindication scenarios. Intrathecal use for breast leptomeningeal carcinomatosis remains active.
+  HD-MTX (≥1 g/m²) protocol essentials: alkalinize urine to pH ≥7
+  (sodium bicarbonate IV); hydrate 3 L/m²/day starting 12 h pre-dose;
+  monitor MTX levels at 24, 48, 72 h post-dose with target <0.1 µM at 72 h;
+  continue leucovorin rescue (15 mg/m² IV q6h, escalate per nomogram if
+  level elevated) until MTX <0.05 µM. Glucarpidase (Voraxaze) is the
+  rescue agent for delayed clearance / AKI: rapidly hydrolyzes MTX to
+  inactive metabolites. Pleural effusion / ascites must be fully drained
+  before HD-MTX (third-spacing causes prolonged toxic exposure). Avoid
+  TMP-SMX, NSAIDs, PPIs around HD-MTX dosing. Intrathecal MTX must use
+  preservative-free formulation; leucovorin should NOT be given systemic-
+  ically to rescue intrathecal MTX (it does not enter CSF in adequate
+  concentration but can rescue systemic effects). For breast cancer,
+  CMF largely supplanted by anthracycline + taxane regimens; retained
+  for cardiac contraindication scenarios.

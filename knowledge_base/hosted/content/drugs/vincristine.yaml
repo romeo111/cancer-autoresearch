@@ -8,7 +8,7 @@ names:
     - "Vincasar"
 atc_code: L01CA02
 rxnorm_id: "11202"
-drug_class: "Vinca alkaloid (microtubule inhibitor)"
+drug_class: "antineoplastic — vinca alkaloid (microtubule inhibitor)"
 mechanism: >
   Binds tubulin, prevents microtubule polymerization, blocks mitotic
   spindle formation → arrests cells in metaphase, induces apoptosis.
@@ -16,8 +16,11 @@ mechanism: >
 regulatory_status:
   fda:
     approved: true
+    year_first_approval: 1963
+    indications_brief: ["Lymphoma (R-CHOP, ABVD, BEACOPP)", "ALL induction (hyper-CVAD)", "Pediatric solid tumors (Wilms, neuroblastoma, rhabdomyosarcoma)", "ITP (off-label)"]
   ema:
     approved: true
+    year_first_approval: 1965
   ukraine_registration:
     registered: true
     registration_number: "[TBD]"
@@ -51,12 +54,16 @@ serious_adverse_events:
   - "Death with intrathecal administration"
 
 pharmacology:
-  half_life: "~85 hours (terminal); biliary excretion"
+  half_life_hours: 85  # triphasic; terminal ~85 h
+  clearance: "hepatic (biliary)"
+  protein_binding_pct: 75
+  metabolism: "CYP3A4-mediated; biliary excretion (~80%) of parent and metabolites"
 
 sources:
   - SRC-NCCN-BCELL-2025
 
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
   Cap at 2 mg per dose (regardless of BSA) to limit neuropathy. Held or
   dose-reduced for grade ≥2 peripheral neuropathy. Hepatic dose

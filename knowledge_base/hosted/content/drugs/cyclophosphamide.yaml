@@ -9,7 +9,7 @@ names:
     - "Procytox"
 atc_code: L01AA01
 rxnorm_id: "3002"
-drug_class: "Nitrogen mustard alkylating agent"
+drug_class: "alkylating_agent — nitrogen mustard (oxazaphosphorine)"
 mechanism: >
   Prodrug activated by hepatic CYP2B6/CYP3A4 to phosphoramide mustard,
   which crosslinks DNA strands and induces apoptosis. Active in both
@@ -18,8 +18,11 @@ mechanism: >
 regulatory_status:
   fda:
     approved: true
+    year_first_approval: 1959
+    indications_brief: ["Lymphoma (R-CHOP backbone)", "Leukemia (hyper-CVAD, BMT conditioning)", "Multiple myeloma", "Breast / ovarian cancer", "Severe autoimmune disease"]
   ema:
     approved: true
+    year_first_approval: 1959
   ukraine_registration:
     registered: true
     registration_number: "[TBD]"
@@ -61,12 +64,16 @@ serious_adverse_events:
   - "Pulmonary fibrosis (rare, late)"
 
 pharmacology:
-  half_life: "~3-12 hours (parent + metabolites)"
+  half_life_hours: 6  # 3-12 h parent + metabolites
+  clearance: "hepatic (bioactivation) with renal excretion of metabolites"
+  protein_binding_pct: 20
+  metabolism: "CYP2B6 (primary), CYP3A4, CYP2C9 — bioactivation to 4-hydroxycyclophosphamide → phosphoramide mustard"
 
 sources:
   - SRC-NCCN-BCELL-2025
 
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
   Standard R-CHOP component. Premedication: 5-HT3 antagonist + dexamethasone.
   Mesna NOT routinely needed at R-CHOP doses (750 mg/m²) but mandatory for
