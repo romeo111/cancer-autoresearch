@@ -1,0 +1,58 @@
+id: RF-SCLC-HIGH-RISK-BIOLOGY
+definition: >
+  High-risk biological features in SCLC: extensive-stage at presentation
+  (ES-SCLC, ~70% of cases), brain metastases at baseline, bulky liver
+  metastases (LDH >2× ULN), or molecular subtype-Y / inflamed (SCLC-I)
+  emerging as ICI-responsive subgroup vs SCLC-A/N/P (less ICI-responsive
+  in IMpower133 / CASPIAN biomarker analyses).
+definition_ua: >
+  Високоризикові біологічні ознаки SCLC: extensive-stage при
+  встановленні діагнозу (ES-SCLC, ~70% випадків), метастази в мозок
+  на базовій лінії, масивні метастази в печінку (LDH >2× ВМН), або
+  молекулярний підтип-Y / inflamed (SCLC-I), що є ICI-чутливою
+  субгрупою на відміну від SCLC-A/N/P (менш ICI-чутливі за біомаркер-
+  ним аналізом IMpower133 / CASPIAN).
+
+trigger:
+  type: composite
+  any_of:
+    - finding: "sclc_extensive_stage"
+      value: true
+    - finding: "brain_metastases"
+      value: true
+    - finding: "ldh_ratio_to_uln"
+      threshold: 2
+      comparator: ">="
+    - finding: "sclc_molecular_subtype"
+      value: "SCLC-I"
+    - finding: "liver_metastases_bulky"
+      value: true
+
+clinical_direction: intensify
+
+severity: critical
+priority: 80
+category: high-risk-biology
+
+relevant_diseases:
+  - DIS-SCLC
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-SCLC-2025
+  - SRC-ESMO-SCLC-2021
+
+last_reviewed: "2026-04-27"
+draft: false
+
+notes: >
+  ES-SCLC at presentation routes to platinum-etoposide + atezolizumab
+  (IMpower133) or platinum-etoposide + durvalumab (CASPIAN) as 1L
+  standard. Brain metastases: prophylactic cranial irradiation (PCI)
+  controversial in ES-SCLC (Takahashi 2017 vs Slotman 2007); for
+  baseline brain mets, stereotactic radiosurgery or whole-brain RT
+  before/concurrent with chemo+ICI. Bulky liver disease (LDH >2× ULN):
+  associated with worse OS but standard regimen still appropriate.
+  SCLC molecular subtypes (Rudin 2019 — SCLC-A/N/P/Y or -I): SCLC-I
+  (inflamed) shows greatest ICI benefit in retrospective biomarker
+  analyses; not yet routine clinical testing but emerging.
