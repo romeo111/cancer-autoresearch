@@ -5,7 +5,13 @@ applicable_to:
   disease_id: DIS-PTLD
   line_of_therapy: 1
   stage_requirements: []
-  biomarker_requirements_required: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-EBV-DNA
+      required: true
+      value_constraint: "quantitative copies/mL (or IU/mL via WHO standard) on EDTA plasma; baseline + serial trend during reduce-IS + rituximab phase — load decrease is a response surrogate; rising / persistent load → escalate to R-CHOP"
+    - biomarker_id: BIO-HBV-STATUS
+      required: true
+      value_constraint: "any value valid (categorical etiology gate; HBsAg+ or anti-HBc+ → entecavir prophylaxis before rituximab; reactivation risk additionally elevated by background immunosuppression)"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 4
