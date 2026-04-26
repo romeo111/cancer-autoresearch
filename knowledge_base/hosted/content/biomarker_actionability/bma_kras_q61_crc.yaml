@@ -1,0 +1,20 @@
+id: BMA-KRAS-Q61-CRC
+biomarker_id: BIO-RAS-MUTATION
+variant_qualifier: "KRAS Q61X"
+disease_id: DIS-CRC
+escat_tier: "IV"
+oncokb_level: "4"
+evidence_summary: >
+  KRAS Q61 in mCRC — RAS-mutant, anti-EGFR contraindicated. Standard chemo.
+regulatory_approval:
+  fda: []
+  ema: []
+  ukraine: []
+recommended_combinations: []
+contraindicated_monotherapy: []
+primary_sources:
+  - SRC-NCCN-COLON-2025
+last_verified: "2026-04-27"
+oncokb_snapshot_version: "v3.20-2026-04"
+notes: >
+  ESCAT IV. Encoded under BIO-RAS-MUTATION (no variant-specific BIO for KRAS Q61X yet). FLAG: dedicated BIO-KRAS-Q61X would improve granularity.
