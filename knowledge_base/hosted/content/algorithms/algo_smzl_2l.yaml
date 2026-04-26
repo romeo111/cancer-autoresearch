@@ -1,0 +1,81 @@
+id: ALGO-SMZL-2L
+applicable_to_disease: DIS-SPLENIC-MZL
+applicable_to_line_of_therapy: 2
+purpose: >
+  Select 2L+ Indication for splenic marginal zone lymphoma after 1L
+  failure (rituximab monotherapy, splenectomy, or HCV-DAA antiviral
+  in HCV+ subset). Single track: IND-SMZL-2L-BR (bendamustine +
+  rituximab, BSH 2024 / NCCN 2L preferred; Rummel STIL-1-equivalent
+  data in indolent B-NHL). Two-plan output collapses to BR ±
+  alternative free-text (R-CHOP for transformation-suspect — routes
+  to ALGO-DLBCL upstream).
+
+  2L entry triggered by: symptomatic relapse after 1L (cytopenia
+  recurrence, splenomegaly progression, B-symptoms, transformation),
+  OR persistent active treatment indication despite 1L. HCV+ patients
+  who relapse despite SVR12 also enter via this algo.
+
+output_indications:
+  - IND-SMZL-2L-BR
+
+default_indication: IND-SMZL-2L-BR
+alternative_indication: IND-SMZL-2L-BR
+
+decision_tree:
+  # Step 1 — histologic transformation suspected → route to ALGO-DLBCL.
+  # Cannot reference cross-disease algo here; trace must surface
+  # "transformation-suspect: re-biopsy + ALGO-DLBCL routing" MDT note.
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-SMZL-TRANSFORMATION-PROGRESSION
+        - red_flag: RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION
+    if_true:
+      result: IND-SMZL-2L-BR  # placeholder; see notes — routes upstream to ALGO-DLBCL
+    if_false:
+      next_step: 2
+
+  # Step 2 — frail / organ dysfunction precluding bendamustine: free-text
+  # rituximab monotherapy retreatment OR best-supportive-care.
+  - step: 2
+    evaluate:
+      any_of:
+        - red_flag: RF-SMZL-FRAILTY-AGE
+        - red_flag: RF-SMZL-ORGAN-DYSFUNCTION
+    if_true:
+      result: IND-SMZL-2L-BR  # placeholder; see notes — R-mono retreatment alternative
+    if_false:
+      next_step: 3
+
+  # Step 3 — default: symptomatic relapse, fit, BR-eligible → BR.
+  - step: 3
+    evaluate:
+      any_of:
+        - condition: "Symptomatic relapse after 1L (cytopenia, progressive splenomegaly, B-symptoms)"
+        - condition: "CD20+ confirmed at relapse biopsy"
+        - condition: "Adequate marrow + organ function for bendamustine"
+    if_true:
+      result: IND-SMZL-2L-BR
+    if_false:
+      result: IND-SMZL-2L-BR
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-BSH-MZL-2024
+
+last_reviewed: "2026-04-27"
+notes: >
+  OOS / wiring gaps:
+  (1) IND-SMZL-2L-RITUXIMAB-RETREATMENT (R-mono for late relapse
+  >2y after 1L R-mono response) — not modeled as separate
+  indication; surfaced as free-text in step 2.
+  (2) Ibrutinib (BTKi) for r/r SMZL — approved (FDA 2017) but not
+  modeled; UA access ≈zero outside named-patient.
+  (3) Lenalidomide ± rituximab (R²) for chemo-ineligible — not
+  modeled.
+  (4) Histologic transformation routing must be resolved at upstream
+  disease-resolution stage (relapse re-biopsy mandatory); algo
+  surfaces but does not auto-route to ALGO-DLBCL.
+  (5) Splenectomy as 2L mechanical debulking for symptomatic
+  hypersplenism — surgical referral, outside KB.
+  (6) reviewer_signoffs: 0 — pending two Clinical Co-Lead approvals.
