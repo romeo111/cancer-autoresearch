@@ -8,6 +8,9 @@ applicable_to:
   biomarker_requirements_required:
     - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive"}
     - {biomarker_id: BIO-DOUBLE-HIT, required: true, value_constraint: "positive"}
+    - {biomarker_id: BIO-MYC-REARRANGEMENT, required: true, value_constraint: "positive (FISH break-apart) — required for HGBL-DH/TH classification"}
+    - {biomarker_id: BIO-BCL2-REARRANGEMENT, required: false, value_constraint: "positive (FISH) — together with MYC defines classic HGBL-DH; either BCL2 or BCL6 partner accepted"}
+    - {biomarker_id: BIO-BCL6-REARRANGEMENT, required: false, value_constraint: "positive (FISH) — alternative MYC partner; MYC+BCL6 also classified HGBL with rearrangements"}
   biomarker_requirements_excluded: []
   demographic_constraints: {ecog_max: 3}
 
