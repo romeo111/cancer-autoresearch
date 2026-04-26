@@ -10,6 +10,10 @@ applicable_to:
     - biomarker_id: BIO-ESTROGEN-RECEPTOR
       value_constraint: "positive"
       required: true
+    - biomarker_id: BIO-PROGESTERONE-RECEPTOR
+      value_constraint: "positive"
+      required: false  # ASCO/CAP 2020: ER OR PR positive defines HR+;
+                       # PR confirms HR signaling but ER alone qualifies
   biomarker_requirements_excluded:
     - biomarker_id: BIO-HER2-SOLID
       value_constraint: "positive"

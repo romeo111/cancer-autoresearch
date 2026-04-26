@@ -1,0 +1,59 @@
+id: BIO-BCR-ABL1
+names:
+  preferred: "BCR::ABL1 fusion (Philadelphia chromosome)"
+  ukrainian: "Філадельфійська хромосома (BCR::ABL1)"
+  english: "BCR-ABL1 fusion / Ph chromosome"
+  abbreviations: ["Ph", "BCR-ABL", "Ph+"]
+codes:
+  loinc: "21239-1"  # Philadelphia chromosome [Identifier] in Bone marrow
+
+biomarker_type: gene_fusion
+
+fusion_details:
+  partner_genes: ["BCR", "ABL1"]
+  cytogenetic: "t(9;22)(q34;q11)"
+  isoforms: ["p190 (e1a2)", "p210 (e13a2 / e14a2)", "p230 (e19a2)"]
+  functional_impact: "activating tyrosine kinase"
+
+measurement:
+  method: >
+    Multi-modal: karyotype (cytogenetics) for Ph-chromosome detection,
+    FISH for BCR/ABL1 break-apart confirmation, qPCR (RT-qPCR with
+    international scale) for transcript quantification + monitoring.
+    NGS RNA-fusion panels increasingly used as one-step alternative.
+  units: "categorical (positive | negative); transcript IS%"
+  typical_sample: "bone marrow aspirate (preferred) or peripheral blood"
+
+specimen_requirements:
+  - "Fresh bone marrow aspirate in heparin (cytogenetics + FISH)"
+  - "EDTA peripheral blood (qPCR for monitoring)"
+  - "Sample within 24h of collection for RNA-based assays"
+
+interpretation_notes: >
+  Defining marker for chronic myeloid leukemia (CML — present in ~95%)
+  and a critical risk-stratifier for B-ALL: Ph-positive B-ALL
+  (~25% adult, ~5% pediatric) requires TKI-incorporating regimens
+  (imatinib / dasatinib / ponatinib + chemo or blinatumomab); Ph-negative
+  B-ALL follows different risk-adapted protocols. Isoform also matters —
+  p190 vs p210 differs in disease lineage and prognosis.
+
+  In CML, treatment-response milestones are tracked via qPCR transcript
+  quantification on the International Scale (IS%): MMR (major molecular
+  response) = ≤0.1% IS at 12mo signals optimal response.
+
+related_biomarkers: ["BIO-BCR-ABL1-T315I"]  # forward-ref; T315I gates ponatinib choice
+
+sources: [SRC-ELN-CML-2020, SRC-ESMO-CML-2017]
+last_reviewed: "2026-04-26"
+notes: >
+  This entity was authored 2026-04-26 to fix a broken reference from
+  ind_b_all_1l_ph_neg.yaml (excluded BIO-BCR-ABL1 to define Ph-negative
+  B-ALL inclusion), per the `docs/BIOMARKER_CATALOG.md` audit. Sourced
+  to ELN/ESMO CML guidelines which establish the BCR-ABL1 detection
+  methodology + IS% reporting standard.
+
+  Follow-up clinical-content work (separate PRs):
+  - Author SRC-NCCN-ALL-2025 (currently no ALL-specific source in KB).
+  - Author CML 1L Indications (currently no CML disease entity).
+  - Wire Ph-positive B-ALL TKI regimens (imatinib / dasatinib /
+    ponatinib + chemo / blinatumomab combos).

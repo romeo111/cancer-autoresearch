@@ -6,21 +6,16 @@ Purpose: single source of truth for which biomarkers OpenOnco's engine actually 
 
 ## Summary
 
-- **Defined entities:** 61
-- **Referenced by rules:** 58 unique IDs, 168 total citations
-- **Defined + used (✓):** 57
-- **Defined + unused (⚠):** 4
-- **Referenced + missing (❌):** 1
+- **Defined entities:** 62
+- **Referenced by rules:** 59 unique IDs, 169 total citations
+- **Defined + used (✓):** 59
+- **Defined + unused (⚠):** 3
+- **Referenced + missing (❌):** 0
 
 ## Issues to resolve
 
-### ❌ Referenced but no entity file
-
-- `BIO-BCR-ABL1` — cited 1× (B-Lymphoblastic Leukemia / Lymph). Author the entity, or remove the citation.
-
 ### ⚠ Defined but no rule consumes them
 
-- `BIO-PROGESTERONE-RECEPTOR` — Progesterone receptor (PR). Wire into ≥1 Indication or red-flag, or document why dormant.
 - `BIO-PSA` — Prostate-specific antigen (PSA). Wire into ≥1 Indication or red-flag, or document why dormant.
 - `BIO-TMB-HIGH` — Tumor mutational burden (TMB-high). Wire into ≥1 Indication or red-flag, or document why dormant.
 - `BIO-VHL-STATUS` — VHL gene status. Wire into ≥1 Indication or red-flag, or document why dormant.
@@ -52,70 +47,145 @@ Reference count below is a proxy for how often the engine reads the marker. High
 | `BIO-HRD-STATUS` | 3 | Ovarian carcinoma (high- |
 | `BIO-HRR-PANEL` | 3 | Prostate adenocarcinoma |
 
+## Distribution by measurement method
+
+Method category drives PDF-extraction pattern complexity. IHC + serum + MSI markers report as a single value (easy regex). FISH/NGS results carry positional + breakpoint metadata (medium). Composite scores (IPI, MIPI, FLIPI) need multi-component arithmetic.
+
+| Method group | Count |
+|---|---|
+| NGS | 18 |
+| IHC | 16 |
+| FISH | 12 |
+| composite | 4 |
+| serum | 3 |
+| viral | 2 |
+| histology | 2 |
+| methylation | 1 |
+| MSI/MMR | 1 |
+| imaging | 1 |
+| cell count | 1 |
+| NGS-TMB | 1 |
+
+## Coverage gaps
+
+### Missing LOINC (57 of 62)
+
+LOINC required for FHIR R4/R5 + mCODE export. Add `codes.loinc` to each entity below; `https://search.loinc.org` for canonical codes.
+
+- `BIO-AFP`
+- `BIO-ALK-FUSION`
+- `BIO-ALK-REARRANGEMENT`
+- `BIO-BCL2-EXPRESSION-IHC`
+- `BIO-BCL2-REARRANGEMENT`
+- `BIO-BCL6-REARRANGEMENT`
+- `BIO-BRAF-V600E`
+- `BIO-BRCA1-BRCA2-GERMLINE`
+- `BIO-CCND1-IHC`
+- `BIO-CD20-IHC`
+- `BIO-CD23-IHC`
+- `BIO-CD30-IHC`
+- `BIO-CD5-IHC`
+- `BIO-CD52-IHC`
+- `BIO-CD79B-IHC`
+- `BIO-CLL-HIGH-RISK-GENETICS`
+- `BIO-CXCR4-WHIM`
+- `BIO-DLBCL-COO-HANS`
+- `BIO-DLBCL-IPI`
+- `BIO-DMMR-IHC`
+- ... and 37 more
+
+### No fixture coverage (42 used markers)
+
+Markers consumed by rules but never appearing in `examples/*.json`. Either add a patient fixture exercising the marker, or document why no example is needed.
+
+- `BIO-AFP` (3× refs)
+- `BIO-ALK-FUSION` (4× refs)
+- `BIO-ALK-REARRANGEMENT` (1× refs)
+- `BIO-BCL2-EXPRESSION-IHC` (2× refs)
+- `BIO-BCL2-REARRANGEMENT` (2× refs)
+- `BIO-BCL6-REARRANGEMENT` (2× refs)
+- `BIO-BCR-ABL1` (1× refs)
+- `BIO-BRCA-GERMLINE` (3× refs)
+- `BIO-CCND1-IHC` (3× refs)
+- `BIO-CD23-IHC` (3× refs)
+- `BIO-CD5-IHC` (6× refs)
+- `BIO-CD52-IHC` (1× refs)
+- `BIO-CD79B-IHC` (2× refs)
+- `BIO-DLBCL-COO-HANS` (2× refs)
+- `BIO-DLBCL-IPI` (2× refs)
+- `BIO-DMMR-IHC` (2× refs)
+- `BIO-EBV-STATUS` (1× refs)
+- `BIO-EGFR-MUTATION` (3× refs)
+- `BIO-ESTROGEN-RECEPTOR` (2× refs)
+- `BIO-EZH2-Y641` (1× refs)
+- ... and 22 more
+
 ## Full catalog
 
-| ID | Status | Refs | Name | Abbrev. | Measurement | Diseases |
-|---|---|---|---|---|---|---|
-| `BIO-AFP` | ✓ | 3 | Alpha-fetoprotein (serum) | — | Serum immunoassay | Hepatocellular carcinoma |
-| `BIO-ALK-FUSION` | ✓ | 4 | ALK rearrangement / fusion | — | RNA-based NGS (preferred for fusion sensitivity) OR FISH OR IHC (D5F3 antibody) | Non-small cell lung canc |
-| `BIO-ALK-REARRANGEMENT` | ✓ | 1 | ALK rearrangement (most commonly NPM1-ALK t(2;5)) | — | FISH break-apart probe OR ALK IHC (D5F3 clone) on FFPE biopsy; molecular RT-PCR  | Anaplastic Large Cell Ly |
-| `BIO-BCL2-EXPRESSION-IHC` | ✓ | 2 | BCL2 expression by IHC | — | IHC on FFPE biopsy (anti-BCL2 antibody, 124 clone) | Diffuse Large B-Cell Lym |
-| `BIO-BCL2-REARRANGEMENT` | ✓ | 2 | BCL2 rearrangement (t(14;18) IGH/BCL2 by FISH break-apart) | — | FISH break-apart probe on FFPE biopsy | High-Grade B-Cell Lympho |
-| `BIO-BCL6-REARRANGEMENT` | ✓ | 2 | BCL6 rearrangement (3q27) by FISH break-apart | — | FISH break-apart probe on FFPE biopsy | High-Grade B-Cell Lympho |
-| `BIO-BCR-ABL1` | ❌ MISSING | 1 | — | — | — | B-Lymphoblastic Leukemia |
-| `BIO-BRAF-V600E` | ✓ | 7 | BRAF V600E mutation | — | PCR / sequencing on bone marrow or peripheral blood (HCL); FFPE tumor (melanoma) | Colorectal carcinoma (CR, Cutaneous melanoma |
-| `BIO-BRCA-GERMLINE` | ✓ | 3 | Germline BRCA1/2 mutation status | — | NGS panel (germline) with Sanger confirmation of variants of interest | Breast cancer (invasive) |
-| `BIO-BRCA1-BRCA2-GERMLINE` | ✓ | 1 | BRCA1/BRCA2 germline pathogenic variant | — | Germline NGS panel (multi-gene HRD panel preferred over BRCA1/2 only) on blood o | Pancreatic ductal adenoc |
-| `BIO-CCND1-IHC` | ✓ | 3 | Cyclin D1 expression by IHC (encoded by CCND1) | — | IHC on FFPE biopsy (anti-cyclin D1 antibody, SP4 clone) | Mantle Cell Lymphoma |
-| `BIO-CD20-IHC` | ✓ | 30 | CD20 expression by immunohistochemistry | — | Immunohistochemistry on FFPE tissue (anti-CD20 antibody, e | Burkitt Lymphoma, Diffuse Large B-Cell Lym, Follicular Lymphoma, High-Grade B-Cell Lympho, Mantle Cell Lymphoma, Nodal Marginal Zone Lymp, Nodular Lymphocyte-Predo, Post-Transplant Lymphopr, Primary Diffuse Large B-, Primary Mediastinal (Thy, Splenic Marginal Zone Ly |
-| `BIO-CD23-IHC` | ✓ | 3 | CD23 expression by IHC / flow cytometry | — | IHC OR flow cytometry | Chronic Lymphocytic Leuk |
-| `BIO-CD30-IHC` | ✓ | 5 | CD30 expression by IHC | — | IHC on FFPE biopsy | Anaplastic Large Cell Ly, Angioimmunoblastic T-Cel, Mycosis Fungoides / Séza |
-| `BIO-CD5-IHC` | ✓ | 6 | CD5 expression by IHC / flow cytometry | — | IHC on FFPE biopsy OR flow cytometry on PB/BM | Chronic Lymphocytic Leuk, Mantle Cell Lymphoma |
-| `BIO-CD52-IHC` | ✓ | 1 | CD52 expression by IHC / flow | — | Flow cytometry on PB/BM OR IHC on FFPE | T-Cell Prolymphocytic Le |
-| `BIO-CD79B-IHC` | ✓ | 2 | CD79b expression by IHC (target of polatuzumab vedotin) | — | IHC on FFPE biopsy | Diffuse Large B-Cell Lym |
-| `BIO-CLL-HIGH-RISK-GENETICS` | ✓ | 1 | CLL high-risk genetics (TP53 / del(17p) / IGHV-unmutated / complex karyotype) | — | FISH for del(17p), TP53 sequencing, IGHV mutational analysis, karyotype on stimu | — |
-| `BIO-CXCR4-WHIM` | ✓ | 2 | CXCR4 WHIM-like mutation | — | PCR + Sanger sequencing OR NGS panel for CXCR4 C-terminus | Waldenström Macroglobuli |
-| `BIO-DLBCL-COO-HANS` | ✓ | 2 | Cell-of-origin classification (Hans IHC algorithm) | — | Hans algorithm: CD10 → BCL6 → MUM1/IRF4 IHC on biopsy | Diffuse Large B-Cell Lym |
-| `BIO-DLBCL-IPI` | ✓ | 2 | International Prognostic Index (IPI) for DLBCL | — | Composite of 5 clinical variables (age >60, ECOG ≥2, LDH >ULN, stage III/IV, ≥2  | Diffuse Large B-Cell Lym |
-| `BIO-DMMR-IHC` | ✓ | 2 | Mismatch repair protein expression by IHC | — | IHC for MLH1, MSH2, MSH6, PMS2 on FFPE; loss of any → dMMR | Endometrial carcinoma |
-| `BIO-DOUBLE-HIT` | ✓ | 1 | Double-hit (MYC + BCL2 and/or BCL6 rearrangements) | — | FISH break-apart probes for MYC, BCL2, BCL6 on FFPE biopsy | High-Grade B-Cell Lympho |
-| `BIO-EBV-STATUS` | ✓ | 1 | EBV status (EBER-ISH on tumor tissue) | — | EBER (EBV-encoded RNA) in-situ hybridization on FFPE tissue | — |
-| `BIO-EGFR-MUTATION` | ✓ | 3 | EGFR mutation status (NSCLC actionable) | — | Tumor-tissue NGS panel OR ctDNA NGS OR PCR (cobas EGFR Mutation Test) | Non-small cell lung canc |
-| `BIO-ESTROGEN-RECEPTOR` | ✓ | 2 | Estrogen receptor (ER) | ER | Immunohistochemistry on FFPE tumor tissue (ASCO/CAP-validated antibody) | Breast cancer (invasive) |
-| `BIO-EZH2-Y641` | ✓ | 1 | EZH2 Y641 mutation | — | PCR / NGS panel for EZH2 codon 641 hot-spot | Follicular Lymphoma |
-| `BIO-FGFR3-MUTATION` | ✓ | 1 | FGFR3 mutation/fusion | — | Tumor-tissue NGS OR ctDNA OR allele-specific PCR | — |
-| `BIO-FL-FLIPI` | ✓ | 3 | Follicular Lymphoma International Prognostic Index (FLIPI) | — | 5-variable score: age >60, Hb <12 g/dL, LDH >ULN, stage III-IV, ≥5 nodal areas | Follicular Lymphoma |
-| `BIO-GLEASON-ISUP` | ✓ | 5 | Gleason score / ISUP grade group | — | Histopathology of biopsy / RP specimen | Prostate adenocarcinoma |
-| `BIO-HCV-RNA` | ✓ | 4 | HCV RNA (quantitative PCR) | — | Real-time quantitative PCR | HCV-associated Marginal , Splenic Marginal Zone Ly |
-| `BIO-HER2-SOLID` | ✓ | 9 | HER2 status (solid tumors — gastric/GEJ/CRC scoring) | — | IHC (4B5 / HercepTest), reflex ISH (FISH/CISH/SISH) for IHC 2+ | Breast cancer (invasive), Gastric / GEJ adenocarci |
-| `BIO-HPV-STATUS` | ✓ | 1 | Human Papillomavirus (HPV) status | — | p16 IHC (surrogate for HPV in OPC; >70% nuclear+cytoplasmic positivity = HPV+) A | Cervical carcinoma (squa |
-| `BIO-HRD-STATUS` | ✓ | 3 | Homologous recombination deficiency (HRD) status | — | Composite: BRCA1/2 (germline + somatic) + genomic instability score (Myriad myCh | Ovarian carcinoma (high- |
-| `BIO-HRR-PANEL` | ✓ | 3 | Homologous recombination repair (HRR) gene panel status | HRR-mutant | Tumor-tissue NGS panel (somatic) OR ctDNA OR germline NGS | Prostate adenocarcinoma |
-| `BIO-IDH-MUTATION` | ✓ | 1 | IDH1 / IDH2 mutation status | — | IHC (R132H-specific antibody for screening) + NGS/PCR for non-canonical variants | Glioblastoma (IDH-WT |
-| `BIO-IGHV-MUTATIONAL-STATUS` | ✓ | 1 | IGHV (immunoglobulin heavy-chain variable region) mutational status | — | PCR + Sanger sequencing of clonal IGHV gene; calculate % germline homology | — |
-| `BIO-KI67-PROLIFERATION-INDEX` | ✓ | 1 | Ki-67 proliferation index (IHC, % positive nuclei) | — | IHC on FFPE biopsy (Ki-67 / MIB-1 antibody); count nuclear-positive cells in hot | — |
-| `BIO-KRAS-G12C` | ✓ | 2 | KRAS G12C mutation | — | Tumor-tissue NGS OR ctDNA NGS OR allele-specific PCR | Non-small cell lung canc |
-| `BIO-MCL-MIPI` | ✓ | 3 | Mantle Cell Lymphoma International Prognostic Index (MIPI) | — | 4 variables: age, ECOG, LDH, WBC; biological MIPI adds Ki67 | Mantle Cell Lymphoma |
-| `BIO-MF-LCT` | ✓ | 1 | Large-cell transformation in MF (LCT — >25% large cells, often CD30+) | — | Skin or LN biopsy review — proportion of large cells (>4× small lymphocyte size) | — |
-| `BIO-MGMT-METHYLATION` | ✓ | 1 | MGMT promoter methylation status | — | Methylation-specific PCR (MSP) OR pyrosequencing OR methylation-array (450K/EPIC | Glioblastoma (IDH-WT |
-| `BIO-MM-CYTOGENETICS-HR` | ✓ | 2 | High-risk cytogenetics in multiple myeloma (FISH) | — | Interphase FISH on CD138-enriched plasma cells | Multiple Myeloma |
-| `BIO-MSI-STATUS` | ✓ | 7 | Microsatellite instability status | — | PCR-based 5-marker panel (BAT-25, BAT-26, NR-21, NR-24, MONO-27) OR NGS-derived  | Colorectal carcinoma (CR |
-| `BIO-MYC-REARRANGEMENT` | ✓ | 7 | MYC rearrangement (8q24) by FISH break-apart | — | FISH break-apart probe on FFPE biopsy | Burkitt Lymphoma, High-Grade B-Cell Lympho |
-| `BIO-MYD88-L265P` | ✓ | 2 | MYD88 L265P mutation | — | PCR / ASO / NGS on bone marrow or peripheral blood | Waldenström Macroglobuli |
-| `BIO-NOTCH1-MUTATION` | ✓ | 3 | NOTCH1 mutation (PEST domain) | — | NGS panel covering PEST domain hot-spots | Chronic Lymphocytic Leuk |
-| `BIO-PDL1-CPS` | ✓ | 1 | PD-L1 Combined Positive Score (CPS) | — | IHC 22C3 pharmDx; CPS = (PD-L1+ cells [tumor + lymphocytes + macrophages] / tota | Gastric / GEJ adenocarci |
-| `BIO-PDL1-EXPRESSION` | ✓ | 1 | PD-L1 expression by IHC | — | IHC on FFPE biopsy (22C3, SP142, SP263 clones — assay-specific scoring) | — |
-| `BIO-PDL1-TPS` | ✓ | 2 | PD-L1 Tumor Proportion Score (TPS) | — | IHC (22C3, SP263, SP142, 28-8 — pembrolizumab uses 22C3) | Non-small cell lung canc |
-| `BIO-PIK3CA-MUTATION` | ✓ | 1 | PIK3CA hotspot mutation | — | Tumor-tissue NGS panel OR plasma ctDNA NGS — both ASCO/CAP-acceptable | — |
-| `BIO-PROGESTERONE-RECEPTOR` | ⚠ unused | 0 | Progesterone receptor (PR) | PR | Immunohistochemistry on FFPE tumor tissue (ASCO/CAP-validated antibody) | — |
-| `BIO-PSA` | ⚠ unused | 0 | Prostate-specific antigen (PSA) | PSA | Immunoassay (ECLIA, CLIA) | — |
-| `BIO-PSMA-PET` | ✓ | 1 | PSMA-PET imaging avidity | PSMA-PET | Ga-68-PSMA-11 OR F-18-PSMA-1007 PET/CT | Prostate adenocarcinoma |
-| `BIO-RAS-MUTATION` | ✓ | 1 | RAS mutation status (KRAS / NRAS exons 2-4) | — | NGS panel (preferred) or PCR-based (BEAMing, ddPCR for ctDNA) | Colorectal carcinoma (CR |
-| `BIO-RHOA-G17V` | ✓ | 2 | RHOA G17V mutation | — | NGS panel covering RHOA codon 17 hot-spot | Angioimmunoblastic T-Cel |
-| `BIO-ROS1-FUSION` | ✓ | 1 | ROS1 fusion | — | RNA-based NGS OR FISH OR IHC screen | — |
-| `BIO-SEZARY-COUNT` | ✓ | 1 | Sézary cell count (peripheral blood, B-classification per ISCL/EORTC) | — | Flow cytometry (CD4+CD7- or CD4+CD26- abnormal subset) + morphology (atypical ly | — |
-| `BIO-T11-14-IGH-CCND1` | ✓ | 2 | t(11;14)(q13;q32) IGH/CCND1 by FISH | — | FISH break-apart or dual-fusion probe on FFPE biopsy or BM | Mantle Cell Lymphoma |
-| `BIO-TMB-HIGH` | ⚠ unused | 0 | Tumor mutational burden (TMB-high) | — | Whole-exome OR comprehensive NGS panel (≥1 Mb) | — |
-| `BIO-TP53-MUTATION` | ✓ | 2 | TP53 mutation / del(17p) | — | NGS panel (PCR + sequencing) for point mutations + FISH for del(17p13 | — |
-| `BIO-VHL-STATUS` | ⚠ unused | 0 | VHL gene status | — | Tumor-tissue NGS OR germline NGS for hereditary VHL | — |
+Columns: **Status** = ✓/⚠/❌ from §Issues. **Refs** = total citations. **Method** = collapsed measurement category. **LOINC** for FHIR/mCODE. **Fix** = present in N example patient fixtures. **Pri** = PDF-extraction priority (refs × method × fixture).
+
+| ID | Status | Refs | Name | Method | LOINC | Fix | Pri | Diseases |
+|---|---|---|---|---|---|---|---|---|
+| `BIO-AFP` | ✓ | 3 | Alpha-fetoprotein (serum) | serum | — | — | medium | Hepatocellular carcino |
+| `BIO-ALK-FUSION` | ✓ | 4 | ALK rearrangement / fusion | FISH | — | — | medium | Non-small cell lung ca |
+| `BIO-ALK-REARRANGEMENT` | ✓ | 1 | ALK rearrangement (most commonly NPM1-ALK t(2;5)) | FISH | — | — | low | Anaplastic Large Cell  |
+| `BIO-BCL2-EXPRESSION-IHC` | ✓ | 2 | BCL2 expression by IHC | IHC | — | — | medium | Diffuse Large B-Cell L |
+| `BIO-BCL2-REARRANGEMENT` | ✓ | 2 | BCL2 rearrangement (t(14;18) IGH/BCL2 by FISH break-apart) | FISH | — | — | medium | High-Grade B-Cell Lymp |
+| `BIO-BCL6-REARRANGEMENT` | ✓ | 2 | BCL6 rearrangement (3q27) by FISH break-apart | FISH | — | — | medium | High-Grade B-Cell Lymp |
+| `BIO-BCR-ABL1` | ✓ | 1 | BCR::ABL1 fusion (Philadelphia chromosome) | FISH | 21239-1 | — | low | B-Lymphoblastic Leukem |
+| `BIO-BRAF-V600E` | ✓ | 7 | BRAF V600E mutation | NGS | — | 1× ✓ | **high** | Colorectal carcinoma (, Cutaneous melanoma |
+| `BIO-BRCA-GERMLINE` | ✓ | 3 | Germline BRCA1/2 mutation status | NGS | 94075-3 | — | medium | Breast cancer (invasiv |
+| `BIO-BRCA1-BRCA2-GERMLINE` | ✓ | 1 | BRCA1/BRCA2 germline pathogenic variant | NGS | — | 1× ✓ | low | Pancreatic ductal aden |
+| `BIO-CCND1-IHC` | ✓ | 3 | Cyclin D1 expression by IHC (encoded by CCND1) | IHC | — | — | medium | Mantle Cell Lymphoma |
+| `BIO-CD20-IHC` | ✓ | 30 | CD20 expression by immunohistochemistry | IHC | — | 17× ✓ | **high** | Burkitt Lymphoma, Diffuse Large B-Cell L, Follicular Lymphoma, High-Grade B-Cell Lymp, Mantle Cell Lymphoma, Nodal Marginal Zone Ly, Nodular Lymphocyte-Pre, Post-Transplant Lympho, Primary Diffuse Large , Primary Mediastinal (T, Splenic Marginal Zone  |
+| `BIO-CD23-IHC` | ✓ | 3 | CD23 expression by IHC / flow cytometry | IHC | — | — | medium | Chronic Lymphocytic Le |
+| `BIO-CD30-IHC` | ✓ | 5 | CD30 expression by IHC | IHC | — | 5× ✓ | **high** | Anaplastic Large Cell , Angioimmunoblastic T-C, Mycosis Fungoides / Sé |
+| `BIO-CD5-IHC` | ✓ | 6 | CD5 expression by IHC / flow cytometry | IHC | — | — | **high** | Chronic Lymphocytic Le, Mantle Cell Lymphoma |
+| `BIO-CD52-IHC` | ✓ | 1 | CD52 expression by IHC / flow | IHC | — | — | low | T-Cell Prolymphocytic  |
+| `BIO-CD79B-IHC` | ✓ | 2 | CD79b expression by IHC (target of polatuzumab vedotin) | IHC | — | — | medium | Diffuse Large B-Cell L |
+| `BIO-CLL-HIGH-RISK-GENETICS` | ✓ | 1 | CLL high-risk genetics (TP53 / del(17p) / IGHV-unmutated / complex karyotype) | composite | — | 2× ✓ | low | — |
+| `BIO-CXCR4-WHIM` | ✓ | 2 | CXCR4 WHIM-like mutation | NGS | — | 1× ✓ | medium | Waldenström Macroglobu |
+| `BIO-DLBCL-COO-HANS` | ✓ | 2 | Cell-of-origin classification (Hans IHC algorithm) | IHC | — | — | medium | Diffuse Large B-Cell L |
+| `BIO-DLBCL-IPI` | ✓ | 2 | International Prognostic Index (IPI) for DLBCL | composite | — | — | medium | Diffuse Large B-Cell L |
+| `BIO-DMMR-IHC` | ✓ | 2 | Mismatch repair protein expression by IHC | IHC | — | — | medium | Endometrial carcinoma |
+| `BIO-DOUBLE-HIT` | ✓ | 1 | Double-hit (MYC + BCL2 and/or BCL6 rearrangements) | FISH | — | 1× ✓ | low | High-Grade B-Cell Lymp |
+| `BIO-EBV-STATUS` | ✓ | 1 | EBV status (EBER-ISH on tumor tissue) | viral | — | — | low | — |
+| `BIO-EGFR-MUTATION` | ✓ | 3 | EGFR mutation status (NSCLC actionable) | NGS | — | — | medium | Non-small cell lung ca |
+| `BIO-ESTROGEN-RECEPTOR` | ✓ | 2 | Estrogen receptor (ER) | IHC | 16112-5 | — | medium | Breast cancer (invasiv |
+| `BIO-EZH2-Y641` | ✓ | 1 | EZH2 Y641 mutation | NGS | — | — | low | Follicular Lymphoma |
+| `BIO-FGFR3-MUTATION` | ✓ | 1 | FGFR3 mutation/fusion | NGS | — | — | low | — |
+| `BIO-FL-FLIPI` | ✓ | 3 | Follicular Lymphoma International Prognostic Index (FLIPI) | composite | — | — | medium | Follicular Lymphoma |
+| `BIO-GLEASON-ISUP` | ✓ | 5 | Gleason score / ISUP grade group | histology | — | — | medium | Prostate adenocarcinom |
+| `BIO-HCV-RNA` | ✓ | 4 | HCV RNA (quantitative PCR) | viral | — | 6× ✓ | medium | HCV-associated Margina, Splenic Marginal Zone  |
+| `BIO-HER2-SOLID` | ✓ | 9 | HER2 status (solid tumors — gastric/GEJ/CRC scoring) | FISH | — | — | **high** | Breast cancer (invasiv, Gastric / GEJ adenocar |
+| `BIO-HPV-STATUS` | ✓ | 1 | Human Papillomavirus (HPV) status | serum | — | 1× ✓ | low | Cervical carcinoma (sq |
+| `BIO-HRD-STATUS` | ✓ | 3 | Homologous recombination deficiency (HRD) status | NGS | — | 1× ✓ | medium | Ovarian carcinoma (hig |
+| `BIO-HRR-PANEL` | ✓ | 3 | Homologous recombination repair (HRR) gene panel status | NGS | — | — | medium | Prostate adenocarcinom |
+| `BIO-IDH-MUTATION` | ✓ | 1 | IDH1 / IDH2 mutation status | NGS | — | 1× ✓ | low | Glioblastoma (IDH-WT |
+| `BIO-IGHV-MUTATIONAL-STATUS` | ✓ | 1 | IGHV (immunoglobulin heavy-chain variable region) mutational status | NGS | — | — | low | — |
+| `BIO-KI67-PROLIFERATION-INDEX` | ✓ | 1 | Ki-67 proliferation index (IHC, % positive nuclei) | IHC | — | — | low | — |
+| `BIO-KRAS-G12C` | ✓ | 2 | KRAS G12C mutation | NGS | — | — | medium | Non-small cell lung ca |
+| `BIO-MCL-MIPI` | ✓ | 3 | Mantle Cell Lymphoma International Prognostic Index (MIPI) | composite | — | — | medium | Mantle Cell Lymphoma |
+| `BIO-MF-LCT` | ✓ | 1 | Large-cell transformation in MF (LCT — >25% large cells, often CD30+) | histology | — | 1× ✓ | low | — |
+| `BIO-MGMT-METHYLATION` | ✓ | 1 | MGMT promoter methylation status | methylation | — | 1× ✓ | low | Glioblastoma (IDH-WT |
+| `BIO-MM-CYTOGENETICS-HR` | ✓ | 2 | High-risk cytogenetics in multiple myeloma (FISH) | FISH | — | 2× ✓ | medium | Multiple Myeloma |
+| `BIO-MSI-STATUS` | ✓ | 7 | Microsatellite instability status | MSI/MMR | — | — | **high** | Colorectal carcinoma ( |
+| `BIO-MYC-REARRANGEMENT` | ✓ | 7 | MYC rearrangement (8q24) by FISH break-apart | FISH | — | 2× ✓ | **high** | Burkitt Lymphoma, High-Grade B-Cell Lymp |
+| `BIO-MYD88-L265P` | ✓ | 2 | MYD88 L265P mutation | NGS | — | 2× ✓ | medium | Waldenström Macroglobu |
+| `BIO-NOTCH1-MUTATION` | ✓ | 3 | NOTCH1 mutation (PEST domain) | NGS | — | — | medium | Chronic Lymphocytic Le |
+| `BIO-PDL1-CPS` | ✓ | 1 | PD-L1 Combined Positive Score (CPS) | IHC | — | — | low | Gastric / GEJ adenocar |
+| `BIO-PDL1-EXPRESSION` | ✓ | 1 | PD-L1 expression by IHC | IHC | — | — | low | — |
+| `BIO-PDL1-TPS` | ✓ | 2 | PD-L1 Tumor Proportion Score (TPS) | IHC | — | — | medium | Non-small cell lung ca |
+| `BIO-PIK3CA-MUTATION` | ✓ | 1 | PIK3CA hotspot mutation | NGS | — | — | low | — |
+| `BIO-PROGESTERONE-RECEPTOR` | ✓ | 1 | Progesterone receptor (PR) | IHC | 16113-3 | — | low | Breast cancer (invasiv |
+| `BIO-PSA` | ⚠ unused | 0 | Prostate-specific antigen (PSA) | serum | 2857-1 | — | low | — |
+| `BIO-PSMA-PET` | ✓ | 1 | PSMA-PET imaging avidity | imaging | — | — | low | Prostate adenocarcinom |
+| `BIO-RAS-MUTATION` | ✓ | 1 | RAS mutation status (KRAS / NRAS exons 2-4) | NGS | — | — | low | Colorectal carcinoma ( |
+| `BIO-RHOA-G17V` | ✓ | 2 | RHOA G17V mutation | NGS | — | — | medium | Angioimmunoblastic T-C |
+| `BIO-ROS1-FUSION` | ✓ | 1 | ROS1 fusion | FISH | — | — | low | — |
+| `BIO-SEZARY-COUNT` | ✓ | 1 | Sézary cell count (peripheral blood, B-classification per ISCL/EORTC) | cell count | — | 1× ✓ | low | — |
+| `BIO-T11-14-IGH-CCND1` | ✓ | 2 | t(11;14)(q13;q32) IGH/CCND1 by FISH | FISH | — | — | medium | Mantle Cell Lymphoma |
+| `BIO-TMB-HIGH` | ⚠ unused | 0 | Tumor mutational burden (TMB-high) | NGS-TMB | — | — | low | — |
+| `BIO-TP53-MUTATION` | ✓ | 2 | TP53 mutation / del(17p) | FISH | — | — | medium | — |
+| `BIO-VHL-STATUS` | ⚠ unused | 0 | VHL gene status | NGS | — | — | low | — |
 

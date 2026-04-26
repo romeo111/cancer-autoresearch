@@ -36,6 +36,7 @@ RULE_DIRS = [
     REPO_ROOT / "knowledge_base" / "hosted" / "content" / "redflags",
 ]
 DISEASE_DIR = REPO_ROOT / "knowledge_base" / "hosted" / "content" / "diseases"
+EXAMPLES_DIR = REPO_ROOT / "examples"
 OUTPUT = REPO_ROOT / "docs" / "BIOMARKER_CATALOG.md"
 
 BIO_REF_RE = re.compile(r"BIO-[A-Z0-9_-]+")
@@ -158,17 +159,100 @@ def _measurement_label(data: dict) -> str:
     return btype or "—"
 
 
+def _method_group(data: dict) -> str:
+    """Coarse method category. Drives PDF-extraction pattern complexity:
+    IHC/serum/MSI report a single value (easy regex); FISH/NGS carry
+    breakpoints + transcripts (medium); composite scores need
+    multi-component arithmetic."""
+
+    btype = (data.get("biomarker_type") or "").lower()
+    method = ((data.get("measurement") or {}).get("method") or "").lower()
+    if "composite" in btype:
+        return "composite"
+    if "imaging" in btype or "pet" in btype:
+        return "imaging"
+    if "tmb" in btype:
+        return "NGS-TMB"
+    if "msi" in btype or "msi" in method:
+        return "MSI/MMR"
+    if "methylation" in btype or "methylation" in method:
+        return "methylation"
+    if "viral" in btype:
+        return "viral"
+    if "serum" in btype or "serum immunoassay" in method:
+        return "serum"
+    if "fish" in method:
+        return "FISH"
+    if "ihc" in btype or "immunohistochem" in method:
+        return "IHC"
+    if "fusion" in btype:
+        return "FISH/NGS"
+    if "mutation" in btype or "ngs" in method or "pcr" in method:
+        return "NGS"
+    if "histology" in btype or "pathology" in btype:
+        return "histology"
+    return btype.replace("_", " ") or "other"
+
+
+def _loinc_code(data: dict) -> str:
+    codes = data.get("codes") or {}
+    return codes.get("loinc") or ""
+
+
+def _collect_fixture_coverage() -> dict[str, list[str]]:
+    """`BIO-X` → [fixture filename ...] for example patient JSONs that
+    include the marker in their `biomarkers` block."""
+
+    out: dict[str, list[str]] = defaultdict(list)
+    if not EXAMPLES_DIR.is_dir():
+        return out
+    import json
+    for path in sorted(EXAMPLES_DIR.glob("*.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(data, dict):
+            continue
+        bio = data.get("biomarkers") or {}
+        if isinstance(bio, dict):
+            for k in bio:
+                if isinstance(k, str) and k.startswith("BIO-"):
+                    out[k].append(path.name)
+    return out
+
+
+def _extraction_priority(n_refs: int, method_group: str, has_fixture: bool) -> str:
+    """Coarse PDF-extraction priority for the biopsy-extraction roadmap.
+
+    high   = ≥5 refs AND a common, structured-text method (IHC / NGS /
+             MSI / serum / methylation). These return on regex effort.
+    medium = 2-4 refs OR an exotic method.
+    low    = singleton refs or composite scores (manual entry preferable).
+    """
+    if n_refs >= 5:
+        if method_group in {"IHC", "NGS", "MSI/MMR", "serum", "FISH/NGS",
+                            "methylation", "FISH"}:
+            return "**high**"
+        return "medium"
+    if n_refs >= 2:
+        return "medium"
+    return "low"
+
+
 def _row(bid: str, defined: dict[str, dict], refs: Counter,
-         diseases: set[str], disease_names: dict[str, str]) -> str:
+         diseases: set[str], disease_names: dict[str, str],
+         fixtures: list[str], priority: str) -> str:
     data = defined.get(bid) or {}
     names = data.get("names") or {}
     preferred = names.get("preferred", "")
-    abbrevs = ", ".join(names.get("abbreviations") or [])
-    measurement = _measurement_label(data)
+    method_group = _method_group(data) if data else "—"
+    loinc = _loinc_code(data) or "—"
     n_refs = refs.get(bid, 0)
     diseases_str = ", ".join(
-        sorted({disease_names.get(d, d).split(",")[0][:24] for d in diseases})
+        sorted({disease_names.get(d, d).split(",")[0][:22] for d in diseases})
     ) if diseases else "—"
+    fix_str = f"{len(fixtures)}× ✓" if fixtures else "—"
     flag = ""
     if bid in defined and n_refs > 0:
         flag = "✓"
@@ -178,8 +262,9 @@ def _row(bid: str, defined: dict[str, dict], refs: Counter,
         flag = "❌ MISSING"
     return (
         f"| `{bid}` | {flag} | {n_refs} | "
-        f"{preferred or '—'} | {abbrevs or '—'} | "
-        f"{measurement} | {diseases_str} |"
+        f"{preferred or '—'} | "
+        f"{method_group} | {loinc} | {fix_str} | {priority} | "
+        f"{diseases_str} |"
     )
 
 
@@ -189,6 +274,7 @@ def _render_markdown(
     bio_to_diseases: dict[str, set[str]],
     disease_names: dict[str, str],
     naming_pairs: list[tuple[str, str]],
+    fixture_coverage: dict[str, list[str]],
 ) -> str:
     all_ids = sorted(set(defined) | set(refs))
     lines: list[str] = []
@@ -287,14 +373,89 @@ def _render_markdown(
         lines.append(f"| `{bid}` | {count} | {disease_str} |")
     lines.append("")
 
+    # Method-group breakdown — drives PDF-extraction pattern complexity
+    lines.append("## Distribution by measurement method")
+    lines.append("")
+    lines.append(
+        "Method category drives PDF-extraction pattern complexity. IHC + serum "
+        "+ MSI markers report as a single value (easy regex). FISH/NGS results "
+        "carry positional + breakpoint metadata (medium). Composite scores "
+        "(IPI, MIPI, FLIPI) need multi-component arithmetic."
+    )
+    lines.append("")
+    method_counts: Counter = Counter()
+    for bid in defined:
+        method_counts[_method_group(defined[bid])] += 1
+    lines.append("| Method group | Count |")
+    lines.append("|---|---|")
+    for grp, cnt in method_counts.most_common():
+        lines.append(f"| {grp} | {cnt} |")
+    lines.append("")
+
+    # Coverage gaps — defined entities without LOINC or without fixture coverage
+    no_loinc = sorted(b for b in defined if not _loinc_code(defined[b]))
+    no_fixture = sorted(
+        b for b in defined
+        if b in refs and b not in fixture_coverage  # only flag used markers
+    )
+    if no_loinc or no_fixture:
+        lines.append("## Coverage gaps")
+        lines.append("")
+        if no_loinc:
+            lines.append(
+                f"### Missing LOINC ({len(no_loinc)} of {len(defined)})"
+            )
+            lines.append("")
+            lines.append(
+                "LOINC required for FHIR R4/R5 + mCODE export. Add `codes.loinc` "
+                "to each entity below; `https://search.loinc.org` for canonical codes."
+            )
+            lines.append("")
+            for bid in no_loinc[:20]:
+                lines.append(f"- `{bid}`")
+            if len(no_loinc) > 20:
+                lines.append(f"- ... and {len(no_loinc) - 20} more")
+            lines.append("")
+        if no_fixture:
+            lines.append(
+                f"### No fixture coverage ({len(no_fixture)} used markers)"
+            )
+            lines.append("")
+            lines.append(
+                "Markers consumed by rules but never appearing in `examples/*.json`. "
+                "Either add a patient fixture exercising the marker, or document "
+                "why no example is needed."
+            )
+            lines.append("")
+            for bid in no_fixture[:20]:
+                lines.append(f"- `{bid}` ({refs[bid]}× refs)")
+            if len(no_fixture) > 20:
+                lines.append(f"- ... and {len(no_fixture) - 20} more")
+            lines.append("")
+
     # Full table
     lines.append("## Full catalog")
     lines.append("")
-    lines.append("| ID | Status | Refs | Name | Abbrev. | Measurement | Diseases |")
-    lines.append("|---|---|---|---|---|---|---|")
+    lines.append(
+        "Columns: **Status** = ✓/⚠/❌ from §Issues. **Refs** = total citations. "
+        "**Method** = collapsed measurement category. **LOINC** for FHIR/mCODE. "
+        "**Fix** = present in N example patient fixtures. **Pri** = "
+        "PDF-extraction priority (refs × method × fixture)."
+    )
+    lines.append("")
+    lines.append(
+        "| ID | Status | Refs | Name | Method | LOINC | Fix | Pri | Diseases |"
+    )
+    lines.append("|---|---|---|---|---|---|---|---|---|")
     for bid in all_ids:
         diseases_for = bio_to_diseases.get(bid, set())
-        lines.append(_row(bid, defined, refs, diseases_for, disease_names))
+        fixtures_for = fixture_coverage.get(bid, [])
+        method_grp = _method_group(defined.get(bid) or {})
+        priority = _extraction_priority(refs.get(bid, 0), method_grp, bool(fixtures_for))
+        lines.append(_row(
+            bid, defined, refs, diseases_for, disease_names,
+            fixtures_for, priority,
+        ))
     lines.append("")
 
     return "\n".join(lines) + "\n"
@@ -306,8 +467,12 @@ def main() -> int:
     refs, bio_to_diseases = _collect_rule_references()
     disease_names = _disease_name_index()
     naming_pairs = _detect_naming_mismatches(defined, refs)
+    fixture_coverage = _collect_fixture_coverage()
 
-    md = _render_markdown(defined, refs, bio_to_diseases, disease_names, naming_pairs)
+    md = _render_markdown(
+        defined, refs, bio_to_diseases, disease_names, naming_pairs,
+        fixture_coverage,
+    )
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(md, encoding="utf-8")
 
