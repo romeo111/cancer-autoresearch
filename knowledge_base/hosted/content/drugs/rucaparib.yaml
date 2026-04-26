@@ -1,0 +1,80 @@
+id: DRUG-RUCAPARIB
+names:
+  preferred: "Rucaparib"
+  ukrainian: "Рукапариб"
+  english: "Rucaparib"
+  brand_names: ["Rubraca"]
+atc_code: L01XK03
+rxnorm_id:
+drug_class: "PARP inhibitor"
+mechanism: >
+  Inhibits PARP1, PARP2, and PARP3 — blocks repair of single-strand DNA
+  breaks; in HR-deficient (BRCA1/2 + other HRR pathway) tumors leads to
+  synthetic lethality through accumulation of double-strand breaks.
+
+regulatory_status:
+  fda:
+    approved: true
+    year_first_approval: 2016
+    indications_brief:
+      - "Maintenance treatment of recurrent epithelial ovarian / fallopian / primary peritoneal cancer in CR/PR to platinum (ARIEL3)"
+      - "BRCA-mutant mCRPC after AR-directed + taxane (TRITON3)"
+  ema:
+    approved: true
+    year_first_approval: 2018
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: "2026-04-27"
+    notes: "Не зареєстрований в Україні станом на 2026-04. Використання — благодійний імпорт або клінічне дослідження. CSD-4 stub."
+typical_dosing: >
+  600 mg PO BID continuous until progression or unacceptable toxicity.
+  Dose levels: 500 mg BID, 400 mg BID, 300 mg BID for toxicity.
+
+formulations:
+  - "Tablets 200 mg, 250 mg, 300 mg"
+
+absolute_contraindications:
+  - "Hypersensitivity to rucaparib"
+  - "Pregnancy / breastfeeding"
+
+black_box_warnings: []
+
+major_interactions:
+  - "Strong CYP1A2 inducers reduce exposure"
+  - "Caffeine (CYP1A2 substrate) — rucaparib increases caffeine exposure"
+
+common_adverse_events:
+  - "Nausea (~75%)"
+  - "Asthenia / fatigue (~70%)"
+  - "ALT/AST elevation (~70%, mostly transient)"
+  - "Anemia (~40%)"
+  - "Constipation"
+  - "Vomiting"
+  - "Increased creatinine (~15%, non-progressive transporter effect)"
+  - "Dysgeusia"
+
+serious_adverse_events:
+  - "MDS / AML (rare; long-term risk shared with PARPi class)"
+  - "Severe anemia / thrombocytopenia requiring transfusion"
+  - "Photosensitivity reactions"
+
+pharmacology:
+  half_life_hours: 26
+  clearance: "hepatic (CYP2D6, CYP1A2 minor)"
+  protein_binding_pct: 70
+  metabolism: "CYP2D6, CYP1A2, CYP3A4"
+
+sources:
+  - SRC-NCCN-OVARIAN-2025
+  - SRC-ESMO-OVARIAN-2024
+  - SRC-ARIEL3-CORALEZA-2017
+
+last_reviewed: "2026-04-27"
+reviewers: []
+notes: >
+  Pivotal ovarian maintenance trial: ARIEL3 (Coleman et al., Lancet 2017,
+  PMID 28850325) — placebo-controlled phase 3, mPFS 16.6 vs 5.4 mo in
+  BRCA-mut subset; 13.6 vs 5.4 mo in HRD+; 10.8 vs 5.4 mo all-comers.
+  Class-effect MDS/AML risk warrants long-term hematologic surveillance.
+  Caffeine interaction is clinically minor but documented.

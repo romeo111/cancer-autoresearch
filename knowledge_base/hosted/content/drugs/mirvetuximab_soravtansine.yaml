@@ -1,0 +1,93 @@
+id: DRUG-MIRVETUXIMAB-SORAVTANSINE
+names:
+  preferred: "Mirvetuximab soravtansine-gynx"
+  ukrainian: "Мірветуксимаб соравтансин"
+  english: "Mirvetuximab soravtansine"
+  brand_names: ["Elahere"]
+atc_code: L01FX26
+rxnorm_id:
+drug_class: "Folate receptor α (FRα)–directed antibody-drug conjugate (DM4 maytansinoid payload)"
+mechanism: >
+  Humanized anti-FRα IgG1 monoclonal antibody conjugated via cleavable
+  sulfo-SPDB linker to DM4 (a maytansinoid microtubule disruptor).
+  After binding FRα-expressing tumor cells, the ADC is internalized;
+  the linker is cleaved intracellularly releasing DM4 which inhibits
+  microtubule assembly → cell-cycle arrest and apoptosis.
+
+regulatory_status:
+  fda:
+    approved: true
+    year_first_approval: 2022  # accelerated; full approval 2024 post-MIRASOL
+    indications_brief:
+      - "Adult patients with FRα-positive (≥75% tumor cells with ≥2+ membrane staining by Ventana FOLR1 RxDx), platinum-resistant epithelial ovarian / fallopian tube / primary peritoneal cancer, who have received 1-3 prior systemic therapies (full approval 2024 per MIRASOL)"
+  ema:
+    approved: true
+    year_first_approval: 2024
+  ukraine_registration:
+    registered: false
+    reimbursed_nszu: false
+    last_verified: "2026-04-27"
+    notes: "Не зареєстрований в Україні станом на 2026-04. Доступ виключно через клінічне дослідження або благодійний/іменний імпорт. CSD-4 stub."
+typical_dosing: >
+  6 mg/kg (adjusted ideal body weight) IV every 3 weeks until progression
+  or unacceptable toxicity. Premedicate for ocular and infusion-reaction
+  prophylaxis (corticosteroid eye drops, lubricants, NSAID, antihistamine,
+  antiemetic). Mandatory baseline + serial ophthalmology evaluation
+  (slit-lamp + visual acuity) — every other cycle for first 8 cycles
+  then per symptoms.
+
+formulations:
+  - "IV concentrate 100 mg / 20 mL single-dose vial"
+
+absolute_contraindications:
+  - "Active corneal disorder / severe pre-existing keratopathy"
+  - "Hypersensitivity to mirvetuximab or DM4"
+
+black_box_warnings:
+  - "Ocular toxicity — visual impairment, keratopathy, dry eye, blurred vision; require ophthalmology assessment + prophylactic eye drops; dose-modify or discontinue per CTCAE"
+
+major_interactions:
+  - "No clinically significant CYP-mediated interactions documented"
+  - "Concurrent live vaccines — avoid"
+
+common_adverse_events:
+  - "Visual impairment / blurred vision (~50%)"
+  - "Keratopathy (~37%)"
+  - "Dry eye (~36%)"
+  - "Fatigue (~50%)"
+  - "Nausea (~40%)"
+  - "Diarrhea (~36%)"
+  - "Abdominal pain"
+  - "Constipation"
+  - "Peripheral neuropathy (~30%)"
+  - "AST elevation"
+  - "Lymphopenia"
+
+serious_adverse_events:
+  - "Severe ocular toxicity — corneal ulceration, optic neuropathy (rare)"
+  - "Pneumonitis / interstitial lung disease (~1-2%)"
+  - "Peripheral neuropathy Grade ≥3 (~2%)"
+  - "Severe infusion reactions"
+
+pharmacology:
+  half_life_hours: 117
+  clearance: "antibody catabolism + hepatic for free DM4"
+  protein_binding_pct: null
+  metabolism: "non-CYP for the conjugate; free DM4 metabolized by CYP3A4"
+
+sources:
+  - SRC-NCCN-OVARIAN-2025
+  - SRC-ESMO-OVARIAN-2024
+  - SRC-MIRASOL-MOORE-2024
+
+last_reviewed: "2026-04-27"
+reviewers: []
+notes: >
+  MIRASOL (Moore et al., NEJM 2024, PMID 38109336) — phase 3 vs
+  investigator's-choice chemo in FRα-high (≥75% TPS), platinum-resistant
+  ovarian cancer with 1-3 prior lines: PFS 5.62 vs 3.98 mo (HR 0.65),
+  ORR 42% vs 16%, OS 16.46 vs 12.75 mo (HR 0.67) — first ever PFS+OS
+  win in platinum-resistant ovarian. Companion diagnostic: VENTANA FOLR1
+  (FOLR1-2.1) RxDx Assay; "high" = ≥75% tumor cells with ≥2+ membrane
+  staining intensity. Pre-treatment ophthalmology evaluation + prophylactic
+  steroid eye drops mandatory per label.

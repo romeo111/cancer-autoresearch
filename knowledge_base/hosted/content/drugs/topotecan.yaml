@@ -1,0 +1,92 @@
+id: DRUG-TOPOTECAN
+names:
+  preferred: "Topotecan"
+  ukrainian: "Топотекан"
+  english: "Topotecan"
+  brand_names: ["Hycamtin"]
+atc_code: L01CE01
+rxnorm_id: "10379"
+drug_class: "Topoisomerase I inhibitor (camptothecin derivative)"
+mechanism: >
+  Stabilizes the topoisomerase I–DNA cleavable complex during S-phase,
+  converting transient single-strand DNA breaks into lethal double-strand
+  breaks at replication forks → S-phase-specific cytotoxicity.
+
+regulatory_status:
+  fda:
+    approved: true
+    year_first_approval: 1996
+    indications_brief:
+      - "Recurrent ovarian cancer after failure of 1L chemotherapy"
+      - "Recurrent / progressive small-cell lung cancer (sensitive disease)"
+      - "Stage IV-B / recurrent / persistent cervical cancer (with cisplatin)"
+  ema:
+    approved: true
+    year_first_approval: 1996
+  ukraine_registration:
+    registered: true
+    registration_number: null
+    reimbursed_nszu: false
+    last_verified: "2026-04-27"
+    notes: "Зареєстрований в Україні. Покриття НСЗУ обмежене / переважно OOP. CSD-4 stub — потребує підтвердження клінічного співвідповідального."
+typical_dosing: >
+  Ovarian (IV): 1.5 mg/m² IV over 30 min daily × 5 days every 21 days.
+  Ovarian (PO, where formulation available): 2.3 mg/m² PO daily × 5 days
+  every 21 days.
+  Weekly variant (less myelotoxic): 4 mg/m² IV days 1, 8, 15 of 28-day
+  cycle.
+
+formulations:
+  - "IV powder for injection 4 mg vials"
+  - "Oral capsules 0.25 mg, 1 mg (where registered)"
+
+absolute_contraindications:
+  - "Severe baseline myelosuppression (ANC <1.5 or platelets <100)"
+  - "Severe renal impairment (CrCl <20)"
+  - "Pregnancy / breastfeeding"
+  - "Hypersensitivity"
+
+black_box_warnings:
+  - "Severe bone-marrow suppression — neutropenia, thrombocytopenia, anemia; not for ANC <1.5"
+
+major_interactions:
+  - "Cisplatin — additive myelosuppression"
+  - "P-gp / BCRP inhibitors — increase oral topotecan exposure"
+  - "Live vaccines — avoid"
+
+common_adverse_events:
+  - "Neutropenia (~80%, dose-limiting)"
+  - "Thrombocytopenia"
+  - "Anemia"
+  - "Nausea / vomiting (~60%)"
+  - "Diarrhea"
+  - "Alopecia"
+  - "Fatigue"
+  - "Mucositis"
+  - "Anorexia"
+
+serious_adverse_events:
+  - "Febrile neutropenia"
+  - "Severe diarrhea (oral formulation)"
+  - "Interstitial lung disease (rare)"
+  - "Typhlitis (rare neutropenic enterocolitis)"
+
+pharmacology:
+  half_life_hours: 3
+  clearance: "renal (predominantly unchanged)"
+  protein_binding_pct: 35
+  metabolism: "minimal hepatic; renal excretion ~30-40% unchanged"
+
+sources:
+  - SRC-NCCN-OVARIAN-2025
+  - SRC-ESMO-OVARIAN-2024
+
+last_reviewed: "2026-04-27"
+reviewers: []
+notes: >
+  Single-agent salvage option in platinum-resistant ovarian after PLD,
+  weekly paclitaxel, and bevacizumab combinations are exhausted or
+  contraindicated. Weekly (4 mg/m² days 1, 8, 15 q28d) schedule has
+  similar efficacy with markedly less myelosuppression vs the 5-day
+  q21d schedule (ten Bokkel Huinink schedule) and is preferred in frail
+  / heavily pretreated patients per modern NCCN.

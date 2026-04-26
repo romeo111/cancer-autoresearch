@@ -1,0 +1,108 @@
+id: DRUG-PEGYLATED-LIPOSOMAL-DOXORUBICIN
+names:
+  preferred: "Pegylated liposomal doxorubicin (PLD)"
+  ukrainian: "Пегільований ліпосомальний доксорубіцин"
+  english: "Pegylated liposomal doxorubicin"
+  synonyms: ["PLD", "Doxil", "Caelyx"]
+  brand_names: ["Doxil", "Caelyx", "Lipodox"]
+atc_code: L01DB01
+rxnorm_id: "10379"
+drug_class: "Anthracycline (PEG-liposome-encapsulated doxorubicin)"
+mechanism: >
+  Doxorubicin (intercalates DNA, inhibits topoisomerase II, generates
+  free radicals) encapsulated in PEGylated liposomes ~100 nm in diameter.
+  PEG coating prolongs circulation half-life and exploits enhanced-
+  permeability-and-retention (EPR) effect for tumor accumulation while
+  reducing peak plasma free-drug concentrations — markedly lower
+  cardiotoxicity, alopecia, and nausea than conventional doxorubicin
+  but introduces palmar-plantar erythrodysesthesia (PPE / hand-foot
+  syndrome) and stomatitis as dose-limiting toxicities.
+
+regulatory_status:
+  fda:
+    approved: true
+    year_first_approval: 1995
+    indications_brief:
+      - "Ovarian cancer — recurrent (single-agent or combinations: AURELIA + bev; OVA-301 + trabectedin)"
+      - "AIDS-related Kaposi sarcoma"
+      - "Multiple myeloma (with bortezomib)"
+  ema:
+    approved: true
+    year_first_approval: 1996
+  ukraine_registration:
+    registered: true
+    registration_number: null
+    reimbursed_nszu: false
+    last_verified: "2026-04-27"
+    notes: "Зареєстрований; покриття НСЗУ обмежене. Доступний переважно OOP. CSD-4 stub — потребує підтвердження клінічного співвідповідального."
+typical_dosing: >
+  Ovarian (single-agent or with bev per AURELIA): 40 mg/m² IV over 60 min
+  every 28 days.
+  Ovarian (with trabectedin per OVA-301): 30 mg/m² IV every 21 days.
+  Multiple myeloma (with bortezomib): 30 mg/m² IV day 4 of 21-day cycle.
+  Cumulative anthracycline exposure tracking remains required (~550 mg/m²
+  threshold; PLD has lower per-mg cardiotoxicity but exposure still adds).
+
+formulations:
+  - "IV concentrate 2 mg/mL, 10 mL and 25 mL single-use vials (20 mg / 50 mg)"
+
+absolute_contraindications:
+  - "Severe pre-existing cardiac dysfunction (LVEF <50%)"
+  - "Cumulative anthracycline lifetime exposure exceeded"
+  - "Hypersensitivity to doxorubicin or PEGylated formulations"
+  - "Pregnancy / breastfeeding"
+
+black_box_warnings:
+  - "Cardiotoxicity (lower per-mg vs conventional doxorubicin but cumulative; track lifetime exposure)"
+  - "Severe infusion reactions — flushing, dyspnea, facial edema, hypotension; first-cycle highest risk; reduce infusion rate"
+  - "Palmar-plantar erythrodysesthesia (PPE / hand-foot syndrome)"
+  - "Severe myelosuppression"
+
+major_interactions:
+  - "Other anthracyclines — cumulative cardiotoxicity"
+  - "Trastuzumab — increased cardiotoxicity"
+  - "Cyclophosphamide / paclitaxel — additive cytopenias"
+
+common_adverse_events:
+  - "Palmar-plantar erythrodysesthesia (~40-50% — dose-limiting)"
+  - "Stomatitis / mucositis (~40%)"
+  - "Nausea (~40%, less than conventional)"
+  - "Fatigue (~30%)"
+  - "Neutropenia / leukopenia"
+  - "Anemia"
+  - "Thrombocytopenia"
+  - "Rash"
+  - "Alopecia (much less than conventional doxorubicin)"
+  - "Reddish-orange urine"
+
+serious_adverse_events:
+  - "Congestive heart failure (lower per-mg risk than conventional doxorubicin)"
+  - "Severe infusion reactions / anaphylactoid reaction"
+  - "Severe PPE requiring dose-hold + reduction"
+  - "Secondary AML / MDS (long-term, rare)"
+  - "Tumor lysis syndrome (rare)"
+
+pharmacology:
+  half_life_hours: 70
+  half_life_notes: "Markedly prolonged vs conventional doxorubicin (~30 h) due to PEG-liposome circulation; biphasic with terminal half-life ~55-75 h."
+  clearance: "reticuloendothelial system uptake of liposomes; hepatic for released doxorubicin"
+  protein_binding_pct: 70
+  metabolism: "as for conventional doxorubicin once released from liposome"
+
+sources:
+  - SRC-NCCN-OVARIAN-2025
+  - SRC-ESMO-OVARIAN-2024
+  - SRC-AURELIA-PUJADE-LAURAINE-2014
+
+last_reviewed: "2026-04-27"
+reviewers: []
+notes: >
+  Distinct drug entity from conventional doxorubicin (DRUG-DOXORUBICIN);
+  pharmacology, dosing, toxicity profile differ markedly. Major ovarian
+  uses: AURELIA (PLD + bev for platinum-resistant); OVA-301 (PLD +
+  trabectedin for partially-platinum-sensitive); single-agent in
+  re-treatment / heavily pretreated. Premedication with topical/oral
+  steroids + dose-hold protocol for PPE per institutional standard.
+  Slow first-cycle infusion (≤1 mg/min then escalate) reduces infusion
+  reactions. Non-PEGylated liposomal doxorubicin (Myocet) is a different
+  product with different dosing — do not interchange.
