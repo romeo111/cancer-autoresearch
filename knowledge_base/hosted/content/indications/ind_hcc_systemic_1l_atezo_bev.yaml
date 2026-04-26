@@ -5,7 +5,10 @@ applicable_to:
   disease_id: DIS-HCC
   line_of_therapy: 1
   stage_requirements: ["BCLC C (advanced — vascular invasion or extrahepatic spread)", "BCLC B not eligible for or progressed after TACE", "Child-Pugh A (CP-A 5-6)"]
-  biomarker_requirements_required: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-AFP
+      required: true
+      value_constraint: "AFP baseline (ng/mL) — required as risk-stratifier and treatment-response marker; AFP-high subgroup (>400) showed comparable atezo-bev OS benefit per IMbrave150 subgroup analysis"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 1

@@ -1304,6 +1304,90 @@ def _render_timeline(plan) -> str:
     )
 
 
+# ── Experimental-options track (Phase C) ─────────────────────────────────
+
+
+def _render_experimental_options(option) -> str:
+    """Render the clinical-trial track surfaced after engine selection.
+
+    `option` is an `ExperimentalOption` (or None when no `search_fn` was
+    wired). Output is render-time-only metadata — engine never reads
+    these fields back (CHARTER §8.3 + plan §3.2 invariant).
+
+    When option is None: emit a small placeholder so clinicians know the
+    track exists but ctgov sync hasn't run. When option is present but
+    has zero open trials, emit an empty-state message instead of a table.
+    """
+
+    if option is None:
+        return (
+            '<section class="experimental-track experimental-track--unset">'
+            '<h2>Експериментальні опції (клінічні дослідження)</h2>'
+            '<div class="section-sub">Третій трек плану — open-enrollment trials з ClinicalTrials.gov.</div>'
+            '<p class="empty-state">'
+            '🔬 Дані недоступні — синхронізація з ClinicalTrials.gov не виконана. '
+            'Передайте <code>experimental_search_fn</code> у <code>generate_plan()</code> '
+            'або синхронізуйте офлайн (per ua-ingestion plan §3.3).'
+            '</p>'
+            '</section>'
+        )
+
+    trials = option.trials or []
+    last_synced = option.last_synced or ""
+
+    if not trials:
+        msg = option.notes or "Жодного активного трайла для цього сценарію в ctgov не знайдено."
+        return (
+            '<section class="experimental-track experimental-track--empty">'
+            '<h2>Експериментальні опції (клінічні дослідження)</h2>'
+            f'<div class="section-sub">Останнє оновлення: {_h(last_synced)} · ctgov.</div>'
+            f'<p class="empty-state">{_h(msg)}</p>'
+            '</section>'
+        )
+
+    rows = []
+    for t in trials:
+        ua_badge = ""
+        if t.sites_ua:
+            ua_badge = '<span class="badge badge--ua" title="Site present in Ukraine">UA</span>'
+        elig = t.inclusion_summary or ""
+        elig_short = (elig[:140] + "…") if len(elig) > 140 else elig
+        rows.append(
+            "<tr>"
+            f'<td class="trial-nct"><a href="https://clinicaltrials.gov/study/{_h(t.nct_id)}" '
+            f'target="_blank" rel="noopener">{_h(t.nct_id)}</a></td>'
+            f'<td class="trial-title">{_h(t.title)}</td>'
+            f'<td class="trial-phase">{_h(t.phase or "—")}</td>'
+            f'<td class="trial-status">{_h(t.status)}</td>'
+            f'<td class="trial-sponsor">{_h(t.sponsor or "—")}</td>'
+            f'<td class="trial-ua">{ua_badge or "—"}</td>'
+            f'<td class="trial-elig">{_h(elig_short)}</td>'
+            "</tr>"
+        )
+
+    return (
+        '<section class="experimental-track">'
+        '<h2>Експериментальні опції (клінічні дослідження)</h2>'
+        '<div class="section-sub">'
+        f'Третій трек плану — open-enrollment trials з ClinicalTrials.gov. '
+        f'Останнє оновлення: {_h(last_synced)}. '
+        f'<em>Render-time metadata; engine selection не змінюється цим блоком (CHARTER §8.3).</em>'
+        '</div>'
+        '<table class="trials-table">'
+        '<thead><tr>'
+        '<th>NCT</th><th>Назва</th><th>Фаза</th><th>Статус</th>'
+        '<th>Спонсор</th><th>UA</th><th>Включення (фрагмент)</th>'
+        '</tr></thead>'
+        f'<tbody>{"".join(rows)}</tbody>'
+        '</table>'
+        '<p class="trial-disclaimer">'
+        'Перевіряти статус набору безпосередньо у дослідницькому центрі. '
+        'Дані ctgov можуть відставати від поточного статусу UA-сайтів.'
+        '</p>'
+        '</section>'
+    )
+
+
 # ── Treatment Plan render ─────────────────────────────────────────────────
 
 
@@ -1396,6 +1480,9 @@ def render_plan_html(
     if fda.data_sources_summary:
         items = "".join(f"<li>{_h(s)}</li>" for s in fda.data_sources_summary)
         body.append(f"<section><h2>Sources cited</h2><ul class='sources'>{items}</ul></section>")
+
+    # Experimental options (Phase C — clinical-trial track)
+    body.append(_render_experimental_options(plan_result.experimental_options))
 
     # Footer
     body.append('<div class="doc-footer">')

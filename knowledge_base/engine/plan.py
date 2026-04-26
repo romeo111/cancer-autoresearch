@@ -35,12 +35,14 @@ from pathlib import Path
 from typing import Any, Optional
 
 from knowledge_base.schemas import (
+    ExperimentalOption,
     FDAComplianceMetadata,
     Plan,
     PlanTrack,
 )
 from knowledge_base.validation.loader import load_content
 from .algorithm_eval import walk_algorithm
+from .experimental_options import SearchFn, enumerate_experimental_options
 
 
 # Track labels — ordered, default labels for the well-known plan_track values.
@@ -85,6 +87,13 @@ class PlanResult:
     trace: list[dict] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
+    # Render-time-only metadata: open clinical trials matching this
+    # disease + biomarker + line scenario. NEVER read by the engine as
+    # a selection signal (CHARTER §8.3, plan §3.2 invariant). When no
+    # search function is wired, this stays None — render shows the
+    # "ctgov sync needed" placeholder per plan §3.3.
+    experimental_options: Optional[ExperimentalOption] = None
+
     # Runtime KB resolutions for the render layer — NOT persisted with Plan.
     # Holds: 'disease' (dict), 'tests' (dict[id, dict]), 'red_flags' (dict[id, dict]),
     # 'algorithm' (dict). Populated by generate_plan; render gracefully degrades
@@ -104,6 +113,11 @@ class PlanResult:
             "plan": self.plan.model_dump() if self.plan else None,
             "trace": self.trace,
             "warnings": self.warnings,
+            "experimental_options": (
+                self.experimental_options.model_dump()
+                if self.experimental_options is not None
+                else None
+            ),
         }
 
 
@@ -272,9 +286,17 @@ def generate_plan(
     plan_version: int = 1,
     supersedes: Optional[str] = None,
     revision_trigger: Optional[str] = None,
+    experimental_search_fn: Optional[SearchFn] = None,
 ) -> PlanResult:
     """Run the rule engine on a patient profile and return a PlanResult
-    containing a fully-materialized Plan with multiple tracks."""
+    containing a fully-materialized Plan with multiple tracks.
+
+    `experimental_search_fn`: optional ctgov search callable. When
+    provided, `generate_plan` calls `enumerate_experimental_options`
+    after track materialization and attaches the result as
+    `result.experimental_options`. This is render-time metadata only —
+    never a selection signal (CHARTER §8.3, plan §3.2 invariant).
+    """
 
     result = PlanResult(
         patient_id=patient.get("patient_id"),
@@ -398,7 +420,60 @@ def generate_plan(
         "red_flags": {rid: _resolve(entities, rid) for rid in redflag_ids if _resolve(entities, rid)},
     }
 
+    # Experimental track (Phase C of UA-ingestion plan). Append-only,
+    # never feeds back into selection — engine output above is final.
+    if experimental_search_fn is not None:
+        disease_data = result.kb_resolved.get("disease") or {}
+        disease_term = (
+            ((disease_data.get("names") or {}).get("english"))
+            or ((disease_data.get("names") or {}).get("preferred"))
+            or disease_id
+        )
+        biomarker_term = _first_truthy_biomarker(patient.get("biomarkers") or {})
+        try:
+            result.experimental_options = enumerate_experimental_options(
+                disease_id=disease_id,
+                disease_term=disease_term,
+                biomarker_profile=biomarker_term,
+                line_of_therapy=line,
+                search_fn=experimental_search_fn,
+            )
+        except Exception as exc:
+            result.warnings.append(f"experimental options skipped: {exc}")
+
     return result
+
+
+def _first_truthy_biomarker(biomarkers: dict) -> Optional[str]:
+    """Pick a representative biomarker term for the ctgov query.
+
+    Patient biomarker dicts vary in shape — values may be bool, str,
+    or nested dict. We prefer keys whose value is True or a positive
+    string ("positive", "mutated", "amplified"). Returns the human
+    label form (e.g. `BIO-EGFR-MUT` → `EGFR mutation`-ish), or None
+    when no positive biomarker is present.
+
+    Engine doesn't read this — it only feeds the trial query.
+    """
+
+    if not biomarkers:
+        return None
+    for key, val in biomarkers.items():
+        if val is True:
+            return _humanize_biomarker_key(key)
+        if isinstance(val, str) and val.lower() in {
+            "positive", "pos", "mutated", "mut", "amplified", "high"
+        }:
+            return _humanize_biomarker_key(key)
+    return None
+
+
+def _humanize_biomarker_key(key: str) -> str:
+    """`BIO-EGFR-MUTATION` → `EGFR mutation`; falls back to the raw key."""
+    raw = key
+    if raw.upper().startswith("BIO-"):
+        raw = raw[4:]
+    return raw.replace("_", " ").replace("-", " ").lower()
 
 
 __all__ = ["PlanResult", "generate_plan"]

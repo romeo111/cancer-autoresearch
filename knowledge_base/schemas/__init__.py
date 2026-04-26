@@ -4,6 +4,7 @@ Every entity under `hosted/content/<type>/` validates against one of
 these models on load. See `validation/loader.py`.
 """
 
+from .access_pathway import AccessPathway, CostOrientation
 from .algorithm import Algorithm
 from .biomarker import Biomarker
 from .contraindication import Contraindication
@@ -53,11 +54,14 @@ ENTITY_BY_DIR: dict[str, type] = {
     "sources": Source,
     "workups": DiagnosticWorkup,
     "questionnaires": Questionnaire,
+    "access_pathways": AccessPathway,
 }
 
 __all__ = [
+    "AccessPathway",
     "Algorithm",
     "Biomarker",
+    "CostOrientation",
     "BiopsyApproach",
     "Contraindication",
     "DiagnosticPlan",

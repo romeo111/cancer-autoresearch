@@ -5,7 +5,10 @@ applicable_to:
   disease_id: DIS-HCC
   line_of_therapy: 1
   stage_requirements: ["BCLC C (advanced)", "Child-Pugh A"]
-  biomarker_requirements_required: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-AFP
+      required: true
+      value_constraint: "AFP baseline (ng/mL) — required as risk-stratifier and treatment-response marker; HIMALAYA STRIDE benefit independent of AFP level"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 1

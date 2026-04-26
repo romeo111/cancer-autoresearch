@@ -219,3 +219,167 @@ def test_query_signature_is_stable():
     c = TrialQuery(disease_term="NSCLC", biomarker_term="EGFR", line_of_therapy=2)
     assert a.signature() == b.signature()
     assert a.signature() != c.signature()
+
+
+# ── 7. generate_plan() integration ──────────────────────────────────────
+
+
+def test_generate_plan_attaches_experimental_options_when_search_fn_given():
+    """When a search_fn is passed, generate_plan attaches an
+    ExperimentalOption to PlanResult — and the engine selection
+    is identical to a control run without it (CHARTER §8.3 +
+    plan §3.2 invariant: append-only, never a selection signal)."""
+
+    import json
+    from pathlib import Path
+    from knowledge_base.engine import generate_plan
+
+    REPO_ROOT = Path(__file__).parent.parent
+    KB_ROOT = REPO_ROOT / "knowledge_base" / "hosted" / "content"
+    EXAMPLES = REPO_ROOT / "examples"
+
+    patient = json.loads(
+        (EXAMPLES / "patient_mm_high_risk.json").read_text(encoding="utf-8")
+    )
+
+    seen_calls: list[dict] = []
+
+    def _stub_search(**kwargs):
+        seen_calls.append(kwargs)
+        return [_study("NCT-EXAMPLE", title="Stub trial", countries=["UA", "DE"])]
+
+    control = generate_plan(patient, kb_root=KB_ROOT)
+    with_trial = generate_plan(
+        patient, kb_root=KB_ROOT, experimental_search_fn=_stub_search
+    )
+
+    # Engine selection unchanged — the invariant.
+    assert control.default_indication_id == with_trial.default_indication_id
+    assert control.alternative_indication_id == with_trial.alternative_indication_id
+    assert [t.indication_id for t in (control.plan.tracks if control.plan else [])] == \
+           [t.indication_id for t in (with_trial.plan.tracks if with_trial.plan else [])]
+
+    # Experimental option attached on the second run, absent on control.
+    assert control.experimental_options is None
+    assert with_trial.experimental_options is not None
+    opt = with_trial.experimental_options
+    assert opt.disease_id == with_trial.disease_id
+    assert [t.nct_id for t in opt.trials] == ["NCT-EXAMPLE"]
+    assert opt.trials[0].sites_ua == ["UA"]
+
+    # Search function received the disease term + line of therapy.
+    assert len(seen_calls) == 1
+    assert seen_calls[0]["max_results"] >= 1
+    assert seen_calls[0]["condition"]  # non-empty disease term
+
+
+def test_plan_html_renders_experimental_track_section():
+    """End-to-end: generate_plan with a stub search_fn → render_plan_html
+    surfaces the experimental-track section with the trial NCT, UA badge,
+    and the engine-selection-unchanged disclosure."""
+
+    import json
+    from pathlib import Path
+    from knowledge_base.engine import generate_plan, render_plan_html
+
+    REPO_ROOT = Path(__file__).parent.parent
+    KB_ROOT = REPO_ROOT / "knowledge_base" / "hosted" / "content"
+    EXAMPLES = REPO_ROOT / "examples"
+
+    patient = json.loads(
+        (EXAMPLES / "patient_mm_high_risk.json").read_text(encoding="utf-8")
+    )
+
+    def _stub_search(**_):
+        return [
+            _study(
+                "NCT05153486",
+                title="FLAURA2",
+                countries=["UA", "US"],
+                phase="PHASE3",
+                sponsor="AstraZeneca",
+                eligibility=(
+                    "Inclusion Criteria:\n- Age >= 18\n- ECOG 0-1\n\n"
+                    "Exclusion Criteria:\n- Active CNS disease"
+                ),
+            ),
+        ]
+
+    res = generate_plan(patient, kb_root=KB_ROOT, experimental_search_fn=_stub_search)
+    html = render_plan_html(res)
+
+    assert 'class="experimental-track"' in html
+    assert "Експериментальні опції" in html
+    assert "NCT05153486" in html
+    assert "FLAURA2" in html
+    assert "PHASE3" in html
+    assert 'class="badge badge--ua"' in html
+    assert "ECOG 0-1" in html  # eligibility excerpt surfaces
+    # Render-time disclaimer that engine selection is unchanged
+    assert "engine selection не змінюється" in html
+    # External link to ctgov
+    assert "clinicaltrials.gov/study/NCT05153486" in html
+
+
+def test_plan_html_renders_unset_placeholder_when_no_search_fn():
+    """When no search_fn was passed, render still emits the section with a
+    'sync needed' placeholder (per plan §3.3 — visible third track even
+    when offline)."""
+
+    import json
+    from pathlib import Path
+    from knowledge_base.engine import generate_plan, render_plan_html
+
+    REPO_ROOT = Path(__file__).parent.parent
+    KB_ROOT = REPO_ROOT / "knowledge_base" / "hosted" / "content"
+    EXAMPLES = REPO_ROOT / "examples"
+
+    patient = json.loads(
+        (EXAMPLES / "patient_mm_high_risk.json").read_text(encoding="utf-8")
+    )
+    res = generate_plan(patient, kb_root=KB_ROOT)
+    html = render_plan_html(res)
+
+    assert 'experimental-track--unset' in html
+    assert "Дані недоступні" in html
+    assert "ClinicalTrials.gov" in html
+
+
+def test_generate_plan_swallows_search_fn_failure_into_warnings():
+    """Engine must not raise if ctgov is broken — it logs a warning
+    and returns the plan with experimental_options=None."""
+
+    import json
+    from pathlib import Path
+    from knowledge_base.engine import generate_plan
+
+    REPO_ROOT = Path(__file__).parent.parent
+    KB_ROOT = REPO_ROOT / "knowledge_base" / "hosted" / "content"
+    EXAMPLES = REPO_ROOT / "examples"
+
+    patient = json.loads(
+        (EXAMPLES / "patient_mm_high_risk.json").read_text(encoding="utf-8")
+    )
+
+    # `enumerate_experimental_options` itself catches the inner exception
+    # and returns a notes-bearing bundle, so this path is the "outer"
+    # safety: we monkey-patch enumerate to raise, simulating a contract
+    # break, and assert generate_plan still returns a PlanResult.
+    from knowledge_base.engine import plan as plan_module
+
+    orig = plan_module.enumerate_experimental_options
+
+    def _raise(**_):
+        raise RuntimeError("simulated enumerator crash")
+
+    plan_module.enumerate_experimental_options = _raise
+    try:
+        res = generate_plan(
+            patient, kb_root=KB_ROOT, experimental_search_fn=lambda **_: []
+        )
+    finally:
+        plan_module.enumerate_experimental_options = orig
+
+    assert res.plan is not None
+    assert res.experimental_options is None
+    assert any("experimental options skipped" in w for w in res.warnings)
