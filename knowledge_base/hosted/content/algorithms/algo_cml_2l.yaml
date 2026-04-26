@@ -1,0 +1,88 @@
+id: ALGO-CML-2L
+applicable_to_disease: DIS-CML
+applicable_to_line_of_therapy: 2
+purpose: >
+  Select default + alternative Indication for CML after ≥1 TKI failure
+  or for advanced-phase CML. Routing axes: T315I mutation status,
+  cardiovascular comorbidity, and disease phase (chronic vs accelerated /
+  blast crisis). Outputs ponatinib (T315I-active TKI; default for any
+  T315I+) vs asciminib (STAMP inhibitor with non-CV adverse profile;
+  default for ≥2 TKI failure with CV-comorbid history). AlloHCT routes
+  for blast crisis or ≥3 TKI failure. Specific 2nd-gen TKI choice
+  (dasatinib / nilotinib / bosutinib) for non-T315I 2L is a regimen-
+  layer / 1L-aggressive arm decision and is not enumerated here.
+
+output_indications:
+  - IND-CML-2L-PONATINIB-T315I
+  - IND-CML-3L-ASCIMINIB
+  - IND-CML-ADVANCED-ALLOHCT
+
+default_indication: IND-CML-3L-ASCIMINIB
+alternative_indication: IND-CML-2L-PONATINIB-T315I
+
+decision_tree:
+  # Step 1 — blast crisis / accelerated phase → alloHCT (curative
+  # intent; bridging TKI selection at regimen layer).
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-CML-TRANSFORMATION-PROGRESSION
+    if_true:
+      result: IND-CML-ADVANCED-ALLOHCT
+    if_false:
+      next_step: 2
+
+  # Step 2 — T315I detected (any TKI failure) → ponatinib is the only
+  # active TKI; cardiovascular risk mitigation per OPTIC dose-reduction
+  # paradigm.
+  - step: 2
+    evaluate:
+      any_of:
+        - red_flag: RF-CML-T315I-MUTATION
+    if_true:
+      result: IND-CML-2L-PONATINIB-T315I
+    if_false:
+      next_step: 3
+
+  # Step 3 — ≥2 TKI failure with CV-comorbid profile (or established
+  # vascular events) → asciminib (STAMP allosteric; non-CV AE profile,
+  # ASCEMBL OS/MMR data).
+  - step: 3
+    evaluate:
+      any_of:
+        - red_flag: RF-CML-ORGAN-DYSFUNCTION
+        - red_flag: RF-CML-FRAILTY-AGE
+    if_true:
+      result: IND-CML-3L-ASCIMINIB
+    if_false:
+      next_step: 4
+
+  # Step 4 — default ≥2 TKI failure non-T315I → asciminib (deeper
+  # response, manageable AE; preferred over recycling 2GTKI per
+  # NCCN-MPN-2025).
+  - step: 4
+    evaluate:
+      all_of:
+        - condition: "Default 2L+ CML, T315I-negative, non-blast — asciminib preferred over 2GTKI recycle"
+    if_true:
+      result: IND-CML-3L-ASCIMINIB
+    if_false:
+      result: IND-CML-3L-ASCIMINIB
+
+sources:
+  - SRC-NCCN-MPN-2025
+  - SRC-ELN-CML-2020
+  - SRC-ASCEMBL-REA-2021
+  - SRC-PACE-CORTES-2013
+
+last_reviewed: "2026-04-25"
+notes: >
+  RF-CML-INFECTION-SCREENING surfaces as annotation (HBV pre-TKI).
+  Specific 2GTKI choice for the non-asciminib pathway (dasatinib for
+  CV-fit, nilotinib avoided in CV, bosutinib for GI-tolerant) is a
+  regimen-layer decision through IND-CML-1L-2GEN-TKI in 1L scope.
+  Asciminib is conventionally labelled "3L+" but NCCN-MPN-2025 and
+  emerging ASC4FIRST data support 2L use after a single TKI failure;
+  this algorithm treats it as preferred 2L+ default for non-T315I,
+  CV-comorbid, or post-2GTKI-failure patients. STUB — requires
+  clinical co-lead signoff.
