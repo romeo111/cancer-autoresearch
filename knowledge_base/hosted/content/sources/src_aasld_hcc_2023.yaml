@@ -20,7 +20,21 @@ sharealike_required: false
 legal_review: {status: pending, notes: 'AASLD permission for derivative use to be confirmed'}
 relates_to_diseases: [DIS-HCC]
 last_verified: '2026-04-27'
-notes: 'Hepatology-side authority on HCC.'
+notes: >
+  Hepatology-side authority on HCC.
+  Freshness check 2026-04-27: the 2023 AASLD HCC Practice Guidance
+  (Singal et al, Hepatology) remains the current full document. AASLD
+  published a 2025 Critical Update (Taddei TH, Brown DB, Yarchoan M,
+  Mendiratta-Lala M, Llovet JM. Hepatology 2025 Jul;82(1):272-274;
+  doi 10.1097/HEP.0000000000001269; PMID 39992051) that supersedes ONLY
+  the adjuvant-systemic-therapy section: based on updated IMbrave050
+  recurrence-free-survival analysis, adjuvant atezolizumab + bevacizumab
+  is NO LONGER recommended after resection / ablation in high-risk HCC
+  (close monitoring remains the standard). All other 2023 recommendations
+  (surveillance, locoregional therapy, 1L systemic therapy for advanced
+  disease) remain in force. Dependent indication entries that recommend
+  adjuvant atezo+bev citing this 2023 source are flagged for clinical
+  review.
 pages_count: 80
 references_count: 480
 corpus_role: primary_guideline
