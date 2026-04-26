@@ -1,0 +1,10 @@
+red_flag: RF-ESOPH-TRANSFORMATION-PROGRESSION
+findings:
+  post_cross_pcr_negative: false
+  peritoneal_carcinomatosis_with_ascites: false
+  rapid_decline_first_cycle: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

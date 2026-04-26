@@ -1,0 +1,39 @@
+id: RF-ESOPH-TRANSFORMATION-PROGRESSION
+definition: >
+  Aggressive progression in esophageal cancer: residual disease post-CROSS
+  (ypT+ or ypN+ at esophagectomy — adjuvant nivolumab CheckMate-577
+  indication), peritoneal carcinomatosis with malignant ascites, OR
+  rapid clinical decline on first cycle.
+definition_ua: >
+  Агресивне прогресування при стравохідному раку: резидуальна хвороба
+  після CROSS (ypT+ або ypN+ — ад'ювант ніволумаб per CheckMate-577),
+  перитонеальна карциноматоз, швидке погіршення на 1-му циклі.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "post_cross_pcr_negative"
+      value: true
+    - finding: "peritoneal_carcinomatosis_with_ascites"
+      value: true
+    - finding: "rapid_decline_first_cycle"
+      value: true
+
+clinical_direction: intensify
+severity: major
+priority: 80
+category: transformation-progression
+
+relevant_diseases:
+  - DIS-ESOPHAGEAL
+shifts_algorithm: []  # Surfaces post-resection adjuvant-nivo decision
+                      # (separate algorithm not yet built).
+
+sources: [SRC-NCCN-ESOPHAGEAL-2025, SRC-ESMO-ESOPHAGEAL-2024]
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  CheckMate-577: adjuvant nivolumab × 1 year for residual ypT+/ypN+
+  post-CROSS — DFS doubled (22 vs 11 mo). Treatment-defining for this
+  ~30% of CROSS patients without pCR.

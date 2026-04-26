@@ -1,0 +1,48 @@
+id: RF-GASTRIC-HIGH-RISK-BIOLOGY
+definition: >
+  Treatment-defining biomarkers in metastatic gastric/GEJ adenocarcinoma:
+  HER2+ (IHC 3+ OR 2+/ISH+) → trastuzumab+chemo TOGA / T-DXd 2L+;
+  CLDN18.2+ (≥75% of tumor cells with 2+ membranous staining) →
+  zolbetuximab+chemo SPOTLIGHT/GLOW; MSI-H → pembrolizumab mono;
+  EBV+ subtype (TCGA molecular class) — distinct biology, ICI-favorable.
+definition_ua: >
+  Лікування-визначальні маркери при мГСА: HER2+ → трастузумаб /
+  T-DXd; CLDN18.2+ → золбетуксимаб; MSI-H → пембролізумаб;
+  EBV+ — окремий молекулярний клас.
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "her2_status"
+      value: "positive"
+    - finding: "cldn18_2_status"
+      value: "positive"
+    - finding: "msi_status"
+      value: "MSI-H"
+    - finding: "ebv_status_tumor"
+      value: "positive"
+
+clinical_direction: intensify
+severity: critical
+priority: 50
+category: high-risk-biology
+
+relevant_diseases:
+  - DIS-GASTRIC
+shifts_algorithm:
+  - ALGO-GASTRIC-METASTATIC-1L
+branch_targets:
+  ALGO-GASTRIC-METASTATIC-1L: "step-1"
+
+sources:
+  - SRC-NCCN-GASTRIC-2025
+  - SRC-ESMO-GASTRIC-2024
+
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  Sequential biomarker test cascade: HER2 IHC → ISH if 2+; PD-L1 CPS;
+  MSI-H reflex; CLDN18.2 IHC. EBV by EBER-ISH if MSI-WT non-classic
+  signet-ring. Multiple actionable biomarkers can co-exist (HER2+ MSI-H
+  ~3% — ICI + trastuzumab combinations under study).

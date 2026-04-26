@@ -1,0 +1,50 @@
+id: RF-HCC-HIGH-RISK-BIOLOGY
+definition: >
+  Aggressive HCC biology: macrovascular invasion (portal vein tumor
+  thrombus segmental or main), AFP >1000 ng/mL at baseline (high
+  tumor burden marker), tumor doubling-time <3 months, OR poorly
+  differentiated histology on biopsy. Predicts worse OS regardless
+  of BCLC stage; favors more-active 1L choice (atezo+bev > sorafenib).
+definition_ua: >
+  Агресивна біологія ГЦК: макроваскулярна інвазія (тромбоз ворітної
+  вени), AFP >1000 нг/мл базово, час подвоєння <3 міс, АБО
+  низькодиференційована гістологія. Передбачає гірший OS незалежно
+  від BCLC; на користь активнішого 1L (atezo+bev перевершує сорафеніб).
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "portal_vein_tumor_thrombus"
+      value: true
+    - finding: "afp_baseline_ng_ml"
+      threshold: 1000
+      comparator: ">="
+    - finding: "tumor_doubling_time_months"
+      threshold: 3
+      comparator: "<"
+    - finding: "poorly_differentiated_histology"
+      value: true
+
+clinical_direction: intensify
+severity: critical
+priority: 60
+category: high-risk-biology
+
+relevant_diseases:
+  - DIS-HCC
+shifts_algorithm: []  # Surfaces in plan trace; algorithm choice already
+                      # routes via Child-Pugh (CP-A → atezo+bev / durva+treme),
+                      # this RF reinforces ICI-combination over TKI-mono.
+
+sources:
+  - SRC-NCCN-HCC-2025
+  - SRC-AASLD-HCC-2023
+
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  IMbrave150 subgroup analysis: AFP >400 derives larger benefit from
+  atezo+bev vs sorafenib (HR 0.55 vs 0.85 overall). Macrovascular
+  invasion (Vp1-4) traditionally precluded surgical / loco-regional
+  options, but doesn't preclude systemic ICI-combination.

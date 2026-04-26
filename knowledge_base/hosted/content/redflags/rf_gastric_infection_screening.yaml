@@ -1,0 +1,44 @@
+id: RF-GASTRIC-INFECTION-SCREENING
+definition: >
+  Infection-screening gate before metastatic gastric/GEJ adenocarcinoma
+  systemic therapy: HBsAg+ / anti-HBc+ (HBV reactivation on
+  pembrolizumab + chemo + dexamethasone), HIV+, active TB, OR active
+  H. pylori (etiologic agent — eradication post-cancer-staging-completion).
+definition_ua: >
+  Скринінг інфекцій перед мГСА системною терапією: HBsAg+ / anti-HBc+,
+  HIV+, активний ТБ, АБО активна H. pylori-інфекція.
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hbc_total"
+      value: "positive"
+    - finding: "hiv_status"
+      value: "positive"
+    - finding: "active_tb"
+      value: true
+    - finding: "h_pylori_active"
+      value: true
+
+clinical_direction: hold
+severity: critical
+priority: 60
+category: infection-screening
+
+relevant_diseases:
+  - DIS-GASTRIC
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-GASTRIC-2025
+  - SRC-ESMO-GASTRIC-2024
+
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  H. pylori eradication standard pre/post curative resection
+  (NCCN MS-12). For metastatic, eradication is supportive (lowers
+  bleeding/MALT-recurrence risk) but not delay-mandating.

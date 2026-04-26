@@ -1,0 +1,51 @@
+id: IND-ESOPH-ADJUVANT-NIVOLUMAB-POST-CROSS
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-ESOPHAGEAL
+  line_of_therapy: 1
+  stage_requirements: ["Post CROSS neoadjuvant CRT + esophagectomy", "Residual disease (ypT+ OR ypN+; not pCR)"]
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 1
+
+recommended_regimen: REG-NIVO-ADJUVANT-ESOPH
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  progression_free_survival: "Median DFS 22 vs 11 mo placebo (CheckMate-577)"
+  overall_survival_5y: "OS endpoint maturing — DFS doubling practice-changing"
+
+hard_contraindications:
+  - CI-PEMBROLIZUMAB-AUTOIMMUNE  # ICI autoimmune contra applies to nivo too
+red_flags_triggering_alternative: []
+
+required_tests: []
+desired_tests: []
+
+rationale: >
+  CheckMate-577: residual disease post-CROSS (ypT+/ypN+, ~70% of CROSS
+  patients) — adjuvant nivolumab × 1 year doubled DFS. Treatment-defining
+  for this subpopulation. Both adeno + squamous histologies benefit.
+
+sources:
+  - source_id: SRC-NCCN-ESOPHAGEAL-2025
+    position: supports
+  - source_id: SRC-ESMO-ESOPHAGEAL-2024
+    position: supports
+
+do_not_do:
+  - "Do NOT start in patients with pCR — no benefit shown (CheckMate-577 excluded)"
+  - "Do NOT continue through Grade 3+ irAE without permanent discontinuation consideration"
+  - "Do NOT delay start beyond 16 weeks post-surgery (protocol upper limit)"
+
+last_reviewed: "2026-04-26"
+notes: >
+  Adjuvant indication — follows IND-ESOPH-RESECTABLE-CROSS-NEOADJUVANT
+  when post-resection pathology shows residual disease.

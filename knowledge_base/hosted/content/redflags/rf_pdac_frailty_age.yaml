@@ -1,0 +1,56 @@
+id: RF-PDAC-FRAILTY-AGE
+definition: >
+  Frailty profile precluding FOLFIRINOX in PDAC: ECOG ≥2, OR (age ≥75 +
+  Charlson ≥3), OR composite (age ≥70 + albumin <3.0 + cachexia ≥10%
+  weight loss). Triggers gem-nab-pac (better-tolerated alternative)
+  OR gemcitabine monotherapy OR best supportive care.
+definition_ua: >
+  Профіль frailty при PDAC: ECOG ≥2, АБО (≥75 + Charlson ≥3),
+  АБО (≥70 + альбумін <3.0 + кахексія ≥10% втрата ваги).
+  Gem-nab-pac (краще переноситься) АБО гемцитабін моно АБО BSC.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "ecog"
+      threshold: 2
+      comparator: ">="
+    - all_of:
+        - finding: "age"
+          threshold: 75
+          comparator: ">="
+        - finding: "charlson_score"
+          threshold: 3
+          comparator: ">="
+    - all_of:
+        - finding: "age"
+          threshold: 70
+          comparator: ">="
+        - finding: "albumin_g_dl"
+          threshold: 3.0
+          comparator: "<"
+        - finding: "weight_loss_pct_3mo"
+          threshold: 10
+          comparator: ">="
+
+clinical_direction: de-escalate
+severity: major
+priority: 90
+category: frailty-age
+
+relevant_diseases:
+  - DIS-PDAC
+shifts_algorithm:
+  - ALGO-PDAC-METASTATIC-1L
+branch_targets:
+  ALGO-PDAC-METASTATIC-1L: "step-2"
+
+sources: [SRC-NCCN-PANCREATIC-2025, SRC-ESMO-PANCREATIC-2024]
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  ACCORD-11 excluded ECOG ≥2; FOLFIRINOX in real-world frail patients
+  has Grade 3-4 toxicity ~75% + early discontinuation. MPACT trial
+  for gem-nab-pac was more permissive (KPS 70-100); better fit for
+  the borderline-fit patient. Pure BSC for ECOG 4 or organ failure.

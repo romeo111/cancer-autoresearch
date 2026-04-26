@@ -1,0 +1,49 @@
+id: RF-CRC-TRANSFORMATION-PROGRESSION
+definition: >
+  Rapid progression in CRC: relapse within ≤6 months of completing
+  adjuvant chemo (oxaliplatin-resistant phenotype), new peritoneal
+  carcinomatosis with ascites + obstruction, OR rapid LDH/CEA doubling
+  (>50% rise over 4-8 weeks). Alters 2L+ regimen choice + may
+  contraindicate oxaliplatin re-introduction.
+definition_ua: >
+  Швидке прогресування при КРР: рецидив <6 міс після ад'ювантної
+  хіміо (oxaliplatin-резистентний фенотип), нова перитонеальна
+  карциноматоз з асцитом + обструкція, АБО швидке подвоєння LDH/CEA.
+  Змінює вибір 2L+, може виключити повторне використання оксаліплатину.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "relapse_within_6mo_adjuvant"
+      value: true
+    - finding: "new_peritoneal_carcinomatosis_with_obstruction"
+      value: true
+    - finding: "cea_doubling_4_8wk"
+      value: true
+    - finding: "ldh_doubling_4_8wk"
+      value: true
+
+clinical_direction: intensify
+severity: major
+priority: 80
+category: transformation-progression
+
+relevant_diseases:
+  - DIS-CRC
+shifts_algorithm: []  # Surfaces in plan as MDT trigger; doesn't switch 1L
+                      # algorithm — affects 2L+ choice (out of scope this
+                      # algorithm).
+
+sources:
+  - SRC-NCCN-COLON-2025
+  - SRC-ESMO-COLON-2024
+
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  Oxaliplatin-resistance defined by relapse <6 mo post-adjuvant; this
+  group benefits from FOLFIRI ± biologic 2L instead of FOLFOX re-trial.
+  Peritoneal-only progression: HIPEC (PRODIGE-7 negative for benefit;
+  case-by-case at expert centers). CEA-rise without imaging confirmation
+  is NOT progression — always restage by CT/MRI before switching.

@@ -1,0 +1,39 @@
+id: REG-NIVO-ADJUVANT-ESOPH
+name: "Nivolumab adjuvant — post-CROSS without pCR (CheckMate-577)"
+name_ua: "Ніволумаб ад'ювант — після CROSS без pCR (CheckMate-577)"
+alternate_names: ["CheckMate-577 adjuvant nivo"]
+
+components:
+  - drug_id: DRUG-NIVOLUMAB
+    dose: "240 mg IV q2w (cycles 1-16) then 480 mg IV q4w (until 1 year)"
+    schedule: "IV per protocol — total ~1 year of treatment"
+    route: IV
+
+cycle_length_days: 14
+total_cycles: "Up to 1 year per CheckMate-577 protocol (16 q2w + 7 q4w cycles approx)"
+
+toxicity_profile: moderate
+premedication: []
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Grade 2 irAE"
+    modification: "Hold + corticosteroids; resume when ≤Grade 1"
+    source_refs: [SRC-NCCN-ESOPHAGEAL-2025]
+  - condition: "Grade 3-4 irAE"
+    modification: "Discontinue permanently for most; high-dose steroids"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Out-of-pocket / charitable / clinical-trial pathway."
+
+sources: [SRC-NCCN-ESOPHAGEAL-2025, SRC-ESMO-ESOPHAGEAL-2024]
+last_reviewed: "2026-04-26"
+
+notes: >
+  CheckMate-577: post-CROSS-CRT-then-esophagectomy patients with
+  residual ypT+ or ypN+ (no pCR) — adjuvant nivolumab × 1 year doubled
+  DFS (22 vs 11 mo). Both adeno + squamous benefit. Initiation within
+  4-16 weeks post-surgery per protocol.

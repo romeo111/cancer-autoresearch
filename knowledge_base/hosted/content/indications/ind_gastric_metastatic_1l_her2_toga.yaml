@@ -1,0 +1,58 @@
+id: IND-GASTRIC-METASTATIC-1L-HER2-TOGA
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-GASTRIC
+  line_of_therapy: 1
+  stage_requirements: ["Stage IV (metastatic)", "Unresectable locally advanced"]
+  biomarker_requirements_required:
+    - biomarker_id: BIO-HER2-SOLID
+      value_constraint: "positive (IHC 3+ OR IHC 2+/ISH+)"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-TRASTUZUMAB-CHEMO-TOGA
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~47% (TOGA HER2 IHC3+ subgroup)"
+  complete_response: "~5%"
+  progression_free_survival: "Median ~7 mo"
+  overall_survival_5y: "mOS 13.8 vs 11.1 chemo-only TOGA; 17.9 in HER2 IHC3+ subgroup"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-GASTRIC-EMERGENCY-BLEED-OBSTRUCTION
+  - RF-GASTRIC-FRAILTY-AGE
+
+required_tests:
+  - TEST-CT-CHEST-ABDOMEN-PELVIS
+  - TEST-HER2-IHC-ISH-IF-RAS-WT  # reused; covers gastric HER2 too
+
+desired_tests: []
+
+rationale: >
+  TOGA trial established trastuzumab + chemo as 1L standard for
+  HER2+ metastatic gastric/GEJ. KEYNOTE-811 added pembrolizumab for
+  HER2+ + PD-L1 CPS ≥1. Trastuzumab-deruxtecan (T-DXd) preferred
+  2L+ post-trastuzumab failure. NCCN cat 1.
+
+sources:
+  - source_id: SRC-NCCN-GASTRIC-2025
+    position: supports
+  - source_id: SRC-ESMO-GASTRIC-2024
+    position: supports
+
+do_not_do:
+  - "Do NOT use without baseline LVEF — trastuzumab cardiotoxic (q3-mo echo monitoring)"
+  - "Do NOT combine with anthracycline (cumulative cardiotoxicity)"
+  - "Do NOT initiate during ongoing GI bleed / obstruction"
+
+last_reviewed: "2026-04-26"
+notes: "HER2+ metastatic gastric — primary aggressive track."

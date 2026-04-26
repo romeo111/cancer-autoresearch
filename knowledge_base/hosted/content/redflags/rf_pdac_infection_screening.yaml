@@ -1,0 +1,41 @@
+id: RF-PDAC-INFECTION-SCREENING
+definition: >
+  Infection-screening gate before PDAC FOLFIRINOX / gem-nab-pac:
+  HBsAg+ / anti-HBc+ (HBV reactivation on dexamethasone-containing
+  regimens), HIV+, OR active cholangitis (post-stent infectious
+  complication — common given biliary instrumentation in head-of-pancreas
+  tumors).
+definition_ua: >
+  Скринінг інфекцій перед FOLFIRINOX / gem-nab-pac: HBsAg+ /
+  anti-HBc+, HIV+, активний холангіт (часто при head-of-pancreas
+  після стентування).
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hbc_total"
+      value: "positive"
+    - finding: "hiv_status"
+      value: "positive"
+    - finding: "active_cholangitis"
+      value: true
+
+clinical_direction: hold
+severity: critical
+priority: 60
+category: infection-screening
+
+relevant_diseases:
+  - DIS-PDAC
+shifts_algorithm: []
+
+sources: [SRC-NCCN-PANCREATIC-2025, SRC-ESMO-PANCREATIC-2024]
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  Cholangitis typically post-stenting (~10-20% of plastic stents,
+  lower for metallic). Treat with antibiotics + drainage adjustment;
+  delay chemo until afebrile + bilirubin trending down.

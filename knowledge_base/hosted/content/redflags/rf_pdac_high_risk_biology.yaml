@@ -1,0 +1,45 @@
+id: RF-PDAC-HIGH-RISK-BIOLOGY
+definition: >
+  Actionable molecular biology in PDAC: germline BRCA1/2 (or PALB2 —
+  HRD-equivalent → olaparib POLO maintenance after platinum response);
+  MSI-H / dMMR (~1% of PDAC — pembrolizumab pan-cancer indication);
+  KRAS G12C (~1-2% — sotorasib / adagrasib + cetuximab combinations
+  emerging); NRG1-fusion (rare — zenocutuzumab).
+definition_ua: >
+  Активабельна біологія PDAC: герм. BRCA1/2 (PALB2) → olaparib
+  після платини; MSI-H → пембролізумаб; KRAS G12C → sotorasib;
+  NRG1-fusion → зеноцутузумаб.
+
+trigger:
+  type: biomarker
+  any_of:
+    - finding: "brca1_brca2_germline_pathogenic"
+      value: true
+    - finding: "palb2_germline_pathogenic"
+      value: true
+    - finding: "msi_status"
+      value: "MSI-H"
+    - finding: "kras_g12c"
+      value: true
+    - finding: "nrg1_fusion"
+      value: true
+
+clinical_direction: intensify
+severity: critical
+priority: 50
+category: high-risk-biology
+
+relevant_diseases:
+  - DIS-PDAC
+shifts_algorithm:
+  - ALGO-PDAC-METASTATIC-1L
+
+sources: [SRC-NCCN-PANCREATIC-2025, SRC-ESMO-PANCREATIC-2024]
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  Germline NGS (24-gene HBOC + Lynch panel) + tumor NGS recommended for
+  ALL PDAC at diagnosis (NCCN MS-12). POLO trial: olaparib maintenance
+  after ≥16 weeks platinum without progression in BRCA1/2-germline mPDAC
+  — mPFS 7.4 vs 3.8 mo placebo.

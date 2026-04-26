@@ -1,0 +1,47 @@
+id: REG-GEM-NAB-PAC
+name: "Gemcitabine + nab-paclitaxel (MPACT)"
+name_ua: "Гемцитабін + наб-паклітаксел (MPACT)"
+alternate_names: ["MPACT regimen", "GnP", "Gem + nab-paclitaxel"]
+
+components:
+  - drug_id: DRUG-GEMCITABINE
+    dose: "1000 mg/m²"
+    schedule: "IV days 1, 8, 15 of 28-d cycle"
+    route: IV
+  - drug_id: DRUG-NAB-PACLITAXEL
+    dose: "125 mg/m²"
+    schedule: "IV days 1, 8, 15 of 28-d cycle"
+    route: IV
+
+cycle_length_days: 28
+total_cycles: "Until progression / unacceptable toxicity"
+
+toxicity_profile: severe
+premedication: ["5-HT3 antagonist + dexamethasone day 1; nab-paclitaxel — no Cremophor premed required"]
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "ANC <1.5 OR Plt <100 on day 8 or 15"
+    modification: "Hold that dose; resume next cycle if recovered"
+    source_refs: [SRC-NCCN-PANCREATIC-2025]
+  - condition: "Grade 2-3 peripheral neuropathy"
+    modification: "Reduce nab-paclitaxel to 100 mg/m² OR omit and continue gemcitabine alone"
+    source_refs: [SRC-NCCN-PANCREATIC-2025]
+  - condition: "Bilirubin >2× ULN"
+    modification: "Reduce nab-paclitaxel; hold gemcitabine if also significant transaminitis"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Nab-paclitaxel out-of-pocket / charitable in Ukraine; gemcitabine NSZU-funded."
+
+sources: [SRC-NCCN-PANCREATIC-2025, SRC-ESMO-PANCREATIC-2024]
+last_reviewed: "2026-04-26"
+
+notes: >
+  MPACT trial: gem-nab-pac vs gemcitabine in metastatic PDAC PS 0-2 —
+  mOS 8.5 vs 6.7 mo, ORR 23 vs 7%. Better-tolerated alternative to
+  FOLFIRINOX for ECOG 1-2 / older / borderline-fit patients. Less
+  cumulative neuropathy + neutropenia than FOLFIRINOX but more day-15
+  cytopenia.

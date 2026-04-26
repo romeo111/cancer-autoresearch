@@ -1,0 +1,11 @@
+red_flag: RF-CRC-TRANSFORMATION-PROGRESSION
+findings:
+  relapse_within_6mo_adjuvant: false
+  new_peritoneal_carcinomatosis_with_obstruction: false
+  cea_doubling_4_8wk: false
+  ldh_doubling_4_8wk: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

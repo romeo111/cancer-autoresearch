@@ -1,0 +1,52 @@
+id: RF-HCC-FRAILTY-AGE
+definition: >
+  Frailty profile precluding intensified 1L systemic in HCC:
+  ECOG ≥3, OR (age ≥75 + Child-Pugh B7 + sarcopenia), OR composite
+  (Karnofsky <70 + active hepatic encephalopathy + albumin <2.8).
+  Triggers BSC discussion + palliative-care referral; sorafenib
+  reduced-dose (200 mg BID) acceptable for selected CP-A frail patients.
+definition_ua: >
+  Профіль frailty в ГЦК: ECOG ≥3, АБО (≥75 + Child-Pugh B7 + саркопенія),
+  АБО (Карнофський <70 + активна енцефалопатія + альбумін <2.8). BSC +
+  паліативна допомога; знижена доза сорафенібу 200 мг BID для CP-A frail.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "ecog"
+      threshold: 3
+      comparator: ">="
+    - all_of:
+        - finding: "age"
+          threshold: 75
+          comparator: ">="
+        - finding: "child_pugh_class"
+          value: "B"
+        - finding: "sarcopenia_present"
+          value: true
+
+clinical_direction: de-escalate
+severity: major
+priority: 90
+category: frailty-age
+
+relevant_diseases:
+  - DIS-HCC
+shifts_algorithm:
+  - ALGO-HCC-SYSTEMIC-1L
+branch_targets:
+  ALGO-HCC-SYSTEMIC-1L: "step-2"
+
+sources:
+  - SRC-NCCN-HCC-2025
+  - SRC-AASLD-HCC-2023
+
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  IMbrave150 + HIMALAYA both required ECOG ≤1 — frail elderly excluded
+  from pivotal trials. Real-world: sorafenib 200 mg BID start with
+  cautious escalation; lenvatinib body-weight-based dosing (8 mg if
+  ≤60 kg). Best supportive care + palliative referral when life
+  expectancy <3 months.

@@ -1,0 +1,55 @@
+id: IND-CRC-METASTATIC-2L-BRAF-BEACON
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-CRC
+  line_of_therapy: 2
+  stage_requirements: ["Stage IV metastatic", "Post 1L progression"]
+  biomarker_requirements_required:
+    - biomarker_id: BIO-BRAF-V600E
+      value_constraint: "positive"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-ENCORAFENIB-CETUXIMAB
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~20% (BEACON CRC doublet)"
+  complete_response: "~3%"
+  progression_free_survival: "Median ~4.3 mo"
+  overall_survival_5y: "mOS 9.3 vs 5.9 mo control (BEACON)"
+
+hard_contraindications: []
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-BRAF-V600E
+  - TEST-CT-CHEST-ABDOMEN-PELVIS
+
+desired_tests: []
+
+rationale: >
+  BEACON CRC trial: in BRAF V600E mCRC 2L+, encorafenib + cetuximab
+  doubled mOS vs irinotecan-based control. Treatment-defining for
+  this 8-10% molecular subset. NCCN cat 1.
+
+sources:
+  - source_id: SRC-NCCN-COLON-2025
+    position: supports
+  - source_id: SRC-ESMO-COLON-2024
+    position: supports
+
+do_not_do:
+  - "Do NOT use anti-EGFR (cetuximab/panitumumab) MONOTHERAPY in BRAF V600E — minimal benefit (BEACON control arm performance)"
+  - "Do NOT skip skin dermatology surveillance (BRAFi class effect — new SCC + melanoma risk)"
+  - "Do NOT continue through QTcF >500 ms without dose hold + ECG"
+
+last_reviewed: "2026-04-26"
+notes: "BRAF V600E mCRC 2L+ targeted track. 1L for BRAF V600E remains FOLFOX+bev or FOLFOXIRI+bev intensification."

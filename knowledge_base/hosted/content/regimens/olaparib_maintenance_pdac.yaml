@@ -1,0 +1,39 @@
+id: REG-OLAPARIB-MAINT-PDAC
+name: "Olaparib maintenance (BRCA-mut PDAC post-platinum, POLO)"
+name_ua: "Олапариб підтримка (BRCA-мут PDAC після платини, POLO)"
+alternate_names: ["POLO maintenance"]
+
+components:
+  - drug_id: DRUG-OLAPARIB
+    dose: "300 mg PO BID continuous"
+    schedule: "Continuous"
+    route: PO
+
+cycle_length_days: null
+total_cycles: "Until progression / unacceptable toxicity"
+
+toxicity_profile: moderate
+premedication: ["5-HT3 PRN for nausea (settles after 4 weeks usually)"]
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Grade 2 anemia"
+    modification: "Hold + transfuse if symptomatic; resume at 250 mg BID"
+    source_refs: [SRC-NCCN-PANCREATIC-2025]
+  - condition: "Persistent Grade 3 nausea"
+    modification: "Reduce to 250 then 200 mg BID + aggressive antiemetics"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Out-of-pocket / charitable pathway."
+
+sources: [SRC-NCCN-PANCREATIC-2025, SRC-ESMO-PANCREATIC-2024]
+last_reviewed: "2026-04-26"
+
+notes: >
+  POLO trial: olaparib maintenance in germline BRCA-mut mPDAC after
+  ≥16 weeks platinum-based induction without progression — mPFS 7.4
+  vs 3.8 mo placebo (OS endpoint NS but PFS practice-changing).
+  Long-term MDS/AML risk warrants pre-treatment counseling.

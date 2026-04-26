@@ -1,0 +1,48 @@
+id: REG-ENCORAFENIB-CETUXIMAB
+name: "Encorafenib + Cetuximab (BEACON CRC)"
+name_ua: "Енкорафеніб + Цетуксимаб (BEACON CRC)"
+alternate_names: ["BEACON doublet"]
+
+components:
+  - drug_id: DRUG-ENCORAFENIB
+    dose: "300 mg PO daily continuous"
+    schedule: "Continuous"
+    route: PO
+  - drug_id: DRUG-CETUXIMAB
+    dose: "400 mg/m² IV loading then 250 mg/m² weekly"
+    schedule: "IV weekly"
+    route: IV
+
+cycle_length_days: 28
+total_cycles: "Until progression / unacceptable toxicity"
+
+toxicity_profile: severe
+premedication:
+  - "Cetuximab: H1 + H2 blockers + dexamethasone 8 mg IV 30 min pre"
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Cutaneous SCC / new primary skin lesion"
+    modification: "Excise; continue treatment with skin surveillance + dermatology"
+    source_refs: [SRC-NCCN-COLON-2025]
+  - condition: "QTcF >500 ms"
+    modification: "Hold encorafenib until QTcF <481; resume at 75% dose"
+    source_refs: [SRC-NCCN-COLON-2025]
+  - condition: "Cetuximab Grade 3 acneiform rash"
+    modification: "Tetracycline + topical clindamycin; reduce cetuximab if persistent"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: "Encorafenib + cetuximab — out-of-pocket / charitable; selective NSZU coverage emerging for BRAF V600E mCRC."
+
+sources: [SRC-NCCN-COLON-2025, SRC-ESMO-COLON-2024]
+last_reviewed: "2026-04-26"
+
+notes: >
+  BEACON CRC trial: BRAF V600E mCRC 2L+ — encorafenib + cetuximab
+  doubled mOS vs control (9.3 vs 5.9 mo). NCCN cat 1 + ESMO strong
+  recommendation for this molecular subtype. Triplet arm (+binimetinib)
+  showed no OS benefit over doublet — doublet is current standard.
+  Skin surveillance critical (new SCC class effect of all BRAFi).

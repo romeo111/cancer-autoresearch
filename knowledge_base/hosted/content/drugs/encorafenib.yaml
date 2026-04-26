@@ -1,0 +1,54 @@
+id: DRUG-ENCORAFENIB
+names:
+  preferred: "Encorafenib"
+  ukrainian: "Енкорафеніб"
+  english: "Encorafenib"
+  brand_names: ["Braftovi"]
+atc_code: L01EC03
+rxnorm_id: "1996072"
+drug_class: "BRAF inhibitor (oral, V600-selective)"
+mechanism: >
+  Selective ATP-competitive BRAF V600E/K kinase inhibitor. Longer
+  target-residence time vs vemurafenib/dabrafenib → less paradoxical
+  ERK activation in WT BRAF cells. In mCRC BRAF V600E + cetuximab
+  (BEACON CRC) — first BRAF-targeted approval in CRC.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration: {registered: true, reimbursed_nszu: false, last_verified: "2026-04-26"}
+
+typical_dosing: >
+  CRC BRAF V600E (BEACON): 300 mg PO daily (with cetuximab 400→250 mg/m² weekly).
+  Melanoma (with binimetinib): 450 mg PO daily.
+formulations: ["Capsules 75 mg"]
+
+absolute_contraindications:
+  - "Severe hypersensitivity"
+  - "Pregnancy"
+
+common_adverse_events:
+  - "Fatigue"
+  - "Nausea"
+  - "Skin reactions (acneiform; less than vemurafenib)"
+  - "Diarrhea"
+  - "Arthralgia"
+  - "Headache"
+
+serious_adverse_events:
+  - "Cutaneous SCC / new primary melanoma (BRAFi class effect — dermatology q3 mo)"
+  - "QT prolongation"
+  - "Hepatic failure (rare)"
+  - "Uveitis"
+
+sources:
+  - SRC-NCCN-COLON-2025
+  - SRC-ESMO-COLON-2024
+
+last_reviewed: "2026-04-26"
+notes: >
+  STUB — Phase GI-1 promotion. BEACON CRC: encorafenib + cetuximab vs
+  control — mOS 9.3 vs 5.9 mo in BRAF V600E mCRC 2L+. Triplet arm
+  (enco + cetux + binimetinib) had numerically higher ORR but no OS
+  benefit vs doublet — doublet is current standard. Skin surveillance
+  for new SCC mandatory throughout treatment.

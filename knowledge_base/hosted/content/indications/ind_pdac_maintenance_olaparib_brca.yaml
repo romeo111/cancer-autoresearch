@@ -1,0 +1,51 @@
+id: IND-PDAC-MAINTENANCE-OLAPARIB-BRCA
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-PDAC
+  line_of_therapy: 1
+  stage_requirements: ["Stage IV (metastatic)", "Post ≥16 weeks platinum-based induction without progression"]
+  biomarker_requirements_required:
+    - biomarker_id: BIO-BRCA1-BRCA2-GERMLINE
+      value_constraint: "pathogenic"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-OLAPARIB-MAINT-PDAC
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  progression_free_survival: "Median 7.4 vs 3.8 mo placebo (POLO)"
+  overall_survival_5y: "OS endpoint NS (POLO); ORR maintained 18 vs 9%"
+
+hard_contraindications: []
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC  # for anemia monitoring
+desired_tests: []
+
+rationale: >
+  POLO trial: olaparib maintenance after platinum-induction in
+  germline BRCA-mut mPDAC — practice-changing PFS benefit. NCCN cat 1.
+  Treatment-defining for the ~6% germline-BRCA subset.
+
+sources:
+  - source_id: SRC-NCCN-PANCREATIC-2025
+    position: supports
+  - source_id: SRC-ESMO-PANCREATIC-2024
+    position: supports
+
+do_not_do:
+  - "Do NOT start without confirmed CR/PR/SD to platinum-induction"
+  - "Do NOT skip pre-treatment counseling on long-term MDS/AML risk"
+  - "Do NOT use in tumor-only-BRCA without germline confirmation (POLO inclusion was germline)"
+
+last_reviewed: "2026-04-26"
+notes: "BRCA-germline maintenance — follows FOLFIRINOX/gem-cis induction with platinum response."

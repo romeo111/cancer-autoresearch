@@ -1,0 +1,48 @@
+id: RF-GASTRIC-FRAILTY-AGE
+definition: >
+  Frailty profile precluding standard FOLFOX+nivo / FLOT in gastric
+  cancer: ECOG ≥3, OR (age ≥75 + Charlson ≥3), OR composite
+  (age ≥70 + albumin <3.0 + ≥10% weight loss + sarcopenia — common in
+  gastric cancer). Triggers regimen de-escalation (5-FU / capecitabine
+  monotherapy, omit ICI/biologic).
+definition_ua: >
+  Профіль frailty при раку шлунка: ECOG ≥3, АБО (≥75 + Charlson ≥3),
+  АБО (≥70 + альбумін <3.0 + ≥10% втрата ваги + саркопенія).
+  De-escalation (5-FU/капецитабін моно).
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "ecog"
+      threshold: 3
+      comparator: ">="
+    - all_of:
+        - finding: "age"
+          threshold: 70
+          comparator: ">="
+        - finding: "albumin_g_dl"
+          threshold: 3.0
+          comparator: "<"
+        - finding: "weight_loss_pct_3mo"
+          threshold: 10
+          comparator: ">="
+
+clinical_direction: de-escalate
+severity: major
+priority: 90
+category: frailty-age
+
+relevant_diseases:
+  - DIS-GASTRIC
+shifts_algorithm: []
+
+sources: [SRC-NCCN-GASTRIC-2025, SRC-ESMO-GASTRIC-2024]
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  Pre-treatment nutrition optimization (PEG/J-tube, parenteral nutrition
+  bridge) often required. Nivolumab-containing regimens have lower
+  symptomatic toxicity than FLOT for elderly — ATTRACTION-4 included
+  ECOG 0-1 only; real-world frail elderly: capecitabine + nivolumab
+  is reasonable de-escalation.

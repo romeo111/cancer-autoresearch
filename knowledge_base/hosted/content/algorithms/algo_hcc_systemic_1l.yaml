@@ -26,12 +26,14 @@ decision_tree:
     if_false:
       next_step: 2
 
-  # Step 2 — Child-Pugh B/C → ICI-combinations not eligible; sorafenib
-  # for CP-B7 selected, BSC for CP-C (BSC handled outside algorithm).
+  # Step 2 — Child-Pugh B/C OR frailty → ICI-combinations not eligible;
+  # sorafenib reduced-dose for CP-B7 / frail-elderly, BSC for CP-C
+  # (BSC handled outside algorithm).
   - step: 2
     evaluate:
       any_of:
         - red_flag: RF-HCC-CHILD-PUGH-B-C
+        - red_flag: RF-HCC-FRAILTY-AGE
     if_true:
       result: IND-HCC-SYSTEMIC-1L-SORAFENIB
     if_false:

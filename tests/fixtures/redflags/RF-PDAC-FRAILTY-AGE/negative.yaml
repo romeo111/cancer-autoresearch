@@ -1,0 +1,12 @@
+red_flag: RF-PDAC-FRAILTY-AGE
+findings:
+  ecog: 1
+  age: 69
+  charlson_score: 2
+  albumin_g_dl: 3.0
+  weight_loss_pct_3mo: 9
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

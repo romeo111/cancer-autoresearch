@@ -1,0 +1,52 @@
+id: REG-TRASTUZUMAB-CHEMO-TOGA
+name: "Trastuzumab + capecitabine + cisplatin (TOGA / KEYNOTE-811)"
+name_ua: "Трастузумаб + капецитабін + цисплатин (TOGA / KEYNOTE-811)"
+alternate_names: ["TOGA regimen (capecitabine arm)", "Trastuzumab + chemo backbone"]
+
+components:
+  - drug_id: DRUG-TRASTUZUMAB
+    dose: "8 mg/kg IV loading then 6 mg/kg q3w"
+    schedule: "IV day 1 every 21d"
+    route: IV
+  - drug_id: DRUG-CAPECITABINE
+    dose: "1000 mg/m² PO BID days 1-14"
+    schedule: "PO days 1-14"
+    route: PO
+  - drug_id: DRUG-CISPLATIN
+    dose: "80 mg/m²"
+    schedule: "IV day 1 q3w"
+    route: IV
+
+cycle_length_days: 21
+total_cycles: "Until progression / unacceptable toxicity (chemo backbone often capped at 6-8 cycles, trastuzumab continues mono)"
+
+toxicity_profile: severe
+premedication:
+  - "Cisplatin: hydration + Mg/K + 5-HT3 + dex + NK1-RA"
+  - "Trastuzumab: monitor for infusion reaction (pre-medication generally not required)"
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "LVEF decline >10% to <50%"
+    modification: "Hold trastuzumab; cardiology + repeat echo in 4 weeks; resume only if LVEF normalizes"
+    source_refs: [SRC-NCCN-GASTRIC-2025]
+  - condition: "CrCl 50-60"
+    modification: "Reduce cisplatin to 60 mg/m² (or substitute carboplatin AUC 5)"
+  - condition: "Grade 3-4 hand-foot syndrome"
+    modification: "Hold capecitabine until ≤Grade 1; resume at 75% dose"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: "Trastuzumab biosimilars NSZU-funded for gastric HER2+; chemo NSZU-funded."
+
+sources: [SRC-NCCN-GASTRIC-2025, SRC-ESMO-GASTRIC-2024]
+last_reviewed: "2026-04-26"
+
+notes: >
+  TOGA trial 2010 — first targeted therapy approval in metastatic
+  gastric. mOS 13.8 vs 11.1 chemo-only; HER2 IHC 3+ subgroup mOS 17.9.
+  KEYNOTE-811 added pembrolizumab to trastuzumab+chemo for HER2+ +
+  PD-L1 CPS ≥1 — improved ORR + PFS. T-DXd (trastuzumab-deruxtecan)
+  preferred 2L+ for HER2+ post-trastuzumab failure (DESTINY-Gastric01).

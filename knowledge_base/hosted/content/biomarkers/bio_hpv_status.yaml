@@ -18,5 +18,5 @@ interpretation_notes: >
   ~70%. HPV-negative cervical SCC is rare and has different biology.
   Anal: HPV+ similar to cervical.
 related_biomarkers: []
-sources: [SRC-NCCN-HEAD-NECK-2025, SRC-NCCN-CERVICAL-2025]
+sources: [SRC-NCCN-CERVICAL-2025]  # NCCN Head&Neck source TBD when OPC vertical added
 last_reviewed: "2026-04-26"

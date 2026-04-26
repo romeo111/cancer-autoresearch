@@ -62,16 +62,12 @@ DISEASES_WITH_GAPS_BASELINE = {
     # DIS-MM — closed by Phase 3 second batch (3 new RFs added 2026-04-25)
     "DIS-PTCL-NOS",
     "DIS-WM",
-    # 2026-04-26 GI solid-tumor batch — all 5 ship as `partial` per
-    # PROPOSAL §17 (KNOWLEDGE_SCHEMA_SPECIFICATION.md). 4 RFs covered
-    # for CRC + HCC; 1 RF each for gastric / PDAC / esophageal scaffolds.
-    # Full 5-type matrix awaits clinical authoring + RT/surgery schema
-    # ratification.
-    "DIS-CRC",
-    "DIS-GASTRIC",
-    "DIS-PDAC",
-    "DIS-HCC",
-    "DIS-ESOPHAGEAL",
+    # 2026-04-26 GI solid-tumor batch — all 5 reached full 5-type matrix
+    # via promotion commit (CRC: +infection +transformation; HCC:
+    # +biology +frailty; gastric/PDAC/esophageal: +infection +biology
+    # +transformation +frailty). Diseases stay `partial` in metadata
+    # because PROPOSAL §17 (RT, surgery, sequential phasing) still
+    # awaits ratification — but 5-type RF coverage is locked in.
     # 2026-04-26 user/linter parallel thoracic work (SCLC partial).
     "DIS-SCLC",
     # 2026-04-26 user/linter parallel solid-tumor expansion (partial).
@@ -124,8 +120,19 @@ def _all_diseases() -> list[str]:
 def _categorize(rf: dict) -> str:
     """Map an RF to one of the 5 spec categories.
 
-    Authoritative: id-suffix (matches scaffold-tool naming convention).
-    Fallback: keyword scan over id + definition for legacy-named RFs."""
+    Priority order:
+    1. Explicit `category:` field on the RF (RedFlagCategory enum, see
+       schemas/base.py). Hyphenated values translated to underscored
+       SPEC_CATEGORIES form.
+    2. Id-suffix (matches scaffold-tool naming convention).
+    3. Fallback: keyword scan over id + definition for legacy-named RFs."""
+
+    explicit = rf.get("category")
+    if explicit:
+        # Hyphen → underscore: "organ-dysfunction" → "organ_dysfunction"
+        normalized = explicit.replace("-", "_")
+        if normalized in SPEC_CATEGORIES:
+            return normalized
 
     rf_id = rf.get("id", "")
     suffix_map = {

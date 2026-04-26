@@ -2,19 +2,32 @@ id: ALGO-GASTRIC-METASTATIC-1L
 applicable_to_disease: DIS-GASTRIC
 applicable_to_line_of_therapy: 1
 purpose: >
-  Scaffold algorithm for gastric/GEJ adenocarcinoma metastatic 1L.
-  Currently models ONE biomarker arm (HER2- / PD-L1 CPS ≥5 → chemo+ICI).
-  Full HER2+ trastuzumab+chemo, CLDN18.2+ zolbetuximab, MSI-H pembro
-  pathways await clinical authoring + regimen entries.
+  Algorithm for gastric/GEJ adenocarcinoma metastatic 1L. HER2+ →
+  TOGA trastuzumab+chemo (treatment-defining); HER2- + PD-L1 CPS ≥5 →
+  FOLFOX+nivo. CLDN18.2+ zolbetuximab and MSI-H pembro mono pathways
+  await full authoring (separate Indications when zolbetuximab regimen
+  is added).
 
 output_indications:
+  - IND-GASTRIC-METASTATIC-1L-HER2-TOGA
   - IND-GASTRIC-METASTATIC-1L-PDL1-CHEMO-ICI
 
 default_indication: IND-GASTRIC-METASTATIC-1L-PDL1-CHEMO-ICI
-alternative_indication: null
+alternative_indication: IND-GASTRIC-METASTATIC-1L-HER2-TOGA
 
 decision_tree:
+  # Step 1 — HER2+ routes to trastuzumab+chemo (TOGA / KEYNOTE-811).
   - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-GASTRIC-HIGH-RISK-BIOLOGY
+    if_true:
+      result: IND-GASTRIC-METASTATIC-1L-HER2-TOGA
+    if_false:
+      next_step: 2
+
+  # Step 2 — HER2- + PD-L1 CPS ≥5 → FOLFOX+nivo (CheckMate-649).
+  - step: 2
     evaluate:
       all_of:
         - condition: "PD-L1 CPS ≥5"
@@ -26,10 +39,12 @@ decision_tree:
 
 sources:
   - SRC-NCCN-GASTRIC-2025
+  - SRC-ESMO-GASTRIC-2024
 
 last_reviewed: "2026-04-26"
 notes: >
-  Single-indication scaffold. Out of scope: HER2+ trastuzumab+chemo
-  (TOGA), CLDN18.2+ zolbetuximab (SPOTLIGHT, GLOW), MSI-H pembro mono,
-  T-DXd 2L+ HER2+, FLOT periop for resectable. Full coverage in next
-  authoring batch.
+  HER2+ branch added (RF-GASTRIC-HIGH-RISK-BIOLOGY fires on any of
+  HER2+/CLDN18.2+/MSI-H/EBV+ — ALGO step 1 currently routes all to
+  TOGA which is correct for HER2+ but suboptimal for the rare
+  CLDN18.2-only subset; revisit when zolbetuximab regimen is added).
+  Out-of-scope: T-DXd 2L+ HER2+, FLOT periop for resectable.

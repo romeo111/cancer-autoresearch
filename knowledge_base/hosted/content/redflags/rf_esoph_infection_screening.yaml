@@ -1,0 +1,36 @@
+id: RF-ESOPH-INFECTION-SCREENING
+definition: >
+  Infection-screening gate before esophageal cancer systemic therapy:
+  HBsAg+ / anti-HBc+ (HBV reactivation on pembro/nivo + chemo + dex),
+  HIV+, OR active TB. Critical pre-CROSS / FLOT / definitive CRT and
+  pre-adjuvant nivolumab.
+definition_ua: >
+  Скринінг інфекцій перед esophageal системною: HBsAg+ / anti-HBc+,
+  HIV+, активний ТБ. Критично перед CROSS / FLOT / definitive CRT
+  та ад'ювантним ніволумабом.
+
+trigger:
+  type: lab_value
+  any_of:
+    - finding: "hbsag"
+      value: "positive"
+    - finding: "anti_hbc_total"
+      value: "positive"
+    - finding: "hiv_status"
+      value: "positive"
+    - finding: "active_tb"
+      value: true
+
+clinical_direction: hold
+severity: critical
+priority: 60
+category: infection-screening
+
+relevant_diseases:
+  - DIS-ESOPHAGEAL
+shifts_algorithm: []
+
+sources: [SRC-NCCN-ESOPHAGEAL-2025, SRC-ESMO-ESOPHAGEAL-2024]
+last_reviewed: "2026-04-26"
+draft: false
+notes: "Standard pattern; entecavir/TDF prophylaxis from -7d through 12 mo post-anti-PD-1."

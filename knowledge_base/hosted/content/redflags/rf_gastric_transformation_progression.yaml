@@ -1,0 +1,39 @@
+id: RF-GASTRIC-TRANSFORMATION-PROGRESSION
+definition: >
+  Aggressive progression in gastric/GEJ adenocarcinoma: linitis plastica
+  (signet-ring diffuse type with rigid stomach wall — historically poor
+  prognosis), peritoneal carcinomatosis with malignant ascites, OR
+  rapid progression on first cycle (clinical decline ≤4 weeks).
+  Triggers MDT / early palliative-care / regimen-modification discussion.
+definition_ua: >
+  Агресивне прогресування при ШКТ-аденокарциномі: linitis plastica,
+  перитонеальний карциноматоз з асцитом, АБО клінічне погіршення на
+  1-му циклі ≤4 тижні. MDT / раннє паліативне залучення.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "linitis_plastica_pattern"
+      value: true
+    - finding: "peritoneal_carcinomatosis_with_ascites"
+      value: true
+    - finding: "rapid_decline_first_cycle"
+      value: true
+
+clinical_direction: investigate
+severity: major
+priority: 100
+category: transformation-progression
+
+relevant_diseases:
+  - DIS-GASTRIC
+shifts_algorithm: []
+
+sources: [SRC-NCCN-GASTRIC-2025, SRC-ESMO-GASTRIC-2024]
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  Linitis plastica + signet-ring biology — historically not benefited
+  from anti-HER2 (FAST trial subgroup); CLDN18.2+ subset ~50% of
+  diffuse-type gastric — emerging zolbetuximab benefit.

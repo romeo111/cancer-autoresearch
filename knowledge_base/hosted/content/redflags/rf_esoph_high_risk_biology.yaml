@@ -1,0 +1,53 @@
+id: RF-ESOPH-HIGH-RISK-BIOLOGY
+definition: >
+  Treatment-defining biomarkers in esophageal/EGJ cancer: HER2+ (adeno
+  only — TOGA-style gastric criteria) → trastuzumab+chemo metastatic;
+  PD-L1 CPS ≥10 (KEYNOTE-590 squamous) OR CPS ≥1 (CheckMate-648
+  adeno+squamous) → ICI+chemo 1L; MSI-H → pembro mono.
+definition_ua: >
+  Лікування-визначальні маркери: HER2+ (тільки adeno, як гастр) →
+  трастузумаб; PD-L1 CPS ≥10 (squamous) АБО ≥1 (adeno) → ICI+хіміо;
+  MSI-H → пембро.
+
+trigger:
+  type: biomarker
+  any_of:
+    - all_of:
+        - finding: "histology"
+          value: "adeno"
+        - finding: "her2_status"
+          value: "positive"
+    - all_of:
+        - finding: "histology"
+          value: "squamous"
+        - finding: "pdl1_cps"
+          threshold: 10
+          comparator: ">="
+    - all_of:
+        - finding: "histology"
+          value: "adeno"
+        - finding: "pdl1_cps"
+          threshold: 1
+          comparator: ">="
+    - finding: "msi_status"
+      value: "MSI-H"
+
+clinical_direction: intensify
+severity: critical
+priority: 50
+category: high-risk-biology
+
+relevant_diseases:
+  - DIS-ESOPHAGEAL
+shifts_algorithm: []  # Histology-stratified algorithm not yet built;
+                      # biomarkers for now surface in trace.
+
+sources: [SRC-NCCN-ESOPHAGEAL-2025, SRC-ESMO-ESOPHAGEAL-2024]
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  Squamous CPS-cutoff vs adeno differs (KEYNOTE-590 used ≥10 for
+  enrichment). Real-world: chemo+ICI is becoming default 1L for both
+  histologies regardless of CPS in many centers. T-DXd 2L+ for HER2+
+  adeno (DESTINY-Gastric01 included GEJ subgroup).

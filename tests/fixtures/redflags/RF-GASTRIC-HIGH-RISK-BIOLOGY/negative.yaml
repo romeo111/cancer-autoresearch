@@ -1,0 +1,11 @@
+red_flag: RF-GASTRIC-HIGH-RISK-BIOLOGY
+findings:
+  her2_status: _NOT_positive
+  cldn18_2_status: _NOT_positive
+  msi_status: _NOT_MSI-H
+  ebv_status_tumor: _NOT_positive
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

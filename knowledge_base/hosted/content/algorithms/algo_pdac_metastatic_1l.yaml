@@ -2,19 +2,36 @@ id: ALGO-PDAC-METASTATIC-1L
 applicable_to_disease: DIS-PDAC
 applicable_to_line_of_therapy: 1
 purpose: >
-  Scaffold algorithm for PDAC metastatic 1L. Currently models ONE arm
-  (FOLFIRINOX for ECOG 0-1, bilirubin-resolved). Gem-nab-pac (frail /
-  ECOG 2 / bilirubin issues), olaparib BRCA-maintenance, MSI-H pembro
-  pathways await full authoring.
+  Algorithm for PDAC metastatic 1L. ECOG 0-1 + bilirubin-resolved →
+  FOLFIRINOX (preferred for fit patients; better OS but more toxic).
+  Frail / ECOG ≥2 → gem-nab-pac de-escalation. BRCA-germline maintenance
+  (POLO) follows ≥16 weeks platinum-induction without progression.
 
 output_indications:
   - IND-PDAC-METASTATIC-1L-FOLFIRINOX
+  - IND-PDAC-METASTATIC-1L-GEM-NAB-PAC
+  - IND-PDAC-MAINTENANCE-OLAPARIB-BRCA
 
 default_indication: IND-PDAC-METASTATIC-1L-FOLFIRINOX
-alternative_indication: null
+alternative_indication: IND-PDAC-METASTATIC-1L-GEM-NAB-PAC
 
 decision_tree:
-  - step: 1
+  # Step 1 — biliary obstruction emergency: hold systemic therapy.
+  # (Surfaced by RF-PDAC-BILIARY-OBSTRUCTION-CHOLANGITIS in trace;
+  # not a branching step, but routes through this hold-pattern.)
+
+  # Step 2 — frailty → gem-nab-pac.
+  - step: 2
+    evaluate:
+      any_of:
+        - red_flag: RF-PDAC-FRAILTY-AGE
+    if_true:
+      result: IND-PDAC-METASTATIC-1L-GEM-NAB-PAC
+    if_false:
+      next_step: 3
+
+  # Step 3 — fit patients → FOLFIRINOX.
+  - step: 3
     evaluate:
       all_of:
         - condition: "ECOG ≤1"
@@ -22,14 +39,29 @@ decision_tree:
     if_true:
       result: IND-PDAC-METASTATIC-1L-FOLFIRINOX
     if_false:
+      result: IND-PDAC-METASTATIC-1L-GEM-NAB-PAC
+
+  # Step 4 — BRCA-germline → olaparib-maintenance candidate.
+  # (Sentinel: surfaces RF-PDAC-HIGH-RISK-BIOLOGY in trace; the
+  # maintenance Indication is invoked AFTER ≥16 weeks of platinum
+  # induction without progression — handled by the Plan render layer
+  # walking Indication.followed_by, not as a step-result here.)
+  - step: 4
+    evaluate:
+      any_of:
+        - red_flag: RF-PDAC-HIGH-RISK-BIOLOGY
+    if_true:
+      result: IND-PDAC-METASTATIC-1L-FOLFIRINOX
+    if_false:
       result: IND-PDAC-METASTATIC-1L-FOLFIRINOX
 
 sources:
   - SRC-NCCN-PANCREATIC-2025
+  - SRC-ESMO-PANCREATIC-2024
 
 last_reviewed: "2026-04-26"
 notes: >
-  Single-indication scaffold. Full coverage requires gem-nab-pac
-  regimen + indication, olaparib maintenance regimen + indication
-  (BRCA-stratified), 5-FU/nanoliposomal-irinotecan 2L, NALIRIFOX
-  emerging 1L data.
+  3-arm algorithm: FOLFIRINOX (default fit) / gem-nab-pac (frail) /
+  olaparib-maintenance (BRCA-germline post-platinum). NALIRIFOX
+  (NAPOLI-3) emerging as 1L alternative — separate Indication when
+  added.

@@ -1,0 +1,38 @@
+id: RF-PDAC-TRANSFORMATION-PROGRESSION
+definition: >
+  Rapid progression in PDAC: clinical decline + CA19-9 doubling within
+  4-8 weeks during 1L systemic, OR new peritoneal carcinomatosis with
+  malignant ascites, OR new liver metastases on first restaging.
+  Triggers MDT for 2L switch + early palliative-care escalation.
+definition_ua: >
+  Швидке прогресування при PDAC: клінічне погіршення + CA19-9 подвоєння
+  4-8 тижнів, новий перитонеальний карциноматоз з асцитом, нові
+  метастази у печінці. MDT для 2L + раннє паліативне залучення.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "ca19_9_doubling_4_8wk"
+      value: true
+    - finding: "new_peritoneal_carcinomatosis_with_ascites"
+      value: true
+    - finding: "new_liver_mets_on_restaging"
+      value: true
+
+clinical_direction: investigate
+severity: major
+priority: 100
+category: transformation-progression
+
+relevant_diseases:
+  - DIS-PDAC
+shifts_algorithm: []
+
+sources: [SRC-NCCN-PANCREATIC-2025, SRC-ESMO-PANCREATIC-2024]
+last_reviewed: "2026-04-26"
+draft: false
+
+notes: >
+  CA19-9 must be interpreted with caution in Lewis-blood-group-negative
+  patients (~5-7% non-secretors). Always re-image (CT) — CA19-9
+  fluctuations alone don't define progression.
