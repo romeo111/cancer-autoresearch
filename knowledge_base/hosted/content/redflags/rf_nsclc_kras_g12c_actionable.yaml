@@ -30,8 +30,8 @@ relevant_diseases:
   - DIS-NSCLC
 shifts_algorithm:
   - ALGO-NSCLC-METASTATIC-2L
-branch_targets:
-  ALGO-NSCLC-METASTATIC-1L: "step-4"
+# Note: 1L is still IO ± chemo per PD-L1 (no 1L G12C-inhibitor superiority
+# yet), so this RF only shifts 2L routing — no branch_target on 1L.
 
 sources:
   - SRC-NCCN-NSCLC-2025
