@@ -1,0 +1,55 @@
+id: REG-TAZEMETOSTAT-FL
+name: "Tazemetostat 800 mg PO BID continuous — r/r FL (EZH2-mut OR EZH2-WT after ≥2 lines)"
+name_ua: "Таземетостат 800 мг PO BID безперервно — рефрактерна/рецидивна ФЛ (EZH2-мутована або EZH2-WT після ≥2 ліній)"
+alternate_names: ["Taze mono", "E7438-G000-101 regimen", "Tazverik FL"]
+
+components:
+  - drug_id: DRUG-TAZEMETOSTAT
+    dose: "800 mg PO BID"
+    schedule: "Continuous until progression or unacceptable toxicity"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous"
+toxicity_profile: low-moderate
+
+premedication: []
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Concomitant strong CYP3A inhibitor (azole antifungals, ritonavir, clarithromycin)"
+    modification: "Reduce tazemetostat to 400 mg PO BID; resume 800 mg BID after washout (3-5 half-lives of inhibitor)"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Concomitant strong CYP3A inducer (rifampin, carbamazepine, St John's wort)"
+    modification: "Avoid concurrent use — efficacy loss"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Grade ≥3 anemia / neutropenia / thrombocytopenia"
+    modification: "Hold; resume at 600 mg PO BID after recovery; consider further reduction to 400 mg BID if recurrent"
+  - condition: "Grade ≥3 non-hematologic toxicity"
+    modification: "Hold until ≤Grade 1; resume at 600 mg BID; discontinue if recurrent at reduced dose"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: >
+    Tazemetostat NOT registered in Ukraine; no domestic supply. Access
+    via clinical trial / out-of-pocket international supply only. Oral
+    administration is a logistic advantage if access can be secured,
+    particularly for older / frail patients ineligible for CAR-T or
+    bispecific bispecific intensives.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-FL-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  E7438-G000-101 (Morschhauser 2020): r/r FL after ≥2 prior lines —
+  ORR 69% in EZH2-mutated cohort (median DOR ~10.9 mo); ORR 35% in
+  EZH2-WT (median DOR ~13 mo). FDA-approved both EZH2-mut (per
+  companion test) and EZH2-WT FL after ≥2 prior lines. Mutation
+  testing (BIO-EZH2-Y641) prefer-but-not-mandate before treatment in
+  ≥3L setting. Ongoing post-marketing surveillance for secondary
+  T-LBL/AML (signal originally seen in pediatric INI1-sarcoma trials,
+  unclear in lymphoma).

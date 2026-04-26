@@ -1,0 +1,99 @@
+id: IND-FL-3L-TAZEMETOSTAT
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-FL
+  line_of_therapy: 3
+  stage_requirements:
+    - "Relapsed/refractory after ≥2 prior systemic lines"
+    - "EZH2-mutated (Y641N/F/S/H/C) preferred OR EZH2-WT with no satisfactory alternative therapy"
+  biomarker_requirements_required:
+    - biomarker_id: BIO-EZH2-Y641
+      required: false  # preferred-but-not-mandated; EZH2-WT is FDA-approved
+      value_constraint: "positive (Y641 mutation) — predicts higher response (ORR ~69% vs ~35% WT); EZH2-WT also FDA-approved"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+    age_min: 18
+
+recommended_regimen: REG-TAZEMETOSTAT-FL
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: conditional
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~69% (EZH2-mut) / ~35% (EZH2-WT) per E7438-G000-101"
+  complete_response: "~13% (EZH2-mut) / ~4% (EZH2-WT)"
+  progression_free_survival: "Median PFS ~13.8 mo (EZH2-mut) / ~11.1 mo (EZH2-WT)"
+  overall_survival_5y: "Not reached for either subset at primary analysis; estimated 24-mo OS ~88% (mut)"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-FL-TRANSFORMATION-SUSPECT
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-CD20-IHC
+  - TEST-LN-CORE-BIOPSY
+  - TEST-NGS-LYMPHOID-PANEL  # for EZH2 Y641 status
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PET-CT
+  - TEST-BM-ASPIRATE
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-PREGNANCY
+desired_tests: []
+
+rationale: >
+  Oral EZH2 inhibitor for r/r FL after ≥2 prior lines. Substantially
+  higher response in EZH2-mutated subset (~25% of FL — Y641 GOF), but
+  also FDA-approved EZH2-WT given no satisfactory alternative for
+  many. Oral, well-tolerated profile (predominantly fatigue, mild
+  cytopenias) — preferred for older / frail / multi-comorbid r/r FL
+  patients ineligible for bispecific or CAR-T. NGS lymphoid panel for
+  EZH2 status prior to start preferred but not absolute prerequisite
+  (FDA approval covers both arms).
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "Tazemetostat is recommended for r/r FL after ≥2 prior lines (preferred for EZH2-mutated; FDA-approved for both mut and WT); Cat 2A"
+  - source_id: SRC-ESMO-FL-2024
+    position: supports
+    relevant_quote_paraphrase: "EZH2 inhibitor tazemetostat is option for r/r FL post-2L; mutation testing recommended for response prediction"
+
+known_controversies:
+  - topic: "Tazemetostat in EZH2-WT r/r FL — value vs other 3L+ options"
+    positions:
+      - position: "Use EZH2-WT — FDA-approved, oral, low toxicity, real CR proportion in ~4%"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Reserve for EZH2-mut only — WT response rates lower than mosun / CAR-T for similar setting"
+        sources: [SRC-NCCN-BCELL-2025]
+        evidence_note: "ESMO-FL-2024 favors testing-driven selection"
+    our_default: "Test EZH2 first; tazemetostat preferred for EZH2-mut; for EZH2-WT consider mosunetuzumab / CAR-T first if accessible"
+
+do_not_do:
+  - "НЕ комбінувати з strong CYP3A inducers (rifampin, carbamazepine) — efficacy loss."
+  - "НЕ призначати при concomitant strong CYP3A inhibitor без dose reduction до 400 mg BID."
+  - "НЕ пропускати baseline NGS для EZH2 Y641 — predicts ~2× higher response rate в mutated subset."
+  - "НЕ призначати при transformation-suspect (швидкий ріст, SUVmax розрив, нові B-symptoms) — re-біопсія + DLBCL/CAR-T pathway."
+  - "НЕ забути monitoring secondary malignancy ризик (T-LBL/AML signal originally в pediatric INI1-sarcoma trials; lymphoma signal unclear, але surveillance триває)."
+  - "НЕ підтверджувати plan без funding pathway — препарат не зареєстрований в Україні."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Co-Lead sign-off. Standard-track 3L+ option for r/r
+  FL. EZH2-mut subset enrichment is prefer-but-not-required. Oral
+  administration and low toxicity profile make this the preferred
+  choice for older / frail patients ineligible for parenteral salvage.
+  UA access barrier dominant.

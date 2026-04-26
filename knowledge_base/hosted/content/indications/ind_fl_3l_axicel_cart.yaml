@@ -1,0 +1,112 @@
+id: IND-FL-3L-AXICEL-CART
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-FL
+  line_of_therapy: 3
+  stage_requirements:
+    - "Relapsed/refractory after ≥2 prior systemic lines"
+  biomarker_requirements_required:
+    - biomarker_id: BIO-CD20-IHC
+      required: true
+      value_constraint: "CD19+ confirmed by IHC or flow (CD19 typically retained); CD20+ at original diagnosis sufficient for FL ZUMA-5"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 1
+    age_min: 18
+    age_max: 75
+
+recommended_regimen: REG-CAR-T-AXICEL-FL
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~94% (ZUMA-5)"
+  complete_response: "~79%"
+  progression_free_survival: "Median PFS not reached at 4y; ~57% of complete responders remain in remission at 4y"
+  overall_survival_5y: "~73% (4-year OS ZUMA-5)"
+
+hard_contraindications:
+  - CI-ACTIVE-INFECTION-FOR-ALEMTUZUMAB  # any active uncontrolled infection
+red_flags_triggering_alternative:
+  - RF-FL-TRANSFORMATION-SUSPECT  # if transformation, route to DLBCL CAR-T (axi-cel ZUMA-7 / liso-cel)
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-CD20-IHC
+  - TEST-PET-CT
+  - TEST-ECHO
+  - TEST-IMMUNOGLOBULINS
+  - TEST-BM-ASPIRATE
+  - TEST-LN-CORE-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PREGNANCY
+desired_tests:
+  - TEST-MRI-BRAIN-CONTRAST
+
+rationale: >
+  Axicabtagene ciloleucel (axi-cel) for r/r FL after ≥2 prior systemic
+  lines (per ZUMA-5 registration). Anti-CD19 CD28-costimulated CAR-T
+  with single infusion after fludarabine-cyclo lymphodepletion. Best
+  observed response rates of any 3L+ FL therapy (ORR 94%, CR 79%,
+  median DOR not reached at 4y) — most likely to deliver durable
+  remission in this otherwise progressive setting. For fit ECOG 0-1
+  patient under 75 with CAR-T-accessible center. Toxicity lower-grade
+  than DLBCL setting (Grade ≥3 CRS ~7%, ICANS ~19%) but still
+  substantial; FACT/JACIE accreditation + tocilizumab on-site
+  mandatory. UA access via international referral only.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "CAR-T (axi-cel ZUMA-5, liso-cel TRANSCEND FL-001) is recommended for r/r FL after ≥2 prior lines; Cat 2A"
+  - source_id: SRC-ESMO-FL-2024
+    position: supports
+    relevant_quote_paraphrase: "Anti-CD19 CAR-T cell therapy is established option for r/r FL after 2+ prior lines, particularly POD24 / multiply-relapsed; durable remissions in substantial fraction"
+
+known_controversies:
+  - topic: "Axi-cel vs lisocabtagene maraleucel for r/r FL ≥3L"
+    positions:
+      - position: "Axi-cel: CD28 costim — highest response rates, faster expansion; higher CRS/ICANS"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Liso-cel (TRANSCEND FL-001): comparable CR rate, substantially lower Grade ≥3 CRS/ICANS — preferred for elderly / frail when accessible"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "Axi-cel for fit ECOG 0-1 under 70; liso-cel preferred elderly / frail if accessible"
+  - topic: "CAR-T vs mosunetuzumab as 3L+ default"
+    positions:
+      - position: "CAR-T preferred — depth + durability of response"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Mosunetuzumab preferred — ambulatory, lighter logistics, no manufacturing window"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "CAR-T for fit accessible; mosun for non-accessible / older / frail"
+
+do_not_do:
+  - "НЕ призначати prophylactic systemic corticosteroids — пригнічує CAR-T expansion + знижує efficacy."
+  - "НЕ розпочинати без on-site tocilizumab (мінімум 2 дози) ДО інфузії — fatal CRS можливе."
+  - "НЕ робити в центрі без CAR-T accreditation (FACT/JACIE/REMS) — toxicity management потребує спеціалізованої команди."
+  - "НЕ пропускати baseline brain MRI — pre-existing CNS disease ризик fatal ICANS значно вищий (CNS-2/3 виключені з ZUMA-5)."
+  - "НЕ ігнорувати bridging therapy під час 3-4 тижневого manufacturing window — disease progression в цьому вікні зменшує efficacy."
+  - "НЕ призначати при active uncontrolled infection — лімфодеплеція + CRS = high mortality."
+  - "НЕ забути IVIG для довготривалої hypogammaglobulinemia (IgG <400 + recurrent infections)."
+  - "НЕ пропускати re-biopsy при підозрі на transformation (RF-FL-TRANSFORMATION-SUSPECT) — DLBCL pathway / ZUMA-7 axi-cel for 2L primary-refractory є окремим indication."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 3L+
+  CAR-T option for r/r FL. Ukraine access constraint dominant:
+  international referral pathway (Israel / Poland / Germany / Spain) +
+  USD 350-500K all-in cost. Liso-cel (TRANSCEND FL-001) is alternative
+  CD19 CAR-T product with lower CRS/ICANS — separate future Indication.

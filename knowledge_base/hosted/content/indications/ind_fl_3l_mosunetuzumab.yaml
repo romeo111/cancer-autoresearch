@@ -1,0 +1,107 @@
+id: IND-FL-3L-MOSUNETUZUMAB
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-FL
+  line_of_therapy: 3
+  stage_requirements:
+    - "Relapsed/refractory after ≥2 prior systemic lines including an anti-CD20 antibody and an alkylator"
+  biomarker_requirements_required:
+    - biomarker_id: BIO-CD20-IHC
+      required: true
+      value_constraint: "positive at most-recent biopsy (CD20-loss must be ruled out)"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+    age_min: 18
+
+recommended_regimen: REG-MOSUNETUZUMAB-FL
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~80% (GO29781)"
+  complete_response: "~60%"
+  progression_free_survival: "Median PFS ~17.9 mo; median DOR ~22.8 mo"
+  overall_survival_5y: "Mature OS data still maturing; estimated 24-mo OS ~87%"
+
+hard_contraindications: [CI-HBV-NO-PROPHYLAXIS]
+red_flags_triggering_alternative:
+  - RF-FL-TRANSFORMATION-SUSPECT  # transformation suspect → re-biopsy + DLBCL pathway / CAR-T
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-CD20-IHC
+  - TEST-LN-CORE-BIOPSY  # confirm CD20+ at relapse
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PET-CT
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-IMMUNOGLOBULINS
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-PREGNANCY
+desired_tests:
+  - TEST-ECHO
+
+rationale: >
+  CD20×CD3 bispecific T-cell engager for r/r FL after ≥2 prior lines
+  (per GO29781 registration). Time-limited (8 cycles, extend to 17 if
+  no CR by C8) — distinct from continuous BTKi paradigm and one-shot
+  CAR-T. ORR 80% / CR 60% in heavily pretreated FL, with manageable
+  CRS confined mainly to cycle 1 step-up. Ambulatory feasibility
+  after first cycle → preferred for patients ineligible for CAR-T
+  logistically (no FACT-accredited center accessible; bridging
+  impractical) but still fit enough for IV treatment. Confirm CD20+
+  at most-recent biopsy — CD20 loss after multiple anti-CD20 lines is
+  a known resistance mechanism that abrogates mosunetuzumab activity.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "Mosunetuzumab is recommended for r/r FL after ≥2 prior systemic lines including anti-CD20 + alkylator (GO29781); Cat 2A"
+  - source_id: SRC-ESMO-FL-2024
+    position: supports
+    relevant_quote_paraphrase: "CD20×CD3 bispecific antibodies (mosunetuzumab, glofitamab class) are emerging standard for r/r FL post-2L; time-limited dosing schedule"
+
+known_controversies:
+  - topic: "Mosunetuzumab vs CAR-T (axi-cel ZUMA-5) for r/r FL ≥3L"
+    positions:
+      - position: "Mosunetuzumab: ambulatory after C1, time-limited (≤17 cycles), Grade ≥3 CRS only ~2% — practical"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "CAR-T: higher ORR (~94%) and likely longer DOR; one-shot — but requires FACT-accredited center, manufacturing window, bridging"
+        sources: [SRC-NCCN-BCELL-2025]
+        evidence_note: "ZUMA-5 4-yr follow-up: ~57% of complete responders still in remission"
+    our_default: >
+      For fit younger FL patient with CAR-T-accessible referral pathway: CAR-T
+      preferred (durability advantage). For older / frail / non-CAR-T-accessible
+      patient, mosunetuzumab is the practical choice.
+    rationale: "Both require international referral in Ukraine; mosun is logistically lighter."
+
+do_not_do:
+  - "НЕ призначати при CD20 loss at relapse — bispecific вимагає CD20 на B-клітинах; підтвердити IHC на найсвіжішій біопсії."
+  - "НЕ пропускати step-up dosing schedule (1 → 2 → 60 mg в C1) — full dose без step-up = high-risk fatal CRS."
+  - "НЕ призначати без on-site tocilizumab (≥2 dози доступно ДО кожного step-up dose) — emergency CRS rescue може знадобитись."
+  - "НЕ призначати prophylactic systemic steroids поза CRS-management — бистрі pulses dexa в premedication разрешені, але хронічні стероіди знижують T-cell ефективність."
+  - "НЕ забути HBV скринінг + entecavir prophylaxis при HBsAg+ або anti-HBc+ — depletion B-клітин = reactivation ризик як з rituximab."
+  - "НЕ ігнорувати baseline IgG — pre-existing hypogammaglobulinemia може потребувати IVIG; B-cell aplasia подовжує infection vulnerability."
+  - "НЕ комбінувати з sustained immunosuppression або live vaccines під час терапії та ≥6 міс після."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 3L+
+  bispecific for r/r FL. Glofitamab (Columvi) is alternative CD20×CD3
+  bispecific approved for FL by EMA (different schedule, fixed-dose
+  obinutuzumab debulking pre-treatment) — separate future Indication
+  / Regimen.

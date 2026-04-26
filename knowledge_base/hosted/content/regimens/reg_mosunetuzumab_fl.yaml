@@ -1,0 +1,64 @@
+id: REG-MOSUNETUZUMAB-FL
+name: "Mosunetuzumab IV step-up (8 cycles, 21-day; up to 17 if not in CR by C8) — r/r FL"
+name_ua: "Мосунетузумаб IV step-up (8 циклів, 21 день; до 17 якщо не CR після C8) — рефрактерна/рецидивна ФЛ"
+alternate_names: ["Mosun mono", "GO29781 regimen", "Lunsumio FL"]
+
+components:
+  - drug_id: DRUG-MOSUNETUZUMAB
+    dose: "Cycle 1: 1 mg day 1, 2 mg day 8, 60 mg day 15. Cycle 2: 60 mg day 1. Cycles 3-8 (or up to 17): 30 mg day 1."
+    schedule: "IV per step-up schedule, 21-day cycles; max 8 cycles (extend to 17 if no CR by C8)"
+    route: IV
+
+cycle_length_days: 21
+total_cycles: "8 (extend to 17 if no CR by C8); time-limited"
+toxicity_profile: moderate
+
+premedication:
+  - "Cycle 1 day 1, 8, 15: dexamethasone 20 mg IV + diphenhydramine 50 mg IV + acetaminophen 650 mg PO 30-60 min pre-infusion (CRS prophylaxis during step-up)"
+  - "After cycle 2 (if no Grade ≥2 CRS): pre-medication may be downgraded"
+  - "Tumor lysis prophylaxis (allopurinol + hydration) for high-burden disease cycle 1"
+mandatory_supportive_care:
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-TLS-PROPHYLAXIS
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "CRS Grade 2 (hypotension responsive to fluids OR hypoxia <40% O₂)"
+    modification: "Hold infusion; supportive care + IV fluids; tocilizumab 8 mg/kg IV (max 800 mg) if no improvement in 24h; resume at lower dose level after resolution"
+    rationale: "Cytokine release predominantly in cycle 1 step-up — tocilizumab IL-6R blockade rescue"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "CRS Grade 3-4"
+    modification: "Hold permanently if Grade 4; ICU; tocilizumab + dexamethasone 10 mg IV q6h ± methylprednisolone 1 g/day; resume cautiously after Grade 4 only on case-by-case"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Neutropenia ANC <1000"
+    modification: "Hold; G-CSF support; resume on ANC ≥1000"
+  - condition: "Severe hepatic impairment (Child-Pugh C)"
+    modification: "Avoid; no dose adjustment data"
+  - condition: "Active uncontrolled infection"
+    modification: "Defer until resolved"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: >
+    Mosunetuzumab NOT registered in Ukraine; no domestic supply. Access
+    via clinical trial / charitable / international referral only. For
+    r/r FL after ≥2 lines, ambulatory time-limited bispecific is an
+    attractive option vs continuous BTKi (none approved for FL) or
+    one-shot CAR-T (logistically harder). Funding pathway is dominant
+    constraint.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-FL-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  GO29781 (Budde 2022): r/r FL after ≥2 prior lines (median 3 prior
+  lines, 69% double-refractory) — ORR 80%, CR 60%, median DOR 22.8
+  mo, mPFS 17.9 mo. Time-limited (max 17 cycles) vs continuous BTKi.
+  CRS predominantly cycle 1 step-up; Grade ≥3 ~2% — far below
+  CAR-T. Cycle 1 hospitalization (for monitoring after step-up
+  doses) standard; subsequent cycles outpatient. Ambulatory option
+  vs CAR-T (one-shot, complex logistics) and tazemetostat (oral but
+  lower CR rate). Boxed CRS warning, not BBW.
