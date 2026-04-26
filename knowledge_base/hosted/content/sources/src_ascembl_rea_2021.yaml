@@ -31,7 +31,7 @@ legal_review:
   date: "2026-04-25"
 relates_to_diseases:
   - DIS-CML
-last_verified: "2026-04-25"
+last_verified: '2026-04-27'
 notes: >
   ASCEMBL phase-3 RCT: asciminib 40 mg BID vs bosutinib 500 mg
   daily in CML-CP after ≥2 prior TKIs (n=233). Primary endpoint

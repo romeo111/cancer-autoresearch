@@ -31,7 +31,7 @@ legal_review:
   date: '2026-04-25'
 relates_to_diseases:
   - DIS-CML
-last_verified: '2026-04-25'
+last_verified: '2026-04-27'
 notes: >
   IRIS pivotal phase-3 trial that established imatinib 400 mg daily as
   CML 1L. 10-y OS ~83%. Foundation for the BCR-ABL1 TKI era.

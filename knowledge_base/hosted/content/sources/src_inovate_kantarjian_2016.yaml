@@ -31,7 +31,7 @@ legal_review:
   date: "2026-04-25"
 relates_to_diseases:
   - DIS-B-ALL
-last_verified: "2026-04-25"
+last_verified: '2026-04-27'
 notes: >
   INO-VATE phase-3: inotuzumab ozogamicin vs investigator-choice
   salvage chemo in R/R Ph- B-ALL (n=326). CR/CRi 80.7% vs 29.4%

@@ -31,7 +31,7 @@ legal_review:
   date: '2026-04-25'
 relates_to_diseases:
   - DIS-AML
-last_verified: '2026-04-25'
+last_verified: '2026-04-27'
 notes: >
   VIALE-A pivotal phase-3 RCT: ven + aza vs aza alone in newly-diagnosed
   AML unfit for intensive chemo. Median OS 14.7 vs 9.6 mo (HR 0.66).

@@ -31,7 +31,7 @@ legal_review:
   date: "2026-04-25"
 relates_to_diseases:
   - DIS-AML
-last_verified: "2026-04-25"
+last_verified: '2026-04-27'
 notes: >
   QuANTUM-First phase-3: quizartinib 35.4-53 mg PO + standard 7+3
   induction + consolidation + 3-year maintenance vs placebo+chemo,

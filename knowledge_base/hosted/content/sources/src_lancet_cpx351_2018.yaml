@@ -31,7 +31,7 @@ legal_review:
   date: "2026-04-25"
 relates_to_diseases:
   - DIS-AML
-last_verified: "2026-04-25"
+last_verified: '2026-04-27'
 notes: >
   Pivotal phase-3 (NCT01696084): CPX-351 (Vyxeos) liposomal
   cytarabine + daunorubicin vs standard 7+3 in patients age 60-75

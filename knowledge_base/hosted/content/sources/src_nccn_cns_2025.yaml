@@ -19,7 +19,7 @@ sharealike_required: false
 known_restrictions: ['No hosting']
 legal_review: {status: reviewed, date: '2026-04-26'}
 relates_to_diseases: [DIS-GBM]
-last_verified: '2026-04-26'
+last_verified: '2026-04-27'
 notes: 'Gliomas / GBM / meningioma / brain mets. WHO 2021 IDH-stratified glioma classification + Stupp protocol GBM.'
 pages_count: 260
 references_count: 420

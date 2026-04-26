@@ -31,7 +31,7 @@ legal_review:
   date: "2026-04-25"
 relates_to_diseases:
   - DIS-MDS-LR
-last_verified: "2026-04-25"
+last_verified: '2026-04-27'
 notes: >
   IMerge phase-3: imetelstat 7.1 mg/kg IV q4wk vs placebo in
   transfusion-dependent LR-MDS (IPSS low / int-1) post-ESA

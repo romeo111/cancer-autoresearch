@@ -78,7 +78,7 @@ legal_review:
 
 relates_to_diseases:
   - "*"
-last_verified: '2026-04-25'
+last_verified: '2026-04-27'
 pages_count: 12  # Foundational paper Chakravarty 2017 + therapeutic-level taxonomy doc
 references_count: 50  # Curated PMIDs cited in level-1/2/3A/3B annotations consumed by proxy
 corpus_role: secondary_evidence_base

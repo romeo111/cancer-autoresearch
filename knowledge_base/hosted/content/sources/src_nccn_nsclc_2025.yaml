@@ -43,7 +43,7 @@ legal_review:
   notes: Same posture as SRC-NCCN-PROSTATE-2025 / SRC-ESMO-DLBCL-2024
 relates_to_diseases:
   - DIS-NSCLC
-last_verified: null
+last_verified: '2026-04-27'
 notes: >
   Primary international guideline for NSCLC. Codifies universal NGS testing for advanced disease, driver-mutation 1L therapy hierarchies (FLAURA: osimertinib > 1G TKI; ALEX: alectinib > crizotinib), PACIFIC-style durva consolidation, KEYNOTE-024 / KEYNOTE-189 / KEYNOTE-407 PD-L1 + chemo strategies.
 pages_count: 250

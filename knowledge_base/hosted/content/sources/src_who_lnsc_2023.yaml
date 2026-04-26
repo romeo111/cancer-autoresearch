@@ -33,7 +33,7 @@ legal_review:
   notes: Verify whether 5-tier label list (Inadequate / Benign / Atypical / Suspicious / Malignant) is
     a creative work or a generic factual schema; treat as referenced until reviewed.
 relates_to_diseases: []
-last_verified: '2026-04-25'
+last_verified: '2026-04-27'
 notes: 'STUB. Standardized 5-tier reporting framework for lymph-node FNA cytology: Inadequate / Benign
   / Atypical / Suspicious / Malignant, each with published risk-of-malignancy (ROM) and recommended next
   step. Used in WORKUP-LYMPHADENOPATHY-NONSPECIFIC for the undifferentiated lymphadenopathy triage path

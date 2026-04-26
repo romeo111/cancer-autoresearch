@@ -31,7 +31,7 @@ legal_review:
   date: '2026-04-25'
 relates_to_diseases:
   - DIS-APL
-last_verified: '2026-04-25'
+last_verified: '2026-04-27'
 notes: >
   APL0406 phase-3 RCT: ATRA + ATO vs ATRA + chemotherapy (AIDA) in
   low/intermediate-risk APL (WBC ≤10). 2-y EFS 97% vs 86%, OS 99% vs 91%.

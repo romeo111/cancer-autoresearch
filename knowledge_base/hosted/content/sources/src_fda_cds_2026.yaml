@@ -36,7 +36,7 @@ legal_review:
   date: '2026-04-25'
   notes: Public domain federal guidance
 relates_to_diseases: []
-last_verified: '2026-04-25'
+last_verified: '2026-04-27'
 notes: 'Authoritative interpretation of §520(o)(1)(E) of the FD&C Act (21st Century Cures Act CDS carve-out).
   Defines four criteria for software to qualify as Non-Device CDS, exempt from FDA premarket review. OpenOnco''s
   design (CHARTER §2 two-plan output, §8.3 no-LLM-clinical-reasoning, transparent rule engine, source

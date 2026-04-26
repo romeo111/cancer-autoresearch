@@ -31,7 +31,7 @@ legal_review:
   date: "2026-04-25"
 relates_to_diseases:
   - DIS-MDS-LR
-last_verified: "2026-04-25"
+last_verified: '2026-04-27'
 notes: >
   MDS-004 phase-3: lenalidomide 10 mg PO d1-21/28d vs 5 mg
   continuous vs placebo in transfusion-dependent LR-MDS with

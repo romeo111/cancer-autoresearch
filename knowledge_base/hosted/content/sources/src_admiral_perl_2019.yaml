@@ -31,7 +31,7 @@ legal_review:
   date: "2026-04-25"
 relates_to_diseases:
   - DIS-AML
-last_verified: "2026-04-25"
+last_verified: '2026-04-27'
 notes: >
   ADMIRAL phase-3: single-agent gilteritinib 120 mg PO daily vs
   investigator-choice salvage chemo in R/R FLT3-mutated AML.

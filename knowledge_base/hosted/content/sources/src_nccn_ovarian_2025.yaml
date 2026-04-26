@@ -19,7 +19,7 @@ sharealike_required: false
 known_restrictions: ['No hosting']
 legal_review: {status: reviewed, date: '2026-04-26'}
 relates_to_diseases: [DIS-OVARIAN]
-last_verified: '2026-04-26'
+last_verified: '2026-04-27'
 notes: 'High-grade serous ovarian carcinoma. HRD/BRCA-driven; PARPi maintenance.'
 pages_count: 220
 references_count: 380

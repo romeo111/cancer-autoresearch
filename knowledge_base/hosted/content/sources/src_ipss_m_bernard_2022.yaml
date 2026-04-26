@@ -32,7 +32,7 @@ legal_review:
 relates_to_diseases:
   - DIS-MDS-LR
   - DIS-MDS-HR
-last_verified: '2026-04-25'
+last_verified: '2026-04-27'
 notes: >
   Definitive paper for IPSS-M (molecular IPSS) used to risk-stratify
   MDS by clinical + cytogenetic + 31-gene molecular features. Restratifies

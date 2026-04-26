@@ -31,7 +31,7 @@ legal_review:
   date: "2026-04-25"
 relates_to_diseases:
   - DIS-B-ALL
-last_verified: "2026-04-25"
+last_verified: '2026-04-27'
 notes: >
   BLAST phase-2 single-arm: blinatumomab 28 µg/day continuous IV
   d1-28 of 42-day cycle ×4 cycles in adults with B-ALL with
