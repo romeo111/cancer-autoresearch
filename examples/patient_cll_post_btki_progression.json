@@ -1,0 +1,55 @@
+{
+  "patient_id": "CLL-3L-PIRTO-001",
+  "comment": "Synthetic CLL post-acalabrutinib 18-mo progression with BTK-C481-mut detected and prior venetoclax exposure. Engine should select IND-CLL-3L-PIRTOBRUTINIB via line_of_therapy=3 + post-cBTKi.",
+
+  "disease": {
+    "id": "DIS-CLL",
+    "icd_o_3_morphology": "9823/3"
+  },
+  "line_of_therapy": 3,
+
+  "biomarkers": {},
+
+  "demographics": {
+    "age": 68,
+    "sex": "male",
+    "ecog": 1
+  },
+
+  "findings": {
+    "prior_lines_count": 2,
+    "prior_regimens": ["FCR (3 cycles, intolerant)", "Acalabrutinib x 18 mo"],
+    "prior_cbtki_exposure": true,
+    "prior_bcl2i_exposure": false,
+    "cbtki_resistance_or_intolerance": true,
+    "btk_c481_mutation": true,
+    "tp53_mutation": true,
+    "del_17p": true,
+    "ighv_unmutated": true,
+    "complex_karyotype": true,
+    "iwcll_indication_present": true,
+    "afib_history": false,
+    "bleeding_risk_high": false,
+    "absolute_lymphocyte_count_k_ul": 28,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative"
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Chronic Lymphocytic Leukemia — post-cBTKi progression",
+        "icd_o_3": "9823/3"
+      },
+      "treatment_history": {
+        "first_line": {"regimen": "FCR — discontinued cycle 3 (cytopenia)", "best_response": "PR"},
+        "second_line": {"regimen": "Acalabrutinib mono", "best_response": "PR", "duration_months": 18, "progression": true}
+      },
+      "molecular": {
+        "btk_c481_status": "mutated",
+        "tp53_status": "mutated",
+        "ighv_status": "unmutated"
+      }
+    }
+  }
+}

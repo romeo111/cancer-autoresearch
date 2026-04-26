@@ -1,0 +1,65 @@
+{
+  "patient_id": "AML-2L-GILT-001",
+  "comment": "Synthetic AML post 7+3 → CR1 → relapse with re-tested FLT3-ITD+. Age 55, ECOG 1, fit. Engine should select IND-AML-2L-GILTERITINIB-FLT3 via line_of_therapy=2 + FLT3 mutation.",
+
+  "disease": {
+    "id": "DIS-AML",
+    "icd_o_3_morphology": "9861/3"
+  },
+  "line_of_therapy": 2,
+
+  "biomarkers": {},
+
+  "demographics": {
+    "age": 55,
+    "sex": "female",
+    "ecog": 1,
+    "fit_for_transplant": true
+  },
+
+  "findings": {
+    "prior_lines_count": 1,
+    "prior_regimen": "7+3 induction → CR1, no consolidation HCT yet",
+    "time_to_relapse_months": 9,
+    "flt3_itd": true,
+    "flt3_tkd": false,
+    "flt3_mutation": "positive",
+    "flt3_retested_at_relapse": true,
+    "tp53_mutation": false,
+    "complex_karyotype": false,
+    "monosomal_karyotype": false,
+    "monosomy_7": false,
+    "del_5q": false,
+    "active_uncontrolled_infection": false,
+    "wbc_k_ul": 18,
+    "blast_percent_pb": 25,
+    "lvef_percent": 60,
+    "qtc_ms": 430,
+    "potassium_meq_l": 4.2,
+    "magnesium_mg_dl": 2.1,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative"
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Acute Myeloid Leukemia — FLT3-ITD-mutated, first relapse",
+        "icd_o_3": "9861/3"
+      },
+      "treatment_history": {
+        "first_line": {
+          "regimen": "7+3 (idarubicin + cytarabine) + midostaurin",
+          "best_response": "CR1",
+          "consolidation": "none — relapsed before HCT bridging",
+          "relapse_at_months": 9
+        }
+      },
+      "molecular_at_relapse": {
+        "flt3_itd": "positive",
+        "flt3_allelic_ratio": 0.6,
+        "npm1": "positive"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "patient_id": "MM-2L-DKD-001",
+  "comment": "Synthetic MM post-VRd induction (PR), M-spike rising at 12 mo, lenalidomide-refractory, fit ECOG 1. Engine should select IND-MM-2L-DKD via line_of_therapy=2 + len-refractory profile.",
+
+  "disease": {
+    "id": "DIS-MM",
+    "icd_o_3_morphology": "9732/3"
+  },
+  "line_of_therapy": 2,
+
+  "biomarkers": {},
+
+  "demographics": {
+    "age": 64,
+    "sex": "female",
+    "ecog": 1,
+    "fit_for_transplant": false
+  },
+
+  "findings": {
+    "prior_lines_count": 1,
+    "prior_regimen": "VRd x 8",
+    "lenalidomide_refractory": true,
+    "bortezomib_exposed": true,
+    "anti_cd38_naive": true,
+    "time_to_progression_months": 12,
+    "creatinine_clearance_ml_min": 78,
+    "serum_creatinine_mg_dl": 1.0,
+    "mm_renal_failure": false,
+    "del_17p": false,
+    "t_4_14": false,
+    "t_14_16": false,
+    "gain_1q": false,
+    "tp53_mutation": false,
+    "mm_cytogenetics_high_risk": false,
+    "lvef_percent": 60,
+    "uncontrolled_hypertension": false,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative",
+    "severe_neuropathy_grade": 1
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Multiple myeloma, IgG kappa — relapsed",
+        "icd_o_3": "9732/3",
+        "icd_10": "C90.0"
+      },
+      "treatment_history": {
+        "first_line": {
+          "regimen": "VRd x 8 (no ASCT — patient deferred)",
+          "best_response": "PR",
+          "progression_at_months": 12,
+          "len_refractory": true
+        }
+      }
+    },
+    "laboratory_baseline": {
+      "m_protein_g_dl": 2.1,
+      "free_light_chain_ratio": 18.0
+    },
+    "infectious_status": {"HBV": {"HBsAg": "negative", "anti_HBc": "negative"}}
+  }
+}

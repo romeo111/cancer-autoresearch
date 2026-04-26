@@ -1,0 +1,62 @@
+{
+  "patient_id": "DLBCL-2L-RELAPSED-001",
+  "comment": "Synthetic relapsed DLBCL post R-CHOP at 8 mo, transplant-ineligible (age 72, ECOG 2). Engine should select IND-DLBCL-2L-POLA-R-BENDAMUSTINE via line_of_therapy=2 + CD20+ + transplant-ineligible profile.",
+
+  "disease": {
+    "id": "DIS-DLBCL-NOS",
+    "icd_o_3_morphology": "9680/3"
+  },
+  "line_of_therapy": 2,
+
+  "biomarkers": {
+    "BIO-CD20-IHC": "positive"
+  },
+
+  "demographics": {
+    "age": 72,
+    "sex": "male",
+    "ecog": 2,
+    "fit_for_transplant": false
+  },
+
+  "findings": {
+    "prior_lines_count": 1,
+    "prior_regimen": "R-CHOP",
+    "time_to_progression_months": 8,
+    "transplant_eligible": false,
+    "ipi_score": 3,
+    "high_ipi": true,
+    "ldh_ratio_to_uln": 1.4,
+    "lvef_percent": 55,
+    "creatinine_clearance_ml_min": 62,
+    "severe_neuropathy_grade": 0,
+    "hbsag": "negative",
+    "anti_hbc_total": "negative",
+    "comorbidity_grade2_count": 2,
+    "biopsy_shows_dlbcl": true
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "Diffuse Large B-Cell Lymphoma, NOS — relapsed",
+        "icd_o_3": "9680/3",
+        "icd_10": "C83.3"
+      },
+      "treatment_history": {
+        "first_line": {
+          "regimen": "R-CHOP x 6",
+          "best_response": "PR",
+          "progression_at_months": 8
+        }
+      },
+      "transplant_assessment": {
+        "eligible": false,
+        "rationale": "Age 72 + ECOG 2 + comorbidity (cardiac, mild renal) — auto-SCT not recommended"
+      }
+    },
+    "infectious_status": {
+      "HBV": {"HBsAg": "negative", "anti_HBc": "negative"}
+    }
+  }
+}
