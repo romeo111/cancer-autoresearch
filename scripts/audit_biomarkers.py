@@ -1,0 +1,329 @@
+#!/usr/bin/env python3
+"""Audit biomarker catalog: list every Biomarker entity, its references
+across Indications/Algorithms/RedFlags, and any naming inconsistencies.
+
+Generates `docs/BIOMARKER_CATALOG.md` — re-run anytime KB content changes.
+This script is the source of truth for the catalog; do not hand-edit
+the markdown output.
+
+Usage:
+    python scripts/audit_biomarkers.py
+    # or with PYTHONPATH not set:
+    PYTHONPATH=. python scripts/audit_biomarkers.py
+
+Audit categories:
+  ✓ defined+used        — entity exists, ≥1 rule reference
+  ⚠ defined+unused      — entity exists, zero rule references (KB
+                          coverage gap or pending wiring)
+  ❌ referenced+missing  — rule cites BIO-X but no entity file
+  🔧 naming-mismatch    — entity id ≠ rules' citation form
+"""
+
+from __future__ import annotations
+
+import re
+import sys
+from collections import Counter, defaultdict
+from pathlib import Path
+
+import yaml
+
+REPO_ROOT = Path(__file__).parent.parent
+BIO_DIR = REPO_ROOT / "knowledge_base" / "hosted" / "content" / "biomarkers"
+RULE_DIRS = [
+    REPO_ROOT / "knowledge_base" / "hosted" / "content" / "indications",
+    REPO_ROOT / "knowledge_base" / "hosted" / "content" / "algorithms",
+    REPO_ROOT / "knowledge_base" / "hosted" / "content" / "redflags",
+]
+DISEASE_DIR = REPO_ROOT / "knowledge_base" / "hosted" / "content" / "diseases"
+OUTPUT = REPO_ROOT / "docs" / "BIOMARKER_CATALOG.md"
+
+BIO_REF_RE = re.compile(r"BIO-[A-Z0-9_-]+")
+
+
+def _load_yaml(path: Path) -> dict | None:
+    try:
+        return yaml.safe_load(path.read_text(encoding="utf-8"))
+    except yaml.YAMLError as exc:
+        print(f"  [warn] YAML parse failed for {path.name}: {exc}", file=sys.stderr)
+        return None
+
+
+def _walk_yaml(directory: Path):
+    """Recursive YAML walk (rule dirs may have subfolders)."""
+    if not directory.is_dir():
+        return
+    for path in sorted(directory.rglob("*.yaml")):
+        yield path
+
+
+def _disease_name_index() -> dict[str, str]:
+    """`DIS-X` → preferred name."""
+    out: dict[str, str] = {}
+    for path in _walk_yaml(DISEASE_DIR):
+        data = _load_yaml(path)
+        if not isinstance(data, dict):
+            continue
+        did = data.get("id")
+        names = data.get("names") or {}
+        if did:
+            out[did] = (
+                names.get("preferred")
+                or names.get("english")
+                or did
+            )
+    return out
+
+
+def _collect_biomarker_entities() -> dict[str, dict]:
+    """`BIO-X` → entity dict. Key is the actual `id` field, not filename."""
+    out: dict[str, dict] = {}
+    for path in _walk_yaml(BIO_DIR):
+        data = _load_yaml(path)
+        if not isinstance(data, dict):
+            continue
+        bid = data.get("id")
+        if not bid:
+            continue
+        data["_file"] = path.name
+        out[bid] = data
+    return out
+
+
+def _collect_rule_references() -> tuple[Counter, dict[str, set[str]]]:
+    """Walk rule entities; return (BIO-X → ref count, BIO-X → set(disease_ids))."""
+    refs: Counter = Counter()
+    bio_to_diseases: dict[str, set[str]] = defaultdict(set)
+    for d in RULE_DIRS:
+        for path in _walk_yaml(d):
+            text = path.read_text(encoding="utf-8")
+            data = _load_yaml(path)
+            disease_id = None
+            if isinstance(data, dict):
+                applicable = data.get("applicable_to") or {}
+                disease_id = (
+                    data.get("applicable_to_disease")
+                    or (applicable.get("disease_id") if isinstance(applicable, dict) else None)
+                    or data.get("disease_id")
+                    or data.get("disease")
+                )
+                if isinstance(disease_id, dict):
+                    disease_id = disease_id.get("id")
+            for match in BIO_REF_RE.findall(text):
+                refs[match] += 1
+                if disease_id:
+                    bio_to_diseases[match].add(disease_id)
+    return refs, bio_to_diseases
+
+
+# ── Issue detection ─────────────────────────────────────────────────────
+
+
+def _detect_naming_mismatches(
+    defined: dict[str, dict],
+    referenced: Counter,
+) -> list[tuple[str, str]]:
+    """Try to pair off near-miss IDs by token overlap. Returns
+    (entity_id, ref_id) candidate pairs."""
+
+    defined_ids = set(defined)
+    ref_ids = set(referenced)
+    only_defined = defined_ids - ref_ids
+    only_ref = ref_ids - defined_ids
+
+    pairs: list[tuple[str, str]] = []
+    for d_id in only_defined:
+        d_tokens = set(d_id.split("-"))
+        for r_id in only_ref:
+            r_tokens = set(r_id.split("-"))
+            shared = d_tokens & r_tokens
+            # Need ≥3 shared tokens (incl. "BIO") and at least one
+            # non-trivial token.
+            non_trivial = shared - {"BIO", "IHC", "MUT", "STATUS"}
+            if len(shared) >= 3 and non_trivial:
+                pairs.append((d_id, r_id))
+    return pairs
+
+
+# ── Catalog rendering ───────────────────────────────────────────────────
+
+
+def _measurement_label(data: dict) -> str:
+    btype = (data.get("biomarker_type") or "").replace("_", " ")
+    measurement = data.get("measurement") or {}
+    method = measurement.get("method") or ""
+    if method:
+        # First sentence of the method blurb
+        return method.split(".")[0][:80]
+    return btype or "—"
+
+
+def _row(bid: str, defined: dict[str, dict], refs: Counter,
+         diseases: set[str], disease_names: dict[str, str]) -> str:
+    data = defined.get(bid) or {}
+    names = data.get("names") or {}
+    preferred = names.get("preferred", "")
+    abbrevs = ", ".join(names.get("abbreviations") or [])
+    measurement = _measurement_label(data)
+    n_refs = refs.get(bid, 0)
+    diseases_str = ", ".join(
+        sorted({disease_names.get(d, d).split(",")[0][:24] for d in diseases})
+    ) if diseases else "—"
+    flag = ""
+    if bid in defined and n_refs > 0:
+        flag = "✓"
+    elif bid in defined and n_refs == 0:
+        flag = "⚠ unused"
+    elif bid not in defined and n_refs > 0:
+        flag = "❌ MISSING"
+    return (
+        f"| `{bid}` | {flag} | {n_refs} | "
+        f"{preferred or '—'} | {abbrevs or '—'} | "
+        f"{measurement} | {diseases_str} |"
+    )
+
+
+def _render_markdown(
+    defined: dict[str, dict],
+    refs: Counter,
+    bio_to_diseases: dict[str, set[str]],
+    disease_names: dict[str, str],
+    naming_pairs: list[tuple[str, str]],
+) -> str:
+    all_ids = sorted(set(defined) | set(refs))
+    lines: list[str] = []
+    lines.append("# Biomarker catalog")
+    lines.append("")
+    lines.append(
+        "**Auto-generated by** `scripts/audit_biomarkers.py`. Re-run after "
+        "any change under `knowledge_base/hosted/content/{biomarkers,indications,"
+        "algorithms,redflags}/`. Do not hand-edit."
+    )
+    lines.append("")
+    lines.append(
+        "Purpose: single source of truth for which biomarkers OpenOnco's engine "
+        "actually consumes. Drives the PDF-extraction pattern library "
+        "(`docs/plans/biopsy_pdf_extraction_2026-04-26.md`) — only catalog-listed "
+        "biomarkers get regex patterns."
+    )
+    lines.append("")
+
+    # Summary
+    n_defined = len(defined)
+    n_referenced = len(refs)
+    n_used = sum(1 for b in defined if b in refs)
+    n_unused = n_defined - n_used
+    n_missing = sum(1 for b in refs if b not in defined)
+    lines.append("## Summary")
+    lines.append("")
+    lines.append(f"- **Defined entities:** {n_defined}")
+    lines.append(f"- **Referenced by rules:** {n_referenced} unique IDs, "
+                 f"{sum(refs.values())} total citations")
+    lines.append(f"- **Defined + used (✓):** {n_used}")
+    lines.append(f"- **Defined + unused (⚠):** {n_unused}")
+    lines.append(f"- **Referenced + missing (❌):** {n_missing}")
+    lines.append("")
+
+    # Issues block
+    if naming_pairs or n_missing or n_unused:
+        lines.append("## Issues to resolve")
+        lines.append("")
+
+    if naming_pairs:
+        lines.append("### 🔧 Naming mismatches (likely typos — engine sees broken ref)")
+        lines.append("")
+        lines.append("| Defined entity | Cited form | Action |")
+        lines.append("|---|---|---|")
+        for d_id, r_id in naming_pairs:
+            lines.append(
+                f"| `{d_id}` | `{r_id}` | Pick canonical id, "
+                "update either the entity file or the citing rules. "
+                "Two-reviewer per CHARTER §6.1. |"
+            )
+        lines.append("")
+
+    if n_missing:
+        missing = sorted(b for b in refs if b not in defined)
+        lines.append("### ❌ Referenced but no entity file")
+        lines.append("")
+        for bid in missing:
+            count = refs[bid]
+            diseases_for = bio_to_diseases.get(bid, set())
+            disease_str = ", ".join(
+                sorted({disease_names.get(d, d).split(",")[0][:32] for d in diseases_for})
+            ) or "—"
+            lines.append(f"- `{bid}` — cited {count}× ({disease_str}). "
+                         "Author the entity, or remove the citation.")
+        lines.append("")
+
+    if n_unused:
+        unused = sorted(b for b in defined if b not in refs)
+        lines.append("### ⚠ Defined but no rule consumes them")
+        lines.append("")
+        for bid in unused:
+            data = defined[bid]
+            names = data.get("names") or {}
+            preferred = names.get("preferred", "")
+            lines.append(f"- `{bid}` — {preferred}. "
+                         "Wire into ≥1 Indication or red-flag, or document why dormant.")
+        lines.append("")
+
+    # Top consumers
+    lines.append("## Top-cited biomarkers (PDF-extraction priority)")
+    lines.append("")
+    lines.append(
+        "Reference count below is a proxy for how often the engine reads the "
+        "marker. High counts = high payoff for accurate PDF extraction."
+    )
+    lines.append("")
+    lines.append("| Biomarker | Refs | Diseases |")
+    lines.append("|---|---|---|")
+    top = refs.most_common(20)
+    for bid, count in top:
+        diseases_for = bio_to_diseases.get(bid, set())
+        disease_str = ", ".join(
+            sorted({disease_names.get(d, d).split(",")[0][:24] for d in diseases_for})
+        ) or "—"
+        lines.append(f"| `{bid}` | {count} | {disease_str} |")
+    lines.append("")
+
+    # Full table
+    lines.append("## Full catalog")
+    lines.append("")
+    lines.append("| ID | Status | Refs | Name | Abbrev. | Measurement | Diseases |")
+    lines.append("|---|---|---|---|---|---|---|")
+    for bid in all_ids:
+        diseases_for = bio_to_diseases.get(bid, set())
+        lines.append(_row(bid, defined, refs, diseases_for, disease_names))
+    lines.append("")
+
+    return "\n".join(lines) + "\n"
+
+
+def main() -> int:
+    print("Auditing biomarker catalog...", file=sys.stderr)
+    defined = _collect_biomarker_entities()
+    refs, bio_to_diseases = _collect_rule_references()
+    disease_names = _disease_name_index()
+    naming_pairs = _detect_naming_mismatches(defined, refs)
+
+    md = _render_markdown(defined, refs, bio_to_diseases, disease_names, naming_pairs)
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(md, encoding="utf-8")
+
+    n_missing = sum(1 for b in refs if b not in defined)
+    n_unused = sum(1 for b in defined if b not in refs)
+
+    print(f"Wrote {OUTPUT.relative_to(REPO_ROOT)}", file=sys.stderr)
+    print(f"  defined={len(defined)} referenced={len(refs)} "
+          f"unused={n_unused} missing={n_missing} mismatches={len(naming_pairs)}",
+          file=sys.stderr)
+
+    # Exit non-zero if there are integrity issues so CI catches them
+    if n_missing or naming_pairs:
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
