@@ -25,27 +25,30 @@ decision_tree:
   # established the genotype-response correlation: exon 11 / exon 13
   # point mutations only — KIT amplification alone NOT predictive.
   - step: 1
+    # KIT-actionable subset → imatinib. RF triggers only on exon 11 / 13
+    # activating mutations (not amplification alone). Subtype context
+    # (mucosal/acral/chronic-sun-damaged) retained as MDT note since no
+    # melanoma-subtype RF exists yet.
     evaluate:
-      all_of:
-        - condition: "Mucosal, acral, or chronically-sun-damaged subtype"
-        - condition: "KIT activating mutation in exon 11 or exon 13 (NOT amplification alone)"
+      any_of:
+        - red_flag: RF-MELANOMA-KIT-MUT-ACTIONABLE
     if_true:
       result: IND-MELANOMA-2L-KIT-IMATINIB
     if_false:
       next_step: 2
-    notes: "MDT-only — multi-condition fitness/eligibility AND-conjunction; cannot wire RF additively without inverting clinical intent. Restructure manually if engine routing required."
+    notes: "MDT-only — KIT-imatinib clinical context (mucosal/acral/CSD subtype) is documented in indication eligibility; the RF gates on activating exon 11/13 mutation."
 
   # Step 2 — Branch on prior-therapy axis. Was 1L anti-PD-1 (with or
-  # without ipi)?
+  # without ipi)? RF-MELANOMA-IO-RESISTANT fires when post-IO progression
+  # is documented.
   - step: 2
     evaluate:
       any_of:
-        - condition: "Prior anti-PD-1 received as 1L (pembrolizumab, nivolumab, ipi+nivo, or rela+nivo)"
+        - red_flag: RF-MELANOMA-IO-RESISTANT
     if_true:
       next_step: 3
     if_false:
       next_step: 4
-    notes: "Free-text condition without matching disease-scoped RF; engine routes to default. Flag for RF authoring."
 
   # Step 3 — Post-IO branch. If BRAF V600+, BRAFi+MEKi doublet is
   # the standard 2L per NCCN/ESMO + DREAMseq sequencing data. If
@@ -53,27 +56,37 @@ decision_tree:
   - step: 3
     evaluate:
       any_of:
-        - condition: "BRAF V600E or V600K mutation positive"
+        - red_flag: RF-MELANOMA-BRAF-V600-ACTIONABLE
     if_true:
       result: IND-MELANOMA-2L-POST-IO-BRAFI-MEKI
     if_false:
       result: IND-MELANOMA-3L-LIFILEUCEL
-    notes: "Free-text condition without matching disease-scoped RF; engine routes to default. Flag for RF authoring."
 
   # Step 4 — Post-BRAFi branch (1L was BRAFi+MEKi for BRAF V600+
   # patient with visceral crisis or active brain mets). 2L is
-  # IO-based. Default is ipi+nivo (most active doublet); alternative
-  # is rela+nivo (Opdualag) when ipi-grade irAE risk unacceptable.
+  # IO-based. Detect BRAF V600+ first (biomarker), then verify ipi-fit
+  # status downstream. Split from old all_of.
   - step: 4
     evaluate:
-      all_of:
-        - condition: "Prior BRAFi+MEKi failed (1L for BRAF V600+)"
+      any_of:
+        - red_flag: RF-MELANOMA-BRAF-V600-ACTIONABLE
+    if_true:
+      next_step: 41
+    if_false:
+      next_step: 5
+
+  - step: 41
+    # Sub-step: ipi+nivo fitness check (ECOG 0-1, no autoimmunity).
+    # Free-text retained — no melanoma-scoped RF for "fit for high-grade
+    # irAE risk" combination.
+    evaluate:
+      any_of:
         - condition: "Patient fit for ipi+nivo Grade 3-4 irAE risk (ECOG 0-1, no significant baseline autoimmunity)"
     if_true:
       result: IND-MELANOMA-2L-POST-BRAFI-IPI-NIVO
     if_false:
       next_step: 5
-    notes: "MDT-only — multi-condition fitness/eligibility AND-conjunction; cannot wire RF additively without inverting clinical intent. Restructure manually if engine routing required."
+    notes: "MDT-only — ipi+nivo fitness has no dedicated RF (composite ECOG + autoimmunity); falls through to rela+nivo / lifileucel for unfit patients."
 
   # Step 5 — Patient unfit for ipi+nivo OR strongly prefers
   # tolerability profile → rela+nivo (Opdualag) as IO-naive 2L

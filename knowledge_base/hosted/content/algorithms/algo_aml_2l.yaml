@@ -42,9 +42,24 @@ decision_tree:
     if_false:
       next_step: 3
 
-  # Step 3 — frailty / organ dysfunction at relapse → ven+aza (lower
-  # toxicity than re-induction; also covers FLT3-WT R/R unfit).
+  # Step 3 — IDH1 / IDH2 actionable at relapse → IDHi monotherapy
+  # (ivosidenib / enasidenib FDA-approved R/R-AML). No dedicated IDHi
+  # Indication in KB yet (PROD-5 deferred); pin to ven+aza backbone
+  # with MDT annotation to switch to IDHi monotherapy.
   - step: 3
+    evaluate:
+      any_of:
+        - red_flag: RF-AML-IDH1-MUT-ACTIONABLE
+        - red_flag: RF-AML-IDH2-MUT-ACTIONABLE
+    if_true:
+      result: IND-AML-1L-VEN-AZA
+    if_false:
+      next_step: 4
+    notes: "MDT-only — IDH1/IDH2 R/R: switch to ivosidenib (IDH1, AG-120) or enasidenib (IDH2, AG-221) monotherapy per FDA-approved R/R-AML labelling. Pinned to ven+aza Indication as backbone (no dedicated IDHi Indication in KB)."
+
+  # Step 4 — frailty / organ dysfunction at relapse → ven+aza (lower
+  # toxicity than re-induction; also covers FLT3-WT R/R unfit).
+  - step: 4
     evaluate:
       any_of:
         - red_flag: RF-AML-FRAILTY-AGE
@@ -52,21 +67,21 @@ decision_tree:
     if_true:
       result: IND-AML-1L-VEN-AZA
     if_false:
-      next_step: 4
+      next_step: 5
 
-  # Step 4 — default FLT3 wild-type R/R: ven+aza for unfit / fallback;
+  # Step 5 — default FLT3 wild-type R/R: ven+aza for unfit / fallback;
   # re-induction (off-algorithm) or clinical trial preferred for fit
   # patients. Algorithm pins to ven+aza so plan generator surfaces the
   # clinical-trial / BSC annotation rather than silently failing.
-  - step: 4
+  - step: 5
     evaluate:
-      all_of:
+      any_of:
         - condition: "FLT3 wild-type R/R AML; clinical-trial / re-induction / BSC routing surfaced as annotation"
     if_true:
       result: IND-AML-1L-VEN-AZA
     if_false:
       result: IND-AML-1L-VEN-AZA
-    notes: "MDT-only — multi-condition fitness/eligibility AND-conjunction; cannot wire RF additively without inverting clinical intent. Restructure manually if engine routing required."
+    notes: "Default fall-through — FLT3-WT R/R routes to ven+aza backbone; clinical-trial / BSC noted in Indication."
 
 sources:
   - SRC-NCCN-AML-2025

@@ -48,8 +48,22 @@ decision_tree:
       next_step: 3
     notes: "MDT-only — multi-condition fitness/eligibility AND-conjunction; cannot wire RF additively without inverting clinical intent. Restructure manually if engine routing required."
 
-  # Step 3 — default 2L: post-VRd progression, switch class to KCD/DKd.
+  # Step 3 — t(11;14) BCL-2-dependent / venetoclax-sensitive subset.
+  # No dedicated venetoclax MM indication in KB (off-label per BELLINI
+  # subgroup; CANOVA phase 3 ongoing). Pin to DKd backbone with MDT
+  # annotation to add venetoclax for the t(11;14) cohort.
   - step: 3
+    evaluate:
+      any_of:
+        - red_flag: RF-MM-T11-14-ACTIONABLE
+    if_true:
+      result: IND-MM-2L-DKD
+    if_false:
+      next_step: 4
+    notes: "MDT-only — t(11;14) actionable: route to DKd backbone with MDT to add venetoclax (BELLINI t(11;14) subgroup mPFS 22.4 vs 11.6 mo; off-label, CANOVA pending). No dedicated venetoclax MM Indication in KB (PROD-5 deferred)."
+
+  # Step 4 — default 2L: post-VRd progression, switch class to KCD/DKd.
+  - step: 4
     evaluate:
       any_of:
         - condition: "Post-VRd / VTd progression, transplant-naive or post-ASCT relapse"

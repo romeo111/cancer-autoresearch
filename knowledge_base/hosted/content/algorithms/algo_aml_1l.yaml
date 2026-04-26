@@ -41,31 +41,50 @@ decision_tree:
     if_false:
       next_step: 3
 
-  # Step 3 — high-risk biology (TP53, complex karyotype, etc.) — fit
-  # patients escalate to 7+3 (with concurrent alloHCT donor search if
-  # transplant-eligible). Note: high-risk biology in unfit patients
-  # already routed to ven+aza in step 2.
+  # Step 3 — high-risk biology (TP53, complex karyotype) AND FLT3+ AND
+  # NPM1-favorable — fit patients escalate to 7+3 (with concurrent alloHCT
+  # donor search if transplant-eligible). NPM1-mut without FLT3-ITD is
+  # ELN-favorable and benefits from standard 7+3 (no alloHCT in CR1).
+  # Note: high-risk biology in unfit patients already routed to ven+aza
+  # in step 2.
   - step: 3
     evaluate:
       any_of:
         - red_flag: RF-AML-HIGH-RISK-BIOLOGY
         - red_flag: RF-AML-FLT3-ACTIONABLE
+        - red_flag: RF-AML-NPM1-MUT-FAVORABLE
         - red_flag: RF-AML-TRANSFORMATION-PROGRESSION
     if_true:
       result: IND-AML-1L-7-3
     if_false:
       next_step: 4
 
-  # Step 4 — default for fit patients = 7+3
+  # Step 4 — IDH1 / IDH2 actionable. AGILE / IDHENTIFY: ivosidenib /
+  # enasidenib + azacitidine for unfit; 7+3 + IDHi emerging for fit.
+  # No dedicated IDHi indication in this KB yet (PROD-5 territory) —
+  # route to ven+aza backbone with MDT note to consider IDH1/IDH2
+  # inhibitor add-on.
   - step: 4
     evaluate:
-      all_of:
+      any_of:
+        - red_flag: RF-AML-IDH1-MUT-ACTIONABLE
+        - red_flag: RF-AML-IDH2-MUT-ACTIONABLE
+    if_true:
+      result: IND-AML-1L-VEN-AZA
+    if_false:
+      next_step: 5
+    notes: "MDT-only — IDH1/IDH2 actionable: route to ven+aza backbone (default unfit-AML standard); MDT to add ivosidenib (IDH1) or enasidenib (IDH2) per AGILE / IDHENTIFY. No dedicated IDHi Indication in KB (PROD-5 deferred)."
+
+  # Step 5 — default for fit patients = 7+3
+  - step: 5
+    evaluate:
+      any_of:
         - condition: "Fit for intensive chemotherapy (default if no fitness flags)"
     if_true:
       result: IND-AML-1L-7-3
     if_false:
       result: IND-AML-1L-7-3
-    notes: "MDT-only — multi-condition fitness/eligibility AND-conjunction; cannot wire RF additively without inverting clinical intent. Restructure manually if engine routing required."
+    notes: "Default fall-through — fit patient with no biomarker flags routes to 7+3."
 
 sources:
   - SRC-NCCN-AML-2025
