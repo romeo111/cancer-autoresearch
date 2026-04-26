@@ -1,0 +1,76 @@
+id: IND-NSCLC-TMB-HIGH-MET-1L-PEMBRO-MONO
+plan_track: aggressive  # alternative to PD-L1-stratified default; intensified surveillance
+                        # of TMB result is what gates this track
+
+applicable_to:
+  disease_id: DIS-NSCLC
+  molecular_subtype: DRIVER_NEGATIVE
+  stage_stratum: STAGE_IV_METASTATIC
+  line_of_therapy: 1
+  biomarker_requirements_required:
+    - biomarker_id: BIO-TMB-HIGH
+      value_constraint: "≥10 mut/Mb (Foundation One CDx or comparable)"
+      required: true
+  biomarker_requirements_excluded:
+    - biomarker_id: BIO-EGFR-MUTATION
+      value_constraint: "positive"
+      required: false
+    - biomarker_id: BIO-ALK-FUSION
+      value_constraint: "positive"
+      required: false
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-PEMBRO-MONO-NSCLC
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: conditional
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "ORR 29% in TMB-high subgroup (vs 6% in TMB-low) per KEYNOTE-158 pan-tumor"
+  median_progression_free_survival_months: 4.1
+  median_overall_survival_months: "Not reached at 11.7 mo median follow-up (KEYNOTE-158 NSCLC subset, n=37)"
+  notes: >
+    KEYNOTE-158 was the FDA-approval cohort for pembrolizumab pan-tumor
+    TMB-high (2020). The original cohort EXCLUDED NSCLC, so the NSCLC
+    application here extrapolates from KEYNOTE-042 / -189 subgroup
+    analyses where TMB-high patients in the chemo arm clearly under-
+    performed vs ICI arms. CheckMate-227 (nivo+ipi vs chemo) showed
+    TMB-high (≥10 mut/Mb) PFS benefit but the OS endpoint did not
+    select on TMB. NCCN lists TMB-high as a 1L immunotherapy
+    consideration when PD-L1 stratification is borderline; not a
+    Tier-1-only recommendation.
+
+hard_contraindications: []
+red_flags_triggering_alternative: []
+required_tests:
+  - TEST-NSCLC-NGS-PANEL
+  - TEST-PDL1-IHC
+  - TEST-CECT-CAP
+desired_tests:
+  - TEST-BRAIN-MRI-CONTRAST
+
+sources:
+  - source_id: SRC-NCCN-NSCLC-2025
+    weight: primary
+  - source_id: SRC-ESMO-NSCLC-METASTATIC-2024
+    weight: primary
+
+last_reviewed: "2026-04-26"
+reviewers: []
+
+notes: >
+  Wires BIO-TMB-HIGH for the first time. Per docs/BIOMARKER_CATALOG.md
+  rationale: PER-DISEASE wiring, not pan-tumor abstraction (KEYNOTE-158
+  excluded NSCLC; engine selection is cleaner per-disease).
+
+  Engine usage: this indication should appear as ALTERNATIVE track when
+  PD-L1 TPS is ambiguous (1-49%) or when patient prefers ICI mono over
+  chemo-IO combo. Wired as standalone IND so the algorithm
+  (ALGO-NSCLC-METASTATIC-1L, separate task) can route TMB-high cases
+  here when PD-L1-based default is suboptimal. Driver mutations
+  (EGFR / ALK) explicitly excluded — those have superior targeted
+  therapies (osimertinib / alectinib).

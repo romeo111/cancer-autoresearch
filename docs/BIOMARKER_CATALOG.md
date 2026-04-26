@@ -7,16 +7,10 @@ Purpose: single source of truth for which biomarkers OpenOnco's engine actually 
 ## Summary
 
 - **Defined entities:** 62
-- **Referenced by rules:** 61 unique IDs, 177 total citations
-- **Defined + used (✓):** 61
-- **Defined + unused (⚠):** 1
+- **Referenced by rules:** 62 unique IDs, 181 total citations
+- **Defined + used (✓):** 62
+- **Defined + unused (⚠):** 0
 - **Referenced + missing (❌):** 0
-
-## Issues to resolve
-
-### ⚠ Defined but no rule consumes them
-
-- `BIO-TMB-HIGH` — Tumor mutational burden (TMB-high). Wire into ≥1 Indication or red-flag, or document why dormant.
 
 ## Top-cited biomarkers (PDF-extraction priority)
 
@@ -31,10 +25,11 @@ Reference count below is a proxy for how often the engine reads the marker. High
 | `BIO-BRAF-V600E` | 7 | Colorectal carcinoma (CR, Cutaneous melanoma |
 | `BIO-CD30-IHC` | 6 | Anaplastic Large Cell Ly, Angioimmunoblastic T-Cel, Mycosis Fungoides / Séza |
 | `BIO-CD5-IHC` | 6 | Chronic Lymphocytic Leuk, Mantle Cell Lymphoma |
+| `BIO-ALK-FUSION` | 5 | Non-small cell lung canc |
 | `BIO-GLEASON-ISUP` | 5 | Prostate adenocarcinoma |
 | `BIO-PSA` | 5 | Prostate adenocarcinoma |
 | `BIO-HCV-RNA` | 4 | HCV-associated Marginal , Splenic Marginal Zone Ly |
-| `BIO-ALK-FUSION` | 4 | Non-small cell lung canc |
+| `BIO-EGFR-MUTATION` | 4 | Non-small cell lung canc |
 | `BIO-BRCA-GERMLINE` | 3 | Breast cancer (invasive) |
 | `BIO-CD23-IHC` | 3 | Chronic Lymphocytic Leuk |
 | `BIO-NOTCH1-MUTATION` | 3 | Chronic Lymphocytic Leuk |
@@ -42,7 +37,6 @@ Reference count below is a proxy for how often the engine reads the marker. High
 | `BIO-AFP` | 3 | Hepatocellular carcinoma |
 | `BIO-CCND1-IHC` | 3 | Mantle Cell Lymphoma |
 | `BIO-MCL-MIPI` | 3 | Mantle Cell Lymphoma |
-| `BIO-EGFR-MUTATION` | 3 | Non-small cell lung canc |
 | `BIO-HRD-STATUS` | 3 | Ovarian carcinoma (high- |
 
 ## Distribution by measurement method
@@ -92,12 +86,12 @@ LOINC required for FHIR R4/R5 + mCODE export. Add `codes.loinc` to each entity b
 - `BIO-DMMR-IHC`
 - ... and 37 more
 
-### No fixture coverage (43 used markers)
+### No fixture coverage (44 used markers)
 
 Markers consumed by rules but never appearing in `examples/*.json`. Either add a patient fixture exercising the marker, or document why no example is needed.
 
 - `BIO-AFP` (3× refs)
-- `BIO-ALK-FUSION` (4× refs)
+- `BIO-ALK-FUSION` (5× refs)
 - `BIO-ALK-REARRANGEMENT` (1× refs)
 - `BIO-BCL2-EXPRESSION-IHC` (2× refs)
 - `BIO-BCL2-REARRANGEMENT` (2× refs)
@@ -112,11 +106,11 @@ Markers consumed by rules but never appearing in `examples/*.json`. Either add a
 - `BIO-DLBCL-IPI` (2× refs)
 - `BIO-DMMR-IHC` (2× refs)
 - `BIO-EBV-STATUS` (1× refs)
-- `BIO-EGFR-MUTATION` (3× refs)
+- `BIO-EGFR-MUTATION` (4× refs)
 - `BIO-ESTROGEN-RECEPTOR` (2× refs)
 - `BIO-EZH2-Y641` (1× refs)
 - `BIO-FGFR3-MUTATION` (1× refs)
-- ... and 23 more
+- ... and 24 more
 
 ## Full catalog
 
@@ -125,7 +119,7 @@ Columns: **Status** = ✓/⚠/❌ from §Issues. **Refs** = total citations. **M
 | ID | Status | Refs | Name | Method | LOINC | Fix | Pri | Diseases |
 |---|---|---|---|---|---|---|---|---|
 | `BIO-AFP` | ✓ | 3 | Alpha-fetoprotein (serum) | serum | — | — | medium | Hepatocellular carcino |
-| `BIO-ALK-FUSION` | ✓ | 4 | ALK rearrangement / fusion | FISH | — | — | medium | Non-small cell lung ca |
+| `BIO-ALK-FUSION` | ✓ | 5 | ALK rearrangement / fusion | FISH | — | — | **high** | Non-small cell lung ca |
 | `BIO-ALK-REARRANGEMENT` | ✓ | 1 | ALK rearrangement (most commonly NPM1-ALK t(2;5)) | FISH | — | — | low | Anaplastic Large Cell  |
 | `BIO-BCL2-EXPRESSION-IHC` | ✓ | 2 | BCL2 expression by IHC | IHC | — | — | medium | Diffuse Large B-Cell L |
 | `BIO-BCL2-REARRANGEMENT` | ✓ | 2 | BCL2 rearrangement (t(14;18) IGH/BCL2 by FISH break-apart) | FISH | — | — | medium | High-Grade B-Cell Lymp |
@@ -148,7 +142,7 @@ Columns: **Status** = ✓/⚠/❌ from §Issues. **Refs** = total citations. **M
 | `BIO-DMMR-IHC` | ✓ | 2 | Mismatch repair protein expression by IHC | IHC | — | — | medium | Endometrial carcinoma |
 | `BIO-DOUBLE-HIT` | ✓ | 1 | Double-hit (MYC + BCL2 and/or BCL6 rearrangements) | FISH | — | 1× ✓ | low | High-Grade B-Cell Lymp |
 | `BIO-EBV-STATUS` | ✓ | 1 | EBV status (EBER-ISH on tumor tissue) | viral | — | — | low | — |
-| `BIO-EGFR-MUTATION` | ✓ | 3 | EGFR mutation status (NSCLC actionable) | NGS | — | — | medium | Non-small cell lung ca |
+| `BIO-EGFR-MUTATION` | ✓ | 4 | EGFR mutation status (NSCLC actionable) | NGS | — | — | medium | Non-small cell lung ca |
 | `BIO-ESTROGEN-RECEPTOR` | ✓ | 2 | Estrogen receptor (ER) | IHC | 16112-5 | — | medium | Breast cancer (invasiv |
 | `BIO-EZH2-Y641` | ✓ | 1 | EZH2 Y641 mutation | NGS | — | — | low | Follicular Lymphoma |
 | `BIO-FGFR3-MUTATION` | ✓ | 1 | FGFR3 mutation/fusion | NGS | — | — | low | — |
@@ -183,7 +177,7 @@ Columns: **Status** = ✓/⚠/❌ from §Issues. **Refs** = total citations. **M
 | `BIO-ROS1-FUSION` | ✓ | 1 | ROS1 fusion | FISH | — | — | low | — |
 | `BIO-SEZARY-COUNT` | ✓ | 1 | Sézary cell count (peripheral blood, B-classification per ISCL/EORTC) | cell count | — | 1× ✓ | low | — |
 | `BIO-T11-14-IGH-CCND1` | ✓ | 2 | t(11;14)(q13;q32) IGH/CCND1 by FISH | FISH | — | — | medium | Mantle Cell Lymphoma |
-| `BIO-TMB-HIGH` | ⚠ unused | 0 | Tumor mutational burden (TMB-high) | NGS-TMB | — | — | low | — |
+| `BIO-TMB-HIGH` | ✓ | 2 | Tumor mutational burden (TMB-high) | NGS-TMB | — | — | medium | Non-small cell lung ca |
 | `BIO-TP53-MUTATION` | ✓ | 2 | TP53 mutation / del(17p) | FISH | — | — | medium | — |
 | `BIO-VHL-STATUS` | ✓ | 1 | VHL gene status | NGS | — | — | low | Renal cell carcinoma |
 
