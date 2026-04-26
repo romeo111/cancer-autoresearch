@@ -21,6 +21,7 @@ from .disease import Disease
 from .drug import Drug
 from .experimental_option import ExperimentalOption, ExperimentalTrial
 from .indication import Indication
+from .mdt_skill import MdtSkill
 from .monitoring import MonitoringSchedule
 from .plan import (
     AccessMatrix,
@@ -65,6 +66,7 @@ ENTITY_BY_DIR: dict[str, type] = {
     "workups": DiagnosticWorkup,
     "questionnaires": Questionnaire,
     "access_pathways": AccessPathway,
+    "mdt_skills": MdtSkill,
 }
 
 __all__ = [
@@ -87,6 +89,7 @@ __all__ = [
     "FDAComplianceMetadata",
     "IHCPanel",
     "Indication",
+    "MdtSkill",
     "MonitoringSchedule",
     "Plan",
     "PlanAnnotation",
