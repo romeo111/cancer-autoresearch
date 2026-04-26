@@ -1,0 +1,112 @@
+id: IND-WM-2L-CARFILZOMIB-CXCR4MUT
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-WM
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory WM after ≥1 prior systemic line"
+    - "CXCR4-WHIM-mutated WM where BTKi response is weaker (preferred for this subset)"
+    - "OR pre-existing peripheral neuropathy precluding bortezomib (carfilzomib has minimal neuropathy)"
+  biomarker_requirements_required:
+    - biomarker_id: BIO-CXCR4-WHIM
+      required: true
+      value_constraint: "positive (WHIM-mutated) preferred — BTKi response weaker; OR bortezomib-intolerant patient with neuropathy"
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-CARFILZOMIB-WM
+concurrent_therapy: [SUP-PJP-PROPHYLAXIS, SUP-HSV-PROPHYLAXIS, SUP-HBV-PROPHYLAXIS]
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: conditional
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~87% major response (CaRD Treon 2014)"
+  complete_response: "~15% CR; ~68% VGPR"
+  progression_free_survival: "Median PFS ~46 months (CaRD r/r WM cohort)"
+  overall_survival_5y: "~75-80%"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS
+  - CI-LVEF-LOW-FOR-ANTHRACYCLINE  # uses LVEF threshold but for cardiac-toxic carfilzomib
+red_flags_triggering_alternative:
+  - RF-WM-HYPERVISCOSITY
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-IMMUNOGLOBULINS
+  - TEST-SPEP-UPEP
+  - TEST-NGS-LYMPHOID-PANEL  # MYD88 + CXCR4 status confirmation
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-FLOW-CYTOMETRY
+  - TEST-CECT-CAP
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-ECHO  # critical baseline given carfilzomib cardiotoxicity signal
+desired_tests: []
+
+rationale: >
+  CaRD (Carfilzomib + Rituximab + Dexamethasone) for r/r WM,
+  preferred for CXCR4-WHIM-mutated subset (~30% of WM) where BTKi
+  response is weaker AND for bortezomib-intolerant patients (Grade
+  ≥2 peripheral neuropathy). Carfilzomib (irreversible proteasome
+  inhibitor) has minimal peripheral neuropathy vs bortezomib —
+  major advantage in WM where IgM-related neuropathy at baseline is
+  common. Per CaRD trial (Treon 2014): MR 87%, VGPR 68%, mPFS 46
+  months in r/r WM. Cardiac monitoring critical — carfilzomib has
+  cardiotoxicity signal (CHF, hypertension), particularly in older
+  patients. Practical UA advantage: carfilzomib NSZU-reimbursed for
+  r/r MM, off-label for WM but on-shelf via existing supply route.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "CaRD (carfilzomib + rituximab + dex) is recommended for r/r WM, preferred for CXCR4-WHIM-mutated subset and bortezomib-intolerant patients; Cat 2A"
+  - source_id: SRC-ESMO-WM-2024
+    position: supports
+    relevant_quote_paraphrase: "CaRD provides effective r/r WM option with minimal peripheral neuropathy vs BDR; cardiac monitoring critical"
+
+known_controversies:
+  - topic: "CaRD vs BDR as preferred proteasome-inhibitor regimen for r/r WM"
+    positions:
+      - position: "BDR — established Treon 2009 data, lower cardiac toxicity, IV/SC bortezomib"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "CaRD — minimal peripheral neuropathy (key WM consideration), longer mPFS in CaRD trial"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "BDR if no neuropathy + no cardiac concerns; CaRD if pre-existing neuropathy OR CXCR4-WHIM-mut"
+  - topic: "CaRD vs zanubrutinib for CXCR4-WHIM-mut r/r WM"
+    positions:
+      - position: "CaRD — bypass BTK pathway dependence; better depth of response in WHIM-mut"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Zanubrutinib (or ibrutinib) — still gives partial response in WHIM-mut; oral simplicity"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "CaRD preferred for CXCR4-WHIM-mut where deep response targeted; BTKi acceptable if CaRD access blocking"
+
+do_not_do:
+  - "Не призначати без CXCR4 status check — drug particularly justified для WHIM-mutated subset (informational stratification)."
+  - "Не пропускати baseline ECHO + LVEF assessment — carfilzomib cardiotoxicity signal substantial."
+  - "Не ігнорувати new dyspnea / chest pain / hypertension >180/110 — cardiology consult immediately."
+  - "Не пропускати pre-carfilzomib hydration (NS 250-500 mL IV) — TLS + cardiac protection."
+  - "Не починати без HBV скринінгу + entecavir prophylaxis."
+  - "Не призначати rituximab при symptomatic hyperviscosity без plasmapheresis спочатку."
+  - "Не пропускати acyclovir HSV/VZV prophylaxis протягом proteasome inhibitor therapy."
+  - "Не ігнорувати TLS prophylaxis cycle 1 при high-burden disease."
+  - "Не забути off-label disclosure — carfilzomib registered for r/r MM; WM off-label."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 2L+ for
+  r/r WM. Particularly preferred for CXCR4-WHIM-mutated subset
+  (BTKi-resistant) and bortezomib-intolerant patients (neuropathy).
+  UA-accessible off-label via MM supply route.

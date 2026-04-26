@@ -1,0 +1,87 @@
+id: REG-RDHAP-BURKITT
+name: "R-DHAP (Rituximab + Dexamethasone + HD-Cytarabine + Cisplatin) × 2-3 cycles → ASCT/alloSCT (r/r Burkitt salvage; non-cross-resistant alternative to R-ICE)"
+name_ua: "R-DHAP × 2-3 циклів → ASCT/алоТКМ (рятувальна терапія Беркітта; не перехресно-резистентна до R-ICE)"
+alternate_names: ["R-DHAP Burkitt salvage"]
+
+components:
+  - drug_id: DRUG-RITUXIMAB
+    dose: "375 mg/m²"
+    schedule: "IV day 1 of each cycle"
+    route: IV
+  - drug_id: DRUG-DEXAMETHASONE
+    dose: "40 mg"
+    schedule: "IV/PO days 1-4 each cycle"
+    route: IV
+  - drug_id: DRUG-CYTARABINE
+    dose: "2 g/m² q12h × 2 doses"
+    schedule: "IV day 2 each cycle (HiDAC component)"
+    route: IV
+  - drug_id: DRUG-CISPLATIN
+    dose: "100 mg/m²"
+    schedule: "IV continuous 24h day 1 each cycle"
+    route: IV
+  - drug_id: DRUG-METHOTREXATE
+    dose: "12 mg IT"
+    schedule: "IT each cycle (CNS prophylaxis / treatment)"
+    route: IT
+
+cycle_length_days: 21
+total_cycles: "2-3 cycles induction → restage by PET-CT → ASCT in CR2 (fit transplant-eligible) OR alloSCT (refractory)"
+toxicity_profile: very-high
+
+premedication:
+  - "TLS prophylaxis MANDATORY (rasburicase OR allopurinol + IV hydration ≥3 L/day)"
+  - "IV hydration + diuresis for cisplatin nephroprotection (mannitol if needed)"
+  - "Cytarabine eye drops (steroid drops) + cerebellar exam baseline + each HiDAC dose"
+  - "Standard rituximab premedications"
+  - "Antiemetic regimen aggressive (cisplatin + HiDAC = high emetogenicity)"
+  - "Prophylactic G-CSF day 5"
+mandatory_supportive_care:
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-TLS-PROPHYLAXIS
+  - SUP-GCSF-NEUTROPENIA
+  - SUP-ANTIEMETIC-PREMED
+  - SUP-HBV-PROPHYLAXIS
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "CrCl 30-60 mL/min"
+    modification: "Reduce cisplatin 50% OR substitute carboplatin AUC 5 (R-DHAOx variant)"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Pre-existing peripheral neuropathy"
+    modification: "Reduce cisplatin 50% on cycle 2 if Grade ≥2 develops; consider switch to R-ICE"
+  - condition: "Ototoxicity (high-frequency hearing loss)"
+    modification: "Reduce cisplatin 50% OR substitute carboplatin"
+  - condition: "Cerebellar toxicity from HiDAC (ataxia, dysmetria)"
+    modification: "Discontinue HiDAC immediately; permanent if Grade ≥2"
+    rationale: "Cerebellar toxicity from HiDAC may be irreversible"
+  - condition: "Age >65"
+    modification: "Reduce all drugs 25-50%; consider NOT pursuing ASCT consolidation; outcomes substantially worse"
+  - condition: "Failure to achieve CR after 2 cycles (PR or PD)"
+    modification: "Switch to alternative salvage (R-ICE or R-GDP); reassess transplant feasibility"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: >
+    All R-DHAP components reimbursed via НСЗУ. Cisplatin nephrotoxicity
+    + ototoxicity require careful monitoring. ASCT consolidation
+    performed at major hematology centers — capacity-limited but
+    domestic.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-BURKITT-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  R-DHAP is non-cross-resistant alternative to R-ICE for r/r aggressive
+  B-cell NHL salvage. Cisplatin + HiDAC + steroid mechanism vs ICE
+  ifosfamide + carboplatin + etoposide. For Burkitt specifically:
+  HiDAC component provides additional CNS-penetrant cytotoxicity
+  beyond IT therapy. Used either as 1st salvage OR after R-ICE
+  failure (CORAL trial showed R-DHAP and R-ICE comparable in DLBCL
+  salvage; choice often dictated by pre-existing neuropathy
+  [favors R-ICE] vs. anthracycline cumulative dose [favors R-DHAP]
+  vs. ototoxicity / renal function [favors R-ICE]). CR2 with ASCT
+  consolidation is goal in fit younger r/r Burkitt.

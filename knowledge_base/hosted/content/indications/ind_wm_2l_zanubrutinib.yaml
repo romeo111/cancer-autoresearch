@@ -1,0 +1,100 @@
+id: IND-WM-2L-ZANUBRUTINIB
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-WM
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory after ≥1 prior systemic line (DRC, BR, ibrutinib, etc.)"
+    - "MYD88-mutated (predicts BTKi response)"
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-MYD88-L265P, required: true, value_constraint: "positive"}
+  biomarker_requirements_excluded:
+    - {biomarker_id: BIO-CXCR4-WHIM, required: false, value_constraint: "positive (WHIM-mutated → reduced BTKi depth of response; consider proteasome-inhibitor alternative)"}
+  demographic_constraints:
+    ecog_max: 3
+
+recommended_regimen: REG-ZANUBRUTINIB-WM-RELAPSED
+concurrent_therapy: []
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~94% (≥minor response, ASPEN); ~28% VGPR-or-better in MYD88-mut cohort"
+  complete_response: "~3-7% CR; ~28% VGPR (numerically superior to ibrutinib 19%)"
+  progression_free_survival: "Median PFS not reached at 5y (ASPEN); 4-y PFS ~78%"
+  overall_survival_5y: "~85%"
+
+hard_contraindications: []
+red_flags_triggering_alternative:
+  - RF-WM-HYPERVISCOSITY  # plasmapheresis first if symptomatic before BTKi
+  - RF-AITL-AUTOIMMUNE-CYTOPENIA  # if AIHA on baseline, address first
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-IMMUNOGLOBULINS
+  - TEST-SPEP-UPEP
+  - TEST-NGS-LYMPHOID-PANEL  # MYD88 + CXCR4
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-FLOW-CYTOMETRY
+  - TEST-CECT-CAP
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-ECHO  # baseline cardiac
+desired_tests: []
+
+rationale: >
+  Zanubrutinib monotherapy for r/r MYD88-mutated WM after ≥1 prior
+  line per ASPEN trial. Substantially superior cardiac safety vs
+  ibrutinib (afib 2.6% vs 15.3%; cardiac death 0% vs 1.6%; major
+  bleeding 4% vs 9%; hypertension 13% vs 25%) while preserving
+  efficacy (numerically superior VGPR rate in MYD88-mut cohort:
+  28% vs 19%). Preferred BTKi for r/r WM where accessible —
+  particularly for older patients with cardiac history, hypertension,
+  or anticoagulation. Continuous therapy until progression or
+  intolerance. CXCR4 status should be checked — WHIM-mutated subset
+  has reduced depth of response with both BTKis; consider BDR or
+  CaRD alternative for these patients.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "Zanubrutinib is preferred BTKi for r/r WM per ASPEN; superior cardiac safety vs ibrutinib; Cat 1"
+  - source_id: SRC-ESMO-WM-2024
+    position: supports
+    relevant_quote_paraphrase: "Second-generation BTKi (zanubrutinib) preferred over ibrutinib for r/r WM — comparable efficacy, fewer cardiac events"
+
+known_controversies:
+  - topic: "Continuous BTKi (zanubrutinib) vs time-limited BDR for r/r WM"
+    positions:
+      - position: "Continuous BTKi — durable response, oral, simple"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Time-limited BDR — chemo-free + finite duration; bypasses CXCR4-WHIM resistance"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "BTKi for MYD88-mut/CXCR4-WT; BDR or CaRD for CXCR4-WHIM-mut OR BTKi-intolerant"
+
+do_not_do:
+  - "НЕ призначати при MYD88-WT WM (rare) — BTKi не активний; chemoimmuno (DRC, BDR) preferred."
+  - "НЕ пропускати CXCR4 sequencing — WHIM-mutated subset (~30%) має слабшу depth of response; розгляньте proteasome-inhibitor alternative."
+  - "НЕ призначати rituximab при symptomatic hyperviscosity без plasmapheresis спочатку — rituximab causes IgM flare in subset."
+  - "НЕ комбінувати з warfarin без strict monitoring — bleeding risk."
+  - "НЕ призначати при concomitant strong CYP3A4 inhibitor без dose reduction до 80 mg PO BID."
+  - "НЕ пропускати baseline ECG — afib знижений але можливий."
+  - "НЕ пропускати baseline LFTs — Child-Pugh C avoid; severe impairment dose-reduce."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track 2L
+  preferred BTKi for r/r WM. Better cardiac safety vs ibrutinib
+  is dominant advantage. Zanubrutinib NSZU-not-reimbursed; ibrutinib
+  practical fallback if access blocking.

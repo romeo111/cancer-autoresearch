@@ -1,0 +1,61 @@
+id: DRUG-TAZEMETOSTAT
+names:
+  preferred: "Tazemetostat"
+  ukrainian: "Таземетостат"
+  english: "Tazemetostat"
+  brand_names: ["Tazverik"]
+atc_code: L01XX73
+rxnorm_id: "2374761"
+drug_class: "EZH2 inhibitor (oral, selective)"
+mechanism: >
+  Selective oral inhibitor of EZH2 (Enhancer of Zeste Homolog 2) —
+  the catalytic subunit of PRC2 (Polycomb Repressive Complex 2).
+  Blocks H3K27 trimethylation, derepressing tumor-suppressor genes.
+  Effective against both EZH2 wild-type (epigenetic dependence) and
+  Y641 gain-of-function mutated FL — superior response in mutated
+  subset.
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    registration_number: null
+    reimbursed_nszu: false
+    last_verified: "2026-04-25"
+    notes: "Not registered in Ukraine. Access via clinical trial / out-of-pocket international supply only."
+
+typical_dosing: "800 mg PO twice daily, continuous until progression or unacceptable toxicity"
+formulations: ["Tablet 200 mg"]
+
+absolute_contraindications: ["Hypersensitivity"]
+black_box_warnings: []
+major_interactions:
+  - "Strong CYP3A inhibitors: reduce tazemetostat to 400 mg BID"
+  - "Strong CYP3A inducers: avoid (efficacy loss)"
+  - "Substrates of CYP3A with narrow therapeutic index: monitor"
+common_adverse_events:
+  - "Fatigue"
+  - "Nausea"
+  - "Anemia"
+  - "Musculoskeletal pain"
+  - "Cough"
+  - "Diarrhea"
+  - "Decreased appetite"
+serious_adverse_events:
+  - "Secondary malignancies — boxed concern (T-LBL/AML reported in pediatric INI1-deficient sarcoma trials; ongoing surveillance in lymphoma indication)"
+  - "Severe cytopenias"
+  - "Infection"
+
+pharmacology:
+  half_life: "~3 hours (parent); active metabolite ~10 hours"
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  E7438-G000-101 pivotal trial (Morschhauser 2020): r/r FL after ≥2
+  prior lines — ORR 69% in EZH2-mutated cohort (CR 13%); ORR 35% in
+  EZH2-WT (CR 4%). FDA-approved both EZH2-mut (per companion test)
+  and EZH2-WT FL (after ≥2 prior lines, no satisfactory alternative).
+  Oral, well-tolerated profile vs cytotoxic salvage — preferred for
+  older / frail r/r FL. Major UA access barrier: not registered.

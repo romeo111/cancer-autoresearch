@@ -1,0 +1,65 @@
+id: DRUG-MOSUNETUZUMAB
+names:
+  preferred: "Mosunetuzumab"
+  ukrainian: "Мосунетузумаб"
+  english: "Mosunetuzumab"
+  brand_names: ["Lunsumio"]
+atc_code: L01FX25
+rxnorm_id: "2627015"
+drug_class: "CD20×CD3 bispecific T-cell engager (full-length humanized IgG1)"
+mechanism: >
+  Bispecific antibody binding CD20 on B-cells and CD3 on T-cells,
+  forming an immune synapse that redirects polyclonal T-cell
+  cytotoxicity against CD20+ B-cells. Step-up dosing schedule (1 mg
+  → 2 mg → 60 mg → 30 mg) mitigates first-cycle CRS by limiting
+  initial T-cell activation. Time-limited (8 cycles or until CR).
+
+regulatory_status:
+  fda: {approved: true}
+  ema: {approved: true}
+  ukraine_registration:
+    registered: false
+    registration_number: null
+    reimbursed_nszu: false
+    last_verified: "2026-04-25"
+    notes: "Not registered in Ukraine. Access via clinical trial / charitable / out-of-pocket international referral only."
+
+typical_dosing: >
+  Cycle 1: 1 mg IV day 1, 2 mg IV day 8, 60 mg IV day 15.
+  Cycle 2: 60 mg IV day 1.
+  Cycles 3-8: 30 mg IV day 1 of each 21-day cycle (total ≤8 cycles
+  with extension to 17 cycles if not in CR by cycle 8).
+formulations: ["IV solution 1 mg/1 mL and 30 mg/30 mL vials"]
+
+absolute_contraindications: ["Severe hypersensitivity to mosunetuzumab"]
+black_box_warnings: []
+major_interactions:
+  - "Live vaccines: avoid during therapy + 6+ months post"
+  - "Strong immunosuppressants concomitantly: caution (efficacy / infection balance)"
+common_adverse_events:
+  - "CRS (~44% any grade, predominantly cycle 1 step-up; Grade ≥3 ~2%)"
+  - "Neutropenia"
+  - "Pyrexia"
+  - "Fatigue"
+  - "Hypophosphatemia"
+  - "Headache"
+serious_adverse_events:
+  - "Severe CRS (Grade ≥3 ~2%)"
+  - "Tumor flare / TLS in high-burden disease"
+  - "Severe infection (incl. opportunistic)"
+  - "ICANS-like neurotoxicity (rare; lower than CAR-T)"
+  - "Hepatotoxicity (rare)"
+
+pharmacology:
+  half_life: "~16 days"
+  route: "IV"
+
+sources: [SRC-NCCN-BCELL-2025]
+last_reviewed: "2026-04-25"
+notes: >
+  GO29781 pivotal trial (Budde 2022): r/r FL after ≥2 prior lines
+  including anti-CD20 + alkylator — ORR 80%, CR 60%, median DOR
+  ~22.8 mo. Time-limited (max 17 cycles) — distinct from continuous
+  BTKi paradigm. Ambulatory administration feasible after first
+  cycle; hospital observation usually required for cycle 1 step-up
+  doses. Major UA access barrier: not registered.

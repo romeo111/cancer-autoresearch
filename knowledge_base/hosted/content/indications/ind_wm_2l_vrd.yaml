@@ -1,0 +1,102 @@
+id: IND-WM-2L-VRD
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-WM
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory after ≥1 prior systemic line (DRC, BR, BTKi)"
+    - "Preferred when BTKi access blocking OR for non-BTKi-candidates (severe cardiac history, anticoagulant requirement)"
+    - "Acceptable for CXCR4-WT and CXCR4-WHIM-mutated subsets"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 3
+
+recommended_regimen: REG-VRD-WM
+concurrent_therapy: [SUP-PJP-PROPHYLAXIS, SUP-HSV-PROPHYLAXIS, SUP-HBV-PROPHYLAXIS]
+followed_by: []
+
+evidence_level: moderate
+strength_of_recommendation: strong
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~88% major response (Treon 2009 r/r WM cohort)"
+  complete_response: "~10-15% CR; ~50-60% VGPR"
+  progression_free_survival: "Median PFS ~3-4 years post-induction"
+  overall_survival_5y: "~70-80%"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS
+  - CI-BORTEZOMIB-SEVERE-NEUROPATHY
+red_flags_triggering_alternative:
+  - RF-WM-HYPERVISCOSITY  # plasmapheresis first
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-IMMUNOGLOBULINS
+  - TEST-SPEP-UPEP
+  - TEST-NGS-LYMPHOID-PANEL
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-FLOW-CYTOMETRY
+  - TEST-CECT-CAP
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-ECHO
+  - TEST-PREGNANCY
+desired_tests: []
+
+rationale: >
+  BDR (Bortezomib + Dexamethasone + Rituximab) for r/r WM as
+  chemo-free time-limited alternative to continuous BTKi. Per Treon
+  2009: major response rate 88%, VGPR ~50%. Practical UA advantage:
+  all components reimbursed via НСЗУ (bortezomib for MM, rituximab
+  for B-cell NHL, dex). Particularly attractive when BTKi access
+  blocking OR when patient unsuitable for continuous BTKi (severe
+  cardiac history, on anticoagulant, BTKi-intolerant). Time-limited
+  (6-8 cycles) — distinct from continuous BTKi paradigm. CXCR4-WHIM-
+  mutated patients respond well to bortezomib mechanism (bypass BTK
+  pathway) — preferred for this subset. Weekly subcutaneous bortezomib
+  substantially reduces peripheral neuropathy vs twice-weekly IV.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "BDR (bortezomib + dex + rituximab) is recommended chemo-free option for r/r WM, particularly when BTKi access blocking; Cat 2A"
+  - source_id: SRC-ESMO-WM-2024
+    position: supports
+    relevant_quote_paraphrase: "Proteasome inhibitor-based regimens (BDR, CaRD) are recognized 2L+ option for r/r WM; particularly useful for CXCR4-WHIM-mutated subset where BTKi response weaker"
+
+known_controversies:
+  - topic: "BDR vs continuous BTKi (zanubrutinib) for r/r WM as preferred 2L"
+    positions:
+      - position: "Continuous BTKi — durable response, oral, simple"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Time-limited BDR — chemo-free + finite duration; bypasses CXCR4-WHIM resistance; UA-reimbursed"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "BTKi for MYD88-mut/CXCR4-WT; BDR for CXCR4-WHIM-mut, BTKi-intolerant, or BTKi access blocking"
+
+do_not_do:
+  - "Не починати BDR без HBV скринінгу + entecavir prophylaxis при HBsAg+ або anti-HBc+."
+  - "Не призначати rituximab при symptomatic hyperviscosity без plasmapheresis спочатку — IgM flare risk."
+  - "Не використовувати bortezomib при pre-existing Grade ≥2 peripheral neuropathy — absolute CI; switch до carfilzomib (CaRD)."
+  - "Не використовувати twice-weekly IV bortezomib — weekly SC substantially reduces peripheral neuropathy."
+  - "Не пропускати acyclovir HSV/VZV prophylaxis протягом proteasome inhibitor therapy."
+  - "Не пропускати dexamethasone dose reduction до 20 mg якщо age >75 або frail — steroid toxicity (infection, hyperglycemia, falls)."
+  - "Не забути PJP prophylaxis протягом ≥6 міс після останньої anti-CD20 dose."
+  - "Не ігнорувати new peripheral neuropathy — reduce bortezomib або switch до CaRD якщо Grade ≥3 або painful."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Standard-track 2L+
+  chemo-free time-limited alternative for r/r WM. UA practical
+  advantage — all components reimbursed. Particularly preferred for
+  CXCR4-WHIM-mut subset.

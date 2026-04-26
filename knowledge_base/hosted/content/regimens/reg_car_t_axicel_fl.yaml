@@ -1,0 +1,68 @@
+id: REG-CAR-T-AXICEL-FL
+name: "Axicabtagene ciloleucel (axi-cel) CAR-T for r/r FL — single infusion after lymphodepletion (ZUMA-5)"
+name_ua: "Аксікабтаген цилолейцел (axi-cel) CAR-T для рефрактерної ФЛ — одна інфузія після лімфодеплеції (ZUMA-5)"
+alternate_names: ["Axi-cel FL", "Yescarta FL", "ZUMA-5 regimen"]
+
+components:
+  - drug_id: DRUG-CYCLOPHOSPHAMIDE
+    dose: "500 mg/m²/day"
+    schedule: "IV days -5, -4, -3 (lymphodepletion, with fludarabine 30 mg/m²/day same days)"
+    route: IV
+  - drug_id: DRUG-AXICABTAGENE-CILOLEUCEL
+    dose: "Target 2 × 10^6 anti-CD19 CAR+ T-cells/kg (max 2 × 10^8 total)"
+    schedule: "Single IV infusion day 0, after lymphodepletion completed"
+    route: IV
+
+cycle_length_days: null
+total_cycles: "Single infusion (one-time therapy)"
+toxicity_profile: severe
+
+premedication:
+  - "Lymphodepletion: fludarabine 30 mg/m² + cyclophosphamide 500 mg/m² IV days -5 to -3"
+  - "Acetaminophen 650 mg PO + diphenhydramine 12.5 mg IV pre-infusion"
+  - "AVOID prophylactic systemic corticosteroids — reduces CAR-T expansion + efficacy"
+  - "Tocilizumab MUST be on-site (≥2 doses available) BEFORE infusion — for emergency CRS rescue"
+mandatory_supportive_care:
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-HSV-PROPHYLAXIS
+  - SUP-IVIG-HYPOGAMMA
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "CRS Grade 2"
+    modification: "Tocilizumab 8 mg/kg IV (max 800 mg); ± dexamethasone 10 mg IV q6h"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "CRS Grade 3-4 OR ICANS Grade 2+"
+    modification: "Tocilizumab + high-dose dexamethasone OR methylprednisolone 1 g/day; ICU; anakinra for refractory ICANS"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Persistent severe cytopenia >Day +30"
+    modification: "G-CSF; transfusions; IVIG for IgG <400 with recurrent infection"
+  - condition: "Active uncontrolled infection at planned infusion"
+    modification: "Delay infusion until resolved + repeat lymphodepletion if interval >2 weeks"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: >
+    Axi-cel NOT registered in Ukraine; access requires international
+    referral (Israel / Poland / Germany / Spain). USD 350-500K all-in
+    incl. travel + bridging. For FL specifically — indolent disease
+    background usually allows time for arrangement, but transformation
+    suspicion (RF-FL-TRANSFORMATION-SUSPECT) accelerates timeline.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-FL-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  ZUMA-5 trial (Jacobson 2022): r/r FL after ≥2 prior lines (incl
+  anti-CD20 + alkylator) — ORR ~94%, CR ~79%, median DOR not reached
+  at 4-year follow-up (~57% of complete responders remain in remission
+  at 4 years). Best response rates of any 3L+ FL therapy. Toxicity
+  similar to ZUMA-1 (DLBCL) but lower-grade in indolent setting:
+  Grade ≥3 CRS ~7%, Grade ≥3 ICANS ~19%. Centre must be FACT/JACIE/
+  REMS-accredited. Bridging therapy if needed during 3-4 week
+  manufacturing window. Ukraine: not registered — access barrier
+  dominant. Liso-cel (TRANSCEND FL-001) is alternative CAR-T product
+  with lower CRS/ICANS — separate Regimen entity (future).
