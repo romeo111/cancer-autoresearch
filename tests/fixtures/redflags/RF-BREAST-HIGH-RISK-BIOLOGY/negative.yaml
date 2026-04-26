@@ -1,0 +1,12 @@
+red_flag: RF-BREAST-HIGH-RISK-BIOLOGY
+findings:
+  BIO-BRCA-GERMLINE: _NOT_positive
+  BIO-PIK3CA-MUTATION: _NOT_positive
+  BIO-HER2-SOLID: _NOT_positive
+  BIO-PDL1-EXPRESSION: _NOT_positive
+  esr1_mutation: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

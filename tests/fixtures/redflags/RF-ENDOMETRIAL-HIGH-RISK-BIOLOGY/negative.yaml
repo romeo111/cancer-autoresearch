@@ -1,0 +1,11 @@
+red_flag: RF-ENDOMETRIAL-HIGH-RISK-BIOLOGY
+findings:
+  BIO-DMMR-IHC: _NOT_deficient
+  BIO-MSI-STATUS: _NOT_high
+  p53_abnormal: false
+  pole_mutation: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

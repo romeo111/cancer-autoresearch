@@ -1,0 +1,13 @@
+red_flag: RF-APL-TRANSFORMATION-PROGRESSION
+findings:
+  differentiation_syndrome_active: false
+  rising_wbc_on_atra: false
+  wbc_rise_during_induction: 10
+  fever_unexplained: false
+  new_dyspnea: false
+  weight_gain_kg: 4
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

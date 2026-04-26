@@ -1,0 +1,13 @@
+red_flag: RF-AML-ORGAN-DYSFUNCTION
+findings:
+  ecog_performance_status: 2
+  lvef_percent: 50
+  creatinine_clearance_ml_min: 30
+  total_bilirubin_ulnratio: 3
+  active_uncontrolled_organ_failure: false
+  transplant_eligible: true
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

@@ -1,0 +1,13 @@
+red_flag: RF-AITL-TRANSFORMATION-PROGRESSION
+findings:
+  aitl_refractory: false
+  aitl_relapse_lt_12mo: false
+  progression_on_therapy: false
+  interim_pet_deauville: 3
+  post_treatment_response: _NOT_stable_or_progressive
+  months_since_eot: 12
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

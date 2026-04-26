@@ -1,0 +1,11 @@
+red_flag: RF-PMF-ORGAN-DYSFUNCTION
+findings:
+  platelet_count_k_ul: 50
+  child_pugh_class: _NOT_C
+  creatinine_clearance_ml_min: 30
+  lvef_percent: 40
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

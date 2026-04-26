@@ -177,70 +177,148 @@
     }
   },
   {
-    "case_id": "hcv-mzl-indolent",
-    "label": "HCV-MZL · Indolent (стандартний варіант)",
-    "file": "patient_zero_indolent.json",
+    "case_id": "hcv-mzl-bulky",
+    "label": "HCV-MZL · Aggressive Burden (BR + concurrent DAA)",
+    "file": "patient_hcv_mzl_aggressive_burden.json",
     "json": {
-      "patient_id": "PZ-001-INDOLENT",
+      "patient_id": "HCV-MZL-AGG-002",
+      "comment": "Synthetic HCV-positive MZL with high tumor burden + B-symptoms. Engine should select aggressive track — concurrent DAA + BR (IND-HCV-MZL-1L-BR-AGGRESSIVE).",
       "disease": {
         "icd_o_3_morphology": "9699/3"
       },
       "line_of_therapy": 1,
       "biomarkers": {
-        "BIO-HCV-RNA": "positive"
+        "BIO-CD20-IHC": "positive",
+        "BIO-HCV-RNA": "detectable",
+        "BIO-HCV-GENOTYPE": "3a"
       },
       "demographics": {
         "age": 58,
         "sex": "male",
-        "ecog": 1,
-        "decompensated_cirrhosis": false,
-        "fit_for_chemoimmunotherapy": true
+        "ecog": 2
       },
       "findings": {
-        "dominant_nodal_mass_cm": 3.5,
-        "mediastinal_ratio": 0.1,
-        "symptomatic_b_symptoms_severe": false,
-        "biopsy_shows_dlbcl": false,
-        "ldh_ratio_to_uln": 1.1,
-        "clinical_progression_weeks": 52,
-        "HCV RNA positive": true,
-        "Indolent presentation (non-bulky, asymptomatic or minimally symptomatic)": true,
-        "hbsag": "negative",
-        "anti_hbc_total": "negative"
+        "hcv_rna_iu_ml": 5400000,
+        "hcv_genotype": "3a",
+        "fib4_score": 2.6,
+        "child_pugh": "A",
+        "cryoglobulins_present": true,
+        "cryoglobulinemic_vasculitis": true,
+        "dominant_nodal_mass_cm": 8.5,
+        "b_symptoms_present": true,
+        "ldh_above_uln": true,
+        "transformation_suspect": false,
+        "fl_gelf_high_burden": true,
+        "Active treatment indication (high-burden, B-symptoms)": true,
+        "HCV-positive (concurrent DAA + immunochemotherapy)": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "HCV-associated marginal zone lymphoma",
+            "icd_o_3": "9699/3",
+            "icd_10": "C88.4",
+            "who_classification_5th_ed": "Indolent B-cell lymphomas — Marginal zone lymphomas — HCV-associated MZL"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "IIIB",
+            "b_symptoms": true,
+            "extranodal_involvement": true,
+            "extranodal_sites": [
+              "bone marrow",
+              "spleen"
+            ]
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "positive",
+            "anti_HBs": "positive"
+          },
+          "HCV": {
+            "anti_HCV": "positive",
+            "HCV_RNA": "detectable",
+            "genotype": "3a"
+          },
+          "HIV": "negative"
+        },
+        "hepatic_status": {
+          "FIB4": 2.6,
+          "child_pugh": "A",
+          "esophageal_varices": false
+        }
       }
     }
   },
   {
-    "case_id": "hcv-mzl-bulky",
-    "label": "HCV-MZL · Bulky (агресивний варіант)",
-    "file": "patient_zero_bulky.json",
+    "case_id": "hcv-mzl-post-daa",
+    "label": "HCV-MZL · Post-DAA Responder (Surveillance)",
+    "file": "patient_hcv_mzl_post_daa_responder.json",
     "json": {
-      "patient_id": "PZ-002-BULKY",
+      "patient_id": "HCV-MZL-POSTDAA-003",
+      "comment": "Synthetic HCV-MZL post-DAA, SVR12 achieved, lymphoma response in progress. Engine should activate post-DAA surveillance (IND-HCV-MZL-POST-DAA-SURVEILLANCE) — observe q3 mo for hematologic response.",
       "disease": {
         "icd_o_3_morphology": "9699/3"
       },
       "line_of_therapy": 1,
       "biomarkers": {
-        "BIO-HCV-RNA": "positive"
+        "BIO-CD20-IHC": "positive",
+        "BIO-HCV-RNA": "undetectable"
       },
       "demographics": {
-        "age": 62,
+        "age": 67,
         "sex": "female",
-        "ecog": 1,
-        "decompensated_cirrhosis": false,
-        "fit_for_chemoimmunotherapy": true
+        "ecog": 1
       },
       "findings": {
-        "dominant_nodal_mass_cm": 8.2,
-        "mediastinal_ratio": 0.22,
-        "symptomatic_b_symptoms_severe": false,
-        "biopsy_shows_dlbcl": false,
-        "ldh_ratio_to_uln": 1.3,
-        "clinical_progression_weeks": 40,
-        "HCV RNA positive": true,
-        "Indolent presentation (non-bulky, asymptomatic or minimally symptomatic)": false,
-        "hbsag": "negative",
-        "anti_hbc_total": "negative"
+        "svr12_achieved": true,
+        "months_post_svr12": 4,
+        "hcv_rna_iu_ml": 0,
+        "fib4_score": 2.0,
+        "child_pugh": "A",
+        "cryoglobulins_present": false,
+        "lymphoma_response_partial": true,
+        "lymphoma_response_complete": false,
+        "transformation_suspect": false,
+        "fl_gelf_high_burden": false,
+        "Surveillance phase post-SVR12 (lymphoma response in progress)": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "HCV-associated marginal zone lymphoma",
+            "icd_o_3": "9699/3",
+            "icd_10": "C88.4"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "II",
+            "b_symptoms": false
+          },
+          "treatment_history": [
+            {
+              "line": "antiviral",
+              "regimen": "Sofosbuvir/velpatasvir × 12 weeks",
+              "completed": "2026-01-15",
+              "response": "SVR12 confirmed 2026-04-10"
+            }
+          ]
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative",
+            "anti_HBs": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "positive",
+            "HCV_RNA": "undetectable",
+            "SVR12": true
+          },
+          "HIV": "negative"
+        }
       }
     }
   },
@@ -1440,6 +1518,3719 @@
         "Early stage I-II": true,
         "Localized disease amenable to RT": true,
         "RT contraindicated (young patient breast/thyroid field overlap, prior RT, patient refuses)": true
+      }
+    }
+  },
+  {
+    "case_id": "dlbcl-chemorefractory-cart",
+    "label": "DLBCL NOS · Primary Chemorefractory (CAR-T axi-cel)",
+    "file": "patient_dlbcl_chemorefractory_for_cart.json",
+    "json": {
+      "patient_id": "DLBCL-3L-CART-001",
+      "comment": "Synthetic chemorefractory DLBCL post 2 prior lines (R-CHOP → R-ICE failed). Age 58, fit ECOG 1. Engine should select IND-DLBCL-3L-AXICEL-CART via line_of_therapy=3 + CD20+/CD19+ + ECOG 0-1.",
+      "disease": {
+        "id": "DIS-DLBCL-NOS",
+        "icd_o_3_morphology": "9680/3"
+      },
+      "line_of_therapy": 3,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 1,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "prior_lines_count": 2,
+        "prior_regimens": [
+          "R-CHOP",
+          "R-ICE"
+        ],
+        "primary_refractory_or_early_relapse": true,
+        "cd19_positive": true,
+        "cns_disease_present": false,
+        "cns_status": "CNS-1",
+        "active_uncontrolled_infection": false,
+        "ldh_ratio_to_uln": 1.8,
+        "ipi_score": 3,
+        "high_ipi": true,
+        "lvef_percent": 60,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "double_expressor_status": true,
+        "biopsy_shows_dlbcl": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Diffuse Large B-Cell Lymphoma, NOS — chemorefractory",
+            "icd_o_3": "9680/3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "R-CHOP x 6",
+              "best_response": "PR",
+              "progression_at_months": 6
+            },
+            "second_line": {
+              "regimen": "R-ICE x 3",
+              "best_response": "PD"
+            }
+          }
+        },
+        "cd19_status": {
+          "method": "flow",
+          "result": "positive"
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "dlbcl-relapsed-te-ineligible",
+    "label": "DLBCL NOS · Relapsed (Transplant-Ineligible)",
+    "file": "patient_dlbcl_relapsed_transplant_ineligible.json",
+    "json": {
+      "patient_id": "DLBCL-2L-RELAPSED-001",
+      "comment": "Synthetic relapsed DLBCL post R-CHOP at 8 mo, transplant-ineligible (age 72, ECOG 2). Engine should select IND-DLBCL-2L-POLA-R-BENDAMUSTINE via line_of_therapy=2 + CD20+ + transplant-ineligible profile.",
+      "disease": {
+        "id": "DIS-DLBCL-NOS",
+        "icd_o_3_morphology": "9680/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 72,
+        "sex": "male",
+        "ecog": 2,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimen": "R-CHOP",
+        "time_to_progression_months": 8,
+        "transplant_eligible": false,
+        "ipi_score": 3,
+        "high_ipi": true,
+        "ldh_ratio_to_uln": 1.4,
+        "lvef_percent": 55,
+        "creatinine_clearance_ml_min": 62,
+        "severe_neuropathy_grade": 0,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "comorbidity_grade2_count": 2,
+        "biopsy_shows_dlbcl": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Diffuse Large B-Cell Lymphoma, NOS — relapsed",
+            "icd_o_3": "9680/3",
+            "icd_10": "C83.3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "R-CHOP x 6",
+              "best_response": "PR",
+              "progression_at_months": 8
+            }
+          },
+          "transplant_assessment": {
+            "eligible": false,
+            "rationale": "Age 72 + ECOG 2 + comorbidity (cardiac, mild renal) — auto-SCT not recommended"
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "hgbl-primary-refractory",
+    "label": "HGBL · Primary Refractory (Early CAR-T)",
+    "file": "patient_hgbl_primary_refractory.json",
+    "json": {
+      "patient_id": "HGBL-PRIMREF-002",
+      "comment": "Synthetic HGBL-DH (MYC + BCL2 rearrangement) primary-refractory to 1L DA-EPOCH-R, fit for CAR-T. Engine should route to 2L axi-cel CAR-T (IND-HGBL-DH-2L-CART-AXICEL) as aggressive track.",
+      "disease": {
+        "icd_o_3_morphology": "9680/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive",
+        "BIO-MYC-FISH": "positive (rearrangement)",
+        "BIO-BCL2-FISH": "positive (rearrangement)",
+        "BIO-BCL6-FISH": "negative"
+      },
+      "demographics": {
+        "age": 48,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "months_since_1L_completion": 0,
+        "primary_refractory": true,
+        "double_hit": true,
+        "triple_hit": false,
+        "cns_involvement": false,
+        "ldh_above_uln": true,
+        "lvef_percent": 62,
+        "Primary refractory HGBL-DH (no response to DA-EPOCH-R)": true,
+        "CAR-T eligible (age, ECOG, no CNS, organ function)": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "High-Grade B-Cell Lymphoma with MYC and BCL2 rearrangement (double-hit)",
+            "icd_o_3": "9680/3",
+            "icd_10": "C83.7",
+            "who_classification_5th_ed": "Aggressive B-cell lymphomas — High-grade B-cell lymphoma with MYC and BCL2 rearrangement"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "IV",
+            "b_symptoms": true,
+            "extranodal_involvement": true,
+            "extranodal_sites": [
+              "bone marrow",
+              "liver"
+            ]
+          }
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "BCL2": "positive",
+            "MYC": ">40%",
+            "Ki67_percent": 95
+          },
+          "fish": {
+            "MYC_break_apart": "positive",
+            "BCL2_break_apart": "positive",
+            "BCL6_break_apart": "negative"
+          }
+        },
+        "treatment_history": [
+          {
+            "line": "1L",
+            "regimen": "DA-EPOCH-R × 4 cycles",
+            "completed": "2026-03-30",
+            "response": "PD (interim PET Deauville 5)"
+          }
+        ],
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        },
+        "cardiac": {
+          "baseline_LVEF_percent": 62
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pmbcl-typical",
+    "label": "PMBCL · Typical (DA-EPOCH-R)",
+    "file": "patient_pmbcl_typical.json",
+    "json": {
+      "patient_id": "PMBCL-TYPICAL-001",
+      "comment": "Synthetic typical PMBCL — young female, mediastinal mass, no superior vena cava syndrome. Engine should select DA-EPOCH-R (IND-PMBCL-1L-DA-EPOCH-R) as standard track.",
+      "disease": {
+        "icd_o_3_morphology": "9679/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 32,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "mediastinal_mass_size_cm": 9.2,
+        "bulky_disease_10cm": false,
+        "superior_vena_cava_syndrome": false,
+        "pleural_effusion": false,
+        "pericardial_effusion": false,
+        "ldh_above_uln": true,
+        "lvef_percent": 65,
+        "ipi_score": 1,
+        "Newly-diagnosed PMBCL (no relapse)": true,
+        "ECOG ≤ 2": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary Mediastinal (Thymic) Large B-Cell Lymphoma",
+            "icd_o_3": "9679/3",
+            "icd_10": "C85.2",
+            "who_classification_5th_ed": "Aggressive B-cell lymphomas — Primary mediastinal large B-cell lymphoma"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "II",
+            "b_symptoms": false,
+            "extranodal_involvement": true,
+            "extranodal_sites": [
+              "mediastinum (thymus)"
+            ]
+          }
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "CD23": "positive",
+            "CD30": "positive (weak)",
+            "MAL": "positive",
+            "Ki67_percent": 80
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        },
+        "cardiac": {
+          "baseline_LVEF_percent": 65
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pmbcl-bulky-svc",
+    "label": "PMBCL · Bulky + SVC Syndrome",
+    "file": "patient_pmbcl_bulky_svc.json",
+    "json": {
+      "patient_id": "PMBCL-BULKY-002",
+      "comment": "Synthetic PMBCL with bulky mediastinal mass + superior vena cava syndrome. Engine should select DA-EPOCH-R (preferred for bulky/aggressive PMBCL) and flag urgent SVC management.",
+      "disease": {
+        "icd_o_3_morphology": "9679/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 28,
+        "sex": "female",
+        "ecog": 2
+      },
+      "findings": {
+        "mediastinal_mass_size_cm": 13.5,
+        "bulky_disease_10cm": true,
+        "superior_vena_cava_syndrome": true,
+        "pleural_effusion": true,
+        "pericardial_effusion": false,
+        "ldh_above_uln": true,
+        "lvef_percent": 60,
+        "ipi_score": 2,
+        "Bulky PMBCL with SVC syndrome": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary Mediastinal (Thymic) Large B-Cell Lymphoma",
+            "icd_o_3": "9679/3",
+            "icd_10": "C85.2"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "II bulky",
+            "b_symptoms": true,
+            "extranodal_involvement": true,
+            "extranodal_sites": [
+              "mediastinum",
+              "pleura"
+            ]
+          }
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "CD23": "positive",
+            "CD30": "positive",
+            "Ki67_percent": 90
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        },
+        "cardiac": {
+          "baseline_LVEF_percent": 60
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pmbcl-relapsed-post-rchop",
+    "label": "PMBCL · Relapsed post-R-CHOP (Pembrolizumab)",
+    "file": "patient_pmbcl_relapsed_post_rchop.json",
+    "json": {
+      "patient_id": "PMBCL-RELAPSED-003",
+      "comment": "Synthetic PMBCL relapsed 14 months post-1L R-CHOP+RT, transplant-eligible. Engine should select 2L R-ICE → autoSCT (IND-PMBCL-2L-RICE-AUTOSCT).",
+      "disease": {
+        "icd_o_3_morphology": "9679/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 35,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "months_since_1L_completion": 14,
+        "transplant_eligible": true,
+        "chemorefractory": false,
+        "primary_refractory": false,
+        "ldh_above_uln": true,
+        "lvef_percent": 58,
+        "Late-relapse PMBCL post-R-CHOP+RT (transplant-eligible)": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary Mediastinal (Thymic) Large B-Cell Lymphoma — relapsed",
+            "icd_o_3": "9679/3",
+            "icd_10": "C85.2"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "II (recurrent mediastinal)",
+            "b_symptoms": false
+          },
+          "treatment_history": [
+            {
+              "line": "1L",
+              "regimen": "R-CHOP × 6 + ISRT 30 Gy mediastinum",
+              "completed": "2025-01-20",
+              "response": "CR"
+            }
+          ]
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        },
+        "cardiac": {
+          "baseline_LVEF_percent": 58
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pcnsl-typical",
+    "label": "PCNSL · Typical (R-MPV → autoSCT)",
+    "file": "patient_pcnsl_typical.json",
+    "json": {
+      "patient_id": "PCNSL-TYPICAL-001",
+      "comment": "Synthetic typical PCNSL — fit middle-aged patient, single periventricular lesion. Engine should select R-MPV induction (IND-PCNSL-1L-R-MPV) as standard, with consolidation pathway (autoSCT thiotepa-based).",
+      "disease": {
+        "icd_o_3_morphology": "9680/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "creatinine_clearance": 95,
+        "third_space_fluid": false,
+        "csf_cytology_positive": false,
+        "ocular_involvement": false,
+        "single_lesion": true,
+        "lesions_count": 1,
+        "memorial_sloan_kettering_score": 1,
+        "Newly-diagnosed PCNSL, fit": true,
+        "Adequate renal function for HD-MTX": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary Diffuse Large B-Cell Lymphoma of the CNS",
+            "icd_o_3": "9680/3",
+            "icd_10": "C71.9",
+            "who_classification_5th_ed": "Aggressive B-cell lymphomas — Primary CNS DLBCL"
+          },
+          "staging": {
+            "staging_system": "PCNSL-specific (CSF + ocular + brain MRI)",
+            "stage": "Brain only — single periventricular lesion",
+            "csf_involvement": false,
+            "ocular_involvement": false
+          }
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "BCL6": "positive",
+            "MUM1": "positive",
+            "Ki67_percent": 90
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        },
+        "renal": {
+          "creatinine_clearance_ml_min": 95
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pcnsl-elderly-frail",
+    "label": "PCNSL · Elderly Frail (R-MTX-attenuated)",
+    "file": "patient_pcnsl_elderly_frail.json",
+    "json": {
+      "patient_id": "PCNSL-ELDERLY-002",
+      "comment": "Synthetic elderly frail PCNSL — age 78, ECOG 2, CrCl 48 (HD-MTX-marginal). Engine should flag frailty (RF-PCNSL-FRAILTY-AGE) and consider reduced-intensity HD-MTX (1 g/m²) or rituximab + temozolomide; route to alternative track if HD-MTX excluded.",
+      "disease": {
+        "icd_o_3_morphology": "9680/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 78,
+        "sex": "female",
+        "ecog": 2
+      },
+      "findings": {
+        "creatinine_clearance": 48,
+        "third_space_fluid": false,
+        "csf_cytology_positive": false,
+        "ocular_involvement": false,
+        "frailty_assessment": "moderately frail",
+        "comorbidities": [
+          "controlled DM2",
+          "atrial fibrillation"
+        ],
+        "memorial_sloan_kettering_score": 3,
+        "Elderly (≥65) with renal impairment + comorbidities": true,
+        "HD-MTX caution / dose-reduction needed": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary Diffuse Large B-Cell Lymphoma of the CNS",
+            "icd_o_3": "9680/3",
+            "icd_10": "C71.9"
+          },
+          "staging": {
+            "staging_system": "PCNSL-specific",
+            "stage": "Multifocal brain lesions (3 lesions)",
+            "csf_involvement": false
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        },
+        "renal": {
+          "creatinine_clearance_ml_min": 48
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pcnsl-immunocompromised-ebv",
+    "label": "PCNSL · Immunocompromised + EBV+ (Restore Immunity)",
+    "file": "patient_pcnsl_immunocompromised_ebv.json",
+    "json": {
+      "patient_id": "PCNSL-IMMUNO-003",
+      "comment": "Synthetic atypical PCNSL — immunocompromised (post-renal-transplant), EBV-positive lymphoma. PCNSL in immunocompromised setting overlaps PTLD pathway — engine should flag for MDT review (immunosuppression reduction first, then rituximab-based therapy).",
+      "disease": {
+        "icd_o_3_morphology": "9680/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive",
+        "BIO-EBV-EBER-ISH": "positive"
+      },
+      "demographics": {
+        "age": 52,
+        "sex": "male",
+        "ecog": 2
+      },
+      "findings": {
+        "creatinine_clearance": 65,
+        "third_space_fluid": false,
+        "csf_cytology_positive": false,
+        "ocular_involvement": false,
+        "immunocompromised": true,
+        "immunosuppression_cause": "post-renal-transplant on tacrolimus + MMF",
+        "ebv_eber_positive": true,
+        "ebv_viral_load_copies_ml": 12500,
+        "Atypical PCNSL — immunocompromised + EBV-driven": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary CNS DLBCL (EBV-positive, immunocompromised setting)",
+            "icd_o_3": "9680/3",
+            "icd_10": "C71.9",
+            "who_classification_5th_ed": "EBV-positive DLBCL of the CNS — immunocompromised host"
+          },
+          "staging": {
+            "staging_system": "PCNSL-specific",
+            "stage": "Brain only — periventricular + corpus callosum involvement",
+            "csf_involvement": false
+          }
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "EBV-EBER": "positive",
+            "Ki67_percent": 85
+          }
+        },
+        "transplant_history": {
+          "organ": "kidney",
+          "year": 2019,
+          "current_immunosuppression": "tacrolimus + mycophenolate"
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative",
+          "EBV": {
+            "viral_load_copies_ml": 12500
+          }
+        },
+        "renal": {
+          "creatinine_clearance_ml_min": 65
+        }
+      }
+    }
+  },
+  {
+    "case_id": "cll-post-btki",
+    "label": "CLL/SLL · Post-BTKi Progression (Pirtobrutinib / VenR)",
+    "file": "patient_cll_post_btki_progression.json",
+    "json": {
+      "patient_id": "CLL-3L-PIRTO-001",
+      "comment": "Synthetic CLL post-acalabrutinib 18-mo progression with BTK-C481-mut detected and prior venetoclax exposure. Engine should select IND-CLL-3L-PIRTOBRUTINIB via line_of_therapy=3 + post-cBTKi.",
+      "disease": {
+        "id": "DIS-CLL",
+        "icd_o_3_morphology": "9823/3"
+      },
+      "line_of_therapy": 3,
+      "biomarkers": {},
+      "demographics": {
+        "age": 68,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "prior_lines_count": 2,
+        "prior_regimens": [
+          "FCR (3 cycles, intolerant)",
+          "Acalabrutinib x 18 mo"
+        ],
+        "prior_cbtki_exposure": true,
+        "prior_bcl2i_exposure": false,
+        "cbtki_resistance_or_intolerance": true,
+        "btk_c481_mutation": true,
+        "tp53_mutation": true,
+        "del_17p": true,
+        "ighv_unmutated": true,
+        "complex_karyotype": true,
+        "iwcll_indication_present": true,
+        "afib_history": false,
+        "bleeding_risk_high": false,
+        "absolute_lymphocyte_count_k_ul": 28,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Chronic Lymphocytic Leukemia — post-cBTKi progression",
+            "icd_o_3": "9823/3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "FCR — discontinued cycle 3 (cytopenia)",
+              "best_response": "PR"
+            },
+            "second_line": {
+              "regimen": "Acalabrutinib mono",
+              "best_response": "PR",
+              "duration_months": 18,
+              "progression": true
+            }
+          },
+          "molecular": {
+            "btk_c481_status": "mutated",
+            "tp53_status": "mutated",
+            "ighv_status": "unmutated"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "hcl-relapsed-braf",
+    "label": "HCL · Relapsed BRAF-V600E+ (Vemurafenib + Rituximab)",
+    "file": "patient_hcl_relapsed_braf.json",
+    "json": {
+      "patient_id": "HCL-RELAPSED-002",
+      "comment": "Synthetic relapsed BRAF-V600E HCL after 1L cladribine, durable initial response (5 years), now relapse. Engine should select vemurafenib + rituximab (IND-HCL-2L-VEMURAFENIB) as 2L preferred.",
+      "disease": {
+        "icd_o_3_morphology": "9940/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive",
+        "BIO-BRAF-V600E": "positive",
+        "BIO-CD11c": "positive",
+        "BIO-CD25": "positive",
+        "BIO-CD103": "positive"
+      },
+      "demographics": {
+        "age": 62,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "months_since_1L_completion": 60,
+        "braf_v600e_mutation": true,
+        "hcl_classic_phenotype": true,
+        "hcl_variant": false,
+        "spleen_size_cm": 18,
+        "anc_per_ml": 850,
+        "platelet_count_per_ml": 78000,
+        "hemoglobin_g_dl": 9.5,
+        "Late relapse (>5 yr) post-cladribine, BRAF-V600E positive": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Hairy Cell Leukemia — relapsed",
+            "icd_o_3": "9940/3",
+            "icd_10": "C91.4"
+          },
+          "treatment_history": [
+            {
+              "line": "1L",
+              "regimen": "Cladribine 0.1 mg/kg/d × 7 days",
+              "completed": "2021-04-15",
+              "response": "CR; durable until 2026-03"
+            }
+          ]
+        },
+        "ihc_and_molecular": {
+          "ihc_markers": {
+            "CD20": "positive",
+            "CD11c": "positive",
+            "CD25": "positive",
+            "CD103": "positive",
+            "Annexin A1": "positive"
+          },
+          "molecular": {
+            "BRAF_V600E": "positive (PCR + IHC VE1)"
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        }
+      }
+    }
+  },
+  {
+    "case_id": "wm-cxcr4-mut",
+    "label": "Waldenström · CXCR4-mutant (BR fixed-duration)",
+    "file": "patient_wm_cxcr4_mut.json",
+    "json": {
+      "patient_id": "WM-2L-CARD-001",
+      "comment": "Synthetic Waldenström macroglobulinemia post-rituximab progression with CXCR4-WHIM-mut detected and pre-existing baseline grade 2 IgM-related neuropathy. Engine should select IND-WM-2L-CARFILZOMIB-CXCR4MUT via line_of_therapy=2 + BIO-CXCR4-WHIM positive.",
+      "disease": {
+        "id": "DIS-WM",
+        "icd_o_3_morphology": "9671/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CXCR4-WHIM": "positive",
+        "BIO-MYD88-L265P": "positive"
+      },
+      "demographics": {
+        "age": 65,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimen": "Rituximab x 4 + DRC",
+        "time_to_progression_months": 14,
+        "cxcr4_whim_mutation": true,
+        "myd88_l265p": true,
+        "igm_g_l": 38,
+        "serum_viscosity_cp": 3.4,
+        "hyperviscosity_symptomatic": false,
+        "peripheral_neuropathy_grade": 2,
+        "lvef_percent": 56,
+        "uncontrolled_hypertension": false,
+        "active_uncontrolled_infection": false,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "anti_hcv": "negative",
+        "hiv": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Waldenström Macroglobulinemia (Lymphoplasmacytic Lymphoma) — relapsed",
+            "icd_o_3": "9671/3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "Rituximab x 4 → DRC x 6",
+              "best_response": "PR",
+              "duration_months": 14,
+              "outcome": "biochemical progression (IgM doubled)"
+            }
+          },
+          "molecular": {
+            "myd88_l265p": "mutated",
+            "cxcr4_whim_mutation": "mutated"
+          },
+          "neurological": {
+            "igm_paraneuropathy": "grade 2 sensory peripheral neuropathy at baseline — bortezomib contraindicated"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "nmzl-high-burden",
+    "label": "Nodal MZL · High Burden (BR)",
+    "file": "patient_nmzl_high_burden.json",
+    "json": {
+      "patient_id": "NMZL-HIGHBURDEN-002",
+      "comment": "Synthetic nodal MZL with high tumor burden (GELF criteria positive), symptomatic. Engine should select BR (IND-NMZL-1L-BR) over watch-and-wait.",
+      "disease": {
+        "icd_o_3_morphology": "9699/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 64,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "fl_gelf_high_burden": true,
+        "dominant_nodal_mass_cm": 8.2,
+        "nodal_areas_count": 4,
+        "b_symptoms_present": true,
+        "ldh_above_uln": true,
+        "splenomegaly_cm_below_costal": 6,
+        "cytopenia": true,
+        "transformation_suspect": false,
+        "GELF criteria met (high tumor burden)": true,
+        "Symptomatic disease requiring active treatment": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Nodal Marginal Zone Lymphoma",
+            "icd_o_3": "9699/3",
+            "icd_10": "C88.4"
+          },
+          "staging": {
+            "staging_system": "Lugano",
+            "stage": "IIIB",
+            "b_symptoms": true,
+            "extranodal_involvement": true,
+            "extranodal_sites": [
+              "bone marrow",
+              "spleen"
+            ]
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative"
+        }
+      }
+    }
+  },
+  {
+    "case_id": "alcl-alk-positive-typical",
+    "label": "ALCL · ALK-positive Typical (CHP-Bv)",
+    "file": "patient_alcl_alk_positive_typical.json",
+    "json": {
+      "patient_id": "ALCL-ALKPOS-001",
+      "comment": "Systemic ALCL ALK-positive, fit younger patient. Engine should select CHP-Bv (ECHELON-2) as default, with BV maintenance candidate post-ASCT only if high-risk features (this case is standard-risk).",
+      "disease": {
+        "icd_o_3_morphology": "9714/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD30-IHC": "positive"
+      },
+      "demographics": {
+        "age": 38,
+        "sex": "male",
+        "ecog": 0
+      },
+      "findings": {
+        "alk_status": "positive",
+        "cd30_positive": true,
+        "lvef_percent": 65,
+        "ipi_score": 1,
+        "brentuximab_accessible": true
+      }
+    }
+  },
+  {
+    "case_id": "alcl-relapsed-bv-naive",
+    "label": "ALCL · Relapsed BV-naive (Brentuximab → autoSCT)",
+    "file": "patient_alcl_relapsed_bv_naive.json",
+    "json": {
+      "patient_id": "ALCL-RELAPSED-001",
+      "comment": "Systemic ALCL ALK-negative, relapsed after CHOEP (BV not yet given because brentuximab unfunded at 1L). Engine should route to BV monotherapy 2L per SGN-35-005, planned bridge to alloSCT.",
+      "disease": {
+        "icd_o_3_morphology": "9714/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD30-IHC": "positive"
+      },
+      "demographics": {
+        "age": 49,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "alk_status": "negative",
+        "cd30_positive": true,
+        "prior_lines": [
+          "CHOEP x6"
+        ],
+        "best_response_prior": "CR then relapse at 8 months",
+        "peripheral_neuropathy_grade": 0,
+        "transplant_candidate": true,
+        "lvef_percent": 60
+      }
+    }
+  },
+  {
+    "case_id": "ptcl-cd30-positive",
+    "label": "PTCL NOS · CD30-positive (CHP-Bv)",
+    "file": "patient_ptcl_cd30_positive.json",
+    "json": {
+      "patient_id": "PTCL-CD30POS-001",
+      "comment": "PTCL-NOS CD30-positive (≥10% IHC), fit younger. Engine should select CHP-Bv (ECHELON-2 inclusion criterion met).",
+      "disease": {
+        "icd_o_3_morphology": "9702/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD30-IHC": "positive"
+      },
+      "demographics": {
+        "age": 54,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "cd30_positive": true,
+        "cd30_percent_ihc": 40,
+        "lvef_percent": 62,
+        "ipi_score": 3,
+        "brentuximab_accessible": true
+      }
+    }
+  },
+  {
+    "case_id": "ptcl-relapsed",
+    "label": "PTCL NOS · Relapsed post-autoSCT (Romidepsin / Pralatrexate)",
+    "file": "patient_ptcl_relapsed.json",
+    "json": {
+      "patient_id": "PTCL-RELAPSED-001",
+      "comment": "PTCL-NOS relapsed after CHOEP + autoSCT, HDACi-naive, romidepsin accessible. Engine should select romidepsin 2L (default per algo) bridging to alloSCT consideration.",
+      "disease": {
+        "icd_o_3_morphology": "9702/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD30-IHC": "negative"
+      },
+      "demographics": {
+        "age": 51,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "prior_lines": [
+          "CHOEP x6",
+          "autoSCT BEAM"
+        ],
+        "best_response_prior": "CR then relapse at 14 months",
+        "hdac_inhibitor_naive": true,
+        "qtc_baseline_ms": 420,
+        "transplant_candidate": true,
+        "lvef_percent": 58
+      }
+    }
+  },
+  {
+    "case_id": "aitl-relapsed-2l",
+    "label": "AITL · Relapsed 2L (Azacitidine)",
+    "file": "patient_aitl_relapsed_2l.json",
+    "json": {
+      "patient_id": "AITL-RELAPSED-001",
+      "comment": "AITL relapsed 14 months after CHOEP + autoSCT, HDACi-naive, TET2/DNMT3A epigenetic profile. Engine should route to azacitidine 2L (default per algo, AITL-specific epigenetic rationale).",
+      "disease": {
+        "icd_o_3_morphology": "9705/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD30-IHC": "negative"
+      },
+      "demographics": {
+        "age": 62,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "prior_lines": [
+          "CHOEP x6",
+          "autoSCT BEAM"
+        ],
+        "best_response_prior": "CR then relapse at 14 months",
+        "tet2_mutation": true,
+        "dnmt3a_mutation": true,
+        "idh2_mutation": false,
+        "hdac_inhibitor_naive": true,
+        "qtc_baseline_ms": 425,
+        "lvef_percent": 58,
+        "transplant_candidate": false
+      }
+    }
+  },
+  {
+    "case_id": "eatl-typical",
+    "label": "EATL · Typical (Celiac, CHOEP → autoSCT)",
+    "file": "patient_eatl_typical.json",
+    "json": {
+      "patient_id": "EATL-TYPICAL-001",
+      "comment": "Typical EATL: refractory celiac disease patient, fit ≤70, jejunal mass with multifocal enteropathy. Engine should select CHOEP + autoSCT consolidation (1L standard).",
+      "disease": {
+        "icd_o_3_morphology": "9717/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "celiac_history": true,
+        "lvef_percent": 60,
+        "gluten_free_diet_compliant": false,
+        "multifocal_jejunal_lesions": true
+      }
+    }
+  },
+  {
+    "case_id": "eatl-relapsed-post-choep",
+    "label": "EATL · Relapsed post-CHOEP (ICE Salvage)",
+    "file": "patient_eatl_relapsed_post_choep.json",
+    "json": {
+      "patient_id": "EATL-RELAPSED-001",
+      "comment": "EATL relapsed after CHOEP induction; not yet transplanted. Engine should route to ICE-style 2L salvage with bridge-to-alloSCT plan.",
+      "disease": {
+        "icd_o_3_morphology": "9717/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 55,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "prior_lines": [
+          "CHOEP x6"
+        ],
+        "best_response_prior": "PR",
+        "transplant_candidate": true,
+        "creatinine_clearance": 75,
+        "lvef_percent": 58
+      }
+    }
+  },
+  {
+    "case_id": "hstcl-fit-younger",
+    "label": "HSTCL · Fit Younger (ICE/IVAC → alloHCT)",
+    "file": "patient_hstcl_fit_younger.json",
+    "json": {
+      "patient_id": "HSTCL-FIT-001",
+      "comment": "HSTCL fit younger patient with potential matched donor — engine should select ICE + alloSCT consolidation pathway (aggressive track).",
+      "disease": {
+        "icd_o_3_morphology": "9716/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 32,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "donor_status": "matched_sibling_identified",
+        "ibd_history": false,
+        "lvef_percent": 65,
+        "creatinine_clearance": 95,
+        "transplant_candidate": true
+      }
+    }
+  },
+  {
+    "case_id": "hstcl-iatrogenic-ibd",
+    "label": "HSTCL · Iatrogenic IBD (CHOEP-unfit fallback)",
+    "file": "patient_hstcl_iatrogenic_ibd.json",
+    "json": {
+      "patient_id": "HSTCL-IATROGENIC-001",
+      "comment": "Iatrogenic HSTCL after long-term anti-TNF + azathioprine for Crohn's disease. Engine should select ICE + alloSCT pathway AND surface immediate cessation of anti-TNF + thiopurines via MDT brief.",
+      "disease": {
+        "icd_o_3_morphology": "9716/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 28,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "donor_status": "search_initiated",
+        "ibd_history": true,
+        "current_medications": [
+          "infliximab",
+          "azathioprine"
+        ],
+        "lvef_percent": 62,
+        "creatinine_clearance": 105,
+        "transplant_candidate": true
+      }
+    }
+  },
+  {
+    "case_id": "t-pll-typical",
+    "label": "T-PLL · Typical (Alemtuzumab IV)",
+    "file": "patient_t_pll_typical.json",
+    "json": {
+      "patient_id": "T-PLL-TYPICAL-001",
+      "comment": "Typical T-PLL: marked lymphocytosis, hepatosplenomegaly, CD52-bright. Engine should select alemtuzumab IV 1L with alloSCT consolidation in fit.",
+      "disease": {
+        "icd_o_3_morphology": "9834/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD52-IHC": "positive"
+      },
+      "demographics": {
+        "age": 64,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "lymphocyte_count": 145.0,
+        "hepatosplenomegaly": true,
+        "tcl1a_expression": "positive",
+        "atm_mutation": true,
+        "cmv_serology": "positive",
+        "transplant_candidate": true,
+        "lvef_percent": 60
+      }
+    }
+  },
+  {
+    "case_id": "t-pll-alem-refractory",
+    "label": "T-PLL · Alemtuzumab-refractory (Venetoclax + Alem)",
+    "file": "patient_t_pll_alemtuzumab_refractory.json",
+    "json": {
+      "patient_id": "T-PLL-REFRACT-001",
+      "comment": "T-PLL refractory to alemtuzumab IV induction (no CR, persistent disease at 12 weeks). Engine should route to venetoclax + alemtuzumab combination 2L bridging to alloSCT.",
+      "disease": {
+        "icd_o_3_morphology": "9834/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD52-IHC": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "prior_lines": [
+          "alemtuzumab IV 30 mg 3xweek x 12 weeks"
+        ],
+        "best_response_prior": "PR (no CR)",
+        "cmv_status": "active surveillance, no viremia",
+        "donor_status": "MUD identified",
+        "transplant_candidate": true,
+        "lvef_percent": 58,
+        "creatinine_clearance": 80
+      }
+    }
+  },
+  {
+    "case_id": "atll-acute",
+    "label": "ATLL · Acute (mLSG15 / EPOCH)",
+    "file": "patient_atll_acute.json",
+    "json": {
+      "patient_id": "ATLL-ACUTE-001",
+      "comment": "Aggressive (acute) ATLL with hypercalcemia and high LDH in HTLV-1+ patient. Engine should select aggressive 1L pathway (CHOEP + mogamulizumab + alloSCT planning).",
+      "disease": {
+        "icd_o_3_morphology": "9827/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 56,
+        "sex": "female",
+        "ecog": 2
+      },
+      "findings": {
+        "htlv1_serology": "positive",
+        "shimoyama_subtype": "acute",
+        "lymphocyte_count": 35.0,
+        "ldh_uln_multiple": 3.5,
+        "calcium_corrected_mg_dl": 13.2,
+        "skin_lesions": true,
+        "hepatosplenomegaly": true,
+        "lvef_percent": 60,
+        "transplant_candidate": true
+      }
+    }
+  },
+  {
+    "case_id": "atll-indolent-smoldering",
+    "label": "ATLL · Indolent / Smoldering (Watchful Waiting)",
+    "file": "patient_atll_indolent_smoldering.json",
+    "json": {
+      "patient_id": "ATLL-SMOLD-001",
+      "comment": "Indolent smoldering ATLL: mild lymphocytosis, asymptomatic skin lesions, no organ dysfunction, normal LDH. Engine should select AZT + IFN-α 1L (indolent track).",
+      "disease": {
+        "icd_o_3_morphology": "9827/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 64,
+        "sex": "male",
+        "ecog": 0
+      },
+      "findings": {
+        "htlv1_serology": "positive",
+        "shimoyama_subtype": "smoldering",
+        "lymphocyte_count": 5.5,
+        "ldh_uln_multiple": 0.9,
+        "calcium_corrected_mg_dl": 9.4,
+        "skin_lesions": true,
+        "hepatosplenomegaly": false,
+        "lvef_percent": 60
+      }
+    }
+  },
+  {
+    "case_id": "nk-t-nasal-localized",
+    "label": "NK/T-Nasal · Localized (P-GEMOX + RT)",
+    "file": "patient_nk_t_nasal_localized.json",
+    "json": {
+      "patient_id": "NK-T-LOCAL-001",
+      "comment": "NK/T-cell nasal lymphoma stage IIA, fit younger, asparaginase accessible. Engine should select SMILE 1L + concurrent RT 50 Gy.",
+      "disease": {
+        "icd_o_3_morphology": "9719/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 42,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "stage": "IIA",
+        "ebv_viral_load": "high",
+        "creatinine_clearance": 95,
+        "asparaginase_accessible": true,
+        "lvef_percent": 65,
+        "pancreatitis_history": false,
+        "nasal_disease": true,
+        "cns_extension": false
+      }
+    }
+  },
+  {
+    "case_id": "nk-t-nasal-relapsed",
+    "label": "NK/T-Nasal · Relapsed (Avelumab)",
+    "file": "patient_nk_t_nasal_relapsed.json",
+    "json": {
+      "patient_id": "NK-T-RELAPSED-001",
+      "comment": "NK/T-cell nasal lymphoma relapsed 6 months after SMILE + RT, EBV viral load rising. Engine should select PD-1/PD-L1 inhibitor (avelumab) 2L bridging to alloSCT.",
+      "disease": {
+        "icd_o_3_morphology": "9719/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 47,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "prior_lines": [
+          "SMILE x4 + RT 50 Gy"
+        ],
+        "best_response_prior": "CR then relapse at 6 months",
+        "ebv_viral_load": "rising",
+        "pdl1_ihc_percent": 65,
+        "transplant_candidate": true,
+        "lvef_percent": 60,
+        "active_autoimmune_disease": false
+      }
+    }
+  },
+  {
+    "case_id": "mf-relapsed-post-moga",
+    "label": "MF · Relapsed post-Mogamulizumab (Bexarotene)",
+    "file": "patient_mf_relapsed_post_moga.json",
+    "json": {
+      "patient_id": "MF-RELAPSED-001",
+      "comment": "Advanced MF stage IIIA, relapsed after mogamulizumab induction with PR. Engine should select bexarotene 2L (mogamulizumab already exhausted, not CD30+).",
+      "disease": {
+        "icd_o_3_morphology": "9700/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BIO-CD30-IHC": "negative"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "stage": "IIIA",
+        "prior_lines": [
+          "mogamulizumab x6 months"
+        ],
+        "best_response_prior": "PR then progression at 9 months",
+        "cd30_positive": false,
+        "sezary_count_b2": false,
+        "large_cell_transformation": false,
+        "lvef_percent": 60,
+        "baseline_triglycerides_mg_dl": 130,
+        "baseline_tsh_normal": true
+      }
+    }
+  },
+  {
+    "case_id": "ptld-polymorphic-ebv",
+    "label": "PTLD · Polymorphic EBV+ (RIS + Rituximab)",
+    "file": "patient_ptld_polymorphic_ebv.json",
+    "json": {
+      "patient_id": "PTLD-POLY-001",
+      "comment": "Polymorphic CD20+ EBV-driven PTLD post-renal-transplant 4 years prior. Engine should select reduce-IS + rituximab 1L (default). On response, route to PTLD-1 sequential maintenance.",
+      "disease": {
+        "icd_o_3_morphology": "9971/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 52,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "transplant_type": "renal",
+        "years_post_transplant": 4,
+        "ebv_viral_load": "high",
+        "current_immunosuppression": [
+          "tacrolimus",
+          "mycophenolate"
+        ],
+        "histology": "polymorphic",
+        "cd20_positive": true,
+        "lvef_percent": 60,
+        "hbv_status": "negative"
+      }
+    }
+  },
+  {
+    "case_id": "ptld-monomorphic-dlbcl-like",
+    "label": "PTLD · Monomorphic DLBCL-like (R-CHOP)",
+    "file": "patient_ptld_monomorphic_dlbcl_like.json",
+    "json": {
+      "patient_id": "PTLD-MONO-001",
+      "comment": "Monomorphic DLBCL-like CD20+ PTLD post-cardiac-transplant 7 years prior, high-risk biology. Engine should select R-CHOP 1L (aggressive track per high-risk red flag).",
+      "disease": {
+        "icd_o_3_morphology": "9971/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-CD20-IHC": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 2
+      },
+      "findings": {
+        "transplant_type": "cardiac",
+        "years_post_transplant": 7,
+        "ebv_viral_load": "high",
+        "current_immunosuppression": [
+          "tacrolimus",
+          "mycophenolate",
+          "prednisone"
+        ],
+        "histology": "monomorphic_dlbcl_like",
+        "cd20_positive": true,
+        "lvef_percent": 55,
+        "hbv_status": "anti_hbc_positive",
+        "high_risk_biology": true
+      }
+    }
+  },
+  {
+    "case_id": "chl-pediatric-bulky",
+    "label": "cHL · AYA Stage IIB Bulky Mediastinal",
+    "file": "patient_chl_pediatric_bulky_mediastinal.json",
+    "json": {
+      "patient_id": "CHL-PED-BULKY-001",
+      "comment": "Synthetic pediatric/AYA cHL stage IIB (age 17) with bulky mediastinal mass + B-symptoms. Engine should propose adult-style A+AVD + ISRT to bulky mediastinum vs pediatric OEPA-COPDAC (EuroNet-PHL) protocol with response-adapted RT. 3rd cHL fixture (pediatric/AYA bulky-mediastinal scenario distinct from early ABVD, advanced N+AVD, and relapsed-for-salvage).",
+      "disease": {
+        "id": "DIS-CHL",
+        "icd_o_3_morphology": "9650/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 17,
+        "sex": "female",
+        "ethnicity": "white_european",
+        "weight_kg": 58,
+        "height_cm": 165,
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true,
+        "pregnancy_status": "not_pregnant",
+        "pediatric_or_ayoung_adult": true
+      },
+      "findings": {
+        "stage": "IIB",
+        "stage_3_or_4": false,
+        "advanced_stage_chl": false,
+        "ann_arbor_stage": "IIB",
+        "b_symptoms": true,
+        "b_symptom_details": [
+          "fevers >38°C nightly × 3 weeks",
+          "drenching night sweats",
+          "12% weight loss in 4 months"
+        ],
+        "bulky_disease": true,
+        "mediastinal_mass_ratio_mmr": 0.42,
+        "bulky_mediastinal_mass_cm": 11.5,
+        "extranodal_disease": false,
+        "extranodal_sites": [],
+        "lvef_percent": 65,
+        "dlco_percent": 92,
+        "creatinine_clearance_ml_min": 110,
+        "bilirubin_mg_dl": 0.4,
+        "esr_mm_hr": 68,
+        "albumin_g_dl": 3.6,
+        "hemoglobin_g_dl": 11.2,
+        "wbc_k_ul": 12.4,
+        "lymphocyte_k_ul": 0.9,
+        "active_uncontrolled_infection": false,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "ebv_serology": "past_infection",
+        "peripheral_neuropathy_grade": 0,
+        "hasenclever_ipi_score": 1,
+        "ghsg_risk_group": "intermediate",
+        "primary_refractory": false,
+        "early_relapse_under_12mo": false
+      },
+      "imaging_summary": "Contrast CT chest: 11.5 cm anterior mediastinal mass with MMR 0.42 (bulky by GHSG criteria), bilateral hilar adenopathy, no pulmonary infiltrate; PET-CT: avid mediastinum (SUVmax 18) + bilateral hilar + low cervical, Deauville baseline 5; no infradiaphragmatic disease.",
+      "comorbidities": [],
+      "patient_preferences": {
+        "fertility_preservation_desired": true,
+        "fertility_consult_completed": true,
+        "ovarian_tissue_cryopreserved": true,
+        "concerns_about_radiation": "discussed risk of secondary breast malignancy with bulky mediastinal RT",
+        "parental_consent_documented": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Classical Hodgkin Lymphoma (nodular sclerosis subtype), stage IIB, bulky mediastinal mass (11.5 cm, MMR 0.42), B-symptoms — adolescent",
+            "icd_o_3": "9650/3",
+            "icd_10": "C81.1",
+            "who_classification_5th_ed": "Classical Hodgkin lymphoma, nodular sclerosis"
+          },
+          "stage": {
+            "ann_arbor": "IIB",
+            "bulky": true,
+            "b_symptoms": true
+          },
+          "ghsg_risk_group": "intermediate (HD17-style: bulky mediastinum upgrades to advanced-equivalent treatment)",
+          "fitness_assessment": {
+            "ecog": 1,
+            "fit_for_intensive_chemo": true,
+            "fit_for_transplant": true,
+            "rationale": "AYA (17 y) — choice between adult RATHL/AHL2011 framework (A+AVD + response-adapted ISRT to bulky mediastinum) vs pediatric EuroNet-PHL (OEPA-COPDAC ± ISRT). Both arms need fertility preservation (done) and minimisation of cardiopulmonary RT exposure (proton therapy if available)."
+          },
+          "treatment_planning_notes": [
+            "Pediatric protocol favors avoiding bleomycin-cumulative pulmonary tox in long survivorship",
+            "Adult A+AVD backbone (ECHELON-1) avoids bleomycin already and has PFS benefit",
+            "ISRT to mediastinum at lowest effective dose if PET-2 Deauville ≤3"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "case_id": "chl-relapsed-salvage",
+    "label": "cHL · Relapsed (Salvage → autoSCT + BV maint.)",
+    "file": "patient_chl_relapsed_for_salvage.json",
+    "json": {
+      "patient_id": "CHL-2L-001",
+      "comment": "Synthetic cHL relapsed at 8 mo post A+AVD, ECOG 1, transplant-eligible. Engine should select salvage (ICE/DHAP) → ASCT pathway and post-ASCT brentuximab vedotin maintenance (IND-CHL-2L-BRENTUXIMAB-MAINTENANCE).",
+      "disease": {
+        "id": "DIS-CHL",
+        "icd_o_3_morphology": "9650/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 34,
+        "sex": "female",
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true,
+        "pregnancy_status": "not_pregnant"
+      },
+      "findings": {
+        "stage_3_or_4": true,
+        "advanced_stage_chl": true,
+        "primary_refractory": false,
+        "early_relapse_under_12mo": true,
+        "extranodal_disease": true,
+        "extranodal_sites": [
+          "lung",
+          "pleural"
+        ],
+        "high_risk_aethera_features": true,
+        "lvef_percent": 60,
+        "dlco_percent": 78,
+        "creatinine_clearance_ml_min": 88,
+        "bilirubin_mg_dl": 0.6,
+        "active_uncontrolled_infection": false,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "peripheral_neuropathy_grade": 1
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Classical Hodgkin Lymphoma, relapsed at 8 months post A+AVD",
+            "icd_o_3": "9650/3",
+            "icd_10": "C81.9"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "A+AVD × 6 cycles",
+              "best_response": "CR per Lugano + PET",
+              "relapse_at_months": 8,
+              "relapse_sites": [
+                "bilateral hilar",
+                "left lung parenchymal",
+                "left pleural"
+              ]
+            }
+          },
+          "fitness_assessment": {
+            "ecog": 1,
+            "fit_for_intensive_chemo": true,
+            "fit_for_transplant": true
+          },
+          "aethera_high_risk_features": [
+            "primary refractory NO",
+            "relapse <12 mo YES",
+            "extranodal at relapse YES"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mm-post-vrd-progression",
+    "label": "Multiple Myeloma · Post-VRd Progression (DPd / IsaPd)",
+    "file": "patient_mm_post_vrd_progression.json",
+    "json": {
+      "patient_id": "MM-2L-DKD-001",
+      "comment": "Synthetic MM post-VRd induction (PR), M-spike rising at 12 mo, lenalidomide-refractory, fit ECOG 1. Engine should select IND-MM-2L-DKD via line_of_therapy=2 + len-refractory profile.",
+      "disease": {
+        "id": "DIS-MM",
+        "icd_o_3_morphology": "9732/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 64,
+        "sex": "female",
+        "ecog": 1,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimen": "VRd x 8",
+        "lenalidomide_refractory": true,
+        "bortezomib_exposed": true,
+        "anti_cd38_naive": true,
+        "time_to_progression_months": 12,
+        "creatinine_clearance_ml_min": 78,
+        "serum_creatinine_mg_dl": 1.0,
+        "mm_renal_failure": false,
+        "del_17p": false,
+        "t_4_14": false,
+        "t_14_16": false,
+        "gain_1q": false,
+        "tp53_mutation": false,
+        "mm_cytogenetics_high_risk": false,
+        "lvef_percent": 60,
+        "uncontrolled_hypertension": false,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "severe_neuropathy_grade": 1
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Multiple myeloma, IgG kappa — relapsed",
+            "icd_o_3": "9732/3",
+            "icd_10": "C90.0"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "VRd x 8 (no ASCT — patient deferred)",
+              "best_response": "PR",
+              "progression_at_months": 12,
+              "len_refractory": true
+            }
+          }
+        },
+        "laboratory_baseline": {
+          "m_protein_g_dl": 2.1,
+          "free_light_chain_ratio": 18.0
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mm-triple-class-refractory",
+    "label": "Multiple Myeloma · Triple-Class Refractory (CAR-T / Teclistamab)",
+    "file": "patient_mm_triple_class_refractory.json",
+    "json": {
+      "patient_id": "MM-4L-TECLISTAMAB-001",
+      "comment": "Synthetic triple-class refractory MM at 4L (post VRd → DKd → IsaKRD). Age 61, ECOG 1. Engine should select IND-MM-4L-TECLISTAMAB via line_of_therapy=4 + triple-class refractory + no active infection.",
+      "disease": {
+        "id": "DIS-MM",
+        "icd_o_3_morphology": "9732/3"
+      },
+      "line_of_therapy": 4,
+      "biomarkers": {},
+      "demographics": {
+        "age": 61,
+        "sex": "male",
+        "ecog": 1,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "prior_lines_count": 3,
+        "prior_regimens": [
+          "VRd x 6 + ASCT",
+          "DKd x 8",
+          "IsaKRD x 6"
+        ],
+        "triple_class_refractory": true,
+        "bortezomib_exposed": true,
+        "lenalidomide_refractory": true,
+        "anti_cd38_refractory": true,
+        "carfilzomib_exposed": true,
+        "active_progressive_disease": true,
+        "active_uncontrolled_infection": false,
+        "absolute_neutrophil_count_k_ul": 1.4,
+        "igg_g_l": 4.5,
+        "creatinine_clearance_ml_min": 70,
+        "lvef_percent": 58,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "del_17p": false,
+        "tp53_mutation": false
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Multiple myeloma, IgA lambda — triple-class refractory",
+            "icd_o_3": "9732/3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "VRd + ASCT",
+              "best_response": "VGPR",
+              "progression_at_months": 30
+            },
+            "second_line": {
+              "regimen": "DKd x 8",
+              "best_response": "PR",
+              "progression_at_months": 14
+            },
+            "third_line": {
+              "regimen": "IsaKRD x 6",
+              "best_response": "MR",
+              "progression_at_months": 6
+            }
+          }
+        },
+        "infectious_status": {
+          "HBV": {
+            "HBsAg": "negative",
+            "anti_HBc": "negative"
+          },
+          "HCV": {
+            "anti_HCV": "negative"
+          },
+          "HIV": "negative",
+          "active_infection": false
+        }
+      }
+    }
+  },
+  {
+    "case_id": "aml-fit-1l-7-3",
+    "label": "AML · Fit 1L (7+3 Induction)",
+    "file": "patient_aml_fit_1l_seven_three.json",
+    "json": {
+      "patient_id": "AML-1L-FIT-001",
+      "comment": "Synthetic fit AML 1L patient, ELN intermediate-risk, NPM1+/FLT3-WT. Engine should select IND-AML-1L-7-3 (aggressive track).",
+      "disease": {
+        "id": "DIS-AML",
+        "icd_o_3_morphology": "9861/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 48,
+        "sex": "male",
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "wbc_k_ul": 32,
+        "blast_percent_pb": 48,
+        "blast_percent_bm": 62,
+        "npm1": "positive",
+        "flt3_itd": false,
+        "flt3_tkd": false,
+        "tp53_mutation": false,
+        "complex_karyotype": false,
+        "monosomal_karyotype": false,
+        "monosomy_7": false,
+        "del_5q": false,
+        "active_uncontrolled_infection": false,
+        "lvef_percent": 62,
+        "qtc_ms": 425,
+        "creatinine_mg_dl": 0.9,
+        "bilirubin_mg_dl": 0.6,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "pregnancy": "not_applicable"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Acute Myeloid Leukemia, NPM1-mutated, FLT3-WT, de novo",
+            "icd_o_3": "9861/3",
+            "icd_10": "C92.0",
+            "who_classification_5th_ed": "AML with NPM1 mutation"
+          },
+          "eln_2022_risk": "favorable",
+          "fitness_assessment": {
+            "hct_ci": 1,
+            "ecog": 1,
+            "fit_for_intensive_chemo": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "aml-unfit-ven-aza",
+    "label": "AML · Unfit (Venetoclax + Azacitidine)",
+    "file": "patient_aml_unfit_ven_aza.json",
+    "json": {
+      "patient_id": "AML-1L-UNFIT-001",
+      "comment": "Synthetic AML 1L patient age 78 with COPD + CKD3 + ECOG 2 — not eligible for intensive 7+3. Engine should select IND-AML-1L-VEN-AZA (standard-track unfit pathway).",
+      "disease": {
+        "id": "DIS-AML",
+        "icd_o_3_morphology": "9861/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 78,
+        "sex": "female",
+        "ecog": 2,
+        "fit_for_intensive_chemo": false,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "wbc_k_ul": 12,
+        "blast_percent_pb": 22,
+        "blast_percent_bm": 38,
+        "npm1": "negative",
+        "flt3_itd": false,
+        "tp53_mutation": false,
+        "complex_karyotype": false,
+        "monosomal_karyotype": false,
+        "monosomy_7": false,
+        "del_5q": false,
+        "antecedent_mds": false,
+        "active_uncontrolled_infection": false,
+        "lvef_percent": 50,
+        "creatinine_clearance_ml_min": 38,
+        "bilirubin_mg_dl": 0.7,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Acute Myeloid Leukemia, secondary to MDS background — unfit for intensive induction",
+            "icd_o_3": "9861/3",
+            "icd_10": "C92.0"
+          },
+          "eln_2022_risk": "intermediate",
+          "fitness_assessment": {
+            "hct_ci": 4,
+            "ecog": 2,
+            "fit_for_intensive_chemo": false,
+            "rationale": "Age 78 + COPD + CrCl 38 + ECOG 2 → triggers unfit-track per IPSS-R / Ferrara unfit criteria"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "aml-flt3-relapse",
+    "label": "AML · FLT3-mutant Relapse (Gilteritinib)",
+    "file": "patient_aml_flt3_relapse.json",
+    "json": {
+      "patient_id": "AML-2L-GILT-001",
+      "comment": "Synthetic AML post 7+3 → CR1 → relapse with re-tested FLT3-ITD+. Age 55, ECOG 1, fit. Engine should select IND-AML-2L-GILTERITINIB-FLT3 via line_of_therapy=2 + FLT3 mutation.",
+      "disease": {
+        "id": "DIS-AML",
+        "icd_o_3_morphology": "9861/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 55,
+        "sex": "female",
+        "ecog": 1,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimen": "7+3 induction → CR1, no consolidation HCT yet",
+        "time_to_relapse_months": 9,
+        "flt3_itd": true,
+        "flt3_tkd": false,
+        "flt3_mutation": "positive",
+        "flt3_retested_at_relapse": true,
+        "tp53_mutation": false,
+        "complex_karyotype": false,
+        "monosomal_karyotype": false,
+        "monosomy_7": false,
+        "del_5q": false,
+        "active_uncontrolled_infection": false,
+        "wbc_k_ul": 18,
+        "blast_percent_pb": 25,
+        "lvef_percent": 60,
+        "qtc_ms": 430,
+        "potassium_meq_l": 4.2,
+        "magnesium_mg_dl": 2.1,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Acute Myeloid Leukemia — FLT3-ITD-mutated, first relapse",
+            "icd_o_3": "9861/3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "7+3 (idarubicin + cytarabine) + midostaurin",
+              "best_response": "CR1",
+              "consolidation": "none — relapsed before HCT bridging",
+              "relapse_at_months": 9
+            }
+          },
+          "molecular_at_relapse": {
+            "flt3_itd": "positive",
+            "flt3_allelic_ratio": 0.6,
+            "npm1": "positive"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "apl-low-risk",
+    "label": "APL · Low Risk (ATRA + ATO chemo-free)",
+    "file": "patient_apl_low_risk.json",
+    "json": {
+      "patient_id": "APL-LR-001",
+      "comment": "Synthetic APL low-risk (Sanz: WBC 2.4K, plt 60K) — should select IND-APL-1L-ATRA-ATO (chemo-free).",
+      "disease": {
+        "id": "DIS-APL",
+        "icd_o_3_morphology": "9866/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 42,
+        "sex": "female",
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "pregnancy_status": "not_pregnant"
+      },
+      "findings": {
+        "wbc_k_ul": 2.4,
+        "platelets_k_ul": 60,
+        "blast_percent_pb": 22,
+        "blast_percent_bm": 60,
+        "promyelocyte_morphology": true,
+        "pml_rara": "positive",
+        "flt3_itd": false,
+        "active_uncontrolled_infection": false,
+        "active_dic": false,
+        "fibrinogen_mg_dl": 220,
+        "d_dimer_ng_ml": 1100,
+        "lvef_percent": 65,
+        "qtc_ms": 425,
+        "potassium_meq_l": 4.0,
+        "magnesium_mg_dl": 2.0,
+        "calcium_mg_dl": 9.4,
+        "creatinine_mg_dl": 0.7,
+        "bilirubin_mg_dl": 0.5,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Acute Promyelocytic Leukemia, PML-RARα+, Sanz low-risk",
+            "icd_o_3": "9866/3",
+            "icd_10": "C92.4"
+          },
+          "sanz_risk_2000": "low",
+          "fitness_assessment": {
+            "ecog": 1,
+            "fit_for_intensive_chemo": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "apl-high-risk",
+    "label": "APL · High Risk + DIC (ATRA + ATO + Idarubicin)",
+    "file": "patient_apl_high_risk.json",
+    "json": {
+      "patient_id": "APL-HR-001",
+      "comment": "Synthetic APL high-risk (WBC 18K, FLT3-ITD+) with active DIC — engine should select IND-APL-1L-ATRA-ATO-IDA (high-risk pathway with idarubicin or gemtuzumab) and trigger DIC red-flag.",
+      "disease": {
+        "id": "DIS-APL",
+        "icd_o_3_morphology": "9866/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 36,
+        "sex": "male",
+        "ecog": 2,
+        "fit_for_intensive_chemo": true
+      },
+      "findings": {
+        "wbc_k_ul": 18.4,
+        "platelets_k_ul": 22,
+        "blast_percent_pb": 65,
+        "blast_percent_bm": 78,
+        "promyelocyte_morphology": true,
+        "pml_rara": "positive",
+        "pml_rara_isoform": "bcr1",
+        "flt3_itd": true,
+        "flt3_allelic_ratio": 0.55,
+        "active_uncontrolled_infection": false,
+        "active_dic": true,
+        "fibrinogen_mg_dl": 110,
+        "d_dimer_ng_ml": 8500,
+        "inr": 1.6,
+        "ptt_seconds": 38,
+        "lvef_percent": 60,
+        "qtc_ms": 440,
+        "potassium_meq_l": 4.2,
+        "magnesium_mg_dl": 2.1,
+        "calcium_mg_dl": 9.0,
+        "creatinine_mg_dl": 0.9,
+        "bilirubin_mg_dl": 0.6,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Acute Promyelocytic Leukemia, PML-RARα+ (bcr1), Sanz high-risk, FLT3-ITD+, presenting DIC",
+            "icd_o_3": "9866/3",
+            "icd_10": "C92.4"
+          },
+          "sanz_risk_2000": "high",
+          "fitness_assessment": {
+            "ecog": 2,
+            "fit_for_intensive_chemo": true
+          },
+          "presenting_complications": [
+            "DIC",
+            "thrombocytopenia <30K",
+            "hyperleukocytosis trend"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "case_id": "cml-chronic-newdx",
+    "label": "CML · Chronic Phase Newly Diagnosed (TKI 1L)",
+    "file": "patient_cml_chronic_phase_newdx.json",
+    "json": {
+      "patient_id": "CML-CP-1L-001",
+      "comment": "Synthetic newly diagnosed CML chronic phase, intermediate ELTS risk, Sokal high but ELTS intermediate. Engine should select IND-CML-1L-IMATINIB or IND-CML-1L-2GEN-TKI based on patient priorities (TFR-eligibility, comorbidities).",
+      "disease": {
+        "id": "DIS-CML",
+        "icd_o_3_morphology": "9863/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BCR-ABL1": "positive_p210_e13a2"
+      },
+      "demographics": {
+        "age": 56,
+        "sex": "female",
+        "ecog": 0,
+        "fit_for_intensive_chemo": true
+      },
+      "findings": {
+        "wbc_k_ul": 88,
+        "platelets_k_ul": 380,
+        "hemoglobin_g_dl": 11.2,
+        "blast_percent_pb": 1,
+        "blast_percent_bm": 2,
+        "basophil_percent_pb": 4,
+        "splenomegaly_cm_below_costal": 6,
+        "philadelphia_chromosome_t9_22": true,
+        "bcr_abl1_p210": true,
+        "bcr_abl1_p190": false,
+        "phase": "chronic",
+        "additional_chromosomal_abnormalities": false,
+        "tp53_mutation": false,
+        "active_uncontrolled_infection": false,
+        "lvef_percent": 60,
+        "qtc_ms": 425,
+        "creatinine_mg_dl": 0.8,
+        "bilirubin_mg_dl": 0.5,
+        "lipase_u_l": 42,
+        "amylase_u_l": 60,
+        "fasting_glucose_mg_dl": 88,
+        "lipid_panel_dyslipidemia": false,
+        "vascular_disease_history": false,
+        "pleural_effusion_history": false,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Chronic Myeloid Leukemia, chronic phase, BCR-ABL1 p210 e13a2",
+            "icd_o_3": "9863/3",
+            "icd_10": "C92.1",
+            "who_classification_5th_ed": "Chronic myeloid leukemia, BCR::ABL1-positive"
+          },
+          "elts_risk": "intermediate",
+          "sokal_risk": "high",
+          "fitness_assessment": {
+            "ecog": 0,
+            "fit_for_intensive_chemo": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "cml-t315i",
+    "label": "CML · T315I-mutated (Ponatinib / Asciminib)",
+    "file": "patient_cml_t315i.json",
+    "json": {
+      "patient_id": "CML-2L-PONA-001",
+      "comment": "Synthetic CML-CP post-imatinib + post-dasatinib failure with T315I gatekeeper mutation. Age 49, ECOG 0. Engine should select IND-CML-2L-PONATINIB-T315I via line_of_therapy=2 + T315I.",
+      "disease": {
+        "id": "DIS-CML",
+        "icd_o_3_morphology": "9863/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 49,
+        "sex": "male",
+        "ecog": 0
+      },
+      "findings": {
+        "prior_lines_count": 2,
+        "prior_regimens": [
+          "Imatinib 400 mg (resistance)",
+          "Dasatinib 100 mg (failure)"
+        ],
+        "cml_phase": "chronic",
+        "t315i_mutation": true,
+        "bcr_abl1_mutation": "T315I",
+        "bcr_abl1_is_percent": 12.4,
+        "prior_arterial_event": false,
+        "cardiovascular_risk_factors": [
+          "hypertension"
+        ],
+        "blood_pressure_systolic": 138,
+        "ldl_mg_dl": 142,
+        "fasting_glucose_mg_dl": 96,
+        "lvef_percent": 62,
+        "active_uncontrolled_infection": false,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Chronic Myeloid Leukemia, BCR-ABL1+ — T315I-resistant",
+            "icd_o_3": "9863/3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "Imatinib 400 mg",
+              "best_response": "CCyR not achieved",
+              "duration_months": 14,
+              "outcome": "resistance"
+            },
+            "second_line": {
+              "regimen": "Dasatinib 100 mg",
+              "best_response": "no MMR",
+              "duration_months": 8,
+              "outcome": "T315I emerged"
+            }
+          },
+          "molecular": {
+            "bcr_abl1_kinase_domain_mutation": "T315I",
+            "bcr_abl1_is_percent_at_failure": 12.4
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "cml-blast-crisis",
+    "label": "CML · Blast Crisis at Presentation (TKI + Chemo + alloHCT)",
+    "file": "patient_cml_blast_crisis_at_presentation.json",
+    "json": {
+      "patient_id": "CML-BC-PRESENT-001",
+      "comment": "Synthetic CML presenting de novo in myeloid blast crisis (BM blasts 38%, additional clonal evolution +8 / iAMP21). Age 44, ECOG 2. Engine should branch to high-dose imatinib OR ponatinib + AML-style induction + urgent alloHCT bridge (NCCN CML-7). 3rd CML fixture (atypical de novo advanced phase beyond chronic-phase newdx and T315I-CP).",
+      "disease": {
+        "id": "DIS-CML",
+        "icd_o_3_morphology": "9863/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BCR-ABL1": "positive_p210_e14a2"
+      },
+      "demographics": {
+        "age": 44,
+        "sex": "male",
+        "ethnicity": "white_european",
+        "weight_kg": 82,
+        "height_cm": 180,
+        "ecog": 2,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "wbc_k_ul": 165,
+        "platelets_k_ul": 88,
+        "hemoglobin_g_dl": 8.4,
+        "blast_percent_pb": 28,
+        "blast_percent_bm": 38,
+        "basophil_percent_pb": 12,
+        "splenomegaly_cm_below_costal": 18,
+        "philadelphia_chromosome_t9_22": true,
+        "bcr_abl1_p210": true,
+        "bcr_abl1_p190": false,
+        "bcr_abl1_is_percent": 92.0,
+        "phase": "blast_crisis",
+        "cml_phase": "blast_crisis",
+        "blast_lineage": "myeloid",
+        "additional_chromosomal_abnormalities": true,
+        "aca_details": [
+          "+8",
+          "double Ph"
+        ],
+        "tp53_mutation": false,
+        "bcr_abl1_kinase_domain_mutation": null,
+        "t315i_mutation": false,
+        "active_uncontrolled_infection": false,
+        "tumor_lysis_risk": "high",
+        "cns_disease": false,
+        "lvef_percent": 58,
+        "qtc_ms": 432,
+        "creatinine_mg_dl": 1.1,
+        "bilirubin_mg_dl": 0.6,
+        "lipase_u_l": 38,
+        "amylase_u_l": 56,
+        "fasting_glucose_mg_dl": 96,
+        "lipid_panel_dyslipidemia": false,
+        "vascular_disease_history": false,
+        "pleural_effusion_history": false,
+        "prior_arterial_event": false,
+        "cardiovascular_risk_factors": [],
+        "blood_pressure_systolic": 132,
+        "ldl_mg_dl": 118,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative"
+      },
+      "imaging_summary": "Abdomen US: massive splenomegaly 22 cm; no focal hepatic lesions; PET-CT: diffuse marrow uptake.",
+      "comorbidities": [],
+      "patient_preferences": {
+        "transplant_acceptable": true,
+        "donor_search_status": "sibling_typing_initiated"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Chronic Myeloid Leukemia presenting in myeloid blast crisis (BM blasts 38%, ACA: +8, double Ph), BCR-ABL1 p210 e14a2",
+            "icd_o_3": "9863/3",
+            "icd_10": "C92.1",
+            "who_classification_5th_ed": "Chronic myeloid leukemia, BCR::ABL1-positive — blast phase"
+          },
+          "elts_risk": "high",
+          "fitness_assessment": {
+            "ecog": 2,
+            "fit_for_intensive_chemo": true,
+            "fit_for_transplant": true,
+            "rationale": "De novo BC → urgent: high-dose imatinib 800 mg or ponatinib 45 mg + AML-style induction (e.g. 7+3 or FLAG-IDA) + immediate donor search + alloHCT consolidation"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mds-hr-transplant-eligible",
+    "label": "MDS-HR · Transplant-Eligible (Aza Bridge → alloHCT)",
+    "file": "patient_mds_hr_transplant_eligible.json",
+    "json": {
+      "patient_id": "MDS-HR-HCT-001",
+      "comment": "Synthetic MDS IPSS-R high, age 62, fit, sibling donor available. Engine should select alloHCT bridging path with azacitidine until transplant via IND-MDS-HR-ALLOHCT.",
+      "disease": {
+        "id": "DIS-MDS-HR",
+        "icd_o_3_morphology": "9989/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 62,
+        "sex": "male",
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "wbc_k_ul": 2.4,
+        "hemoglobin_g_dl": 8.6,
+        "platelets_k_ul": 48,
+        "blast_percent_pb": 4,
+        "blast_percent_bm": 11,
+        "ipss_r_score": 5.5,
+        "ipss_r_category": "high",
+        "ipss_m_category": "high",
+        "del_5q": false,
+        "monosomy_7": false,
+        "complex_karyotype": false,
+        "tp53_mutation": false,
+        "asxl1_mutation": true,
+        "runx1_mutation": false,
+        "transfusion_dependent": true,
+        "transfusion_burden_units_per_8wk": 6,
+        "active_uncontrolled_infection": false,
+        "lvef_percent": 60,
+        "creatinine_mg_dl": 0.9,
+        "bilirubin_mg_dl": 0.5,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "donor_status": "matched_sibling_available"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "MDS, IPSS-R high-risk (5.5), ASXL1-mutated, transplant-eligible",
+            "icd_o_3": "9989/3",
+            "icd_10": "D46.2"
+          },
+          "ipss_r": {
+            "score": 5.5,
+            "category": "high"
+          },
+          "ipss_m": {
+            "category": "high"
+          },
+          "fitness_assessment": {
+            "hct_ci": 1,
+            "ecog": 1,
+            "fit_for_transplant": true,
+            "donor": "matched sibling identified"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mds-hr-unfit-aza",
+    "label": "MDS-HR · Unfit (Azacitidine Maintenance)",
+    "file": "patient_mds_hr_unfit_aza.json",
+    "json": {
+      "patient_id": "MDS-HR-UNFIT-001",
+      "comment": "Synthetic MDS-HR very-high IPSS-R, age 76, ECOG 2, comorbid CHF, no donor. Engine should select IND-MDS-HR-1L-AZA (HMA monotherapy, standard track) over alloHCT or ven+aza.",
+      "disease": {
+        "id": "DIS-MDS-HR",
+        "icd_o_3_morphology": "9989/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 76,
+        "sex": "female",
+        "ecog": 2,
+        "fit_for_intensive_chemo": false,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "wbc_k_ul": 1.8,
+        "hemoglobin_g_dl": 7.9,
+        "platelets_k_ul": 32,
+        "blast_percent_pb": 6,
+        "blast_percent_bm": 16,
+        "ipss_r_score": 7.5,
+        "ipss_r_category": "very_high",
+        "ipss_m_category": "very_high",
+        "monosomy_7": true,
+        "complex_karyotype": true,
+        "tp53_mutation": true,
+        "transfusion_dependent": true,
+        "transfusion_burden_units_per_8wk": 8,
+        "active_uncontrolled_infection": false,
+        "lvef_percent": 40,
+        "chf_nyha_class": 2,
+        "creatinine_clearance_ml_min": 42,
+        "bilirubin_mg_dl": 0.7,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "MDS, IPSS-R very-high, TP53-mutated, complex karyotype, transplant-ineligible",
+            "icd_o_3": "9989/3",
+            "icd_10": "D46.2"
+          },
+          "ipss_r": {
+            "score": 7.5,
+            "category": "very_high"
+          },
+          "ipss_m": {
+            "category": "very_high"
+          },
+          "fitness_assessment": {
+            "hct_ci": 5,
+            "ecog": 2,
+            "fit_for_transplant": false,
+            "rationale": "Age 76 + LVEF 40 + CrCl 42 + ECOG 2 → triggers HMA-only pathway"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mds-hr-progression-aml",
+    "label": "MDS-HR · Progression to Secondary AML",
+    "file": "patient_mds_hr_progression_to_aml.json",
+    "json": {
+      "patient_id": "MDS-HR-AMLPROG-001",
+      "comment": "Synthetic MDS-HR transitioning to secondary AML on f/u BM (blasts now 24%). Age 64, ECOG 1, fit, MUD identified. Engine should reroute to AML algorithm trigger (s-AML) — venetoclax + azacitidine if intensive chemo borderline, or 7+3 if fit, with immediate alloHCT bridging. 3rd MDS-HR fixture (transformation edge case beyond transplant-eligible MDS-HR and unfit-aza).",
+      "disease": {
+        "id": "DIS-MDS-HR",
+        "icd_o_3_morphology": "9989/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 64,
+        "sex": "male",
+        "ethnicity": "white_european",
+        "weight_kg": 76,
+        "height_cm": 174,
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimens": [
+          "Azacitidine 75 mg/m² × 7 days × 6 cycles (initial hematologic improvement, then progression)"
+        ],
+        "wbc_k_ul": 3.2,
+        "anc_k_ul": 0.8,
+        "hemoglobin_g_dl": 7.6,
+        "platelets_k_ul": 28,
+        "blast_percent_pb": 12,
+        "blast_percent_bm": 24,
+        "secondary_aml": true,
+        "aml_secondary_to_mds": true,
+        "transformation_to_aml": true,
+        "ipss_r_score_at_dx": 5.5,
+        "ipss_r_category_at_dx": "high",
+        "ipss_m_category_at_dx": "high",
+        "del_5q": false,
+        "monosomy_7": true,
+        "complex_karyotype": false,
+        "tp53_mutation": false,
+        "asxl1_mutation": true,
+        "runx1_mutation": true,
+        "flt3_itd": false,
+        "npm1_mutation": false,
+        "transfusion_dependent": true,
+        "transfusion_burden_units_per_8wk": 8,
+        "active_uncontrolled_infection": false,
+        "lvef_percent": 58,
+        "creatinine_mg_dl": 1.0,
+        "bilirubin_mg_dl": 0.6,
+        "creatinine_clearance_ml_min": 78,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "donor_status": "matched_unrelated_available"
+      },
+      "imaging_summary": "CT chest/abdomen: no infiltrate; spleen 13 cm; no extramedullary disease.",
+      "comorbidities": [
+        "controlled HTN"
+      ],
+      "patient_preferences": {
+        "transplant_acceptable": true,
+        "donor_search_status": "10/10_MUD_identified"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "MDS, IPSS-R high — progression to secondary AML (BM blasts 24%) on cycle 6 azacitidine; ASXL1+ / RUNX1+ / -7",
+            "icd_o_3": "9989/3",
+            "icd_10": "C92.0",
+            "who_classification_5th_ed": "AML, myelodysplasia-related (secondary AML)"
+          },
+          "ipss_r": {
+            "score_at_dx": 5.5,
+            "category_at_dx": "high"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "Azacitidine 75 mg/m² days 1–7 q28 × 6 cycles",
+              "best_response": "hematologic improvement at C3, blast progression at C6 BM (16% → 24%)",
+              "outcome": "transformation to secondary AML"
+            }
+          },
+          "fitness_assessment": {
+            "hct_ci": 1,
+            "ecog": 1,
+            "fit_for_transplant": true,
+            "donor": "10/10 MUD identified",
+            "rationale": "Blast count >20% triggers AML algorithm reroute; fit-for-intensive but borderline → ven+aza or 7+3 reinduction → urgent alloHCT"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mds-lr-del5q",
+    "label": "MDS-LR · del(5q) (Lenalidomide)",
+    "file": "patient_mds_lr_del5q.json",
+    "json": {
+      "patient_id": "MDS-LR-DEL5Q-001",
+      "comment": "Synthetic MDS-LR with isolated del(5q), transfusion-dependent anemia. Engine should select IND-MDS-LR-LENALIDOMIDE-DEL5Q (high TI rate ~67% per MDS-003).",
+      "disease": {
+        "id": "DIS-MDS-LR",
+        "icd_o_3_morphology": "9989/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 70,
+        "sex": "female",
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": false,
+        "pregnancy_status": "post_menopausal"
+      },
+      "findings": {
+        "wbc_k_ul": 4.2,
+        "hemoglobin_g_dl": 8.0,
+        "platelets_k_ul": 145,
+        "anc_k_ul": 2.0,
+        "blast_percent_pb": 0,
+        "blast_percent_bm": 2,
+        "ipss_r_score": 2.5,
+        "ipss_r_category": "low",
+        "ipss_m_category": "low",
+        "del_5q": true,
+        "isolated_del_5q": true,
+        "monosomy_7": false,
+        "complex_karyotype": false,
+        "tp53_mutation": false,
+        "ring_sideroblasts_percent": 4,
+        "transfusion_dependent": true,
+        "transfusion_burden_units_per_8wk": 4,
+        "epo_serum_mu_ml": 320,
+        "active_uncontrolled_infection": false,
+        "creatinine_clearance_ml_min": 64,
+        "bilirubin_mg_dl": 0.6,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "vte_history_or_high_risk": false
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "MDS, isolated del(5q), transfusion-dependent anemia",
+            "icd_o_3": "9989/3",
+            "icd_10": "D46.C"
+          },
+          "ipss_r": {
+            "score": 2.5,
+            "category": "low"
+          },
+          "transfusion_dependence": {
+            "category": "transfusion-dependent",
+            "burden_per_8wk": 4
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mds-lr-rs-luspatercept",
+    "label": "MDS-LR · RS+ EPO-failure (Luspatercept)",
+    "file": "patient_mds_lr_rs_luspatercept.json",
+    "json": {
+      "patient_id": "MDS-LR-RS-LUSPATERCEPT-001",
+      "comment": "Synthetic MDS-LR with ring sideroblasts (SF3B1+), TD anemia, EPO 280 mU/mL (high — ESA likely to fail). Engine should select IND-MDS-LR-1L-LUSPATERCEPT (COMMAND positioning) over ESA.",
+      "disease": {
+        "id": "DIS-MDS-LR",
+        "icd_o_3_morphology": "9982/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 73,
+        "sex": "male",
+        "ecog": 1,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "wbc_k_ul": 5.4,
+        "hemoglobin_g_dl": 7.8,
+        "platelets_k_ul": 220,
+        "anc_k_ul": 2.4,
+        "blast_percent_pb": 0,
+        "blast_percent_bm": 1,
+        "ipss_r_score": 2.0,
+        "ipss_r_category": "low",
+        "ipss_m_category": "low",
+        "ring_sideroblasts_percent": 22,
+        "sf3b1_mutation": true,
+        "del_5q": false,
+        "monosomy_7": false,
+        "transfusion_dependent": true,
+        "transfusion_burden_units_per_8wk": 4,
+        "epo_serum_mu_ml": 280,
+        "active_uncontrolled_infection": false,
+        "creatinine_clearance_ml_min": 58,
+        "bilirubin_mg_dl": 0.5,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "MDS with ring sideroblasts (SF3B1-mutated), transfusion-dependent, EPO-high",
+            "icd_o_3": "9982/3",
+            "icd_10": "D46.1"
+          },
+          "ipss_r": {
+            "score": 2.0,
+            "category": "low"
+          },
+          "ring_sideroblasts": {
+            "percent": 22,
+            "sf3b1_mutation": true
+          },
+          "transfusion_dependence": {
+            "category": "transfusion-dependent",
+            "burden_per_8wk": 4
+          },
+          "esa_eligibility": {
+            "epo_mU_mL": 280,
+            "expected_response": "low — EPO >200 predicts ESA failure"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "mds-lr-hypoplastic-ist",
+    "label": "MDS-LR · Hypoplastic / IST candidate",
+    "file": "patient_mds_lr_hypoplastic_ist.json",
+    "json": {
+      "patient_id": "MDS-LR-HYPO-IST-001",
+      "comment": "Synthetic hypoplastic MDS-LR with severe pancytopenia mimicking aplastic anemia (BM cellularity 12%, no excess blasts, normal cytogenetics, HLA-DR15+). Age 38, ECOG 1. Engine should select IST pathway (horse-ATG + cyclosporine) — NCCN MDS-LR hypoplastic variant; eltrombopag add-on optional. 3rd MDS-LR fixture (atypical hypoplastic AA-overlap beyond del(5q) and RS+/EPO-high).",
+      "disease": {
+        "id": "DIS-MDS-LR",
+        "icd_o_3_morphology": "9989/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 38,
+        "sex": "female",
+        "ethnicity": "white_european",
+        "weight_kg": 62,
+        "height_cm": 166,
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true,
+        "pregnancy_status": "not_pregnant"
+      },
+      "findings": {
+        "wbc_k_ul": 1.6,
+        "anc_k_ul": 0.4,
+        "hemoglobin_g_dl": 6.8,
+        "platelets_k_ul": 18,
+        "reticulocyte_percent": 0.4,
+        "blast_percent_pb": 0,
+        "blast_percent_bm": 1,
+        "bm_cellularity_percent": 12,
+        "hypoplastic_mds": true,
+        "ipss_r_score": 1.5,
+        "ipss_r_category": "very_low",
+        "ipss_m_category": "low",
+        "del_5q": false,
+        "monosomy_7": false,
+        "complex_karyotype": false,
+        "tp53_mutation": false,
+        "ring_sideroblasts_percent": 2,
+        "sf3b1_mutation": false,
+        "pnh_clone_percent": 4,
+        "hla_dr15_positive": true,
+        "stat3_mutation": false,
+        "transfusion_dependent": true,
+        "rbc_transfusion_units_per_8wk": 6,
+        "platelet_transfusion_dependent": true,
+        "epo_serum_mu_ml": 950,
+        "ferritin_ng_ml": 820,
+        "active_uncontrolled_infection": false,
+        "creatinine_clearance_ml_min": 92,
+        "bilirubin_mg_dl": 0.5,
+        "lvef_percent": 64,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "fanconi_anemia_screen": "negative",
+        "telomere_length_percentile": 18,
+        "donor_status": "no_sibling_match"
+      },
+      "imaging_summary": "CT abdomen: no organomegaly; chest CT clear; no infectious foci.",
+      "comorbidities": [],
+      "patient_preferences": {
+        "transplant_acceptable": true,
+        "fertility_preservation_desired": true,
+        "donor_search_status": "MUD_search_pending"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Hypoplastic MDS-LR (BM cellularity 12%, normal karyotype, no excess blasts, HLA-DR15+, small PNH clone 4%) — overlaps with aplastic anemia phenotype",
+            "icd_o_3": "9989/3",
+            "icd_10": "D46.9"
+          },
+          "ipss_r": {
+            "score": 1.5,
+            "category": "very_low"
+          },
+          "transfusion_dependence": {
+            "rbc_units_per_8wk": 6,
+            "platelet_dependent": true,
+            "category": "transfusion-dependent (severe)"
+          },
+          "ist_eligibility": {
+            "age_under_60": true,
+            "hla_dr15_positive": true,
+            "small_pnh_clone": true,
+            "rationale": "Hypoplastic MDS with AA-like features → horse-ATG + cyclosporine first; eltrombopag add-on per RACE trial; alloHCT if IST fails"
+          },
+          "fitness_assessment": {
+            "ecog": 1,
+            "fit_for_transplant": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pv-high-risk-hu",
+    "label": "Polycythemia Vera · High Risk (HU 1L)",
+    "file": "patient_pv_high_risk_hu.json",
+    "json": {
+      "patient_id": "PV-HR-1L-001",
+      "comment": "Synthetic high-risk PV (age >60 + JAK2+ + prior TIA), HU-naive. Engine should select IND-PV-1L-HU + phlebotomy + low-dose ASA.",
+      "disease": {
+        "id": "DIS-PV",
+        "icd_o_3_morphology": "9950/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "JAK2-V617F": "positive"
+      },
+      "demographics": {
+        "age": 68,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "wbc_k_ul": 14,
+        "hemoglobin_g_dl": 19.2,
+        "hematocrit_percent": 58,
+        "platelets_k_ul": 460,
+        "jak2_v617f_allele_burden_percent": 62,
+        "calr_mutation": false,
+        "mpl_mutation": false,
+        "bcr_abl1": false,
+        "epo_serum_mu_ml": 1.2,
+        "splenomegaly_cm_below_costal": 4,
+        "thrombosis_history": true,
+        "thrombosis_type": "TIA, 18 months ago",
+        "vte_history": false,
+        "cardiovascular_risk_factors": [
+          "hypertension",
+          "former smoker"
+        ],
+        "active_uncontrolled_infection": false,
+        "creatinine_mg_dl": 1.0,
+        "bilirubin_mg_dl": 0.6,
+        "ldh_u_l": 280,
+        "lvef_percent": 60,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "skin_ulcer_history": false,
+        "pregnancy_status": "not_applicable"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Polycythemia vera, JAK2-V617F+ (62%), high-risk (age >60 + prior TIA)",
+            "icd_o_3": "9950/3",
+            "icd_10": "D45"
+          },
+          "risk_category": "high",
+          "fitness_assessment": {
+            "ecog": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pv-hu-resistant-rux",
+    "label": "PV · HU-resistant (Ruxolitinib 2L)",
+    "file": "patient_pv_hu_resistant_ruxolitinib.json",
+    "json": {
+      "patient_id": "PV-2L-RUX-001",
+      "comment": "Synthetic PV with ELN-defined HU resistance (need for phlebotomy >2× / 3 mo despite HU 2 g/d, persistent splenomegaly, severe pruritus) — engine should select IND-PV-2L-RUXOLITINIB.",
+      "disease": {
+        "id": "DIS-PV",
+        "icd_o_3_morphology": "9950/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "JAK2-V617F": "positive"
+      },
+      "demographics": {
+        "age": 64,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "wbc_k_ul": 16,
+        "hemoglobin_g_dl": 17.4,
+        "hematocrit_percent": 51,
+        "platelets_k_ul": 540,
+        "jak2_v617f_allele_burden_percent": 75,
+        "splenomegaly_cm_below_costal": 9,
+        "spleen_volume_ml": 1900,
+        "constitutional_symptoms": [
+          "intractable pruritus",
+          "night sweats",
+          "fatigue"
+        ],
+        "mpn_sat_total_score": 42,
+        "phlebotomy_frequency_per_3mo": 4,
+        "hu_max_dose_g_per_day": 2,
+        "hu_resistance_eln_defined": true,
+        "hu_intolerance": false,
+        "thrombosis_history": false,
+        "active_uncontrolled_infection": false,
+        "tuberculosis_screening": "negative",
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "creatinine_mg_dl": 0.9,
+        "bilirubin_mg_dl": 0.6,
+        "lvef_percent": 60,
+        "qtc_ms": 425,
+        "concurrent_strong_cyp3a4_inhibitor": false,
+        "pregnancy_status": "post_menopausal"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Polycythemia vera, post-HU resistance (ELN), JAK2-V617F+ (75%)",
+            "icd_o_3": "9950/3",
+            "icd_10": "D45"
+          },
+          "risk_category": "high",
+          "treatment_history": {
+            "first_line": {
+              "regimen": "HU 2 g/d × 24 months + phlebotomy + ASA 81 mg",
+              "best_response": "partial — Hct control inadequate, persistent splenomegaly, intractable pruritus",
+              "discontinuation_reason": "ELN-defined HU resistance"
+            }
+          },
+          "fitness_assessment": {
+            "ecog": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pv-pregnancy-planning",
+    "label": "PV · Pregnancy Planning (Peg-IFN)",
+    "file": "patient_pv_pregnancy_planning.json",
+    "json": {
+      "patient_id": "PV-PREG-IFN-001",
+      "comment": "Synthetic JAK2-V617F+ PV in young woman planning pregnancy — HU contraindicated (teratogen). Engine should select pegylated interferon-alpha (peg-IFNα-2a or ropeginterferon) + low-dose ASA + phlebotomy as fertility/pregnancy-compatible cytoreduction. 3rd PV fixture (atypical reproductive-age scenario beyond high-risk HU and HU-resistant rux).",
+      "disease": {
+        "id": "DIS-PV",
+        "icd_o_3_morphology": "9950/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "JAK2-V617F": "positive"
+      },
+      "demographics": {
+        "age": 31,
+        "sex": "female",
+        "ethnicity": "white_european",
+        "weight_kg": 64,
+        "height_cm": 168,
+        "ecog": 0
+      },
+      "findings": {
+        "wbc_k_ul": 11.4,
+        "hemoglobin_g_dl": 17.8,
+        "hematocrit_percent": 53,
+        "platelets_k_ul": 520,
+        "jak2_v617f_allele_burden_percent": 38,
+        "calr_mutation": false,
+        "mpl_mutation": false,
+        "bcr_abl1": false,
+        "epo_serum_mu_ml": 1.4,
+        "splenomegaly_cm_below_costal": 2,
+        "thrombosis_history": false,
+        "vte_history": false,
+        "cardiovascular_risk_factors": [],
+        "blood_pressure_systolic": 118,
+        "active_uncontrolled_infection": false,
+        "creatinine_mg_dl": 0.7,
+        "bilirubin_mg_dl": 0.5,
+        "ldh_u_l": 240,
+        "lvef_percent": 65,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "skin_ulcer_history": false,
+        "pregnancy_status": "planning_pregnancy",
+        "currently_pregnant": false,
+        "active_autoimmune_disease": false,
+        "depression_history": false,
+        "thyroid_function_normal": true
+      },
+      "imaging_summary": "Abdomen US: liver normal, spleen 13.5 cm (mildly enlarged); pelvic US normal.",
+      "comorbidities": [],
+      "patient_preferences": {
+        "pregnancy_planning_within_12_months": true,
+        "fertility_preservation_concerns": "wants conception within 6–12 mo; refuses HU due to teratogenicity",
+        "willing_to_self_inject": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Polycythemia vera, JAK2-V617F+ (38%), reproductive-age female planning pregnancy",
+            "icd_o_3": "9950/3",
+            "icd_10": "D45"
+          },
+          "risk_category": "low_by_eln_but_pregnancy_indication_for_cytoreduction",
+          "fitness_assessment": {
+            "ecog": 0
+          },
+          "treatment_history": {
+            "first_line_pending": "peg-IFNα-2a 45–90 µg SC weekly OR ropeginterferon 100 µg q2w + ASA 81 mg + phlebotomy to Hct <45% — IFN safe through conception/pregnancy; HU absolutely contraindicated"
+          },
+          "pregnancy_specific_considerations": [
+            "HU teratogenic — contraindicated",
+            "ruxolitinib insufficient pregnancy data — avoid",
+            "anagrelide crosses placenta — avoid",
+            "IFN-α has decades of safety data in MPN pregnancy",
+            "low-dose ASA continued through pregnancy (reduces miscarriage in JAK2+ PV)",
+            "thromboprophylaxis (LMWH) postpartum × 6 weeks"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "case_id": "et-high-risk-hu",
+    "label": "Essential Thrombocythemia · High Risk (HU)",
+    "file": "patient_et_high_risk_hu.json",
+    "json": {
+      "patient_id": "ET-HR-1L-001",
+      "comment": "Synthetic ET high-risk (age >60 + JAK2+), platelets 920K, ECOG 0. Engine should select IND-ET-1L-HU + low-dose ASA.",
+      "disease": {
+        "id": "DIS-ET",
+        "icd_o_3_morphology": "9962/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "JAK2-V617F": "positive"
+      },
+      "demographics": {
+        "age": 67,
+        "sex": "female",
+        "ecog": 0
+      },
+      "findings": {
+        "wbc_k_ul": 9.2,
+        "hemoglobin_g_dl": 13.4,
+        "platelets_k_ul": 920,
+        "jak2_v617f_allele_burden_percent": 38,
+        "calr_mutation": false,
+        "mpl_mutation": false,
+        "bcr_abl1": false,
+        "ldh_u_l": 240,
+        "blast_percent_pb": 0,
+        "blast_percent_bm": 1,
+        "splenomegaly_cm_below_costal": 1,
+        "thrombosis_history": false,
+        "vte_history": false,
+        "active_uncontrolled_infection": false,
+        "creatinine_mg_dl": 0.8,
+        "bilirubin_mg_dl": 0.5,
+        "lvef_percent": 60,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "skin_ulcer_history": false,
+        "pregnancy_status": "post_menopausal"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Essential Thrombocythemia, JAK2-V617F+, IPSET-thrombosis high-risk",
+            "icd_o_3": "9962/3",
+            "icd_10": "D47.3"
+          },
+          "ipset_thrombosis_risk": "high",
+          "fitness_assessment": {
+            "ecog": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pmf-anemia-dominant",
+    "label": "PMF · Anemia-Dominant (Momelotinib)",
+    "file": "patient_pmf_anemia_dominant.json",
+    "json": {
+      "patient_id": "PMF-MOMELO-001",
+      "comment": "Synthetic PMF DIPSS-Plus int-2, Hb 8.5, transfusion-dependent, post-ruxolitinib. Engine should select IND-PMF-MOMELOTINIB-ANEMIA via line_of_therapy=2 + anemia-dominant + JAKi-experienced.",
+      "disease": {
+        "id": "DIS-PMF",
+        "icd_o_3_morphology": "9961/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 67,
+        "sex": "male",
+        "ecog": 2,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimen": "Ruxolitinib 15 mg BID (worsened anemia)",
+        "jaki_experienced": true,
+        "hemoglobin_g_dl": 8.5,
+        "rbc_transfusion_dependent": true,
+        "anemia_dominant_pmf": true,
+        "platelet_k_ul": 110,
+        "spleen_size_cm_below_costal_margin": 14,
+        "dipss_plus_score": 3,
+        "dipss_plus_category": "intermediate-2",
+        "blast_percent_pb": 2,
+        "blast_percent_bm": 5,
+        "jak2_v617f": true,
+        "calr_mutation": false,
+        "mpl_mutation": false,
+        "asxl1_mutation": true,
+        "active_uncontrolled_infection": false,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "anti_hcv": "negative",
+        "hiv": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary Myelofibrosis — JAKi-experienced, anemia-dominant",
+            "icd_o_3": "9961/3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "Ruxolitinib 15 mg BID",
+              "duration_months": 14,
+              "outcome": "spleen response but worsening anemia (Hb 7.8) → discontinued",
+              "transfusion_dependence_emerged": true
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pmf-int2-symptomatic-rux",
+    "label": "PMF · Int-2 Symptomatic (Ruxolitinib)",
+    "file": "patient_pmf_int2_symptomatic_ruxolitinib.json",
+    "json": {
+      "patient_id": "PMF-INT2-RUX-001",
+      "comment": "Synthetic PMF, DIPSS-Plus intermediate-2 risk, symptomatic splenomegaly + constitutional symptoms, no transplant due to age + comorbid. Engine should select IND-PMF-1L-RUXOLITINIB (COMFORT-I/II evidence).",
+      "disease": {
+        "id": "DIS-PMF",
+        "icd_o_3_morphology": "9961/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "JAK2-V617F": "positive"
+      },
+      "demographics": {
+        "age": 71,
+        "sex": "male",
+        "ecog": 1,
+        "fit_for_transplant": false
+      },
+      "findings": {
+        "wbc_k_ul": 22,
+        "hemoglobin_g_dl": 10.4,
+        "platelets_k_ul": 220,
+        "blast_percent_pb": 1,
+        "blast_percent_bm": 4,
+        "ldh_u_l": 580,
+        "jak2_v617f_allele_burden_percent": 64,
+        "calr_mutation": false,
+        "mpl_mutation": false,
+        "asxl1_mutation": false,
+        "ezh2_mutation": false,
+        "srsf2_mutation": false,
+        "u2af1_mutation": false,
+        "tp53_mutation": false,
+        "splenomegaly_cm_below_costal": 14,
+        "spleen_volume_ml": 2400,
+        "constitutional_symptoms": [
+          "night sweats",
+          "fatigue",
+          "early satiety",
+          "10% weight loss"
+        ],
+        "mpn_sat_total_score": 38,
+        "transfusion_dependent": false,
+        "dipss_plus_category": "intermediate-2",
+        "mipss70_v2_category": "intermediate",
+        "active_uncontrolled_infection": false,
+        "tuberculosis_screening": "negative",
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "creatinine_clearance_ml_min": 58,
+        "bilirubin_mg_dl": 0.7,
+        "lvef_percent": 60,
+        "concurrent_strong_cyp3a4_inhibitor": false
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary Myelofibrosis, JAK2-V617F+, DIPSS-Plus intermediate-2, symptomatic splenomegaly",
+            "icd_o_3": "9961/3",
+            "icd_10": "D47.4"
+          },
+          "dipss_plus": {
+            "category": "intermediate-2"
+          },
+          "mipss70_v2": {
+            "category": "intermediate"
+          },
+          "fitness_assessment": {
+            "ecog": 1,
+            "fit_for_transplant": false,
+            "rationale": "Age 71 + comorbid CKD3 + intermediate-2 (not high) → JAKi pathway, not HCT-bridge"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "pmf-post-rux-allohct",
+    "label": "PMF · Post-Rux alloHCT Bridge (Urgent)",
+    "file": "patient_pmf_post_rux_allohct_bridge.json",
+    "json": {
+      "patient_id": "PMF-POST-RUX-HCT-001",
+      "comment": "Synthetic high-risk PMF post-ruxolitinib failure (loss of spleen response, MIPSS70+v2 high) with massive splenomegaly + transfusion dependence in transplant-eligible patient. Engine should bridge with momelotinib OR fedratinib for spleen reduction (and anemia improvement) while activating urgent alloHCT pathway. 3rd PMF fixture (post-rux failure + transplant urgency, distinct from existing anemia-dominant momelotinib-only case).",
+      "disease": {
+        "id": "DIS-PMF",
+        "icd_o_3_morphology": "9961/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "JAK2-V617F": "positive"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ethnicity": "white_european",
+        "weight_kg": 74,
+        "height_cm": 176,
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimens": [
+          "Ruxolitinib 20 mg BID × 18 months — initial spleen response then progression"
+        ],
+        "jaki_experienced": true,
+        "wbc_k_ul": 26,
+        "hemoglobin_g_dl": 7.9,
+        "platelets_k_ul": 78,
+        "platelet_k_ul": 78,
+        "blast_percent_pb": 4,
+        "blast_percent_bm": 8,
+        "ldh_u_l": 1180,
+        "jak2_v617f_allele_burden_percent": 82,
+        "calr_mutation": false,
+        "mpl_mutation": false,
+        "asxl1_mutation": true,
+        "ezh2_mutation": false,
+        "srsf2_mutation": true,
+        "u2af1_mutation": false,
+        "tp53_mutation": false,
+        "high_risk_molecular_count": 2,
+        "splenomegaly_cm_below_costal": 22,
+        "spleen_size_cm_below_costal_margin": 22,
+        "spleen_volume_ml": 4200,
+        "constitutional_symptoms": [
+          "drenching night sweats",
+          "early satiety",
+          "15% weight loss",
+          "bone pain"
+        ],
+        "mpn_sat_total_score": 56,
+        "transfusion_dependent": true,
+        "rbc_transfusion_dependent": true,
+        "rbc_transfusion_units_per_8wk": 8,
+        "dipss_plus_category": "high",
+        "dipss_plus_score": 4,
+        "mipss70_v2_category": "high",
+        "active_uncontrolled_infection": false,
+        "tuberculosis_screening": "negative",
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative",
+        "creatinine_clearance_ml_min": 84,
+        "bilirubin_mg_dl": 0.8,
+        "lvef_percent": 60,
+        "concurrent_strong_cyp3a4_inhibitor": false,
+        "donor_status": "matched_unrelated_available",
+        "anemia_dominant_pmf": true
+      },
+      "imaging_summary": "Abdomen MRI: massive splenomegaly 26 × 14 × 12 cm, spleen volume 4200 mL displacing left kidney; extensive extramedullary hematopoiesis foci in liver and paravertebral.",
+      "comorbidities": [
+        "mild iron overload (post-transfusional)"
+      ],
+      "patient_preferences": {
+        "transplant_acceptable": true,
+        "donor_search_status": "10/10_MUD_identified",
+        "willing_to_relocate_for_HCT": true
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "Primary Myelofibrosis, JAK2-V617F+ (82%), MIPSS70+v2 high (ASXL1+, SRSF2+) — post-ruxolitinib failure with massive splenomegaly + RBC transfusion dependence",
+            "icd_o_3": "9961/3",
+            "icd_10": "D47.4"
+          },
+          "dipss_plus": {
+            "category": "high",
+            "score": 4
+          },
+          "mipss70_v2": {
+            "category": "high",
+            "high_risk_mutations": [
+              "ASXL1",
+              "SRSF2"
+            ]
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "Ruxolitinib 20 mg BID",
+              "duration_months": 18,
+              "best_response": "≥35% spleen volume reduction at month 6",
+              "outcome": "loss of spleen response by month 14, worsening anemia → transfusion-dependent by month 16",
+              "discontinuation_reason": "ruxolitinib failure (re-emergent splenomegaly + cytopenias)"
+            }
+          },
+          "fitness_assessment": {
+            "ecog": 1,
+            "fit_for_transplant": true,
+            "donor": "10/10 MUD identified",
+            "rationale": "Age 58 + MIPSS70+v2 high + post-rux failure → urgent alloHCT (transplant-deferring strategy no longer viable). Bridge with momelotinib (preferred — addresses spleen + anemia + symptoms) or fedratinib while donor work-up completes."
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "b-all-ph-pos-adult",
+    "label": "B-ALL · Ph+ Adult (TKI + Chemo)",
+    "file": "patient_b_all_ph_pos_adult.json",
+    "json": {
+      "patient_id": "B-ALL-PH-POS-001",
+      "comment": "Synthetic adult Ph+ B-ALL, age 52, ECOG 1, BCR-ABL p190+. Engine should select IND-B-ALL-1L-PH-POS (TKI + chemo backbone, e.g. dasatinib + hyper-CVAD or blinatumomab + dasatinib).",
+      "disease": {
+        "id": "DIS-B-ALL",
+        "icd_o_3_morphology": "9836/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BCR-ABL1": "positive_p190"
+      },
+      "demographics": {
+        "age": 52,
+        "sex": "male",
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "wbc_k_ul": 42,
+        "blast_percent_pb": 78,
+        "blast_percent_bm": 92,
+        "lineage_b_cell": true,
+        "philadelphia_chromosome_t9_22": true,
+        "bcr_abl1_p190": true,
+        "bcr_abl1_p210": false,
+        "cns_disease": false,
+        "tp53_mutation": false,
+        "complex_karyotype": false,
+        "active_uncontrolled_infection": false,
+        "lvef_percent": 60,
+        "qtc_ms": 430,
+        "creatinine_mg_dl": 1.0,
+        "bilirubin_mg_dl": 0.6,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "B-cell Acute Lymphoblastic Leukemia, Philadelphia chromosome positive (BCR-ABL1 p190)",
+            "icd_o_3": "9836/3",
+            "icd_10": "C91.0",
+            "who_classification_5th_ed": "B-lymphoblastic leukemia/lymphoma with BCR::ABL1 fusion"
+          },
+          "fitness_assessment": {
+            "ecog": 1,
+            "fit_for_intensive_chemo": true,
+            "fit_for_transplant": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "b-all-mrd-positive",
+    "label": "B-ALL · MRD-positive (Blinatumomab)",
+    "file": "patient_b_all_mrd_positive.json",
+    "json": {
+      "patient_id": "B-ALL-BLINA-001",
+      "comment": "Synthetic Ph- B-ALL post-induction CR but MRD+ (1e-3) by flow cytometry. Age 32, ECOG 1, CD19+. Engine should select IND-B-ALL-BLINATUMOMAB-MRD-OR-RR via line_of_therapy=2 + MRD-positivity + CD19+.",
+      "disease": {
+        "id": "DIS-B-ALL",
+        "icd_o_3_morphology": "9811/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 32,
+        "sex": "female",
+        "ecog": 1,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimen": "GMALL-style induction",
+        "morphologic_cr": true,
+        "mrd_status": "positive",
+        "mrd_level": 0.0015,
+        "mrd_method": "multiparametric_flow",
+        "ph_status": "negative",
+        "bcr_abl1": "negative",
+        "cd19_positive": true,
+        "cd19_status": "positive",
+        "bm_blast_percent": 2,
+        "pb_blast_k_ul": 0,
+        "active_uncontrolled_infection": false,
+        "tp53_mutation": false,
+        "complex_karyotype": false,
+        "kmt2a_rearrangement": false,
+        "lvef_percent": 65,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "anti_hcv": "negative",
+        "hiv": "negative"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "B-cell Acute Lymphoblastic Leukemia, Ph-negative — MRD-positive post-induction",
+            "icd_o_3": "9811/3"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "GMALL induction",
+              "best_response": "morphologic CR, MRD+ at 10^-3 by flow",
+              "next_step_pending": "MRD-eradication via blinatumomab → bridge to alloHCT"
+            }
+          }
+        },
+        "cd19_status": {
+          "method": "flow",
+          "result": "positive"
+        }
+      }
+    }
+  },
+  {
+    "case_id": "b-all-t315i-post-tki",
+    "label": "B-ALL · T315I-mutated post-TKI (Ponatinib + alloHCT)",
+    "file": "patient_b_all_t315i_post_tki.json",
+    "json": {
+      "patient_id": "B-ALL-T315I-001",
+      "comment": "Synthetic Ph+ B-ALL relapsed after frontline imatinib + hyper-CVAD with T315I gatekeeper mutation emergent (CML-blast-crisis-like crossover). Age 41, ECOG 1. Engine should escalate to ponatinib-containing regimen + bridge to alloHCT (no other TKI active vs T315I). 3rd B-ALL fixture (atypical edge case beyond Ph+ adult / MRD+).",
+      "disease": {
+        "id": "DIS-B-ALL",
+        "icd_o_3_morphology": "9836/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {
+        "BCR-ABL1": "positive_p190"
+      },
+      "demographics": {
+        "age": 41,
+        "sex": "male",
+        "ethnicity": "white_european",
+        "weight_kg": 78,
+        "height_cm": 178,
+        "ecog": 1,
+        "fit_for_intensive_chemo": true,
+        "fit_for_transplant": true
+      },
+      "findings": {
+        "prior_lines_count": 1,
+        "prior_regimens": [
+          "Imatinib 600 mg + hyper-CVAD × 4 cycles (induction CR, MRD- at C2)"
+        ],
+        "wbc_k_ul": 28,
+        "blast_percent_pb": 62,
+        "blast_percent_bm": 88,
+        "lineage_b_cell": true,
+        "philadelphia_chromosome_t9_22": true,
+        "bcr_abl1_p190": true,
+        "bcr_abl1_p210": false,
+        "bcr_abl1_is_percent": 38.0,
+        "bcr_abl1_kinase_domain_mutation": "T315I",
+        "t315i_mutation": true,
+        "cns_disease": false,
+        "cd19_positive": true,
+        "cd22_positive": true,
+        "tp53_mutation": false,
+        "complex_karyotype": false,
+        "prior_arterial_event": false,
+        "cardiovascular_risk_factors": [],
+        "blood_pressure_systolic": 124,
+        "ldl_mg_dl": 104,
+        "fasting_glucose_mg_dl": 92,
+        "active_uncontrolled_infection": false,
+        "lvef_percent": 62,
+        "qtc_ms": 428,
+        "creatinine_mg_dl": 0.9,
+        "bilirubin_mg_dl": 0.5,
+        "hbsag": "negative",
+        "anti_hbc_total": "negative",
+        "hcv_ab": "negative",
+        "hiv_ag_ab": "negative"
+      },
+      "imaging_summary": "PET-CT: diffuse marrow hypermetabolism, no extramedullary masses; brain MRI clear; spleen 13 cm.",
+      "comorbidities": [
+        "mild fatty liver"
+      ],
+      "patient_preferences": {
+        "transplant_acceptable": true,
+        "donor_search_status": "matched_unrelated_donor_identified"
+      },
+      "clinical_record": {
+        "diagnosis": {
+          "primary_diagnosis": {
+            "disease_entity": "B-cell Acute Lymphoblastic Leukemia, Ph+ (BCR-ABL1 p190) — relapsed with emergent T315I after frontline imatinib + hyper-CVAD",
+            "icd_o_3": "9836/3",
+            "icd_10": "C91.0",
+            "who_classification_5th_ed": "B-lymphoblastic leukemia/lymphoma with BCR::ABL1 fusion"
+          },
+          "treatment_history": {
+            "first_line": {
+              "regimen": "Imatinib 600 mg/d + hyper-CVAD × 4 cycles",
+              "best_response": "morphologic CR with MRD- (flow, 10^-4) at C2",
+              "relapse_at_months": 9,
+              "discontinuation_reason": "hematologic relapse with emergent BCR-ABL1 T315I on kinase-domain sequencing"
+            }
+          },
+          "molecular_at_relapse": {
+            "bcr_abl1_kinase_domain_mutation": "T315I",
+            "bcr_abl1_is_percent": 38.0,
+            "compound_mutations": false
+          },
+          "fitness_assessment": {
+            "ecog": 1,
+            "fit_for_intensive_chemo": true,
+            "fit_for_transplant": true,
+            "donor": "10/10 MUD identified during induction",
+            "rationale": "T315I makes imatinib/dasatinib/nilotinib/bosutinib inactive — ponatinib-based reinduction is the only TKI option; alloHCT consolidation urgent"
+          }
+        }
+      }
+    }
+  },
+  {
+    "case_id": "t-all-relapsed",
+    "label": "T-ALL · Relapsed post-hyper-CVAD (Nelarabine)",
+    "file": "patient_t_all_relapsed_post_hyper_cvad.json",
+    "json": {
+      "patient_id": "T-ALL-RELAPSED-001",
+      "comment": "T-ALL relapsed after hyper-CVAD + alloSCT, no baseline neurologic deficit, nelarabine accessible. Engine should route to nelarabine 2L bridging to second alloSCT or DLI.",
+      "disease": {
+        "icd_o_3_morphology": "9837/3"
+      },
+      "line_of_therapy": 2,
+      "biomarkers": {},
+      "demographics": {
+        "age": 31,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "prior_lines": [
+          "hyper-CVAD x8",
+          "alloSCT MUD"
+        ],
+        "best_response_prior": "CR then relapse at 18 months",
+        "baseline_neuropathy_grade": 0,
+        "creatinine_clearance": 90,
+        "transplant_candidate": true,
+        "lvef_percent": 60
+      }
+    }
+  },
+  {
+    "case_id": "t-lbl-mediastinal",
+    "label": "T-LBL · Mediastinal Mass (Pediatric-inspired ALL)",
+    "file": "patient_t_lbl_mediastinal.json",
+    "json": {
+      "patient_id": "T-LBL-MEDIASTINAL-001",
+      "comment": "T-LBL with bulky mediastinal mass + airway compromise risk in young adult. Engine should select hyper-CVAD-based 1L with nelarabine consolidation; pre-induction steroids + ICU readiness flagged via do_not_do.",
+      "disease": {
+        "icd_o_3_morphology": "9837/3"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {},
+      "demographics": {
+        "age": 24,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "mediastinal_mass_cm": 11,
+        "airway_compromise_risk": true,
+        "wbc_count": 25.0,
+        "etp_phenotype": false,
+        "lvef_percent": 65,
+        "transplant_candidate": true
+      }
+    }
+  },
+  {
+    "case_id": "cervical-locally-advanced",
+    "label": "Cervical · Locally Advanced (CCRT + Pembrolizumab)",
+    "file": "patient_cervical_locally_advanced.json",
+    "json": {
+      "patient_id": "CERV-LA-001",
+      "comment": "Synthetic cervical squamous cell carcinoma FIGO IIIB (with hydronephrosis resolved by ureteric stent). Engine should select cisplatin radiosensitization via ALGO-CERVICAL-LOCALLY-ADVANCED-1L step 1.",
+      "disease": {
+        "id": "DIS-CERVICAL"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-HPV-STATUS": "HPV-positive (genotype 16)"
+      },
+      "demographics": {
+        "age": 48,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "stage": "FIGO IIIB",
+        "histology": "squamous",
+        "hpv_status": "HPV-positive",
+        "hpv_genotype": "16",
+        "hydronephrosis_grade2_plus": false,
+        "creatinine_rising": false,
+        "ureteric_obstruction_imaging": false,
+        "creatinine_clearance_ml_min": 75,
+        "hiv_status": "negative"
+      }
+    }
+  },
+  {
+    "case_id": "gbm-stupp",
+    "label": "Glioblastoma · Newly Diagnosed (Stupp Protocol)",
+    "file": "patient_gbm_newly_diagnosed_stupp.json",
+    "json": {
+      "patient_id": "GBM-NEWLY-001",
+      "comment": "Synthetic GBM IDH-WT, MGMT-methylated, post gross-total resection, ECOG 1. Engine should select Stupp protocol via ALGO-GBM-NEWLY-DIAGNOSED-1L step 1.",
+      "disease": {
+        "id": "DIS-GBM"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-IDH-MUTATION": "IDH-WT",
+        "BIO-MGMT-METHYLATION": "methylated"
+      },
+      "demographics": {
+        "age": 58,
+        "sex": "male",
+        "ecog": 1
+      },
+      "findings": {
+        "idh_status": "WT",
+        "mgmt_methylation": "methylated",
+        "post_resection": "gross-total",
+        "gcs_declining": false,
+        "midline_shift_mm": 2,
+        "uncontrolled_seizure_cluster": false,
+        "new_focal_deficit": false
+      }
+    }
+  },
+  {
+    "case_id": "ovarian-advanced-hrd",
+    "label": "Ovarian · Advanced HRD+ (PARPi maintenance)",
+    "file": "patient_ovarian_advanced_hrd.json",
+    "json": {
+      "patient_id": "OVAR-HRD-001",
+      "comment": "Synthetic high-grade serous ovarian carcinoma FIGO IIIC, BRCA1-germline (HRD+). Engine should select carbo+pacli + olaparib maintenance via ALGO-OVARIAN-ADVANCED-1L step 1.",
+      "disease": {
+        "id": "DIS-OVARIAN"
+      },
+      "line_of_therapy": 1,
+      "biomarkers": {
+        "BIO-HRD-STATUS": "HRD-positive",
+        "BIO-BRCA1-BRCA2-GERMLINE": "BRCA1-pathogenic"
+      },
+      "demographics": {
+        "age": 56,
+        "sex": "female",
+        "ecog": 1
+      },
+      "findings": {
+        "stage": "FIGO IIIC",
+        "histology": "high-grade serous",
+        "hrd_status": "HRD-positive",
+        "brca1_brca2_pathogenic": true,
+        "primary_debulking_residual_cm": 0,
+        "primary_debulking_unsuccessful": false,
+        "ascites_significant": true,
+        "active_vte_recent": false
       }
     }
   }

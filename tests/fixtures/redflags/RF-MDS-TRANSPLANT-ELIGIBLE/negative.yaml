@@ -1,0 +1,11 @@
+red_flag: RF-MDS-TRANSPLANT-ELIGIBLE
+findings:
+  transplant_eligible: false
+  age_years: 70
+  hct_ci_score: 5
+  ipss_r_category: _NOT_high
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

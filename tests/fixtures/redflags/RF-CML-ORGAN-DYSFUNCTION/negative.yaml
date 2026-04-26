@@ -1,0 +1,14 @@
+red_flag: RF-CML-ORGAN-DYSFUNCTION
+findings:
+  cv_high_risk: false
+  prior_mi_or_stroke: false
+  peripheral_arterial_disease: false
+  pulmonary_disease_significant: false
+  prior_pleural_effusion: false
+  pancreatitis_history: false
+  ibd_or_severe_diarrhea: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

@@ -1,0 +1,12 @@
+red_flag: RF-MDS-ORGAN-DYSFUNCTION
+findings:
+  ecog_performance_status: 2
+  creatinine_clearance_ml_min: 30
+  total_bilirubin_ulnratio: 3
+  lvef_percent: 40
+  nyha_class: 2
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

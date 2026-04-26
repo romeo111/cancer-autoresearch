@@ -1,0 +1,10 @@
+red_flag: RF-PMF-ANEMIA-DOMINANT
+findings:
+  hemoglobin_g_dl: 10
+  rbc_transfusion_dependent: false
+  anemia_dominant_pmf: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

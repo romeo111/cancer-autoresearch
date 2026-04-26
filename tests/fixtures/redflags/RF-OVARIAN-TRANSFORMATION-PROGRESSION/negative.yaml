@@ -1,0 +1,12 @@
+red_flag: RF-OVARIAN-TRANSFORMATION-PROGRESSION
+findings:
+  ovarian_platinum_refractory: false
+  ovarian_platinum_resistant: false
+  post_platinum_response: _NOT_stable_or_progressive
+  months_since_last_platinum: 6
+  progression_on_platinum: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

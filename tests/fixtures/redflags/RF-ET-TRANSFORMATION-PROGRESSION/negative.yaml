@@ -1,0 +1,13 @@
+red_flag: RF-ET-TRANSFORMATION-PROGRESSION
+findings:
+  post_et_mf_transformation: false
+  post_et_aml_transformation: false
+  blasts_pb_pct: 4
+  blasts_bm_pct: 4
+  rapid_splenomegaly_progression: false
+  leukoerythroblastic_smear: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

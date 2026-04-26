@@ -1,0 +1,16 @@
+red_flag: RF-NSCLC-HIGH-RISK-BIOLOGY
+findings:
+  BIO-EGFR-MUTATION: _NOT_positive
+  BIO-ALK-FUSION: _NOT_positive
+  BIO-ROS1-FUSION: _NOT_positive
+  BIO-KRAS-G12C: _NOT_positive
+  BIO-BRAF-V600E: _NOT_positive
+  met_ex14_skipping: false
+  ret_fusion: false
+  ntrk_fusion: false
+  her2_mutation_nsclc: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

@@ -1,0 +1,12 @@
+red_flag: RF-PMF-FRAILTY-AGE
+findings:
+  age_years: 74
+  pmf_frail_unfit: false
+  hct_ci_score: 3
+  ecog_performance_status: 2
+  comorbidities_count: 1
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

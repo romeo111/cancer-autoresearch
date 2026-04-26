@@ -1,0 +1,12 @@
+red_flag: RF-PROSTATE-HIGH-RISK-BIOLOGY
+findings:
+  BIO-BRCA-GERMLINE: _NOT_positive
+  BIO-HRR-PANEL: _NOT_positive
+  brca1_mutation: false
+  brca2_mutation: false
+  hrr_pathway_mutation: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

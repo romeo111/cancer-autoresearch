@@ -1,0 +1,17 @@
+red_flag: RF-UROTHELIAL-FRAILTY-AGE
+findings:
+  ecog: 1
+  creatinine_clearance_ml_min: 60
+  hearing_loss_grade: 1
+  peripheral_neuropathy_grade: 1
+  nyha_class: _NOT_III
+  fit_for_cisplatin: true
+  age: 69
+  comorbidity_count: 1
+  albumin_g_dl: 3.0
+  charlson_score: 2
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

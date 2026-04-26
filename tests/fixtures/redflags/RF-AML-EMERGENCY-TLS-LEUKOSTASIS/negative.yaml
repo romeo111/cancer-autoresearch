@@ -1,0 +1,13 @@
+red_flag: RF-AML-EMERGENCY-TLS-LEUKOSTASIS
+findings:
+  wbc_k_ul: 99
+  leukostasis_symptoms: false
+  tls_active: false
+  uric_acid_mg_dl: 7.5
+  ldh_ulnratio: 2
+  potassium_mmol_l: 5.5
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.
