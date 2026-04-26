@@ -1,0 +1,16 @@
+{
+  "patient_id": "PTCL-RELAPSED-001",
+  "comment": "PTCL-NOS relapsed after CHOEP + autoSCT, HDACi-naive, romidepsin accessible. Engine should select romidepsin 2L (default per algo) bridging to alloSCT consideration.",
+  "disease": {"icd_o_3_morphology": "9702/3"},
+  "line_of_therapy": 2,
+  "biomarkers": {"BIO-CD30-IHC": "negative"},
+  "demographics": {"age": 51, "sex": "female", "ecog": 1},
+  "findings": {
+    "prior_lines": ["CHOEP x6", "autoSCT BEAM"],
+    "best_response_prior": "CR then relapse at 14 months",
+    "hdac_inhibitor_naive": true,
+    "qtc_baseline_ms": 420,
+    "transplant_candidate": true,
+    "lvef_percent": 58
+  }
+}

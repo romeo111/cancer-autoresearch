@@ -1,0 +1,15 @@
+{
+  "patient_id": "PTCL-CD30POS-001",
+  "comment": "PTCL-NOS CD30-positive (≥10% IHC), fit younger. Engine should select CHP-Bv (ECHELON-2 inclusion criterion met).",
+  "disease": {"icd_o_3_morphology": "9702/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {"BIO-CD30-IHC": "positive"},
+  "demographics": {"age": 54, "sex": "male", "ecog": 1},
+  "findings": {
+    "cd30_positive": true,
+    "cd30_percent_ihc": 40,
+    "lvef_percent": 62,
+    "ipi_score": 3,
+    "brentuximab_accessible": true
+  }
+}
