@@ -20,5 +20,34 @@ decision_tree:
     if_false:
       result: IND-CHL-1L-ABVD
 
-sources: [SRC-NCCN-BCELL-2025]
-last_reviewed: "2026-04-25"
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-HODGKIN-2024]
+last_reviewed: "2026-04-27"
+notes: >
+  Etiology rails (parallel to indication selection — none shifts ABVD
+  vs A+AVD choice; both routed via SUP-* + RF-CHL-INFECTION-SCREENING):
+
+  - HBV (HBsAg+ OR anti-HBc+) — Brentuximab vedotin (anti-CD30 ADC) in
+    A+AVD carries documented HBV reactivation risk; entecavir 0.5 mg PO
+    daily started before first BV dose, continued through induction +
+    ≥12 months post-BV. ABVD without BV has lower (but non-zero) HBV
+    reactivation risk on steroid pulse — entecavir still recommended in
+    HBsAg+ patients per NCCN B-Cell §HBV-1, optional in anti-HBc+
+    (monitor HBV-DNA q-cycle). For BEACOPP-escalated (not modeled here)
+    entecavir is mandatory due to prolonged prednisone + alkylator load.
+
+  - HIV (HIV+ HL "Stanford-style") — Continue ART throughout induction;
+    ABVD or A+AVD acceptable at full dose (Spina 2002, Hentrich 2012 —
+    HIV-HL outcomes approach HIV-negative cHL with concurrent ART).
+    Avoid BEACOPP in HIV (excess infectious toxicity). PJP prophylaxis
+    on TMP-SMX recommended throughout. CD4 + HIV-VL pre-cycle. Watch
+    for ART-vincristine interaction (avoid ritonavir-boosted PIs;
+    integrase-inhibitor backbone preferred). HIV-HL is more often EBV+
+    than HIV-negative HL but treatment unchanged.
+
+  - HCV (HCV-RNA+) — Less common comorbidity in cHL; treat HL first
+    (ABVD/A+AVD) and coordinate DAA timing with hepatologist (typically
+    after induction unless CP-A and rapid clearance feasible).
+
+  All three operate via parallel SUP-* / RF-* surfaces. BIO-HBV-STATUS
+  and BIO-HIV-STATUS missing — would let us formalize these rails as
+  biomarker_requirements; flagged for future round.

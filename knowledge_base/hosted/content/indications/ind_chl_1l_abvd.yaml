@@ -63,8 +63,10 @@ do_not_do:
   - "НЕ продовжувати bleomycin при DLCO drop ≥25% — switch to AVD (drop bleo)."
   - "НЕ пропускати baseline LVEF + DLCO + fertility preservation discussion."
   - "НЕ використовувати високопоточний O2 при анестезії після bleomycin (lifetime risk)."
+  - "НЕ починати без HBV скринінгу + entecavir prophylaxis при HBsAg+ — реактивація на стероїдному пульсі реальна (також actionable при anti-HBc+ — моніторити HBV-DNA q-cycle)."
+  - "НЕ переривати ART у HIV+ пацієнтів — HIV-HL outcomes approach HIV-negative cHL з концурентним ART; уникати ritonavir-boosted PIs (vincristine interaction); PJP prophylaxis throughout."
 
 time_critical: false
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-27"
 reviewer_signoffs: 0
 notes: STUB.

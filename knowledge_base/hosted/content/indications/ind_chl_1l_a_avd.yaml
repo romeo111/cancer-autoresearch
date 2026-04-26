@@ -23,7 +23,7 @@ expected_outcomes:
   progression_free_survival: "6y PFS ~83% (ECHELON-1 advanced cHL)"
   overall_survival_5y: "~93% (ECHELON-1 OS HR 0.59 vs ABVD)"
 
-hard_contraindications: [CI-LVEF-LOW-FOR-ANTHRACYCLINE, CI-BORTEZOMIB-SEVERE-NEUROPATHY]
+hard_contraindications: [CI-LVEF-LOW-FOR-ANTHRACYCLINE, CI-BORTEZOMIB-SEVERE-NEUROPATHY, CI-HBV-NO-PROPHYLAXIS]
 red_flags_triggering_alternative: []
 
 required_tests:
@@ -54,8 +54,10 @@ do_not_do:
   - "НЕ пропускати G-CSF support — neutropenia з brentuximab + анти-mitotic вища."
   - "НЕ ігнорувати pre-existing peripheral neuropathy — Grade ≥2 = absolute CI."
   - "НЕ призначати без verifiedного funding pathway — brentuximab не НСЗУ-reimbursed."
+  - "НЕ починати brentuximab без HBV скринінгу + entecavir prophylaxis при HBsAg+ або anti-HBc+ — anti-CD30 ADC має документований HBV reactivation risk; продовжувати ≥12 міс після останньої дози BV."
+  - "НЕ переривати ART у HIV+ — A+AVD акцептабельний з ART; інтегразний backbone preferred (vincristine-PI interaction); PJP prophylaxis throughout."
 
 time_critical: false
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-27"
 reviewer_signoffs: 0
 notes: STUB.

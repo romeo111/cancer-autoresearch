@@ -7,24 +7,36 @@ trigger:
     - patient_condition: "no concurrent HBV antiviral prophylaxis prescribed"
   logic: AND
 
-description: "Active or latent HBV without antiviral prophylaxis is an absolute contraindication to starting anti-CD20 therapy; severe HBV reactivation hepatitis risk."
-description_ua: "Активний або латентний HBV без противірусної профілактики — абсолютне протипоказання до anti-CD20 терапії"
+description: "Active or latent HBV without antiviral prophylaxis is an absolute contraindication to starting B-cell-depleting / immunomodulatory monoclonal antibody therapy (anti-CD20, anti-CD30 ADC, anti-CD38). Severe HBV reactivation hepatitis risk including fulminant hepatic failure."
+description_ua: "Активний або латентний HBV без противірусної профілактики — абсолютне протипоказання до моноклональних антитіл, що вичерпують B-клітини або імуномодулюючих (anti-CD20, anti-CD30 ADC, anti-CD38)"
 
 alternative_actions:
-  - "Start entecavir prophylaxis (SUP-HBV-PROPHYLAXIS) before first anti-CD20 dose"
-  - "Refer to hepatologist for shared management"
-  - "Defer anti-CD20 therapy until prophylaxis confirmed"
+  - "Start entecavir 0.5 mg PO daily (or tenofovir) — SUP-HBV-PROPHYLAXIS — before first dose"
+  - "Refer to hepatologist for shared management; HBV-DNA q-cycle monitoring"
+  - "Defer therapy until prophylaxis confirmed and first dose of antiviral administered"
+  - "Continue antiviral ≥12 months after last dose of immunosuppressive antibody"
 
 affects_indications: []
 affects_drugs:
   - DRUG-RITUXIMAB
   - DRUG-OBINUTUZUMAB
+  - DRUG-BRENTUXIMAB-VEDOTIN  # anti-CD30 ADC (CHL A+AVD, ALCL); documented reactivation risk
+  - DRUG-DARATUMUMAB           # anti-CD38 (MM D-VRd, DKd, etc.)
+# DRUG-ISATUXIMAB (anti-CD38, MM) — same class risk; flagged for future
+# round once isatuximab is added to drugs/.
 affects_regimens:
   - REG-BR-STANDARD
 
 sources:
   - SRC-NCCN-BCELL-2025
   - SRC-EASL-HCV-2023
+  - SRC-NCCN-MM-2025
 
-last_reviewed: "2026-04-25"
-notes: "Triggered by RF-HBV-COINFECTION; resolved by adding SUP-HBV-PROPHYLAXIS to plan."
+last_reviewed: "2026-04-27"
+notes: >
+  Triggered by RF-HBV-COINFECTION / RF-UNIVERSAL-HBV-REACTIVATION-RISK;
+  resolved by adding SUP-HBV-PROPHYLAXIS to plan. Extended 2026-04-27
+  to cover anti-CD30 ADC (brentuximab vedotin) used in CHL A+AVD and
+  anti-CD38 mAbs (daratumumab, isatuximab) used in MM regimens — both
+  classes have documented HBV reactivation risk per their FDA labels
+  and NCCN guidelines.
