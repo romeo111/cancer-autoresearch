@@ -1,0 +1,109 @@
+id: IND-BURKITT-2L-RDHAP-ASCT
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-BURKITT
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory after 1L intensive Burkitt regimen (R-CODOX-M/IVAC, R-Hyper-CVAD/MA, DA-EPOCH-R)"
+    - "OR after R-ICE failure as 1st salvage (non-cross-resistant alternative)"
+    - "Fit transplant-eligible: age ≤65 (ASCT); ECOG 0-1"
+    - "CNS disease at relapse particularly favors R-DHAP for HiDAC CNS-penetration"
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive at relapse biopsy"}
+    - {biomarker_id: BIO-MYC-REARRANGEMENT, required: true, value_constraint: "positive (Burkitt-defining)"}
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 1
+    age_max: 65
+
+recommended_regimen: REG-RDHAP-BURKITT
+concurrent_therapy: [SUP-PJP-PROPHYLAXIS, SUP-TLS-PROPHYLAXIS, SUP-GCSF-NEUTROPENIA, SUP-HBV-PROPHYLAXIS]
+followed_by: []  # ASCT consolidation in CR2
+
+evidence_level: moderate
+strength_of_recommendation: conditional
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~50-60% (extrapolated from r/r aggressive B-NHL salvage; CORAL-style)"
+  complete_response: "~30-40% to R-DHAP alone; CR2 candidates proceed to ASCT"
+  progression_free_survival: "3y PFS ~30-40% in fit younger r/r Burkitt with R-DHAP → ASCT in CR2"
+  overall_survival_5y: "~30-40% (heavily pretreated baseline poor)"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS
+  - CI-RENAL-FAILURE-FOR-HD-MTX
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-URIC-ACID
+  - TEST-CD20-IHC
+  - TEST-FISH-PANEL
+  - TEST-PET-CT
+  - TEST-CSF-CYTOLOGY-FLOW
+  - TEST-WHOLE-BODY-MRI
+  - TEST-BM-ASPIRATE
+  - TEST-LN-CORE-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-ECHO
+  - TEST-PREGNANCY
+  - TEST-RENAL-FUNCTION-EGFR
+  - TEST-CMV-SEROLOGY
+desired_tests: []
+
+rationale: >
+  R-DHAP × 2-3 cycles → BEAM-conditioned ASCT in CR2 for fit younger
+  r/r Burkitt. Non-cross-resistant alternative to R-ICE (cisplatin +
+  HiDAC + steroid mechanism vs ICE ifosfamide + carboplatin +
+  etoposide). HiDAC component provides additional CNS-penetrant
+  cytotoxicity beyond IT therapy — particularly favored when CNS
+  disease at relapse. Cisplatin neuropathy + ototoxicity +
+  nephrotoxicity are dominant patient-selection issues. Either as
+  1st salvage OR after R-ICE failure (CORAL trial showed R-DHAP and
+  R-ICE comparable in DLBCL salvage; Burkitt-specific data limited).
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "R-DHAP is recommended salvage for r/r aggressive B-cell NHL incl Burkitt; bridge to ASCT in CR2; Cat 2A"
+  - source_id: SRC-ESMO-BURKITT-2024
+    position: supports
+    relevant_quote_paraphrase: "R-DHAP is non-cross-resistant alternative to R-ICE for r/r Burkitt salvage; HiDAC component adds CNS-penetrant cytotoxicity"
+
+known_controversies:
+  - topic: "R-DHAP vs R-ICE as preferred 1st salvage for r/r Burkitt"
+    positions:
+      - position: "R-DHAP first when CNS disease at relapse — HiDAC CNS-penetration"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "R-ICE first when no CNS disease + pre-existing renal/hearing concerns favor avoiding cisplatin"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "R-DHAP if CNS at relapse OR if R-ICE failed; R-ICE if no CNS + cisplatin concerns"
+
+do_not_do:
+  - "НЕ затримувати інтервенцію — natural history рецидивної Burkitt катастрофічна."
+  - "НЕ пропускати CSF cytology + flow при relapse — CNS disease ≥30% при рецидиві."
+  - "НЕ забути IV hydration + diuresis для cisplatin nephroprotection (mannitol if needed)."
+  - "НЕ ігнорувати pre-existing peripheral neuropathy — Grade ≥2 = переключитись на R-ICE."
+  - "НЕ пропускати baseline + serial audiology — cisplatin ototoxicity може бути permanent."
+  - "НЕ ігнорувати cerebellar toxicity from HiDAC (ataxia, dysmetria) — discontinue immediately; permanent if Grade ≥2."
+  - "НЕ пропускати cytarabine eye drops + cerebellar exam baseline + each HiDAC dose."
+  - "НЕ розпочинати ASCT при PR — outcomes substantially гірші; salvage spillover до CR2 спочатку."
+  - "НЕ забути rasburicase для TLS prophylaxis cycle 1 — TLS може бути фатальним."
+  - "НЕ пропускати HBV скринінг + entecavir prophylaxis."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 2L+
+  alternative to R-ICE for r/r Burkitt. CNS disease at relapse
+  favors R-DHAP. ASCT consolidation in CR2 is goal.

@@ -1,0 +1,117 @@
+id: IND-BURKITT-2L-RICE-ASCT
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-BURKITT
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory after 1L intensive Burkitt regimen (R-CODOX-M/IVAC, R-Hyper-CVAD/MA, DA-EPOCH-R)"
+    - "Fit transplant-eligible: age ≤65 (ASCT) or ≤55 (alloSCT considered for primary-refractory); ECOG 0-1"
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive at relapse biopsy"}
+    - {biomarker_id: BIO-MYC-REARRANGEMENT, required: true, value_constraint: "positive (Burkitt-defining)"}
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 1
+    age_max: 65
+
+recommended_regimen: REG-RICE-BURKITT
+concurrent_therapy: [SUP-PJP-PROPHYLAXIS, SUP-TLS-PROPHYLAXIS, SUP-GCSF-NEUTROPENIA, SUP-HBV-PROPHYLAXIS]
+followed_by: []  # ASCT consolidation in CR2
+
+evidence_level: moderate
+strength_of_recommendation: strong
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~50-60% (extrapolated from r/r aggressive B-NHL salvage; Burkitt-specific data limited)"
+  complete_response: "~30-40% to R-ICE alone; CR2 candidates proceed to ASCT"
+  progression_free_survival: "3y PFS ~30-40% in fit younger r/r Burkitt with R-ICE → ASCT in CR2"
+  overall_survival_5y: "~30-40% (heavily pretreated baseline poor; primary-refractory worse)"
+
+hard_contraindications:
+  - CI-HBV-NO-PROPHYLAXIS
+  - CI-RENAL-FAILURE-FOR-HD-MTX
+red_flags_triggering_alternative:
+  - RF-BURKITT-HIGH-RISK
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-URIC-ACID
+  - TEST-CD20-IHC
+  - TEST-FISH-PANEL  # confirm MYC at relapse
+  - TEST-PET-CT
+  - TEST-CSF-CYTOLOGY-FLOW  # CNS re-staging at relapse
+  - TEST-WHOLE-BODY-MRI
+  - TEST-BM-ASPIRATE
+  - TEST-LN-CORE-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-ECHO
+  - TEST-PREGNANCY
+  - TEST-RENAL-FUNCTION-EGFR
+  - TEST-CMV-SEROLOGY  # transplant prep
+desired_tests: []
+
+rationale: >
+  R-ICE × 2-3 cycles → BEAM-conditioned ASCT in CR2 for fit younger
+  r/r Burkitt. Salvage paradigm extrapolated from r/r aggressive
+  B-NHL (DLBCL CORAL-style) — Burkitt-specific data limited but
+  mechanistically applicable. CNS-disease at relapse common (≥30%)
+  → IT therapy mandatory + consider HD-MTX intensification. CR2
+  with ASCT consolidation provides ~30-40% durable remission in fit
+  younger r/r Burkitt; alloSCT preferred for primary-refractory or
+  post-ASCT relapse (long-term cure ~10-20%). Extreme natural history
+  poor at relapse (~3-6 mo OS untreated) — rapid intervention
+  critical.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "R-ICE is recommended salvage for r/r aggressive B-cell NHL incl Burkitt; bridge to ASCT/alloSCT in CR2; Cat 2A"
+  - source_id: SRC-ESMO-BURKITT-2024
+    position: supports
+    relevant_quote_paraphrase: "Intensive non-cross-resistant salvage (R-ICE, R-DHAP) followed by ASCT in CR2 is standard for r/r Burkitt in fit transplant-eligible patients"
+
+known_controversies:
+  - topic: "R-ICE vs R-DHAP as preferred salvage for r/r Burkitt"
+    positions:
+      - position: "R-ICE — no anthracycline / less cisplatin-related neuro/oto/nephro-toxicity"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "R-DHAP — HiDAC component provides additional CNS-penetrant cytotoxicity beyond IT therapy"
+        sources: [SRC-NCCN-BCELL-2025]
+        evidence_note: "Cisplatin neuropathy + ototoxicity + nephrotoxicity counter-balance"
+    our_default: "R-ICE first if pre-existing renal / hearing concerns; R-DHAP first if CNS disease emphasis"
+  - topic: "ASCT vs alloSCT consolidation in CR2"
+    positions:
+      - position: "ASCT — feasibility, availability, less TRM"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "AlloSCT — durable cure for primary-refractory or post-ASCT relapse via graft-vs-lymphoma"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "ASCT for first-relapse CR2; alloSCT for primary-refractory or post-ASCT relapse if feasible"
+
+do_not_do:
+  - "НЕ затримувати інтервенцію — natural history рецидивної Burkitt катастрофічна (3-6 мс OS untreated)."
+  - "НЕ пропускати CSF cytology + flow при relapse — CNS disease ≥30% при рецидиві; IT therapy mandatory."
+  - "НЕ забути rasburicase для TLS prophylaxis cycle 1 — TLS може бути фатальним при rapid response."
+  - "НЕ пропускати mesna 100% дози ifosfamide — hemorrhagic cystitis ризик фатальний без mesna."
+  - "НЕ ігнорувати ifosfamide encephalopathy (altered mental status) — discontinue immediately + methylene blue 50 mg IV q4-6h."
+  - "НЕ пропускати CrCl + cardiac (LVEF) + pulmonary fitness pre-ASCT."
+  - "НЕ розпочинати ASCT при PR (не CR) — outcomes substantially гірші; salvage spillover до CR2 спочатку OR alloSCT consideration."
+  - "НЕ пропускати HBV скринінг + entecavir prophylaxis."
+  - "НЕ забути pre-transplant viral PCRs (CMV / HBV / HCV / HIV) + donor pre-typing для potential alloSCT."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 2L+
+  for r/r Burkitt. Rapid intervention critical — natural history
+  catastrophic at relapse. ASCT consolidation in CR2 is goal;
+  alloSCT for primary-refractory or post-ASCT relapse.

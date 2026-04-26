@@ -1,0 +1,114 @@
+id: IND-BURKITT-1L-HYPERCVAD-R
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-BURKITT
+  line_of_therapy: 1
+  stage_requirements:
+    - "Newly diagnosed high-risk Burkitt: CNS involvement OR leukemic phase OR LDH >3× ULN OR bulky abdominal disease (RF-BURKITT-HIGH-RISK fired)"
+    - "Alternative to R-CODOX-M/IVAC for fit younger high-risk Burkitt; choice often driven by center experience + bone marrow + CNS disease intensity"
+  biomarker_requirements_required:
+    - {biomarker_id: BIO-CD20-IHC, required: true, value_constraint: "positive"}
+    - {biomarker_id: BIO-MYC-REARRANGEMENT, required: true, value_constraint: "positive"}
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+    age_max: 60
+
+recommended_regimen: REG-HYPER-CVAD-R
+concurrent_therapy: [SUP-PJP-PROPHYLAXIS, SUP-TLS-PROPHYLAXIS, SUP-HSV-PROPHYLAXIS, SUP-GCSF-NEUTROPENIA]
+followed_by: []
+
+evidence_level: high
+strength_of_recommendation: strong
+nccn_category: "1"
+
+expected_outcomes:
+  overall_response_rate: "~90-95%"
+  complete_response: "~80-90%"
+  progression_free_survival: "3y PFS ~70-80% in fit younger high-risk per Thomas 2010"
+  overall_survival_5y: "~70-80% in fit younger high-risk; substantially worse age >60"
+
+hard_contraindications: [CI-HBV-NO-PROPHYLAXIS, CI-LVEF-LOW-FOR-ANTHRACYCLINE, CI-RENAL-FAILURE-FOR-HD-MTX]
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-URIC-ACID
+  - TEST-CD20-IHC
+  - TEST-FISH-PANEL  # MYC rearrangement
+  - TEST-PET-CT
+  - TEST-CSF-CYTOLOGY-FLOW  # CNS staging
+  - TEST-WHOLE-BODY-MRI
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-LN-EXCISIONAL-BIOPSY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-ECHO
+  - TEST-PREGNANCY
+  - TEST-RENAL-FUNCTION-EGFR
+desired_tests: []
+
+rationale: >
+  Hyper-CVAD + Rituximab (alternating Course A: hyper-CVAD with
+  fractionated cyclophosphamide / vincristine / doxorubicin / dex,
+  and Course B: HD-MTX + HD-cytarabine) for fit younger high-risk
+  Burkitt with MYC-rearranged disease. Per Thomas 2010 (MD Anderson):
+  3y PFS 70-80% in fit younger high-risk. Includes IT MTX + IT
+  cytarabine on every cycle for CNS prophylaxis (mandatory). Strong
+  alternative to R-CODOX-M/R-IVAC — choice often driven by center
+  experience + bone marrow involvement (Hyper-CVAD has more
+  bone-marrow penetration via fractionated cyclophosphamide) + CNS
+  disease intensity. Substantially toxic — demands experienced
+  center + ECOG ≤2 + age ≤60 typically + CrCl ≥60.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "Hyper-CVAD-R is acceptable 1L alternative to R-CODOX-M/IVAC for fit younger high-risk Burkitt; both Cat 1"
+  - source_id: SRC-ESMO-BURKITT-2024
+    position: supports
+    relevant_quote_paraphrase: "Intensive 1L regimens (R-CODOX-M/IVAC, R-Hyper-CVAD/MA, modified LMB-95) are interchangeable choices for fit younger high-risk Burkitt"
+
+known_controversies:
+  - topic: "Hyper-CVAD-R vs R-CODOX-M/IVAC for fit younger high-risk Burkitt"
+    positions:
+      - position: "R-Hyper-CVAD/MA — better bone-marrow penetration via fractionated cyclophosphamide"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "R-CODOX-M/IVAC — original Magrath protocol; longer follow-up data; arguably less complex"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "Either acceptable; center experience + BM involvement intensity dictate choice"
+  - topic: "Maintenance after Hyper-CVAD-R completion"
+    positions:
+      - position: "Skip maintenance — relapse pattern is early (within 12-18 mo); maintenance has not improved outcomes"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Consider rituximab maintenance in MRD-positive cases"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "No maintenance; re-stage q3-6 mo for first 2 years"
+
+do_not_do:
+  - "НЕ призначати при наявності pleural effusion / ascites без drainage — HD-MTX clearance подовжується смертельно (Course B)."
+  - "НЕ комбінувати з NSAIDs / PPIs / penicillins під час HD-MTX phase (Course B) — clearance reduction."
+  - "НЕ пропускати leucovorin rescue + serial MTX levels q24h до <0.1 µM (Course B)."
+  - "НЕ пропускати IT MTX + IT cytarabine on every cycle — CNS prophylaxis mandatory; Burkitt is highest CNS-risk B-cell NHL."
+  - "НЕ пропускати rasburicase для TLS prophylaxis cycle 1 (high-burden disease) — TLS може бути фатальним."
+  - "НЕ використовувати при age >60 OR ECOG >2 — токсичність переважає benefit; route to DA-EPOCH-R."
+  - "НЕ пропускати CrCl <60 dose adjustment / consideration alternative — HD-MTX renally cleared."
+  - "НЕ пропускати CSF cytology + flow при diagnosis — staging для CNS-disease (positive = upgrade intensification)."
+  - "НЕ пропускати HBV скринінг + entecavir prophylaxis при HBsAg+ або anti-HBc+."
+
+time_critical: false
+last_reviewed: "2026-04-25"
+reviewers: []
+reviewer_signoffs: 0
+notes: >
+  STUB — pending Clinical Co-Lead sign-off. Aggressive-track 1L
+  alternative to R-CODOX-M/IVAC for fit younger high-risk Burkitt.
+  Center experience often dictates choice between these two
+  intensive protocols. Older / unfit / lower-risk → DA-EPOCH-R.
