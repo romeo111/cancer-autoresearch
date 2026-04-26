@@ -1,0 +1,30 @@
+{
+  "patient_id": "PTL-csd1-alk-fusion-nsclc",
+  "comment": "Synthetic metastatic ALK-rearranged NSCLC for CSD-1 partnership BMA test suite. NOT a real patient (CHARTER §9.3). NOTE: BMA-NTRK-FUSION-IFS does not exist in the KB; substituted ALK-rearranged NSCLC as the closest pan-tumor TKI-targeted IA/Level-1 actionability cell available. BMA lookup should hit BMA-ALK-FUSION-NSCLC at ESCAT IA / OncoKB Level 1.",
+  "disease": {"id": "DIS-NSCLC"},
+  "line_of_therapy": 1,
+  "biomarkers": {
+    "ALK": "fusion",
+    "EGFR": "wildtype",
+    "ROS1": "negative",
+    "PD-L1 TPS": 0
+  },
+  "demographics": {
+    "age": 48,
+    "sex": "female",
+    "ecog": 0,
+    "smoking_status": "never"
+  },
+  "findings": {
+    "stage": "IV",
+    "histology": "adenocarcinoma",
+    "metastatic_sites": ["brain", "bone"]
+  },
+  "labs": {
+    "hemoglobin_g_dl": 12.9,
+    "platelets_k_ul": 245,
+    "creatinine_mg_dL": 0.78
+  },
+  "comorbidities": [],
+  "current_medications": []
+}

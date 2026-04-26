@@ -1,0 +1,31 @@
+{
+  "patient_id": "PTL-csd1-egfr-t790m-nsclc",
+  "comment": "Synthetic metastatic NSCLC adenocarcinoma + acquired EGFR T790M after 1L gefitinib for CSD-1 partnership BMA test suite. NOT a real patient (CHARTER §9.3). BMA lookup should hit BMA-EGFR-T790M-NSCLC at ESCAT IA / OncoKB Level 1.",
+  "disease": {"id": "DIS-NSCLC"},
+  "line_of_therapy": 1,
+  "biomarkers": {
+    "EGFR": "T790M",
+    "ALK": "negative",
+    "ROS1": "negative",
+    "PD-L1 TPS": 30
+  },
+  "demographics": {
+    "age": 64,
+    "sex": "female",
+    "ecog": 1,
+    "smoking_status": "never"
+  },
+  "findings": {
+    "stage": "IV",
+    "histology": "adenocarcinoma",
+    "metastatic_sites": ["bone", "contralateral lung"],
+    "prior_egfr_tki": "gefitinib (1L, progression at 11 months)"
+  },
+  "labs": {
+    "hemoglobin_g_dl": 12.6,
+    "platelets_k_ul": 220,
+    "creatinine_mg_dL": 0.85
+  },
+  "comorbidities": [],
+  "current_medications": []
+}
