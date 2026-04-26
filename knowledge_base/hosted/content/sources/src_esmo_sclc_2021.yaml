@@ -45,7 +45,13 @@ relates_to_diseases:
   - DIS-SCLC
 last_verified: '2026-04-27'
 notes: >
-  Pre-IMpower133 / CASPIAN baseline. Updated supplementary recommendations integrate ICI combinations for extensive-stage. Note: 2024 ESMO update under review.
+  Pre-IMpower133 / CASPIAN baseline. Updated supplementary recommendations integrate ICI combinations for extensive-stage.
+  Freshness check 2026-04-27: ESMO has not published a SCLC guideline
+  refresh beyond the 2021 Dingemans et al document (the prior-audit
+  "2024 update under review" note is unresolved as of the 2026 audit;
+  ESMO 2024 congress data was integrated at the conference level only).
+  Active references: SRC-NCCN-SCLC-2025 in KB. Source retained as the
+  ESMO-tier baseline; re-verify in 12 months.
 pages_count: 250
 references_count: 600
 corpus_role: primary_guideline
