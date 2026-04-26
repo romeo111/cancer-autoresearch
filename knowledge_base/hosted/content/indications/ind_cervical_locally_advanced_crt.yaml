@@ -5,7 +5,10 @@ applicable_to:
   disease_id: DIS-CERVICAL
   line_of_therapy: 1
   stage_requirements: ["FIGO IB3-IVA (locally advanced)", "Bulky primary >4 cm OR pelvic node-positive OR para-aortic-node-positive"]
-  biomarker_requirements_required: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-HPV-STATUS
+      required: true
+      value_constraint: "HPV-positive (typically HPV-16/18) — vast majority of cervical cancers; HPV status required as eligibility / etiology confirmation and informs prognosis (HPV+ better than HPV-) and post-treatment surveillance"
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 2
