@@ -1,0 +1,121 @@
+id: ALGO-NLPBL-2L
+applicable_to_disease: DIS-NLPBL
+applicable_to_line_of_therapy: 2
+purpose: >
+  Select 2L Indication for relapsed nodular lymphocyte-predominant
+  B-cell lymphoma (formerly NLPHL). Single track:
+  IND-NLPBL-2L-RCHOP-TRANSFORMATION (R-CHOP for confirmed transformation
+  to T-cell/histiocyte-rich large B-cell lymphoma — THRLBCL — or
+  aggressive DLBCL-like progression).
+
+  CRITICAL do_not_do: re-biopsy is MANDATORY before treating any
+  NLPBL relapse. NLPBL has a high (>10%) lifetime risk of histologic
+  transformation to THRLBCL / DLBCL; treating clinically suspected
+  relapse as if it were indolent NLPBL recurrence (with rituximab
+  monotherapy or RT alone) misses transformation in ~30-40% of
+  relapse cases and substantially worsens outcomes. The MDT must
+  obtain excisional or core re-biopsy at the relapse site BEFORE
+  any 2L decision. Routing to R-CHOP is appropriate ONLY when
+  re-biopsy confirms transformation; indolent-pattern recurrence
+  (NLPBL-typical histology preserved) routes to free-text "rituximab
+  retreatment ± involved-site RT" alternative.
+
+  2L entry triggered by: documented nodal recurrence ≥6mo after 1L
+  (rituximab monotherapy, observation, or RT), OR new B-symptoms /
+  rapid clinical progression suggestive of transformation, OR
+  unexpected LDH elevation in known NLPBL patient.
+
+output_indications:
+  - IND-NLPBL-2L-RCHOP-TRANSFORMATION
+
+default_indication: IND-NLPBL-2L-RCHOP-TRANSFORMATION
+alternative_indication: IND-NLPBL-2L-RCHOP-TRANSFORMATION
+
+decision_tree:
+  # Step 0 (do_not_do gate) — MANDATORY re-biopsy before any 2L
+  # routing. Algorithm cannot enforce a procedure; this step
+  # documents the requirement and refuses to route until re-biopsy
+  # result is supplied. Trace must surface "re-biopsy mandatory
+  # — do NOT treat as indolent relapse without histology".
+  - step: 1
+    do_not_do: true
+    description: "MANDATORY re-biopsy before 2L treatment selection"
+    evaluate:
+      any_of:
+        - condition: "Re-biopsy NOT performed at relapse site"
+    if_true:
+      result: IND-NLPBL-2L-RCHOP-TRANSFORMATION  # halt placeholder; see notes — algo MUST stop here until biopsy supplied
+      reason: "Re-biopsy mandatory: NLPBL transforms to THRLBCL/DLBCL in ~30-40% of relapses; treating without histology misses transformation"
+      stop: true
+    if_false:
+      next_step: 2
+
+  # Step 2 — re-biopsy confirms transformation (THRLBCL or DLBCL-
+  # like aggressive histology) → R-CHOP. This is the algorithm's
+  # primary routing target.
+  - step: 2
+    evaluate:
+      any_of:
+        - red_flag: RF-NLPBL-TRANSFORMATION-PROGRESSION
+        - red_flag: RF-AGGRESSIVE-HISTOLOGY-TRANSFORMATION
+        - condition: "Re-biopsy confirms THRLBCL or DLBCL-like transformation"
+    if_true:
+      result: IND-NLPBL-2L-RCHOP-TRANSFORMATION
+    if_false:
+      next_step: 3
+
+  # Step 3 — re-biopsy confirms indolent NLPBL recurrence (CD20+,
+  # CD15-, CD30-, LP-cell preservation): rituximab retreatment
+  # ± involved-site RT (ISRT 30Gy). No dedicated 2L indolent
+  # indication; routes to IND-NLPBL-1L-RITUXIMAB-MONO with MDT
+  # note flagging "retreatment, not de novo".
+  - step: 3
+    evaluate:
+      all_of:
+        - condition: "Re-biopsy: NLPBL histology preserved (LP-cells, CD20+ CD15- CD30-)"
+        - condition: "Indolent presentation, no B-symptoms, no LDH elevation"
+    if_true:
+      result: IND-NLPBL-2L-RCHOP-TRANSFORMATION  # placeholder; see notes — R-mono retreatment ± ISRT alternative
+    if_false:
+      next_step: 4
+
+  # Step 4 — default (transformation suspected but not confirmed):
+  # treat as transformation → R-CHOP (precautionary aggressive
+  # routing; downgrade only with definitive indolent biopsy).
+  - step: 4
+    evaluate:
+      any_of:
+        - condition: "Transformation suspected at relapse — biopsy pending or inconclusive"
+    if_true:
+      result: IND-NLPBL-2L-RCHOP-TRANSFORMATION
+    if_false:
+      result: IND-NLPBL-2L-RCHOP-TRANSFORMATION
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-BSH-MZL-2024
+
+last_reviewed: "2026-04-27"
+notes: >
+  OOS / wiring gaps:
+  (1) IND-NLPBL-2L-RITUXIMAB-RETREATMENT (R-mono ± ISRT for
+  biopsy-confirmed indolent relapse) — not modeled. Step 3
+  routes via free-text MDT note; reuses IND-NLPBL-1L-RITUXIMAB-
+  MONO regimen.
+  (2) BSH-MZL-2024 referenced as proxy guideline (BSH does not
+  publish a dedicated NLPBL guideline; lymphoma transformation
+  principles transfer). True NLPBL-specific guideline is the
+  GHSG (German Hodgkin Study Group) NLPHL position paper —
+  not yet ingested as SRC-*.
+  (3) The "do_not_do" mandatory re-biopsy gate is implemented as
+  a stop-step in the decision_tree; the rule engine must honor
+  the stop=true flag and refuse to surface an indication when
+  biopsy result is missing. If engine doesn't yet support stop-
+  step on do_not_do, the trace should escalate this as a hard
+  blocking precondition.
+  (4) R-CHOP is the standard transformation regimen but Pola-R-CHP
+  (POLARIX) is emerging as superior in DLBCL and may be applied
+  to transformed NLPBL — not currently modeled at NLPBL line.
+  (5) AutoSCT consolidation in CR2 transformation — referral,
+  outside KB at this stage.
+  (6) reviewer_signoffs: 0 — pending two Clinical Co-Lead approvals.
