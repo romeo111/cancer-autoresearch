@@ -1,0 +1,58 @@
+id: REG-ZANUBRUTINIB-WM-RELAPSED
+name: "Zanubrutinib monotherapy continuous for r/r WM (ASPEN schedule) — alternative to ibrutinib"
+name_ua: "Занубрутиніб монотерапія безперервно для рефрактерної WM (ASPEN) — альтернатива до ібрутинібу"
+alternate_names: ["Zanu mono r/r WM", "ASPEN-style r/r WM"]
+
+components:
+  - drug_id: DRUG-ZANUBRUTINIB
+    dose: "160 mg PO BID OR 320 mg PO once daily"
+    schedule: "Continuous until progression or unacceptable toxicity"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "Continuous"
+toxicity_profile: low-moderate
+
+premedication: []
+mandatory_supportive_care: []
+monitoring_schedule_id: MON-CLL-BTKI
+
+dose_adjustments:
+  - condition: "Strong CYP3A4 inhibitor (azoles, ritonavir)"
+    modification: "Reduce to 80 mg PO BID; stop inhibitor when feasible"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Severe hepatic impairment (Child-Pugh C)"
+    modification: "Reduce dose to 80 mg PO BID; monitor LFTs"
+  - condition: "ANC <500 OR platelets <50K"
+    modification: "Hold; resume at same dose on recovery; reduce dose if recurrent"
+  - condition: "New-onset atrial fibrillation"
+    modification: "Hold; cardiology consult; rate control + anticoagulation; resume if benefit justifies; switch agent if recurrent"
+    rationale: "Lower afib incidence vs ibrutinib (~3% vs ~13%) but possible"
+  - condition: "Major hemorrhage / planned major surgery"
+    modification: "Hold zanubrutinib ≥3-7 days pre-procedure; resume post-op once hemostasis confirmed"
+  - condition: "Symptomatic hyperviscosity at start"
+    modification: "Plasmapheresis FIRST before zanubrutinib initiation; BTKi causes initial IgM flare in subset"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: false
+  notes: >
+    Zanubrutinib registered in Ukraine but NOT NSZU-reimbursed.
+    Ibrutinib reimbursed via НСЗУ — practical fallback for r/r WM
+    if access blocking, but worse cardiac safety and lower depth of
+    response per ASPEN. Funding pathway must be confirmed.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-WM-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  ASPEN trial (Tam 2020, follow-up 2023): r/r WM (and 1L cohort) —
+  zanubrutinib superior to ibrutinib in safety profile (afib 2.6%
+  vs 15.3%; cardiac death 0% vs 1.6%; major bleeding 4% vs 9%;
+  hypertension 13% vs 25%); comparable VGPR-or-better hematologic
+  response (28% vs 19% in MYD88-mut cohort, numerically superior).
+  Preferred BTKi for r/r WM where accessible. CXCR4-WHIM-mutated
+  subset has reduced depth of response with both BTKis — consider
+  proteasome-inhibitor (carfilzomib) alternative for these patients.

@@ -1,0 +1,70 @@
+id: REG-CARFILZOMIB-WM
+name: "Carfilzomib + Rituximab + Dexamethasone (CaRD) × 6 cycles — for CXCR4-WHIM-mutated WM (BTKi-resistant subset)"
+name_ua: "Карфілзоміб + Ритуксимаб + Дексаметазон (CaRD) × 6 циклів — для CXCR4-WHIM-мутованої WM (BTKi-резистентна підгрупа)"
+alternate_names: ["CaRD", "Carfil-R-Dex WM"]
+
+components:
+  - drug_id: DRUG-CARFILZOMIB
+    dose: "20 mg/m² days 1+2 of cycle 1, then 36 mg/m² days 1, 2, 8, 9, 15, 16 of subsequent cycles"
+    schedule: "IV days 1+2, 8+9, 15+16 of each 28-day cycle × 6"
+    route: IV
+  - drug_id: DRUG-RITUXIMAB
+    dose: "375 mg/m²"
+    schedule: "IV day 2 of each cycle"
+    route: IV
+  - drug_id: DRUG-DEXAMETHASONE
+    dose: "20 mg"
+    schedule: "IV/PO before carfilzomib doses (premed + therapeutic)"
+    route: PO
+
+cycle_length_days: 28
+total_cycles: "6 cycles induction; rituximab maintenance optional based on response"
+toxicity_profile: moderate-high
+
+premedication:
+  - "Pre-carfilzomib hydration: NS 250-500 mL IV before infusion (TLS + cardiac protection)"
+  - "Dexamethasone (in regimen) — premedication for carfilzomib infusion reactions"
+  - "Standard rituximab premedications (especially first dose)"
+  - "Plasmapheresis FIRST if symptomatic hyperviscosity"
+  - "Acyclovir 400 mg PO BID throughout (HSV/VZV prophylaxis)"
+mandatory_supportive_care:
+  - SUP-PJP-PROPHYLAXIS
+  - SUP-HSV-PROPHYLAXIS
+  - SUP-HBV-PROPHYLAXIS
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Cardiac symptoms (CHF, dyspnea, hypertension >180/110)"
+    modification: "Hold carfilzomib; cardiology consult; LVEF assessment; resume at 50% dose if cleared, OR discontinue if Grade ≥3"
+    rationale: "Carfilzomib has cardiotoxicity signal — particularly relevant in older patients"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "TLS (high-burden disease)"
+    modification: "Aggressive hydration + allopurinol/rasburicase; reduce dose cycle 1 if very high burden"
+  - condition: "Acute renal failure"
+    modification: "Hold; investigate (TLS, hyperviscosity, drug effect); resume at reduced dose"
+  - condition: "Symptomatic hyperviscosity"
+    modification: "Plasmapheresis FIRST; HOLD rituximab until IgM reduced"
+
+ukraine_availability:
+  all_components_registered: true
+  all_components_reimbursed: true
+  notes: >
+    Carfilzomib registered + НСЗУ-reimbursed for r/r MM. Off-label
+    for WM (no specific WM indication on label). Rituximab + dex
+    registered + reimbursed for B-cell NHL. Practical advantage in
+    UA: all components on-shelf via existing MM/NHL supply routes.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-WM-2024
+
+last_reviewed: "2026-04-25"
+notes: >
+  CaRD trial (Treon 2014): r/r WM — major response rate 87%, VGPR
+  68%; particularly active in CXCR4-WHIM-mutated subset where BTKi
+  response weaker. Carfilzomib (irreversible proteasome inhibitor)
+  has minimal peripheral neuropathy vs bortezomib — preferred for
+  WM IgM-related neuropathy patients. Cardiac monitoring critical —
+  carfilzomib has cardiotoxicity signal (CHF, hypertension) particularly
+  in older patients. Weekly schedule less cardiotoxic but lower
+  efficacy data in WM.
