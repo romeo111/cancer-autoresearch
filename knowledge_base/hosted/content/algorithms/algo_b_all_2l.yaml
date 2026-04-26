@@ -1,0 +1,73 @@
+id: ALGO-B-ALL-2L
+applicable_to_disease: DIS-B-ALL
+applicable_to_line_of_therapy: 2
+purpose: >
+  Select default + alternative Indication for B-ALL after induction
+  failure, MRD-positive post-induction, or overt relapse. Routing axes:
+  disease burden (low / MRD+ → blinatumomab T-cell engager; high-burden
+  R/R → inotuzumab CD22 ADC for debulking before potential CAR-T) and
+  age + lines-failed (≤25 + ≥2L failure → tisagenlecleucel CAR-T per
+  ELIANA). All three pathways bridge to alloHCT for fit responders.
+
+output_indications:
+  - IND-B-ALL-BLINATUMOMAB-MRD-OR-RR
+  - IND-B-ALL-2L-INOTUZUMAB
+  - IND-B-ALL-3L-TISAGENLECLEUCEL
+
+default_indication: IND-B-ALL-BLINATUMOMAB-MRD-OR-RR
+alternative_indication: IND-B-ALL-2L-INOTUZUMAB
+
+decision_tree:
+  # Step 1 — frailty / organ dysfunction → blinatumomab (lower
+  # short-term toxicity; CRS manageable; no VOD risk vs inotuzumab).
+  - step: 1
+    evaluate:
+      any_of:
+        - red_flag: RF-B-ALL-FRAILTY-AGE
+        - red_flag: RF-B-ALL-ORGAN-DYSFUNCTION
+    if_true:
+      result: IND-B-ALL-BLINATUMOMAB-MRD-OR-RR
+    if_false:
+      next_step: 2
+
+  # Step 2 — high-risk biology / overt high-burden relapse → inotuzumab
+  # (CD22 ADC; INO-VATE CR rate ~80% in high-burden R/R; preferred
+  # debulking before CAR-T to avoid CRS / ICANS in bulky disease).
+  - step: 2
+    evaluate:
+      any_of:
+        - red_flag: RF-B-ALL-HIGH-RISK-BIOLOGY
+        - red_flag: RF-B-ALL-TRANSFORMATION-PROGRESSION
+    if_true:
+      result: IND-B-ALL-2L-INOTUZUMAB
+    if_false:
+      next_step: 3
+
+  # Step 3 — default 2L MRD+ post-induction or low-burden R/R →
+  # blinatumomab (BLAST trial MRD eradication; preferred T-cell
+  # engager for low burden where CAR-T not indicated 2L).
+  - step: 3
+    evaluate:
+      all_of:
+        - condition: "Default 2L MRD+ or low-burden R/R B-ALL — blinatumomab per BLAST"
+    if_true:
+      result: IND-B-ALL-BLINATUMOMAB-MRD-OR-RR
+    if_false:
+      result: IND-B-ALL-BLINATUMOMAB-MRD-OR-RR
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-INOVATE-KANTARJIAN-2016
+  - SRC-BLAST-GOKBUGET-2018
+  - SRC-ELIANA-MAUDE-2018
+
+last_reviewed: "2026-04-25"
+notes: >
+  Tisagenlecleucel (IND-B-ALL-3L-TISAGENLECLEUCEL) is restricted to
+  age ≤25 with ≥2 lines failed per ELIANA label and is surfaced as
+  3L+ pathway after blinatumomab and/or inotuzumab debulking. Adult
+  CAR-T (brexucabtagene autoleucel per ZUMA-3) is not yet a separate
+  Indication in KB. RF-B-ALL-INFECTION-SCREENING surfaces as
+  annotation (HBV pre-blina / pre-CAR-T). All 2L+ pathways are
+  bridges to alloHCT for fit responders. STUB — requires clinical
+  co-lead signoff.
