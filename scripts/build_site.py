@@ -3856,6 +3856,172 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
   font-family: var(--font-mono); font-size: 11px;
   background: var(--gray-100); padding: 1px 5px; border-radius: 3px;
 }
+
+/* Promotional infographic hero (capabilities page) */
+.promo-info {
+  margin: 28px 0 36px;
+  padding: 32px 32px 28px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(22, 163, 74, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(13, 148, 136, 0.18), transparent 55%),
+    linear-gradient(135deg, var(--green-900) 0%, var(--green-800) 60%, #082017 100%);
+  border-radius: 14px;
+  color: #e9f5ec;
+  box-shadow: 0 12px 32px rgba(10, 46, 26, 0.18);
+  position: relative; overflow: hidden;
+}
+.promo-info::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none; opacity: 0.5;
+}
+.promo-info > * { position: relative; }
+.promo-eyebrow {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: #6ee7b7; opacity: 0.85;
+  margin-bottom: 10px;
+}
+.promo-headline {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 34px; line-height: 1.18; color: white;
+  margin-bottom: 14px; max-width: 880px;
+}
+.promo-headline em {
+  font-style: normal; color: #6ee7b7;
+  background: linear-gradient(120deg, #6ee7b7 0%, #5eead4 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.promo-sub {
+  font-size: 15px; line-height: 1.55; color: #c5e0cd;
+  max-width: 780px; margin-bottom: 26px;
+}
+.promo-sub strong { color: white; font-weight: 600; }
+
+.promo-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 14px; margin-bottom: 26px;
+  padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.promo-stat { text-align: left; }
+.promo-stat-num {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 38px; line-height: 1; color: white;
+  letter-spacing: -0.02em;
+}
+.promo-stat-num .promo-stat-plus { color: #6ee7b7; font-weight: 700; }
+.promo-stat-lbl {
+  font-size: 12px; line-height: 1.4; color: #a7c7b1;
+  margin-top: 6px; text-transform: uppercase; letter-spacing: 0.6px;
+  font-weight: 500;
+}
+
+.promo-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1.2fr;
+  gap: 12px; align-items: stretch;
+  margin-bottom: 26px;
+}
+.promo-flow-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(110, 231, 183, 0.22);
+  border-radius: 10px; padding: 14px 16px;
+  backdrop-filter: blur(2px);
+}
+.promo-flow-card.is-output {
+  background: linear-gradient(135deg, rgba(110,231,183,0.16), rgba(94,234,212,0.10));
+  border-color: rgba(110, 231, 183, 0.45);
+}
+.promo-flow-tag {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: #6ee7b7; margin-bottom: 6px;
+}
+.promo-flow-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 17px; color: white; line-height: 1.2; margin-bottom: 6px;
+}
+.promo-flow-desc {
+  font-size: 12.5px; line-height: 1.45; color: #b8d3c0;
+}
+.promo-flow-desc code {
+  font-family: var(--font-mono); font-size: 10.5px;
+  background: rgba(255,255,255,0.08); color: #e9f5ec;
+  padding: 1px 5px; border-radius: 3px;
+}
+.promo-flow-arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 26px;
+  color: #6ee7b7; opacity: 0.7; font-weight: 400;
+}
+.promo-flow-tracks {
+  display: flex; gap: 6px; margin-top: 8px;
+}
+.promo-flow-track {
+  flex: 1; padding: 6px 8px; border-radius: 4px;
+  font-size: 11px; color: #e9f5ec;
+  background: rgba(255,255,255,0.10);
+  border-left: 2px solid #6ee7b7;
+}
+.promo-flow-track.is-alt { border-left-color: #5eead4; opacity: 0.85; }
+.promo-flow-track-label {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.8px;
+  text-transform: uppercase; color: #6ee7b7; display: block;
+}
+
+.promo-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.promo-pillar {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px; padding: 14px 16px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.promo-pillar-num {
+  font-family: var(--font-display); font-size: 22px; font-weight: 900;
+  color: #6ee7b7; line-height: 1; flex-shrink: 0;
+  min-width: 28px;
+}
+.promo-pillar-title {
+  font-weight: 700; font-size: 13px; color: white;
+  margin-bottom: 4px; letter-spacing: 0.2px;
+}
+.promo-pillar-desc {
+  font-size: 12px; line-height: 1.45; color: #b8d3c0;
+}
+
+@media (max-width: 760px) {
+  .promo-info { padding: 22px 18px; }
+  .promo-headline { font-size: 26px; }
+  .promo-flow {
+    grid-template-columns: 1fr;
+  }
+  .promo-flow-arrow { transform: rotate(90deg); padding: 4px 0; }
+}
+@media print {
+  .promo-info {
+    background: white; color: var(--gray-900);
+    border: 1px solid var(--green-700);
+    box-shadow: none;
+  }
+  .promo-info::before { display: none; }
+  .promo-headline, .promo-stat-num, .promo-flow-title, .promo-pillar-title { color: var(--green-900); }
+  .promo-headline em { -webkit-text-fill-color: initial; color: var(--green-700); background: none; }
+  .promo-eyebrow, .promo-flow-tag, .promo-pillar-num, .promo-stat-num .promo-stat-plus { color: var(--green-700); }
+  .promo-sub, .promo-stat-lbl, .promo-flow-desc, .promo-pillar-desc { color: var(--gray-700); }
+  .promo-flow-card, .promo-pillar { border-color: var(--gray-200); background: var(--gray-50); }
+  .promo-flow-arrow { color: var(--green-700); }
+  .promo-flow-track { background: white; border-left-color: var(--green-600); color: var(--gray-900); }
+  .promo-flow-track-label { color: var(--green-700); }
+}
+
 .gap-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -3985,6 +4151,84 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
 # ── Capabilities page ─────────────────────────────────────────────────────
 
 
+# Capabilities / Limitations pages need a heme-vs-solid split and a 1L /
+# 2L+ split. We compute these on demand here (rather than extending
+# `Stats`) by re-reading the relevant YAML directories. Cheap — small KB.
+def _coverage_breakdown() -> dict:
+    import yaml as _yaml
+    from pathlib import Path as _Path
+
+    base = _Path(__file__).resolve().parent.parent / "knowledge_base" / "hosted" / "content"
+
+    def _load_dir(name):
+        d = base / name
+        if not d.exists():
+            return []
+        out = []
+        for p in sorted(d.glob("*.yaml")):
+            try:
+                with p.open(encoding="utf-8") as fh:
+                    obj = _yaml.safe_load(fh)
+                if isinstance(obj, dict):
+                    out.append(obj)
+            except Exception:
+                pass
+        return out
+
+    diseases = _load_dir("diseases")
+    algorithms = _load_dir("algorithms")
+    indications = _load_dir("indications")
+
+    heme = solid = 0
+    for d in diseases:
+        lin = (d.get("lineage") or "").lower()
+        if (
+            "b_cell" in lin or "t_cell" in lin or "plasma" in lin
+            or "myeloid" in lin or "lymph" in lin or "mpn" in lin
+            or "leuk" in lin or "mds" in lin
+            or lin in {"hodgkin", "myeloma"}
+        ):
+            heme += 1
+        elif lin:
+            solid += 1
+
+    algos_1l = algos_2l = 0
+    diseases_with_2l: set[str] = set()
+    for a in algorithms:
+        try:
+            lot = int(a.get("applicable_to_line_of_therapy"))
+        except (TypeError, ValueError):
+            continue
+        if lot == 1:
+            algos_1l += 1
+        elif lot >= 2:
+            algos_2l += 1
+            d_id = a.get("applicable_to_disease")
+            if d_id:
+                diseases_with_2l.add(d_id)
+
+    inds_1l = inds_2l = 0
+    for ind in indications:
+        try:
+            lot = int((ind.get("applicable_to") or {}).get("line_of_therapy"))
+        except (TypeError, ValueError):
+            continue
+        if lot == 1:
+            inds_1l += 1
+        elif lot >= 2:
+            inds_2l += 1
+
+    return {
+        "heme_diseases": heme,
+        "solid_diseases": solid,
+        "algorithms_1l": algos_1l,
+        "algorithms_2l_plus": algos_2l,
+        "diseases_with_2l_plus": len(diseases_with_2l),
+        "indications_1l": inds_1l,
+        "indications_2l_plus": inds_2l,
+    }
+
+
 def render_capabilities(stats, *, target_lang: str = "uk") -> str:
     if target_lang == "en":
         return _render_capabilities_en(stats)
@@ -4002,6 +4246,14 @@ def _render_capabilities_uk(stats) -> str:
     n_sources = by_type.get("sources", 0)
     n_drugs = by_type.get("drugs", 0)
     n_skills = stats.skills_planned_roles
+    cov = _coverage_breakdown()
+    n_heme = cov["heme_diseases"]
+    n_solid = cov["solid_diseases"]
+    n_algos_1l = cov["algorithms_1l"]
+    n_algos_2l = cov["algorithms_2l_plus"]
+    n_inds_1l = cov["indications_1l"]
+    n_inds_2l = cov["indications_2l_plus"]
+    n_dis_2l = cov["diseases_with_2l_plus"]
 
     # Live KB metric (moved here from landing). Per-disease coverage is
     # computed once and re-used in the cards block below.
@@ -4035,6 +4287,124 @@ def _render_capabilities_uk(stats) -> str:
       Нижче — детально, як ми працюємо з даними, джерелами і запитами.
     </p>
 
+    <div class="promo-info" role="img" aria-label="OpenOnco — інфографіка можливостей">
+      <div class="promo-eyebrow">OpenOnco · v0.1 · engine у двох словах</div>
+      <h2 class="promo-headline">
+        Один JSON-профіль → <em>два альтернативні плани лікування</em>
+        з цитатою під кожною рекомендацією.
+      </h2>
+      <p class="promo-sub">
+        Декларативний rule engine на <strong>{n_diseases} хворобах</strong>,
+        реферує <strong>{stats.corpus_references_total:,}+ публікацій</strong> під
+        <strong>{n_sources} джерелами верхнього рівня</strong>. Без LLM у клінічному рішенні,
+        без серверу, без логів. Patient JSON ніколи не покидає машину.
+      </p>
+
+      <div class="promo-stats">
+        <div class="promo-stat">
+          <div class="promo-stat-num">{n_diseases}</div>
+          <div class="promo-stat-lbl">Хвороб у KB</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">{stats.corpus_references_total:,}<span class="promo-stat-plus">+</span></div>
+          <div class="promo-stat-lbl">Клінічних публікацій</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">{n_sources}</div>
+          <div class="promo-stat-lbl">Цитованих джерел</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">{n_redflags}</div>
+          <div class="promo-stat-lbl">Red flags</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">~200<span class="promo-stat-plus">мс</span></div>
+          <div class="promo-stat-lbl">На один профіль</div>
+        </div>
+      </div>
+
+      <div class="promo-flow">
+        <div class="promo-flow-card">
+          <div class="promo-flow-tag">Вхід</div>
+          <div class="promo-flow-title">JSON-профіль пацієнта</div>
+          <div class="promo-flow-desc">
+            FHIR / mCODE-сумісний. <code>disease</code>, <code>biomarkers</code>,
+            <code>findings</code>, <code>line_of_therapy</code>.
+          </div>
+        </div>
+        <div class="promo-flow-arrow" aria-hidden="true">→</div>
+        <div class="promo-flow-card">
+          <div class="promo-flow-tag">Engine · 6 стадій</div>
+          <div class="promo-flow-title">Алгоритм + RedFlags</div>
+          <div class="promo-flow-desc">
+            Resolve → flatten → eval RedFlags → walk algorithm → materialize tracks → resolve regimens.
+            Все з KB readonly.
+          </div>
+        </div>
+        <div class="promo-flow-arrow" aria-hidden="true">→</div>
+        <div class="promo-flow-card is-output">
+          <div class="promo-flow-tag">Вихід</div>
+          <div class="promo-flow-title">Plan з ≥2 tracks + trace</div>
+          <div class="promo-flow-desc">
+            Кожна рекомендація з paraphrased citation, page/section, FDA Crit. 4 fields.
+          </div>
+          <div class="promo-flow-tracks">
+            <div class="promo-flow-track">
+              <span class="promo-flow-track-label">Default</span>
+              стандартний
+            </div>
+            <div class="promo-flow-track is-alt">
+              <span class="promo-flow-track-label">Alternative</span>
+              агресивний
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="promo-pillars">
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">01</div>
+          <div>
+            <div class="promo-pillar-title">Не «чорний ящик»</div>
+            <div class="promo-pillar-desc">
+              Кожен крок алгоритму у trace. LLM не приймає клінічних рішень
+              (CHARTER §8.3).
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">02</div>
+          <div>
+            <div class="promo-pillar-title">Кожна claim з citation</div>
+            <div class="promo-pillar-desc">
+              source_id + position + paraphrased quote + page. FDA Criterion 4 —
+              лікар перевіряє підставу.
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">03</div>
+          <div>
+            <div class="promo-pillar-title">Privacy by design</div>
+            <div class="promo-pillar-desc">
+              CLI / Pyodide / Python import. Серверу немає. Patient JSON
+              лишається на машині.
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">04</div>
+          <div>
+            <div class="promo-pillar-title">Plan живе</div>
+            <div class="promo-pillar-desc">
+              <code>revise_plan(...)</code> оновлює рекомендацію щойно з'являються
+              нові біомаркери чи findings.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section class="numbers numbers-on-info">
       <h2>Що вже зроблено</h2>
       <div class="num-grid num-grid--rich">
@@ -4042,11 +4412,14 @@ def _render_capabilities_uk(stats) -> str:
         <div class="num-card">
           <div class="num-big">{n_diseases}</div>
           <div class="num-lbl">Хвороби в KB</div>
-          <div class="num-detail">{diseases_full} з повним ланцюгом disease→indication→regimen→algorithm · {diseases_partial} частково</div>
+          <div class="num-detail">{n_heme} гематологічних · {n_solid} солідних · {diseases_full} з повним ланцюгом · {n_dis_2l} мають 2L+ алгоритм</div>
           <p class="num-text">
             Кожна хвороба має свій <strong>archetype</strong> (etiologically_driven як
-            HCV-MZL, risk_stratified як MM, biomarker_driven, stage_driven), що визначає
-            логіку алгоритму вибору лікування.
+            HCV-MZL, risk_stratified як MM, biomarker_driven як NSCLC/EGFR або
+            HGBL/MYC-BCL2, stage_driven як cervical), що визначає логіку алгоритму
+            вибору лікування. Зараз 1L покрито для всіх {n_diseases} хвороб
+            ({n_algos_1l} алгоритмів), 2L+ — для {n_dis_2l} гематологічних
+            ({n_algos_2l} алгоритмів).
           </p>
         </div>
 
@@ -4085,6 +4458,19 @@ def _render_capabilities_uk(stats) -> str:
             на BR + DAA, <em>RF-MM-HIGH-RISK-CYTOGENETICS</em> (t(4;14), del(17p), gain 1q)
             ескалує MM з триплету VRd до квадруплету D-VRd. Кожен RedFlag прив'язаний до
             domain-role, який «виловлює» його у MDT brief.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">{n_indications}</div>
+          <div class="num-lbl">Показання (Indications)</div>
+          <div class="num-detail">{n_inds_1l} першої лінії · {n_inds_2l} другої лінії та вище</div>
+          <p class="num-text">
+            Indication — сполучення disease + line_of_therapy + biomarker / stage /
+            demographic-фільтрів, що відкриває або закриває конкретний Regimen. Багато
+            показань зараз gатекіпять на біомаркерах (MGMT-METHYLATION для GBM Stupp,
+            CD79B/COO/IPI для DLBCL R-CHOP vs Pola-R-CHP, t(11;14)/MIPI для MCL,
+            MYC+BCL2 rearrangements для HGBL-DH, AFP для HCC, FLIPI для FL).
           </p>
         </div>
 
@@ -4481,6 +4867,20 @@ def _render_capabilities_uk(stats) -> str:
             Tracks side-by-side, alternative не сховано (anti automation-bias per CHARTER §15.2 C6).
           </p>
         </div>
+        <div class="num-card">
+          <div class="num-big">trials</div>
+          <div class="num-lbl">Experimental options (Phase C tracer)</div>
+          <p class="num-text">
+            <code>enumerate_experimental_options(...)</code> запитує
+            ClinicalTrials.gov v2 за disease + biomarker + line_of_therapy і
+            повертає <code>ExperimentalOption</code> з UA-availability metadata
+            (sites_ua, countries) — render-time, engine не використовує trial
+            як сигнал вибору. Status filter: тільки RECRUITING /
+            ACTIVE_NOT_RECRUITING / ENROLLING_BY_INVITATION. Зараз є schema +
+            enumerator + 8 тестів; інтеграція з generate_plan і render —
+            окремі PR.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -4508,6 +4908,14 @@ def _render_capabilities_en(stats) -> str:
     n_sources = by_type.get("sources", 0)
     n_drugs = by_type.get("drugs", 0)
     n_skills = stats.skills_planned_roles
+    cov = _coverage_breakdown()
+    n_heme = cov["heme_diseases"]
+    n_solid = cov["solid_diseases"]
+    n_algos_1l = cov["algorithms_1l"]
+    n_algos_2l = cov["algorithms_2l_plus"]
+    n_inds_1l = cov["indications_1l"]
+    n_inds_2l = cov["indications_2l_plus"]
+    n_dis_2l = cov["diseases_with_2l_plus"]
     diseases_full = sum(
         1 for d in stats.diseases
         if d.coverage_status in {"stub_full_chain", "reviewed"}
@@ -4539,6 +4947,124 @@ def _render_capabilities_en(stats) -> str:
       with data, sources, and requests.
     </p>
 
+    <div class="promo-info" role="img" aria-label="OpenOnco — capabilities infographic">
+      <div class="promo-eyebrow">OpenOnco · v0.1 · the engine, distilled</div>
+      <h2 class="promo-headline">
+        One JSON profile → <em>two alternative treatment plans</em>,
+        a citation under every recommendation.
+      </h2>
+      <p class="promo-sub">
+        A declarative rule engine across <strong>{n_diseases} diseases</strong>,
+        backed by <strong>{stats.corpus_references_total:,}+ clinical publications</strong>
+        under <strong>{n_sources} top-level guidelines</strong>. No LLM in the clinical
+        decision, no server, no logs. Patient JSON never leaves the machine.
+      </p>
+
+      <div class="promo-stats">
+        <div class="promo-stat">
+          <div class="promo-stat-num">{n_diseases}</div>
+          <div class="promo-stat-lbl">Diseases in KB</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">{stats.corpus_references_total:,}<span class="promo-stat-plus">+</span></div>
+          <div class="promo-stat-lbl">Clinical publications</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">{n_sources}</div>
+          <div class="promo-stat-lbl">Cited sources</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">{n_redflags}</div>
+          <div class="promo-stat-lbl">Red flags</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">~200<span class="promo-stat-plus">ms</span></div>
+          <div class="promo-stat-lbl">Per profile</div>
+        </div>
+      </div>
+
+      <div class="promo-flow">
+        <div class="promo-flow-card">
+          <div class="promo-flow-tag">Input</div>
+          <div class="promo-flow-title">Patient JSON profile</div>
+          <div class="promo-flow-desc">
+            FHIR / mCODE-friendly. <code>disease</code>, <code>biomarkers</code>,
+            <code>findings</code>, <code>line_of_therapy</code>.
+          </div>
+        </div>
+        <div class="promo-flow-arrow" aria-hidden="true">→</div>
+        <div class="promo-flow-card">
+          <div class="promo-flow-tag">Engine · 6 stages</div>
+          <div class="promo-flow-title">Algorithm + RedFlags</div>
+          <div class="promo-flow-desc">
+            Resolve → flatten → eval RedFlags → walk algorithm → materialize tracks → resolve regimens.
+            All from a readonly KB.
+          </div>
+        </div>
+        <div class="promo-flow-arrow" aria-hidden="true">→</div>
+        <div class="promo-flow-card is-output">
+          <div class="promo-flow-tag">Output</div>
+          <div class="promo-flow-title">Plan with ≥2 tracks + trace</div>
+          <div class="promo-flow-desc">
+            Each recommendation carries paraphrased citation, page/section, FDA Crit. 4 fields.
+          </div>
+          <div class="promo-flow-tracks">
+            <div class="promo-flow-track">
+              <span class="promo-flow-track-label">Default</span>
+              standard
+            </div>
+            <div class="promo-flow-track is-alt">
+              <span class="promo-flow-track-label">Alternative</span>
+              aggressive
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="promo-pillars">
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">01</div>
+          <div>
+            <div class="promo-pillar-title">No black box</div>
+            <div class="promo-pillar-desc">
+              Every algorithm step in the trace. LLMs do not make clinical
+              decisions (CHARTER §8.3).
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">02</div>
+          <div>
+            <div class="promo-pillar-title">Every claim cited</div>
+            <div class="promo-pillar-desc">
+              source_id + position + paraphrased quote + page. FDA Criterion 4 —
+              the clinician verifies the basis.
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">03</div>
+          <div>
+            <div class="promo-pillar-title">Privacy by design</div>
+            <div class="promo-pillar-desc">
+              CLI / Pyodide / Python import. No server. Patient JSON stays
+              on the user's machine.
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">04</div>
+          <div>
+            <div class="promo-pillar-title">The plan is alive</div>
+            <div class="promo-pillar-desc">
+              <code>revise_plan(...)</code> updates recommendations as new
+              biomarkers and findings come in.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section class="numbers numbers-on-info">
       <h2>What's already in</h2>
       <div class="num-grid num-grid--rich">
@@ -4546,12 +5072,15 @@ def _render_capabilities_en(stats) -> str:
         <div class="num-card">
           <div class="num-big">{n_diseases}</div>
           <div class="num-lbl">Diseases in the KB</div>
-          <div class="num-detail">{diseases_full} with the full chain disease → indication → regimen → algorithm · {diseases_partial} partial</div>
+          <div class="num-detail">{n_heme} hematologic · {n_solid} solid · {diseases_full} with the full chain · {n_dis_2l} carry a 2L+ algorithm</div>
           <p class="num-text">
             Each disease carries an <strong>archetype</strong>
             (etiologically_driven like HCV-MZL, risk_stratified like MM,
-            biomarker_driven, stage_driven) which determines the algorithm
-            logic for treatment selection.
+            biomarker_driven like NSCLC/EGFR or HGBL/MYC-BCL2, stage_driven
+            like cervical) which determines the algorithm logic for treatment
+            selection. 1L is covered for all {n_diseases} diseases
+            ({n_algos_1l} algorithms); 2L+ is covered for {n_dis_2l}
+            hematologic diseases ({n_algos_2l} algorithms).
           </p>
         </div>
 
@@ -4594,6 +5123,20 @@ def _render_capabilities_en(stats) -> str:
             <em>RF-MM-HIGH-RISK-CYTOGENETICS</em> (t(4;14), del(17p), gain 1q)
             escalates MM from triplet VRd to quadruplet D-VRd. Every RedFlag
             is bound to a domain role that "catches" it in the MDT brief.
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">{n_indications}</div>
+          <div class="num-lbl">Indications</div>
+          <div class="num-detail">{n_inds_1l} first-line · {n_inds_2l} second-line and beyond</div>
+          <p class="num-text">
+            An Indication is the combination of disease + line_of_therapy +
+            biomarker / stage / demographic filters that opens or closes a
+            specific Regimen. Many indications now gate on biomarkers
+            (MGMT-METHYLATION for GBM Stupp; CD79B / COO-Hans / IPI for DLBCL
+            R-CHOP vs Pola-R-CHP; t(11;14) / MIPI for MCL; MYC + BCL2
+            rearrangements for HGBL-DH; AFP for HCC; FLIPI for FL).
           </p>
         </div>
 
@@ -5004,6 +5547,21 @@ def _render_capabilities_en(stats) -> str:
             CHARTER §15.2 C6).
           </p>
         </div>
+        <div class="num-card">
+          <div class="num-big">trials</div>
+          <div class="num-lbl">Experimental options (Phase C tracer)</div>
+          <p class="num-text">
+            <code>enumerate_experimental_options(...)</code> queries
+            ClinicalTrials.gov v2 by disease + biomarker + line_of_therapy
+            and returns <code>ExperimentalOption</code> entries with
+            UA-availability metadata (sites_ua, countries) — render-time
+            only; the engine never uses a trial as a selection signal.
+            Status filter: only RECRUITING / ACTIVE_NOT_RECRUITING /
+            ENROLLING_BY_INVITATION. Schema + enumerator + 8 tests are in;
+            generate_plan integration and the render layer ship as separate
+            PRs.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -5035,6 +5593,12 @@ def _render_limitations_uk(stats) -> str:
     n_indications = by_type.get("indications", 0)
     n_redflags = by_type.get("redflags", 0)
     diseases_full = sum(1 for d in stats.diseases if d.coverage_status in {"stub_full_chain", "reviewed"})
+    cov = _coverage_breakdown()
+    n_heme = cov["heme_diseases"]
+    n_solid = cov["solid_diseases"]
+    n_inds_1l = cov["indications_1l"]
+    n_inds_2l = cov["indications_2l_plus"]
+    n_dis_2l = cov["diseases_with_2l_plus"]
 
     return f"""<!DOCTYPE html>
 <html lang="uk">
@@ -5157,10 +5721,12 @@ def _render_limitations_uk(stats) -> str:
           <div class="gap-tag">Gap 5</div>
           <h3>Без cumulative-toxicity tracking між lines</h3>
           <p>
-            2L plan для пацієнта що отримав bortezomib у 1L з grade 2
-            нейропатією — engine не знає про попередній exposure якщо
-            нічого нового не вказано. Profile не carrier'ить
-            <code>prior_treatment_history</code> як structured field зараз.
+            2L+ алгоритми вже існують для {n_dis_2l} гематологічних хвороб
+            ({n_inds_2l} показань 2L+), але profile не carrier'ить
+            <code>prior_treatment_history</code> як structured field. 2L plan
+            для пацієнта що отримав bortezomib у 1L з grade 2 нейропатією —
+            engine не знає про попередній exposure якщо нічого нового не
+            вказано; лікар сам інтерпретує prior_lines з вільного тексту.
           </p>
         </div>
       </div>
@@ -5240,21 +5806,23 @@ def _render_limitations_uk(stats) -> str:
     <div class="info-section">
       <h2>4. Coverage limits (поточний стан KB)</h2>
       <p class="info-text">
-        OpenOnco — work in progress. Зараз covered лише <strong>{n_diseases}
-        захворювань</strong> (з ~100-150 у WHO-HAEM5 для лімфоїдних +
-        ~50 солідних пухлин). Конкретно:
+        OpenOnco — work in progress. Зараз модельовано <strong>{n_diseases}
+        захворювань</strong> ({n_heme} гематологічних + {n_solid} солідних) —
+        це далеко не повний WHO-HAEM5 / WHO Classification of Tumours. Конкретно:
       </p>
       <table class="kv-table">
         <thead><tr><th>Категорія</th><th>Стан</th><th>Що це означає</th></tr></thead>
         <tbody>
           <tr><td>Хвороби з повним ланцюгом</td><td>{diseases_full} / {n_diseases}</td><td>Решта — частково модельовані; engine може видати warning «no Algorithm found for disease=X»</td></tr>
-          <tr><td>Indications</td><td>{n_indications}</td><td>Тільки 1L (first-line). 2L+ режими ще не модельовані.</td></tr>
-          <tr><td>RedFlags</td><td>{n_redflags}</td><td>Cover критичні clinical scenarios для існуючих хвороб; для нових диsease треба додавати</td></tr>
-          <tr><td>Solid tumors</td><td>0</td><td>Engine generic-ready, але KB поки тільки гематологія</td></tr>
+          <tr><td>Indications 1L</td><td>{n_inds_1l}</td><td>Перша лінія покрита для всіх {n_diseases} хвороб</td></tr>
+          <tr><td>Indications 2L+</td><td>{n_inds_2l}</td><td>Друга-четверта лінія: {n_dis_2l} гематологічних хвороб (DLBCL, FL, MCL, CLL, MM, WM, cHL, AITL, AML, CML, APL, B-ALL, MDS-HR, MDS-LR, PV, PMF). Solid-tumor 2L+ — поки що частково (CRC, breast, urothelial), не systematically.</td></tr>
+          <tr><td>RedFlags</td><td>{n_redflags}</td><td>Cover критичні clinical scenarios для існуючих хвороб; для нових disease треба додавати</td></tr>
+          <tr><td>Solid tumors</td><td>{n_solid}</td><td>NSCLC, SCLC, breast, prostate, RCC, melanoma, CRC, gastric, PDAC, HCC, GBM, ovarian, endometrial, urothelial, cervical, esophageal — переважно 1L. 2L+ і ад'ювантні контексти — частково.</td></tr>
           <tr><td>Pediatric oncology</td><td>0</td><td>Out of scope for MVP — окремий track спеціалізації</td></tr>
-          <tr><td>Радіотерапія планів</td><td>не модельовано</td><td>RT як Indication відсутня; має з'явитись як окрема сутність</td></tr>
+          <tr><td>Радіотерапія планів</td><td>частково</td><td>RT входить у мультимодальні Indications (cervical CRT, GBM Stupp, PMBCL R-CHOP+RT, esophageal CROSS), але як окрема сутність з технічними параметрами (доза/фракції/target volumes) ще не моделюється</td></tr>
           <tr><td>Хірургія планів</td><td>не модельовано</td><td>Surgical oncology indications відсутні</td></tr>
           <tr><td>Маркетингових даних доступу до режимів (НСЗУ formulary live)</td><td>статичний flag</td><td>Поки що hard-coded на режимах; не auto-refresh з НСЗУ — це окремий backlog item</td></tr>
+          <tr><td>Experimental options (clinical trials)</td><td>tracer-bullet</td><td>Phase C: <code>enumerate_experimental_options</code> + ExperimentalOption schema готові, але ще не інтегровано у generate_plan і не показуються у render</td></tr>
         </tbody>
       </table>
       <div class="callout">
@@ -5368,6 +5936,12 @@ def _render_limitations_en(stats) -> str:
     n_indications = by_type.get("indications", 0)
     n_redflags = by_type.get("redflags", 0)
     diseases_full = sum(1 for d in stats.diseases if d.coverage_status in {"stub_full_chain", "reviewed"})
+    cov = _coverage_breakdown()
+    n_heme = cov["heme_diseases"]
+    n_solid = cov["solid_diseases"]
+    n_inds_1l = cov["indications_1l"]
+    n_inds_2l = cov["indications_2l_plus"]
+    n_dis_2l = cov["diseases_with_2l_plus"]
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -5498,11 +6072,13 @@ def _render_limitations_en(stats) -> str:
           <div class="gap-tag">Gap 5</div>
           <h3>No cumulative-toxicity tracking across lines</h3>
           <p>
-            A 2L plan for a patient who received bortezomib in 1L with
-            grade 2 neuropathy — the engine does not know about the prior
-            exposure unless something new is added. The profile does not
-            yet carry <code>prior_treatment_history</code> as a structured
-            field.
+            2L+ algorithms are now in for {n_dis_2l} hematologic diseases
+            ({n_inds_2l} 2L+ indications), but the profile does not yet
+            carry <code>prior_treatment_history</code> as a structured
+            field. A 2L plan for a patient who received bortezomib in 1L
+            with grade 2 neuropathy — the engine does not know about the
+            prior exposure unless something new is added; the clinician
+            interprets prior_lines from free text.
           </p>
         </div>
       </div>
@@ -5584,21 +6160,24 @@ def _render_limitations_en(stats) -> str:
     <div class="info-section">
       <h2>4. Coverage limits (current KB state)</h2>
       <p class="info-text">
-        OpenOnco is a work in progress. Right now only
-        <strong>{n_diseases} diseases</strong> are covered (out of ~100–150
-        in WHO-HAEM5 for lymphoid + ~50 solid tumors). Specifically:
+        OpenOnco is a work in progress. <strong>{n_diseases} diseases</strong>
+        are currently modeled ({n_heme} hematologic + {n_solid} solid tumors)
+        — far short of the full WHO-HAEM5 / WHO Classification of Tumours.
+        Specifically:
       </p>
       <table class="kv-table">
         <thead><tr><th>Category</th><th>State</th><th>What it means</th></tr></thead>
         <tbody>
           <tr><td>Diseases with the full chain</td><td>{diseases_full} / {n_diseases}</td><td>The rest are partially modeled; the engine may emit "no Algorithm found for disease=X"</td></tr>
-          <tr><td>Indications</td><td>{n_indications}</td><td>1L (first-line) only. 2L+ regimens are not yet modeled.</td></tr>
+          <tr><td>Indications 1L</td><td>{n_inds_1l}</td><td>First line covered for all {n_diseases} diseases</td></tr>
+          <tr><td>Indications 2L+</td><td>{n_inds_2l}</td><td>Second-to-fourth line: {n_dis_2l} hematologic diseases (DLBCL, FL, MCL, CLL, MM, WM, cHL, AITL, AML, CML, APL, B-ALL, MDS-HR, MDS-LR, PV, PMF). Solid-tumor 2L+ partial only (CRC, breast, urothelial), not systematic.</td></tr>
           <tr><td>RedFlags</td><td>{n_redflags}</td><td>Cover critical clinical scenarios for existing diseases; new diseases need their own RFs added</td></tr>
-          <tr><td>Solid tumors</td><td>0</td><td>Engine is generic-ready, but the KB is hematology-only for now</td></tr>
+          <tr><td>Solid tumors</td><td>{n_solid}</td><td>NSCLC, SCLC, breast, prostate, RCC, melanoma, CRC, gastric, PDAC, HCC, GBM, ovarian, endometrial, urothelial, cervical, esophageal — mostly 1L. 2L+ and adjuvant contexts are partial.</td></tr>
           <tr><td>Pediatric oncology</td><td>0</td><td>Out of scope for MVP — separate specialization track</td></tr>
-          <tr><td>Radiation therapy plans</td><td>not modeled</td><td>RT as an Indication is absent; should land as a separate entity</td></tr>
+          <tr><td>Radiation therapy plans</td><td>partial</td><td>RT is wired into multimodality Indications (cervical CRT, GBM Stupp, PMBCL R-CHOP+RT, esophageal CROSS), but not yet modeled as a separate entity with technical parameters (dose / fractions / target volumes)</td></tr>
           <tr><td>Surgery plans</td><td>not modeled</td><td>Surgical-oncology indications are absent</td></tr>
           <tr><td>Live regimen-availability data (NHSU formulary live feed)</td><td>static flag</td><td>Currently hard-coded on regimens; not auto-refreshed from NHSU — separate backlog item</td></tr>
+          <tr><td>Experimental options (clinical trials)</td><td>tracer-bullet</td><td>Phase C: <code>enumerate_experimental_options</code> + ExperimentalOption schema are in, but not yet integrated into generate_plan and not surfaced in render</td></tr>
         </tbody>
       </table>
       <div class="callout">

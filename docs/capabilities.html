@@ -40,6 +40,124 @@
       Нижче — детально, як ми працюємо з даними, джерелами і запитами.
     </p>
 
+    <div class="promo-info" role="img" aria-label="OpenOnco — інфографіка можливостей">
+      <div class="promo-eyebrow">OpenOnco · v0.1 · engine у двох словах</div>
+      <h2 class="promo-headline">
+        Один JSON-профіль → <em>два альтернативні плани лікування</em>
+        з цитатою під кожною рекомендацією.
+      </h2>
+      <p class="promo-sub">
+        Декларативний rule engine на <strong>52 хворобах</strong>,
+        реферує <strong>21,727+ публікацій</strong> під
+        <strong>91 джерелами верхнього рівня</strong>. Без LLM у клінічному рішенні,
+        без серверу, без логів. Patient JSON ніколи не покидає машину.
+      </p>
+
+      <div class="promo-stats">
+        <div class="promo-stat">
+          <div class="promo-stat-num">52</div>
+          <div class="promo-stat-lbl">Хвороб у KB</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">21,727<span class="promo-stat-plus">+</span></div>
+          <div class="promo-stat-lbl">Клінічних публікацій</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">91</div>
+          <div class="promo-stat-lbl">Цитованих джерел</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">265</div>
+          <div class="promo-stat-lbl">Red flags</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">~200<span class="promo-stat-plus">мс</span></div>
+          <div class="promo-stat-lbl">На один профіль</div>
+        </div>
+      </div>
+
+      <div class="promo-flow">
+        <div class="promo-flow-card">
+          <div class="promo-flow-tag">Вхід</div>
+          <div class="promo-flow-title">JSON-профіль пацієнта</div>
+          <div class="promo-flow-desc">
+            FHIR / mCODE-сумісний. <code>disease</code>, <code>biomarkers</code>,
+            <code>findings</code>, <code>line_of_therapy</code>.
+          </div>
+        </div>
+        <div class="promo-flow-arrow" aria-hidden="true">→</div>
+        <div class="promo-flow-card">
+          <div class="promo-flow-tag">Engine · 6 стадій</div>
+          <div class="promo-flow-title">Алгоритм + RedFlags</div>
+          <div class="promo-flow-desc">
+            Resolve → flatten → eval RedFlags → walk algorithm → materialize tracks → resolve regimens.
+            Все з KB readonly.
+          </div>
+        </div>
+        <div class="promo-flow-arrow" aria-hidden="true">→</div>
+        <div class="promo-flow-card is-output">
+          <div class="promo-flow-tag">Вихід</div>
+          <div class="promo-flow-title">Plan з ≥2 tracks + trace</div>
+          <div class="promo-flow-desc">
+            Кожна рекомендація з paraphrased citation, page/section, FDA Crit. 4 fields.
+          </div>
+          <div class="promo-flow-tracks">
+            <div class="promo-flow-track">
+              <span class="promo-flow-track-label">Default</span>
+              стандартний
+            </div>
+            <div class="promo-flow-track is-alt">
+              <span class="promo-flow-track-label">Alternative</span>
+              агресивний
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="promo-pillars">
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">01</div>
+          <div>
+            <div class="promo-pillar-title">Не «чорний ящик»</div>
+            <div class="promo-pillar-desc">
+              Кожен крок алгоритму у trace. LLM не приймає клінічних рішень
+              (CHARTER §8.3).
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">02</div>
+          <div>
+            <div class="promo-pillar-title">Кожна claim з citation</div>
+            <div class="promo-pillar-desc">
+              source_id + position + paraphrased quote + page. FDA Criterion 4 —
+              лікар перевіряє підставу.
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">03</div>
+          <div>
+            <div class="promo-pillar-title">Privacy by design</div>
+            <div class="promo-pillar-desc">
+              CLI / Pyodide / Python import. Серверу немає. Patient JSON
+              лишається на машині.
+            </div>
+          </div>
+        </div>
+        <div class="promo-pillar">
+          <div class="promo-pillar-num">04</div>
+          <div>
+            <div class="promo-pillar-title">Plan живе</div>
+            <div class="promo-pillar-desc">
+              <code>revise_plan(...)</code> оновлює рекомендацію щойно з'являються
+              нові біомаркери чи findings.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section class="numbers numbers-on-info">
       <h2>Що вже зроблено</h2>
       <div class="num-grid num-grid--rich">
@@ -47,11 +165,14 @@
         <div class="num-card">
           <div class="num-big">52</div>
           <div class="num-lbl">Хвороби в KB</div>
-          <div class="num-detail">52 з повним ланцюгом disease→indication→regimen→algorithm · 0 частково</div>
+          <div class="num-detail">36 гематологічних · 16 солідних · 52 з повним ланцюгом · 23 мають 2L+ алгоритм</div>
           <p class="num-text">
             Кожна хвороба має свій <strong>archetype</strong> (etiologically_driven як
-            HCV-MZL, risk_stratified як MM, biomarker_driven, stage_driven), що визначає
-            логіку алгоритму вибору лікування.
+            HCV-MZL, risk_stratified як MM, biomarker_driven як NSCLC/EGFR або
+            HGBL/MYC-BCL2, stage_driven як cervical), що визначає логіку алгоритму
+            вибору лікування. Зараз 1L покрито для всіх 52 хвороб
+            (53 алгоритмів), 2L+ — для 23 гематологічних
+            (23 алгоритмів).
           </p>
         </div>
 
@@ -81,7 +202,7 @@
         </div>
 
         <div class="num-card">
-          <div class="num-big">208</div>
+          <div class="num-big">265</div>
           <div class="num-lbl">Red flags</div>
           <div class="num-detail">тригери ескалації або розслідування</div>
           <p class="num-text">
@@ -94,7 +215,20 @@
         </div>
 
         <div class="num-card">
-          <div class="num-big">151</div>
+          <div class="num-big">183</div>
+          <div class="num-lbl">Показання (Indications)</div>
+          <div class="num-detail">126 першої лінії · 57 другої лінії та вище</div>
+          <p class="num-text">
+            Indication — сполучення disease + line_of_therapy + biomarker / stage /
+            demographic-фільтрів, що відкриває або закриває конкретний Regimen. Багато
+            показань зараз gатекіпять на біомаркерах (MGMT-METHYLATION для GBM Stupp,
+            CD79B/COO/IPI для DLBCL R-CHOP vs Pola-R-CHP, t(11;14)/MIPI для MCL,
+            MYC+BCL2 rearrangements для HGBL-DH, AFP для HCC, FLIPI для FL).
+          </p>
+        </div>
+
+        <div class="num-card">
+          <div class="num-big">157</div>
           <div class="num-lbl">Режими лікування</div>
           <p class="num-text">
             Кожна схема — список drugs з дозами, шкалою циклів, dose adjustments
@@ -104,7 +238,7 @@
         </div>
 
         <div class="num-card">
-          <div class="num-big">162</div>
+          <div class="num-big">165</div>
           <div class="num-lbl">Препарати</div>
           <p class="num-text">
             ATC/RxNorm-кодовані. Кожен з регуляторним статусом FDA/EMA/MOЗ + НСЗУ
@@ -152,8 +286,8 @@
 
       </div>
       <div class="num-foot">
-        Зріз станом на <code>2026-04-26 10:33 UTC</code>.
-        Reviewer sign-offs ≥ 2: <strong>0/127</strong>
+        Зріз станом на <code>2026-04-26 11:57 UTC</code>.
+        Reviewer sign-offs ≥ 2: <strong>0/135</strong>
         — увесь клінічний контент позначено як <strong>STUB</strong> до dual-sign-off
         Clinical Co-Lead. Це інструмент підтримки рішень, не медичний пристрій.
       </div>
@@ -189,7 +323,7 @@
           <div class="flow-num">Stage 3</div>
           <div class="flow-title">RedFlag evaluation</div>
           <div class="flow-desc">
-            Кожен з 208 RedFlag-ів перевіряється проти findings.
+            Кожен з 265 RedFlag-ів перевіряється проти findings.
             Boolean rule engine: <code>any_of</code>/<code>all_of</code>/<code>none_of</code>
             clauses з threshold-ами.
           </div>
@@ -263,7 +397,7 @@
           </tr>
           <tr>
             <td>Findings</td>
-            <td>208+ структурованих полів — <code>dominant_nodal_mass_cm</code>, <code>ldh_ratio_to_uln</code>, <code>creatinine_clearance_ml_min</code>, <code>blastoid_morphology</code>, <code>tp53_mutation</code>, <code>del_17p</code>, ...</td>
+            <td>265+ структурованих полів — <code>dominant_nodal_mass_cm</code>, <code>ldh_ratio_to_uln</code>, <code>creatinine_clearance_ml_min</code>, <code>blastoid_morphology</code>, <code>tp53_mutation</code>, <code>del_17p</code>, ...</td>
             <td>thresholds у RedFlag triggers</td>
           </tr>
           <tr>
@@ -484,6 +618,20 @@
             Single-file HTML з embedded CSS, без external assets крім Google Fonts.
             Adapt'ується під A4 print через <code>@page</code> + <code>@media print</code>.
             Tracks side-by-side, alternative не сховано (anti automation-bias per CHARTER §15.2 C6).
+          </p>
+        </div>
+        <div class="num-card">
+          <div class="num-big">trials</div>
+          <div class="num-lbl">Experimental options (Phase C tracer)</div>
+          <p class="num-text">
+            <code>enumerate_experimental_options(...)</code> запитує
+            ClinicalTrials.gov v2 за disease + biomarker + line_of_therapy і
+            повертає <code>ExperimentalOption</code> з UA-availability metadata
+            (sites_ua, countries) — render-time, engine не використовує trial
+            як сигнал вибору. Status filter: тільки RECRUITING /
+            ACTIVE_NOT_RECRUITING / ENROLLING_BY_INVITATION. Зараз є schema +
+            enumerator + 8 тестів; інтеграція з generate_plan і render —
+            окремі PR.
           </p>
         </div>
       </div>
