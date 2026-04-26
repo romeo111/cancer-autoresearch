@@ -18,6 +18,7 @@ default_indication: IND-NK-T-NASAL-1L-SMILE
 alternative_indication: IND-NK-T-NASAL-1L-P-GEMOX
 
 decision_tree:
+  # Step 1 — fitness + asparaginase access drive SMILE vs P-GEMOX choice.
   - step: 1
     evaluate:
       all_of:
@@ -30,9 +31,36 @@ decision_tree:
     if_false:
       result: IND-NK-T-NASAL-1L-P-GEMOX
 
+# EBV-DNA monitoring (parallel to indication selection — does NOT shift
+# SMILE vs P-GEMOX choice but drives intensification of consolidation
+# and surveillance schedule):
+#
+# - Baseline plasma EBV-DNA (copies/mL) before cycle 1
+# - Re-quantify at each cycle (q3w typically); RF-NK-T-NASAL-INFECTION-
+#   SCREENING fires if baseline >10^4 copies/mL OR if EBV-DNA persists
+#   above limit-of-detection after induction (poor prognosis marker)
+# - Persistent or rising EBV-DNA on serial monitoring → MDT review for
+#   consolidation intensification (autoSCT in CR1 / RT boost / consider
+#   PD-1 blockade in 2L track per NK/T-2L pathway)
+# - Goal: undetectable plasma EBV-DNA at end of induction; correlates
+#   with durable PFS (Wang et al. Blood 2012; Kim et al. JCO 2018)
+#
+# This is operationalized via RF-NK-T-NASAL-INFECTION-SCREENING (already
+# wired to BIO-EBV-STATUS / EBV-DNA-copies-per-mL trigger). BIO-EBV-DNA
+# as a quantitative biomarker is missing and would let us formalize the
+# monitoring schedule as a Monitoring entity — flagged for future round.
+
 sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-PTCL-2024]
 last_reviewed: "2026-04-27"
 notes: >
   P-GEMOX preferred for older / renal-impaired / centers with
   intermittent asparaginase access. DDGP (cisplatin variant) not
   yet modeled as separate indication.
+
+  EBV-DNA monitoring (added 2026-04-27 documentation): EBV-DNA is THE
+  pharmacodynamic biomarker for NK/T-nasal lymphoma. RF-NK-T-NASAL-
+  INFECTION-SCREENING captures the trigger (baseline ≥10^4 copies/mL
+  OR persistent post-induction). Monitoring schedule: baseline →
+  q-cycle (q3w) → end-of-induction → q3mo surveillance ×2 yr.
+  Persistent/rising EBV-DNA = consolidation intensification trigger
+  (autoSCT-CR1, RT boost, early move to NK/T-2L PD-1 track).
