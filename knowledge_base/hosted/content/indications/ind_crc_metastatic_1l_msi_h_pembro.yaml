@@ -40,6 +40,10 @@ rationale: >
   metastatic CRC. Treatment-defining biomarker — overrides RAS/BRAF
   algorithm. NCCN category 1 + ESMO strong recommendation.
 
+rationale_ua: >
+  KEYNOTE-177: пембролізумаб 1L doubled PFS vs FOLFOX+bev in MSI-H/dMMR метастатичний CRC. лікування-defining біомаркер — overrides RAS/BRAF algorithm. NCCN категорія 1 + ESMO strong рекомендація.
+ukrainian_review_status: pending_clinical_signoff
+ukrainian_drafted_by: claude_extraction
 sources:
   - source_id: SRC-NCCN-COLON-2025
     section: "MS-26 (mCRC pretreatment + 1L)"

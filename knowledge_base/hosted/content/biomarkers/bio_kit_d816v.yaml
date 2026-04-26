@@ -27,6 +27,10 @@ sources: [SRC-NCCN-SM-2025]
 oncokb_lookup:
   gene: KIT
   variant: D816V
+external_ids:
+  hgnc_symbol: "KIT"
+  hgvs_protein: "p.D816V"
+  oncokb_url: "https://www.oncokb.org/gene/KIT/D816V"
 
 last_reviewed: "2026-04-27"
 notes: >
@@ -38,3 +42,7 @@ notes: >
   mast-cell quantification + tryptase + KIT D816V VAF together
   define disease burden. Allele-specific PCR is the gold standard
   for SM diagnosis (sensitivity to ~0.01% VAF).
+notes_ua: >
+  Found in ~95% of поширений systemic mastocytosis (ASM, SM-AHN, MCL). Confers резистентність до type-II KIT інгібітори (іматиніб, сунитиніб). Avapritinib (Ayvakit) — first KIT D816V-селективний TKI; схвалений FDA 2021 for поширений SM and 2023 for індолентний SM. мідостаурин (Stoffregen 2016): historic стандарт pre-avapritinib. Bone-marrow mast-cell quantification + tryptase + KIT D816V VAF together define хвороба burden. Allele-specific PCR is the gold стандарт for SM діагноз (чутливість to ~0.01% VAF).
+ukrainian_review_status: pending_clinical_signoff
+ukrainian_drafted_by: claude_extraction

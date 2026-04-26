@@ -25,6 +25,10 @@ sources: [SRC-NCCN-PANCREATIC-2025]
 oncokb_lookup:
   gene: KRAS
   variant: G12V
+external_ids:
+  hgnc_symbol: "KRAS"
+  hgvs_protein: "p.G12V"
+  oncokb_url: "https://www.oncokb.org/gene/KRAS/G12V"
 
 last_reviewed: "2026-04-27"
 notes: >
@@ -33,3 +37,7 @@ notes: >
   therapy (TCR-T against G12V on HLA-A*11:01) — Memorial Sloan
   Kettering and others investigating. Like G12D, it confers
   resistance to anti-EGFR (cetuximab/panitumumab) in CRC.
+notes_ua: >
+  ~25% of PDAC KRAS мутації, ~22% of CRC KRAS мутації. ні схвалений FDA G12V-селективний терапія as of 2025. Adoptive T-cell терапія (TCR-T against G12V on HLA-A*11:01) — Memorial Sloan Kettering and others investigating. Like G12D, it confers резистентність до anti-EGFR (цетуксимаб/панітумумаб) in CRC.
+ukrainian_review_status: pending_clinical_signoff
+ukrainian_drafted_by: claude_extraction

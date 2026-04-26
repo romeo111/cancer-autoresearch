@@ -26,6 +26,10 @@ sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
 oncokb_lookup:
   gene: EGFR
   variant: T790M
+external_ids:
+  hgnc_symbol: "EGFR"
+  hgvs_protein: "p.T790M"
+  oncokb_url: "https://www.oncokb.org/gene/EGFR/T790M"
 
 last_reviewed: "2026-04-27"
 notes: >
@@ -34,3 +38,7 @@ notes: >
   pemetrexed in T790M+. May also occur de novo (rare; ~1%) — typically
   germline. ctDNA "liquid biopsy" first-line per NCCN at acquired
   resistance, with tissue confirmation if negative.
+notes_ua: >
+  набутий in ~50-60% of patients progressing on 1st/2nd-generation EGFR-TKI. Per AURA3 (Mok 2017), осимертиніб doubles PFS vs platinum/ pemetrexed in T790M+. May also occur de novo (рідкісний; ~1%) — типово герміногенний. цоДНК "рідинна біопсія" перша лінія per NCCN at набута резистентність, with tissue confirmation if negative.
+ukrainian_review_status: pending_clinical_signoff
+ukrainian_drafted_by: claude_extraction

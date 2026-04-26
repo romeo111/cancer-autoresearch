@@ -26,6 +26,10 @@ sources: [SRC-NCCN-CNS-2025, SRC-EANO-GBM-2024, SRC-ESMO-AML-2020]
 oncokb_lookup:
   gene: IDH1
   variant: R132H
+external_ids:
+  hgnc_symbol: "IDH1"
+  hgvs_protein: "p.R132H"
+  oncokb_url: "https://www.oncokb.org/gene/IDH1/R132H"
 
 last_reviewed: "2026-04-27"
 notes: >
@@ -38,3 +42,7 @@ notes: >
   vorasidenib (INDIGO 2024 — first-in-class for grade 2 IDH-mut glioma
   post-resection — practice-changing). 2-HG MRS imaging emerging as
   noninvasive activity readout.
+notes_ua: >
+  визначальна ознака IDH-mutant glioma (per WHO 2021 CNS5 — distinct діагностичний class) та ~6-10% of AML. IHC (mIDH1-R132H antibody) is highly sensitive for this specific варіант — used as first-pass glioma screen. Other IDH1 варіанти (R132C, R132G, R132S, R132L) are rarer and IHC-negative — require NGS. івосиденіб (AGILE, AML 1L combo with азацитидин in IDH1-mut AML), енасиденіб (IDH2 R140/R172), vorasidenib (INDIGO 2024 — first-in-class for grade 2 IDH-mut glioma після резекції — practice-changing). 2-HG MRS imaging новий as noninvasive activity readout.
+ukrainian_review_status: pending_clinical_signoff
+ukrainian_drafted_by: claude_extraction

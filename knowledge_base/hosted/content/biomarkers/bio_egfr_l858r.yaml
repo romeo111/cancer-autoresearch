@@ -24,6 +24,10 @@ sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
 oncokb_lookup:
   gene: EGFR
   variant: L858R
+external_ids:
+  hgnc_symbol: "EGFR"
+  hgvs_protein: "p.L858R"
+  oncokb_url: "https://www.oncokb.org/gene/EGFR/L858R"
 
 last_reviewed: "2026-04-27"
 notes: >
@@ -31,3 +35,7 @@ notes: >
   data). Slightly inferior PFS vs Exon 19 deletion. Acquired resistance
   patterns: T790M (>50%) — addressed by osimertinib up-front;
   C797S, MET amplification, histologic transformation.
+notes_ua: >
+  ~40-45% of EGFR-mutant NSCLC. перша лінія осимертиніб (FLAURA, AURA3 дані). Slightly поступається PFS vs Exon 19 делеція. набута резистентність patterns: T790M (>50%) — addressed by осимертиніб up-front; C797S, MET ампліфікація, histologic трансформація.
+ukrainian_review_status: pending_clinical_signoff
+ukrainian_drafted_by: claude_extraction

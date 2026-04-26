@@ -25,6 +25,9 @@ sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
 oncokb_lookup:
   gene: EGFR
   variant: Exon 20 insertion
+external_ids:
+  hgnc_symbol: "EGFR"
+  oncokb_url: "https://www.oncokb.org/gene/EGFR/Exon%2020%20insertion"
 
 last_reviewed: "2026-04-27"
 notes: >
@@ -34,3 +37,7 @@ notes: >
   Mobocertinib withdrawn by manufacturer in some markets — verify
   availability. Sunvozertinib (DZD9008) emerging. Watch for A763_Y764insFQEA
   variant — exception that retains standard TKI sensitivity.
+notes_ua: >
+  ~5-10% of EGFR-mutant NSCLC. Heterogeneous insertions in exon 20 — найбільш lie outside the αC-helix, conferring steric block to стандарт TKIs. амівантамаб + chemo (PAPILLON, Zhou 2023) — NEJM, 1L; стандарт. мобоцертиніб withdrawn by manufacturer in some markets — verify availability. Sunvozertinib (DZD9008) новий. Watch for A763_Y764insFQEA варіант — exception that retains стандарт TKI чутливість.
+ukrainian_review_status: pending_clinical_signoff
+ukrainian_drafted_by: claude_extraction

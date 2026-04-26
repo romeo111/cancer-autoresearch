@@ -29,3 +29,7 @@ notes: >
   3-5 = poor (~55%). NCCN-IPI refines age + LDH cuts; gives finer
   stratification. POLARIX trial used IPI ≥2 to select Pola-R-CHP over
   R-CHOP — primary determinant in our ALGO-DLBCL-1L decision tree.
+notes_ua: >
+  5-variable score: each несприятливий factor = 1 point. Risk groups (R-IPI): 0 = very good (5-річна ЗВ ~94%); 1-2 = good (~80%); 3-5 = poor (~55%). NCCN-IPI refines age + LDH cuts; gives finer stratification. POLARIX дослідження used IPI ≥2 to select Pola-R-CHP over R-CHOP — primary determinant in our ALGO-DLBCL-1L decision tree.
+ukrainian_review_status: pending_clinical_signoff
+ukrainian_drafted_by: claude_extraction
