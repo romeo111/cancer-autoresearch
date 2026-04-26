@@ -1,0 +1,57 @@
+{
+  "patient_id": "HCV-MZL-POSTDAA-003",
+  "comment": "Synthetic HCV-MZL post-DAA, SVR12 achieved, lymphoma response in progress. Engine should activate post-DAA surveillance (IND-HCV-MZL-POST-DAA-SURVEILLANCE) — observe q3 mo for hematologic response.",
+
+  "disease": {
+    "icd_o_3_morphology": "9699/3"
+  },
+  "line_of_therapy": 1,
+
+  "biomarkers": {
+    "BIO-CD20-IHC": "positive",
+    "BIO-HCV-RNA": "undetectable"
+  },
+
+  "demographics": {
+    "age": 67,
+    "sex": "female",
+    "ecog": 1
+  },
+
+  "findings": {
+    "svr12_achieved": true,
+    "months_post_svr12": 4,
+    "hcv_rna_iu_ml": 0,
+    "fib4_score": 2.0,
+    "child_pugh": "A",
+    "cryoglobulins_present": false,
+    "lymphoma_response_partial": true,
+    "lymphoma_response_complete": false,
+    "transformation_suspect": false,
+    "fl_gelf_high_burden": false,
+    "Surveillance phase post-SVR12 (lymphoma response in progress)": true
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "HCV-associated marginal zone lymphoma",
+        "icd_o_3": "9699/3",
+        "icd_10": "C88.4"
+      },
+      "staging": {
+        "staging_system": "Lugano",
+        "stage": "II",
+        "b_symptoms": false
+      },
+      "treatment_history": [
+        {"line": "antiviral", "regimen": "Sofosbuvir/velpatasvir × 12 weeks", "completed": "2026-01-15", "response": "SVR12 confirmed 2026-04-10"}
+      ]
+    },
+    "infectious_status": {
+      "HBV": {"HBsAg": "negative", "anti_HBc": "negative", "anti_HBs": "negative"},
+      "HCV": {"anti_HCV": "positive", "HCV_RNA": "undetectable", "SVR12": true},
+      "HIV": "negative"
+    }
+  }
+}

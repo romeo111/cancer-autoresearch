@@ -1,0 +1,61 @@
+{
+  "patient_id": "HCV-MZL-TYPICAL-001",
+  "comment": "Synthetic HCV-positive nodal MZL, low-burden, no transformation features. Engine should select DAA monotherapy (IND-HCV-MZL-1L-ANTIVIRAL) → post-SVR12 surveillance (IND-HCV-MZL-POST-DAA-SURVEILLANCE).",
+
+  "disease": {
+    "icd_o_3_morphology": "9699/3"
+  },
+  "line_of_therapy": 1,
+
+  "biomarkers": {
+    "BIO-CD20-IHC": "positive",
+    "BIO-HCV-RNA": "detectable",
+    "BIO-HCV-GENOTYPE": "1b"
+  },
+
+  "demographics": {
+    "age": 64,
+    "sex": "female",
+    "ecog": 1
+  },
+
+  "findings": {
+    "hcv_rna_iu_ml": 1850000,
+    "hcv_genotype": "1b",
+    "fib4_score": 1.8,
+    "child_pugh": "A",
+    "cryoglobulins_present": true,
+    "cryoglobulinemic_vasculitis": false,
+    "dominant_nodal_mass_cm": 2.4,
+    "b_symptoms_present": false,
+    "ldh_above_uln": false,
+    "transformation_suspect": false,
+    "fl_gelf_high_burden": false,
+    "Active treatment indication (cytopenia, B-symptoms, transformation)": false,
+    "HCV-positive (eligible for DAA-first pathway)": true
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "HCV-associated marginal zone lymphoma",
+        "icd_o_3": "9699/3",
+        "icd_10": "C88.4",
+        "who_classification_5th_ed": "Indolent B-cell lymphomas — Marginal zone lymphomas — HCV-associated MZL"
+      },
+      "staging": {
+        "staging_system": "Lugano",
+        "stage": "II",
+        "b_symptoms": false,
+        "extranodal_involvement": true,
+        "extranodal_sites": ["bone marrow"]
+      }
+    },
+    "infectious_status": {
+      "HBV": {"HBsAg": "negative", "anti_HBc": "negative", "anti_HBs": "negative"},
+      "HCV": {"anti_HCV": "positive", "HCV_RNA": "detectable", "genotype": "1b"},
+      "HIV": "negative"
+    },
+    "hepatic_status": {"FIB4": 1.8, "child_pugh": "A", "esophageal_varices": false}
+  }
+}

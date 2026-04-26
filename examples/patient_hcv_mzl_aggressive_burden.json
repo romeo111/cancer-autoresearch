@@ -1,0 +1,61 @@
+{
+  "patient_id": "HCV-MZL-AGG-002",
+  "comment": "Synthetic HCV-positive MZL with high tumor burden + B-symptoms. Engine should select aggressive track — concurrent DAA + BR (IND-HCV-MZL-1L-BR-AGGRESSIVE).",
+
+  "disease": {
+    "icd_o_3_morphology": "9699/3"
+  },
+  "line_of_therapy": 1,
+
+  "biomarkers": {
+    "BIO-CD20-IHC": "positive",
+    "BIO-HCV-RNA": "detectable",
+    "BIO-HCV-GENOTYPE": "3a"
+  },
+
+  "demographics": {
+    "age": 58,
+    "sex": "male",
+    "ecog": 2
+  },
+
+  "findings": {
+    "hcv_rna_iu_ml": 5400000,
+    "hcv_genotype": "3a",
+    "fib4_score": 2.6,
+    "child_pugh": "A",
+    "cryoglobulins_present": true,
+    "cryoglobulinemic_vasculitis": true,
+    "dominant_nodal_mass_cm": 8.5,
+    "b_symptoms_present": true,
+    "ldh_above_uln": true,
+    "transformation_suspect": false,
+    "fl_gelf_high_burden": true,
+    "Active treatment indication (high-burden, B-symptoms)": true,
+    "HCV-positive (concurrent DAA + immunochemotherapy)": true
+  },
+
+  "clinical_record": {
+    "diagnosis": {
+      "primary_diagnosis": {
+        "disease_entity": "HCV-associated marginal zone lymphoma",
+        "icd_o_3": "9699/3",
+        "icd_10": "C88.4",
+        "who_classification_5th_ed": "Indolent B-cell lymphomas — Marginal zone lymphomas — HCV-associated MZL"
+      },
+      "staging": {
+        "staging_system": "Lugano",
+        "stage": "IIIB",
+        "b_symptoms": true,
+        "extranodal_involvement": true,
+        "extranodal_sites": ["bone marrow", "spleen"]
+      }
+    },
+    "infectious_status": {
+      "HBV": {"HBsAg": "negative", "anti_HBc": "positive", "anti_HBs": "positive"},
+      "HCV": {"anti_HCV": "positive", "HCV_RNA": "detectable", "genotype": "3a"},
+      "HIV": "negative"
+    },
+    "hepatic_status": {"FIB4": 2.6, "child_pugh": "A", "esophageal_varices": false}
+  }
+}
