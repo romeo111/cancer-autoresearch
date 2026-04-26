@@ -5,8 +5,14 @@ applicable_to:
   disease_id: DIS-GBM
   line_of_therapy: 1
   stage_requirements: ["Newly-diagnosed glioblastoma (IDH-WT, WHO grade 4)", "Post maximal safe resection OR biopsy-only"]
-  biomarker_requirements_required: []
-  biomarker_requirements_excluded: []
+  biomarker_requirements_required:
+    - biomarker_id: BIO-MGMT-METHYLATION
+      required: true
+      value_constraint: "MGMT methylation status (methylated / unmethylated) — required input; methylated patients have substantially better TMZ response (~21.7 mo vs ~12.7 mo OS) but Stupp protocol applies regardless"
+  biomarker_requirements_excluded:
+    - biomarker_id: BIO-IDH-MUTATION
+      required: true
+      value_constraint: "IDH-mutant — by 2021 WHO classification IDH-mutant tumours are no longer GBM (re-classified as astrocytoma IDH-mutant grade 4); IDH-mutant cases route to oligodendroglioma / IDH-mutant astrocytoma pathways"
   demographic_constraints:
     age_max: 70  # Stupp full-protocol; >70 see elderly variants
     ecog_max: 2
