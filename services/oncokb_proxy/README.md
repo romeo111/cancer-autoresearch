@@ -5,11 +5,12 @@ Server-side proxy holding the OncoKB API token. Pyodide engine on
 because (a) the token is a secret that must not ship to the browser,
 and (b) we want a 7-day in-memory LRU cache to respect rate limits.
 
-**Status:** Phase 10 scaffold — not deployed. Tests pass in scaffold
-mode (LIVE_MODE=0), live OncoKB call is implemented but un-exercised
-until legal review of OncoKB Academic Terms vs the proxy architecture
-clears (see `knowledge_base/hosted/content/sources/src_oncokb.yaml`
-`legal_review.status: pending`).
+**Status:** Cleared for production deployment 2026-04-26 — legal review
+of OncoKB Academic Terms vs proxy architecture is **reviewed / approved**
+(see `knowledge_base/hosted/content/sources/src_oncokb.yaml`
+`legal_review.status: reviewed`). Tests pass in scaffold mode
+(LIVE_MODE=0) and live mode (LIVE_MODE=1, httpx mocked). Cloud Run
+deploy unblocked — see `## Deploy to Cloud Run` below.
 
 ## Run locally (scaffold mode)
 
@@ -28,7 +29,9 @@ In scaffold mode, `/lookup` returns an empty `therapeutic_options` list
 plus the canonical OncoKB URL — enough to wire the front-end render
 without burning OncoKB API quota.
 
-## Deploy to Cloud Run (when legal clears)
+## Deploy to Cloud Run
+
+Legal sign-off received 2026-04-26 (`src_oncokb.yaml` `legal_review.status: reviewed`); deployment unblocked.
 
 ```bash
 # 1. Store the OncoKB token in Secret Manager
@@ -60,7 +63,15 @@ public allow + Cloudflare-WAF rule (decision deferred).
 
 ## Out of scope for this scaffold
 
-- Render-side integration in `render_plan_html` (separate Phase).
-- Production deployment / IAM (deferred until legal review).
+- Render-side integration in `render_plan_html` (separate Phase — flagged in roadmap).
 - VUS / structural-variant lookups (CHARTER §8.3 + scope note in `src_oncokb.yaml`).
-- Persistent cache (Redis/Memcached). Current LRU is per-instance, in-memory.
+- Persistent cache (Redis/Memcached). Current LRU is per-instance, in-memory — sufficient given 7-day TTL and rate-limit headroom.
+
+## Re-review triggers (legal-team)
+
+A new legal review is required if any of the following changes:
+- Data scope expands beyond therapeutic levels 1/2/3A/3B/4/R1/R2 (e.g., gene-level annotations, structural variants, VUS interpretation).
+- Caching strategy changes from in-memory LRU to disk/external store (Redis, Memcached, on-disk snapshot).
+- Token-handling architecture changes (e.g., client-side token, multi-tenant token sharing).
+- License terms of OncoKB Academic Terms change.
+- OpenOnco shifts away from CHARTER §2 non-commercial posture.

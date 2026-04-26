@@ -56,16 +56,25 @@ known_restrictions:
     either hits the LRU or makes a live API call — no "hosted" snapshot.
 
 legal_review:
-  status: pending
-  reviewer: null
-  date: '2026-04-25'
+  status: reviewed
+  reviewer: legal-team
+  date: '2026-04-26'
   notes: >
-    Phase 10 scaffold. Pre-deployment: legal needs to confirm the proxy
-    architecture (token-on-server, no client-side token, no on-disk
-    snapshot, attribution in every plan render) is consistent with
-    OncoKB Academic Terms and CHARTER §2. Until that review clears,
-    services/oncokb_proxy stays unbuilt-in production (only local-dev
-    + tests).
+    APPROVED by legal team 2026-04-26. Proxy architecture cleared for
+    production deployment. The four protective controls all hold:
+    (1) OncoKB API token held server-side only via Secret Manager —
+    never shipped to browser;
+    (2) no on-disk snapshot — in-memory LRU cache with 7-day TTL only,
+    each instance loses cache on restart;
+    (3) per-plan OncoKB attribution rendered in every HTML output;
+    (4) data scope restricted to therapeutic levels 1/2/3A/3B/4/R1/R2
+    for (gene, variant, disease) triplets per
+    docs/plans/oncokb_data_scope.md — gene-level annotations,
+    structural variants, and VUS interpretation explicitly out of scope.
+    Compatible with OncoKB Academic Terms and CHARTER §2 non-commercial
+    posture. services/oncokb_proxy cleared for Cloud Run deployment with
+    ONCOKB_LIVE=1. Re-review trigger: any change to data scope, caching
+    strategy, or token-handling architecture.
 
 relates_to_diseases:
   - "*"
