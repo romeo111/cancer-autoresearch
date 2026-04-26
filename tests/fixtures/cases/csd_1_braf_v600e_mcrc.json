@@ -1,0 +1,32 @@
+{
+  "patient_id": "PTL-csd1-braf-mcrc",
+  "comment": "Synthetic mCRC + BRAF V600E case for CSD-1 partnership BMA test suite. NOT a real patient (CHARTER §9.3). Engine should select the CRC metastatic 1L algorithm and BMA lookup should hit BMA-BRAF-V600E-CRC at ESCAT IB / OncoKB Level 1.",
+  "disease": {"id": "DIS-CRC"},
+  "line_of_therapy": 1,
+  "biomarkers": {
+    "BRAF": "V600E",
+    "MSI": "MSS",
+    "RAS": "wildtype"
+  },
+  "demographics": {
+    "age": 62,
+    "sex": "male",
+    "ecog": 1
+  },
+  "findings": {
+    "stage": "IV",
+    "primary_site": "right colon",
+    "metastatic_sites": ["liver", "peritoneum"],
+    "ldh_ratio_to_uln": 1.4
+  },
+  "labs": {
+    "hemoglobin_g_dl": 11.8,
+    "platelets_k_ul": 245,
+    "creatinine_mg_dL": 0.95,
+    "bilirubin_mg_dL": 0.7,
+    "AST_U_L": 32,
+    "ALT_U_L": 28
+  },
+  "comorbidities": ["hypertension (I10)"],
+  "current_medications": ["amlodipine 5 mg daily"]
+}

@@ -1,0 +1,33 @@
+{
+  "patient_id": "PTL-csd1-brca1-ovarian",
+  "comment": "Synthetic high-grade serous advanced ovarian carcinoma + BRCA1 germline pathogenic variant for CSD-1 partnership BMA test suite. NOT a real patient (CHARTER §9.3). BMA lookup should hit BMA-BRCA1-GERMLINE-OVARIAN at ESCAT IA / OncoKB Level 1.",
+  "disease": {"id": "DIS-OVARIAN"},
+  "line_of_therapy": 1,
+  "biomarkers": {
+    "BIO-BRCA1-BRCA2-GERMLINE": "germline pathogenic",
+    "BIO-HRD-STATUS": "HRD-positive"
+  },
+  "demographics": {
+    "age": 54,
+    "sex": "female",
+    "ecog": 1
+  },
+  "findings": {
+    "stage": "FIGO IIIC",
+    "histology": "high-grade serous",
+    "hrd_status": "HRD-positive",
+    "brca1_brca2_pathogenic": true,
+    "primary_debulking_residual_cm": 0,
+    "primary_debulking_unsuccessful": false,
+    "ascites_significant": true,
+    "active_vte_recent": false
+  },
+  "labs": {
+    "hemoglobin_g_dl": 11.4,
+    "platelets_k_ul": 280,
+    "creatinine_mg_dL": 0.9,
+    "ca125_U_mL": 480
+  },
+  "comorbidities": [],
+  "current_medications": []
+}

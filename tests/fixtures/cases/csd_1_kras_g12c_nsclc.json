@@ -1,0 +1,31 @@
+{
+  "patient_id": "PTL-csd1-kras-g12c-nsclc",
+  "comment": "Synthetic metastatic NSCLC adenocarcinoma + KRAS G12C for CSD-1 partnership BMA test suite. NOT a real patient (CHARTER §9.3). BMA lookup should hit BMA-KRAS-G12C-NSCLC at ESCAT IA / OncoKB Level 1.",
+  "disease": {"id": "DIS-NSCLC"},
+  "line_of_therapy": 1,
+  "biomarkers": {
+    "KRAS": "G12C",
+    "EGFR": "wildtype",
+    "ALK": "negative",
+    "ROS1": "negative",
+    "PD-L1 TPS": 5
+  },
+  "demographics": {
+    "age": 67,
+    "sex": "male",
+    "ecog": 1,
+    "smoking_status": "former (45 pack-years)"
+  },
+  "findings": {
+    "stage": "IV",
+    "histology": "adenocarcinoma",
+    "metastatic_sites": ["liver", "adrenal"]
+  },
+  "labs": {
+    "hemoglobin_g_dl": 13.1,
+    "platelets_k_ul": 260,
+    "creatinine_mg_dL": 1.05
+  },
+  "comorbidities": ["COPD (J44.9)"],
+  "current_medications": ["tiotropium inhaler"]
+}
