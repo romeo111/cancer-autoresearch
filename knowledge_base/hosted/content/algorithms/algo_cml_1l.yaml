@@ -31,11 +31,14 @@ decision_tree:
     if_false:
       next_step: 2
 
-  # Step 2 — frailty / elderly → prefer imatinib (cost + tolerability)
+  # Step 2 — frailty / elderly OR CV/QTc/pulmonary-comorbidity matrix →
+  # prefer imatinib (cost + tolerability + cleanest CV/QTc profile of
+  # 1L-eligible TKIs in this KB; asciminib not yet a 1L Indication).
   - step: 2
     evaluate:
       any_of:
         - red_flag: RF-CML-FRAILTY-AGE
+        - red_flag: RF-CML-COMORBIDITY-COMPLEX
     if_true:
       result: IND-CML-1L-IMATINIB
     if_false:

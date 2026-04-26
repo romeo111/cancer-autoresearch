@@ -41,7 +41,7 @@ trigger:
     - finding: "pleural_effusion_history"
       value: true
 
-clinical_direction: investigate
+clinical_direction: de-escalate
 
 severity: major
 priority: 85
