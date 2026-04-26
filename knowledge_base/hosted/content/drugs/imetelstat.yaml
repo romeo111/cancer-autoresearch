@@ -20,8 +20,23 @@ regulatory_status:
   ema: {approved: false}
   ukraine_registration:
     registered: false
+    registration_number: null
     reimbursed_nszu: false
-    last_verified: "2026-04-25"
+    reimbursement_indications: []
+    last_verified: "2026-04-27"
+    notes: |
+      Не зареєстровано в UA (Держреєстр ЛЗ — РП відсутнє станом на 2026-04-27).
+      Telomerase-інгібітор для transfusion-dependent LR-MDS post-ESA failure;
+      дуже новий (FDA 2024); не входить до НСЗУ.
+      Шляхи доступу:
+      - Named-patient import (DEC спецдозвіл) — потребує EMA-approval
+        спочатку (планується 2025-2026).
+      - EAP Geron — обмежений compassionate program; немає UA медрепа,
+        звертатися напряму US.
+      - Cross-border (EU): обмежено до пост-EMA-approval; deg реалістично
+        доступне з 2026 у академічних EU центрах.
+      - Trial-only: IMerge post-marketing, IMpactMF.
+      Source: drlz.com.ua пошук "imetelstat"/"rytelo" 2026-04-27 — РП відсутнє.
 
 typical_dosing: >
   7.1 mg/kg IV every 4 weeks (2-hour infusion). Dose modifications
