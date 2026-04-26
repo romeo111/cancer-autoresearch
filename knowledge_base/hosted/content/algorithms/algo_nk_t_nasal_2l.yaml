@@ -1,0 +1,33 @@
+id: ALGO-NK-T-NASAL-2L
+applicable_to_disease: DIS-NK-T-NASAL
+applicable_to_line_of_therapy: 2
+purpose: >
+  Relapsed/refractory NK/T-cell nasal lymphoma — single-track default
+  to PD-1/PD-L1 inhibitor monotherapy (avelumab / sintilimab /
+  pembrolizumab) exploiting EBV-driven PD-L1 upregulation. Bridge
+  to alloSCT consolidation in fit responders — only curative path.
+
+output_indications:
+  - IND-NK-T-NASAL-2L-AVELUMAB
+
+default_indication: IND-NK-T-NASAL-2L-AVELUMAB
+alternative_indication: IND-NK-T-NASAL-2L-AVELUMAB
+
+decision_tree:
+  - step: 1
+    evaluate:
+      any_of:
+        - condition: "R/R after asparaginase-based 1L"
+    if_true:
+      result: IND-NK-T-NASAL-2L-AVELUMAB
+    if_false:
+      result: IND-NK-T-NASAL-2L-AVELUMAB
+
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-PTCL-2024]
+last_reviewed: "2026-04-27"
+notes: >
+  Single-track default. Other PD-1 inhibitors (pembrolizumab,
+  sintilimab) interchangeable per access — same indication used.
+  Re-induction with alternate asparaginase-based regimen (SMILE if
+  P-GEMOX failed, vice versa) is acceptable salvage but not
+  separately modeled. AlloSCT bridging is referral, outside KB.

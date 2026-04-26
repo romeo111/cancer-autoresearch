@@ -1,0 +1,94 @@
+id: IND-NK-T-NASAL-2L-AVELUMAB
+plan_track: aggressive
+
+applicable_to:
+  disease_id: DIS-NK-T-NASAL
+  line_of_therapy: 2
+  stage_requirements:
+    - "Relapsed/refractory after asparaginase-based 1L (SMILE / P-GEMOX / DDGP)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 2
+
+recommended_regimen: REG-AVELUMAB-MONO-NK-T
+concurrent_therapy: []
+followed_by:
+  - "AlloSCT consolidation in fit responders — only curative path for r/r NK/T-NL"
+
+evidence_level: moderate  # phase 2 only
+strength_of_recommendation: conditional
+nccn_category: "2A"
+
+expected_outcomes:
+  overall_response_rate: "~38% (Kim 2020 phase 2 r/r NK/T-NL)"
+  complete_response: "~24%"
+  progression_free_survival: "Median PFS ~3-4 months without consolidation; sustained only with alloSCT in CR"
+  overall_survival_5y: "<10% chemo-only; ~25-30% if successful bridge to alloSCT"
+
+hard_contraindications: []
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-EBV-VIRAL-LOAD
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-PET-CT
+  - TEST-MRI-BRAIN-CONTRAST
+  - TEST-ECHO
+  - TEST-PREGNANCY
+desired_tests:
+  - TEST-PDL1-IHC
+
+rationale: >
+  PD-1/PD-L1 axis blockade exploits EBV-driven PD-L1 upregulation
+  in NK/T-cell lymphoma (>70% of cases PD-L1 positive). Avelumab
+  (anti-PD-L1, IgG1 with preserved ADCC) — Kim 2020 (Blood) phase 2
+  ORR ~38%, CR ~24% in r/r NK/T-NL. Sintilimab and pembrolizumab
+  similarly active in case series. Distinct mechanism from chemo
+  / asparaginase axis — useful when those exhausted. Bridge to
+  alloSCT in fit responders preferred. Standard ICI immune-mediated
+  AE management protocol applies (steroid taper, treatment hold
+  thresholds per NCCN immunotherapy toxicity guidelines).
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "PD-1/PD-L1 inhibitors (avelumab, sintilimab, pembrolizumab) are recognized 2L+ option for r/r NK/T-cell nasal lymphoma exploiting EBV/PD-L1 axis"
+  - source_id: SRC-ESMO-PTCL-2024
+    position: supports
+    relevant_quote_paraphrase: "Checkpoint inhibition is preferred 2L+ for r/r NK/T-cell lymphoma; bridge to alloSCT in fit responders"
+
+known_controversies:
+  - topic: "Avelumab vs sintilimab vs pembrolizumab for r/r NK/T-NL"
+    positions:
+      - position: "Avelumab — IgG1 ADCC mechanism, JAVELIN NKTCL phase 2"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "Sintilimab — ORIENT-4 strongest single-agent data, but China-only registration"
+        sources: [SRC-ESMO-PTCL-2024]
+      - position: "Pembrolizumab — broadest global access despite weaker NK/T-NL-specific data"
+        sources: [SRC-NCCN-BCELL-2025]
+    our_default: "Pembrolizumab when accessible (broadest access); avelumab or sintilimab if pembrolizumab unavailable; all are off-label for NK/T-NL in UA"
+
+do_not_do:
+  - "НЕ пропускати premedication перед першими 4 інфузіями — infusion reactions ~25%."
+  - "НЕ давати steroids системно концурентно (поза управління immune AE) — reduce ICI efficacy."
+  - "НЕ ігнорувати симптоми пневмоніту, коліту, гепатиту — early steroid taper."
+  - "НЕ продовжувати при Grade ≥3 immune-mediated AE — permanent discontinuation у more cases."
+  - "НЕ забувати про myocarditis — rare але fatal."
+  - "НЕ нехтувати donor search — alloSCT — єдиний curative варіант."
+  - "НЕ призначати без funding pathway — off-label, not registered."
+
+time_critical: false
+last_reviewed: "2026-04-27"
+reviewer_signoffs: 0
+notes: >
+  STUB. Major UA access barrier. Always plan as bridge to alloSCT
+  in fit. PD-L1 IHC desirable for prognostic stratification but not
+  required for treatment selection (response also seen in low-PD-L1).

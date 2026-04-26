@@ -5,31 +5,68 @@ names:
   english: "Avelumab"
   brand_names: ["Bavencio"]
 atc_code: L01FF04
-rxnorm_id: null
-drug_class: "Anti-PD-L1 monoclonal antibody"
+rxnorm_id: "1922507"
+drug_class: "Anti-PD-L1 monoclonal antibody (IgG1 with preserved ADCC)"
 mechanism: >
-  Anti-PD-L1 IgG1 with preserved ADCC. Urothelial maintenance (JAVELIN Bladder 100), Merkel cell, RCC combination.
+  Fully human IgG1 anti-PD-L1 antibody. Blocks PD-L1 binding to PD-1
+  and CD80, restoring T-cell antitumor immunity. The IgG1 isotype
+  retains antibody-dependent cellular cytotoxicity (ADCC) — distinct
+  from IgG4 anti-PD-L1 agents — relevant for NK-cell engagement in
+  certain tumor types.
 
 regulatory_status:
   fda: {approved: true}
   ema: {approved: true}
   ukraine_registration:
     registered: false
+    registration_number: null
     reimbursed_nszu: false
-    last_verified: null
-    notes: "Out-of-pocket / off-label import — major access barrier."
+    last_verified: "2026-04-27"
+    notes: "Not registered in Ukraine. Out-of-pocket / international import; off-label for NK/T-cell lymphoma. Major access barrier."
 
-typical_dosing: >
-  800 mg IV q2w (or 10 mg/kg). Premedication first 4 doses (paracetamol+diphenhydramine).
+typical_dosing: "800 mg IV every 2 weeks (or 10 mg/kg q2w in older labeling). Premedication for first 4 infusions (paracetamol + diphenhydramine)."
+formulations: ["IV solution 20 mg/mL (200 mg/10 mL or 400 mg/20 mL vials)"]
 
-key_toxicities:
-  - Infusion reactions (~25%)
-  - Standard ICI immune-mediated AEs
-  - Fatigue
-  - Diarrhea
-  - Endocrinopathies
+absolute_contraindications:
+  - "Severe hypersensitivity to avelumab or excipients"
+  - "Active autoimmune disease requiring systemic immunosuppression (relative)"
+black_box_warnings: []
+major_interactions:
+  - "Systemic immunosuppressants (steroids, calcineurin inhibitors) — may reduce efficacy; avoid concurrent use unless treating immune-mediated AE"
+  - "Live vaccines — avoid during therapy and 6 months after"
+common_adverse_events:
+  - "Infusion reactions (~25% any grade; mostly first 1-2 doses; mitigated by premedication)"
+  - "Fatigue (~30%)"
+  - "Diarrhea"
+  - "Nausea"
+  - "Constipation"
+  - "Decreased appetite"
+  - "Pyrexia"
+  - "Rash, pruritus"
+serious_adverse_events:
+  - "Immune-mediated pneumonitis (~1-2% Grade ≥3)"
+  - "Immune-mediated colitis"
+  - "Immune-mediated hepatitis"
+  - "Immune-mediated endocrinopathies (hypothyroidism most common; hypophysitis, adrenal insufficiency, T1DM rarer)"
+  - "Immune-mediated nephritis"
+  - "Severe infusion reactions"
+  - "Myocarditis (rare but high mortality)"
 
-sources: [SRC-NCCN-NSCLC-2025]
-last_reviewed: null
+pharmacology:
+  half_life: "~6 days"
+  elimination: "Catabolic / receptor-mediated"
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-NCCN-NSCLC-2025
+
+last_reviewed: "2026-04-27"
 notes: >
-  STUB. Cross-disease entity.
+  Multi-indication anti-PD-L1: FDA-approved for metastatic Merkel cell
+  carcinoma (JAVELIN Merkel 200), urothelial maintenance after platinum
+  (JAVELIN Bladder 100), and 1L RCC + axitinib (JAVELIN Renal 101).
+  In NK/T-cell lymphoma: phase 2 data (Kim 2020 Blood) showed ORR
+  ~38% in r/r EBV-driven NK/T-NL exploiting EBV/PD-L1 signaling
+  axis. Off-label for hematologic indications. Standard ICI immune-
+  mediated AE management protocol applies (steroid taper, treatment
+  hold thresholds per NCCN immunotherapy toxicity guidelines).

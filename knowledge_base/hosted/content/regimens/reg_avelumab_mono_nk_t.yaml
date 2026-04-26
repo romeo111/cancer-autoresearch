@@ -1,0 +1,51 @@
+id: REG-AVELUMAB-MONO-NK-T
+name: "Avelumab monotherapy for r/r NK/T-cell nasal lymphoma (off-label)"
+name_ua: "Авелумаб монотерапія для рецидивного/рефрактерного NK/T-клітинної назальної лімфоми (off-label)"
+alternate_names: ["Avelumab mono NKTCL"]
+
+components:
+  - drug_id: DRUG-AVELUMAB
+    dose: "800 mg"
+    schedule: "IV every 2 weeks until progression or unacceptable toxicity"
+    route: IV
+
+cycle_length_days: 14
+total_cycles: "Until progression / unacceptable toxicity (typically 12+ cycles in responders)"
+toxicity_profile: moderate
+
+premedication:
+  - "Acetaminophen + diphenhydramine before first 4 infusions (mitigate infusion reactions ~25% rate)"
+mandatory_supportive_care: []
+monitoring_schedule_id: null
+
+dose_adjustments:
+  - condition: "Grade ≥2 immune-mediated AE (pneumonitis, colitis, hepatitis, endocrinopathy, nephritis)"
+    modification: "Hold; manage per NCCN immunotherapy toxicity guidelines (steroid taper); resume only if Grade ≤1"
+    source_refs: [SRC-NCCN-BCELL-2025]
+  - condition: "Grade ≥3 immune-mediated AE"
+    modification: "Permanent discontinuation in most cases; multidisciplinary management"
+  - condition: "Severe infusion reaction"
+    modification: "Slow rate; intensify premedication; permanent discontinuation if anaphylactoid"
+  - condition: "Suspected myocarditis"
+    modification: "Permanent discontinuation; cardiology consultation; high-dose steroids"
+
+ukraine_availability:
+  all_components_registered: false
+  all_components_reimbursed: false
+  notes: >
+    Avelumab not registered in Ukraine; access via international
+    supply / out-of-pocket. Off-label for NK/T-cell lymphoma
+    indication. Major UA access barrier.
+
+sources:
+  - SRC-NCCN-BCELL-2025
+
+last_reviewed: "2026-04-27"
+notes: >
+  Kim 2020 (Blood) phase 2 in r/r EBV-driven NK/T-cell lymphoma —
+  ORR ~38%, CR ~24%; PD-L1 expression in >70% of NK/T-NL provides
+  rationale. Sintilimab (anti-PD-1) from ORIENT-4 (Tao 2021) showed
+  similar activity but is China-only registration. Pembrolizumab
+  off-label also active in case series. Bridge to alloSCT in fit
+  responders preferred — sustained response without consolidation
+  uncommon. Standard ICI immune-mediated AE protocol applies.

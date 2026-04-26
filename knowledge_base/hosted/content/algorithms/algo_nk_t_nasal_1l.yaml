@@ -2,27 +2,37 @@ id: ALGO-NK-T-NASAL-1L
 applicable_to_disease: DIS-NK-T-NASAL
 applicable_to_line_of_therapy: 1
 purpose: >
-  Single-track 1L NK/T-cell nasal — SMILE-based induction; concurrent
-  RT для localized I/II; autoSCT consideration для disseminated CR1.
+  NK/T-cell nasal 1L — asparaginase-based regimens are essential
+  (P-glycoprotein-bypass mechanism). Choice between SMILE (strongest
+  RCT evidence, MTX-intensive) and P-GEMOX (comparable efficacy,
+  less toxicity, broader eligibility) is driven by patient fitness,
+  renal function, and asparaginase supply continuity. Concurrent RT
+  for localized stage I/II remains standard regardless of induction
+  choice.
 
 output_indications:
   - IND-NK-T-NASAL-1L-SMILE
+  - IND-NK-T-NASAL-1L-P-GEMOX
 
 default_indication: IND-NK-T-NASAL-1L-SMILE
-alternative_indication: IND-NK-T-NASAL-1L-SMILE
+alternative_indication: IND-NK-T-NASAL-1L-P-GEMOX
 
 decision_tree:
   - step: 1
     evaluate:
-      any_of:
-        - condition: "NK/T-cell nasal lymphoma diagnosis confirmed"
+      all_of:
+        - condition: "Age ≤ 70"
+        - condition: "ECOG ≤ 2"
+        - condition: "CrCl ≥ 50"
+        - condition: "L-asparaginase access available"
     if_true:
       result: IND-NK-T-NASAL-1L-SMILE
     if_false:
-      result: IND-NK-T-NASAL-1L-SMILE
+      result: IND-NK-T-NASAL-1L-P-GEMOX
 
-sources: [SRC-NCCN-BCELL-2025]
-last_reviewed: "2026-04-25"
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-PTCL-2024]
+last_reviewed: "2026-04-27"
 notes: >
-  Single track. P-GEMOX як fallback для центрів без asparaginase —
-  не модельовано як окрема Indication поки.
+  P-GEMOX preferred for older / renal-impaired / centers with
+  intermittent asparaginase access. DDGP (cisplatin variant) not
+  yet modeled as separate indication.
