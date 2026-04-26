@@ -11,6 +11,11 @@ applicable_to:
   - biomarker_id: BIO-MYC-REARRANGEMENT
     required: true
     value_constraint: positive
+  - biomarker_id: BIO-HIV-STATUS
+    required: true
+    value_constraint: any value valid (categorical etiology gate; substantial subset of adult Burkitt is
+      HIV-associated; HIV+ → cART throughout, mandatory CNS prophylaxis regardless of risk score, integrase-inhibitor
+      backbone preferred to avoid ritonavir-vincristine interaction)
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 2

@@ -11,6 +11,11 @@ applicable_to:
   - biomarker_id: BIO-MYC-REARRANGEMENT
     required: true
     value_constraint: positive
+  - biomarker_id: BIO-HIV-STATUS
+    required: true
+    value_constraint: any value valid (categorical etiology gate; CALGB 10002 included HIV+ patients with
+      ~equivalent outcomes; HIV+ → cART throughout, mandatory CNS prophylaxis, integrase-inhibitor backbone
+      preferred)
   biomarker_requirements_excluded: []
   demographic_constraints:
     ecog_max: 3
