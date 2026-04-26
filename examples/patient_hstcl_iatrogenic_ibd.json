@@ -1,0 +1,16 @@
+{
+  "patient_id": "HSTCL-IATROGENIC-001",
+  "comment": "Iatrogenic HSTCL after long-term anti-TNF + azathioprine for Crohn's disease. Engine should select ICE + alloSCT pathway AND surface immediate cessation of anti-TNF + thiopurines via MDT brief.",
+  "disease": {"icd_o_3_morphology": "9716/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {},
+  "demographics": {"age": 28, "sex": "male", "ecog": 1},
+  "findings": {
+    "donor_status": "search_initiated",
+    "ibd_history": true,
+    "current_medications": ["infliximab", "azathioprine"],
+    "lvef_percent": 62,
+    "creatinine_clearance": 105,
+    "transplant_candidate": true
+  }
+}

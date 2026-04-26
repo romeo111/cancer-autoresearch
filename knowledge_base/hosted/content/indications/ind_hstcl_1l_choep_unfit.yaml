@@ -1,0 +1,94 @@
+id: IND-HSTCL-1L-CHOEP-UNFIT
+plan_track: standard
+
+applicable_to:
+  disease_id: DIS-HSTCL
+  line_of_therapy: 1
+  stage_requirements:
+    - "Patients NOT eligible for ICE/IVAC + alloSCT pathway (unfit, elderly, organ dysfunction, no donor)"
+  biomarker_requirements_required: []
+  biomarker_requirements_excluded: []
+  demographic_constraints:
+    ecog_max: 3
+
+recommended_regimen: REG-CHOEP
+concurrent_therapy: []
+followed_by:
+  - "Consider alloSCT consolidation if status improves to transplant-eligible"
+
+evidence_level: low  # rare disease, no RCT; CHOP-based historically poor
+strength_of_recommendation: conditional
+nccn_category: "2B"
+
+expected_outcomes:
+  overall_response_rate: "~30-40% (anthracycline-based regimens largely ineffective in HSTCL)"
+  complete_response: "~15-20%"
+  progression_free_survival: "Median PFS ~6-9 months"
+  overall_survival_5y: "<10% — anthracycline-based regimens consistently inferior to platinum/AraC-based"
+
+hard_contraindications:
+  - CI-LVEF-LOW-FOR-ANTHRACYCLINE
+red_flags_triggering_alternative: []
+
+required_tests:
+  - TEST-CBC
+  - TEST-CMP
+  - TEST-LFT
+  - TEST-LDH
+  - TEST-COAG-PANEL
+  - TEST-HBV-SEROLOGY
+  - TEST-HCV-ANTIBODY
+  - TEST-HIV-SEROLOGY
+  - TEST-FLOW-CYTOMETRY
+  - TEST-FISH-PANEL  # i(7q) detection
+  - TEST-NGS-LYMPHOID-PANEL
+  - TEST-BM-ASPIRATE
+  - TEST-BM-TREPHINE
+  - TEST-PET-CT
+  - TEST-CECT-CAP
+  - TEST-ECHO
+  - TEST-PREGNANCY
+desired_tests: []
+
+rationale: >
+  CHOEP / CHOP-based regimens are LESS effective than ICE/IVAC for
+  HSTCL — but represent the only feasible 1L for elderly, unfit, or
+  patients without alloSCT donor pathway. Practice reality: many UA
+  HSTCL cases lack near-term transplant access. Use only when ICE/IVAC
+  + alloSCT pathway is unavailable; expect inferior responses and
+  early relapse. Goals are palliation and bridging to transplant if
+  status improves; cure rate near zero without alloSCT.
+
+sources:
+  - source_id: SRC-NCCN-BCELL-2025
+    position: supports
+    relevant_quote_paraphrase: "When ICE/IVAC + alloSCT pathway not feasible, anthracycline-based induction is acceptable but yields inferior outcomes in HSTCL"
+  - source_id: SRC-ESMO-PTCL-2024
+    position: supports
+    relevant_quote_paraphrase: "HSTCL is uniformly chemorefractory to anthracycline-based regimens; alloSCT remains the only curative option; CHOP/CHOEP only when alloSCT pathway unavailable"
+
+known_controversies:
+  - topic: "CHOEP vs platinum/AraC-based induction when alloSCT unavailable"
+    positions:
+      - position: "CHOEP — feasible outpatient, less mucositis"
+        sources: [SRC-NCCN-BCELL-2025]
+      - position: "ICE/IVAC even without alloSCT plan — better short-term response, justifies attempt"
+        sources: [SRC-ESMO-PTCL-2024]
+    our_default: "CHOEP for elderly/unfit; ICE/IVAC if patient could potentially convert to transplant-eligible"
+
+do_not_do:
+  - "НЕ обіцяти curative intent — без alloSCT prognosis dismal."
+  - "НЕ давати full-dose anthracycline якщо LVEF <50%."
+  - "НЕ нехтувати donor search паралельно — ситуація може змінитися."
+  - "НЕ пропускати IBD history + anti-TNF / thiopurine review — iatrogenic HSTCL потребує stopping these agents."
+  - "НЕ вводити вінкристин інтратекально — фатально."
+  - "НЕ використовувати CHOEP age >60 без dose reductions — anthracycline + etoposide combined toxicity."
+  - "НЕ забувати paliative care + early MDT включення."
+
+time_critical: false
+last_reviewed: "2026-04-27"
+reviewer_signoffs: 0
+notes: >
+  STUB. Fallback when aggressive ICE-allosct pathway unavailable.
+  Expect inferior responses; goals are palliation and transplant
+  bridging if status improves.

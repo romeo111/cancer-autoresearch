@@ -1,0 +1,15 @@
+{
+  "patient_id": "HSTCL-FIT-001",
+  "comment": "HSTCL fit younger patient with potential matched donor — engine should select ICE + alloSCT consolidation pathway (aggressive track).",
+  "disease": {"icd_o_3_morphology": "9716/3"},
+  "line_of_therapy": 1,
+  "biomarkers": {},
+  "demographics": {"age": 32, "sex": "male", "ecog": 1},
+  "findings": {
+    "donor_status": "matched_sibling_identified",
+    "ibd_history": false,
+    "lvef_percent": 65,
+    "creatinine_clearance": 95,
+    "transplant_candidate": true
+  }
+}

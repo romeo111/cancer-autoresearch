@@ -2,25 +2,34 @@ id: ALGO-HSTCL-1L
 applicable_to_disease: DIS-HSTCL
 applicable_to_line_of_therapy: 1
 purpose: >
-  Single-track 1L HSTCL — ICE/IVAC induction + allo-SCT consolidation у CR1.
+  HSTCL 1L — preferred path is ICE/IVAC induction + alloSCT consolidation
+  in CR1 (only curative option). Fallback for unfit/elderly patients
+  without donor pathway: CHOEP — accepted as palliative/bridging
+  despite inferior responses.
 
 output_indications:
   - IND-HSTCL-1L-ICE-ALLOSCT
+  - IND-HSTCL-1L-CHOEP-UNFIT
 
-default_indication: IND-HSTCL-1L-ICE-ALLOSCT
+default_indication: IND-HSTCL-1L-CHOEP-UNFIT
 alternative_indication: IND-HSTCL-1L-ICE-ALLOSCT
 
 decision_tree:
   - step: 1
     evaluate:
-      any_of:
-        - condition: "HSTCL diagnosis confirmed"
+      all_of:
+        - condition: "ECOG ≤ 2"
+        - condition: "Age ≤ 65 OR fit"
+        - condition: "AlloSCT donor pathway feasible (matched donor identified or imminent)"
     if_true:
       result: IND-HSTCL-1L-ICE-ALLOSCT
     if_false:
-      result: IND-HSTCL-1L-ICE-ALLOSCT
+      result: IND-HSTCL-1L-CHOEP-UNFIT
 
-sources: [SRC-NCCN-BCELL-2025]
-last_reviewed: "2026-04-25"
+sources: [SRC-NCCN-BCELL-2025, SRC-ESMO-PTCL-2024]
+last_reviewed: "2026-04-27"
 notes: >
-  Single track. Дуже rare entity — управління у tertiary center.
+  Дуже rare entity — управління у tertiary center. CHOEP-unfit branch
+  is palliative/bridging; cure rate near zero without alloSCT.
+  Iatrogenic HSTCL (post-anti-TNF + thiopurines for IBD) requires
+  immediate cessation of those agents regardless of branch.
