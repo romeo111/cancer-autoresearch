@@ -10,7 +10,7 @@ names:
     - "Doxil (liposomal — different drug entity)"
 atc_code: L01DB01
 rxnorm_id: "3639"
-drug_class: "Anthracycline topoisomerase II inhibitor"
+drug_class: "antineoplastic — anthracycline topoisomerase II inhibitor"
 mechanism: >
   Intercalates DNA, inhibits topoisomerase II → DNA double-strand breaks.
   Generates free radicals (mechanism of cardiotoxicity). Cell-cycle
@@ -19,8 +19,11 @@ mechanism: >
 regulatory_status:
   fda:
     approved: true
+    year_first_approval: 1974
+    indications_brief: ["Lymphoma (R-CHOP, ABVD, BEACOPP)", "Breast cancer (AC, TAC)", "Sarcoma", "AML", "Bladder, gastric, ovarian cancers"]
   ema:
     approved: true
+    year_first_approval: 1976
   ukraine_registration:
     registered: true
     registration_number: "[TBD]"
@@ -59,12 +62,16 @@ serious_adverse_events:
   - "Acute leukemia / myelodysplasia (long-term)"
 
 pharmacology:
-  half_life: "Triphasic: ~12 minutes (alpha), ~3 hours (beta), ~30 hours (gamma)"
+  half_life_hours: 30  # triphasic: ~0.2 h alpha, ~3 h beta, ~30 h gamma terminal
+  clearance: "hepatic (biliary)"
+  protein_binding_pct: 75
+  metabolism: "aldoketoreductase to doxorubicinol (active); CYP3A4 minor; biliary excretion ~50%"
 
 sources:
   - SRC-NCCN-BCELL-2025
 
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
   Baseline echocardiogram (LVEF) mandatory before first dose; surveillance
   during therapy especially after cumulative dose >300 mg/m². Dexrazoxane

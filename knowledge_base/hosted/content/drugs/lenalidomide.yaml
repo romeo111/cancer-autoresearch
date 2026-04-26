@@ -7,7 +7,7 @@ names:
     - "Revlimid"
 atc_code: L04AX04
 rxnorm_id: "337535"
-drug_class: "Immunomodulatory imide drug (IMiD); cereblon E3 ligase modulator"
+drug_class: "immunomodulator — IMiD (cereblon E3 ligase modulator)"
 mechanism: >
   Binds cereblon (CRBN) within the CRL4-CRBN E3 ubiquitin ligase complex,
   redirecting it to ubiquitinate IKZF1 and IKZF3 transcription factors.
@@ -17,8 +17,11 @@ mechanism: >
 regulatory_status:
   fda:
     approved: true
+    year_first_approval: 2005
+    indications_brief: ["Multiple myeloma (1L, R/R, maintenance)", "MDS with del(5q)", "Mantle cell lymphoma (R/R)", "Follicular / marginal zone lymphoma (R²)"]
   ema:
     approved: true
+    year_first_approval: 2007
   ukraine_registration:
     registered: true
     registration_number: "[TBD]"
@@ -40,28 +43,44 @@ black_box_warnings:
   - "Hematologic toxicity (neutropenia, thrombocytopenia)"
   - "Venous and arterial thromboembolism (mandatory prophylaxis)"
 major_interactions:
-  - "Digoxin (lenalidomide may increase digoxin levels)"
-  - "Erythropoiesis-stimulating agents may increase thrombosis risk"
+  - "Digoxin — lenalidomide may increase digoxin levels (P-gp competition); monitor"
+  - "Erythropoiesis-stimulating agents (epoetin, darbepoetin) — increase thrombosis risk"
+  - "Concurrent dexamethasone (intentional in Rd, VRd, KRd) — synergistic but additive infection / thromboembolism risk"
+  - "Estrogen-containing contraceptives — additive thrombosis risk; non-hormonal contraception preferred"
+  - "Strong CYP3A4 modulators — minimal interaction (lenalidomide is renally cleared)"
+  - "Live vaccines — contraindicated"
 common_adverse_events:
-  - "Neutropenia"
-  - "Thrombocytopenia"
-  - "Diarrhea"
-  - "Fatigue"
-  - "Skin rash"
-  - "Muscle cramps"
+  - "Neutropenia — ~40% grade ≥3"
+  - "Thrombocytopenia — ~20% grade ≥3"
+  - "Anemia — ~30%"
+  - "Diarrhea — ~40% (chronic; can be bile-acid mediated, responds to cholestyramine)"
+  - "Fatigue — ~40%"
+  - "Skin rash — ~30%, usually self-limited"
+  - "Muscle cramps — ~25%"
+  - "Constipation — ~25%"
+  - "Cough, dyspnea — ~20%"
+  - "Pyrexia — ~20%"
+  - "Insomnia — ~15%"
 serious_adverse_events:
-  - "Venous thromboembolism (DVT, pulmonary embolism)"
-  - "Second primary malignancies (long-term exposure)"
-  - "Hepatotoxicity"
-  - "Severe skin reactions (Stevens-Johnson, TEN)"
+  - "Venous thromboembolism (DVT, PE) — ~5-10% with high-dose dex; <3% with aspirin prophylaxis"
+  - "Arterial thromboembolism (MI, stroke) — ~2-3%"
+  - "Second primary malignancies (AML, MDS, solid tumors) — ~3-7% over 5 years of maintenance"
+  - "Hepatotoxicity (severe) — rare"
+  - "Severe skin reactions (Stevens-Johnson, TEN, DRESS) — rare"
+  - "Tumor lysis syndrome (high-burden MCL / MM)"
+  - "Tumor flare reaction (CLL, MCL — pain, lymphadenopathy enlargement; differentiate from progression)"
 
 pharmacology:
-  half_life: "~3 hours (longer with renal impairment); ~80% renal excretion"
+  half_life_hours: 3  # ~3-5 h normal renal; up to 9 h CrCl <30
+  clearance: "renal"
+  protein_binding_pct: 30
+  metabolism: "minimal hepatic; ~80% renally excreted unchanged"
 
 sources:
   - SRC-NCCN-MM-2025
 
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
   Renal dose adjustment is critical: CrCl 30-60 mL/min → 10 mg daily;
   CrCl <30 (no dialysis) → 15 mg every other day; dialysis → 5 mg post-

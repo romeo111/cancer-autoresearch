@@ -7,7 +7,7 @@ names:
     - "Velcade"
 atc_code: L01XG01
 rxnorm_id: "356733"
-drug_class: "Proteasome inhibitor (boronic-acid 26S proteasome inhibitor)"
+drug_class: "proteasome_inhibitor — boronic-acid 26S proteasome inhibitor"
 mechanism: >
   Reversibly inhibits the chymotrypsin-like activity of the 26S proteasome,
   causing accumulation of misfolded proteins and ER-stress-mediated
@@ -17,15 +17,19 @@ mechanism: >
 regulatory_status:
   fda:
     approved: true
+    year_first_approval: 2003
+    indications_brief: ["Multiple myeloma (1L, R/R)", "Mantle cell lymphoma"]
   ema:
     approved: true
+    year_first_approval: 2004
   ukraine_registration:
     registered: true
     registration_number: "[TBD]"
     reimbursed_nszu: true
     reimbursement_indications:
       - "Множинна мієлома (1L та рецидив)"
-    last_verified: "2026-04-25"
+      - "Мантійноклітинна лімфома (рецидив)"
+    last_verified: "2026-04-26"
 
 typical_dosing: "1.3 mg/m² SC days 1, 4, 8, 11 of 21-day cycle (or weekly schedule day 1, 8, 15, 22 of 28-day cycle)"
 formulations:
@@ -36,27 +40,43 @@ absolute_contraindications:
   - "Severe pre-existing peripheral neuropathy (Grade ≥2 with pain)"
 black_box_warnings: []
 major_interactions:
-  - "Strong CYP3A4 inhibitors (ketoconazole, ritonavir) increase exposure"
-  - "Strong CYP3A4 inducers (rifampin, carbamazepine) reduce efficacy"
+  - "Strong CYP3A4 inhibitors (ketoconazole, ritonavir, clarithromycin) — increase exposure → toxicity"
+  - "Strong CYP3A4 inducers (rifampin, carbamazepine, St John's wort) — reduce efficacy"
+  - "Concurrent dexamethasone (intentional, in VRD/VTd) — additive immunosuppression, antiviral prophylaxis mandatory"
+  - "Live vaccines — contraindicated during therapy"
+  - "Other neuropathic agents (vincristine, cisplatin) — additive peripheral neuropathy"
 common_adverse_events:
-  - "Peripheral neuropathy (sensory > motor) — substantially reduced with SC route"
-  - "Thrombocytopenia (cyclical, recovers between cycles)"
-  - "Fatigue"
-  - "GI symptoms (nausea, diarrhea, constipation)"
-  - "Herpes zoster reactivation (mandatory antiviral prophylaxis)"
+  - "Peripheral neuropathy (sensory > motor) — ~30% IV grade ≥2; ~14% SC grade ≥2"
+  - "Thrombocytopenia (cyclical, recovers between cycles) — ~30% grade ≥3"
+  - "Fatigue — ~50%"
+  - "GI symptoms (nausea ~40%, diarrhea ~30%, constipation ~25%)"
+  - "Herpes zoster reactivation — ~10% without prophylaxis; <1% with acyclovir"
+  - "Anemia — ~25% grade ≥3"
+  - "Neutropenia — ~20% grade ≥3"
+  - "Pyrexia — ~25%"
+  - "Anorexia — ~25%"
+  - "Injection-site reactions (SC) — ~6%, mild"
+  - "Hypotension — ~10%"
 serious_adverse_events:
-  - "Severe peripheral neuropathy"
+  - "Severe peripheral neuropathy with pain (dose-limiting; may require discontinuation)"
   - "Thrombotic microangiopathy (rare)"
-  - "Acute pulmonary syndrome (rare)"
-  - "Cardiac failure / arrhythmia (rare)"
+  - "Acute pulmonary syndrome / interstitial pneumonitis (rare)"
+  - "Cardiac failure / arrhythmia / QT prolongation (rare)"
+  - "Tumor lysis syndrome (high tumor burden)"
+  - "Hepatic failure (rare)"
+  - "PML (rare)"
 
 pharmacology:
-  half_life: "9-15 hours; predominantly hepatic metabolism (CYP3A4, CYP2C19)"
+  half_life_hours: 12  # 9-15 hours, multi-day distribution after first dose
+  clearance: "hepatic"
+  protein_binding_pct: 83
+  metabolism: "CYP3A4 (primary), CYP2C19, CYP1A2 — hepatic oxidation"
 
 sources:
   - SRC-NCCN-MM-2025
 
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
   SC administration strongly preferred over IV — equivalent efficacy with
   ~half the rate of grade ≥3 peripheral neuropathy. HSV/VZV prophylaxis

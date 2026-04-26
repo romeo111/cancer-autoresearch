@@ -3,53 +3,104 @@ names:
   preferred: "Ifosfamide"
   ukrainian: "Іфосфамід"
   english: "Ifosfamide"
-  brand_names: ["Ifex", "Holoxan"]
+  brand_names: ["Ifex", "Holoxan", "Mitoxana"]
 atc_code: L01AA06
 rxnorm_id: "5521"
-drug_class: "Oxazaphosphorine alkylating agent"
+drug_class: "alkylating_agent — oxazaphosphorine (nitrogen mustard analog)"
 mechanism: >
-  Prodrug; CYP3A4-activated to 4-hydroxyifosfamide → ifosforamide mustard,
-  which alkylates DNA at N7-guanine. Acrolein metabolite causes
-  hemorrhagic cystitis — MESNA prophylaxis is mandatory.
+  Prodrug requiring hepatic CYP3A4 / CYP2B6 activation to 4-hydroxy-
+  ifosfamide, which decomposes to ifosforamide mustard — the active DNA-
+  alkylating species producing N7-guanine inter-strand crosslinks and
+  apoptosis in proliferating cells. Side-chain oxidation also generates
+  acrolein (urotoxic — drives hemorrhagic cystitis, neutralized by mesna)
+  and chloroacetaldehyde (the principal neurotoxic metabolite responsible
+  for ifosfamide-induced encephalopathy).
 
 regulatory_status:
-  fda: {approved: true}
-  ema: {approved: true}
+  fda:
+    approved: true
+    year_first_approval: 1988
+    indications_brief: ["Germ-cell tumors (third-line)", "Soft-tissue sarcoma", "Used off-label in salvage lymphoma regimens (ICE, RICE)"]
+  ema:
+    approved: true
+    year_first_approval: 1987
   ukraine_registration:
     registered: true
+    registration_number: "[verify-clinical-co-lead]"
     reimbursed_nszu: true
-    last_verified: "2026-04-25"
+    reimbursement_indications:
+      - "Лімфоми (рятувальна хіміотерапія, ICE/RICE)"
+      - "Саркоми м'яких тканин"
+      - "Гермінативно-клітинні пухлини"
+    last_verified: "2026-04-26"
 
 typical_dosing: >
-  ICE regimen: 5000 mg/m² IV continuous infusion over 24h day 2 (with
-  MESNA). CODOX-M/IVAC: 1500 mg/m² IV days 1-5.
-formulations: ["IV powder for reconstitution 1 g, 2 g, 3 g"]
+  ICE / RICE (R/R DLBCL pre-ASCT): 5000 mg/m² IV continuous infusion over
+  24 h on day 2, with mesna co-administered at 5000 mg/m² in the same bag
+  + 2500 mg/m² infused over 12 h after end of ifosfamide.
+  CODOX-M / IVAC (Burkitt): 1500 mg/m² IV days 1-5 with mesna.
+  ICE pediatric (sarcoma / Wilms): 1800 mg/m² IV days 1-5 with mesna 360 mg/m²
+  before and at 4 + 8 h after each dose.
+  Single-agent germ-cell salvage: 1200 mg/m² IV days 1-5 with mesna.
+formulations:
+  - "IV powder for reconstitution 1 g, 2 g, 3 g vials"
+  - "Premixed IV solution 50 mg/mL (less common)"
 
 absolute_contraindications:
-  - "Severe hypersensitivity"
-  - "Severe bone marrow suppression"
-  - "Active urinary tract infection or cystitis (until resolved)"
+  - "Severe hypersensitivity to ifosfamide"
+  - "Severe pre-existing bone marrow suppression"
+  - "Active urinary tract obstruction or hemorrhagic cystitis (until resolved)"
+  - "Severe renal impairment (CrCl <30 mL/min — relative; case-by-case in pediatric salvage)"
+  - "Inability to receive mesna (not interchangeable with hydration alone)"
 
 black_box_warnings:
-  - "CNS toxicity (encephalopathy — variable, can be fatal)"
-  - "Hemorrhagic cystitis without MESNA"
-  - "Myelosuppression"
+  - "CNS toxicity — ifosfamide-induced encephalopathy ranges from somnolence to coma; can be fatal; treat with methylene blue 50 mg IV q4-6h"
+  - "Hemorrhagic cystitis without concurrent mesna and hydration"
+  - "Severe myelosuppression — neutropenic sepsis risk; G-CSF support standard at high-dose ICE"
 
 common_adverse_events:
-  - "Myelosuppression"
-  - "Nausea/vomiting (highly emetogenic)"
-  - "Alopecia"
-  - "CNS effects (somnolence, confusion, encephalopathy)"
+  - "Myelosuppression (neutropenia ~70% grade ≥3 in ICE)"
+  - "Nausea and vomiting (highly emetogenic — triple antiemetic prophylaxis required)"
+  - "Alopecia — universal with multi-day dosing"
+  - "Fatigue — ~50%"
+  - "CNS effects (somnolence, confusion, hallucination, encephalopathy) — ~10-30%"
+  - "Microscopic hematuria — ~30% even with mesna"
+  - "Mucositis — ~20%"
+  - "Anorexia, mild hepatic enzyme rise — ~30%"
+  - "Hyponatremia (SIADH-like) — ~15%"
+  - "Infusion-site phlebitis — common"
 
 serious_adverse_events:
-  - "Ifosfamide-induced encephalopathy (treat with methylene blue)"
-  - "Hemorrhagic cystitis"
-  - "Tubular nephrotoxicity"
+  - "Ifosfamide-induced encephalopathy (treat: hold drug, methylene blue, thiamine, correct hypoalbuminemia)"
+  - "Hemorrhagic cystitis (urological emergency)"
+  - "Tubular nephrotoxicity (Fanconi-like syndrome — may be permanent in pediatric)"
+  - "Severe SIADH with seizure"
+  - "Cardiotoxicity at high cumulative doses (rare)"
+  - "Secondary AML/MDS (long-term)"
+
+major_interactions:
+  - "Strong CYP3A4 inducers (rifampin, phenytoin, carbamazepine) — increase activation, increase neurotoxicity"
+  - "Strong CYP3A4 inhibitors (ketoconazole, ritonavir) — reduce activation; clinical impact uncertain"
+  - "Aprepitant — modest CYP3A4 inhibition; clinically used despite this in ICE"
+  - "Concurrent cisplatin — potentiates nephrotoxicity and encephalopathy (additive tubular damage)"
+  - "Warfarin — enhanced anticoagulant effect"
+
+pharmacology:
+  half_life_hours: 7  # 4-8 h at standard doses; saturable kinetics at HD
+  clearance: "hepatic (CYP3A4 / CYP2B6 activation) with renal excretion of metabolites"
+  protein_binding_pct: 20
+  metabolism: "CYP3A4 and CYP2B6 — both bioactivation (4-hydroxylation) and toxic side-chain oxidation"
 
 sources:
   - SRC-NCCN-BCELL-2025
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
-  STUB — Phase 9. MESNA at 60-100% of ifosfamide dose, divided
-  doses; aggressive hydration (2-3 L/day during therapy). Encephalopathy
-  is more common with hypoalbuminemia, prior cisplatin, renal impairment.
+  Mesna mandatory at 60-160% of ifosfamide dose in divided schedule
+  (at 0, 4, 8 h after each ifosfamide dose, or in the same bag for
+  continuous infusions). Aggressive hydration (2-3 L/day during
+  therapy) plus daily urine dipstick for blood. Risk factors for
+  encephalopathy: hypoalbuminemia (<3.5 g/dL), elevated creatinine,
+  prior cisplatin exposure, low bicarbonate, pelvic disease bulk.
+  Standard ICE includes G-CSF support starting day 5; >80% of R/R
+  DLBCL patients receive ASCT mobilization with this regimen.

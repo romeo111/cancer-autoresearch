@@ -6,62 +6,116 @@ names:
   brand_names:
     - "Rituxan"
     - "MabThera"
-    - "Truxima"
-    - "Ruxience"
+    - "Truxima (biosimilar)"
+    - "Ruxience (biosimilar)"
+    - "Riabni (biosimilar)"
 atc_code: L01FA01
 rxnorm_id: "198141"
-drug_class: "Anti-CD20 monoclonal antibody"
+drug_class: "monoclonal_antibody — anti-CD20 chimeric IgG1κ"
 mechanism: >
-  Chimeric monoclonal antibody targeting CD20 on B lymphocytes;
-  depletes CD20+ B cells via ADCC, CDC, and direct apoptosis.
+  Chimeric (mouse-human) monoclonal antibody binding the CD20 antigen on
+  B lymphocytes (pre-B through mature B; sparing pro-B and plasma cells).
+  Depletes CD20+ B cells via three mechanisms: complement-dependent
+  cytotoxicity (CDC, dominant in CLL), antibody-dependent cellular
+  cytotoxicity (ADCC, dominant in lymphoma), and direct apoptosis via
+  CD20 cross-linking. Recovery of normal B cells takes 6-12 months
+  after the last dose.
 
 regulatory_status:
   fda:
     approved: true
-    first_approval_year: 1997
+    year_first_approval: 1997
+    indications_brief: ["Non-Hodgkin lymphoma (DLBCL, FL, MZL, MCL)", "CLL", "Rheumatoid arthritis", "GPA / MPA"]
   ema:
     approved: true
+    year_first_approval: 1998
   ukraine_registration:
     registered: true
-    registration_number: "[TBD — to be populated by Держреєстр ЛЗ lookup]"
+    registration_number: "[verify-clinical-co-lead]"
     reimbursed_nszu: true
     reimbursement_indications:
       - "Дифузна великоклітинна B-клітинна лімфома"
       - "Фолікулярна лімфома"
-      - "Лімфома маргінальної зони (згідно з НСЗУ переліком)"
-    last_verified: "2026-04-24"
+      - "Лімфома маргінальної зони (НСЗУ перелік)"
+      - "Хронічний лімфоцитарний лейкоз"
+      - "Мантійноклітинна лімфома"
+    last_verified: "2026-04-26"
+    notes: "Biosimilars (Truxima, Ruxience) widely used in UA — same ATC, interchangeable per НСЗУ."
 
-typical_dosing: "375 mg/m² IV weekly × 4 induction, then maintenance per regimen"
+typical_dosing: >
+  R-CHOP / R-CVP / R-Bendamustine (DLBCL, FL): 375 mg/m² IV day 1 of each
+  21- or 28-day cycle × 6-8 cycles.
+  R-monotherapy / FL maintenance: 375 mg/m² IV every 8-12 weeks × 2 years
+  (PRIMA / RESORT schedules).
+  CLL (R-FC, R-Ben): 375 mg/m² IV cycle 1 day 1, then 500 mg/m² IV day 1
+  cycles 2-6.
+  SC formulation (FL, DLBCL): 1400 mg fixed-dose SC over ~5 minutes from
+  cycle 2 onward (after first IV dose for tolerability).
 formulations:
-  - "IV infusion 10 mg/mL (100 mg / 500 mg vials)"
-  - "SC 1400 mg / 1600 mg fixed-dose (where approved)"
+  - "IV concentrate 10 mg/mL (100 mg / 500 mg vials)"
+  - "SC injection 1400 mg / 11.7 mL fixed-dose (NHL); 1600 mg / 13.4 mL (CLL)"
 
 absolute_contraindications:
-  - "Hypersensitivity to rituximab or any component"
-  - "Active severe infection"
+  - "Hypersensitivity to rituximab, murine proteins, or any excipient"
+  - "Active severe / uncontrolled infection (especially HBV without antiviral suppression)"
   - "Active hepatitis B without antiviral prophylaxis (reactivation risk)"
+  - "Known severe latex hypersensitivity (some vial closures)"
+
 black_box_warnings:
-  - "Fatal infusion reactions"
-  - "Severe mucocutaneous reactions"
-  - "Hepatitis B virus reactivation"
-  - "Progressive multifocal leukoencephalopathy (PML)"
-major_interactions: []
+  - "Fatal infusion reactions (within 24 h of first dose; mostly cycle 1)"
+  - "Severe mucocutaneous reactions (Stevens-Johnson, TEN, paraneoplastic pemphigus)"
+  - "Hepatitis B virus reactivation — fulminant hepatic failure possible; screen HBsAg + anti-HBc before first dose; entecavir prophylaxis if positive"
+  - "Progressive multifocal leukoencephalopathy (PML, JC-virus reactivation)"
+
 common_adverse_events:
-  - "Infusion reactions"
-  - "Fever, chills"
-  - "Fatigue"
-  - "Lymphopenia"
+  - "Infusion reactions (cycle 1 ~75%; subsequent cycles <10%)"
+  - "Fever, chills (during/after infusion) — ~50% cycle 1"
+  - "Fatigue — ~40%"
+  - "Hypogammaglobulinemia (cumulative; clinically meaningful in long-term maintenance) — ~30-50%"
+  - "Lymphopenia (B-cell aplasia universal)"
+  - "Neutropenia — ~15%, late-onset rare"
+  - "Headache — ~20%"
+  - "Cough, throat irritation — ~15%"
+  - "Nausea — ~20%"
+  - "Pruritus, mild rash — ~15%"
+  - "Asthenia — ~30%"
+
 serious_adverse_events:
-  - "HBV reactivation"
-  - "PML (rare)"
-  - "Tumor lysis syndrome (first dose, high tumor burden)"
+  - "HBV reactivation with hepatic failure"
+  - "PML (rare, ~1 in 25,000 over rituximab era; fatal)"
+  - "Tumor lysis syndrome (first dose, high-burden CLL / aggressive lymphoma)"
+  - "Severe infusion reaction / anaphylaxis with hypotension, bronchospasm, angioedema"
+  - "Severe mucocutaneous reaction (paraneoplastic pemphigus)"
+  - "Late-onset neutropenia (4-6 months post)"
+  - "Bowel obstruction / perforation (rare, with bulky GI lymphoma)"
+
+major_interactions:
+  - "Live vaccines contraindicated during therapy and ≥6 months post (hypogammaglobulinemia, no vaccine response)"
+  - "Antihypertensives — withhold morning of infusion to limit infusion-related hypotension"
+  - "Concurrent immunosuppressants (azathioprine, mycophenolate, anti-TNF) — additive infection risk"
+  - "Cisplatin — case reports of acute renal failure when given with rituximab in PCNSL conditioning"
+
+pharmacology:
+  half_life_hours: 528  # ~22 days at steady state
+  clearance: "non-renal (target-mediated B-cell binding + reticuloendothelial)"
+  protein_binding_pct: null
+  metabolism: "non-CYP; catabolized to amino acids; clearance falls as B-cell pool depletes"
 
 sources:
   - SRC-ESMO-MZL-2024
   - SRC-NCCN-BCELL-2025
-
-last_reviewed: "2026-04-24"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
-  Foundation anti-CD20 therapy in B-cell lymphomas. For HCV-MZL,
-  reserved for cases not responding to antiviral therapy alone, or
-  aggressive phenotype where immediate cytoreduction is indicated.
+  Foundation anti-CD20 therapy in B-cell lymphomas. Premedication
+  (acetaminophen + diphenhydramine ± methylprednisolone) before each
+  infusion; first-dose infusion rate escalation per protocol (50 mg/h
+  start, doubled q30min to max 400 mg/h). HBV screening (HBsAg +
+  anti-HBc + anti-HBs) is mandatory before first dose; entecavir or
+  tenofovir prophylaxis throughout therapy and ≥12 months post for
+  any HBV-positive serology. SC formulation reduces administration time
+  from 4-6 h to 5-7 minutes and is preferred from cycle 2 onward in
+  FL / DLBCL. For HCV-MZL, reserved for cases not responding to
+  antiviral therapy alone, or aggressive phenotype where immediate
+  cytoreduction is indicated. Biosimilars are clinically interchangeable
+  in UA per НСЗУ guidance.

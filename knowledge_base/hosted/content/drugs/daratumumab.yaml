@@ -8,7 +8,7 @@ names:
     - "Darzalex Faspro (SC)"
 atc_code: L01FC01
 rxnorm_id: "1731059"
-drug_class: "Anti-CD38 IgG1κ monoclonal antibody"
+drug_class: "monoclonal_antibody — anti-CD38 IgG1κ (fully human)"
 mechanism: >
   Binds CD38, which is highly expressed on plasma cells. Induces myeloma
   cell death through complement-dependent cytotoxicity (CDC), antibody-
@@ -19,8 +19,11 @@ mechanism: >
 regulatory_status:
   fda:
     approved: true
+    year_first_approval: 2015
+    indications_brief: ["Multiple myeloma (newly-diagnosed transplant-eligible D-VRd; 1L non-eligible D-Rd; R/R)"]
   ema:
     approved: true
+    year_first_approval: 2016
   ukraine_registration:
     registered: true
     registration_number: "[TBD]"
@@ -41,27 +44,41 @@ absolute_contraindications:
   - "Hypersensitivity to daratumumab or hyaluronidase (SC formulation)"
 black_box_warnings: []
 major_interactions:
-  - "May interfere with blood typing (indirect Coombs/IAT) — type and screen before first dose; document phenotype"
-  - "Live vaccines should not be administered during therapy"
+  - "May interfere with blood typing (indirect Coombs/IAT — pan-positive) — type and screen + extended phenotype BEFORE first dose, communicate to blood bank"
+  - "May interfere with serum protein electrophoresis / immunofixation (mistaken for M-protein) — IFE-DIRA reflex testing helpful"
+  - "Live vaccines — contraindicated during therapy"
+  - "Concurrent dexamethasone / lenalidomide / bortezomib (intentional combinations) — additive infection risk, herpes prophylaxis required"
 common_adverse_events:
-  - "Infusion-related reactions (substantially fewer with SC route)"
-  - "Neutropenia, thrombocytopenia"
-  - "Fatigue"
-  - "Upper respiratory infection"
-  - "Back pain"
-  - "Cough, dyspnea"
+  - "Infusion-related reactions — IV cycle 1 ~50%; SC ~10%, mostly grade 1-2"
+  - "Neutropenia — ~40% grade ≥3 (combination)"
+  - "Thrombocytopenia — ~25% grade ≥3"
+  - "Anemia — ~30%"
+  - "Fatigue — ~40%"
+  - "Upper respiratory infection — ~30%"
+  - "Back pain — ~25%"
+  - "Cough — ~25%, dyspnea ~20%"
+  - "Pyrexia — ~20%"
+  - "Diarrhea — ~25%"
+  - "Nausea — ~20%"
 serious_adverse_events:
-  - "Severe infusion reactions (anaphylaxis, bronchospasm)"
-  - "Reactivation of hepatitis B (screen + prophylaxis required)"
-  - "Severe infections (pneumonia, sepsis)"
+  - "Severe infusion reaction (anaphylaxis, bronchospasm) — IV cycle 1 ~5% grade ≥3"
+  - "Reactivation of hepatitis B — fulminant possible; screen + entecavir prophylaxis if HBsAg+ or anti-HBc+"
+  - "Severe infections (pneumonia, sepsis) — ~15-20% grade ≥3 over 1L therapy"
+  - "Hemolysis from interference with crossmatch (technical, not biologic)"
+  - "Tumor lysis syndrome (rare, high-burden MM)"
+  - "Cardiotoxicity (rare; mostly in pre-existing HF)"
 
 pharmacology:
-  half_life: "~18 days at steady state (saturable target-mediated clearance)"
+  half_life_hours: 432  # ~18 days at steady state
+  clearance: "non-renal (saturable target-mediated disposition + reticuloendothelial)"
+  protein_binding_pct: null
+  metabolism: "non-CYP; catabolized to amino acids; clearance falls as CD38+ tumor depletes"
 
 sources:
   - SRC-NCCN-MM-2025
 
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
   Reimbursement under НСЗУ in Ukraine is currently NOT in place — this is a
   meaningful access constraint. Patients selected for D-VRd in 1L need

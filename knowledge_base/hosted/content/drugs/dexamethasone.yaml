@@ -8,7 +8,7 @@ names:
     - "Dexamed"
 atc_code: H02AB02
 rxnorm_id: "3264"
-drug_class: "Synthetic glucocorticoid"
+drug_class: "corticosteroid — synthetic long-acting glucocorticoid"
 mechanism: >
   Binds the glucocorticoid receptor; in myeloma cells induces apoptosis
   through suppression of NF-κB signaling and direct effects on
@@ -18,8 +18,11 @@ mechanism: >
 regulatory_status:
   fda:
     approved: true
+    year_first_approval: 1958
+    indications_brief: ["Multiple myeloma (combination)", "ALL induction", "Lymphoma R-CHOP/CHOEP", "Antiemetic", "Cerebral edema (brain metastases)", "GVHD treatment"]
   ema:
     approved: true
+    year_first_approval: 1962
   ukraine_registration:
     registered: true
     registration_number: "[TBD]"
@@ -36,29 +39,45 @@ absolute_contraindications:
   - "Hypersensitivity"
 black_box_warnings: []
 major_interactions:
-  - "CYP3A4 substrate — interacts with strong inducers/inhibitors"
-  - "Live vaccines contraindicated during chronic use"
-  - "NSAIDs increase GI ulceration risk"
+  - "CYP3A4 substrate — strong inducers (rifampin, phenytoin, carbamazepine) reduce dex efficacy; strong inhibitors (azoles, ritonavir) increase exposure → Cushingoid features"
+  - "Live vaccines — contraindicated during chronic high-dose use (immunosuppression)"
+  - "NSAIDs — additive GI ulceration / bleeding risk; PPI prophylaxis when co-administered"
+  - "Warfarin — variable INR shift; monitor closely"
+  - "Anti-diabetic agents — hyperglycemia requires dose escalation of insulin / metformin"
+  - "Diuretics — additive hypokalemia"
+  - "Aprepitant — increases dex AUC ~2-fold; reduce dex by 50% on co-administration day"
 common_adverse_events:
-  - "Hyperglycemia"
-  - "Insomnia, mood elevation/agitation"
-  - "Increased appetite, weight gain"
-  - "Fluid retention, hypertension"
-  - "Increased infection susceptibility"
-  - "Muscle weakness (myopathy)"
+  - "Hyperglycemia — ~30-50% in MM weekly schedule"
+  - "Insomnia, mood elevation / agitation — ~50%"
+  - "Increased appetite, weight gain — ~30%"
+  - "Fluid retention, hypertension — ~25%"
+  - "Increased infection susceptibility — universal effect"
+  - "Muscle weakness (steroid myopathy) — ~20%"
+  - "Cushingoid features (chronic) — common"
+  - "Skin atrophy, easy bruising — chronic exposure"
+  - "Cataract / posterior subcapsular — long-term"
+  - "Dyspepsia, GI ulceration — ~10-15%"
+  - "Acne — ~10%"
 serious_adverse_events:
-  - "Adrenal suppression with abrupt discontinuation"
-  - "Severe psychiatric reactions"
-  - "Avascular necrosis (long-term)"
-  - "Opportunistic infections"
+  - "Adrenal suppression with abrupt discontinuation (taper required after >2 weeks of pharmacologic dosing)"
+  - "Severe psychiatric reactions (steroid psychosis, mania, severe depression)"
+  - "Avascular necrosis of femoral head (long-term, especially in pediatric ALL)"
+  - "Opportunistic infections (PJP, fungal, reactivated HSV/VZV/CMV)"
+  - "GI bleeding / perforation"
+  - "Hyperglycemic emergency (DKA / HHS)"
+  - "Tumor lysis syndrome (when used as cytoreductive in CLL/lymphoma)"
 
 pharmacology:
-  half_life: "~4 hours; biological effect 36-72 hours"
+  half_life_hours: 4  # plasma ~4 h; biological effect 36-72 h
+  clearance: "hepatic"
+  protein_binding_pct: 70
+  metabolism: "CYP3A4 — hepatic oxidation; renal excretion of metabolites"
 
 sources:
   - SRC-NCCN-MM-2025
 
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
   In frail / elderly (>75 yrs) patients, weekly dose reduced to 20 mg to
   improve tolerability without compromising efficacy (FRAIL / IFM/HOVON

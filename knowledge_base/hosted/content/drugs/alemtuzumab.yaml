@@ -3,56 +3,102 @@ names:
   preferred: "Alemtuzumab"
   ukrainian: "Алемтузумаб"
   english: "Alemtuzumab"
-  brand_names: ["Lemtrada", "Campath"]
+  brand_names: ["Lemtrada", "Campath", "MabCampath"]
 atc_code: L04AG06
 rxnorm_id: "117055"
-drug_class: "Anti-CD52 humanized monoclonal antibody"
+drug_class: "monoclonal_antibody — anti-CD52 humanized IgG1κ"
 mechanism: >
-  Binds CD52 on the surface of B and T lymphocytes (and other lymphoid
-  cells), causing antibody-dependent cellular cytotoxicity and
-  complement-dependent cytolysis. Profound and prolonged lymphopenia
-  (especially CD4+ T-cells) drives both efficacy and infectious risk.
+  Humanized monoclonal antibody binding CD52, a glycoprotein densely
+  expressed on B and T lymphocytes, monocytes, NK cells, and most lymphoid
+  malignancies. Engagement triggers antibody-dependent cellular cytotoxicity
+  (ADCC), complement-dependent cytolysis (CDC), and direct apoptosis.
+  Profound and prolonged depletion of CD4+ T-cells (median recovery
+  >12 months) drives both efficacy in CD52+ malignancies (notably T-PLL)
+  and the high opportunistic-infection burden.
 
 regulatory_status:
-  fda: {approved: true}
-  ema: {approved: true}
+  fda:
+    approved: true
+    year_first_approval: 2001
+    indications_brief: ["B-cell chronic lymphocytic leukemia (Campath, withdrawn 2012 from oncology marketing in US)", "Multiple sclerosis (Lemtrada, 2014)"]
+  ema:
+    approved: true
+    year_first_approval: 2001
   ukraine_registration:
     registered: false
-    last_verified: "2026-04-25"
+    registration_number: "[verify-clinical-co-lead]"
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-26"
+    notes: >
+      Withdrawn from commercial oncology distribution in 2012; T-PLL
+      access via named-patient/compassionate program through Sanofi-
+      Genzyme. No NSZU listing. UA T-PLL patients require individual
+      import authorization.
 
 typical_dosing: >
-  T-PLL: 30 mg IV three times weekly × 12 weeks (escalation from 3 mg → 10 mg
-  → 30 mg over first week to limit cytokine release).
-
-formulations: ["IV concentrate 30 mg/mL"]
+  T-PLL: dose escalation 3 mg → 10 mg → 30 mg IV over first week to
+  limit cytokine release; then 30 mg IV three times weekly × 12 weeks
+  (Keating 2002). Premedicate with acetaminophen + diphenhydramine
+  + hydrocortisone before each infusion for first 2 weeks.
+  CLL (historical): same induction schedule; SC 30 mg three times weekly
+  is alternative with lower infusion-reaction rate.
+formulations: ["IV concentrate 30 mg/mL (10 mg/mL × 1.2 mL Lemtrada vial)"]
 
 absolute_contraindications:
   - "Active uncontrolled systemic infection (bacterial, viral, fungal)"
-  - "HIV-positive (additional immunosuppression unsafe)"
-  - "Hypersensitivity to alemtuzumab or murine proteins"
+  - "HIV-positive (additional T-cell depletion unsafe)"
+  - "Hypersensitivity to alemtuzumab or any excipient"
+  - "Active secondary malignancy"
+  - "Pregnancy / breastfeeding"
 
 black_box_warnings:
-  - "Cytopenias (severe pancytopenia, autoimmune)"
-  - "Infusion reactions (premedicate; first-dose escalation mandatory)"
-  - "Infections (CMV reactivation, PJP, fungal — prophylaxis required)"
-  - "Malignancies (secondary)"
+  - "Cytopenias — severe pancytopenia, autoimmune hemolytic anemia, ITP, pure red-cell aplasia"
+  - "Infusion reactions — premedication and first-dose escalation mandatory; cytokine-release syndrome possible"
+  - "Infections — CMV reactivation, PJP, HSV/VZV, fungal; antimicrobial prophylaxis required during and ≥2 months post"
+  - "Malignancies — secondary thyroid cancer, melanoma, lymphoproliferative disorders"
 
 common_adverse_events:
-  - "Cytokine-release syndrome on first infusion"
-  - "Lymphopenia, neutropenia"
-  - "Opportunistic infection"
+  - "Cytokine-release syndrome on first infusion (chills, fever, rigors, hypotension) — ~70%"
+  - "Lymphopenia (universal — CD4 nadir <50/µL)"
+  - "Neutropenia ≥grade 3 — ~40%"
+  - "Thrombocytopenia ≥grade 3 — ~25%"
+  - "Anemia — ~40%"
+  - "CMV viremia — ~15-25% (PCR-monitored)"
+  - "Headache, nausea, fatigue — ~30%"
+  - "Rash, urticaria — ~30%"
+  - "Insomnia, anxiety — ~15%"
+  - "Upper respiratory infection — common"
 
 serious_adverse_events:
   - "CMV reactivation pneumonitis"
-  - "PJP pneumonia without prophylaxis"
-  - "Autoimmune cytopenias"
-  - "Secondary autoimmunity (thyroiditis, ITP)"
+  - "PJP pneumonia (without prophylaxis)"
+  - "Invasive aspergillosis"
+  - "Autoimmune cytopenias (AIHA, ITP, PRCA) — can be fatal"
+  - "Secondary autoimmunity (Graves' thyroiditis ~30% in MS cohort, ITP, anti-GBM glomerulonephritis)"
+  - "Progressive multifocal leukoencephalopathy (rare)"
+  - "Severe infusion reaction / anaphylaxis"
+
+major_interactions:
+  - "Live vaccines contraindicated during therapy and ≥6 months post (immunosuppression)"
+  - "Other lymphocyte-depleting agents (fludarabine, cladribine) — additive immunosuppression, increased opportunistic infection"
+  - "Concurrent immunosuppressants (cyclosporine, tacrolimus) — additive risk; case-by-case"
+
+pharmacology:
+  half_life_hours: 144  # ~6 days at steady-state in T-PLL dosing
+  clearance: "non-renal (saturable target-mediated disposition; no hepatic CYP metabolism)"
+  protein_binding_pct: null  # IgG — irrelevant
+  metabolism: "non-CYP; catabolized to amino acids by reticuloendothelial system"
 
 sources:
   - SRC-NCCN-BCELL-2025
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
-  STUB — created in Phase 9 (broken-ref repair, 2026-04-25). T-PLL is
-  only oncologic indication retained; MS uses are out-of-scope here.
-  Mandatory CMV PCR weekly + PJP prophylaxis (TMP-SMX or atovaquone)
-  + HSV prophylaxis (acyclovir) during therapy and ≥2 months post.
+  T-PLL is the principal oncologic indication retained after Campath
+  was withdrawn from US oncology market in 2012. Mandatory infection
+  prophylaxis: TMP-SMX (PJP), acyclovir or valacyclovir (HSV/VZV),
+  weekly CMV PCR for the duration of therapy and ≥2 months post.
+  Hold for ANC <250 or platelets <25K during therapy. Salvage CD52-
+  directed therapy is being supplanted by JAK1/2 inhibitors and
+  venetoclax-based combinations in T-PLL trials.

@@ -3,53 +3,109 @@ names:
   preferred: "Procarbazine"
   ukrainian: "Прокарбазин"
   english: "Procarbazine"
-  brand_names: ["Matulane", "Natulan"]
+  brand_names: ["Matulane", "Natulan", "Indicarb"]
 atc_code: L01XB01
 rxnorm_id: "8744"
-drug_class: "Hydrazine alkylating agent (oral)"
+drug_class: "alkylating_agent — hydrazine derivative (oral non-classic alkylator)"
 mechanism: >
-  Methylates DNA at O6/N7 of guanine after hepatic activation. Crosses
-  blood-brain barrier — hence its role in PCNSL (R-MPV) and BEACOPP-Hodgkin.
-  Reversible MAO inhibitor: tyramine-rich foods + sympathomimetics → HTN crisis.
+  Methylhydrazine prodrug undergoing hepatic CYP-mediated oxidation
+  (CYP1A and CYP2B) to azoprocarbazine and ultimately to a methyldiazonium
+  cation that methylates DNA at O6 and N7 of guanine, generating mono-
+  adducts and inhibiting DNA, RNA, and protein synthesis. Lipophilic and
+  crosses the blood-brain barrier — basis of its central role in PCNSL
+  (R-MPV) and Hodgkin (BEACOPP) regimens. Reversibly inhibits monoamine
+  oxidase (weak MAOI activity → tyramine and sympathomimetic interaction
+  syndrome).
 
 regulatory_status:
-  fda: {approved: true}
-  ema: {approved: true}
+  fda:
+    approved: true
+    year_first_approval: 1969
+    indications_brief: ["Hodgkin lymphoma (combination, e.g. BEACOPP)", "Off-label: PCNSL (R-MPV)", "Brain tumors (PCV regimen for oligodendroglioma)"]
+  ema:
+    approved: true
+    year_first_approval: 1965  # multiple national approvals
   ukraine_registration:
     registered: false
-    last_verified: "2026-04-25"
+    registration_number: "[verify-clinical-co-lead]"
+    reimbursed_nszu: false
+    reimbursement_indications: []
+    last_verified: "2026-04-26"
+    notes: >
+      Not commercially available in UA; obtained via named-patient
+      import for PCNSL (R-MPV) and select BEACOPP-escalated cases.
+      Clinical access constraint flagged by KSCRC.
 
 typical_dosing: >
-  PCNSL (R-MPV): 100 mg/m² PO daily × 7 days every 14 days.
-  Hodgkin (BEACOPP escalated): 100 mg/m² PO days 1-7 every 21 days.
-formulations: ["Capsules 50 mg"]
+  PCNSL R-MPV (DeAngelis): 100 mg/m² PO daily × 7 days every 14 days,
+  cycles 1-5 with rituximab + HD-MTX + vincristine; continued in
+  consolidation arms.
+  Hodgkin BEACOPP escalated: 100 mg/m² PO days 1-7 every 21 days × 6 cycles
+  (with bleomycin + etoposide + adriamycin + cyclophosphamide + vincristine
+  + prednisone).
+  PCV (oligodendroglioma): 60 mg/m² PO days 8-21 every 6 weeks.
+formulations:
+  - "Capsules 50 mg"
 
 absolute_contraindications:
-  - "Concurrent use with foods/drugs containing tyramine or sympathomimetics (MAOI interaction)"
-  - "Severe hepatic / renal dysfunction"
-  - "Pre-existing severe bone marrow suppression"
+  - "Concurrent use with foods containing tyramine (aged cheese, cured meats, tap beer, fermented soy, broad beans)"
+  - "Concurrent sympathomimetics (pseudoephedrine, phenylephrine, amphetamines)"
+  - "Concurrent SSRIs / SNRIs / TCAs / MAOIs (serotonin syndrome / hypertensive crisis)"
+  - "Severe pre-existing bone marrow suppression"
+  - "Severe hepatic or renal dysfunction"
+  - "Pregnancy"
 
 black_box_warnings:
-  - "Myelosuppression (delayed nadir 4-6 weeks)"
-  - "Secondary malignancies (AML risk in long-term Hodgkin survivors)"
-  - "Pulmonary toxicity"
+  - "Myelosuppression — delayed nadir 4-6 weeks; cumulative"
+  - "Secondary malignancies — well-documented AML / MDS risk in long-term Hodgkin survivors (alkylator class)"
+  - "Hypertensive crisis with tyramine / sympathomimetic interaction (MAOI mechanism)"
 
 common_adverse_events:
-  - "Nausea/vomiting (high — give antiemetic)"
-  - "Myelosuppression"
-  - "Flu-like syndrome"
-  - "Disulfiram-like effect with alcohol"
+  - "Nausea and vomiting (high — give 5-HT3 antagonist) — ~70% week 1, attenuates with continued dosing"
+  - "Myelosuppression — neutropenia, thrombocytopenia (delayed) — ~50%"
+  - "Flu-like syndrome (myalgia, arthralgia, fever) — ~30%"
+  - "Disulfiram-like reaction with alcohol — common"
+  - "CNS effects (somnolence, confusion, depression, paresthesia) — ~30%"
+  - "Rash — ~25%"
+  - "Mucositis — ~20%"
+  - "Anorexia — ~30%"
+  - "Sterility (testicular damage long-term in Hodgkin survivors) — frequent"
+  - "Pruritus — ~20%"
 
 serious_adverse_events:
-  - "Hypertensive crisis (MAOI + tyramine)"
+  - "Hypertensive crisis (MAOI + tyramine or sympathomimetic)"
+  - "Serotonin syndrome (with serotonergic agents)"
   - "Pulmonary fibrosis (rare, dose-cumulative)"
-  - "Secondary AML/MDS"
+  - "Severe myelosuppression with infection / hemorrhage"
+  - "Secondary AML/MDS (5-10 year latency; ~2-5% in Hodgkin survivors)"
+  - "Permanent infertility"
+  - "Severe hypersensitivity rash (Stevens-Johnson rare)"
+
+major_interactions:
+  - "Tyramine-rich foods → hypertensive crisis (mandatory dietary counseling)"
+  - "Sympathomimetics (decongestants, amphetamines, dopamine, ephedrine) → hypertensive crisis"
+  - "SSRIs / SNRIs / TCAs / MAOIs → serotonin syndrome"
+  - "Alcohol → disulfiram-like flushing, headache, hypotension"
+  - "CNS depressants (opioids, benzodiazepines, barbiturates) → potentiated sedation"
+  - "Anticonvulsants — bidirectional CYP induction effects"
+  - "Live vaccines — contraindicated"
+
+pharmacology:
+  half_life_hours: 1  # parent ~1 h; active metabolites longer
+  clearance: "hepatic"
+  protein_binding_pct: null
+  metabolism: "CYP1A1, CYP1A2, CYP2B6 — bioactivation to azoprocarbazine and methyl-diazonium"
 
 sources:
   - SRC-NCCN-BCELL-2025
-last_reviewed: "2026-04-25"
+last_reviewed: "2026-04-26"
+reviewers: []
 notes: >
-  STUB — Phase 9. Patient counseling on MAOI diet (avoid aged cheese,
-  cured meats, fermented foods, broad beans) is mandatory. Avoid SSRIs,
-  pseudoephedrine, sympathomimetics. Used in R-MPV (PCNSL) and
-  BEACOPP escalated (Hodgkin) — both are restricted protocols.
+  Patient counseling on MAOI diet (avoid aged cheese, cured/smoked meats,
+  fermented soy, broad beans, tap beer, draft wine, marmite) is mandatory
+  and must be documented at every cycle. Avoid all SSRIs (fluoxetine,
+  sertraline) and decongestants for 2 weeks after last dose. R-MPV (PCNSL)
+  and BEACOPP-escalated (Hodgkin advanced-stage IPI≥3) are the principal
+  modern uses; both are restricted to specialist centers in UA. AML risk
+  is the dominant late toxicity in Hodgkin survivors and a key reason
+  ABVD remains preferred over BEACOPP in early-stage / lower-IPI disease.
