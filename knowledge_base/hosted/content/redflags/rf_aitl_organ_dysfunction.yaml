@@ -1,0 +1,68 @@
+id: RF-AITL-ORGAN-DYSFUNCTION
+definition: >
+  AITL with baseline organ dysfunction precluding full-dose CHOEP / CHP-Bv:
+  LVEF <50% (anthracycline contraindicated; brentuximab-vedotin still OK
+  but CHP backbone keeps doxorubicin), CrCl <30 mL/min (cyclophosphamide
+  + etoposide dose constraints), bilirubin >3× ULN (vincristine /
+  doxorubicin metabolism), or active autoimmune hemolytic anemia driving
+  hemodynamic instability (AITL hallmark — DAT+ AIHA can produce profound
+  anemia distinct from cytopenias due to marrow involvement).
+definition_ua: >
+  AITL з базовою дисфункцією органів, що перешкоджає повнодозовій
+  CHOEP / CHP-Bv: LVEF <50% (антрациклін протипоказаний), CrCl <30 мл/хв
+  (обмеження доз циклофосфаміду та етопозиду), білірубін >3× ВМН
+  (метаболізм вінкристину/доксорубіцину), або активна автоімунна
+  гемолітична анемія з гемодинамічною нестабільністю (характерно для
+  AITL — DAT+ AIHA може давати глибоку анемію, відмінну від цитопеній
+  внаслідок ураження кісткового мозку).
+
+trigger:
+  type: composite
+  any_of:
+    - finding: "lvef_percent"
+      threshold: 50
+      comparator: "<"
+    - finding: "creatinine_clearance_ml_min"
+      threshold: 30
+      comparator: "<"
+    - finding: "bilirubin_ratio_to_uln"
+      threshold: 3
+      comparator: ">="
+    - finding: "active_uncontrolled_organ_failure"
+      value: true
+    - all_of:
+        - finding: "aiha_present"
+          value: true
+        - finding: "hemoglobin_g_dl"
+          threshold: 7.0
+          comparator: "<"
+
+clinical_direction: de-escalate
+
+severity: critical
+priority: 90
+category: organ-dysfunction
+
+relevant_diseases:
+  - DIS-AITL
+shifts_algorithm: []  # ALGO-AITL-1L still in scaffold; surfaced as
+                      # workup/de-escalation annotation in plan
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-27"
+draft: false
+
+notes: >
+  LVEF <50%: substitute brentuximab-CHP only if CD30+ (still has
+  doxorubicin — discuss liposomal-doxorubicin substitution or
+  gemcitabine-based regimen); for CD30-negative AITL with cardiac
+  contraindication consider GEM-P or pralatrexate. CrCl <30: reduce
+  cyclophosphamide 25-50% per renal-dosing protocol; etoposide 25%
+  reduction. Bilirubin >3× ULN: hold vincristine / doxorubicin until
+  cause identified (hepatic infiltration vs cholestasis). Active
+  AIHA with profound anemia: stabilize with transfusion + steroids
+  ± rituximab before initiating T-cell-directed induction; AITL-driven
+  AIHA often improves with prednisone-containing chemo backbone.

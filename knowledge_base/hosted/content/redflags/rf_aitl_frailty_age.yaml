@@ -1,0 +1,66 @@
+id: RF-AITL-FRAILTY-AGE
+definition: >
+  AITL patient frail or elderly unfit for full-dose CHOEP / CHP-Bv
+  induction: ECOG ≥3, OR age ≥75, OR (age ≥70 + ≥2 comorbidities +
+  albumin <3.5), OR explicit clinical assessment "unfit for intensive
+  chemotherapy". AITL median age at diagnosis is 65-70 — most patients
+  fall close to this threshold.
+definition_ua: >
+  AITL у літнього або непридатного для інтенсивної індукції пацієнта:
+  ECOG ≥3, АБО вік ≥75, АБО (вік ≥70 + ≥2 коморбідності + альбумін
+  <3.5), АБО клінічне рішення "unfit for intensive chemotherapy".
+  Медіана віку при діагностиці AITL — 65-70 років, більшість пацієнтів
+  близько цього порогу.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "ecog"
+      threshold: 3
+      comparator: ">="
+    - finding: "age"
+      threshold: 75
+      comparator: ">="
+    - finding: "fit_for_intensive_chemo"
+      value: false
+    - all_of:
+        - finding: "age"
+          threshold: 70
+          comparator: ">="
+        - finding: "comorbidity_count"
+          threshold: 2
+          comparator: ">="
+        - finding: "albumin_g_dl"
+          threshold: 3.5
+          comparator: "<"
+
+clinical_direction: de-escalate
+
+severity: major
+priority: 90
+category: frailty-age
+
+relevant_diseases:
+  - DIS-AITL
+shifts_algorithm: []  # ALGO-AITL-1L scaffold; surfaces de-escalation
+                      # annotation (CHOP / mini-CHOP / GEM-P) rather
+                      # than switching indication
+
+sources:
+  - SRC-NCCN-BCELL-2025
+  - SRC-ESMO-PTCL-2024
+
+last_reviewed: "2026-04-27"
+draft: false
+
+notes: >
+  AITL is the second-most-common PTCL subtype and predominantly affects
+  older adults (median 65-70). ECHELON-2 (brentuximab-CHP) included
+  patients up to age 80 but post-hoc subgroups suggest tolerability
+  concern >75. Frailty options: CHOP (drop etoposide), mini-CHOP
+  (50-60% doses) per GELA LNH03-7B paradigm extrapolated from DLBCL,
+  GEM-P (gemcitabine + methylprednisolone + cisplatin) as outpatient
+  alternative, or romidepsin-monotherapy in unfit relapse. Geriatric
+  assessment (G8 / CGA) prior to regimen selection. Direction
+  "de-escalate" conflicts with HIGH-RISK-BIOLOGY "intensify" — engine
+  surfaces conflict to MDT.
