@@ -1,0 +1,61 @@
+id: RF-GBM-FRAILTY-AGE
+definition: >
+  Frailty profile precluding standard 6-week TMZ chemoradiation in
+  glioblastoma: KPS <70, ECOG ≥3, OR (age ≥70 with declining functional
+  status), OR composite frailty (age ≥75 + Charlson ≥3). Routes to
+  hypofractionated RT (15 fractions) ± concurrent TMZ per
+  Perry/CCTG-CE.6 elderly trial, or RT alone, or best supportive care.
+definition_ua: >
+  Профіль frailty при GBM: KPS <70, ECOG ≥3, АБО (вік ≥70 з падаючим
+  функціональним статусом), АБО композитна frailty (вік ≥75 + Charlson
+  ≥3). Маршрут до гіпофракціонованої RT (15 фракцій) ± конкурентний
+  TMZ за Perry/CCTG-CE.6 elderly trial, або RT-only, або BSC.
+
+trigger:
+  type: composite_score
+  any_of:
+    - finding: "kps"
+      threshold: 70
+      comparator: "<"
+    - finding: "ecog"
+      threshold: 3
+      comparator: ">="
+    - all_of:
+        - finding: "age"
+          threshold: 70
+          comparator: ">="
+        - finding: "functional_decline"
+          value: true
+    - all_of:
+        - finding: "age"
+          threshold: 75
+          comparator: ">="
+        - finding: "charlson_score"
+          threshold: 3
+          comparator: ">="
+
+clinical_direction: de-escalate
+
+severity: major
+priority: 90
+category: frailty-age
+
+relevant_diseases:
+  - DIS-GBM
+shifts_algorithm: []  # not yet wired into ALGO-GBM-NEWLY-DIAGNOSED-1L.decision_tree — surfaces as plan annotation
+sources:
+  - SRC-NCCN-CNS-2025
+  - SRC-EANO-GBM-2024
+
+last_reviewed: "2026-04-27"
+draft: false
+
+notes: >
+  Perry CCTG-CE.6 (NEJM 2017) established hypofractionated RT 40 Gy /
+  15 fx + concurrent TMZ + adjuvant TMZ as standard for elderly (≥65)
+  GBM — OS 9.3 mo vs 7.6 mo for RT alone; benefit largest in
+  MGMT-methylated. KPS <60 / ECOG 4: best supportive care + steroids
+  + anti-epileptics (no survival benefit demonstrated for active
+  cancer treatment in this group). KPS 60-70: hypofractionated RT
+  alone (40 Gy / 15 fx) reasonable. Avoid bevacizumab in elderly
+  unfit (no OS benefit, adds AE).

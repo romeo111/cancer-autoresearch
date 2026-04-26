@@ -1,0 +1,57 @@
+id: RF-GBM-TRANSFORMATION-PROGRESSION
+definition: >
+  Glioblastoma progression on or after first-line Stupp regimen: MRI
+  evidence of true progression (RANO criteria — distinguished from
+  pseudoprogression by serial imaging / advanced techniques), early
+  recurrence <6 months post-RT (often pseudoprogression — repeat MRI
+  at 4-8 weeks before re-treatment decision), or distant new lesion.
+  Routes from upfront Stupp to recurrent-GBM algorithm (re-resection +
+  bevacizumab / TTF / regorafenib / lomustine / re-irradiation).
+definition_ua: >
+  Прогресія GBM на або після першої лінії Stupp: МРТ-докази справжньої
+  прогресії (RANO критерії — диференціація від псевдопрогресії через
+  серійний імеджинг / advanced techniques), ранній рецидив <6 міс
+  після RT (часто псевдопрогресія — повторити МРТ через 4-8 тижнів
+  до рішення про re-treatment), або віддалений новий вогнище. Маршрут
+  від upfront Stupp до recurrent-GBM алгоритму (re-resection +
+  bevacizumab / TTF / regorafenib / lomustine / re-irradiation).
+
+trigger:
+  type: composite_clinical
+  any_of:
+    - finding: "gbm_rano_progression"
+      value: true
+    - finding: "gbm_distant_new_lesion"
+      value: true
+    - finding: "gbm_early_recurrence_lt_6mo_post_rt"
+      value: true
+
+clinical_direction: intensify
+
+severity: critical
+priority: 60
+category: transformation-progression
+
+relevant_diseases:
+  - DIS-GBM
+shifts_algorithm: []
+
+sources:
+  - SRC-NCCN-CNS-2025
+  - SRC-EANO-GBM-2024
+
+last_reviewed: "2026-04-27"
+draft: false
+
+notes: >
+  Pseudoprogression occurs in ~30% post-Stupp at 3 mo MRI — does not
+  represent true tumor growth (treatment-related inflammation / radiation
+  effect); RANO criteria require either second confirmatory MRI or
+  outside-RT-field new disease before declaring progression. Confirmed
+  recurrence: re-resection if accessible (gross-total benefit per
+  retrospective series); systemic options include bevacizumab (BELOB,
+  AVAglio — improves PFS, no OS benefit; useful for steroid-sparing
+  edema control), regorafenib (REGOMA), lomustine, TMZ rechallenge if
+  MGMT-methylated and >12 mo PFS to first TMZ. Tumor-treating fields
+  approved for recurrence per EF-11. shifts_algorithm empty pending
+  ALGO-GBM-RECURRENT-2L authoring.

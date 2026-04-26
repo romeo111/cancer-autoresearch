@@ -1,0 +1,10 @@
+red_flag: RF-GBM-TRANSFORMATION-PROGRESSION
+findings:
+  gbm_rano_progression: false
+  gbm_distant_new_lesion: false
+  gbm_early_recurrence_lt_6mo_post_rt: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.

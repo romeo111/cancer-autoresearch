@@ -1,0 +1,11 @@
+red_flag: RF-GBM-HIGH-RISK-BIOLOGY
+findings:
+  mgmt_methylation_status: _NOT_unmethylated
+  idh_status: _NOT_wildtype
+  cdkn2a_b_homozygous_deletion: false
+  tert_promoter_mutation: false
+expected_fires: false
+_skeleton: true
+_clinician_todo: Auto-generated from trigger clauses. Inspect findings — for complex
+  triggers (nested any_of, threshold edge-cases) the skeleton may be over-permissive.
+  Edit and remove _skeleton marker once verified.
