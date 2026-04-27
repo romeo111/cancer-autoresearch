@@ -22,11 +22,11 @@ monitoring_schedule_id: null
 dose_adjustments:
   - condition: "Hepatic transaminase elevation Grade ≥3"
     modification: "Hold; resume at 75 mg BID after recovery"
-    source_refs: [SRC-NAVIGATE-DRILON-2018-DRILON-2018]
+    source_refs: [SRC-NAVIGATE-DRILON-2018]
   - condition: "Cognitive / mood AE Grade ≥2"
     modification: "Reduce to 75 mg BID; further reduction or discontinuation if persistent"
     rationale: "TRK class CNS effect (less than entrectinib)"
-    source_refs: [SRC-NAVIGATE-DRILON-2018-DRILON-2018]
+    source_refs: [SRC-NAVIGATE-DRILON-2018]
   - condition: "Withdrawal symptoms on discontinuation"
     modification: "Taper rather than abrupt stop"
 
@@ -41,7 +41,7 @@ ukraine_availability:
     track record.
 
 sources:
-  - SRC-NAVIGATE-DRILON-2018-DRILON-2018
+  - SRC-NAVIGATE-DRILON-2018
   - SRC-NCCN-NSCLC-2025
   - SRC-ESMO-NSCLC-METASTATIC-2024
 

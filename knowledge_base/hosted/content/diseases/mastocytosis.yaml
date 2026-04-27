@@ -34,7 +34,8 @@ epidemiology:
   median_os: "ASM ~3-4 yr; SM-AHN ~2 yr; MCL <6 months historically"
 
 sources:
-  - SRC-NCCN-AML-2025  # NCCN AML guideline covers SM-AHN with AML subtype; SRC-NCCN-SM-2025-2024 not yet ingested
+  - SRC-NCCN-AML-2025  # NCCN AML guideline covers SM-AHN with AML subtype; SRC-NCCN-SM-2025 referenced in regimens / RFs
+  - SRC-NCCN-SM-2025
   - SRC-ESMO-AML-2020
   - SRC-ONCOKB
 
@@ -43,7 +44,7 @@ reviewers: []
 
 metadata:
   proposal_status: partial
-  awaiting_proposal: "Subtype-specific staging (B-/C-findings → ISM vs SSM vs ASM transition; AHN-component characterization for SM-AHN) — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 hematologic-extension. Source gap: SRC-NCCN-SM-2025-2024 / dedicated SM guideline not yet ingested."
+  awaiting_proposal: "Subtype-specific staging (B-/C-findings → ISM vs SSM vs ASM transition; AHN-component characterization for SM-AHN) — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 hematologic-extension."
 
 notes: >
   Only ADVANCED forms get targeted therapy. WHO 2022 subtypes:

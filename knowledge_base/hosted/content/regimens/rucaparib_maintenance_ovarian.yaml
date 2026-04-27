@@ -20,7 +20,7 @@ monitoring_schedule_id: null
 dose_adjustments:
   - condition: "Grade 3 anemia"
     modification: "Hold until ≤Grade 1, resume at next-lower level (600 → 500 → 400 → 300 mg BID)"
-    source_refs: [SRC-ARIEL3-CORALEZA-2017]
+    source_refs: [SRC-ARIEL3-COLEMAN-2017]
   - condition: "Persistent Grade 2 nausea / vomiting"
     modification: "Aggressive antiemetics; reduce to 500 mg BID if unrelieved"
   - condition: "ALT/AST > 3× ULN with bilirubin > 2× ULN"
@@ -33,7 +33,7 @@ ukraine_availability:
   all_components_reimbursed: false
   notes: "Рукапариб не зареєстрований в Україні; доступ через клінічне дослідження або благодійний імпорт. Альтернативи з UA-доступом: REG-OLAPARIB-MAINT-OVARIAN (BRCA1/2) або REG-NIRAPARIB-MAINT-OVARIAN (HRD+ або all-comer)."
 
-sources: [SRC-NCCN-OVARIAN-2025, SRC-ESMO-OVARIAN-2024, SRC-ARIEL3-CORALEZA-2017]
+sources: [SRC-NCCN-OVARIAN-2025, SRC-ESMO-OVARIAN-2024, SRC-ARIEL3-COLEMAN-2017]
 last_reviewed: "2026-04-27"
 
 notes: >

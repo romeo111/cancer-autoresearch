@@ -32,7 +32,7 @@ shifts_algorithm: []
 
 sources:
   - SRC-NCCN-OVARIAN-2025
-  - SRC-ARIEL3-CORALEZA-2017
+  - SRC-ARIEL3-COLEMAN-2017
 
 last_reviewed: "2026-04-27"
 draft: false
