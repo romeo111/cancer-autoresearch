@@ -37,3 +37,6 @@ sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
 last_reviewed:
 notes: >
   Workhorse 1L ALK inhibitor. CNS efficacy critical (high CNS-met rate in ALK+).
+
+notes_patient: >
+  Таблетка-TKI, що блокує ALK-fusion при раку легені. Стандарт першої лінії для ALK-позитивної форми. Добре проникає в мозок і добре переноситься.

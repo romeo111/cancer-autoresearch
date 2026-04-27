@@ -45,3 +45,6 @@ sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
 last_reviewed: null
 notes: >
   CodeBreaK 200 vs docetaxel in 2L: PFS benefit, OS not significant. Approved 2L+ for KRAS G12C-mutant NSCLC.
+
+notes_patient: >
+  Таблетка, що блокує мутацію KRAS G12C — донедавна вважалася «непридатною для таргетної терапії». Застосовується при раку легені після першої лінії.

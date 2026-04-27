@@ -37,3 +37,6 @@ sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
 last_reviewed:
 notes: >
   Always combined with dabrafenib for BRAF V600E NSCLC, melanoma, ATC. Cardiac monitoring critical.
+
+notes_patient: >
+  Таблетка, що блокує MEK — сигнал нижче за BRAF. Завжди йде в парі з BRAF-інгібітором (dabrafenib або encorafenib) для меланоми та деяких раків легені.

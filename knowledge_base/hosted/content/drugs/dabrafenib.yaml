@@ -38,3 +38,6 @@ sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
 last_reviewed:
 notes: >
   BRAF V600E NSCLC 1L+. Pyrexia management: hold + restart at lower dose; antipyretics. Combination essential.
+
+notes_patient: >
+  Таблетка-TKI, що блокує мутацію BRAF V600 у пухлинній клітині. Майже завжди комбінують із trametinib. Може спричиняти лихоманку — повідомляйте лікарю одразу.

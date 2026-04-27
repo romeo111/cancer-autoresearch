@@ -38,3 +38,6 @@ sources: [SRC-NCCN-NSCLC-2025, SRC-ESMO-NSCLC-METASTATIC-2024]
 last_reviewed:
 notes: >
   FLAURA: osimertinib superior to 1G TKIs in 1L EGFR-mut metastatic. FLAURA2: osimertinib + chemo further extends PFS. ADAURA: adjuvant 3-year osi reduces recurrence by 80% vs placebo in resected EGFR-mut stage IB-IIIA.
+
+notes_patient: >
+  Таблетка-TKI 3-го покоління, що блокує мутації EGFR (включно з T790M) у раку легені. Добре проникає в мозок. Зазвичай добре переноситься, приймається раз на добу.
