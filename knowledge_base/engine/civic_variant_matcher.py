@@ -167,8 +167,12 @@ def matches_civic_entry(
     if not qg or not qv or not cg:
         return False
 
-    # ── Rule 1: exact match ──
-    if qg == cg.upper() and qv == cv:
+    # ── Rule 1: exact match (case-insensitive on both sides) ──
+    # casefold() chosen over .lower() for non-ASCII safety. Phase 3-O
+    # surfaced NPM1 W288fs vs CIViC W288FS as a real miss; gene-side made
+    # case-insensitive defensively (HGNC symbols are conventionally upper
+    # but some CIViC entries arrive in non-canonical case).
+    if qg.casefold() == cg.casefold() and qv.casefold() == cv.casefold():
         return True
 
     # ── Pan-fusion-query path (rule 3) ──

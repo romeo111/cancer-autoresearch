@@ -214,6 +214,23 @@ class TestMatchesCivicEntry:
             civic_gene="BCR::ABL1", civic_variant="Fusion AND ABL1 T315I",
         ) is False
 
+    # Phase 3.5 — Rule 1 case-insensitive on variant.
+    def test_23_rule1_case_insensitive_variant_npm1_w288fs(self):
+        # NPM1 W288fs (lowercase fs) vs CIViC W288FS (uppercase). Surfaced
+        # by Phase 3-O via SnapshotCIViCClient against real 2026-04-25 snapshot.
+        assert matches_civic_entry(
+            query_gene="NPM1", query_variant="W288fs",
+            civic_gene="NPM1", civic_variant="W288FS",
+        ) is True
+
+    # Phase 3.5 — Rule 1 case-insensitive on gene (defensive).
+    def test_24_rule1_case_insensitive_gene_lowercase_braf(self):
+        # HGNC convention is uppercase; defensive against non-canonical input.
+        assert matches_civic_entry(
+            query_gene="braf", query_variant="V600E",
+            civic_gene="BRAF", civic_variant="V600E",
+        ) is True
+
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
