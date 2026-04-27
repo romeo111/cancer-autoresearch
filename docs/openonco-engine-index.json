@@ -1,6 +1,6 @@
 {
   "core": "openonco-engine-core.zip",
-  "core_version": "46700c74d25b",
+  "core_version": "b0d9d93653ee",
   "diseases": {
     "DIS-AITL": "disease/openonco-dis-aitl.zip",
     "DIS-ALCL": "disease/openonco-dis-alcl.zip",

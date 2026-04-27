@@ -58,6 +58,7 @@ from knowledge_base.engine import (
 )
 from knowledge_base.clients.ctgov_client import search_trials
 from knowledge_base import __version__ as OPENONCO_VERSION
+from knowledge_base import __release_date__ as OPENONCO_RELEASE_DATE
 from knowledge_base.stats import collect_stats, format_html_widget
 from scripts.site_cases import CASE_CATEGORIES, CASES, CaseEntry
 from scripts.site_styles import STYLESHEET as _STYLE_CSS
@@ -622,7 +623,7 @@ def _render_top_bar(active: str = "", target_lang: str = "uk",
     return f"""<header class="top-bar">
   <div class="brand-line">
     <a href="{home_path}" class="brand-mini">OpenOnco</a>
-    <span class="brand-version" title="Project version">v{OPENONCO_VERSION}</span>
+    <span class="brand-version" title="Released {OPENONCO_RELEASE_DATE}">v{OPENONCO_VERSION} · {OPENONCO_RELEASE_DATE}</span>
   </div>
   <nav class="top-nav">
     <a href="{home_path}"{cls("home")}>{labels['home']}</a>
