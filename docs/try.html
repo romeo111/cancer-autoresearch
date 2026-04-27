@@ -1172,12 +1172,9 @@ async function loadDiseaseModule(diseaseId) {
   // every disease swap.
   try {
     await pyodide.runPythonAsync(
-      "from knowledge_base.engine import apply_disease_module
-" +
-      "from pathlib import Path
-" +
-      "apply_disease_module(Path('knowledge_base/hosted/content'))
-"
+      "from knowledge_base.engine import apply_disease_module\n" +
+      "from pathlib import Path\n" +
+      "apply_disease_module(Path('knowledge_base/hosted/content'))\n"
     );
   } catch (e) {
     console.warn('[OpenOnco] apply_disease_module failed (continuing):', e);
