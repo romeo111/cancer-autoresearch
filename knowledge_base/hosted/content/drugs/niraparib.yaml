@@ -36,3 +36,6 @@ sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
 last_reviewed:
 notes: >
   BRCA-mutant mCRPC option; thrombocytopenia management more demanding than olaparib. UA-access barrier.
+
+notes_patient: >
+  Таблетка-PARPi: блокує лагодження ДНК у пухлинних клітинах. Використовується як підтримуюча терапія при раку яєчників. Контролюємо аналіз крові — можливе зниження тромбоцитів і нейтрофілів.
