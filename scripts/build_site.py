@@ -476,6 +476,88 @@ def bundle_questionnaires(output_dir: Path) -> dict:
     return {"path": "questionnaires.json", "count": len(payload)}
 
 
+def bundle_critical_explanations(output_dir: Path) -> dict:
+    """Expand critical_field_explanations.yaml (base + per_disease) into
+    a flat lookup at docs/critical_explanations.json so try.html can do
+    O(1) lookup by (disease_id, field) without runtime merging.
+
+    Coverage gate: every (disease_id, field) marked impact='critical' in
+    a questionnaire must resolve. Build fails loudly otherwise — keeps
+    new questionnaires from silently shipping unexplained critical fields.
+    """
+    src = REPO_ROOT / "knowledge_base" / "hosted" / "content" / "critical_field_explanations.yaml"
+    qsrc = REPO_ROOT / "knowledge_base" / "hosted" / "content" / "questionnaires"
+    if not src.is_file():
+        return {"path": "critical_explanations.json", "count": 0, "skipped": True}
+    import yaml as _yaml
+    doc = _yaml.safe_load(src.read_text(encoding="utf-8")) or {}
+    entries = doc.get("entries") or []
+    generic: dict = {}
+    by_disease: dict = {}
+    for ent in entries:
+        field = ent.get("field")
+        base = ent.get("base") or {}
+        if not field or not base:
+            continue
+        generic[field] = {
+            "short": base.get("short", ""),
+            "why": base.get("why", ""),
+            "affects": list(base.get("affects") or []),
+            "sources": list(base.get("sources") or []),
+        }
+        for did, override in (ent.get("per_disease") or {}).items():
+            merged = dict(generic[field])
+            if "short" in override:
+                merged["short"] = override["short"]
+            if "why" in override:
+                merged["why"] = override["why"]
+            if "why_addendum" in override:
+                merged["why"] = (merged["why"].rstrip() + "\n\n" + override["why_addendum"]).strip()
+            if "affects" in override:
+                merged["affects"] = list(override["affects"])
+            if "affects_addendum" in override:
+                merged["affects"] = list(merged["affects"]) + [override["affects_addendum"]]
+            if "sources" in override:
+                merged["sources"] = list(override["sources"])
+            by_disease.setdefault(did, {})[field] = merged
+
+    needed: set = set()
+    if qsrc.is_dir():
+        for path in sorted(qsrc.glob("*.yaml")):
+            try:
+                qd = _yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+            except Exception:
+                continue
+            did = qd.get("disease_id")
+            for g in qd.get("groups") or []:
+                for q in g.get("questions") or []:
+                    if q.get("impact") == "critical":
+                        needed.add((did, q.get("field")))
+    unresolved = [
+        (d, f) for d, f in needed
+        if f not in generic and f not in (by_disease.get(d) or {})
+    ]
+    if unresolved:
+        raise RuntimeError(
+            "critical_field_explanations: missing entries for "
+            + ", ".join(f"{d}/{f}" for d, f in sorted(unresolved))
+        )
+
+    payload = {
+        "version": doc.get("version", "0.1"),
+        "status": doc.get("status", "draft_pending_review"),
+        "generic": generic,
+        "by_disease": by_disease,
+    }
+    out = output_dir / "critical_explanations.json"
+    out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return {
+        "path": "critical_explanations.json",
+        "fields": len(generic),
+        "disease_overrides": sum(len(v) for v in by_disease.values()),
+    }
+
+
 # ── Landing page (index.html) ─────────────────────────────────────────────
 
 
@@ -5964,6 +6046,7 @@ def build_site(output_dir: Path) -> dict:
 
     examples_payload = bundle_examples(output_dir)
     questionnaires_payload = bundle_questionnaires(output_dir)
+    critical_explanations_payload = bundle_critical_explanations(output_dir)
     disease_coverage_payload = bundle_disease_coverage(output_dir)
 
     return {
@@ -5975,6 +6058,7 @@ def build_site(output_dir: Path) -> dict:
         "service_worker": sw_payload,
         "examples_payload": examples_payload,
         "questionnaires_payload": questionnaires_payload,
+        "critical_explanations_payload": critical_explanations_payload,
         "disease_coverage_payload": disease_coverage_payload,
         "landing_assets": landing_assets,
     }

@@ -1,0 +1,429 @@
+{
+  "version": "0.1",
+  "status": "draft_pending_review",
+  "generic": {
+    "demographics.ecog": {
+      "short": "ECOG визначає, чи пацієнт фізично витримає активне лікування.",
+      "why": "ECOG Performance Status — кількісна шкала функціонального стану (0=\nповністю активний → 4=прикутий до ліжка). У переважній більшості\nрегімен-визначальних алгоритмів engine використовує ECOG як перший\nбезбіомаркерний фільтр: він відсікає intensive-track для пацієнтів,\nякі не переживуть токсичність, ще ДО того як розглядати біомаркери.\n",
+      "affects": [
+        "Вибір інтенсивності схеми (intensive vs reduced-intensity vs BSC)",
+        "Допуск до high-dose chemo + autoSCT/alloSCT (зазвичай ECOG ≤2)",
+        "Допуск до клінічних випробувань (більшість вимагає ECOG ≤2)",
+        "Розрахунок прогностичних індексів (IPI, R-IPI, IPSS-R, MIPI, ISS)",
+        "При ECOG 4 — engine зазвичай повертає лише best supportive care"
+      ],
+      "sources": [
+        "SRC-ECOG-OKEN-1982"
+      ]
+    },
+    "demographics.age": {
+      "short": "Вік модулює дози, вибір регімена і допуск до трансплантації.",
+      "why": "Вік сам по собі НЕ є контраіндикацією (CHARTER: efficacy-first), але\nвін входить у більшість прогностичних шкал (IPI, R-ISS, IPSS-R, MIPI)\nі визначає верхні межі для intensive протоколів та трансплантації.\nEngine використовує вік разом із ECOG/коморбідностями, не як\nсамостійний фільтр.\n",
+      "affects": [
+        "Бал у IPI / R-IPI / IPSS-R / MIPI / ISS / FLIPI",
+        "Допуск до високодозної терапії з autoSCT (зазвичай ≤70-75)",
+        "Вибір induction-схеми у AML/ALL (intensive vs hypomethylating)",
+        "Допуск у клінічні випробування (вікові межі протоколів)"
+      ],
+      "sources": [
+        "SRC-NCCN-AGE-FRAILTY-2024"
+      ]
+    },
+    "line_of_therapy": {
+      "short": "Лінія терапії повністю змінює простір допустимих регімен-блоків.",
+      "why": "Engine має окремі алгоритм-блоки для 1L / 2L / 3L+. Той самий пацієнт\nу 1L і 2L отримує абсолютно різні рекомендації: previous exposure\nблокує retreatment-резистентні класи (наприклад, post-BTKi у CLL\nвиключає re-BTKi), а relapsed/refractory статус відкриває targeted\nагенти, які у 1L заборонені guideline-ами.\n",
+      "affects": [
+        "Вибір алгоритм-блоку (1L vs salvage vs maintenance)",
+        "Виключення класів, до яких пацієнт уже резистентний",
+        "Допуск до CAR-T / bispecifics (зазвичай ≥3L у DLBCL/MM)",
+        "Розгляд clinical-trial referral (часто primary option у 3L+)"
+      ],
+      "sources": [
+        "SRC-NCCN-LINE-OF-THERAPY-DEFINITIONS"
+      ]
+    },
+    "findings.hbsag": {
+      "short": "HBsAg критичний перед anti-CD20 / high-dose стероїдами — ризик HBV reactivation з фульмінантним гепатитом.",
+      "why": "Anti-CD20 (rituximab, obinutuzumab) і пролонговані стероїди викликають\nреактивацію хронічного або resolved HBV з risk fatal hepatitis. AASLD\n2024 і ESMO infection-prevention guideline вимагають universal HBsAg\n+ anti-HBc screening ПЕРЕД першою дозою. HBsAg+ → entecavir/TDF\nprophylaxis обов'язковий за 1-2 тиж до старту і ≥12 міс після\nостанньої дози.\n",
+      "affects": [
+        "Призначення antiviral prophylaxis (entecavir/TDF) — обов'язкове при HBsAg+",
+        "Час старту терапії (затримка 1-2 тиж на ramp-up antiviral)",
+        "Моніторинг ALT + HBV DNA кожні 1-3 міс під час лікування",
+        "Продовження prophylaxis ≥12 міс після завершення anti-CD20",
+        "Відмова від anti-CD20 на користь альтернатив, якщо prophylaxis недоступний"
+      ],
+      "sources": [
+        "SRC-AASLD-HBV-2024",
+        "SRC-EASL-HBV-2025",
+        "SRC-ESMO-INFECTIONS-2016"
+      ]
+    },
+    "findings.iwcll_indication_present": {
+      "short": "Без iwCLL active-disease criteria CLL не лікують — watch-and-wait перевершує ранній старт.",
+      "why": "Random-старт терапії у asymptomatic CLL погіршує OS (CLL1, German\nCLL Study Group). Лікування стартує ЛИШЕ при формальних iwCLL\nactive-disease criteria (≥1 з: progressive lymphocytosis з doubling\n<6 міс, progressive cytopenias Hb<10 / Plt<100, bulky/painful\nadenopathy, splenomegaly з симптомами, B-symptoms, autoimmune\ncytopenia рефрактерна до стероїдів).\n",
+      "affects": [
+        "Старт vs watch-and-wait — фундаментальне рішення 1L",
+        "Якщо false → engine видає 'no treatment indication' замість регімена",
+        "Часовий горизонт next-visit (W&W → 3-6 міс reassessment)"
+      ],
+      "sources": [
+        "SRC-IWCLL-HALLEK-2018",
+        "SRC-ESMO-CLL-2024"
+      ]
+    },
+    "biomarkers.BIO-CLL-HIGH-RISK-GENETICS": {
+      "short": "TP53/del(17p)/complex karyotype визначають вибір BTKi/BCL2 vs застарілі CIT.",
+      "why": "High-risk genetics (TP53mut, del(17p), complex karyotype, unmutated\nIGHV) роблять FCR/BR клінічно неприйнятними — короткий PFS, високий\nризик Richter. Engine обере BTKi або fixed-duration VenO. NCCN\nprefers Ven+Obinutuzumab для del(17p)/TP53 — fixed-duration з\nкращим quality of life ніж indefinite BTKi.\n",
+      "affects": [
+        "Виключення CIT (FCR/BR) як 1L",
+        "Вибір між continuous BTKi (acala/zanu) та fixed-duration VenO",
+        "Інтенсивність моніторингу (high-risk → коротші intervals)",
+        "Раннє обговорення alloSCT при young-fit з double-hit (TP53 + complex)"
+      ],
+      "sources": [
+        "SRC-CLL14-FISCHER-2019",
+        "SRC-ESMO-CLL-2024",
+        "SRC-NCCN-CLL-2024"
+      ]
+    },
+    "findings.tp53_mutation": {
+      "short": "TP53mut робить FCR/BR клінічно беззмістовними — короткий PFS, ризик Richter.",
+      "why": "~5-7% newly-diagnosed CLL мають TP53mut (без del(17p)); ще ~5-10% —\ndel(17p) ± TP53mut. Обидва — найгірший single-marker prognostic.\nStandard chemoimmunotherapy дає median PFS <2 років. BTKi/BCL2-\ntargeted перевершують CIT з великим ефектом.\n",
+      "affects": [
+        "Hard contraindication для FCR/BR як 1L",
+        "Direct path → BTKi або fixed-duration VenO",
+        "Раннє обговорення alloSCT при молодих fit пацієнтах"
+      ],
+      "sources": [
+        "SRC-ESMO-CLL-2024",
+        "SRC-NCCN-CLL-2024"
+      ]
+    },
+    "findings.del_17p": {
+      "short": "del(17p) — найгірший single marker у CLL; same management як TP53mut.",
+      "why": "del(17p) виявляється FISH у ~5-10% NDxg CLL. Прогностично еквівалентний\nTP53mut і часто з ним co-existує. Engine трактує del(17p) OR TP53mut\nяк композитний high-risk trigger.\n",
+      "affects": [
+        "Те саме що TP53mut — виключає CIT, направляє на targeted",
+        "Композитний 'TP53-aberrant' стан з тими ж терапевтичними наслідками"
+      ],
+      "sources": [
+        "SRC-ESMO-CLL-2024"
+      ]
+    },
+    "biomarkers.BIO-HCV-RNA": {
+      "short": "HCV RNA+ при HCV-MZL — antiviral-first track перевершує chemoimmunotherapy.",
+      "why": "У HCV-associated marginal zone lymphoma elimination HCV (DAA — sof/vel\nабо glec/pib) дає lymphoma response у 40-75% без жодної chemo. Це\neтіологічна терапія, не паліатив. Якщо HCV RNA negative — engine\nповертається до стандартного BR-track.\n",
+      "affects": [
+        "Вибір antiviral-first vs immediate BR-aggressive",
+        "Час старту chemo (відкласти на 12-24 тиж DAA, потім reassess)",
+        "Гепатологічний референс перед стартом",
+        "Fallback на BR якщо HCV negative або після DAA немає response"
+      ],
+      "sources": [
+        "SRC-AASLD-HCV-2023",
+        "SRC-EASL-HCV-2024",
+        "SRC-ARCAINI-2014",
+        "SRC-ESMO-MZL-2024"
+      ]
+    },
+    "findings.HCV RNA positive": {
+      "short": "Технічне дзеркало BIO-HCV-RNA для engine clause — заповнюється автоматично.",
+      "why": "Boolean форма HCV RNA для рул-енджин патернів. Семантично ідентичне\nBIO-HCV-RNA (positive/negative). Дублювання — implementation detail\nengine, не клінічна differentia.\n",
+      "affects": [
+        "Те саме що BIO-HCV-RNA"
+      ],
+      "sources": []
+    },
+    "demographics.decompensated_cirrhosis": {
+      "short": "Декомпенсований цироз (Child-Pugh B/C) блокує glec/pib і обмежує choice DAA + chemo.",
+      "why": "Glecaprevir/pibrentasvir contraindicated при Child-Pugh B/C. Sof/vel\n± ribavirin — лише вибір. Декомпенсований цироз також знижує\nпереносимість R-CHOP/BR (печінкова токсичність, тромбоцитопенія).\nEngine розглядає dose-reduction або відкладення active treatment.\n",
+      "affects": [
+        "Вибір DAA-режима (sof/vel only, не glec/pib)",
+        "Можлива відмова від chemoimmunotherapy на користь rituximab-mono",
+        "Hepatology consult обов'язковий",
+        "Розгляд orthotopic liver transplant referral при young-fit"
+      ],
+      "sources": [
+        "SRC-AASLD-HCV-2023",
+        "SRC-CHILD-PUGH-1973"
+      ]
+    },
+    "findings.dominant_nodal_mass_cm": {
+      "short": "Bulky disease (≥7 см) — пряма indication для chemo-first навіть при HCV+.",
+      "why": "Bulky tumor burden не reduce достатньо швидко лише antiviral-ом —\nризик progressive симптомів / compression syndrome. Engine\nпереключає на BR-aggressive негайно, з DAA конкурентно або після.\n",
+      "affects": [
+        "Override antiviral-first track → BR-aggressive як 1L",
+        "Прискорений старт terapія (тижні, не місяці)",
+        "Розгляд debulking radiation якщо локалізована маса"
+      ],
+      "sources": [
+        "SRC-ESMO-MZL-2024"
+      ]
+    },
+    "findings.symptomatic_b_symptoms_severe": {
+      "short": "Тяжкі B-симптоми — relative indication для chemo навіть без bulky.",
+      "why": "Severe B-symptoms (T>38°C, drenching night sweats, weight loss >10%\nза 6 міс) сигналізують aggressive lymphoma biology. Watchful waiting\nнеприйнятний. Engine розглядає BR незалежно від HCV статусу.\n",
+      "affects": [
+        "Relative indication для immediate chemo",
+        "Workup на трансформацію (PET-CT, repeat biopsy найбільшого вузла)"
+      ],
+      "sources": [
+        "SRC-ESMO-MZL-2024"
+      ]
+    },
+    "findings.Indolent presentation (non-bulky, asymptomatic or minimally symptomatic)": {
+      "short": "Технічне дзеркало для algorithm clause — заповнюється автоматично.",
+      "why": "Boolean composite для рул-енджин: true ⇔ non-bulky (<7cm) AND no\nsevere B-symptoms. Не клінічно вводиться окремо.\n",
+      "affects": [
+        "Дозволяє antiviral-first track при HCV+"
+      ],
+      "sources": []
+    },
+    "findings.biopsy_shows_dlbcl": {
+      "short": "Трансформація в DLBCL — повна зміна алгоритму з MZL на DLBCL-specific.",
+      "why": "Histologic transformation indolent → aggressive lymphoma (DLBCL,\nRichter в CLL) — окрема клінічна сутність. Лікування вже НЕ MZL/CLL,\nа de novo DLBCL: R-CHOP-21 ± consolidation, потенційно CAR-T у 2L.\nPrognosis значно гірший.\n",
+      "affects": [
+        "Перехід engine на DLBCL algorithm (інша disease entity)",
+        "Старт R-CHOP-21 × 6 циклів",
+        "Workup на CNS involvement (CNS-IPI)",
+        "Раннє обговорення CD19 CAR-T при relapsed/refractory"
+      ],
+      "sources": [
+        "SRC-ESMO-DLBCL-2024"
+      ]
+    },
+    "demographics.fit_for_transplant": {
+      "short": "Transplant-eligibility — clinical judgment, не вікова межа; визначає 1L architecture у MM.",
+      "why": "Transplant-eligibility — інтегральна оцінка hematologist (frailty,\ncardiac/renal, prior treatments, social support), а НЕ просто age\ncutoff. Eligible пацієнти отримують induction → autoSCT →\nmaintenance; ineligible — continuous induction до progression.\n",
+      "affects": [
+        "Вибір induction (VRd/D-VRd → ASCT vs continuous DRd / VRd-lite)",
+        "Stem-cell collection до melphalan exposure",
+        "Maintenance strategy (lenalidomide indefinite vs fixed)"
+      ],
+      "sources": [
+        "SRC-ESMO-MM-2023",
+        "SRC-IMWG-FRAILTY-2015"
+      ]
+    },
+    "biomarkers.BIO-MM-CYTOGENETICS-HR": {
+      "short": "High-risk cytogenetics (t(4;14), t(14;16), del(17p), gain1q ≥3) — D-VRd замість VRd.",
+      "why": "Composite high-risk cytogenetics має значно гірший PFS на VRd alone.\nDaratumumab-quadruplet (D-VRd, GRIFFIN/PERSEUS) дає значно глибші\nresponses і покращує MRD-negativity rate, з прийнятним safety\nprofile.\n",
+      "affects": [
+        "Default 1L induction → D-VRd замість VRd при transplant-eligible",
+        "Інтенсифікація maintenance (consider Dara-Len замість Len-mono)",
+        "Запис у early-relapse-risk моніторинг"
+      ],
+      "sources": [
+        "SRC-PERSEUS-SONNEVELD-2024",
+        "SRC-GRIFFIN-VOORHEES-2023",
+        "SRC-ESMO-MM-2023"
+      ]
+    },
+    "findings.creatinine_clearance_ml_min": {
+      "short": "CrCl визначає dose-adjustments для lenalidomide, daratumumab, melphalan.",
+      "why": "Renal impairment (frequent у MM через cast nephropathy) вимагає\ndose-adjusted lenalidomide (CrCl <60 — 10 mg; <30 — 15 mg q48h або\nVd-only). Bortezomib безпечний при будь-якому CrCl. Daratumumab\nбезпечний, але потребує enhanced monitoring перших інфузій.\n",
+      "affects": [
+        "Lenalidomide dose (25/15/10 mg по CrCl bands)",
+        "Hydration / monitoring schedule перших циклів",
+        "Розгляд plasma exchange при cast nephropathy + light-chain",
+        "Можлива заміна Len → Pomalidomide (renally safer)"
+      ],
+      "sources": [
+        "SRC-ESMO-MM-2023",
+        "SRC-IMWG-RENAL-2016"
+      ]
+    },
+    "demographics.pregnancy_status": {
+      "short": "Вагітність — абсолютна заборона lenalidomide / pomalidomide / thalidomide (тератогени).",
+      "why": "IMiDs (len, pom, thal) — категорія X, абсолютна contraindication при\nвагітності або можливості завагітніти без contraception. REMS у US\nвимагає 2 негативних тестів + 2 методів контрацепції. Engine блокує\nVRd / D-VRd / DRd і fall'ить на bortezomib + dex (Vd) як bridging.\n",
+      "affects": [
+        "Hard block на IMiD-containing регімени",
+        "Default fallback → Vd або CyBorD (cyclophosphamide+bort+dex)",
+        "OB/GYN consult обов'язковий перед стартом",
+        "REMS-style enrollment (де доступний)"
+      ],
+      "sources": [
+        "SRC-FDA-LENALIDOMIDE-LABEL",
+        "SRC-ESMO-MM-2023"
+      ]
+    }
+  },
+  "by_disease": {
+    "DIS-AML": {
+      "demographics.ecog": {
+        "short": "ECOG визначає, чи пацієнт фізично витримає активне лікування.",
+        "why": "ECOG Performance Status — кількісна шкала функціонального стану (0=\nповністю активний → 4=прикутий до ліжка). У переважній більшості\nрегімен-визначальних алгоритмів engine використовує ECOG як перший\nбезбіомаркерний фільтр: він відсікає intensive-track для пацієнтів,\nякі не переживуть токсичність, ще ДО того як розглядати біомаркери.\n",
+        "affects": [
+          "Вибір інтенсивності схеми (intensive vs reduced-intensity vs BSC)",
+          "Допуск до high-dose chemo + autoSCT/alloSCT (зазвичай ECOG ≤2)",
+          "Допуск до клінічних випробувань (більшість вимагає ECOG ≤2)",
+          "Розрахунок прогностичних індексів (IPI, R-IPI, IPSS-R, MIPI, ISS)",
+          "При ECOG 4 — engine зазвичай повертає лише best supportive care",
+          "ECOG ≥2 у віці ≥75 → engine надає перевагу azacitidine+venetoclax замість 7+3."
+        ],
+        "sources": [
+          "SRC-ECOG-OKEN-1982"
+        ]
+      },
+      "demographics.age": {
+        "short": "Вік модулює дози, вибір регімена і допуск до трансплантації.",
+        "why": "Вік сам по собі НЕ є контраіндикацією (CHARTER: efficacy-first), але\nвін входить у більшість прогностичних шкал (IPI, R-ISS, IPSS-R, MIPI)\nі визначає верхні межі для intensive протоколів та трансплантації.\nEngine використовує вік разом із ECOG/коморбідностями, не як\nсамостійний фільтр.\n",
+        "affects": [
+          "Бал у IPI / R-IPI / IPSS-R / MIPI / ISS / FLIPI",
+          "Допуск до високодозної терапії з autoSCT (зазвичай ≤70-75)",
+          "Вибір induction-схеми у AML/ALL (intensive vs hypomethylating)",
+          "Допуск у клінічні випробування (вікові межі протоколів)",
+          "Age ≥75 → engine рекомендує aza+ven замість 7+3 навіть при ECOG 0-1."
+        ],
+        "sources": [
+          "SRC-NCCN-AGE-FRAILTY-2024"
+        ]
+      }
+    },
+    "DIS-DLBCL": {
+      "demographics.ecog": {
+        "short": "ECOG визначає, чи пацієнт фізично витримає активне лікування.",
+        "why": "ECOG Performance Status — кількісна шкала функціонального стану (0=\nповністю активний → 4=прикутий до ліжка). У переважній більшості\nрегімен-визначальних алгоритмів engine використовує ECOG як перший\nбезбіомаркерний фільтр: він відсікає intensive-track для пацієнтів,\nякі не переживуть токсичність, ще ДО того як розглядати біомаркери.\n",
+        "affects": [
+          "Вибір інтенсивності схеми (intensive vs reduced-intensity vs BSC)",
+          "Допуск до high-dose chemo + autoSCT/alloSCT (зазвичай ECOG ≤2)",
+          "Допуск до клінічних випробувань (більшість вимагає ECOG ≤2)",
+          "Розрахунок прогностичних індексів (IPI, R-IPI, IPSS-R, MIPI, ISS)",
+          "При ECOG 4 — engine зазвичай повертає лише best supportive care",
+          "ECOG ≥3 виключає R-CHOP; розглядається R-mini-CHOP або palliative."
+        ],
+        "sources": [
+          "SRC-ECOG-OKEN-1982"
+        ]
+      },
+      "demographics.age": {
+        "short": "Вік модулює дози, вибір регімена і допуск до трансплантації.",
+        "why": "Вік сам по собі НЕ є контраіндикацією (CHARTER: efficacy-first), але\nвін входить у більшість прогностичних шкал (IPI, R-ISS, IPSS-R, MIPI)\nі визначає верхні межі для intensive протоколів та трансплантації.\nEngine використовує вік разом із ECOG/коморбідностями, не як\nсамостійний фільтр.\n",
+        "affects": [
+          "Бал у IPI / R-IPI / IPSS-R / MIPI / ISS / FLIPI",
+          "Допуск до високодозної терапії з autoSCT (зазвичай ≤70-75)",
+          "Вибір induction-схеми у AML/ALL (intensive vs hypomethylating)",
+          "Допуск у клінічні випробування (вікові межі протоколів)",
+          "Age >60 — додає 1 бал до IPI; age >80 → R-mini-CHOP як default."
+        ],
+        "sources": [
+          "SRC-NCCN-AGE-FRAILTY-2024"
+        ]
+      }
+    },
+    "DIS-MM": {
+      "demographics.ecog": {
+        "short": "ECOG визначає, чи пацієнт фізично витримає активне лікування.",
+        "why": "ECOG Performance Status — кількісна шкала функціонального стану (0=\nповністю активний → 4=прикутий до ліжка). У переважній більшості\nрегімен-визначальних алгоритмів engine використовує ECOG як перший\nбезбіомаркерний фільтр: він відсікає intensive-track для пацієнтів,\nякі не переживуть токсичність, ще ДО того як розглядати біомаркери.\n",
+        "affects": [
+          "Вибір інтенсивності схеми (intensive vs reduced-intensity vs BSC)",
+          "Допуск до high-dose chemo + autoSCT/alloSCT (зазвичай ECOG ≤2)",
+          "Допуск до клінічних випробувань (більшість вимагає ECOG ≤2)",
+          "Розрахунок прогностичних індексів (IPI, R-IPI, IPSS-R, MIPI, ISS)",
+          "При ECOG 4 — engine зазвичай повертає лише best supportive care",
+          "ECOG ≥2 + frailty → engine знижує дози (Vd замість VRd) як frailty-adjusted режим."
+        ],
+        "sources": [
+          "SRC-ECOG-OKEN-1982"
+        ]
+      },
+      "demographics.age": {
+        "short": "Вік модулює дози, вибір регімена і допуск до трансплантації.",
+        "why": "Вік сам по собі НЕ є контраіндикацією (CHARTER: efficacy-first), але\nвін входить у більшість прогностичних шкал (IPI, R-ISS, IPSS-R, MIPI)\nі визначає верхні межі для intensive протоколів та трансплантації.\nEngine використовує вік разом із ECOG/коморбідностями, не як\nсамостійний фільтр.\n",
+        "affects": [
+          "Бал у IPI / R-IPI / IPSS-R / MIPI / ISS / FLIPI",
+          "Допуск до високодозної терапії з autoSCT (зазвичай ≤70-75)",
+          "Вибір induction-схеми у AML/ALL (intensive vs hypomethylating)",
+          "Допуск у клінічні випробування (вікові межі протоколів)",
+          "Age ≤70 + fit → transplant-eligible track (VRd→ASCT→Lenalidomide maint)."
+        ],
+        "sources": [
+          "SRC-NCCN-AGE-FRAILTY-2024"
+        ]
+      }
+    },
+    "DIS-PDAC": {
+      "demographics.ecog": {
+        "short": "ECOG визначає, чи пацієнт фізично витримає активне лікування.",
+        "why": "ECOG Performance Status — кількісна шкала функціонального стану (0=\nповністю активний → 4=прикутий до ліжка). У переважній більшості\nрегімен-визначальних алгоритмів engine використовує ECOG як перший\nбезбіомаркерний фільтр: він відсікає intensive-track для пацієнтів,\nякі не переживуть токсичність, ще ДО того як розглядати біомаркери.\n",
+        "affects": [
+          "Вибір інтенсивності схеми (intensive vs reduced-intensity vs BSC)",
+          "Допуск до high-dose chemo + autoSCT/alloSCT (зазвичай ECOG ≤2)",
+          "Допуск до клінічних випробувань (більшість вимагає ECOG ≤2)",
+          "Розрахунок прогностичних індексів (IPI, R-IPI, IPSS-R, MIPI, ISS)",
+          "При ECOG 4 — engine зазвичай повертає лише best supportive care",
+          "ECOG ≥2 виключає FOLFIRINOX; default стає gemcitabine + nab-paclitaxel або gem mono."
+        ],
+        "sources": [
+          "SRC-ECOG-OKEN-1982"
+        ]
+      }
+    },
+    "DIS-NSCLC": {
+      "demographics.ecog": {
+        "short": "ECOG визначає, чи пацієнт фізично витримає активне лікування.",
+        "why": "ECOG Performance Status — кількісна шкала функціонального стану (0=\nповністю активний → 4=прикутий до ліжка). У переважній більшості\nрегімен-визначальних алгоритмів engine використовує ECOG як перший\nбезбіомаркерний фільтр: він відсікає intensive-track для пацієнтів,\nякі не переживуть токсичність, ще ДО того як розглядати біомаркери.\n",
+        "affects": [
+          "Вибір інтенсивності схеми (intensive vs reduced-intensity vs BSC)",
+          "Допуск до high-dose chemo + autoSCT/alloSCT (зазвичай ECOG ≤2)",
+          "Допуск до клінічних випробувань (більшість вимагає ECOG ≤2)",
+          "Розрахунок прогностичних індексів (IPI, R-IPI, IPSS-R, MIPI, ISS)",
+          "При ECOG 4 — engine зазвичай повертає лише best supportive care",
+          "ECOG ≥2 — relative-contraindication для platinum-doublet; розглядається single-agent IO або BSC."
+        ],
+        "sources": [
+          "SRC-ECOG-OKEN-1982"
+        ]
+      }
+    },
+    "DIS-SCLC": {
+      "demographics.ecog": {
+        "short": "ECOG визначає, чи пацієнт фізично витримає активне лікування.",
+        "why": "ECOG Performance Status — кількісна шкала функціонального стану (0=\nповністю активний → 4=прикутий до ліжка). У переважній більшості\nрегімен-визначальних алгоритмів engine використовує ECOG як перший\nбезбіомаркерний фільтр: він відсікає intensive-track для пацієнтів,\nякі не переживуть токсичність, ще ДО того як розглядати біомаркери.\n",
+        "affects": [
+          "Вибір інтенсивності схеми (intensive vs reduced-intensity vs BSC)",
+          "Допуск до high-dose chemo + autoSCT/alloSCT (зазвичай ECOG ≤2)",
+          "Допуск до клінічних випробувань (більшість вимагає ECOG ≤2)",
+          "Розрахунок прогностичних індексів (IPI, R-IPI, IPSS-R, MIPI, ISS)",
+          "При ECOG 4 — engine зазвичай повертає лише best supportive care",
+          "ECOG ≥3 — etoposide+platinum протипоказаний; топотекан у редукції або BSC."
+        ],
+        "sources": [
+          "SRC-ECOG-OKEN-1982"
+        ]
+      }
+    },
+    "DIS-FL": {
+      "demographics.age": {
+        "short": "Вік модулює дози, вибір регімена і допуск до трансплантації.",
+        "why": "Вік сам по собі НЕ є контраіндикацією (CHARTER: efficacy-first), але\nвін входить у більшість прогностичних шкал (IPI, R-ISS, IPSS-R, MIPI)\nі визначає верхні межі для intensive протоколів та трансплантації.\nEngine використовує вік разом із ECOG/коморбідностями, не як\nсамостійний фільтр.\n",
+        "affects": [
+          "Бал у IPI / R-IPI / IPSS-R / MIPI / ISS / FLIPI",
+          "Допуск до високодозної терапії з autoSCT (зазвичай ≤70-75)",
+          "Вибір induction-схеми у AML/ALL (intensive vs hypomethylating)",
+          "Допуск у клінічні випробування (вікові межі протоколів)",
+          "Age ≥60 — додає 1 бал до FLIPI."
+        ],
+        "sources": [
+          "SRC-NCCN-AGE-FRAILTY-2024"
+        ]
+      }
+    },
+    "DIS-MCL": {
+      "demographics.age": {
+        "short": "Вік модулює дози, вибір регімена і допуск до трансплантації.",
+        "why": "Вік сам по собі НЕ є контраіндикацією (CHARTER: efficacy-first), але\nвін входить у більшість прогностичних шкал (IPI, R-ISS, IPSS-R, MIPI)\nі визначає верхні межі для intensive протоколів та трансплантації.\nEngine використовує вік разом із ECOG/коморбідностями, не як\nсамостійний фільтр.\n",
+        "affects": [
+          "Бал у IPI / R-IPI / IPSS-R / MIPI / ISS / FLIPI",
+          "Допуск до високодозної терапії з autoSCT (зазвичай ≤70-75)",
+          "Вибір induction-схеми у AML/ALL (intensive vs hypomethylating)",
+          "Допуск у клінічні випробування (вікові межі протоколів)",
+          "Age ≤65 — допуск до Nordic/HyperCVAD + autoSCT консолідації."
+        ],
+        "sources": [
+          "SRC-NCCN-AGE-FRAILTY-2024"
+        ]
+      }
+    }
+  }
+}
