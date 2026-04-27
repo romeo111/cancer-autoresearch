@@ -248,6 +248,8 @@ let coreBundleLoaded = false;
 const loadedDiseases = new Set();
 let questionnaires = [];     // loaded from /questionnaires.json
 let examples = [];           // loaded from /examples.json
+let criticalExplanations = null;  // loaded from /critical_explanations.json
+                                  // { generic: {field: {...}}, by_disease: {DIS: {field: {...}}} }
 let activeQuest = null;      // currently selected questionnaire
 let generating = false;      // true while runEngine is mid-flight; blocks
                              // input via <main inert> + overlay so the
@@ -542,14 +544,43 @@ function renderForm(quest) {
       ${group.description ? `<p class="quest-group-desc">${escHtml(group.description)}</p>` : ''}
     `;
     for (const q of group.questions || []) {
-      groupEl.appendChild(renderQuestion(q));
+      groupEl.appendChild(renderQuestion(q, quest.disease_id));
     }
     questGroups.appendChild(groupEl);
   }
   updateRunBtnEnabled();
 }
 
-function renderQuestion(q) {
+// Lookup explanation for a critical field, preferring per-disease override
+// over generic. Returns null if no entry — caller renders no button.
+function getCriticalExplanation(field, diseaseId) {
+  if (!criticalExplanations || !field) return null;
+  const byDisease = (criticalExplanations.by_disease || {})[diseaseId] || {};
+  if (byDisease[field]) return byDisease[field];
+  const generic = (criticalExplanations.generic || {})[field];
+  return generic || null;
+}
+
+function renderCriticalExplanationPanel(exp) {
+  const affects = (exp.affects || []).map(a => `<li>${escHtml(a)}</li>`).join('');
+  const sources = (exp.sources || [])
+    .map(s => `<span class="why-crit-source">${escHtml(s)}</span>`)
+    .join('');
+  const why = (exp.why || '').trim();
+  const whyHtml = why
+    ? why.split(/\n\s*\n/).map(p => `<p>${escHtml(p)}</p>`).join('')
+    : '';
+  return `
+    <div class="why-crit-panel" hidden>
+      ${exp.short ? `<p class="why-crit-short">${escHtml(exp.short)}</p>` : ''}
+      ${whyHtml ? `<div class="why-crit-section"><h5>Чому це критично</h5>${whyHtml}</div>` : ''}
+      ${affects ? `<div class="why-crit-section"><h5>Як впливає на план</h5><ul>${affects}</ul></div>` : ''}
+      ${sources ? `<div class="why-crit-section"><h5>Джерела</h5><div class="why-crit-sources">${sources}</div></div>` : ''}
+    </div>
+  `;
+}
+
+function renderQuestion(q, diseaseId) {
   const wrap = document.createElement('div');
   wrap.className = 'quest-q';
   wrap.dataset.field = q.field;
@@ -558,6 +589,11 @@ function renderQuestion(q) {
   const fieldId = 'fld-' + q.field.replace(/[^A-Za-z0-9]/g, '_');
 
   const triggers = (q.triggers || []).map(t => `<span class="trigger-pill">${escHtml(t)}</span>`).join('');
+  const criticalExp = impact === 'critical' ? getCriticalExplanation(q.field, diseaseId) : null;
+  const whyBtnHtml = criticalExp
+    ? `<button type="button" class="why-crit-btn" aria-expanded="false" aria-controls="${fieldId}-why">Чому критично?</button>`
+    : '';
+  const whyPanelHtml = criticalExp ? renderCriticalExplanationPanel(criticalExp) : '';
 
   let inputHtml = '';
   const placeholder = q.range_min !== undefined && q.range_max !== undefined
@@ -595,12 +631,27 @@ function renderQuestion(q) {
     <div class="quest-q-head">
       <label for="${fieldId}" class="quest-q-label">${escHtml(q.label)}</label>
       <span class="impact-pill impact-${impact}">${IMPACT_LABEL[impact] || impact}</span>
+      ${whyBtnHtml}
     </div>
     ${inputHtml}
     ${q.units ? `<span class="quest-units">${escHtml(q.units)}</span>` : ''}
     ${q.helper ? `<p class="quest-helper">${escHtml(q.helper)}</p>` : ''}
     ${triggers ? `<div class="quest-triggers">${triggers}</div>` : ''}
+    ${whyPanelHtml}
   `;
+
+  // Wire why-critical toggle (if rendered).
+  const whyBtn = wrap.querySelector('.why-crit-btn');
+  const whyPanel = wrap.querySelector('.why-crit-panel');
+  if (whyBtn && whyPanel) {
+    whyPanel.id = fieldId + '-why';
+    whyBtn.addEventListener('click', () => {
+      const open = whyPanel.hasAttribute('hidden');
+      if (open) whyPanel.removeAttribute('hidden');
+      else whyPanel.setAttribute('hidden', '');
+      whyBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
 
   // Apply default value
   const inp = wrap.querySelector('input,select');
@@ -1430,12 +1481,18 @@ function yieldToBrowser(ms) {
 // ── Boot ──────────────────────────────────────────────────────────────────
 async function loadAssets() {
   setStatus('Завантажую опитувальники…');
-  const [qResp, exResp] = await Promise.all([
+  const [qResp, exResp, ceResp] = await Promise.all([
     fetch('/questionnaires.json'),
     fetch('/examples.json'),
+    fetch('/critical_explanations.json').catch(() => null),
   ]);
   questionnaires = await qResp.json();
   examples = await exResp.json();
+  try {
+    criticalExplanations = ceResp && ceResp.ok ? await ceResp.json() : null;
+  } catch (_) {
+    criticalExplanations = null;
+  }
 
   // Disease selector
   diseaseSelect.innerHTML = '<option value="">— оберіть —</option>';
