@@ -1,38 +1,35 @@
 id: BMA-CHEK2-SOMATIC-PROSTATE
 biomarker_id: BIO-HRR-PANEL
-variant_qualifier: "CHEK2 somatic loss-of-function"
+variant_qualifier: CHEK2 somatic loss-of-function
 disease_id: DIS-PROSTATE
-escat_tier: "IB"
-evidence_summary: >
-  Somatic CHEK2 in mCRPC: PROfound enrolled both g/s; FDA olaparib HRR label
-  includes CHEK2. ESCAT IB / OncoKB Level 1.
-evidence_summary_ua: >
-  соматичний CHEK2 in mCRPC: PROfound enrolled both g/s; FDA олапариб HRR label включає CHEK2. ESCAT IB / OncoKB рівень 1.
+escat_tier: IB
+evidence_summary: 'Somatic CHEK2 in mCRPC: PROfound enrolled both g/s; FDA olaparib
+  HRR label includes CHEK2. ESCAT IB / OncoKB Level 1.
+
+  '
+evidence_summary_ua: 'соматичний CHEK2 in mCRPC: PROfound enrolled both g/s; FDA олапариб
+  HRR label включає CHEK2. ESCAT IB / OncoKB рівень 1.
+
+  '
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 regulatory_approval:
   fda:
-    - "olaparib — HRR-mutated (g/s) mCRPC FDA label includes CHEK2"
+  - olaparib — HRR-mutated (g/s) mCRPC FDA label includes CHEK2
   ema:
-    - "olaparib — BRCA1/2 only"
+  - olaparib — BRCA1/2 only
   ukraine: []
 recommended_combinations:
-  - "olaparib monotherapy (FDA HRR label)"
-  - "talazoparib + enzalutamide (HRR-mutated 1L)"
+- olaparib monotherapy (FDA HRR label)
+- talazoparib + enzalutamide (HRR-mutated 1L)
 contraindicated_monotherapy: []
 primary_sources:
-  - SRC-NCCN-PROSTATE-2025
-  - SRC-ESMO-PROSTATE-2024
-  - SRC-EAU-PROSTATE-2024
-  - SRC-ONCOKB
-last_verified: "2026-04-27"
-evidence_sources:
-  - source: SRC-ONCOKB
-    level: "1"
-    evidence_ids: []
-    direction: null
-    significance: null
-    note: "Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC. Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render skips evidence_sources entries with source=SRC-ONCOKB."
+- SRC-NCCN-PROSTATE-2025
+- SRC-ESMO-PROSTATE-2024
+- SRC-EAU-PROSTATE-2024
+last_verified: '2026-04-27'
+evidence_sources: []
 actionability_review_required: true
-notes: >
-  Reflex germline testing recommended.
+notes: 'Reflex germline testing recommended.
+
+  '
