@@ -48,12 +48,6 @@ class NormalizedVariant:
     raw: str  # original input — for traceability in errors/logs
     skip_reason: None = None  # always None on the success path
 
-    # Back-compat alias — historical name from the OncoKB-only era. Removed
-    # in Phase 2 when no callers reference it.
-    @property
-    def oncokb_query_string(self) -> str:
-        return self.query_string
-
 
 @dataclass(frozen=True)
 class ActionabilityQuery:
@@ -71,10 +65,10 @@ class ActionabilityQuery:
 # ── Lookup results ───────────────────────────────────────────────────────
 
 
-# Per-source level vocabularies are populated at lookup time. The placeholder
-# Literal below documents the OncoKB-era surfaced levels for back-compat
-# only; matchers should NOT enforce it. CIViC uses A/B/C/D/E with direction.
-TherapeuticLevel = Literal["1", "2", "3A", "3B", "4", "R1", "R2", "A", "B", "C", "D", "E"]
+# Per-source level vocabularies are populated at lookup time. CIViC uses
+# A/B/C/D/E with direction. Other sources (NCCN/ESMO categories) populate
+# their own tokens at lookup time; matchers don't enforce this Literal.
+TherapeuticLevel = Literal["A", "B", "C", "D", "E"]
 
 # Per-source surfacing rules: which levels make it into the rendered HCP
 # section. Empty by default — matchers (e.g. a CIViC reader, an OncoKB
@@ -110,11 +104,6 @@ class ActionabilityResult:
     therapeutic_options: tuple[ActionabilityTherapeuticOption, ...]
     cached: bool
     data_version: Optional[str] = None  # populated when source provides it
-
-    # Back-compat alias
-    @property
-    def oncokb_url(self) -> str:
-        return self.source_url
 
     @property
     def is_negative(self) -> bool:
@@ -207,23 +196,15 @@ class ActionabilityLayer:
 # ── Internals ────────────────────────────────────────────────────────────
 
 
-# Rank dict for highest_level convenience method. Source-agnostic by
-# design: matchers may extend or replace it. The OncoKB-era values are
-# kept for backward-compat with any code that still uses them.
+# Rank dict for highest_level convenience method. CIViC levels A→E
+# (lower number = stronger evidence). Source-agnostic: matchers may extend
+# or replace it for sources with their own taxonomy.
 _LEVEL_RANK: dict[str, int] = {
-    "1": 0,
-    "2": 1,
-    "3A": 2,
-    "3B": 3,
-    "4": 4,
-    "R1": 5,
-    "R2": 6,
-    # CIViC values appended; ranking placeholder until Phase 2 owns it
-    "A": 10,
-    "B": 11,
-    "C": 12,
-    "D": 13,
-    "E": 14,
+    "A": 0,
+    "B": 1,
+    "C": 2,
+    "D": 3,
+    "E": 4,
 }
 
 
