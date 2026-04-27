@@ -18,7 +18,7 @@ measurement:
 specimen_requirements: ["FFPE tumor (glioma)", "BM aspirate (AML)"]
 
 related_biomarkers: [BIO-IDH-MUTATION, BIO-MGMT-METHYLATION]
-sources: [SRC-NCCN-CNS-2025, SRC-EANO-GBM-2024, SRC-ESMO-AML-2020]
+sources: [SRC-NCCN-CNS-2025-2025, SRC-EANO-GBM-2024, SRC-ESMO-AML-2020]
 
 # Most common IDH1 variant (>90% in glioma; ~50% in IDH-mutant AML).
 # Ivosidenib (Tibsovo) — IDH1 inhibitor; AGILE (AML 1L) and

@@ -52,7 +52,7 @@ sources:
   - source_id: SRC-NCCN-BCELL-2025
     position: supports
     relevant_quote_paraphrase: R-MPV is Category 1 induction for PCNSL when MATRix-eligibility uncertain
-  - source_id: SRC-NCCN-CNS-2025
+  - source_id: SRC-NCCN-CNS-2025-2025
     position: supports
     relevant_quote_paraphrase: NCCN CNS 2025 endorses HD-MTX-based induction (R-MPV or MATRix) followed by consolidation (autoSCT/thiotepa-based or WBRT) as PCNSL 1L standard
 known_controversies: []

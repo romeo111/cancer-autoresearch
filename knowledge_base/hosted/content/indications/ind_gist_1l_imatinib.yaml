@@ -55,7 +55,7 @@ rationale_ua: >
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 sources:
-  - source_id: SRC-NCCN-GIST-2025
+  - source_id: SRC-NCCN-GIST-2025-2025
     weight: primary
   - source_id: SRC-IRIS-OBRIEN-2003
     weight: supporting

@@ -21,7 +21,7 @@ red_flags_triggering_alternative: []
 required_tests: [TEST-CECT-CAP, TEST-BRAIN-MRI-CONTRAST]
 desired_tests: []
 sources:
-  - {source_id: SRC-NCCN-MELANOMA-2025, weight: primary}
+  - {source_id: SRC-NCCN-MELANOMA-2025-2025, weight: primary}
   - {source_id: SRC-ESMO-MELANOMA-2024, weight: primary}
 last_reviewed: null
 reviewers: []

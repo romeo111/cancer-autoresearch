@@ -125,7 +125,7 @@ pharmacology:
   metabolism: "n/a (mAb catabolism to amino acids)"
 
 sources:
-  - SRC-NCCN-MELANOMA-2025
+  - SRC-NCCN-MELANOMA-2025-2025
   - SRC-ESMO-MELANOMA-2024
 
 last_reviewed: "2026-04-27"

@@ -29,12 +29,12 @@ contraindicated_monotherapy:
   - "lenvatinib / sorafenib (reserve for RET-fusion-negative or post-RET-TKI failure)"
 primary_sources:
   - SRC-ONCOKB
-  - SRC-NCCN-CNS-2025
+  - SRC-NCCN-CNS-2025-2025
 last_verified: "2026-04-27"
 oncokb_snapshot_version: "v3.20-2026-04"
 notes: >
   ESCAT IB. OncoKB Level 1. RAI ablation remains 1L for differentiated
   PTC; selective RET-TKIs are deployed in RAI-refractory progressive
   metastatic disease. Detection: RNA-NGS preferred. Source-gap:
-  SRC-NCCN-THYROID placeholder; SRC-LIBRETTO-001 / SRC-ARROW not
+  SRC-NCCN-THYROID-2025 placeholder; SRC-LIBRETTO001-DRILON-2020 / SRC-ARROW not
   yet ingested.

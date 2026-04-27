@@ -14,6 +14,6 @@ triggers_mdt_roles:
     radiologist: "Multi-modality staging"
     pathologist: "Histology + molecular IHC"
     molecular_geneticist: "NGS panel + germline testing"
-sources: [SRC-NCCN-KIDNEY-2025, SRC-NCCN-MELANOMA-2025, SRC-NCCN-BLADDER-2025, SRC-NCCN-UTERINE-2025]
+sources: [SRC-NCCN-KIDNEY-2025, SRC-NCCN-MELANOMA-2025-2025, SRC-NCCN-BLADDER-2025, SRC-NCCN-UTERINE-2025]
 last_reviewed: null
 notes: "Combined GU+skin+gyn workup."

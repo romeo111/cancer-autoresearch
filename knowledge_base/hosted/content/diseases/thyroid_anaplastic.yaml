@@ -37,14 +37,14 @@ epidemiology:
 
 sources:
   - SRC-ONCOKB
-  - SRC-NCCN-CNS-2025  # NCCN-THYROID not yet ingested — placeholder; flag for replacement
+  - SRC-NCCN-CNS-2025-2025  # NCCN-THYROID not yet ingested — placeholder; flag for replacement
 
 last_reviewed: "2026-04-27"
 reviewers: []
 
 metadata:
   proposal_status: partial
-  awaiting_proposal: "Multimodal sequencing (rapid-turnaround BRAF testing + targeted induction + chemo-radiation) — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17. Source gap: SRC-NCCN-THYROID and SRC-ATA-ATC-2021 not yet ingested. Speed-of-workup is itself the clinical decision driver in ATC and may need a dedicated workflow primitive."
+  awaiting_proposal: "Multimodal sequencing (rapid-turnaround BRAF testing + targeted induction + chemo-radiation) — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17. Source gap: SRC-NCCN-THYROID-2025 and SRC-ATA-ATC-2021 not yet ingested. Speed-of-workup is itself the clinical decision driver in ATC and may need a dedicated workflow primitive."
 
 notes: >
   Among the most lethal solid tumors historically — IVC by AJCC at

@@ -29,7 +29,7 @@ epidemiology:
   mgmt_methylated_rate: "~40% of newly-diagnosed GBM"
 
 sources:
-  - SRC-NCCN-CNS-2025
+  - SRC-NCCN-CNS-2025-2025
   - SRC-EANO-GBM-2024
 
 last_reviewed: "2026-04-26"

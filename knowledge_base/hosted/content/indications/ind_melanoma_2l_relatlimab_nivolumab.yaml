@@ -58,7 +58,7 @@ sources:
   - source_id: SRC-RELATIVITY-047-TAWBI-2022
     position: supports
     relevant_quote_paraphrase: "RELATIVITY-047: nivolumab + relatlimab vs nivo mono in 1L melanoma — mPFS 10.1 vs 4.6 mo (HR 0.75); Grade 3-4 treatment-related AE 18.9% vs ipi+nivo ~50%"
-  - source_id: SRC-NCCN-MELANOMA-2025
+  - source_id: SRC-NCCN-MELANOMA-2025-2025
     position: supports
     relevant_quote_paraphrase: "Nivolumab+relatlimab (Opdualag) is a Category 1 1L option for metastatic melanoma; positioned as alternative IO doublet to ipi+nivo with better tolerability"
   - source_id: SRC-ESMO-MELANOMA-2024

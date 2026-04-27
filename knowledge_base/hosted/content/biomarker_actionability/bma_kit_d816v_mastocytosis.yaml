@@ -31,11 +31,11 @@ contraindicated_monotherapy:
   - "imatinib (D816V resistant — only KIT-WT or non-D816V AdvSM benefits)"
 primary_sources:
   - SRC-ONCOKB
-  - SRC-NCCN-MELANOMA-2025
+  - SRC-NCCN-MELANOMA-2025-2025
 last_verified: "2026-04-27"
 oncokb_snapshot_version: "v3.20-2026-04"
 notes: >
-  ESCAT IA. OncoKB Level 1. Source-gap: SRC-NCCN-SM / SRC-EXPLORER /
+  ESCAT IA. OncoKB Level 1. Source-gap: SRC-NCCN-SM-2025 / SRC-EXPLORER /
   SRC-PATHFINDER not yet ingested. AdvSM diagnosis requires WHO-
   defined C-findings (cytopenias, hepatomegaly + dysfunction, organ
   damage). Indolent SM is generally NOT treated with KIT-TKI;

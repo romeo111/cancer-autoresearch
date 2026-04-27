@@ -46,7 +46,7 @@ rationale_ua: >-
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 sources:
-  - source_id: SRC-NCCN-CNS-2025
+  - source_id: SRC-NCCN-CNS-2025-2025
     position: supports
     relevant_quote_paraphrase: 'For chemosensitive late-relapse PCNSL: re-induction with HD-MTX-based regimen → consolidation autoSCT (thiotepa-based) is preferred 2L'
   - source_id: SRC-ESMO-DLBCL-2024
@@ -57,7 +57,7 @@ known_controversies:
     positions:
       - position: AutoSCT (thiotepa/BCNU) — durable PFS in fit patients (IELSG32)
         sources:
-          - SRC-NCCN-CNS-2025
+          - SRC-NCCN-CNS-2025-2025
       - position: WBRT — established for ASCT-ineligible; significant cognitive toxicity in elderly
         sources:
           - SRC-ESMO-DLBCL-2024

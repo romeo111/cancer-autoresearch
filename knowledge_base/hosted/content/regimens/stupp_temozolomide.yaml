@@ -24,10 +24,10 @@ monitoring_schedule_id:
 dose_adjustments:
   - condition: "Lymphopenia ALC <0.5 k/µL"
     modification: "Continue PJP prophylaxis; consider weekly CBC"
-    source_refs: [SRC-NCCN-CNS-2025]
+    source_refs: [SRC-NCCN-CNS-2025-2025]
   - condition: "Grade 3-4 thrombocytopenia / neutropenia (delayed)"
     modification: "Hold; restart at 75% dose when recovered"
-    source_refs: [SRC-NCCN-CNS-2025]
+    source_refs: [SRC-NCCN-CNS-2025-2025]
   - condition: "Hepatotoxicity Grade 2"
     modification: "Hold + recheck LFT weekly; resume when normalized"
 
@@ -36,7 +36,7 @@ ukraine_availability:
   all_components_reimbursed: true
   notes: "TMZ NSZU-funded for newly-diagnosed GBM; recurrent indications variable."
 
-sources: [SRC-NCCN-CNS-2025, SRC-EANO-GBM-2024]
+sources: [SRC-NCCN-CNS-2025-2025, SRC-EANO-GBM-2024]
 last_reviewed: "2026-04-26"
 
 notes: >

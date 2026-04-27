@@ -25,13 +25,13 @@ recommended_combinations:
   - "anti-PD-1 ± anti-CTLA-4 (1L irrespective of KIT status)"
 contraindicated_monotherapy: []
 primary_sources:
-  - SRC-NCCN-MELANOMA-2025
+  - SRC-NCCN-MELANOMA-2025-2025
   - SRC-ESMO-MELANOMA-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
 oncokb_snapshot_version: "v3.20-2026-04"
 notes: >
-  ESCAT IB. OncoKB Level 2. Trial-source gap: SRC-CARVAJAL-2013 /
+  ESCAT IB. OncoKB Level 2. Trial-source gap: SRC-CARVAJAL-KIT-MELANOMA-2013 /
   SRC-HODI-2013 not yet ingested. KIT-mutant melanoma is also a
   scenario where dabrafenib/trametinib does NOT apply (BRAF V600
   testing should be parallel).

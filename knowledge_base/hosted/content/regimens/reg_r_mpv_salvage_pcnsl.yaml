@@ -34,17 +34,17 @@ dose_adjustments:
   - condition: CrCl <50 mL/min OR third-space fluid
     modification: HD-MTX contraindicated — reduce to MTX 1 g/m² with intensified rescue, OR substitute thiotepa-based regimen
     source_refs:
-      - SRC-NCCN-CNS-2025
+      - SRC-NCCN-CNS-2025-2025
   - condition: Delayed MTX clearance (level >1 µmol/L at 48h)
     modification: Increase leucovorin; consider glucarpidase if >100 µmol/L at 24h
     source_refs:
-      - SRC-NCCN-CNS-2025
+      - SRC-NCCN-CNS-2025-2025
 ukraine_availability:
   all_components_registered: true
   all_components_reimbursed: true
   notes: All components НСЗУ-available; HD-MTX requires inpatient setting + drug-level monitoring.
 sources:
-  - SRC-NCCN-CNS-2025
+  - SRC-NCCN-CNS-2025-2025
   - SRC-ESMO-DLBCL-2024
 last_reviewed: '2026-04-27'
 notes: For relapsed PCNSL after initial HD-MTX induction with documented prior chemosensitivity. Re-induction with R-MPV → consolidation autoSCT (thiotepa-based, IELSG32) preferred for fit. WBRT alternative for ASCT-ineligible (cognitive toxicity caveat). Ibrutinib emerging salvage option.

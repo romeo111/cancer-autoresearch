@@ -56,7 +56,7 @@ sources:
   - source_id: SRC-CHECKMATE-067-LARKIN-2019
     position: supports
     relevant_quote_paraphrase: "CheckMate-067: nivolumab + ipilimumab vs nivo vs ipi in 1L melanoma — 5-y OS 52% (combo) vs 44% (nivo) vs 26% (ipi); mOS >60 mo combo. Used here as the standard IO doublet salvage post-BRAFi"
-  - source_id: SRC-NCCN-MELANOMA-2025
+  - source_id: SRC-NCCN-MELANOMA-2025-2025
     position: supports
     relevant_quote_paraphrase: "Anti-PD-1-based IO (ipi+nivo or anti-PD-1 mono) is preferred 2L after BRAFi+MEKi failure for BRAF V600+ metastatic melanoma; Category 1"
   - source_id: SRC-ESMO-MELANOMA-2024
@@ -72,7 +72,7 @@ known_controversies:
         sources: [SRC-RELATIVITY-047-TAWBI-2022]
         evidence_note: "RELATIVITY-047 was 1L; 2L data limited"
       - position: "Anti-PD-1 mono (pembrolizumab/nivolumab) — least toxic; lower response than doublets"
-        sources: [SRC-NCCN-MELANOMA-2025]
+        sources: [SRC-NCCN-MELANOMA-2025-2025]
     our_default: "ipi+nivo for ECOG 0-1 fit patients without significant baseline autoimmunity; rela+nivo or anti-PD-1 mono if irAE risk unacceptable"
     rationale: "Most active IO doublet; reserve de-escalation for patients who cannot tolerate combo"
 

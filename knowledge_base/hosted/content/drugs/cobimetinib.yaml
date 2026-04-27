@@ -98,7 +98,7 @@ pharmacology:
   metabolism: "CYP3A4 (predominant) + UGT2B7 glucuronidation; minor CYP2D6"
 
 sources:
-  - SRC-NCCN-MELANOMA-2025
+  - SRC-NCCN-MELANOMA-2025-2025
   - SRC-ESMO-MELANOMA-2024
 
 last_reviewed: "2026-04-27"

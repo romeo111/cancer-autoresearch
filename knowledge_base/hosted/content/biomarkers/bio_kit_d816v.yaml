@@ -18,7 +18,7 @@ measurement:
 specimen_requirements: ["BM aspirate (preferred for SM)", "Skin biopsy for cutaneous mastocytosis"]
 
 related_biomarkers: [BIO-KIT]
-sources: [SRC-NCCN-SM-2025]
+sources: [SRC-NCCN-SM-2025-2025]
 
 # Defining mutation in advanced systemic mastocytosis (~95%).
 # Avapritinib (PIONEER, EXPLORER) — selective KIT D816V inhibitor;

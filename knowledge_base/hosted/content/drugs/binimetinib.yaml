@@ -99,7 +99,7 @@ pharmacology:
   metabolism: "primarily UGT1A1 glucuronidation; minor CYP1A2/CYP2C19"
 
 sources:
-  - SRC-NCCN-MELANOMA-2025
+  - SRC-NCCN-MELANOMA-2025-2025
   - SRC-ESMO-MELANOMA-2024
 
 last_reviewed: "2026-04-27"

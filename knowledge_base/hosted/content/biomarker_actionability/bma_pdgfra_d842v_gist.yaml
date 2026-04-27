@@ -31,11 +31,11 @@ contraindicated_monotherapy:
 primary_sources:
   - SRC-ONCOKB
   - SRC-FDA-CDS-2026
-  - SRC-NCCN-MELANOMA-2025
+  - SRC-NCCN-MELANOMA-2025-2025
 last_verified: "2026-04-27"
 oncokb_snapshot_version: "v3.20-2026-04"
 notes: >
-  ESCAT IA. OncoKB Level 1. Source-gap: SRC-NCCN-SARCOMA / SRC-NCCN-GIST
+  ESCAT IA. OncoKB Level 1. Source-gap: SRC-NCCN-SARCOMA / SRC-NCCN-GIST-2025
   / SRC-NAVIGATOR / SRC-VOYAGER not yet ingested. CNS toxicity
   (cognitive effects, intracranial hemorrhage) is on-target / dose-
   related — dose modifications standard. Companion-diagnostic genotyping

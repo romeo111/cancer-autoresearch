@@ -20,7 +20,7 @@ recommended_combinations:
   - "standard melanoma therapy"
 contraindicated_monotherapy: []
 primary_sources:
-  - SRC-NCCN-MELANOMA-2025
+  - SRC-NCCN-MELANOMA-2025-2025
   - SRC-ESMO-MELANOMA-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"

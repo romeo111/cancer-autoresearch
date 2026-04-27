@@ -24,12 +24,12 @@ dose_adjustments:
     modification: "Hold; restart at next lower dose level once SBP <140 / DBP <90"
     rationale: "Class effect; persistent in ~40%"
     source_refs:
-      - SRC-NCCN-THYROID-2025
+      - SRC-NCCN-THYROID-2025-2025
   - condition: "Hepatotoxicity (ALT/AST >5× ULN OR bilirubin >3× ULN)"
     modification: "Hold until recovery; resume at next lower dose; permanently discontinue if recurs at lowest dose"
     rationale: "Boxed AE; check LFTs q2 weeks for first 3 mo, then monthly"
     source_refs:
-      - SRC-NCCN-THYROID-2025
+      - SRC-NCCN-THYROID-2025-2025
   - condition: "QTc >500 ms"
     modification: "Hold; correct electrolytes; resume at lower dose once QTc <470 ms"
     rationale: "QT prolongation risk"
@@ -43,7 +43,7 @@ ukraine_availability:
   notes: "Selpercatinib NOT registered in Ukraine. Access via DEC named-patient import, Eli Lilly EAP (Retsevmo access program — requires confirmed RET fusion / mutation NGS), or cross-border EU treatment per наказ МОЗ 988. SoC in EU."
 
 sources:
-  - SRC-NCCN-THYROID-2025
+  - SRC-NCCN-THYROID-2025-2025
   - SRC-ONCOKB
 
 last_reviewed: "2026-04-27"

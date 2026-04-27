@@ -57,7 +57,7 @@ sources:
   - source_id: SRC-COLUMBUS-DUMMETT-2018
     position: supports
     relevant_quote_paraphrase: "COLUMBUS phase 3: encorafenib 450 + binimetinib 45 BID vs vemurafenib in BRAF V600-mutant unresectable/metastatic melanoma — mPFS 14.9 vs 7.3 mo (HR 0.54); 5-y OS 33.6 vs 16.9 mo"
-  - source_id: SRC-NCCN-MELANOMA-2025
+  - source_id: SRC-NCCN-MELANOMA-2025-2025
     position: supports
     relevant_quote_paraphrase: "BRAFi+MEKi doublet (encorafenib+binimetinib OR dabrafenib+trametinib) is preferred 2L for BRAF V600+ metastatic melanoma after IO progression; Category 1"
   - source_id: SRC-ESMO-MELANOMA-2024
@@ -70,7 +70,7 @@ known_controversies:
       - position: "ENCO+BINI better tolerated (less pyrexia, less photosensitivity)"
         sources: [SRC-COLUMBUS-DUMMETT-2018]
       - position: "DABRA+TRAME has longer historical track record (COMBI-d/v 5-y OS data); broader UA registration / supply"
-        sources: [SRC-NCCN-MELANOMA-2025]
+        sources: [SRC-NCCN-MELANOMA-2025-2025]
     our_default: "encorafenib+binimetinib if available; dabrafenib+trametinib as interchangeable cat-1 alternative"
     rationale: "Tolerability favors ENCO+BINI; access often determines actual choice"
 

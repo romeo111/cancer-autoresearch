@@ -22,16 +22,16 @@ monitoring_schedule_id:
 dose_adjustments:
   - condition: "Immune-related AE G2 (e.g. colitis, pneumonitis, hepatitis, dermatitis)"
     modification: "Hold; prednisone 0.5-1 mg/kg/day until G≤1; resume nivo when steroid <10 mg/day"
-    source_refs: [SRC-NCCN-MELANOMA-2025]
+    source_refs: [SRC-NCCN-MELANOMA-2025-2025]
   - condition: "Immune-related AE G3-4"
     modification: "Hold; high-dose steroids (1-2 mg/kg/day methylprednisolone IV); permanent discontinuation for most G3 (colitis, pneumonitis, hepatitis, neuro); resume only if G≤1 and steroid <10 mg/day for select reversible G3"
-    source_refs: [SRC-NCCN-MELANOMA-2025]
+    source_refs: [SRC-NCCN-MELANOMA-2025-2025]
   - condition: "Endocrinopathy (thyroid, adrenal, hypophysitis, T1DM)"
     modification: "Continue nivo; hormone replacement (levothyroxine, hydrocortisone, insulin); steroids only for hypophysitis with mass effect"
-    source_refs: [SRC-NCCN-MELANOMA-2025]
+    source_refs: [SRC-NCCN-MELANOMA-2025-2025]
   - condition: "Myocarditis OR encephalitis OR Stevens-Johnson/TEN"
     modification: "Permanent discontinuation; high-dose steroids; multidisciplinary management"
-    source_refs: [SRC-NCCN-MELANOMA-2025]
+    source_refs: [SRC-NCCN-MELANOMA-2025-2025]
 
 ukraine_availability:
   all_components_registered: true
@@ -39,7 +39,7 @@ ukraine_availability:
   notes: "Ніволумаб реімбурсується НСЗУ для меланоми (поширена 1L після ipi-induction та адьювант стадія III/IV)."
 
 sources:
-  - SRC-NCCN-MELANOMA-2025
+  - SRC-NCCN-MELANOMA-2025-2025
   - SRC-ESMO-MELANOMA-2024
   - SRC-CHECKMATE-067-LARKIN-2019
 

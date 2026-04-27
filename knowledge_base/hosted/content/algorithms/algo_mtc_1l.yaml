@@ -39,7 +39,7 @@ decision_tree:
     notes: "Free-text condition without matching disease-scoped RF; engine routes to default. Flag for RF authoring."
 
 sources:
-  - SRC-NCCN-THYROID-2025
+  - SRC-NCCN-THYROID-2025-2025
   - SRC-ONCOKB
 last_reviewed: '2026-04-26'
 notes: >

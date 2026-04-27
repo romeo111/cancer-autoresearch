@@ -79,7 +79,7 @@ pharmacology:
   half_life: "~99-120 hours; CYP3A4 substrate"
 
 sources:
-  - SRC-NCCN-THYROID-2025
+  - SRC-NCCN-THYROID-2025-2025
   - SRC-NCCN-KIDNEY-2025
   - SRC-NCCN-HCC-2025
 

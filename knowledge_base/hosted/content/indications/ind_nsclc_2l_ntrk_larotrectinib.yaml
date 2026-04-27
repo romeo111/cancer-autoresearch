@@ -59,7 +59,7 @@ rationale: >
   reasonable inexpensive screen but NGS confirmation required.
 
 sources:
-  - source_id: SRC-NAVIGATE-DRILON-2018
+  - source_id: SRC-NAVIGATE-DRILON-2018-DRILON-2018
     position: supports
     relevant_quote_paraphrase: "Pooled NAVIGATE / SCOUT / phase-1: larotrectinib in TRK-fusion+ tumors ORR 75% (IRC) across 17 tumor types; durable responses; mild AE profile"
   - source_id: SRC-NCCN-NSCLC-2025
@@ -73,7 +73,7 @@ known_controversies:
   - topic: "Larotrectinib vs entrectinib vs repotrectinib for NTRK-fusion+ solid tumors incl. NSCLC"
     positions:
       - position: "Larotrectinib: best tolerated; longest track record; tumor-agnostic"
-        sources: [SRC-NAVIGATE-DRILON-2018]
+        sources: [SRC-NAVIGATE-DRILON-2018-DRILON-2018]
       - position: "Entrectinib: also tumor-agnostic; broader spectrum (ROS1, ALK); more CNS-AE"
         sources: [SRC-STARTRK2-DRILON-2020]
       - position: "Repotrectinib (TRIDENT-1 NTRK arm, FDA 2024): next-gen; preferred for solvent-front resistance (G595R / G667C)"

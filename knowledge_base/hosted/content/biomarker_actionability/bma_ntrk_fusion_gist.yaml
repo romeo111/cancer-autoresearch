@@ -33,5 +33,5 @@ oncokb_snapshot_version: "v3.20-2026-04"
 notes: >
   ESCAT IA. OncoKB Level 1. NTRK-fusion screening in GIST should
   be reserved for KIT/PDGFRA-WT cases (after SDHB IHC to exclude
-  SDH-deficient GIST). Source-gap: SRC-NCCN-SARCOMA / SRC-NCCN-GIST
+  SDH-deficient GIST). Source-gap: SRC-NCCN-SARCOMA / SRC-NCCN-GIST-2025
   not yet ingested.

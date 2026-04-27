@@ -59,7 +59,7 @@ sources:
   - source_id: SRC-CARVAJAL-KIT-MELANOMA-2013
     position: supports
     relevant_quote_paraphrase: "Carvajal et al. JAMA 2011 — imatinib 400 BID in KIT-mutant mucosal/acral/CSD melanoma: durable responses in patients with exon 11 (L576P) or exon 13 (K642E) mutations; ORR 23%; KIT amplification alone not predictive"
-  - source_id: SRC-NCCN-MELANOMA-2025
+  - source_id: SRC-NCCN-MELANOMA-2025-2025
     position: supports
     relevant_quote_paraphrase: "Imatinib is recommended for KIT-mutant (exon 11 / 13) mucosal or acral melanoma after IO failure; Category 2A"
   - source_id: SRC-ESMO-MELANOMA-2024
@@ -72,7 +72,7 @@ known_controversies:
       - position: "Imatinib has the largest evidence base (Carvajal, Hodi, Guo) and is most accessible"
         sources: [SRC-CARVAJAL-KIT-MELANOMA-2013]
       - position: "Nilotinib retains activity in some imatinib-resistant variants"
-        sources: [SRC-NCCN-MELANOMA-2025]
+        sources: [SRC-NCCN-MELANOMA-2025-2025]
     our_default: "Imatinib first-line targeted for KIT-mutant melanoma; nilotinib/dasatinib salvage for imatinib-resistant"
     rationale: "Imatinib accessibility + evidence base; salvage TKIs niche"
 

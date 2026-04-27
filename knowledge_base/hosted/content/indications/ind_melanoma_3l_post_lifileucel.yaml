@@ -41,7 +41,7 @@ rationale_ua: >-
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 sources:
-  - source_id: SRC-NCCN-MELANOMA-2025
+  - source_id: SRC-NCCN-MELANOMA-2025-2025
     position: supports
     relevant_quote_paraphrase: After exhaustion of immunotherapy, BRAF/MEK targeted (if applicable), and TIL therapy, melanoma 4L+ has no established standard; clinical trial OR empirical chemo OR best supportive care
   - source_id: SRC-ESMO-MELANOMA-2024
@@ -52,13 +52,13 @@ known_controversies:
     positions:
       - position: Empirical chemo (dacarbazine, temozolomide) — minimal benefit, palliative response only
         sources:
-          - SRC-NCCN-MELANOMA-2025
+          - SRC-NCCN-MELANOMA-2025-2025
       - position: ICI re-challenge — anecdotal; no controlled data; may flare immune AEs
         sources:
           - SRC-ESMO-MELANOMA-2024
       - position: Best supportive care + hospice — appropriate when ECOG declines
         sources:
-          - SRC-NCCN-MELANOMA-2025
+          - SRC-NCCN-MELANOMA-2025-2025
     our_default: Trial enrollment first; if no trial, empirical chemo for fit patients (ECOG 0-1) OR best supportive care for ECOG ≥2
     rationale: Real-world 4L+ melanoma benefit from empirical therapy minimal; patient-centered trade-off is dominant
 do_not_do:

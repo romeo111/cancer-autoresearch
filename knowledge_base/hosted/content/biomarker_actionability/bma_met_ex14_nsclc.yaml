@@ -36,4 +36,4 @@ oncokb_snapshot_version: "v3.20-2026-04"
 notes: >
   ESCAT IA. OncoKB Level 1. Detection: RNA-NGS preferred (DNA panels
   may miss splice-site variants in deep intronic regions). Trial-source
-  gap: SRC-GEOMETRY-MONO-1 / SRC-VISION not yet ingested.
+  gap: SRC-GEOMETRY-MONO-1 / SRC-VISION-PAIK-2020 not yet ingested.

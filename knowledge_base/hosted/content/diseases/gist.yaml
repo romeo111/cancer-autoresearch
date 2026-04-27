@@ -36,7 +36,7 @@ epidemiology:
   primary_site_distribution: "Stomach ~60%, small bowel ~30%, colon-rectum ~5%, esophagus / extra-GI <5%"
 
 sources:
-  - SRC-NCCN-MELANOMA-2025  # NCCN GIST guideline not yet ingested — using NCCN-MELANOMA as adjacent KIT reference; flag for replacement when SRC-NCCN-SARCOMA / SRC-NCCN-GIST is added
+  - SRC-NCCN-MELANOMA-2025-2025  # NCCN GIST guideline not yet ingested — using NCCN-MELANOMA as adjacent KIT reference; flag for replacement when SRC-NCCN-SARCOMA / SRC-NCCN-GIST-2025 is added
   - SRC-ONCOKB
 
 last_reviewed: "2026-04-27"
@@ -44,7 +44,7 @@ reviewers: []
 
 metadata:
   proposal_status: partial
-  awaiting_proposal: "Surgery + adjuvant imatinib phasing (3 yr standard, 6 yr extended) + risk-stratified follow-up — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 solid-tumor extension. Source gap: SRC-NCCN-SARCOMA / SRC-NCCN-GIST not yet ingested; SRC-ESMO-SARCOMA-2024 not yet ingested."
+  awaiting_proposal: "Surgery + adjuvant imatinib phasing (3 yr standard, 6 yr extended) + risk-stratified follow-up — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 solid-tumor extension. Source gap: SRC-NCCN-SARCOMA / SRC-NCCN-GIST-2025 not yet ingested; SRC-ESMO-SARCOMA-2024 not yet ingested."
 
 notes: >
   Genotype-driven therapy is the defining feature of GIST. Decision tree:
