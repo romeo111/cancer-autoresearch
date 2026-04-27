@@ -60,7 +60,10 @@ def _collect_biomarker_hints(entities_by_id: dict) -> dict[str, dict]:
     for eid, info in entities_by_id.items():
         if info["type"] != "biomarkers":
             continue
-        hint = info["data"].get("oncokb_lookup")
+        hint = (
+            info["data"].get("actionability_lookup")
+            or info["data"].get("oncokb_lookup")
+        )
         if isinstance(hint, dict) and hint.get("gene") and hint.get("variant"):
             out[eid] = hint
     return out

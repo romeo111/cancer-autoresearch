@@ -461,7 +461,7 @@ h3 {
     .access-matrix details:not([open]) > *:not(summary) { display: block; }
 }
 
-/* Variant actionability — ESCAT / OncoKB tier badges */
+/* Variant actionability — ESCAT tier badges */
 .variant-actionability { margin: 22px 0; }
 .variant-actionability h2 { color: var(--green-800); }
 .variant-actionability .section-sub {
@@ -498,8 +498,8 @@ h3 {
 }
 
 /* Tier badges — ESCAT (IA/IB green; IIA/IIB yellow; IIIA/IIIB orange;
-   IV light gray; X gray). OncoKB Level 1 green; 2 light-green; 3A
-   yellow; 3B orange; 4 light gray; R1/R2 red. */
+   IV light gray; X gray). Per-source level details render via
+   .evidence-sources <ul> in the same row. */
 .tier-badge {
     display: inline-block; padding: 2px 8px; border-radius: 4px;
     font-family: var(--font-mono); font-size: 11px; font-weight: 700;
@@ -511,12 +511,13 @@ h3 {
 .escat-IV { background: var(--gray-100); color: var(--gray-700); }
 .escat-X { background: var(--gray-200); color: var(--gray-700); }
 
-.oncokb-1 { background: #16a34a; color: white; }
-.oncokb-2 { background: #86efac; color: #14532d; }
-.oncokb-3A { background: #facc15; color: #713f12; }
-.oncokb-3B { background: #f97316; color: white; }
-.oncokb-4 { background: var(--gray-100); color: var(--gray-700); }
-.oncokb-R1, .oncokb-R2 { background: #dc2626; color: white; }
+/* Per-source evidence list inside each actionability row */
+.evidence-sources {
+    list-style: none; padding-left: 0; margin: 0;
+    font-family: var(--font-mono); font-size: 11px;
+}
+.evidence-sources li { padding: 1px 0; color: var(--gray-700); }
+.evidence-sources .evidence-meta { color: var(--gray-500); font-size: 10px; }
 
 /* NSZU availability badges — per-drug coverage flag rendered alongside
    each component in the track's drug list. Render-time metadata only
@@ -681,15 +682,10 @@ PATIENT_MODE_CSS = """
 """
 
 
-# Phase 4 of OncoKB safe-rollout v3 — append OncoKB-section CSS to the
-# main stylesheet. Kept in render_oncokb.py so the integration's visual
-# rules live with the integration code; here we splice it in so the
-# single-file HTML render carries everything.
-try:
-    from .render_oncokb import ONCOKB_CSS as _ONCOKB_CSS
-    STYLESHEET = STYLESHEET + "\n" + _ONCOKB_CSS
-except Exception:
-    pass
+# TODO(phase-4): when render_actionability.py lands (CIViC pivot,
+# Phase 4), append its CSS here so the single-file HTML render carries
+# everything. The previous render_oncokb.ONCOKB_CSS splice was removed
+# in Phase 1 alongside the OncoKB layer.
 
 
 __all__ = ["STYLESHEET", "PATIENT_MODE_CSS"]

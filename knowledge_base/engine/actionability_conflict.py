@@ -1,28 +1,36 @@
 """Resistance-conflict detector — safe-rollout v3 §6 (T3 mitigation).
 
 Pure function. NO I/O. Detects when an engine-recommended drug appears
-in OncoKB R1/R2 evidence for one of the patient's biomarkers.
+in actionability evidence flagged as "resistance" for one of the
+patient's biomarkers.
 
-This is the most safety-critical part of the OncoKB integration:
+Source-agnostic: the "drug X appears in resistance evidence for
+biomarker Y" pattern works for any actionability source. CIViC encodes
+resistance via direction=Supports & significance=Resistance; OncoKB
+encodes via R1/R2 levels. Either way, the matcher only sees a
+ResistanceConflict-eligible level token (matchers populate
+RESISTANCE_LEVELS at lookup time).
+
+This is the most safety-critical part of the actionability integration:
 without it, a clinician scrolling top-down might miss resistance
-evidence in the lower OncoKB section. Per CHARTER §15.2 C6
+evidence in the lower actionability section. Per CHARTER §15.2 C6
 (automation-bias mitigation), conflicts must surface inline in the
-track-card, not only in the OncoKB layer.
+track-card, not only in the actionability layer.
 
-Wired by `generate_plan` after both `tracks` and `oncokb_layer.results`
-are populated. Output drives:
-  - inline banner in render (red R1, amber R2)
+Wired by `generate_plan` after both `tracks` and
+`actionability_layer.results` are populated. Output drives:
+  - inline banner in render
   - ProvenanceEvent("resistance_conflict_detected") on the plan
-  - MDT trigger: molecular_geneticist role added (priority high for R1, medium for R2)
+  - MDT trigger: molecular_geneticist role added
 """
 
 from __future__ import annotations
 
 from typing import Iterable
 
-from .oncokb_types import (
-    OncoKBLayer,
-    OncoKBResult,
+from .actionability_types import (
+    ActionabilityLayer,
+    ActionabilityResult,
     RESISTANCE_LEVELS,
     ResistanceConflict,
 )
@@ -30,7 +38,7 @@ from .oncokb_types import (
 
 def _drugs_from_track_regimen(regimen_data: dict | None) -> set[str]:
     """Extract drug names referenced by a regimen. Lower-cased for
-    case-insensitive comparison with OncoKB drug names."""
+    case-insensitive comparison with reported drug names."""
     if not regimen_data:
         return set()
     out: set[str] = set()
@@ -51,21 +59,27 @@ def _drugs_from_track_regimen(regimen_data: dict | None) -> set[str]:
 
 def detect_resistance_conflicts(
     tracks: Iterable,  # list[PlanTrack] — kept loose to avoid import cycle
-    oncokb_results: list[OncoKBResult],
+    actionability_results: list[ActionabilityResult],
 ) -> list[ResistanceConflict]:
     """Pure. Returns conflicts where a track-recommended drug overlaps
-    with OncoKB R1/R2 evidence for one of the patient's queried biomarkers.
+    with resistance evidence from any actionability source for one of the
+    patient's queried biomarkers.
 
     Comparison is case-insensitive. Both `drug_name` and `drug_id`
     (sans `DRUG-` prefix) on each regimen component are compared
-    against OncoKB-reported drug names."""
+    against actionability-source-reported drug names.
+
+    A level is treated as a resistance level iff it appears in
+    `RESISTANCE_LEVELS`. That set is populated by per-source matchers
+    at lookup time (Phase 2 — CIViC reader will set it). Until that
+    happens this function returns no conflicts (fail-quiet, not fail-loud)."""
 
     conflicts: list[ResistanceConflict] = []
 
     # Build (drug → list of (gene, variant, level, description)) index
-    # from R1/R2 OncoKB results
+    # from resistance-level results
     resistance_index: list[tuple[str, str, str, str, str | None]] = []
-    for result in oncokb_results:
+    for result in actionability_results:
         for opt in result.therapeutic_options:
             if opt.level not in RESISTANCE_LEVELS:
                 continue
@@ -113,9 +127,9 @@ def detect_resistance_conflicts(
 
 
 def annotate_layer_with_conflicts(
-    layer: OncoKBLayer,
+    layer: ActionabilityLayer,
     tracks: Iterable,
-) -> OncoKBLayer:
+) -> ActionabilityLayer:
     """Convenience wrapper. Mutates and returns the layer for chaining."""
     layer.resistance_conflicts = detect_resistance_conflicts(tracks, layer.results)
     return layer

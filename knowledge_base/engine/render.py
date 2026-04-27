@@ -340,15 +340,15 @@ _UI_STRINGS: dict[str, dict[str, str]] = {
     },
     "fda_disclosure_label":        {"uk": "Per FDA non-device CDS positioning (CHARTER §15):",
                                     "en": "Per FDA non-device CDS positioning (CHARTER §15):"},
-    # Variant actionability (ESCAT / OncoKB)
-    "actionability_heading":       {"uk": "Клінічна значущість мутацій (ESCAT / OncoKB)",
-                                    "en": "Clinical significance of mutations (ESCAT / OncoKB)"},
+    # Variant actionability (ESCAT)
+    "actionability_heading":       {"uk": "Клінічна значущість мутацій (ESCAT)",
+                                    "en": "Clinical significance of mutations (ESCAT)"},
     "actionability_sub":           {"uk": "Контекст для тумор-борду — інженер не використовує ці тіри для вибору треку",
                                     "en": "Tumor-board context — the engine does not use these tiers to rank tracks"},
     "actionability_th_biomarker":  {"uk": "Біомаркер", "en": "Biomarker"},
     "actionability_th_variant":    {"uk": "Варіант", "en": "Variant"},
     "actionability_th_escat":      {"uk": "ESCAT", "en": "ESCAT"},
-    "actionability_th_oncokb":     {"uk": "OncoKB", "en": "OncoKB"},
+    "actionability_th_evidence":   {"uk": "Доказова база", "en": "Evidence"},
     "actionability_th_action":     {"uk": "Клінічна дія", "en": "Clinical significance"},
     "actionability_th_combos":     {"uk": "Препарати", "en": "Drugs"},
     "actionability_th_sources":    {"uk": "Джерела", "en": "Sources"},
@@ -1346,7 +1346,14 @@ def _render_track_drug_list(
     return f'<dt>{_h(label)}</dt><dd><ul class="drug-list">{"".join(rows)}</ul></dd>'
 
 
-# ── Variant actionability (ESCAT / OncoKB) ──────────────────────────────
+# ── Variant actionability (ESCAT) ───────────────────────────────────────
+# TODO(phase-4): finalize CIViC rendering with civicdb.org links per
+# evidence_source. Phase 1 (CIViC pivot) removed the OncoKB tier-badge
+# column; the source-agnostic version below renders one short evidence
+# string per source under the "Evidence" column. Phase 4 will polish:
+# clickable civicdb.org URLs from EvidenceSourceRef.evidence_ids,
+# direction/significance pills, anti-evidence rendering for "Does Not
+# Support" CIViC items.
 
 
 def _escat_class(tier: Optional[str]) -> str:
@@ -1358,17 +1365,53 @@ def _escat_class(tier: Optional[str]) -> str:
     return f"escat-{t}" if t in valid else "escat-X"
 
 
-def _oncokb_class(level: Optional[str]) -> str:
-    """OncoKB level → CSS class. Falls back to oncokb-4 for unknown values."""
-    if not level:
-        return "oncokb-4"
-    valid = {"1", "2", "3A", "3B", "4", "R1", "R2"}
-    raw = str(level).strip().upper()
-    return f"oncokb-{raw}" if raw in valid else "oncokb-4"
+def _format_evidence_sources(evidence_sources: list) -> str:
+    """Render evidence_sources entries as a short list per BMA cell.
+
+    Each entry is rendered as `{source}: Level {level}` with optional
+    direction/significance suffix. Render layer matches the
+    EvidenceSourceRef shape (dict or pydantic; both supported).
+
+    TODO(phase-4): wire civicdb.org links when source == 'SRC-CIVIC' and
+    evidence_ids are populated. This Phase 1 stub keeps the UI honest
+    (we show every cited source) without committing to a final layout.
+    """
+    if not evidence_sources:
+        return '<span style="color:var(--gray-500)">—</span>'
+    items: list[str] = []
+    for es in evidence_sources:
+        if isinstance(es, dict):
+            source = es.get("source") or ""
+            level = es.get("level") or ""
+            direction = es.get("direction")
+            significance = es.get("significance")
+        else:
+            source = getattr(es, "source", "") or ""
+            level = getattr(es, "level", "") or ""
+            direction = getattr(es, "direction", None)
+            significance = getattr(es, "significance", None)
+        if not source:
+            continue
+        suffix_parts: list[str] = []
+        if direction:
+            suffix_parts.append(_h(str(direction)))
+        if significance:
+            suffix_parts.append(_h(str(significance)))
+        suffix = (
+            f' <span class="evidence-meta">({", ".join(suffix_parts)})</span>'
+            if suffix_parts
+            else ""
+        )
+        items.append(
+            f'<li>{_h(source)}: Level {_h(level)}{suffix}</li>'
+        )
+    if not items:
+        return '<span style="color:var(--gray-500)">—</span>'
+    return f'<ul class="evidence-sources">{"".join(items)}</ul>'
 
 
 def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
-    """Render the ESCAT / OncoKB tier-badges section.
+    """Render the ESCAT tier-badges + per-source evidence section.
 
     Inserted between the diagnostic profile (patient strip + etiological
     driver) and the treatment-plan tracks. When the patient has no
@@ -1382,7 +1425,7 @@ def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
         f"<th>{_h(_t('actionability_th_biomarker', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_variant', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_escat', target_lang))}</th>"
-        f"<th>{_h(_t('actionability_th_oncokb', target_lang))}</th>"
+        f"<th>{_h(_t('actionability_th_evidence', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_action', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_combos', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_sources', target_lang))}</th>"
@@ -1406,9 +1449,10 @@ def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
                 else f'<span style="color:var(--gray-500)">{_h(_t("actionability_gene_level", target_lang))}</span>'
             )
             escat_cls = _escat_class(h.escat_tier)
-            oncokb_cls = _oncokb_class(h.oncokb_level)
             escat_label = _h(h.escat_tier or "X")
-            oncokb_label = _h(h.oncokb_level or "4")
+            evidence_cell = _format_evidence_sources(
+                getattr(h, "evidence_sources", None) or []
+            )
             summary = _h_t(h.evidence_summary or "", target_lang)
             combos = (
                 "<br>".join(_h(c) for c in (h.recommended_combinations or []))
@@ -1423,7 +1467,7 @@ def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
                 f'<td><span class="gene">{biomarker}</span></td>'
                 f'<td><span class="variant">{variant_cell}</span></td>'
                 f'<td><span class="tier-badge {escat_cls}">{escat_label}</span></td>'
-                f'<td><span class="tier-badge {oncokb_cls}">{oncokb_label}</span></td>'
+                f'<td class="evidence">{evidence_cell}</td>'
                 f'<td class="summary">{summary}</td>'
                 f'<td class="combos">{combos}</td>'
                 f'<td><ul class="src-list">{sources}</ul></td>'
@@ -1493,7 +1537,7 @@ def render_plan_html(
         (plan_result.kb_resolved or {}).get("disease")
     ))
 
-    # Variant actionability (ESCAT / OncoKB) — inserted between the
+    # Variant actionability (ESCAT) — inserted between the
     # diagnostic profile and the treatment-plan tracks. Render-time
     # context only; engine never re-reads tier values to rank tracks.
     body.append(_render_variant_actionability(plan, target_lang))
@@ -1519,27 +1563,19 @@ def render_plan_html(
             if t.contraindications_data else ""
         )
         # Drug components with NSZU availability badges (render-time only;
-        # engine never reads these — same contract as ESCAT/OncoKB tiers).
+        # engine never reads these — same contract as ESCAT tiers).
         drugs_dd = _render_track_drug_list(
             t, drugs_lookup, plan_result.disease_id or "", disease_names, target_lang
         )
-        # Phase 4: OncoKB resistance-conflict inline banner (Q2 — surfaces
-        # R1/R2 next to the recommended regimen so it cannot be missed).
-        oncokb_layer_for_inline = getattr(plan_result, "oncokb_layer", None)
-        oncokb_inline = ""
-        if oncokb_layer_for_inline is not None:
-            try:
-                from .render_oncokb import render_track_resistance_banner
-                oncokb_inline = render_track_resistance_banner(
-                    t.track_id or t.label or "",
-                    oncokb_layer_for_inline.resistance_conflicts,
-                )
-            except Exception:
-                oncokb_inline = ""
+        # TODO(phase-4): inline resistance-conflict banner once the
+        # CIViC reader (SnapshotActionabilityClient) is wired and the
+        # actionability_layer is populated. Surface-only — the inline
+        # banner is the T3 mitigation for clinicians scrolling top-down.
+        actionability_inline = ""
         track_html.append(
             f'<div class="{track_class}">'
             f'<div class="track-head"><div class="track-name">{_h(t.label)}</div>{badge}</div>'
-            f'{oncokb_inline}'
+            f'{actionability_inline}'
             f'<dl>'
             f'<dt>Indication</dt><dd>{_h(t.indication_id)}</dd>'
             f'<dt>Regimen</dt><dd>{_h(regimen_str)}</dd>'
@@ -1566,25 +1602,17 @@ def render_plan_html(
     body.append(_render_red_flags_pro_contra(plan, plan_result.kb_resolved, target_lang))
     body.append(_render_what_not_to_do(plan, target_lang))
 
-    # Phase 4: OncoKB precision-medicine layer (HCP-only; surface-only).
-    # Per safe-rollout v3 §4.1: section sits AFTER tracks + supportive-care,
-    # BEFORE monitoring. CHARTER §8.3 invariant — engine never reads this.
-    # Phase 4.1: pass kb_resolved.drugs so the render layer can source FDA-
-    # approval truth from our Drug entities (OncoKB doesn't carry fdaApproved
-    # on treatments[] — see oncokb_api_evidence.md A3-bis).
-    oncokb_layer = getattr(plan_result, "oncokb_layer", None)
-    if oncokb_layer is not None:
-        try:
-            from .render_oncokb import render_oncokb_section
-            body.append(render_oncokb_section(
-                oncokb_layer,
-                mode="clinician",
-                target_lang=target_lang,
-                drugs_lookup=(plan_result.kb_resolved or {}).get("drugs"),
-            ))
-        except Exception as exc:
-            # Fail-open: missing oncokb section is preferable to a broken plan
-            body.append(f"<!-- oncokb section error: {exc} -->")
+    # TODO(phase-4): finalize CIViC rendering with civicdb.org links.
+    # The OncoKB layer renderer was removed in Phase 1 of the CIViC pivot
+    # (see docs/reviews/oncokb-public-civic-coverage-2026-04-27.md).
+    # Phase 4 will rebuild a source-agnostic actionability section that
+    # iterates `actionability_layer.results` and renders per-source
+    # evidence cards (CIViC level + direction + significance, FDA-CDx
+    # badges from our Drug entities, anti-evidence rendering for "Does
+    # Not Support" CIViC items). Until that lands, the per-cell
+    # `evidence_sources` rendering inside _render_variant_actionability
+    # carries the load.
+    # actionability_layer = getattr(plan_result, "actionability_layer", None)
 
     body.append(_render_monitoring_phases(plan))
     body.append(_render_timeline(plan))

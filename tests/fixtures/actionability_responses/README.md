@@ -1,9 +1,20 @@
-# OncoKB API response fixtures (provisional)
+# OncoKB API response fixtures
 
-🟡 **PROVISIONAL** — synthesized from public OncoKB API docs
-([api.oncokb.org/oncokb-website/api](https://api.oncokb.org/oncokb-website/api)
-+ [oncokb-annotator AnnotatorCore.py](https://github.com/oncokb/oncokb-annotator/blob/master/AnnotatorCore.py)).
-Replace with real-token curl captures during Phase 0 verification.
+Renamed from `oncokb_responses/` → `actionability_responses/` during the
+CIViC pivot (see
+`docs/reviews/oncokb-public-civic-coverage-2026-04-27.md`). The fixtures
+remain in OncoKB IndicatorQueryResp shape — they are useful for parser-
+shape testing if a Phase 4 OncoKB-compatible reader ever ships, and they
+document the upstream wire format for reference.
+
+🟡 **SYNTHESIZED** — these JSONs were synthesized from the public OncoKB
+API docs ([api.oncokb.org/oncokb-website/api](https://api.oncokb.org/oncokb-website/api)
++ [oncokb-annotator AnnotatorCore.py](https://github.com/oncokb/oncokb-annotator/blob/master/AnnotatorCore.py))
+during Phase 0 mock-mode work. **No real-token capture is planned** —
+the OncoKB ToS forbids redistribution of OncoKB Content (audit
+2026-04-27), and OpenOnco's primary actionability source is now CIViC
+(CC0). The `_provisional: true` flag on every fixture stays as a
+documentation marker that this data is synthesized, not captured.
 
 ## Shape (verified by public docs)
 
@@ -68,12 +79,14 @@ Replace with real-token curl captures during Phase 0 verification.
 - **`fdaApproved` field DOES NOT EXIST** at treatment level — Q8 FDA badge
   needs alternative source (look up Drug entity in our KB)
 
-## Critical unknowns (real-curl will resolve)
+## Critical unknowns (would have been resolved by real-curl, now moot)
 
 - exact OncoKB-canonical drug-name spelling (capitalization)
 - `description` field — present in some responses, absent in others?
 - precise structure of `treatments[].approvedIndications` if present
 - whether real responses include `query.entrezGeneId` for valid genes
 
-When real fixtures land, also verify the parsing layer
-(`services/oncokb_proxy/app.py:_call_oncokb`) handles all observed shapes.
+The proxy code that consumed these (`services/oncokb_proxy/app.py`) was
+deleted in Phase 1 of the CIViC pivot. The fixture-shape tests in
+`tests/test_actionability_contract_fixtures.py` still run as pure-data
+contract checks.

@@ -83,9 +83,13 @@ explicit instruction from the user.
   Hosting requires explicit H1–H5 justification. Do not propose mirroring
   external databases.
 - **Free public resource → non-commercial** (CHARTER §2). Many source
-  licenses (ESMO CC-BY-NC-ND, OncoKB academic, ATC) depend on this.
-  Proposing a paid tier triggers a license audit across all `referenced`
-  and `mixed` sources.
+  licenses (ESMO CC-BY-NC-ND, ATC) depend on this. Proposing a paid tier
+  triggers a license audit across all `referenced` and `mixed` sources.
+- **Actionability data source = CIViC (CC0).** OncoKB data is not used
+  per ToS conflict with CHARTER §2; see
+  `docs/reviews/oncokb-public-civic-coverage-2026-04-27.md` for the
+  audit. Engine modules use `actionability_*` naming
+  (`actionability_types.py`, `actionability_client.py`, etc.).
 
 ## Technology choices
 

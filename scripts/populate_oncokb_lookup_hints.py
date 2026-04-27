@@ -74,7 +74,7 @@ def main() -> int:
 
     # Verify each hint normalizes correctly (sanity check)
     sys.path.insert(0, str(repo_root))
-    from knowledge_base.engine.oncokb_extract import normalize_variant
+    from knowledge_base.engine.actionability_extract import normalize_variant
 
     for stem, (gene, variant) in HINTS.items():
         nv = normalize_variant(variant, gene)
