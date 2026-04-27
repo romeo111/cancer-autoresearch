@@ -37,12 +37,12 @@ OpenOnco automates the chore work. The clinician gets a **drafted plan with ever
 | Regimens | 186 |
 | RedFlags | 313 (≥2 sources each per REDFLAG_AUTHORING_GUIDE) |
 | Drugs | 185 (NSZU registration / reimbursement verified) |
-| BiomarkerActionability cells | 399 (ESCAT / OncoKB tier mapping) |
+| BiomarkerActionability cells | 399 (ESCAT tier + CIViC evidence levels) |
 | Biomarkers / genes | 97 |
 | Tests / procedures | 95 |
 | Sources | 162 (≈10,200 guideline pages, 26,000+ primary publications referenced) |
 
-**Engine** — rule-based decision engine with ESCAT / OncoKB tier interpretation, NSZU availability badges, patient-mode rendering, plan revisions / supersedes loop, append-only reviewer event log, QR-code case-token sharing. Bundle: split core (~1.4 MB) + per-disease lazy-load; ~2.4 MB compressed for the Pyodide demo.
+**Engine** — rule-based decision engine with ESCAT tier + CIViC actionability interpretation, NSZU availability badges, patient-mode rendering, plan revisions / supersedes loop, append-only reviewer event log, QR-code case-token sharing. Bundle: split core (~1.4 MB) + per-disease lazy-load; ~2.4 MB compressed for the Pyodide demo.
 
 **Sign-off infrastructure** — CLI + dashboard + JSONL audit log + render badges (CHARTER §6.1). Currently 15 / 202 clinical units carry ≥2 reviewer sign-offs; the rest render with the **STUB** badge by design until two of three Clinical Co-Leads sign off.
 
@@ -57,7 +57,7 @@ OpenOnco automates the chore work. The clinician gets a **drafted plan with ever
 - **Diagnostic-phase MDT (CHARTER §15.2 C7).** No histology → Workup Brief, never a treatment Plan. Mechanical hard gate.
 - **Plan revisions / supersedes loop.** `revise_plan(...)` polymorphic across `diagnostic→diagnostic`, `diagnostic→treatment` (promotion), and `treatment→treatment`; refuses illegal downgrade. Immutable audit chain (CHARTER §10.2).
 - **Append-only reviewer event log.** `confirmed` / `modified` / `approved` / `rejected` events persist as JSONL and rehydrate into the next render — full audit trail per CHARTER §10.2 / §15.1 Criterion 4.
-- **ESCAT / OncoKB actionability.** 399 BiomarkerActionability cells map biomarker × disease × drug to evidence tiers, surfaced as render badges.
+- **ESCAT + CIViC actionability.** 399 BiomarkerActionability cells map biomarker × disease × drug to evidence tiers, surfaced as render badges. CIViC (CC0) is the primary actionability source; OncoKB was rejected per ToS conflict with the free-public-resource scope (see `docs/reviews/oncokb-public-civic-coverage-2026-04-27.md`).
 - **FDA Criterion 4 metadata on every Plan.** `intended_use`, `hcp_user_specification`, `patient_population_match`, `algorithm_summary`, `data_sources_summary`, `data_limitations`, `automation_bias_warning`, `time_critical`. Full algorithm decision trace embedded.
 - **HTML render layer.** Single-file A4-printable HTML per Plan / Diagnostic Brief / Revision Note. Patient-mode and HCP-mode. UA / EN via `target_lang`. NSZU availability badges per drug.
 - **In-browser Pyodide demo.** The actual Python engine runs in the browser at [openonco.info/try.html](https://openonco.info/try.html) — no backend, no patient data leaves the device.
@@ -66,7 +66,7 @@ OpenOnco automates the chore work. The clinician gets a **drafted plan with ever
 
 ## Try it
 
-**End users / clinicians:** **[openonco.info/try.html](https://openonco.info/try.html)** — paste a patient JSON profile and the Pyodide-loaded engine generates a treatment plan with ESCAT / OncoKB tier badges, NSZU availability badges, and patient-mode rendering. No installation required, no PHI server-side (CHARTER §9.3).
+**End users / clinicians:** **[openonco.info/try.html](https://openonco.info/try.html)** — paste a patient JSON profile and the Pyodide-loaded engine generates a treatment plan with ESCAT tier + CIViC evidence badges, NSZU availability badges, and patient-mode rendering. No installation required, no PHI server-side (CHARTER §9.3).
 
 Sample patients: **[openonco.info/gallery.html](https://openonco.info/gallery.html)** — 30+ pre-rendered cases across DLBCL, FL, CLL/SLL, MCL, HCV-MZL, HCL, WM, HGBL-DH, PTCL, ALCL, AITL, MF/Sézary, cHL, NLPBL, and MM.
 
@@ -129,8 +129,8 @@ Key specs: [`CLINICAL_CONTENT_STANDARDS`](specs/CLINICAL_CONTENT_STANDARDS.md) (
 
 ## Recent work (2026-04 sprint)
 
-- **CSD-1..6** ([`docs/plans/`](docs/plans/)) — partnership / pitch pack: demo report, NSZU verification audit (167 drugs, 100% verified), patient-mode demo, OncoKB integration + safe rollout design, source-freshness audit, engine-bundle profiling.
-- **PROD-1..5** — engine-bundle split (core + per-disease lazy-load), patient-mode rendering, ESCAT/OncoKB and NSZU render badges, QR-code case-token sharing.
+- **CSD-1..6** ([`docs/plans/`](docs/plans/)) — partnership / pitch pack: demo report, NSZU verification audit (167 drugs, 100% verified), patient-mode demo, actionability integration design (initially OncoKB, pivoted to CIViC — see [`civic_integration_v1.md`](docs/plans/civic_integration_v1.md)), source-freshness audit, engine-bundle profiling.
+- **PROD-1..5** — engine-bundle split (core + per-disease lazy-load), patient-mode rendering, ESCAT + CIViC and NSZU render badges, QR-code case-token sharing.
 - **RedFlag quality phases 1-7** — 313 RFs, ≥2 sources each, golden fixtures, RF tests green.
 - **Site polish** — favicon (Rod of Asclepius), Playfair Display Cyrillic font, /try.html example loader UX synced with questionnaires.
 
