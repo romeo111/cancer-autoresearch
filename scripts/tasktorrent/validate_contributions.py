@@ -52,7 +52,17 @@ REQUIRED_CONTRIB_FIELDS = {
 # read-only outputs — no target_entity_id, no upsert path — so target_action
 # is optional. The check below routes per filename pattern.
 ENTITY_SIDECAR_PREFIXES = ("bma_", "bio_", "drug_", "ind_", "source_stub_")
-TARGET_ACTIONS = {"upsert", "new", "flag_duplicate"}
+# target_action vocabulary, partitioned by upsert intent.
+# - WRITE actions: contributor proposes new content for hosted/. Banned-source
+#   check is HARD — contributor must not introduce SRC-ONCOKB / SRC-SNOMED /
+#   SRC-MEDDRA references.
+# - REVIEW actions: contributor flags an existing hosted entity for maintainer
+#   attention WITHOUT proposing replacement content. Sidecar is a faithful
+#   snapshot of current state — banned-source check is SOFT (legacy refs in
+#   master may be present and faithfully preserved).
+WRITE_TARGET_ACTIONS = {"upsert", "new"}
+REVIEW_TARGET_ACTIONS = {"flag_duplicate", "review_existing_hosted_draft", "review_existing_stub"}
+TARGET_ACTIONS = WRITE_TARGET_ACTIONS | REVIEW_TARGET_ACTIONS
 
 
 class GateFailure(Exception):
@@ -164,7 +174,7 @@ def _validate_chunk(chunk_dir: Path, hosted_ids: set[str], hosted_src: set[str])
                 failures.append(
                     f"[{rel}] _contribution.target_action '{action}' invalid for entity sidecar"
                 )
-            if action in {"upsert", "flag_duplicate"} and not contrib.get("target_entity_id"):
+            if action in {"upsert", "flag_duplicate", "review_existing_hosted_draft", "review_existing_stub"} and not contrib.get("target_entity_id"):
                 failures.append(f"[{rel}] target_entity_id required for action={action}")
         elif action is not None and action not in TARGET_ACTIONS:
             # Report-only file with explicit but invalid target_action — flag but don't require.
@@ -190,7 +200,11 @@ def _validate_chunk(chunk_dir: Path, hosted_ids: set[str], hosted_src: set[str])
                 f"[{rel}] target_action=new collides with existing '{target_id}'"
             )
 
-        # banned-source + source-resolution check
+        # banned-source + source-resolution check.
+        # Skip banned-source check for REVIEW target_actions — those describe
+        # existing hosted state and may faithfully preserve legacy references
+        # (e.g. SRC-ONCOKB entries already on master pre-CIViC pivot).
+        is_review_action = action in REVIEW_TARGET_ACTIONS
         for src_field in ("primary_sources", "sources"):
             for src in doc.get(src_field) or []:
                 src_id = src if isinstance(src, str) else (
@@ -198,7 +212,7 @@ def _validate_chunk(chunk_dir: Path, hosted_ids: set[str], hosted_src: set[str])
                 )
                 if not src_id:
                     continue
-                if src_id in BANNED_SOURCES:
+                if src_id in BANNED_SOURCES and not is_review_action:
                     failures.append(f"[{rel}] {src_field} references banned source {src_id}")
                 if (
                     src_id not in hosted_src
@@ -214,7 +228,7 @@ def _validate_chunk(chunk_dir: Path, hosted_ids: set[str], hosted_src: set[str])
             if not isinstance(ev, dict):
                 continue
             src_id = ev.get("source")
-            if src_id in BANNED_SOURCES:
+            if src_id in BANNED_SOURCES and not is_review_action:
                 failures.append(f"[{rel}] evidence_sources references banned source {src_id}")
             if (
                 src_id
