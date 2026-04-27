@@ -72,8 +72,8 @@ pharmacology:
 
 sources:
   - SRC-ONCOKB
-  - SRC-NCCN-GIST-2025-2025
-  - SRC-NCCN-SM-2025-2025
+  - SRC-NCCN-GIST-2025
+  - SRC-NCCN-SM-2025
 
 last_reviewed: "2026-04-27"
 notes: >

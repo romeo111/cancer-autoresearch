@@ -92,7 +92,7 @@ decision_tree:
       result: IND-PCNSL-2L-RMPV-SALVAGE
 
 sources:
-  - SRC-NCCN-CNS-2025-2025
+  - SRC-NCCN-CNS-2025
   - SRC-NCCN-BCELL-2025
 
 last_reviewed: "2026-04-27"

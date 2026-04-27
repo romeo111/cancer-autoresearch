@@ -55,7 +55,7 @@ rationale_ua: >
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 sources:
-  - source_id: SRC-NCCN-CNS-2025-2025
+  - source_id: SRC-NCCN-CNS-2025
     position: supports
     relevant_quote_paraphrase: "RT + PCV is preferred adjuvant for high-risk IDH-mutant LGG (grade 2-3) in fit patients per NCCN-CNS LGG section (Category 1)"
   - source_id: SRC-EANO-GBM-2024
@@ -73,7 +73,7 @@ known_controversies:
     positions:
       - position: "RT+PCV is the only regimen with mature OS benefit in high-risk LGG (RTOG 9802) — preferred when tolerated"
         sources:
-          - SRC-NCCN-CNS-2025-2025
+          - SRC-NCCN-CNS-2025
       - position: "RT+TMZ has equivalent activity in CATNON (grade 3 IDH-mut astro) and is significantly better tolerated; CODEL trial (RT+TMZ vs RT+PCV in 1p/19q-codeleted) ongoing"
         sources:
           - SRC-EANO-GBM-2024

@@ -25,7 +25,7 @@ recommended_combinations:
   - "anti-PD-1 ± anti-CTLA-4 (1L irrespective of KIT status)"
 contraindicated_monotherapy: []
 primary_sources:
-  - SRC-NCCN-MELANOMA-2025-2025
+  - SRC-NCCN-MELANOMA-2025
   - SRC-ESMO-MELANOMA-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"

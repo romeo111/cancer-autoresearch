@@ -36,7 +36,7 @@ epidemiology:
   primary_site_distribution: "Stomach ~60%, small bowel ~30%, colon-rectum ~5%, esophagus / extra-GI <5%"
 
 sources:
-  - SRC-NCCN-MELANOMA-2025-2025  # NCCN GIST guideline not yet ingested — using NCCN-MELANOMA as adjacent KIT reference; flag for replacement when SRC-NCCN-SARCOMA / SRC-NCCN-GIST-2025 is added
+  - SRC-NCCN-MELANOMA-2025  # NCCN GIST guideline not yet ingested — using NCCN-MELANOMA as adjacent KIT reference; flag for replacement when SRC-NCCN-SARCOMA / SRC-NCCN-GIST-2025 is added
   - SRC-ONCOKB
 
 last_reviewed: "2026-04-27"

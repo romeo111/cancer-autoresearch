@@ -64,7 +64,7 @@ sources:
   - source_id: SRC-C14401-CHESNEY-2024
     position: supports
     relevant_quote_paraphrase: "C-144-01 pooled cohorts (n=153): lifileucel ORR 31.4%, mOS 13.9 mo, mDoR not reached at 27.6 mo follow-up — first cellular therapy for solid tumors; FDA accelerated approval 2024"
-  - source_id: SRC-NCCN-MELANOMA-2025-2025
+  - source_id: SRC-NCCN-MELANOMA-2025
     position: supports
     relevant_quote_paraphrase: "Lifileucel TIL therapy is a recommended option for advanced melanoma after progression on anti-PD-1 (and BRAFi+MEKi if BRAF V600+); referral to specialty TIL center"
 
@@ -74,9 +74,9 @@ known_controversies:
       - position: "Lifileucel is the only therapy with regulatory approval in this setting; durable responses possible"
         sources: [SRC-C14401-CHESNEY-2024]
       - position: "Anti-PD-1 retreatment (with prior response) yields ORR ~15%; cheaper, more accessible"
-        sources: [SRC-NCCN-MELANOMA-2025-2025]
+        sources: [SRC-NCCN-MELANOMA-2025]
       - position: "Clinical trial enrollment preferred when accessible (novel cellular / bispecific approaches)"
-        sources: [SRC-NCCN-MELANOMA-2025-2025]
+        sources: [SRC-NCCN-MELANOMA-2025]
     our_default: "Lifileucel for fit ECOG 0-1 patients with international-referral pathway accessible; anti-PD-1 retreatment otherwise"
     rationale: "Cellular therapy is unique salvage option but access-limited; retreatment is realistic UA fallback"
 

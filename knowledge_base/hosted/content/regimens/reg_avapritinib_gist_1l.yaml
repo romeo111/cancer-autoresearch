@@ -26,12 +26,12 @@ dose_adjustments:
     modification: "Hold until ≤gr 1, resume at 200 mg; permanently discontinue if recurs at 200 mg"
     rationale: "Cognitive toxicity is dose-related; PATHFINDER 200 mg dose has lower frequency"
     source_refs:
-      - SRC-NCCN-GIST-2025-2025
+      - SRC-NCCN-GIST-2025
   - condition: "Intracranial hemorrhage / cerebral microbleed on MRI"
     modification: "Permanently discontinue"
     rationale: "Black box warning; class effect of selective KIT/PDGFRA inhibitors"
     source_refs:
-      - SRC-NCCN-GIST-2025-2025
+      - SRC-NCCN-GIST-2025
   - condition: "Severe cytopenias (ANC <1.0 ×10⁹/L, platelets <50 ×10⁹/L)"
     modification: "Hold until recovery; resume at 200 mg"
     rationale: "Toxicity management"
@@ -42,7 +42,7 @@ ukraine_availability:
   notes: "Avapritinib NOT registered in Ukraine. Access via DEC named-patient import or Blueprint Medicines EAP (PDGFRA D842V or KIT D816V documented). Cross-border (EU SoC) is realistic alt route."
 
 sources:
-  - SRC-NCCN-GIST-2025-2025
+  - SRC-NCCN-GIST-2025
   - SRC-ONCOKB
 
 last_reviewed: "2026-04-27"

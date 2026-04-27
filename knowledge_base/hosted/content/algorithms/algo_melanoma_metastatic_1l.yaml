@@ -45,6 +45,6 @@ decision_tree:
     if_false:
       result: IND-MELANOMA-METASTATIC-1L-NIVO-IPI
     notes: "MDT-only — visceral-crisis / rapid-progression check; default IO-doublet per DREAMseq when no crisis."
-sources: [SRC-NCCN-MELANOMA-2025-2025, SRC-ESMO-MELANOMA-2024]
+sources: [SRC-NCCN-MELANOMA-2025, SRC-ESMO-MELANOMA-2024]
 last_reviewed: null
 notes: "DREAMseq: ICI-doublet → BRAFi+MEKi sequence preferred over reverse."

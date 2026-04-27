@@ -24,7 +24,7 @@ contraindicated_monotherapy:
   - "gefitinib (negative trials in GBM)"
   - "osimertinib (insufficient CNS activity for EGFRvIII)"
 primary_sources:
-  - SRC-NCCN-CNS-2025-2025
+  - SRC-NCCN-CNS-2025
   - SRC-EANO-GBM-2024
 last_verified: "2026-04-27"
 oncokb_snapshot_version: "v3.20-2026-04"

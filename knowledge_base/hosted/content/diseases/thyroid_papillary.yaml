@@ -38,7 +38,7 @@ epidemiology:
 
 sources:
   - SRC-ONCOKB
-  - SRC-NCCN-CNS-2025-2025  # NCCN-THYROID not yet ingested — placeholder; flag for replacement
+  - SRC-NCCN-CNS-2025  # NCCN-THYROID not yet ingested — placeholder; flag for replacement
 
 last_reviewed: "2026-04-27"
 reviewers: []

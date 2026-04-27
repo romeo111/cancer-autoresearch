@@ -30,7 +30,7 @@ relevant_diseases:
 shifts_algorithm: []
 
 sources:
-  - SRC-NCCN-SM-2025-2025
+  - SRC-NCCN-SM-2025
   - SRC-ESMO-MPN-2015
 
 last_reviewed: "2026-04-27"

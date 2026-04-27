@@ -24,7 +24,7 @@ relevant_diseases: [DIS-GIST]
 shifts_algorithm: []
 
 sources:
-  - SRC-NCCN-MELANOMA-2025-2025
+  - SRC-NCCN-MELANOMA-2025
   - SRC-ONCOKB
 
 last_reviewed: '2026-04-26'

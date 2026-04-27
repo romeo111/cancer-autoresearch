@@ -55,7 +55,7 @@ sources:
   - source_id: SRC-NCCN-BCELL-2025
     position: supports
     relevant_quote_paraphrase: MATRix induction + autoSCT consolidation is preferred 1L for fit PCNSL ≤70
-  - source_id: SRC-NCCN-CNS-2025-2025
+  - source_id: SRC-NCCN-CNS-2025
     position: supports
     relevant_quote_paraphrase: NCCN CNS 2025 endorses HD-MTX-based induction (R-MPV or MATRix) followed by consolidation (autoSCT/thiotepa-based or WBRT) as PCNSL 1L standard
 known_controversies:

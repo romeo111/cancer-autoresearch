@@ -119,7 +119,7 @@ pharmacology:
   metabolism: "n/a (cellular product; expansion in vivo over weeks; long-term persistence variable)"
 
 sources:
-  - SRC-NCCN-MELANOMA-2025-2025
+  - SRC-NCCN-MELANOMA-2025
   - SRC-ESMO-MELANOMA-2024
 
 last_reviewed: "2026-04-27"

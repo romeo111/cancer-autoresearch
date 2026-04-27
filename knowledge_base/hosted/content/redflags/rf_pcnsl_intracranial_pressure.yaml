@@ -28,7 +28,7 @@ relevant_diseases:
 shifts_algorithm: []
 
 sources:
-  - SRC-NCCN-CNS-2025-2025
+  - SRC-NCCN-CNS-2025
   - SRC-NCCN-BCELL-2025
 
 last_reviewed: "2026-04-27"

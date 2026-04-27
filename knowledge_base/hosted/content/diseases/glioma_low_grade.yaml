@@ -36,7 +36,7 @@ epidemiology:
   idh_rate: "~80% of WHO grade 2-3 gliomas are IDH-mutant by definition (WHO 2021 reclassified IDH-WT grade 2-3 as IDH-WT 'molecular GBM')"
 
 sources:
-  - SRC-NCCN-CNS-2025-2025
+  - SRC-NCCN-CNS-2025
   - SRC-EANO-GBM-2024  # EANO has parallel LGG guidance
 
 last_reviewed: "2026-04-27"

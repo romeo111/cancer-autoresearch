@@ -18,7 +18,7 @@ recommended_combinations:
   - "vorasidenib"
 contraindicated_monotherapy: []
 primary_sources:
-  - SRC-NCCN-CNS-2025-2025
+  - SRC-NCCN-CNS-2025
 last_verified: "2026-04-27"
 oncokb_snapshot_version: "v3.20-2026-04"
 notes: >

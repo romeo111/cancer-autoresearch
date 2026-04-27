@@ -26,12 +26,12 @@ dose_adjustments:
     modification: "Hold; resume at next lower dose level (100 → 60 mg) once ≤gr 1; topical urea + emollient prophylaxis"
     rationale: "Dose-limiting AE in EXAM (~50%)"
     source_refs:
-      - SRC-NCCN-THYROID-2025-2025
+      - SRC-NCCN-THYROID-2025
   - condition: "GI perforation, fistula, or severe hemorrhage"
     modification: "Permanently discontinue"
     rationale: "Boxed warning"
     source_refs:
-      - SRC-NCCN-THYROID-2025-2025
+      - SRC-NCCN-THYROID-2025
   - condition: "Severe hypertension (SBP ≥160 / DBP ≥100 despite optimal antihypertensives)"
     modification: "Hold; restart at lower dose once SBP <140 / DBP <90"
     rationale: "VEGFR-class AE"
@@ -48,7 +48,7 @@ ukraine_availability:
   notes: "Cabozantinib NOT registered in Ukraine. Access via DEC named-patient import or Ipsen / Exelixis EAP. Cross-border EU treatment per наказ МОЗ 988 realistic for documented MTC."
 
 sources:
-  - SRC-NCCN-THYROID-2025-2025
+  - SRC-NCCN-THYROID-2025
 
 last_reviewed: "2026-04-27"
 notes: >

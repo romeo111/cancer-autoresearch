@@ -17,7 +17,7 @@ availability_ukraine:
   state_funded: true
   typical_availability: "Dermato-oncology centers; growing in primary care"
 sources:
-  - SRC-NCCN-MELANOMA-2025-2025
+  - SRC-NCCN-MELANOMA-2025
   - SRC-ESMO-MELANOMA-2024
 last_reviewed: "2026-04-25"
 notes: >

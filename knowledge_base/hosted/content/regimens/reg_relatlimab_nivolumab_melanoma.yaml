@@ -37,7 +37,7 @@ ukraine_availability:
   notes: "Релатлімаб не зареєстрований в Україні (2026-04); pathway = named-patient import. Ніволумаб зареєстрований + НСЗУ-покриваний для меланоми 1L (моно або з ipi). Opdualag fixed-dose — недоступний без імпорту."
 
 sources:
-  - SRC-NCCN-MELANOMA-2025-2025
+  - SRC-NCCN-MELANOMA-2025
   - SRC-ESMO-MELANOMA-2024
   - SRC-RELATIVITY-047-TAWBI-2022
 

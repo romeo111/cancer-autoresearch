@@ -53,7 +53,7 @@ serious_adverse_events:
   - "Secondary AML/MDS (long-term)"
 
 sources:
-  - SRC-NCCN-CNS-2025-2025
+  - SRC-NCCN-CNS-2025
   - SRC-EANO-GBM-2024
 
 last_reviewed: "2026-04-26"

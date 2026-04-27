@@ -10,7 +10,7 @@ evidence_summary: >
   long-term — methylated patients derive ~2x OS benefit from
   RT+TMZ vs RT alone). Standard 1L for newly-diagnosed GBM remains
   Stupp protocol (concurrent RT + temozolomide → 6 cycles adjuvant
-  TMZ) per SRC-NCCN-CNS-2025-2025, SRC-EANO-GBM-2024 — but methylation
+  TMZ) per SRC-NCCN-CNS-2025, SRC-EANO-GBM-2024 — but methylation
   status drives intensification decisions: in elderly MGMT-methylated
   patients, hypofractionated RT + TMZ (Perry NEJM 2017) is preferred,
   while elderly MGMT-unmethylated patients can receive RT alone with
@@ -18,7 +18,7 @@ evidence_summary: >
   showed lomustine + TMZ + RT may extend OS in newly-diagnosed MGMT-
   methylated GBM but is not standard worldwide.
 evidence_summary_ua: >
-  MGMT promoter метилювання in IDH-WT гліобластома is the strongest validated predictor of temozolomide виграш (Stupp NEJM 2005 / 2009 long-term — methylated patients derive ~2x OS виграш from RT+TMZ vs RT alone). стандарт 1L for newly-diagnosed GBM remains Stupp protocol (concurrent RT + temozolomide → 6 цикли ад'ювантний TMZ) per SRC-NCCN-CNS-2025-2025, SRC-EANO-GBM-2024 — but метилювання status drives intensification decisions: in літнього віку MGMT-methylated patients, hypofractionated RT + TMZ (Perry NEJM 2017) is переважний, while літнього віку MGMT-unmethylated patients can receive RT alone with much smaller TMZ виграш. CeTeG/NOA-09 (Herrlinger Lancet 2019) showed lomustine + TMZ + RT may extend OS in newly-diagnosed MGMT- methylated GBM but is not стандарт worldwide.
+  MGMT promoter метилювання in IDH-WT гліобластома is the strongest validated predictor of temozolomide виграш (Stupp NEJM 2005 / 2009 long-term — methylated patients derive ~2x OS виграш from RT+TMZ vs RT alone). стандарт 1L for newly-diagnosed GBM remains Stupp protocol (concurrent RT + temozolomide → 6 цикли ад'ювантний TMZ) per SRC-NCCN-CNS-2025, SRC-EANO-GBM-2024 — but метилювання status drives intensification decisions: in літнього віку MGMT-methylated patients, hypofractionated RT + TMZ (Perry NEJM 2017) is переважний, while літнього віку MGMT-unmethylated patients can receive RT alone with much smaller TMZ виграш. CeTeG/NOA-09 (Herrlinger Lancet 2019) showed lomustine + TMZ + RT may extend OS in newly-diagnosed MGMT- methylated GBM but is not стандарт worldwide.
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 regulatory_approval:
@@ -28,13 +28,13 @@ regulatory_approval:
     - "temozolomide — newly-diagnosed GBM with concurrent RT and maintenance (EMA approved 2005)"
   ukraine: []
 recommended_combinations:
-  - "Stupp protocol: concurrent RT + temozolomide → 6 cycles adjuvant TMZ (1L MGMT-methylated GBM per SRC-NCCN-CNS-2025-2025, SRC-EANO-GBM-2024)"
+  - "Stupp protocol: concurrent RT + temozolomide → 6 cycles adjuvant TMZ (1L MGMT-methylated GBM per SRC-NCCN-CNS-2025, SRC-EANO-GBM-2024)"
   - "hypofractionated RT + TMZ (elderly ≥65y MGMT-methylated per SRC-EANO-GBM-2024)"
   - "lomustine + TMZ + RT (alternative MGMT-methylated 1L per CeTeG/NOA-09 — listed as option in SRC-EANO-GBM-2024)"
 contraindicated_monotherapy:
   - "TMZ monotherapy without RT in newly-diagnosed GBM (excluding very elderly poor performance per SRC-EANO-GBM-2024)"
 primary_sources:
-  - SRC-NCCN-CNS-2025-2025
+  - SRC-NCCN-CNS-2025
   - SRC-EANO-GBM-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"

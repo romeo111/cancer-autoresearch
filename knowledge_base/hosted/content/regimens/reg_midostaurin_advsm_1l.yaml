@@ -27,7 +27,7 @@ dose_adjustments:
     modification: "Reduce to 50 mg PO BID; if persistent, hold and resume at 50 mg BID after recovery"
     rationale: "Most common dose-limiting AE; ~30% require dose reduction"
     source_refs:
-      - SRC-NCCN-SM-2025-2025
+      - SRC-NCCN-SM-2025
   - condition: "QTc >500 ms"
     modification: "Hold; correct electrolytes; resume at lower dose once QTc <470 ms"
     rationale: "QT prolongation risk"
@@ -44,7 +44,7 @@ ukraine_availability:
   notes: "Midostaurin registered + НСЗУ-reimbursed (Реімбурсаційний пакет «Онкологія» 2026 covers ASM / SM-AHN / MCL indication). More accessible 1L than avapritinib in Ukraine."
 
 sources:
-  - SRC-NCCN-SM-2025-2025
+  - SRC-NCCN-SM-2025
 
 last_reviewed: "2026-04-27"
 notes: >

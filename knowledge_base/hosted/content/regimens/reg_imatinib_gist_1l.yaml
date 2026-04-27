@@ -28,12 +28,12 @@ dose_adjustments:
     modification: "Escalate to 400 mg PO BID (800 mg/day total) from start — superior PFS vs 400 mg in EORTC-62005 / S0033 meta-analysis"
     rationale: "Exon 9 mutants require higher exposure for KIT inhibition"
     source_refs:
-      - SRC-NCCN-GIST-2025-2025
+      - SRC-NCCN-GIST-2025
   - condition: "Progression on 400 mg with KIT exon 11"
     modification: "Dose-escalate to 800 mg/day; if continued progression switch to sunitinib (2L) → regorafenib (3L) → ripretinib (4L)"
     rationale: "Secondary resistance from KIT exon 13/14 (ATP-binding) or 17/18 (activation loop) mutations"
     source_refs:
-      - SRC-NCCN-GIST-2025-2025
+      - SRC-NCCN-GIST-2025
   - condition: "Severe toxicity (cytopenias gr ≥3, severe edema, severe muscle cramps)"
     modification: "Hold; resume 300 mg daily once recovered; switch TKI if intolerance recurs"
     rationale: "Toxicity management"
@@ -47,7 +47,7 @@ ukraine_availability:
   notes: "Imatinib generic widely НСЗУ-reimbursed including for KIT/PDGFRA-sensitive GIST per Реімбурсаційний пакет «Онкологія» 2026."
 
 sources:
-  - SRC-NCCN-GIST-2025-2025
+  - SRC-NCCN-GIST-2025
   - SRC-IRIS-OBRIEN-2003
 
 last_reviewed: "2026-04-27"

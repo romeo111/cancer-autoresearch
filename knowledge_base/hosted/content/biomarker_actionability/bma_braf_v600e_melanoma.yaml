@@ -36,7 +36,7 @@ recommended_combinations:
 contraindicated_monotherapy:
   - "BRAFi monotherapy (vemurafenib alone) — inferior OS vs combo, paradoxical RAS/RAF activation in BRAF-WT clones"
 primary_sources:
-  - SRC-NCCN-MELANOMA-2025-2025
+  - SRC-NCCN-MELANOMA-2025
   - SRC-ESMO-MELANOMA-2024
 last_verified: "2026-04-27"
 oncokb_snapshot_version: "v3.20-2026-04"

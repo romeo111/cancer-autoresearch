@@ -28,12 +28,12 @@ dose_adjustments:
     modification: "Avapritinib is contraindicated; manage with midostaurin or supportive care; reassess after AHN-component therapy in SM-AHN"
     rationale: "Increased intracranial hemorrhage risk at low platelet counts"
     source_refs:
-      - SRC-NCCN-SM-2025-2025
+      - SRC-NCCN-SM-2025
   - condition: "Cognitive effects (memory, mood, confusion) gr ≥2"
     modification: "Hold until ≤gr 1; resume at 100 mg; permanently discontinue if recurs at 100 mg"
     rationale: "Dose-related; cognitive AE was the main reason 200 mg (PATHFINDER) replaced 300 mg (EXPLORER) for AdvSM"
     source_refs:
-      - SRC-NCCN-SM-2025-2025
+      - SRC-NCCN-SM-2025
   - condition: "Intracranial hemorrhage (any size) or symptomatic cerebral microbleed"
     modification: "Permanently discontinue"
     rationale: "Boxed warning"
@@ -47,7 +47,7 @@ ukraine_availability:
   notes: "Avapritinib NOT registered in Ukraine. Access via DEC named-patient import or Blueprint Medicines EAP (KIT D816V documented). Cross-border (EU) treatment per наказ МОЗ 988 is realistic — SoC in EU."
 
 sources:
-  - SRC-NCCN-SM-2025-2025
+  - SRC-NCCN-SM-2025
   - SRC-ONCOKB
 
 last_reviewed: "2026-04-27"
