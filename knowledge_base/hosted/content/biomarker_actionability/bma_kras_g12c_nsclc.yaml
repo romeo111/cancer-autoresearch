@@ -1,42 +1,125 @@
 id: BMA-KRAS-G12C-NSCLC
 biomarker_id: BIO-KRAS-G12C
-variant_qualifier: "G12C"
+variant_qualifier: G12C
 disease_id: DIS-NSCLC
-escat_tier: "IA"
-evidence_summary: >
-  KRAS G12C in advanced NSCLC (~13% of adenocarcinoma): sotorasib
-  (CodeBreaK 100/200) and adagrasib (KRYSTAL-1) are FDA/EMA-approved
-  for previously-treated metastatic disease. ORR ~40%, PFS ~6 mo.
-  Frontline KRYSTAL-7 (adagrasib + pembrolizumab) and CodeBreaK 202
-  ongoing.
-evidence_summary_ua: >
-  KRAS G12C in поширений NSCLC (~13% of adenocarcinoma): соторасиб (CodeBreaK 100/200) and адаграсиб (KRYSTAL-1) are FDA/EMA-схвалений для previously-treated метастатичний хвороба. ORR ~40%, PFS ~6 mo. перша лінія KRYSTAL-7 (адаграсиб + пембролізумаб) and CodeBreaK 202 ongoing.
+escat_tier: IA
+evidence_summary: 'KRAS G12C in advanced NSCLC (~13% of adenocarcinoma): sotorasib
+  (CodeBreaK 100/200) and adagrasib (KRYSTAL-1) are FDA/EMA-approved for previously-treated
+  metastatic disease. ORR ~40%, PFS ~6 mo. Frontline KRYSTAL-7 (adagrasib + pembrolizumab)
+  and CodeBreaK 202 ongoing.
+
+  '
+evidence_summary_ua: 'KRAS G12C in поширений NSCLC (~13% of adenocarcinoma): соторасиб
+  (CodeBreaK 100/200) and адаграсиб (KRYSTAL-1) are FDA/EMA-схвалений для previously-treated
+  метастатичний хвороба. ORR ~40%, PFS ~6 mo. перша лінія KRYSTAL-7 (адаграсиб + пембролізумаб)
+  and CodeBreaK 202 ongoing.
+
+  '
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 regulatory_approval:
   fda:
-    - "sotorasib (Lumakras) — locally advanced/metastatic G12C NSCLC after ≥1 prior systemic therapy (FDA 2021, full approval after CodeBreaK 200)"
-    - "adagrasib (Krazati) — pretreated G12C NSCLC (FDA accelerated 2022)"
+  - sotorasib (Lumakras) — locally advanced/metastatic G12C NSCLC after ≥1 prior systemic
+    therapy (FDA 2021, full approval after CodeBreaK 200)
+  - adagrasib (Krazati) — pretreated G12C NSCLC (FDA accelerated 2022)
   ema:
-    - "sotorasib — G12C NSCLC (EMA 2022)"
-    - "adagrasib — G12C NSCLC (EMA 2024)"
+  - sotorasib — G12C NSCLC (EMA 2022)
+  - adagrasib — G12C NSCLC (EMA 2024)
   ukraine: []
 recommended_combinations:
-  - "sotorasib monotherapy"
-  - "adagrasib monotherapy"
+- sotorasib monotherapy
+- adagrasib monotherapy
 contraindicated_monotherapy:
-  - "non-G12C KRAS — sotorasib/adagrasib not active on G12D/G12V/G13D/Q61"
+- non-G12C KRAS — sotorasib/adagrasib not active on G12D/G12V/G13D/Q61
 primary_sources:
-  - SRC-NCCN-NSCLC-2025
-  - SRC-ESMO-NSCLC-METASTATIC-2024
-last_verified: "2026-04-27"
+- SRC-NCCN-NSCLC-2025
+- SRC-ESMO-NSCLC-METASTATIC-2024
+last_verified: '2026-04-27'
 evidence_sources:
-  - source: SRC-ONCOKB
-    level: "1"
-    evidence_ids: []
-    direction: null
-    significance: null
-    note: "Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC. Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render skips evidence_sources entries with source=SRC-ONCOKB."
+- source: SRC-ONCOKB
+  level: '1'
+  evidence_ids: []
+  direction: null
+  significance: null
+  note: Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC.
+    Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render
+    skips evidence_sources entries with source=SRC-ONCOKB.
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '227'
+  direction: Supports
+  significance: Positive
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
+    attached)'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '1142'
+  - '11652'
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Docetaxel,
+    Selumetinib, Divarasib'
+- source: SRC-CIVIC
+  level: D
+  evidence_ids:
+  - '1173'
+  - '2212'
+  - '7572'
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Epidermal
+    Growth Factor Receptor Tyrosine Kinase Inhibitor, ARS-853, Selumetinib, Dactolisib,
+    Adagrasib'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '1216'
+  - '2257'
+  - '3967'
+  direction: Supports
+  significance: Resistance
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Gefitinib,
+    Erlotinib, Chemotherapy, Cetuximab'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '1217'
+  direction: Supports
+  significance: Poor Outcome
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
+    attached)'
+- source: SRC-CIVIC
+  level: C
+  evidence_ids:
+  - '2253'
+  direction: Supports
+  significance: Resistance
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Panitumumab'
+- source: SRC-CIVIC
+  level: D
+  evidence_ids:
+  - '2261'
+  - '2262'
+  - '2263'
+  - '3973'
+  direction: Supports
+  significance: Resistance
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Melphalan,
+    Regorafenib Anhydrous'
+- source: SRC-CIVIC
+  level: A
+  evidence_ids:
+  - '9431'
+  - '12063'
+  - '12264'
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Sotorasib,
+    Cetuximab, Adagrasib, Panitumumab'
 actionability_review_required: true
-notes: >
-  ESCAT IA. OncoKB Level 1. Reflex testing for KRAS G12C in metastatic NSCLC. STK11/KEAP1 co-mutations may modulate response.
+notes: 'ESCAT IA. OncoKB Level 1. Reflex testing for KRAS G12C in metastatic NSCLC.
+  STK11/KEAP1 co-mutations may modulate response.
+
+  '

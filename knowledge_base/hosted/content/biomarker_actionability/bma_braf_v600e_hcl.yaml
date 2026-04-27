@@ -1,43 +1,246 @@
 id: BMA-BRAF-V600E-HCL
 biomarker_id: BIO-BRAF-V600E
-variant_qualifier: "V600E"
+variant_qualifier: V600E
 disease_id: DIS-HCL
-escat_tier: "IB"
-evidence_summary: >
-  BRAF V600E is the defining molecular lesion of classic hairy cell
-  leukemia (~100% of cHCL; absent in HCL-variant). Vemurafenib
-  monotherapy yields CR ~35% / ORR ~96% in relapsed/refractory cHCL
-  (Tiacci et al. NEJM 2015). Vemurafenib + rituximab gives durable
-  CR in ~87% (Tiacci et al. NEJM 2021). Dabrafenib + trametinib also
-  active. Used as salvage after purine-analog failure or in
-  cladribine-ineligible patients.
-evidence_summary_ua: >
-  BRAF V600E is the defining molecular lesion of classic волосатоклітинний лейкоз (~100% of cHCL; absent in HCL-варіант). вемурафеніб монотерапія yields CR ~35% / ORR ~96% in рецидивний/рефрактерний cHCL (Tiacci et al. NEJM 2015). вемурафеніб + ритуксимаб gives durable CR in ~87% (Tiacci et al. NEJM 2021). дабрафеніб + траметиніб also active. Used as сальвадж after purine-analog failure or in кладрибін-ineligible patients.
+escat_tier: IB
+evidence_summary: 'BRAF V600E is the defining molecular lesion of classic hairy cell
+  leukemia (~100% of cHCL; absent in HCL-variant). Vemurafenib monotherapy yields
+  CR ~35% / ORR ~96% in relapsed/refractory cHCL (Tiacci et al. NEJM 2015). Vemurafenib
+  + rituximab gives durable CR in ~87% (Tiacci et al. NEJM 2021). Dabrafenib + trametinib
+  also active. Used as salvage after purine-analog failure or in cladribine-ineligible
+  patients.
+
+  '
+evidence_summary_ua: 'BRAF V600E is the defining molecular lesion of classic волосатоклітинний
+  лейкоз (~100% of cHCL; absent in HCL-варіант). вемурафеніб монотерапія yields CR
+  ~35% / ORR ~96% in рецидивний/рефрактерний cHCL (Tiacci et al. NEJM 2015). вемурафеніб
+  + ритуксимаб gives durable CR in ~87% (Tiacci et al. NEJM 2021). дабрафеніб + траметиніб
+  also active. Used as сальвадж after purine-analog failure or in кладрибін-ineligible
+  patients.
+
+  '
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 regulatory_approval:
   fda:
-    - "vemurafenib — off-label for R/R cHCL (NCCN-supported; no specific HCL label)"
+  - vemurafenib — off-label for R/R cHCL (NCCN-supported; no specific HCL label)
   ema:
-    - "vemurafenib — off-label R/R cHCL (NCCN/ESMO-supported)"
+  - vemurafenib — off-label R/R cHCL (NCCN/ESMO-supported)
   ukraine: []
 recommended_combinations:
-  - "vemurafenib monotherapy (R/R cHCL)"
-  - "vemurafenib + rituximab (consolidation / R/R)"
-  - "dabrafenib + trametinib (alternative)"
+- vemurafenib monotherapy (R/R cHCL)
+- vemurafenib + rituximab (consolidation / R/R)
+- dabrafenib + trametinib (alternative)
 contraindicated_monotherapy: []
 primary_sources:
-  - SRC-NCCN-BCELL-2025
-last_verified: "2026-04-27"
+- SRC-NCCN-BCELL-2025
+last_verified: '2026-04-27'
 evidence_sources:
-  - source: SRC-ONCOKB
-    level: "2"
-    evidence_ids: []
-    direction: null
-    significance: null
-    note: "Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC. Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render skips evidence_sources entries with source=SRC-ONCOKB."
+- source: SRC-ONCOKB
+  level: '2'
+  evidence_ids: []
+  direction: null
+  significance: null
+  note: Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC.
+    Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render
+    skips evidence_sources entries with source=SRC-ONCOKB.
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '79'
+  - '80'
+  - '1127'
+  direction: Supports
+  significance: Positive
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
+    attached)'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '82'
+  - '102'
+  direction: Does Not Support
+  significance: Poor Outcome
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
+    attached)'
+- source: SRC-CIVIC
+  level: D
+  evidence_ids:
+  - '86'
+  direction: Does Not Support
+  significance: Resistance
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Trametinib,
+    Mirdametinib'
+- source: SRC-CIVIC
+  level: D
+  evidence_ids:
+  - '89'
+  - '96'
+  - '97'
+  - '98'
+  - '99'
+  - '1005'
+  - '1141'
+  - '1408'
+  - '1428'
+  - '8506'
+  - '8507'
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Panitumumab,
+    Sorafenib, Pictilisib Bismesylate, PLX4720, Nutlin-3, Capecitabine, Bevacizumab,
+    Vemurafenib, Dactolisib, Selumetinib, Cobimetinib, Gefitinib, Cetuximab, GDC-0879,
+    Irinotecan, Erlotinib'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '95'
+  - '1398'
+  - '1410'
+  - '1421'
+  - '1579'
+  - '1591'
+  - '1749'
+  - '1902'
+  - '2135'
+  - '3750'
+  - '3755'
+  - '3757'
+  - '3758'
+  - '5958'
+  - '5959'
+  - '6045'
+  - '6123'
+  - '6178'
+  - '6938'
+  - '6940'
+  - '6975'
+  - '7260'
+  - '7264'
+  - '7583'
+  - '7612'
+  - '9018'
+  - '11672'
+  - '11770'
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Trametinib,
+    Dabrafenib, Vemurafenib, Cobimetinib, Irinotecan, Cetuximab, Panitumumab, Encorafenib,
+    Binimetinib'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '103'
+  - '104'
+  - '105'
+  - '106'
+  - '107'
+  - '463'
+  - '656'
+  - '1552'
+  - '1940'
+  - '2116'
+  - '2137'
+  - '2503'
+  - '7156'
+  - '7157'
+  - '7191'
+  - '9170'
+  direction: Supports
+  significance: Poor Outcome
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
+    attached)'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '126'
+  - '2115'
+  - '2117'
+  - '2118'
+  - '2121'
+  - '3739'
+  direction: Supports
+  significance: Resistance
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Cetuximab,
+    Panitumumab, Oxaliplatin, Irinotecan, Capecitabine, Bevacizumab, FOLFOX-4 Regimen'
+- source: SRC-CIVIC
+  level: C
+  evidence_ids:
+  - '757'
+  - '1414'
+  - '1430'
+  - '1589'
+  - '1698'
+  - '1699'
+  - '3777'
+  - '3787'
+  - '5902'
+  - '5903'
+  - '5904'
+  - '5906'
+  - '5960'
+  - '5961'
+  - '5962'
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Pictilisib,
+    Vemurafenib, Trametinib, Dabrafenib, Panitumumab, Irinotecan, Pertuzumab'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '816'
+  - '994'
+  direction: Does Not Support
+  significance: Resistance
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Panitumumab,
+    Cetuximab, MEK Inhibitor RO4987655'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '1405'
+  - '1413'
+  - '6124'
+  direction: Does Not Support
+  significance: Sensitivity/Response
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Vemurafenib,
+    Panitumumab, Trametinib'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - '1406'
+  direction: Supports
+  significance: Reduced Sensitivity
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Dabrafenib'
+- source: SRC-CIVIC
+  level: A
+  evidence_ids:
+  - '1409'
+  - '3017'
+  - '9851'
+  - '12161'
+  - '12162'
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Vemurafenib,
+    Dabrafenib, Trametinib, Cetuximab, Encorafenib'
+- source: SRC-CIVIC
+  level: C
+  evidence_ids:
+  - '2362'
+  direction: Does Not Support
+  significance: Poor Outcome
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
+    attached)'
+- source: SRC-CIVIC
+  level: C
+  evidence_ids:
+  - '3827'
+  direction: Supports
+  significance: Resistance
+  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Panitumumab'
 actionability_review_required: true
-notes: >
-  ESCAT IB. OncoKB Level 2. Frontline cHCL still cladribine ±
-  rituximab (MDACC) — BRAFi reserved for relapsed/refractory or
-  unfit patients. HCL-variant lacks BRAF V600E and is BRAFi-resistant.
+notes: 'ESCAT IB. OncoKB Level 2. Frontline cHCL still cladribine ± rituximab (MDACC)
+  — BRAFi reserved for relapsed/refractory or unfit patients. HCL-variant lacks BRAF
+  V600E and is BRAFi-resistant.
+
+  '
