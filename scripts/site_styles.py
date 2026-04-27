@@ -624,14 +624,33 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
 
 /* Questionnaire UI (try.html) */
 .quest-toolbar {
-  display: flex; gap: 16px; align-items: flex-end; margin: 18px 0 14px;
-  flex-wrap: wrap; padding: 14px 18px; background: white;
-  border: 1px solid var(--gray-200); border-radius: 10px;
+  display: flex; gap: 16px; align-items: flex-end; margin: 24px 0 22px;
+  flex-wrap: wrap; padding: 22px 24px; background: linear-gradient(135deg, #f0fdf4 0%, white 60%);
+  border: 2px solid var(--green-600); border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(22, 101, 52, 0.08);
+  position: relative;
 }
+.quest-toolbar::before {
+  content: "1. Оберіть хворобу та (опційно) приклад";
+  position: absolute; top: -11px; left: 18px;
+  background: var(--green-700); color: white;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; padding: 3px 12px; border-radius: 4px;
+  font-family: var(--font-mono);
+}
+/* Make the FIRST TWO selects (Хвороба + Приклад) visually dominant.
+   Subsequent labels (mode buttons, JSON toggle) keep the smaller original styling. */
 .qt-label {
-  display: flex; flex-direction: column; gap: 4px; min-width: 220px;
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+  display: flex; flex-direction: column; gap: 6px; min-width: 280px;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
   color: var(--gray-700); font-weight: 600;
+}
+.quest-toolbar > .qt-label:nth-of-type(-n+2) {
+  flex: 1 1 320px; min-width: 320px;
+}
+.quest-toolbar > .qt-label:nth-of-type(-n+2) {
+  font-size: 13px; color: var(--green-800); font-weight: 700;
+  letter-spacing: 0.4px;
 }
 .qt-label select, .qt-label input, .qt-label textarea {
   font-family: var(--font-sans); font-size: 13px;
@@ -639,6 +658,22 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
   border-radius: 6px; background: white;
   text-transform: none; letter-spacing: normal; font-weight: 400;
   color: var(--gray-900);
+}
+/* Bigger, bolder selects for the first two dropdowns */
+.quest-toolbar > .qt-label:nth-of-type(-n+2) select {
+  font-size: 16px; padding: 12px 14px; font-weight: 500;
+  border: 2px solid var(--green-600); border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.quest-toolbar > .qt-label:nth-of-type(-n+2) select:hover {
+  border-color: var(--green-700);
+  box-shadow: 0 2px 6px rgba(22, 101, 52, 0.15);
+}
+.quest-toolbar > .qt-label:nth-of-type(-n+2) select:focus {
+  outline: none; border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
 }
 .qt-spacer { flex: 1; }
 .qt-modes {

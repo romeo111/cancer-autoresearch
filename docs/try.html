@@ -160,7 +160,7 @@
 
   <footer class="page-foot">
     Якщо щось не працює — <a href="https://github.com/romeo111/OpenOnco/issues/new?title=%5Btry-page%5D+&labels=tester-feedback" target="_blank" rel="noopener">відкрий issue</a>.
-    Pyodide v0.26.4 · engine bundle <code>openonco-engine.zip</code>.
+    Pyodide v0.26.4 · engine bundle <code>openonco-engine-core.zip</code> + per-disease modules.
   </footer>
 </main>
 
@@ -235,17 +235,16 @@ const initStagesEl = document.getElementById('initStages');
 // ── State ─────────────────────────────────────────────────────────────────
 let pyodide = null;
 let enginReady = false;
-// CSD-6E: bundle lazy-load state. `bundleIndex` is the parsed index
-// (or null if we fell back to the monolithic bundle); `coreBundleLoaded`
-// is set after the first core (or monolithic) extract; `loadedDiseases`
-// remembers which per-disease modules we've already merged so re-runs
-// against the same disease don't re-fetch.
+// CSD-6E + CSD-9C: bundle lazy-load state. `bundleIndex` is the parsed
+// index (resolved from /openonco-engine-index.json); `coreBundleLoaded`
+// is set after the first core extract; `loadedDiseases` remembers which
+// per-disease modules we've already merged so re-runs against the same
+// disease don't re-fetch. The legacy monolithic fallback was retired in
+// CSD-9C — lazy-load is the only path now.
 const BUNDLE_INDEX_URL = '/openonco-engine-index.json';
 const CORE_BUNDLE_URL = '/openonco-engine-core.zip';
-const FALLBACK_MONOLITHIC_URL = '/openonco-engine.zip';
 let bundleIndex = null;
 let coreBundleLoaded = false;
-let usingMonolithicFallback = false;
 const loadedDiseases = new Set();
 let questionnaires = [];     // loaded from /questionnaires.json
 let examples = [];           // loaded from /examples.json
@@ -534,20 +533,6 @@ function renderForm(quest) {
     questIntro.textContent = quest.intro;
   } else {
     questIntro.hidden = true;
-  }
-  // STUB banner — surfaces auto-generated status before clinician reviews
-  if (quest._stub_auto_generated) {
-    const banner = document.createElement('div');
-    banner.className = 'quest-stub-banner';
-    banner.style.cssText = 'background:#fef3c7;border-left:4px solid #f59e0b;padding:12px 16px;margin-bottom:16px;border-radius:4px;color:#92400e;font-size:13px;line-height:1.5;';
-    banner.innerHTML = `
-      <strong>⚠ Preliminary auto-generated questionnaire</strong><br>
-      Поля згенеровані автоматично з KB metadata (демографія + biomarker_requirements
-      з indications цієї хвороби). Engine routing працює end-to-end, але клінічних
-      деталей бракує — питання спрощені, дефолти консервативні.
-      Опитувальник чекає на review від Clinical Co-Lead за CHARTER §6.1.
-    `;
-    questGroups.appendChild(banner);
   }
   for (const group of quest.groups || []) {
     const groupEl = document.createElement('div');
@@ -1052,25 +1037,35 @@ function updateImpactPanel(result) {
   // and the engine will surface the gaps.
 }
 
-// ── Bundle lazy-load (CSD-6E) ─────────────────────────────────────────────
+// ── Bundle lazy-load (CSD-6E + CSD-9C) ────────────────────────────────────
 // Two-tier bundle: fetch openonco-engine-core.zip first (~1.4 MB), then
 // fetch the matching per-disease module (~15-40 KB) once we know the
-// patient's disease_id. If the index 404s (older deploys, ad-blockers
-// hitting /openonco-engine-*), we fall back to the monolithic zip and
-// behave exactly like before.
+// patient's disease_id. CSD-9C (2026-04-27) drops the legacy monolithic
+// fallback — the lazy-load path is the canonical path now. The index
+// fetch retries once on transient failure before giving up; if that
+// fails too we surface a clear error rather than silently downloading
+// 3+ MB of fallback that no longer ships.
 
 async function loadBundleIndex() {
   if (bundleIndex !== null) return bundleIndex;
-  try {
-    const r = await fetch(BUNDLE_INDEX_URL + '?t=' + Date.now());
-    if (!r.ok) throw new Error('Index fetch HTTP ' + r.status);
-    bundleIndex = await r.json();
-    return bundleIndex;
-  } catch (e) {
-    console.warn('[OpenOnco] bundle index unavailable — falling back to monolithic:', e);
-    bundleIndex = null;
-    return null;
+  // One retry to absorb a transient CDN hiccup before failing the load.
+  let lastErr = null;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const r = await fetch(BUNDLE_INDEX_URL + '?t=' + Date.now());
+      if (!r.ok) throw new Error('Index fetch HTTP ' + r.status);
+      bundleIndex = await r.json();
+      return bundleIndex;
+    } catch (e) {
+      lastErr = e;
+      if (attempt === 0) {
+        console.warn('[OpenOnco] bundle index fetch failed — retrying once:', e);
+        await yieldToBrowser(250);
+      }
+    }
   }
+  console.error('[OpenOnco] bundle index unavailable after retry:', lastErr);
+  throw new Error('Bundle index unavailable: ' + (lastErr && lastErr.message || lastErr));
 }
 
 // Resolve a disease_id from whatever the patient profile / form gives us.
@@ -1097,29 +1092,20 @@ function resolveDiseaseId(profile) {
 
 async function loadCoreBundle() {
   if (coreBundleLoaded) return;
+  // CSD-9C: index is required — monolithic fallback retired.
   await loadBundleIndex();
-  if (bundleIndex && bundleIndex.core) {
-    setStatus('Завантажую ядро двигуна (~1.4 МБ)…');
-    const ver = bundleIndex.core_version || '';
-    const url = '/' + bundleIndex.core + (ver ? '?v=' + ver : '');
-    const r = await fetch(url);
-    if (!r.ok) throw new Error('Core bundle fetch HTTP ' + r.status);
-    const buf = await r.arrayBuffer();
-    await yieldToBrowser();
-    pyodide.unpackArchive(buf, 'zip');
-    coreBundleLoaded = true;
-    return;
+  if (!bundleIndex || !bundleIndex.core) {
+    throw new Error('Bundle index missing core entry — cannot load engine');
   }
-  // Fallback: legacy monolithic bundle. Has every disease, so
-  // loadDiseaseModule() becomes a no-op.
-  setStatus('Завантажую двигун OpenOnco (повний)…');
-  const resp = await fetch(FALLBACK_MONOLITHIC_URL + '?v=f83f3d194543');
-  if (!resp.ok) throw new Error('Monolithic bundle fetch HTTP ' + resp.status);
-  const buf = await resp.arrayBuffer();
+  setStatus('Завантажую ядро двигуна (~1.4 МБ)…');
+  const ver = bundleIndex.core_version || '';
+  const url = '/' + bundleIndex.core + (ver ? '?v=' + ver : '');
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('Core bundle fetch HTTP ' + r.status);
+  const buf = await r.arrayBuffer();
   await yieldToBrowser();
   pyodide.unpackArchive(buf, 'zip');
   coreBundleLoaded = true;
-  usingMonolithicFallback = true;
 }
 
 // Per-disease module: tiny zip with the disease's indications, regimens,
@@ -1129,7 +1115,6 @@ async function loadCoreBundle() {
 // time per slot and drop silently on quota errors.
 async function loadDiseaseModule(diseaseId) {
   if (!diseaseId) return;
-  if (usingMonolithicFallback) return;             // already have everything
   if (loadedDiseases.has(diseaseId)) return;
   if (!bundleIndex || !bundleIndex.diseases) return;
   const relUrl = bundleIndex.diseases[diseaseId];
@@ -1172,9 +1157,12 @@ async function loadDiseaseModule(diseaseId) {
   // every disease swap.
   try {
     await pyodide.runPythonAsync(
-      "from knowledge_base.engine import apply_disease_module\n" +
-      "from pathlib import Path\n" +
-      "apply_disease_module(Path('knowledge_base/hosted/content'))\n"
+      "from knowledge_base.engine import apply_disease_module
+" +
+      "from pathlib import Path
+" +
+      "apply_disease_module(Path('knowledge_base/hosted/content'))
+"
     );
   } catch (e) {
     console.warn('[OpenOnco] apply_disease_module failed (continuing):', e);
@@ -1226,11 +1214,10 @@ await micropip.install(['pydantic', 'pyyaml'])
     initStageStart(stage);
     setStatus('Завантажую двигун OpenOnco…');
     await yieldToBrowser(50);
-    // CSD-6E: lazy-load core bundle (~1.4 MB) instead of monolithic
-    // (~1.8 MB). loadCoreBundle() falls back to the monolithic zip if
-    // the index is unreachable, so old deploys / blocked requests still
-    // work. Per-disease modules are fetched later in runEngine() once
-    // the patient's disease_id is known.
+    // CSD-6E + CSD-9C: lazy-load core bundle (~1.4 MB). Monolithic
+    // fallback retired (CSD-9C 2026-04-27) — the index + core + per-
+    // disease modules are the only path. Per-disease modules are
+    // fetched later in runEngine() once disease_id is known.
     await loadCoreBundle();
     initStageDone(stage);
 
@@ -1311,9 +1298,9 @@ async function runEngine() {
       return;
     }
     // CSD-6E: lazy-fetch the per-disease module before generate. No-op
-    // when running on the monolithic fallback or when the disease has
-    // no per-disease bundle. Failures are surfaced but non-fatal —
-    // generate_plan() will fall back to whatever's already loaded.
+    // when the disease has no per-disease bundle (its content is in
+    // core). Failures are surfaced but non-fatal — generate_plan()
+    // will fall back to whatever's already loaded.
     try {
       const did = resolveDiseaseId(profile);
       if (did) await loadDiseaseModule(did);
@@ -1443,69 +1430,21 @@ function yieldToBrowser(ms) {
 // ── Boot ──────────────────────────────────────────────────────────────────
 async function loadAssets() {
   setStatus('Завантажую опитувальники…');
-  let qResp, exResp;
-  try {
-    [qResp, exResp] = await Promise.all([
-      fetch('/questionnaires.json'),
-      fetch('/examples.json'),
-    ]);
-  } catch (e) {
-    setStatus('Помилка fetch: ' + e.message, 'error');
-    console.error('[loadAssets] fetch failed', e);
-    throw e;
-  }
-  try {
-    questionnaires = await qResp.json();
-    examples = await exResp.json();
-  } catch (e) {
-    setStatus('Помилка JSON-parse: ' + e.message, 'error');
-    console.error('[loadAssets] JSON parse failed', e);
-    throw e;
-  }
-  console.log('[loadAssets] loaded', questionnaires.length, 'questionnaires +', examples.length, 'examples');
+  const [qResp, exResp] = await Promise.all([
+    fetch('/questionnaires.json'),
+    fetch('/examples.json'),
+  ]);
+  questionnaires = await qResp.json();
+  examples = await exResp.json();
 
-  // Disease selector — defensive populate. If the new sort/separator
-  // logic throws for any reason, fall back to the original simple forEach
-  // so the dropdown is never left empty (better degraded UX than blank).
+  // Disease selector
   diseaseSelect.innerHTML = '<option value="">— оберіть —</option>';
-  try {
-    const sorted = [...questionnaires].map((q, i) => ({q, i}))
-      .sort((a, b) => {
-        const aStub = !!a.q._stub_auto_generated;
-        const bStub = !!b.q._stub_auto_generated;
-        if (aStub !== bStub) return aStub ? 1 : -1;  // hand-authored first
-        return (a.q.title || '').localeCompare(b.q.title || '');
-      });
-    let stubGroupOpened = false;
-    for (const item of sorted) {
-      const q = item.q;
-      const i = item.i;
-      const isStub = !!q._stub_auto_generated;
-      if (isStub && !stubGroupOpened) {
-        const sep = document.createElement('option');
-        sep.value = '';
-        sep.disabled = true;
-        sep.textContent = '— Auto-generated STUB questionnaires (preliminary) —';
-        diseaseSelect.appendChild(sep);
-        stubGroupOpened = true;
-      }
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = (isStub ? '[STUB] ' : '') + (q.title || q.id || '?');
-      if (isStub) opt.dataset.stub = '1';
-      diseaseSelect.appendChild(opt);
-    }
-  } catch (e) {
-    console.error('[loadAssets] sort/separator failed, falling back to simple forEach', e);
-    // Fallback: original simple populate so dropdown is never empty
-    diseaseSelect.innerHTML = '<option value="">— оберіть —</option>';
-    questionnaires.forEach((q, i) => {
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = q.title || q.id || '?';
-      diseaseSelect.appendChild(opt);
-    });
-  }
+  questionnaires.forEach((q, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = q.title;
+    diseaseSelect.appendChild(opt);
+  });
 
   // Examples selector — initial population shows all; narrows once a
   // disease is picked.

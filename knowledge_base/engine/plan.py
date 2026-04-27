@@ -49,7 +49,8 @@ from ._track_filter import is_track_excluded
 from .access_matrix import build_access_matrix
 from .algorithm_eval import walk_algorithm
 from .experimental_options import SearchFn, enumerate_experimental_options
-from .oncokb_types import OncoKBLayer
+# OncoKB integration removed — superseded by _actionability module
+# (CSD-7+ rename: oncokb_* → actionability via _actionability.find_matching_actionability).
 
 
 # Track labels — ordered, default labels for the well-known plan_track values.
@@ -106,7 +107,9 @@ class PlanResult:
     # integration is disabled (default) or when the patient has no
     # OncoKB-actionable biomarkers. Render layer reads this in HCP mode
     # only; patient-mode HTML must NOT contain any OncoKB content (AC-3).
-    oncokb_layer: Optional[OncoKBLayer] = None
+    # oncokb_layer removed during CSD-7+ refactor; ESCAT/OncoKB cells now
+    # surface via plan.variant_actionability (_actionability.find_matching_actionability).
+    oncokb_layer: Optional[Any] = None  # legacy slot — always None now
 
     # Runtime KB resolutions for the render layer — NOT persisted with Plan.
     # Holds: 'disease' (dict), 'tests' (dict[id, dict]), 'red_flags' (dict[id, dict]),
@@ -522,50 +525,17 @@ def generate_plan(
     except Exception as exc:
         result.warnings.append(f"variant actionability skipped: {exc}")
 
-    # ── OncoKB precision-medicine layer ──────────────────────────────────
-    # Phase 3b wiring (safe-rollout v3 §3.2). Surface-only — added AFTER
-    # tracks/actionability are final. CHARTER §8.3 invariant: nothing
-    # below influences track selection (those are done above).
-    # Default OFF: caller must pass oncokb_enabled=True AND a client.
+    # OncoKB-specific layer wiring removed during CSD-7+ refactor.
+    # ESCAT/OncoKB tier surfacing now happens through
+    # _actionability.find_matching_actionability above (see
+    # plan.variant_actionability). The oncokb_enabled/oncokb_client
+    # kwargs are retained as no-ops for backward compatibility with
+    # any external callers; they currently do nothing.
     if oncokb_enabled and oncokb_client is not None:
-        try:
-            from .oncokb_extract import extract_oncokb_queries
-            from .oncokb_conflict import annotate_layer_with_conflicts
-            from .oncokb_types import OncoKBResult, OncoKBError
-            from .oncotree_fallback import resolve_oncotree_code
-
-            disease_data = result.kb_resolved.get("disease") or {}
-            # Three-tier resolution: explicit field → ICD-10 fallback → pan-tumor.
-            # Render layer reads `pan_tumor_fallback` to surface the warning
-            # badge per Q4 — but tier-2 fallback also flags it (the user
-            # should know we used a derived code, not an explicit one).
-            oncotree, pan_tumor_fallback = resolve_oncotree_code(disease_data)
-
-            # Walk patient biomarkers → collect (id, gene, variant) hints
-            # from KB Biomarker.oncokb_lookup field if present.
-            hints: list[tuple[str, str, str]] = []
-            for bio_id, _value in (patient.get("biomarkers") or {}).items():
-                bio_record = _resolve(entities, bio_id) or {}
-                hint = bio_record.get("oncokb_lookup")
-                if isinstance(hint, dict) and hint.get("gene") and hint.get("variant"):
-                    hints.append((bio_id, hint["gene"], hint["variant"]))
-
-            queries = extract_oncokb_queries(hints, oncotree_code=oncotree)
-            if queries:
-                results_list = oncokb_client.batch_lookup(queries)
-                ok_results = [r for r in results_list if isinstance(r, OncoKBResult)]
-                errors = [r for r in results_list if isinstance(r, OncoKBError)]
-
-                layer = OncoKBLayer(
-                    results=ok_results,
-                    errors=errors,
-                    pan_tumor_fallback_used=pan_tumor_fallback,
-                )
-                # T3 mitigation: detect resistance conflicts inline
-                annotate_layer_with_conflicts(layer, tracks)
-                result.oncokb_layer = layer
-        except Exception as exc:  # noqa: BLE001 — fail-open contract
-            result.warnings.append(f"oncokb layer skipped: {exc}")
+        result.warnings.append(
+            "oncokb_enabled is deprecated — actionability layer now surfaces via "
+            "plan.variant_actionability (CSD-7+ rename)."
+        )
 
     return result
 

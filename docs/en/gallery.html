@@ -31,19 +31,19 @@
 
 <main class="gallery">
   <h1>Sample cases</h1>
-  <p class="lead">99 synthetic patient profiles run through the engine. Each click opens a full Plan or Diagnostic Brief as a clinician would see it in tumor-board. If something looks clinically wrong or confusing — <a href="https://github.com/romeo111/OpenOnco/issues/new?title=%5Bfeedback%5D+&labels=tester-feedback" target="_blank" rel="noopener">open an issue on GitHub</a> with a link to the specific case.</p>
+  <p class="lead">156 synthetic patient profiles run through the engine. Each click opens a full Plan or Diagnostic Brief as a clinician would see it in tumor-board. If something looks clinically wrong or confusing — <a href="https://github.com/romeo111/OpenOnco/issues/new?title=%5Bfeedback%5D+&labels=tester-feedback" target="_blank" rel="noopener">open an issue on GitHub</a> with a link to the specific case.</p>
 
   <div class="case-controls">
     <div class="case-chips" role="group" aria-label="Filter by category">
-    <button type="button" class="case-chip is-active" data-filter="all">All <span class="chip-n">99</span></button>
-    <button type="button" class="case-chip" data-filter="b_aggressive">B-cell aggressive <span class="chip-n">16</span></button>
-    <button type="button" class="case-chip" data-filter="b_indolent">B-cell indolent <span class="chip-n">17</span></button>
-    <button type="button" class="case-chip" data-filter="t_cell">T-cell <span class="chip-n">25</span></button>
-    <button type="button" class="case-chip" data-filter="hodgkin">Hodgkin <span class="chip-n">6</span></button>
-    <button type="button" class="case-chip" data-filter="myeloma">Myeloma <span class="chip-n">4</span></button>
-    <button type="button" class="case-chip" data-filter="myeloid">Myeloid (AML/MDS/MPN) <span class="chip-n">21</span></button>
-    <button type="button" class="case-chip" data-filter="lymphoblastic">Lymphoblastic (ALL/LBL) <span class="chip-n">5</span></button>
-    <button type="button" class="case-chip" data-filter="solid">Solid tumors <span class="chip-n">3</span></button>
+    <button type="button" class="case-chip is-active" data-filter="all">All <span class="chip-n">156</span></button>
+    <button type="button" class="case-chip" data-filter="b_aggressive">B-cell aggressive <span class="chip-n">23</span></button>
+    <button type="button" class="case-chip" data-filter="b_indolent">B-cell indolent <span class="chip-n">24</span></button>
+    <button type="button" class="case-chip" data-filter="t_cell">T-cell <span class="chip-n">34</span></button>
+    <button type="button" class="case-chip" data-filter="hodgkin">Hodgkin <span class="chip-n">8</span></button>
+    <button type="button" class="case-chip" data-filter="myeloma">Myeloma <span class="chip-n">5</span></button>
+    <button type="button" class="case-chip" data-filter="myeloid">Myeloid (AML/MDS/MPN) <span class="chip-n">30</span></button>
+    <button type="button" class="case-chip" data-filter="lymphoblastic">Lymphoblastic (ALL/LBL) <span class="chip-n">7</span></button>
+    <button type="button" class="case-chip" data-filter="solid">Solid tumors <span class="chip-n">23</span></button>
     <button type="button" class="case-chip" data-filter="diagnostic">Diagnostic (pre-biopsy) <span class="chip-n">2</span></button>
     </div>
     <label class="case-sort">
@@ -139,7 +139,7 @@
    data-name="DLBCL NOS · Low-IPI (R-CHOP standard)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>DLBCL NOS · Low-IPI (R-CHOP standard)</h3>
   <p>Чоловік 54, ECOG 1, IPI 1, GCB cell-of-origin — engine обирає R-CHOP × 6 циклів як default. Найпоширеніша агресивна лімфома (~30% NHL).</p>
@@ -150,7 +150,7 @@
    data-name="DLBCL NOS · High-IPI (Pola-R-CHP)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>DLBCL NOS · High-IPI (Pola-R-CHP)</h3>
   <p>Жінка 67, IPI 4, multiple extranodal — RF-DLBCL-HIGH-IPI fired. Engine ескалує до Pola-R-CHP (POLARIX trial); Ukraine-funding caveat.</p>
@@ -161,7 +161,7 @@
    data-name="Follicular · Low Burden (Watch-and-Wait)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Follicular · Low Burden (Watch-and-Wait)</h3>
   <p>FL grade 1-2, asymptomatic, no GELF criteria — engine обирає surveillance трек (3 plans usable side-by-side, default = W&W).</p>
@@ -172,7 +172,7 @@
    data-name="Follicular · High Burden (BR)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Follicular · High Burden (BR)</h3>
   <p>FL з 8 cm масою + B-symptoms + LDH↑ — RF-FL-HIGH-TUMOR-BURDEN-GELF fired. Engine обирає BR (бендамустин + ритуксимаб); reuse REG-BR-STANDARD з HCV-MZL.</p>
@@ -183,7 +183,7 @@
    data-name="Follicular · Transformation Suspect (R-CHOP)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Follicular · Transformation Suspect (R-CHOP)</h3>
   <p>FL з rapid progression + LDH doubling — RF-FL-TRANSFORMATION-SUSPECT fired. Engine обирає R-CHOP (трактує як DLBCL pathway).</p>
@@ -216,7 +216,7 @@
    data-name="Mantle Cell · Fit Younger (Intensive + autoSCT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Mantle Cell · Fit Younger (Intensive + autoSCT)</h3>
   <p>MCL вік 58, ECOG 0, TP53-wt — engine обирає intensive R-CHOP/R-DHAP × 6 + autoSCT + R-maintenance × 3 years (Nordic protocol).</p>
@@ -227,7 +227,7 @@
    data-name="Mantle Cell · Unfit / TP53-mutant (BTKi+R)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Mantle Cell · Unfit / TP53-mutant (BTKi+R)</h3>
   <p>MCL вік 71, ECOG 2, TP53 mutation — RF-MCL-BLASTOID-OR-TP53 fired. Engine обирає acalabrutinib + rituximab (BTKi-based).</p>
@@ -238,7 +238,7 @@
    data-name="Splenic MZL · HCV-positive (DAA antiviral)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Splenic MZL · HCV-positive (DAA antiviral)</h3>
   <p>Селезінкова MZL із HCV-позитивним статусом — engine обирає DAA antiviral (sofosbuvir/velpatasvir 12 тижнів) як 1L; reuse REG-DAA-SOF-VEL з HCV-MZL extranodal.</p>
@@ -249,7 +249,7 @@
    data-name="Splenic MZL · HCV-negative (Rituximab mono)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Splenic MZL · HCV-negative (Rituximab mono)</h3>
   <p>Селезінкова MZL HCV-negative — engine обирає rituximab monotherapy (4 weekly + 2-year maintenance).</p>
@@ -271,7 +271,7 @@
    data-name="Burkitt · Low/Intermediate Risk (DA-EPOCH-R)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Burkitt · Low/Intermediate Risk (DA-EPOCH-R)</h3>
   <p>Burkitt без CNS+, LDH в нормі — engine обирає DA-EPOCH-R (CALGB 10002, ~90% CR including HIV+).</p>
@@ -282,7 +282,7 @@
    data-name="Burkitt · High Risk (CODOX-M / IVAC)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Burkitt · High Risk (CODOX-M / IVAC)</h3>
   <p>Burkitt з CNS involvement + LDH >3× ULN + bulky abdomen — RF-BURKITT-HIGH-RISK fired. Engine обирає Magrath protocol з HD-MTX + IT MTX/cytarabine.</p>
@@ -293,7 +293,7 @@
    data-name="Hairy Cell Leukemia (Cladribine 7-day)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Hairy Cell Leukemia (Cladribine 7-day)</h3>
   <p>Волосатоклітинний лейкоз з cytopenia + splenomegaly — engine обирає 1 курс cladribine 7 днів. ~85% durable CR.</p>
@@ -304,7 +304,7 @@
    data-name="Waldenström · MYD88-positive (Zanubrutinib)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Waldenström · MYD88-positive (Zanubrutinib)</h3>
   <p>WM з MYD88 L265P + iwWM treatment indication — engine обирає zanubrutinib (ASPEN — superior до ibrutinib).</p>
@@ -326,7 +326,7 @@
    data-name="ALCL · ALK-negative (CHP-Bv)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>ALCL · ALK-negative (CHP-Bv)</h3>
   <p>Системна анапластична великоклітинна лімфома, ALK-negative — universally CD30+. Engine обирає CHP-Bv (ECHELON-2: brentuximab замість vincristine).</p>
@@ -337,7 +337,7 @@
    data-name="PTCL NOS · CD30-negative (CHOEP)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PTCL NOS · CD30-negative (CHOEP)</h3>
   <p>Периферична T-клітинна лімфома, CD30-negative — engine обирає CHOEP (CHOP + etoposide). CD30+ варіант ескалював би до CHP-Bv.</p>
@@ -348,7 +348,7 @@
    data-name="AITL · CD30-positive (CHP-Bv)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>AITL · CD30-positive (CHP-Bv)</h3>
   <p>Ангіоімунобластна T-клітинна лімфома, CD30+ — RF-TCELL-CD30-POSITIVE fired. Engine обирає CHP-Bv.</p>
@@ -359,7 +359,7 @@
    data-name="Classical Hodgkin · Advanced (A+AVD)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Classical Hodgkin · Advanced (A+AVD)</h3>
   <p>Стадія IV cHL — RF-CHL-ADVANCED-STAGE fired. Engine обирає A+AVD (ECHELON-1: brentuximab замість bleomycin, superior OS).</p>
@@ -370,7 +370,7 @@
    data-name="Classical Hodgkin · Early Stage (ABVD)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Classical Hodgkin · Early Stage (ABVD)</h3>
   <p>Стадія IIA cHL, без advanced criteria — engine обирає ABVD × 2-4 + ISRT (response-adapted).</p>
@@ -381,7 +381,7 @@
    data-name="NLPBL · Early Stage (Observation / RT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>NLPBL · Early Stage (Observation / RT)</h3>
   <p>Нодулярна лімфоцит-домінантна B-клітинна лімфома (перекласифіковано WHO 5th-ed з NLPHL у B-cell) — early stage. Engine обирає observation / ISRT alone.</p>
@@ -392,7 +392,7 @@
    data-name="AITL · CD30-negative (CHOEP + AITL-specific workup)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>AITL · CD30-negative (CHOEP + AITL-specific workup)</h3>
   <p>AITL з CD30-negative біопсією — engine обирає AITL-specific CHOEP. Layered workup: EBER-ISH (EBV+ B-cell мікрооточення), IgG quant (paraneoplastic hypogamma), DAT (AIHA risk).</p>
@@ -403,7 +403,7 @@
    data-name="Mycosis Fungoides · Early Stage (Skin-Directed)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Mycosis Fungoides · Early Stage (Skin-Directed)</h3>
   <p>MF stage IB без B2/LCT — engine обирає skin-directed (NBUVB / topicals / TSEBT). Жодного системного режиму — preserves chemo для прогресу. Workup rules out occult Sézary (B2 count) + LCT.</p>
@@ -414,7 +414,7 @@
    data-name="Sézary Syndrome · Advanced (Mogamulizumab)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Sézary Syndrome · Advanced (Mogamulizumab)</h3>
   <p>Sézary syndrome (B2 leukemic, generalized erythroderma) — RF-MF-SEZARY-LEUKEMIC fired. Engine обирає mogamulizumab (MAVORIC: anti-CCR4 ADCC, найкраща blood-compartment відповідь).</p>
@@ -425,7 +425,7 @@
    data-name="MF · Advanced + CD30+ LCT (Brentuximab mono)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>MF · Advanced + CD30+ LCT (Brentuximab mono)</h3>
   <p>Advanced MF stage IIB з large-cell transformation, CD30+ — RF-MF-LARGE-CELL-TRANSFORMATION + RF-TCELL-CD30-POSITIVE fired. Engine обирає brentuximab vedotin monotherapy (ALCANZA).</p>
@@ -436,7 +436,7 @@
    data-name="NLPBL · IA + RT-contraindicated (Rituximab mono)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>NLPBL · IA + RT-contraindicated (Rituximab mono)</h3>
   <p>NLPBL stage IA у молодої жінки з cervical adenopathy — RT-contraindicated через breast/thyroid field overlap. Engine обирає rituximab monotherapy alternative (CD20+ B-cell biology, НЕ ABVD).</p>
@@ -447,7 +447,7 @@
    data-name="DLBCL NOS · Primary Chemorefractory (CAR-T axi-cel)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>DLBCL NOS · Primary Chemorefractory (CAR-T axi-cel)</h3>
   <p>DLBCL з primary refractory disease (PD на R-CHOP) — engine обирає axi-cel CAR-T (ZUMA-7: 2L CAR-T > salvage+autoSCT для early-failure).</p>
@@ -458,7 +458,7 @@
    data-name="DLBCL NOS · Relapsed (Transplant-Ineligible)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>DLBCL NOS · Relapsed (Transplant-Ineligible)</h3>
   <p>DLBCL relapsed, transplant-ineligible через age + comorbidity — engine обирає Pola-BR (POLARGO) або loncastuximab tesirine.</p>
@@ -469,7 +469,7 @@
    data-name="HGBL · Primary Refractory (Early CAR-T)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>HGBL · Primary Refractory (Early CAR-T)</h3>
   <p>HGBL-DH що не відповів на DA-EPOCH-R — engine обирає axi-cel CAR-T (ZUMA-7); chemosensitivity-test позитивний для late-relapse → salvage+autoSCT.</p>
@@ -480,7 +480,7 @@
    data-name="PMBCL · Typical (DA-EPOCH-R)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PMBCL · Typical (DA-EPOCH-R)</h3>
   <p>Молода жінка з anterior mediastinal mass — engine обирає DA-EPOCH-R без RT (NCI 2013: ~93% EFS, обхід RT-токсичності для AYA).</p>
@@ -491,7 +491,7 @@
    data-name="PMBCL · Bulky + SVC Syndrome">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PMBCL · Bulky + SVC Syndrome</h3>
   <p>PMBCL з bulky mediastinal mass + SVC compression — engine додає upfront pre-phase steroids + airway management до DA-EPOCH-R.</p>
@@ -502,7 +502,7 @@
    data-name="PMBCL · Relapsed post-R-CHOP (Pembrolizumab)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PMBCL · Relapsed post-R-CHOP (Pembrolizumab)</h3>
   <p>PMBCL relapsed/refractory після R-CHOP — engine обирає R-ICE+autoSCT (eligible) або pembrolizumab (KEYNOTE-170, ineligible/refractory).</p>
@@ -513,7 +513,7 @@
    data-name="PCNSL · Typical (R-MPV → autoSCT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PCNSL · Typical (R-MPV → autoSCT)</h3>
   <p>Імунокомпетентний пацієнт з biopsy-confirmed PCNSL — engine обирає R-MPV induction → thiotepa-based autoSCT consolidation (MATRix/IELSG 32).</p>
@@ -524,7 +524,7 @@
    data-name="PCNSL · Elderly Frail (R-MTX-attenuated)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PCNSL · Elderly Frail (R-MTX-attenuated)</h3>
   <p>PCNSL вік 75, ECOG 2 — engine обирає attenuated MTX-based induction без autoSCT consolidation; lenalidomide maintenance як альтернатива.</p>
@@ -535,7 +535,7 @@
    data-name="PCNSL · Immunocompromised + EBV+ (Restore Immunity)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PCNSL · Immunocompromised + EBV+ (Restore Immunity)</h3>
   <p>PCNSL у HIV+/post-transplant пацієнта, EBER+ — engine додає immune-restoration (HAART / RIS) перед HD-MTX; rituximab якщо CD20+.</p>
@@ -557,7 +557,7 @@
    data-name="HCL · Relapsed BRAF-V600E+ (Vemurafenib + Rituximab)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>HCL · Relapsed BRAF-V600E+ (Vemurafenib + Rituximab)</h3>
   <p>HCL relapsed з BRAF-V600E+ — engine обирає vemurafenib+rituximab (Tiacci); BRAF-WT route → cladribine retreatment.</p>
@@ -568,7 +568,7 @@
    data-name="Waldenström · CXCR4-mutant (BR fixed-duration)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Waldenström · CXCR4-mutant (BR fixed-duration)</h3>
   <p>WM з MYD88+ AND CXCR4-mutant — RF-WM-CXCR4-MUT fired (CXCR4 знижує BTKi response). Engine обирає BR fixed-duration або zanubrutinib з extended observation.</p>
@@ -590,7 +590,7 @@
    data-name="ALCL · ALK-positive Typical (CHP-Bv)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>ALCL · ALK-positive Typical (CHP-Bv)</h3>
   <p>Молода особа з ALK+ ALCL — engine обирає CHP-Bv (ECHELON-2). ALK+ має значно кращий прогноз vs ALK-.</p>
@@ -601,7 +601,7 @@
    data-name="ALCL · Relapsed BV-naive (Brentuximab → autoSCT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>ALCL · Relapsed BV-naive (Brentuximab → autoSCT)</h3>
   <p>Relapsed ALCL без попереднього brentuximab — engine обирає brentuximab mono → autoSCT consolidation; BV maintenance per ECHELON-2 update.</p>
@@ -612,7 +612,7 @@
    data-name="PTCL NOS · CD30-positive (CHP-Bv)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PTCL NOS · CD30-positive (CHP-Bv)</h3>
   <p>PTCL NOS, CD30≥10% — RF-TCELL-CD30-POSITIVE fired. Engine обирає CHP-Bv (ECHELON-2 inclusion threshold).</p>
@@ -623,7 +623,7 @@
    data-name="PTCL NOS · Relapsed post-autoSCT (Romidepsin / Pralatrexate)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PTCL NOS · Relapsed post-autoSCT (Romidepsin / Pralatrexate)</h3>
   <p>PTCL NOS relapsed після autoSCT — engine обирає romidepsin або pralatrexate; alloHCT як curative-intent для chemosensitive.</p>
@@ -634,7 +634,7 @@
    data-name="AITL · Relapsed 2L (Azacitidine)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>AITL · Relapsed 2L (Azacitidine)</h3>
   <p>AITL relapsed з TET2/DNMT3A epigenetic profile — engine обирає azacitidine (epigenetic targeting; AITL — найбільш azacitidine-responsive TCL subtype).</p>
@@ -645,7 +645,7 @@
    data-name="EATL · Typical (Celiac, CHOEP → autoSCT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>EATL · Typical (Celiac, CHOEP → autoSCT)</h3>
   <p>EATL у пацієнта з celiac disease — engine обирає CHOEP induction → autoSCT consolidation (NLG-T-01).</p>
@@ -656,7 +656,7 @@
    data-name="EATL · Relapsed post-CHOEP (ICE Salvage)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>EATL · Relapsed post-CHOEP (ICE Salvage)</h3>
   <p>EATL relapsed після CHOEP — engine обирає ICE salvage; alloHCT для chemosensitive.</p>
@@ -667,7 +667,7 @@
    data-name="HSTCL · Fit Younger (ICE/IVAC → alloHCT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>HSTCL · Fit Younger (ICE/IVAC → alloHCT)</h3>
   <p>Hepatosplenic T-cell Lymphoma у молодої особи, ECOG 0 — engine обирає intensive ICE/IVAC → upfront alloHCT (CHOP неадекватний).</p>
@@ -678,7 +678,7 @@
    data-name="HSTCL · Iatrogenic IBD (CHOEP-unfit fallback)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>HSTCL · Iatrogenic IBD (CHOEP-unfit fallback)</h3>
   <p>HSTCL у IBD-пацієнта на тривалій thiopurine+anti-TNF therapy — engine припиняє imunosuppression + CHOEP-unfit fallback з branching algorithm.</p>
@@ -689,7 +689,7 @@
    data-name="T-PLL · Typical (Alemtuzumab IV)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>T-PLL · Typical (Alemtuzumab IV)</h3>
   <p>T-PLL з ATM mutation + TCL1A rearrangement — engine обирає alemtuzumab IV (~90% ORR) → alloHCT consolidation.</p>
@@ -700,7 +700,7 @@
    data-name="T-PLL · Alemtuzumab-refractory (Venetoclax + Alem)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>T-PLL · Alemtuzumab-refractory (Venetoclax + Alem)</h3>
   <p>T-PLL refractory до alemtuzumab mono — engine обирає venetoclax + alemtuzumab combo (Boidol/Hampel).</p>
@@ -711,7 +711,7 @@
    data-name="ATLL · Acute (mLSG15 / EPOCH)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>ATLL · Acute (mLSG15 / EPOCH)</h3>
   <p>Adult T-cell Leukemia/Lymphoma, acute subtype, HTLV-1+ — engine обирає intensive mLSG15 або EPOCH; alloHCT consolidation для responders.</p>
@@ -722,7 +722,7 @@
    data-name="ATLL · Indolent / Smoldering (Watchful Waiting)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>ATLL · Indolent / Smoldering (Watchful Waiting)</h3>
   <p>ATLL indolent/smoldering — engine обирає observation; system trigger для transformation.</p>
@@ -733,7 +733,7 @@
    data-name="NK/T-Nasal · Localized (P-GEMOX + RT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>NK/T-Nasal · Localized (P-GEMOX + RT)</h3>
   <p>Localized extranodal NK/T-cell lymphoma, nasal type — engine обирає concurrent P-GEMOX + RT (anthracycline-resistant biology).</p>
@@ -744,7 +744,7 @@
    data-name="NK/T-Nasal · Relapsed (Avelumab)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>NK/T-Nasal · Relapsed (Avelumab)</h3>
   <p>NK/T-nasal relapsed — engine обирає avelumab (NCCN-listed PD-L1 inhibitor; promoted from stub).</p>
@@ -755,7 +755,7 @@
    data-name="MF · Relapsed post-Mogamulizumab (Bexarotene)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>MF · Relapsed post-Mogamulizumab (Bexarotene)</h3>
   <p>MF/Sézary relapsed після mogamulizumab — engine обирає bexarotene 2L з low-dose maintenance (RXR-targeted oral retinoid).</p>
@@ -766,7 +766,7 @@
    data-name="PTLD · Polymorphic EBV+ (RIS + Rituximab)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PTLD · Polymorphic EBV+ (RIS + Rituximab)</h3>
   <p>Post-transplant LPD, polymorphic EBV+ — engine обирає RIS (reduce immunosuppression) + sequential PTLD-1 rituximab maintenance.</p>
@@ -777,7 +777,7 @@
    data-name="PTLD · Monomorphic DLBCL-like (R-CHOP)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PTLD · Monomorphic DLBCL-like (R-CHOP)</h3>
   <p>Monomorphic PTLD з DLBCL morphology — engine обирає R-CHOP після RIS-failure; sequential treatment per PTLD-1.</p>
@@ -788,7 +788,7 @@
    data-name="cHL · AYA Stage IIB Bulky Mediastinal">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>cHL · AYA Stage IIB Bulky Mediastinal</h3>
   <p>AYA пацієнт з cHL stage IIB + bulky mediastinal mass + B-symptoms — RF-CHL-BULKY-MEDIASTINAL fired. Response-adapted intensification.</p>
@@ -799,7 +799,7 @@
    data-name="cHL · Relapsed (Salvage → autoSCT + BV maint.)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>cHL · Relapsed (Salvage → autoSCT + BV maint.)</h3>
   <p>cHL relapsed після ABVD/A+AVD — engine обирає salvage chemo (ICE/DHAP) → autoSCT → brentuximab maintenance (AETHERA).</p>
@@ -832,7 +832,7 @@
    data-name="AML · Fit 1L (7+3 Induction)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>AML · Fit 1L (7+3 Induction)</h3>
   <p>Newly-diagnosed AML, fit, ELN intermediate — engine обирає 7+3 induction (cytarabine + daunorubicin) → consolidation HiDAC.</p>
@@ -843,7 +843,7 @@
    data-name="AML · Unfit (Venetoclax + Azacitidine)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>AML · Unfit (Venetoclax + Azacitidine)</h3>
   <p>AML вік 78, ECOG 2 — engine обирає ven+aza (VIALE-A: ~65% CR/CRi, OS 14.7 mo, краще ніж aza alone).</p>
@@ -854,7 +854,7 @@
    data-name="AML · FLT3-mutant Relapse (Gilteritinib)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>AML · FLT3-mutant Relapse (Gilteritinib)</h3>
   <p>AML relapsed з FLT3-ITD/TKD — engine обирає gilteritinib mono (ADMIRAL: superior до salvage chemo); alloHCT для responders.</p>
@@ -865,7 +865,7 @@
    data-name="APL · Low Risk (ATRA + ATO chemo-free)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>APL · Low Risk (ATRA + ATO chemo-free)</h3>
   <p>APL з WBC <10K (low-risk Sanz) — engine обирає ATRA+ATO chemo-free (APL0406: ~98% CR, без anthracycline).</p>
@@ -876,7 +876,7 @@
    data-name="APL · High Risk + DIC (ATRA + ATO + Idarubicin)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>APL · High Risk + DIC (ATRA + ATO + Idarubicin)</h3>
   <p>APL з WBC >10K + active DIC — RF-APL-DIC + RF-APL-HIGH-RISK fired. Engine додає idarubicin до ATRA+ATO; emergency cryoprecipitate/platelets.</p>
@@ -887,7 +887,7 @@
    data-name="CML · Chronic Phase Newly Diagnosed (TKI 1L)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>CML · Chronic Phase Newly Diagnosed (TKI 1L)</h3>
   <p>Newly-diagnosed CML chronic phase, BCR-ABL1+ — engine обирає imatinib (low-risk Sokal) або 2G TKI (intermediate/high).</p>
@@ -898,7 +898,7 @@
    data-name="CML · T315I-mutated (Ponatinib / Asciminib)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>CML · T315I-mutated (Ponatinib / Asciminib)</h3>
   <p>CML з T315I gatekeeper mutation post-2G TKI — engine обирає ponatinib (PACE) або asciminib (allosteric STAMP-inhibitor).</p>
@@ -909,7 +909,7 @@
    data-name="CML · Blast Crisis at Presentation (TKI + Chemo + alloHCT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>CML · Blast Crisis at Presentation (TKI + Chemo + alloHCT)</h3>
   <p>CML що дебютує як blast crisis — engine обирає TKI + intensive chemo bridge → urgent alloHCT (без alloHCT медіана OS <12 mo).</p>
@@ -920,7 +920,7 @@
    data-name="MDS-HR · Transplant-Eligible (Aza Bridge → alloHCT)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>MDS-HR · Transplant-Eligible (Aza Bridge → alloHCT)</h3>
   <p>MDS IPSS-R high, fit, donor available — engine обирає azacitidine bridge → upfront alloHCT (curative).</p>
@@ -931,7 +931,7 @@
    data-name="MDS-HR · Unfit (Azacitidine Maintenance)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>MDS-HR · Unfit (Azacitidine Maintenance)</h3>
   <p>MDS-HR transplant-ineligible — engine обирає azacitidine indefinite (AZA-001: median OS 24 mo vs 15 mo для conventional care).</p>
@@ -942,7 +942,7 @@
    data-name="MDS-HR · Progression to Secondary AML">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>MDS-HR · Progression to Secondary AML</h3>
   <p>MDS на azacitidine з progression до sAML — engine реагує AML-reroute: ven+aza або 7+3 induction (за fitness).</p>
@@ -953,7 +953,7 @@
    data-name="MDS-LR · del(5q) (Lenalidomide)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>MDS-LR · del(5q) (Lenalidomide)</h3>
   <p>MDS-LR з isolated del(5q) syndrome — engine обирає lenalidomide (MDS-004: ~67% transfusion-independence).</p>
@@ -975,7 +975,7 @@
    data-name="MDS-LR · Hypoplastic / IST candidate">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>MDS-LR · Hypoplastic / IST candidate</h3>
   <p>Hypoplastic MDS, mimics aplastic anemia — engine обирає immunosuppressive therapy (ATG+CsA) як alternative до transfusion-only.</p>
@@ -986,7 +986,7 @@
    data-name="Polycythemia Vera · High Risk (HU 1L)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Polycythemia Vera · High Risk (HU 1L)</h3>
   <p>PV вік >60 + thrombosis history — engine обирає phlebotomy + low-dose ASA + cytoreduction hydroxyurea.</p>
@@ -997,7 +997,7 @@
    data-name="PV · HU-resistant (Ruxolitinib 2L)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PV · HU-resistant (Ruxolitinib 2L)</h3>
   <p>PV з HU-intolerance/resistance per ELN — engine обирає ruxolitinib (RESPONSE-2: hematocrit control + symptom relief).</p>
@@ -1008,7 +1008,7 @@
    data-name="PV · Pregnancy Planning (Peg-IFN)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PV · Pregnancy Planning (Peg-IFN)</h3>
   <p>Reproductive-age жінка з PV, planning pregnancy — engine обирає peg-IFN α-2a (non-teratogenic, fetus-safe).</p>
@@ -1019,7 +1019,7 @@
    data-name="Essential Thrombocythemia · High Risk (HU)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>Essential Thrombocythemia · High Risk (HU)</h3>
   <p>ET high-risk (age >60 + JAK2+ + thrombosis) — engine обирає hydroxyurea + ASA; anagrelide як 2L (PT-1).</p>
@@ -1030,7 +1030,7 @@
    data-name="PMF · Anemia-Dominant (Momelotinib)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PMF · Anemia-Dominant (Momelotinib)</h3>
   <p>PMF DIPSS-Plus int-1, anemia-dominant — engine обирає momelotinib (MOMENTUM: anemia-friendly JAKi).</p>
@@ -1041,7 +1041,7 @@
    data-name="PMF · Int-2 Symptomatic (Ruxolitinib)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PMF · Int-2 Symptomatic (Ruxolitinib)</h3>
   <p>PMF DIPSS-Plus int-2 з splenomegaly + constitutional symptoms — engine обирає ruxolitinib (COMFORT-I/II).</p>
@@ -1052,7 +1052,7 @@
    data-name="PMF · Post-Rux alloHCT Bridge (Urgent)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>PMF · Post-Rux alloHCT Bridge (Urgent)</h3>
   <p>PMF post-ruxolitinib failure з massive splenomegaly + transfusion-dependence — engine обирає alloHCT bridge (curative-intent, urgent).</p>
@@ -1074,7 +1074,7 @@
    data-name="B-ALL · MRD-positive (Blinatumomab)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>B-ALL · MRD-positive (Blinatumomab)</h3>
   <p>B-ALL MRD-positive після induction — engine обирає blinatumomab (BLAST: MRD eradication у >75%).</p>
@@ -1096,7 +1096,7 @@
    data-name="T-ALL · Relapsed post-hyper-CVAD (Nelarabine)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>T-ALL · Relapsed post-hyper-CVAD (Nelarabine)</h3>
   <p>T-ALL relapsed після hyper-CVAD — engine обирає nelarabine (T-cell selective; alloHCT consolidation).</p>
@@ -1107,7 +1107,7 @@
    data-name="T-LBL · Mediastinal Mass (Pediatric-inspired ALL)">
   <div class="case-badge-row">
     <div class="case-badge bdg-plan">Treatment Plan</div>
-    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+    
   </div>
   <h3>T-LBL · Mediastinal Mass (Pediatric-inspired ALL)</h3>
   <p>T-lymphoblastic lymphoma з mediastinal mass — engine обирає pediatric-inspired ALL regimen (CALGB 10403 / GMALL); CNS prophylaxis обов'язкове.</p>
@@ -1145,6 +1145,633 @@
   <h3>Ovarian · Advanced HRD+ (PARPi maintenance)</h3>
   <p>Advanced high-grade serous ovarian, HRD+ — engine обирає platinum-doublet → PARPi maintenance (olaparib/niraparib; SOLO-1, PRIMA).</p>
   <div class="case-foot">patient_ovarian_advanced_hrd.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-aitl.html"
+   data-category="t_cell" data-default-order="99"
+   data-name="DIS-AITL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-AITL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Angioimmunoblastic T-Cell Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_aitl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-alcl.html"
+   data-category="t_cell" data-default-order="100"
+   data-name="DIS-ALCL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-ALCL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Anaplastic Large Cell Lymphoma, Systemic. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_alcl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-aml.html"
+   data-category="myeloid" data-default-order="101"
+   data-name="DIS-AML — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-AML — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Acute Myeloid Leukemia. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_aml.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-apl.html"
+   data-category="myeloid" data-default-order="102"
+   data-name="DIS-APL — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-APL — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Acute Promyelocytic Leukemia. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_apl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-atll.html"
+   data-category="t_cell" data-default-order="103"
+   data-name="DIS-ATLL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-ATLL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Adult T-Cell Leukemia/Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_atll.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-b_all.html"
+   data-category="lymphoblastic" data-default-order="104"
+   data-name="DIS-B-ALL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-B-ALL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для B-Lymphoblastic Leukemia/Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_b_all.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-breast.html"
+   data-category="solid" data-default-order="105"
+   data-name="DIS-BREAST — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-BREAST — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Invasive breast cancer. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_breast.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-burkitt.html"
+   data-category="b_aggressive" data-default-order="106"
+   data-name="DIS-BURKITT — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-BURKITT — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Burkitt Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_burkitt.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-cervical.html"
+   data-category="solid" data-default-order="107"
+   data-name="DIS-CERVICAL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-CERVICAL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Cervical carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_cervical.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-chl.html"
+   data-category="hodgkin" data-default-order="108"
+   data-name="DIS-CHL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-CHL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Classical Hodgkin Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_chl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-cll.html"
+   data-category="b_indolent" data-default-order="109"
+   data-name="DIS-CLL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-CLL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Chronic Lymphocytic Leukemia / Small Lymphocytic Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_cll.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-cml.html"
+   data-category="myeloid" data-default-order="110"
+   data-name="DIS-CML — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-CML — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Chronic Myeloid Leukemia. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_cml.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-crc.html"
+   data-category="solid" data-default-order="111"
+   data-name="DIS-CRC — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-CRC — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Colorectal carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_crc.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-dlbcl_nos.html"
+   data-category="b_aggressive" data-default-order="112"
+   data-name="DIS-DLBCL-NOS — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-DLBCL-NOS — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Diffuse Large B-Cell Lymphoma, Not Otherwise Specified. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_dlbcl_nos.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-eatl.html"
+   data-category="t_cell" data-default-order="113"
+   data-name="DIS-EATL — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-EATL — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Enteropathy-Associated T-Cell Lymphoma. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_eatl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-endometrial.html"
+   data-category="solid" data-default-order="114"
+   data-name="DIS-ENDOMETRIAL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-ENDOMETRIAL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Endometrial carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_endometrial.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-esophageal.html"
+   data-category="solid" data-default-order="115"
+   data-name="DIS-ESOPHAGEAL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-ESOPHAGEAL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Esophageal carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_esophageal.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-et.html"
+   data-category="myeloid" data-default-order="116"
+   data-name="DIS-ET — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-ET — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Essential Thrombocythemia. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_et.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-fl.html"
+   data-category="b_indolent" data-default-order="117"
+   data-name="DIS-FL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-FL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Follicular Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_fl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-gastric.html"
+   data-category="solid" data-default-order="118"
+   data-name="DIS-GASTRIC — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-GASTRIC — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Gastric and gastroesophageal junction adenocarcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_gastric.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-gbm.html"
+   data-category="solid" data-default-order="119"
+   data-name="DIS-GBM — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-GBM — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Glioblastoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_gbm.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-gist.html"
+   data-category="solid" data-default-order="120"
+   data-name="DIS-GIST — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-GIST — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Gastrointestinal stromal tumor. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_gist.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-glioma_low_grade.html"
+   data-category="solid" data-default-order="121"
+   data-name="DIS-GLIOMA-LOW-GRADE — Auto-stub (50% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-GLIOMA-LOW-GRADE — Auto-stub (50% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Low-grade glioma. Фактична наповненість бази для цієї хвороби — 50%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_glioma_low_grade.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-hcc.html"
+   data-category="solid" data-default-order="122"
+   data-name="DIS-HCC — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-HCC — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Hepatocellular carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_hcc.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-hcl.html"
+   data-category="b_indolent" data-default-order="123"
+   data-name="DIS-HCL — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-HCL — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Hairy Cell Leukemia. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_hcl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-hcv_mzl.html"
+   data-category="b_indolent" data-default-order="124"
+   data-name="DIS-HCV-MZL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-HCV-MZL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для HCV-associated Marginal Zone Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_hcv_mzl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-hgbl_dh.html"
+   data-category="b_aggressive" data-default-order="125"
+   data-name="DIS-HGBL-DH — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-HGBL-DH — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для High-Grade B-Cell Lymphoma, Double-Hit / Triple-Hit. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_hgbl_dh.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-hnscc.html"
+   data-category="solid" data-default-order="126"
+   data-name="DIS-HNSCC — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-HNSCC — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Head and neck squamous cell carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_hnscc.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-hstcl.html"
+   data-category="t_cell" data-default-order="127"
+   data-name="DIS-HSTCL — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-HSTCL — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Hepatosplenic T-Cell Lymphoma. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_hstcl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-mastocytosis.html"
+   data-category="myeloid" data-default-order="128"
+   data-name="DIS-MASTOCYTOSIS — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-MASTOCYTOSIS — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Advanced systemic mastocytosis. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_mastocytosis.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-mcl.html"
+   data-category="b_aggressive" data-default-order="129"
+   data-name="DIS-MCL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-MCL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Mantle Cell Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_mcl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-mds_hr.html"
+   data-category="myeloid" data-default-order="130"
+   data-name="DIS-MDS-HR — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-MDS-HR — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Myelodysplastic Syndromes — Higher Risk. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_mds_hr.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-mds_lr.html"
+   data-category="myeloid" data-default-order="131"
+   data-name="DIS-MDS-LR — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-MDS-LR — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Myelodysplastic Syndromes — Lower Risk. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_mds_lr.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-melanoma.html"
+   data-category="solid" data-default-order="132"
+   data-name="DIS-MELANOMA — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-MELANOMA — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Cutaneous melanoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_melanoma.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-mf_sezary.html"
+   data-category="t_cell" data-default-order="133"
+   data-name="DIS-MF-SEZARY — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-MF-SEZARY — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Mycosis Fungoides / Sézary Syndrome. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_mf_sezary.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-mm.html"
+   data-category="myeloma" data-default-order="134"
+   data-name="DIS-MM — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-MM — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Multiple Myeloma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_mm.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-mtc.html"
+   data-category="solid" data-default-order="135"
+   data-name="DIS-MTC — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-MTC — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Medullary thyroid carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_mtc.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-nk_t_nasal.html"
+   data-category="t_cell" data-default-order="136"
+   data-name="DIS-NK-T-NASAL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-NK-T-NASAL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Extranodal NK/T-Cell Lymphoma, Nasal Type. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_nk_t_nasal.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-nlpbl.html"
+   data-category="hodgkin" data-default-order="137"
+   data-name="DIS-NLPBL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-NLPBL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Nodular Lymphocyte-Predominant B-cell Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_nlpbl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-nodal_mzl.html"
+   data-category="b_indolent" data-default-order="138"
+   data-name="DIS-NODAL-MZL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-NODAL-MZL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Nodal Marginal Zone Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_nodal_mzl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-nsclc.html"
+   data-category="solid" data-default-order="139"
+   data-name="DIS-NSCLC — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-NSCLC — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Non-small cell lung cancer. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_nsclc.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-ovarian.html"
+   data-category="solid" data-default-order="140"
+   data-name="DIS-OVARIAN — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-OVARIAN — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Ovarian carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_ovarian.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-pcnsl.html"
+   data-category="b_aggressive" data-default-order="141"
+   data-name="DIS-PCNSL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-PCNSL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Primary CNS Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_pcnsl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-pdac.html"
+   data-category="solid" data-default-order="142"
+   data-name="DIS-PDAC — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-PDAC — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Pancreatic ductal adenocarcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_pdac.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-pmbcl.html"
+   data-category="b_aggressive" data-default-order="143"
+   data-name="DIS-PMBCL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-PMBCL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Primary Mediastinal Large B-Cell Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_pmbcl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-pmf.html"
+   data-category="myeloid" data-default-order="144"
+   data-name="DIS-PMF — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-PMF — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Primary Myelofibrosis. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_pmf.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-prostate.html"
+   data-category="solid" data-default-order="145"
+   data-name="DIS-PROSTATE — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-PROSTATE — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Prostate adenocarcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_prostate.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-ptcl_nos.html"
+   data-category="t_cell" data-default-order="146"
+   data-name="DIS-PTCL-NOS — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-PTCL-NOS — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Peripheral T-Cell Lymphoma, NOS. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_ptcl_nos.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-ptld.html"
+   data-category="b_aggressive" data-default-order="147"
+   data-name="DIS-PTLD — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-PTLD — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Post-Transplant Lymphoproliferative Disorder. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_ptld.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-pv.html"
+   data-category="myeloid" data-default-order="148"
+   data-name="DIS-PV — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-PV — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Polycythemia Vera. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_pv.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-rcc.html"
+   data-category="solid" data-default-order="149"
+   data-name="DIS-RCC — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-RCC — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Renal cell carcinoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_rcc.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-sclc.html"
+   data-category="solid" data-default-order="150"
+   data-name="DIS-SCLC — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-SCLC — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Small cell lung cancer. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_sclc.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-splenic_mzl.html"
+   data-category="b_indolent" data-default-order="151"
+   data-name="DIS-SPLENIC-MZL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-SPLENIC-MZL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Splenic Marginal Zone Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_splenic_mzl.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-t_all.html"
+   data-category="lymphoblastic" data-default-order="152"
+   data-name="DIS-T-ALL — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-T-ALL — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для T-Lymphoblastic Leukemia/Lymphoma. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_t_all.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-t_pll.html"
+   data-category="t_cell" data-default-order="153"
+   data-name="DIS-T-PLL — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-T-PLL — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для T-Cell Prolymphocytic Leukemia. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_t_pll.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-urothelial.html"
+   data-category="solid" data-default-order="154"
+   data-name="DIS-UROTHELIAL — Auto-stub (75% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-UROTHELIAL — Auto-stub (75% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Urothelial carcinoma. Фактична наповненість бази для цієї хвороби — 75%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_urothelial.json</div>
+</a>
+<a class="case-card" href="/en/cases/auto-wm.html"
+   data-category="b_indolent" data-default-order="155"
+   data-name="DIS-WM — Auto-stub (88% наповненість)">
+  <div class="case-badge-row">
+    <div class="case-badge bdg-stub">Auto-stub</div>
+    <span class="case-json-only" title="Form not yet available — opens as JSON on Try-it">JSON-only</span>
+  </div>
+  <h3>DIS-WM — Auto-stub (88% наповненість)</h3>
+  <p>Автогенерований мінімальний профіль для Waldenström Macroglobulinemia / Lymphoplasmacytic Lymphoma. Фактична наповненість бази для цієї хвороби — 88%. Використовується для перевірки end-to-end engine + render — не для клінічних рішень.</p>
+  <div class="case-foot">auto_wm.json</div>
 </a>
   </section>
 
@@ -1220,24 +1847,24 @@
 </style>
 <div class="oo-widget" data-component="openonco-stats">
 <h2>OpenOnco — стан бази знань</h2>
-<div class="oo-sub">Зріз станом на 2026-04-26 23:04 UTC · видно і обсяг, і обмеження — поки покриваємо лише декілька хвороб.</div>
+<div class="oo-sub">Зріз станом на 2026-04-27 10:13 UTC · видно і обсяг, і обмеження — поки покриваємо лише декілька хвороб.</div>
 <div class="oo-grid">
 <div class="oo-card"><div class="oo-num">65</div><div class="oo-lbl">Хвороби</div></div>
-<div class="oo-card"><div class="oo-num">250</div><div class="oo-lbl">Показання</div></div>
-<div class="oo-card"><div class="oo-num">186</div><div class="oo-lbl">Режими</div></div>
-<div class="oo-card"><div class="oo-num">95</div><div class="oo-lbl">Алгоритми</div></div>
-<div class="oo-card"><div class="oo-num">97</div><div class="oo-lbl">Біомаркери / гени</div></div>
-<div class="oo-card"><div class="oo-num">185</div><div class="oo-lbl">Препарати</div></div>
+<div class="oo-card"><div class="oo-num">294</div><div class="oo-lbl">Показання</div></div>
+<div class="oo-card"><div class="oo-num">236</div><div class="oo-lbl">Режими</div></div>
+<div class="oo-card"><div class="oo-num">102</div><div class="oo-lbl">Алгоритми</div></div>
+<div class="oo-card"><div class="oo-num">111</div><div class="oo-lbl">Біомаркери / гени</div></div>
+<div class="oo-card"><div class="oo-num">216</div><div class="oo-lbl">Препарати</div></div>
 <div class="oo-card"><div class="oo-num">95</div><div class="oo-lbl">Тести / процедури</div></div>
 <div class="oo-card"><div class="oo-num">24</div><div class="oo-lbl">Workups (триаж)</div></div>
-<div class="oo-card"><div class="oo-num">310</div><div class="oo-lbl">Red flags</div></div>
+<div class="oo-card"><div class="oo-num">419</div><div class="oo-lbl">Red flags</div></div>
 <div class="oo-card"><div class="oo-num">12</div><div class="oo-lbl">Протипоказання</div></div>
 <div class="oo-card"><div class="oo-num">8</div><div class="oo-lbl">Моніторинг</div></div>
 <div class="oo-card"><div class="oo-num">13</div><div class="oo-lbl">Супровідна терапія</div></div>
-<div class="oo-card"><div class="oo-num">162</div><div class="oo-lbl">Джерела</div></div>
+<div class="oo-card"><div class="oo-num">261</div><div class="oo-lbl">Джерела</div></div>
 </div>
-<div class="oo-meta"><span>Специфікації: <b>14</b></span><span>Live API-клієнти: <b>5</b></span><span>Skills (MDT): <b>0</b> / 16 планується</span><span>Reviewer sign-offs ≥ 2: <b>15</b> / 202</span></div>
-<div class="oo-meta"><span>📚 Корпус літератури під 109 цитованими джерелами: <b>26,062+</b> primary publications · <b>10,269</b> сторінок керівництв</span></div>
+<div class="oo-meta"><span>Специфікації: <b>14</b></span><span>Live API-клієнти: <b>5</b></span><span>Skills (MDT): <b>0</b> / 16 планується</span><span>Reviewer sign-offs ≥ 2: <b>15</b> / 274</span></div>
+<div class="oo-meta"><span>📚 Корпус літератури під 220 цитованими джерелами: <b>29,450+</b> primary publications · <b>11,611</b> сторінок керівництв</span></div>
 <table><thead><tr><th>Хвороба</th><th>ID</th><th class="num">Ind</th><th class="num">Reg</th><th class="num">Алг</th><th class="num">RF</th><th class="num">Workups</th><th>Статус</th></tr></thead><tbody>
 <tr><td>Ангіоімунобластна T-клітинна лімфома / нодальна TFH-лімфома</td><td><code>DIS-AITL</code></td><td class="num">5</td><td class="num">5</td><td class="num">✓</td><td class="num">3</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Анапластична великоклітинна лімфома (системна)</td><td><code>DIS-ALCL</code></td><td class="num">5</td><td class="num">5</td><td class="num">✓</td><td class="num">0</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
@@ -1245,14 +1872,14 @@
 <tr><td>Гострий промієлоцитарний лейкоз (PML-RARA)</td><td><code>DIS-APL</code></td><td class="num">4</td><td class="num">4</td><td class="num">✓</td><td class="num">6</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Дорослий T-клітинний лейкоз/лімфома</td><td><code>DIS-ATLL</code></td><td class="num">3</td><td class="num">3</td><td class="num">✓</td><td class="num">0</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>B-лімфобластна лейкемія/лімфома</td><td><code>DIS-B-ALL</code></td><td class="num">6</td><td class="num">5</td><td class="num">✓</td><td class="num">5</td><td class="num">0</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
-<tr><td>Інвазивний рак молочної залози</td><td><code>DIS-BREAST</code></td><td class="num">10</td><td class="num">7</td><td class="num">✓</td><td class="num">3</td><td class="num">2</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
+<tr><td>Інвазивний рак молочної залози</td><td><code>DIS-BREAST</code></td><td class="num">20</td><td class="num">13</td><td class="num">✓</td><td class="num">3</td><td class="num">2</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Лімфома Беркітта</td><td><code>DIS-BURKITT</code></td><td class="num">5</td><td class="num">5</td><td class="num">✓</td><td class="num">1</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Карцинома шийки матки</td><td><code>DIS-CERVICAL</code></td><td class="num">2</td><td class="num">1</td><td class="num">✓</td><td class="num">3</td><td class="num">11</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Холангіокарцинома (рак жовчних проток)</td><td><code>DIS-CHOLANGIOCARCINOMA</code></td><td class="num">0</td><td class="num">0</td><td class="num">—</td><td class="num">0</td><td class="num">11</td><td><span class="oo-pill skeleton">Тільки скелет</span></td></tr>
 <tr><td>Хондросаркома</td><td><code>DIS-CHONDROSARCOMA</code></td><td class="num">0</td><td class="num">0</td><td class="num">—</td><td class="num">0</td><td class="num">1</td><td><span class="oo-pill skeleton">Тільки скелет</span></td></tr>
 <tr><td>Хронічна лімфоцитарна лейкемія / Дрібноклітинна лімфоцитарна лімфома</td><td><code>DIS-CLL</code></td><td class="num">6</td><td class="num">5</td><td class="num">✓</td><td class="num">0</td><td class="num">0</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Хронічна мієлоїдна лейкемія (BCR-ABL1)</td><td><code>DIS-CML</code></td><td class="num">5</td><td class="num">5</td><td class="num">✓</td><td class="num">6</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
-<tr><td>Колоректальний рак</td><td><code>DIS-CRC</code></td><td class="num">12</td><td class="num">8</td><td class="num">✓</td><td class="num">5</td><td class="num">11</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
+<tr><td>Колоректальний рак</td><td><code>DIS-CRC</code></td><td class="num">18</td><td class="num">12</td><td class="num">✓</td><td class="num">5</td><td class="num">11</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Дифузна B-великоклітинна лімфома, неуточнена (DLBCL NOS)</td><td><code>DIS-DLBCL-NOS</code></td><td class="num">9</td><td class="num">4</td><td class="num">✓</td><td class="num">2</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Ентеропатія-асоційована T-клітинна лімфома</td><td><code>DIS-EATL</code></td><td class="num">2</td><td class="num">2</td><td class="num">✓</td><td class="num">0</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Карцинома ендометрія</td><td><code>DIS-ENDOMETRIAL</code></td><td class="num">4</td><td class="num">4</td><td class="num">✓</td><td class="num">2</td><td class="num">2</td><td><span class="oo-pill reviewed">Reviewed</span></td></tr>
@@ -1276,7 +1903,7 @@
 <tr><td>Поширений системний мастоцитоз</td><td><code>DIS-MASTOCYTOSIS</code></td><td class="num">2</td><td class="num">2</td><td class="num">✓</td><td class="num">0</td><td class="num">1</td><td><span class="oo-pill reviewed">Reviewed</span></td></tr>
 <tr><td>Мієлодиспластичні синдроми, високий ризик (IPSS-R високий / дуже високий; включає MDS-EB)</td><td><code>DIS-MDS-HR</code></td><td class="num">3</td><td class="num">3</td><td class="num">✓</td><td class="num">7</td><td class="num">0</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Мієлодиспластичні синдроми, низький ризик (IPSS-R дуже низький / низький / проміжний)</td><td><code>DIS-MDS-LR</code></td><td class="num">4</td><td class="num">4</td><td class="num">✓</td><td class="num">6</td><td class="num">0</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
-<tr><td>Шкірна меланома</td><td><code>DIS-MELANOMA</code></td><td class="num">4</td><td class="num">2</td><td class="num">✓</td><td class="num">1</td><td class="num">3</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
+<tr><td>Шкірна меланома</td><td><code>DIS-MELANOMA</code></td><td class="num">9</td><td class="num">6</td><td class="num">✓</td><td class="num">1</td><td class="num">3</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Злоякісна пухлина оболонки периферичного нерва</td><td><code>DIS-MPNST</code></td><td class="num">0</td><td class="num">0</td><td class="num">—</td><td class="num">0</td><td class="num">1</td><td><span class="oo-pill skeleton">Тільки скелет</span></td></tr>
 <tr><td>Медулярна карцинома щитовидної залози</td><td><code>DIS-MTC</code></td><td class="num">2</td><td class="num">2</td><td class="num">✓</td><td class="num">0</td><td class="num">11</td><td><span class="oo-pill reviewed">Reviewed</span></td></tr>
 <tr><td>Множинна мієлома</td><td><code>DIS-MM</code></td><td class="num">7</td><td class="num">5</td><td class="num">✓</td><td class="num">4</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
@@ -1284,8 +1911,8 @@
 <tr><td>Екстранодальна NK/T-клітинна лімфома, назального типу</td><td><code>DIS-NK-T-NASAL</code></td><td class="num">3</td><td class="num">3</td><td class="num">✓</td><td class="num">0</td><td class="num">0</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Нодулярна лімфоцит-домінантна B-клітинна лімфома (раніше NLPHL)</td><td><code>DIS-NLPBL</code></td><td class="num">3</td><td class="num">2</td><td class="num">✓</td><td class="num">1</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Нодальна лімфома маргінальної зони</td><td><code>DIS-NODAL-MZL</code></td><td class="num">4</td><td class="num">3</td><td class="num">✓</td><td class="num">4</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
-<tr><td>Недрібноклітинний рак легені</td><td><code>DIS-NSCLC</code></td><td class="num">15</td><td class="num">9</td><td class="num">✓</td><td class="num">3</td><td class="num">2</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
-<tr><td>Карцинома яєчників (переважно high-grade серозна)</td><td><code>DIS-OVARIAN</code></td><td class="num">5</td><td class="num">2</td><td class="num">✓</td><td class="num">3</td><td class="num">11</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
+<tr><td>Недрібноклітинний рак легені</td><td><code>DIS-NSCLC</code></td><td class="num">28</td><td class="num">20</td><td class="num">✓</td><td class="num">3</td><td class="num">2</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
+<tr><td>Карцинома яєчників (переважно high-grade серозна)</td><td><code>DIS-OVARIAN</code></td><td class="num">15</td><td class="num">11</td><td class="num">✓</td><td class="num">4</td><td class="num">11</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Первинна дифузна великоклітинна B-клітинна лімфома центральної нервової системи</td><td><code>DIS-PCNSL</code></td><td class="num">3</td><td class="num">3</td><td class="num">✓</td><td class="num">2</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Протокова аденокарцинома підшлункової залози</td><td><code>DIS-PDAC</code></td><td class="num">3</td><td class="num">3</td><td class="num">✓</td><td class="num">1</td><td class="num">11</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
 <tr><td>Первинна медіастинальна (тимічна) B-великоклітинна лімфома</td><td><code>DIS-PMBCL</code></td><td class="num">3</td><td class="num">3</td><td class="num">✓</td><td class="num">2</td><td class="num">1</td><td><span class="oo-pill stub_full_chain">STUB · повний ланцюг</span></td></tr>
