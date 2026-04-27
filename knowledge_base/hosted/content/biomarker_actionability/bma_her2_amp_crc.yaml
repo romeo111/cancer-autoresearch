@@ -3,7 +3,6 @@ biomarker_id: BIO-HER2-SOLID
 variant_qualifier: "amplification / overexpression — IHC 3+ or (IHC 2+ + ISH amplified, HER2/CEP17 ≥2.0); ~3-5% of metastatic colorectal cancer (RAS/BRAF-WT)"
 disease_id: DIS-CRC
 escat_tier: "IB"
-oncokb_level: "2"
 evidence_summary: >
   HER2-amplified metastatic colorectal cancer (~3-5% in RAS/BRAF-WT
   population): tucatinib + trastuzumab is FDA-approved 2L+ for HER2-
@@ -39,7 +38,20 @@ primary_sources:
   - SRC-ESMO-COLON-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-COLON-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-COLON-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

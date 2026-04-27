@@ -49,8 +49,7 @@ from ._track_filter import is_track_excluded
 from .access_matrix import build_access_matrix
 from .algorithm_eval import walk_algorithm
 from .experimental_options import SearchFn, enumerate_experimental_options
-# OncoKB integration removed — superseded by _actionability module
-# (CSD-7+ rename: oncokb_* → actionability via _actionability.find_matching_actionability).
+from .actionability_types import ActionabilityLayer
 
 
 # Track labels — ordered, default labels for the well-known plan_track values.
@@ -102,14 +101,14 @@ class PlanResult:
     # "ctgov sync needed" placeholder per plan §3.3.
     experimental_options: Optional[ExperimentalOption] = None
 
-    # OncoKB precision-medicine layer (safe-rollout v3 §0.1 invariant 1:
-    # surface-only, never influences track selection). None when
-    # integration is disabled (default) or when the patient has no
-    # OncoKB-actionable biomarkers. Render layer reads this in HCP mode
-    # only; patient-mode HTML must NOT contain any OncoKB content (AC-3).
-    # oncokb_layer removed during CSD-7+ refactor; ESCAT/OncoKB cells now
-    # surface via plan.variant_actionability (_actionability.find_matching_actionability).
-    oncokb_layer: Optional[Any] = None  # legacy slot — always None now
+    # Actionability precision-medicine layer (safe-rollout v3 §0.1
+    # invariant 1: surface-only, never influences track selection).
+    # None when integration is disabled (default) or when the patient
+    # has no actionable biomarkers. Render layer reads this in HCP mode
+    # only; patient-mode HTML must NOT contain any actionability detail.
+    # Renamed from `oncokb_layer` (CIViC pivot — see
+    # docs/reviews/oncokb-public-civic-coverage-2026-04-27.md).
+    actionability_layer: Optional[ActionabilityLayer] = None
 
     # Runtime KB resolutions for the render layer — NOT persisted with Plan.
     # Holds: 'disease' (dict), 'tests' (dict[id, dict]), 'red_flags' (dict[id, dict]),
@@ -305,8 +304,8 @@ def generate_plan(
     revision_trigger: Optional[str] = None,
     experimental_search_fn: Optional[SearchFn] = None,
     experimental_cache_root: Optional[Path | str] = None,
-    oncokb_enabled: bool = False,
-    oncokb_client: Optional[Any] = None,
+    actionability_enabled: bool = False,
+    actionability_client: Optional[Any] = None,
 ) -> PlanResult:
     """Run the rule engine on a patient profile and return a PlanResult
     containing a fully-materialized Plan with multiple tracks.
@@ -525,17 +524,49 @@ def generate_plan(
     except Exception as exc:
         result.warnings.append(f"variant actionability skipped: {exc}")
 
-    # OncoKB-specific layer wiring removed during CSD-7+ refactor.
-    # ESCAT/OncoKB tier surfacing now happens through
-    # _actionability.find_matching_actionability above (see
-    # plan.variant_actionability). The oncokb_enabled/oncokb_client
-    # kwargs are retained as no-ops for backward compatibility with
-    # any external callers; they currently do nothing.
-    if oncokb_enabled and oncokb_client is not None:
-        result.warnings.append(
-            "oncokb_enabled is deprecated — actionability layer now surfaces via "
-            "plan.variant_actionability (CSD-7+ rename)."
-        )
+    # ── Actionability precision-medicine layer ──────────────────────────
+    # Phase 3b wiring (safe-rollout v3 §3.2). Surface-only — added AFTER
+    # tracks/actionability are final. CHARTER §8.3 invariant: nothing
+    # below influences track selection (those are done above).
+    # Default OFF: caller must pass actionability_enabled=True AND a client.
+    # Coexists with master's plan.variant_actionability (static-KB lookup
+    # via _actionability.find_matching_actionability) — this layer adds
+    # dynamic CIViC snapshot lookup for biomarkers with actionability_lookup.
+    if actionability_enabled and actionability_client is not None:
+        try:
+            from .actionability_extract import extract_actionability_queries
+            from .actionability_conflict import annotate_layer_with_conflicts
+            from .actionability_types import ActionabilityResult, ActionabilityError
+            from .oncotree_fallback import resolve_oncotree_code
+
+            disease_data = result.kb_resolved.get("disease") or {}
+            oncotree, pan_tumor_fallback = resolve_oncotree_code(disease_data)
+
+            hints: list[tuple[str, str, str]] = []
+            for bio_id, _value in (patient.get("biomarkers") or {}).items():
+                bio_record = _resolve(entities, bio_id) or {}
+                hint = (
+                    bio_record.get("actionability_lookup")
+                    or bio_record.get("oncokb_lookup")
+                )
+                if isinstance(hint, dict) and hint.get("gene") and hint.get("variant"):
+                    hints.append((bio_id, hint["gene"], hint["variant"]))
+
+            queries = extract_actionability_queries(hints, oncotree_code=oncotree)
+            if queries:
+                results_list = actionability_client.batch_lookup(queries)
+                ok_results = [r for r in results_list if isinstance(r, ActionabilityResult)]
+                errors = [r for r in results_list if isinstance(r, ActionabilityError)]
+
+                layer = ActionabilityLayer(
+                    results=ok_results,
+                    errors=errors,
+                    pan_tumor_fallback_used=pan_tumor_fallback,
+                )
+                annotate_layer_with_conflicts(layer, tracks)
+                result.actionability_layer = layer
+        except Exception as exc:  # noqa: BLE001 — fail-open contract
+            result.warnings.append(f"actionability layer skipped: {exc}")
 
     return result
 

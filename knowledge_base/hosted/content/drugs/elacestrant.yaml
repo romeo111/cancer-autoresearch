@@ -48,3 +48,6 @@ sources: [SRC-NCCN-BREAST-2025, SRC-ESMO-BREAST-METASTATIC-2024]
 last_reviewed: null
 notes: >
   Indication: ESR1-mutant HR+/HER2- metastatic after at least one prior endocrine therapy. ESR1 mutation testing on ctDNA recommended pre-start.
+
+notes_patient: >
+  Таблетка-SERD: повністю руйнує естрогеновий рецептор у пухлинних клітинах. Зручна перорально (на відміну від ін'єкційного fulvestrant). Для раку грудей HR+ з мутацією ESR1.

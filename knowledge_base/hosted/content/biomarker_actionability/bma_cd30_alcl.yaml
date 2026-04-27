@@ -3,7 +3,6 @@ biomarker_id: BIO-CD30-IHC
 variant_qualifier: "CD30 expression — universal (~100%) in systemic anaplastic large-cell lymphoma (ALK-positive and ALK-negative)"
 disease_id: DIS-ALCL
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   CD30 expression is a defining feature of anaplastic large-cell
   lymphoma (sALCL); brentuximab vedotin (BV) targets CD30 with an
@@ -38,7 +37,20 @@ primary_sources:
   - SRC-ESMO-PTCL-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-BCELL-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-PTCL-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

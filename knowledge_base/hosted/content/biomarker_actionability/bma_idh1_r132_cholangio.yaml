@@ -3,7 +3,6 @@ biomarker_id: BIO-IDH-MUTATION
 variant_qualifier: "IDH1 R132 hotspot (R132C ~70%, R132L, R132G, R132H, R132S; ~13-20% of intrahepatic cholangiocarcinoma)"
 disease_id: DIS-CHOLANGIOCARCINOMA
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   IDH1 R132 hotspot mutations occur in ~13-20% of intrahepatic
   cholangiocarcinoma and are FDA Level-1 actionable. Ivosidenib was
@@ -32,7 +31,14 @@ primary_sources:
   - SRC-NCCN-HEPATOBILIARY
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-HEPATOBILIARY
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >
@@ -42,3 +48,5 @@ notes: >
   (see existing BMAs). Resistance mechanisms: IDH2 isoform switching,
   receptor tyrosine kinase upregulation. Source-gap: SRC-NCCN-HEPATOBILIARY
   STUB; SRC-CLARIDHY-ABOU-ALFA-2020 not yet ingested.
+blocked_on_source_ingestion:
+  - SRC-NCCN-HEPATOBILIARY

@@ -286,19 +286,10 @@ ESCAT_PLAIN_UA: dict[str, str] = {
 }
 
 
-# ── OncoKB level vocabulary ──────────────────────────────────────────
-#
-# OncoKB therapeutic levels of evidence — academic license non-commercial.
-
-ONCOKB_PLAIN_UA: dict[str, str] = {
-    "1": "FDA-схвалено для вашого типу пухлини",
-    "2": "Стандарт лікування — підкріплено великими дослідженнями, хоча не точно FDA-approved для цього combo",
-    "3A": "Сильні клінічні докази у вашому типі пухлини, але ще не FDA-approved",
-    "3B": "Сильні клінічні докази в інших типах пухлини",
-    "4": "Тільки преклінічні дані",
-    "R1": "Стандартний біомаркер опору FDA-approved препарату",
-    "R2": "Біомаркер опору на основі клінічних доказів",
-}
+# OncoKB level vocabulary intentionally omitted — OncoKB ToS forbids
+# OpenOnco's use case (CHARTER §2 conflict). Actionability vocabulary
+# is render-firewalled from patient mode anyway. If patient-facing
+# CIViC level translations are added later, they need clinical UA review.
 
 
 # ── НСЗУ availability vocabulary ─────────────────────────────────────
@@ -520,7 +511,6 @@ _ALL_TABLES: tuple[dict[str, str], ...] = (
     DRUG_CLASS_PLAIN_UA,
     VARIANT_TYPE_PLAIN_UA,
     ESCAT_PLAIN_UA,
-    ONCOKB_PLAIN_UA,
     NSZU_PLAIN_UA,
     LAB_PLAIN_UA,
     AE_PLAIN_UA,
@@ -571,17 +561,6 @@ ESCAT_TIER_PATIENT_LABEL: dict[str, str] = {
 }
 
 
-ONCOKB_LEVEL_PATIENT_LABEL: dict[str, str] = {
-    "1": "FDA-approved для вашого типу",
-    "2": "Стандарт лікування",
-    "3A": "Сильні докази у вашому типі",
-    "3B": "Сильні докази в інших типах",
-    "4": "Тільки преклініка",
-    "R1": "Біомаркер опору (FDA)",
-    "R2": "Біомаркер опору (клінічні дані)",
-}
-
-
 NSZU_PATIENT_LABEL: dict[str, str] = {
     "covered": "Безкоштовно за програмою НСЗУ",
     "partial": "НСЗУ покриває препарат, але не для цього діагнозу",
@@ -602,13 +581,11 @@ __all__ = [
     "DRUG_CLASS_PLAIN_UA",
     "VARIANT_TYPE_PLAIN_UA",
     "ESCAT_PLAIN_UA",
-    "ONCOKB_PLAIN_UA",
     "NSZU_PLAIN_UA",
     "LAB_PLAIN_UA",
     "AE_PLAIN_UA",
     "SCREENING_PLAIN_UA",
     "ESCAT_TIER_PATIENT_LABEL",
-    "ONCOKB_LEVEL_PATIENT_LABEL",
     "NSZU_PATIENT_LABEL",
     "explain",
     "total_term_count",

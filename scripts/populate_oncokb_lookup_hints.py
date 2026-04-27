@@ -74,7 +74,7 @@ def main() -> int:
 
     # Verify each hint normalizes correctly (sanity check)
     sys.path.insert(0, str(repo_root))
-    from knowledge_base.engine.oncokb_extract import normalize_variant
+    from knowledge_base.engine.actionability_extract import normalize_variant
 
     for stem, (gene, variant) in HINTS.items():
         nv = normalize_variant(variant, gene)
@@ -85,10 +85,10 @@ def main() -> int:
                 file=sys.stderr,
             )
             return 1
-        if nv.oncokb_query_string != variant:
+        if nv.query_string != variant:
             print(
-                f"WARN: hint for {stem} normalizes {variant!r} -> {nv.oncokb_query_string!r} "
-                f"(non-idempotent; consider using {nv.oncokb_query_string!r} directly)"
+                f"WARN: hint for {stem} normalizes {variant!r} -> {nv.query_string!r} "
+                f"(non-idempotent; consider using {nv.query_string!r} directly)"
             )
 
     updated = 0

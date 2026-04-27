@@ -1,15 +1,16 @@
-"""Biomarker schema — OncoKB-wiring fields (Phase 1 scaffolding).
+"""Biomarker schema — actionability-wiring fields.
 
-Covers the three optional fields added for the OncoKB integration safe
-rollout (docs/plans/oncokb_integration_safe_rollout_v3.md §4):
+Renamed/updated during the CIViC pivot (see
+docs/reviews/oncokb-public-civic-coverage-2026-04-27.md). Covers the
+three optional fields:
 
-  - `oncokb_lookup`: explicit (gene, variant) hint
+  - `actionability_lookup` (was `oncokb_lookup`): explicit (gene, variant) hint
   - `oncokb_skip_reason`: stable machine-readable exclusion token
+    (field name preserved — tokens are source-agnostic)
   - `external_ids`: cross-refs to HGNC / OncoKB / CIViC / ClinGen
 
-Phase 1 = pure-engineering scaffolding. No content YAML is touched here;
-that's Phase 2's job. These tests exist so 7 parallel agents can write
-to the new fields without the validator rejecting them.
+Phase 1.5 will migrate the YAML field name from `oncokb_lookup` →
+`actionability_lookup`; the schema field has already been renamed.
 """
 
 from __future__ import annotations
@@ -19,8 +20,8 @@ from pydantic import ValidationError
 
 from knowledge_base.schemas import Biomarker
 from knowledge_base.schemas.biomarker import (
+    ActionabilityLookupHint,
     BiomarkerExternalIDs,
-    OncoKBLookupHint,
 )
 
 
@@ -37,26 +38,26 @@ def _make(**overrides):
 # ── Valid: each new field on its own ──────────────────────────────────────────
 
 
-def test_biomarker_with_oncokb_lookup_only():
+def test_biomarker_with_actionability_lookup_only():
     b = _make(
-        oncokb_lookup={"gene": "BRAF", "variant": "V600E"},
+        actionability_lookup={"gene": "BRAF", "variant": "V600E"},
     )
-    assert isinstance(b.oncokb_lookup, OncoKBLookupHint)
-    assert b.oncokb_lookup.gene == "BRAF"
-    assert b.oncokb_lookup.variant == "V600E"
+    assert isinstance(b.actionability_lookup, ActionabilityLookupHint)
+    assert b.actionability_lookup.gene == "BRAF"
+    assert b.actionability_lookup.variant == "V600E"
     assert b.oncokb_skip_reason is None
 
 
 def test_biomarker_with_oncokb_skip_reason_only():
     b = _make(oncokb_skip_reason="ihc_no_variant")
     assert b.oncokb_skip_reason == "ihc_no_variant"
-    assert b.oncokb_lookup is None
+    assert b.actionability_lookup is None
 
 
 def test_biomarker_with_neither_lookup_nor_skip_reason():
     """Current state of all 85 bio_*.yaml files — must remain valid."""
     b = _make()
-    assert b.oncokb_lookup is None
+    assert b.actionability_lookup is None
     assert b.oncokb_skip_reason is None
     assert b.external_ids is None
 
@@ -75,22 +76,22 @@ def test_biomarker_with_neither_lookup_nor_skip_reason():
         "W288fs",            # frameshift
     ],
 )
-def test_oncokb_lookup_accepts_oncokb_variant_strings(variant):
-    b = _make(oncokb_lookup={"gene": "EGFR", "variant": variant})
-    assert b.oncokb_lookup.variant == variant
+def test_actionability_lookup_accepts_canonical_variant_strings(variant):
+    b = _make(actionability_lookup={"gene": "EGFR", "variant": variant})
+    assert b.actionability_lookup.variant == variant
 
 
 # ── Mutual exclusion ──────────────────────────────────────────────────────────
 
 
-def test_both_oncokb_lookup_and_skip_reason_rejected():
+def test_both_actionability_lookup_and_skip_reason_rejected():
     with pytest.raises(ValidationError) as exc:
         _make(
-            oncokb_lookup={"gene": "BRAF", "variant": "V600E"},
+            actionability_lookup={"gene": "BRAF", "variant": "V600E"},
             oncokb_skip_reason="fusion_mvp",
         )
     msg = str(exc.value)
-    assert "oncokb_lookup" in msg and "oncokb_skip_reason" in msg
+    assert "actionability_lookup" in msg and "oncokb_skip_reason" in msg
 
 
 # ── Skip-reason enum guard ────────────────────────────────────────────────────

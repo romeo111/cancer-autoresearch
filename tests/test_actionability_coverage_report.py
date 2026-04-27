@@ -1,7 +1,10 @@
 """Smoke tests for scripts/oncokb_coverage_report.py.
 
-Not exhaustive — the script is observability infra, not engine code.
-We verify it runs cleanly against the real KB + the report shape is sane."""
+Renamed from test_oncokb_coverage_report.py. The script itself was kept
+under its original filename (it's observability infra under scripts/,
+out of the live engine code path); Phase 1.5 may rename it after the
+YAML field migration. The script reads both `actionability_lookup` (new)
+and `oncokb_lookup` (legacy) so it works through the migration window."""
 
 from __future__ import annotations
 

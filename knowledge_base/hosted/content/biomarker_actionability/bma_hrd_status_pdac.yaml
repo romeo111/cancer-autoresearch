@@ -3,7 +3,6 @@ biomarker_id: BIO-HRD-STATUS
 variant_qualifier: "germline BRCA1/2 (gBRCAm) — primary FDA-actionable subset (~5-7% of pancreatic ductal adenocarcinoma); somatic BRCA / PALB2 with growing evidence"
 disease_id: DIS-PDAC
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   Germline BRCA1/2 mutation in metastatic PDAC (~5-7%): olaparib
   monotherapy maintenance after ≥4 months of platinum-based 1L (FOLFIRINOX
@@ -34,7 +33,20 @@ primary_sources:
   - SRC-ESMO-PANCREATIC-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-PANCREATIC-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-PANCREATIC-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

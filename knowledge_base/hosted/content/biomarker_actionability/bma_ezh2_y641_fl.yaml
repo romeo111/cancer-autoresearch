@@ -3,7 +3,6 @@ biomarker_id: BIO-EZH2-Y641
 variant_qualifier: "Y641N/F/H/S/C activating mutations in SET domain — gain-of-function H3K27 hypermethylation; ~20-25% of follicular lymphoma"
 disease_id: DIS-FL
 escat_tier: "IB"
-oncokb_level: "1"
 evidence_summary: >
   EZH2 Y641 hotspot activating mutations occur in ~20-25% of follicular
   lymphoma (and rarely in DLBCL/HGBL). Tazemetostat is a selective
@@ -32,7 +31,20 @@ primary_sources:
   - SRC-ESMO-FL-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-BCELL-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-FL-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

@@ -3,7 +3,6 @@ biomarker_id: BIO-ESR1
 variant_qualifier: "ligand-binding-domain hotspots — D538G, Y537S/N/C, L536H, E380Q; acquired during aromatase-inhibitor exposure in ~30-40% of HR+/HER2- metastatic breast progressing on AI"
 disease_id: DIS-BREAST
 escat_tier: "IB"
-oncokb_level: "1"
 evidence_summary: >
   ESR1 ligand-binding-domain mutations confer aromatase-inhibitor (AI)
   resistance through constitutive ER-α activation and are FDA-actionable
@@ -29,7 +28,20 @@ primary_sources:
   - SRC-ESMO-BREAST-METASTATIC-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-BREAST-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-BREAST-METASTATIC-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

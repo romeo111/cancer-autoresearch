@@ -3,7 +3,6 @@ biomarker_id: BIO-HRD-STATUS
 variant_qualifier: "HRD-positive — BRCA1/2 mutation OR genomic instability score (GIS) above validated threshold (Myriad MyChoice ≥42 or equivalent FoundationOne CDx HRD signature); ~50% of high-grade serous ovarian carcinoma"
 disease_id: DIS-OVARIAN
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   HRD-positive high-grade serous ovarian carcinoma (~50% — encompassing
   BRCA1/2-mutated and BRCA-WT/HRD+): PARP inhibitor maintenance after
@@ -42,7 +41,20 @@ primary_sources:
   - SRC-ESMO-OVARIAN-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-OVARIAN-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-OVARIAN-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

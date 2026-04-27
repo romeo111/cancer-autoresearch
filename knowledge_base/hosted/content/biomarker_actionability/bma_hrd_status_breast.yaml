@@ -3,7 +3,6 @@ biomarker_id: BIO-HRD-STATUS
 variant_qualifier: "germline BRCA1/2 (gBRCA) — primary FDA companion biomarker; somatic BRCA1/2 also actionable; broader HRD-genomic signatures investigational"
 disease_id: DIS-BREAST
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   Germline BRCA1/2 mutation (gBRCAm) breast cancer (HER2-negative,
   ~5-10% of metastatic): olaparib monotherapy is FDA-approved 2L+ for
@@ -40,7 +39,26 @@ primary_sources:
   - SRC-ESMO-BREAST-METASTATIC-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-BREAST-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-BREAST-EARLY-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-BREAST-METASTATIC-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

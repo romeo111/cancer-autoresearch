@@ -340,15 +340,15 @@ _UI_STRINGS: dict[str, dict[str, str]] = {
     },
     "fda_disclosure_label":        {"uk": "Per FDA non-device CDS positioning (CHARTER §15):",
                                     "en": "Per FDA non-device CDS positioning (CHARTER §15):"},
-    # Variant actionability (ESCAT / OncoKB)
-    "actionability_heading":       {"uk": "Клінічна значущість мутацій (ESCAT / OncoKB)",
-                                    "en": "Clinical significance of mutations (ESCAT / OncoKB)"},
+    # Variant actionability (ESCAT)
+    "actionability_heading":       {"uk": "Клінічна значущість мутацій (ESCAT)",
+                                    "en": "Clinical significance of mutations (ESCAT)"},
     "actionability_sub":           {"uk": "Контекст для тумор-борду — інженер не використовує ці тіри для вибору треку",
                                     "en": "Tumor-board context — the engine does not use these tiers to rank tracks"},
     "actionability_th_biomarker":  {"uk": "Біомаркер", "en": "Biomarker"},
     "actionability_th_variant":    {"uk": "Варіант", "en": "Variant"},
     "actionability_th_escat":      {"uk": "ESCAT", "en": "ESCAT"},
-    "actionability_th_oncokb":     {"uk": "OncoKB", "en": "OncoKB"},
+    "actionability_th_evidence":   {"uk": "Доказова база", "en": "Evidence"},
     "actionability_th_action":     {"uk": "Клінічна дія", "en": "Clinical significance"},
     "actionability_th_combos":     {"uk": "Препарати", "en": "Drugs"},
     "actionability_th_sources":    {"uk": "Джерела", "en": "Sources"},
@@ -1346,7 +1346,14 @@ def _render_track_drug_list(
     return f'<dt>{_h(label)}</dt><dd><ul class="drug-list">{"".join(rows)}</ul></dd>'
 
 
-# ── Variant actionability (ESCAT / OncoKB) ──────────────────────────────
+# ── Variant actionability (ESCAT) ───────────────────────────────────────
+# Phase 4 (CIViC pivot, 2026-04-27): ESCAT tier is the primary actionability
+# label (vendor-neutral, source-of-truth). evidence_sources renders the
+# per-source detail BELOW the ESCAT tag — SRC-CIVIC entries link to
+# civicdb.org, "Does Not Support" / "Resistance" entries get a ⚠ flag.
+# Per OncoKB ToS (see review-2026-04-27 §3.4), SRC-ONCOKB entries are
+# never rendered; if evidence_sources is empty after that skip, the
+# render falls back to primary_sources (sans OncoKB) as citation cards.
 
 
 def _escat_class(tier: Optional[str]) -> str:
@@ -1358,17 +1365,175 @@ def _escat_class(tier: Optional[str]) -> str:
     return f"escat-{t}" if t in valid else "escat-X"
 
 
-def _oncokb_class(level: Optional[str]) -> str:
-    """OncoKB level → CSS class. Falls back to oncokb-4 for unknown values."""
-    if not level:
-        return "oncokb-4"
-    valid = {"1", "2", "3A", "3B", "4", "R1", "R2"}
-    raw = str(level).strip().upper()
-    return f"oncokb-{raw}" if raw in valid else "oncokb-4"
+# Sources that must NEVER appear in rendered HTML, per their license
+# Terms of Use. OncoKB ToS forbids "use for patient services" and
+# "generation of reports in a hospital or other patient care setting,"
+# which is exactly what OpenOnco produces; therefore SRC-ONCOKB-attested
+# evidence is skipped from both `evidence_sources` and `primary_sources`
+# at render time, regardless of any legacy data still present in YAMLs.
+# See docs/reviews/oncokb-public-civic-coverage-2026-04-27.md §3.4.
+_RENDER_SKIP_SOURCES = frozenset({"SRC-ONCOKB"})
+
+
+def _is_skipped_source(source_id: str) -> bool:
+    """Per ToS, do not render anything attributed to OncoKB to user-facing
+    HTML. Match is case-insensitive and on prefix so SRC-ONCOKB-* legacy
+    variants are also caught."""
+    if not source_id:
+        return False
+    s = str(source_id).strip().upper()
+    if s in _RENDER_SKIP_SOURCES:
+        return True
+    return s.startswith("SRC-ONCOKB")
+
+
+def _civic_evidence_url(evidence_ids: list) -> Optional[str]:
+    """Return a civicdb.org link for the first numeric evidence id, or
+    fall back to the gene-page URL pattern if no numeric id is present.
+
+    CIViC evidence-item URL pattern: civicdb.org/links/evidence_items/<id>.
+    Some imports store ids as `EID12345`; we strip a leading `EID`.
+    """
+    for raw in (evidence_ids or []):
+        s = str(raw).strip()
+        if s.upper().startswith("EID"):
+            s = s[3:]
+        if s.isdigit():
+            return f"https://civicdb.org/links/evidence_items/{s}"
+    return None
+
+
+def _is_resistance_entry(direction, significance) -> bool:
+    """CIViC `direction == 'Does Not Support'` flips a Sensitivity item
+    into anti-evidence; `significance == 'Resistance'` is the explicit
+    resistance signal. Either condition gets a ⚠ flag at render time."""
+    d = (direction or "").strip().lower() if direction else ""
+    s = (significance or "").strip().lower() if significance else ""
+    if d in {"does not support", "does_not_support"}:
+        return True
+    if "resistance" in s:
+        return True
+    return False
+
+
+def _format_evidence_sources(
+    evidence_sources: list, primary_sources: Optional[list] = None
+) -> str:
+    """Render evidence_sources entries as a short list per BMA cell.
+
+    Render rules (Phase-4 CIViC pivot, see review-2026-04-27):
+      1. Iterate `evidence_sources`. For each entry:
+         - SKIP source=SRC-ONCOKB entirely (OncoKB ToS forbids surfacing
+           OncoKB labels in patient-care reports).
+         - Otherwise render as `<source>: Level <level>`. SRC-CIVIC
+           entries get a clickable civicdb.org link via the first
+           numeric evidence_id (or gene-page fallback).
+         - "Does Not Support" / "Resistance" entries get a ⚠ marker +
+           "Resistance evidence" label.
+         - Deduplicate (source, level, resistance-flag) so multiple
+           CIViC evidence items at the same level collapse into one row.
+      2. Fallback (Phase 3-O finding): if `evidence_sources` is empty
+         after the SRC-ONCOKB skip, promote `primary_sources` (filtered
+         for non-OncoKB) as citation cards without a level, plus a note
+         pointing to the Phase-2-of-CIViC-pivot re-cite roadmap.
+    """
+    items: list[str] = []
+    seen: set = set()
+    for es in (evidence_sources or []):
+        if isinstance(es, dict):
+            source = es.get("source") or ""
+            level = es.get("level") or ""
+            direction = es.get("direction")
+            significance = es.get("significance")
+            evidence_ids = es.get("evidence_ids") or []
+        else:
+            source = getattr(es, "source", "") or ""
+            level = getattr(es, "level", "") or ""
+            direction = getattr(es, "direction", None)
+            significance = getattr(es, "significance", None)
+            evidence_ids = getattr(es, "evidence_ids", None) or []
+        if not source or _is_skipped_source(source):
+            continue
+        is_resistance = _is_resistance_entry(direction, significance)
+        # Dedupe key — collapse same source+level+resistance-flag rows.
+        key = (str(source).upper(), str(level).upper(), is_resistance)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        # Source label + optional clickable link (CIViC for SRC-CIVIC;
+        # other SRC-* render plain since URL lookup needs kb_resolved
+        # which we don't carry into this helper — see TODO below).
+        source_label = _h(source)
+        if str(source).upper() == "SRC-CIVIC":
+            href = _civic_evidence_url(evidence_ids) or "https://civicdb.org/"
+            source_label = (
+                f'<a href="{_h(href)}" target="_blank" rel="noopener">'
+                f'{_h(source)}</a>'
+            )
+
+        # Resistance flag
+        if is_resistance:
+            badge = (
+                ' <span class="evidence-resistance" '
+                'title="Resistance evidence">⚠ Resistance</span>'
+            )
+        else:
+            badge = ""
+
+        # Fine-grained metadata (direction/significance) — surfaced as a
+        # muted suffix when present and non-resistance (resistance is
+        # already conveyed by the badge).
+        suffix_parts: list[str] = []
+        if direction and not is_resistance:
+            suffix_parts.append(_h(str(direction)))
+        if significance and not is_resistance:
+            suffix_parts.append(_h(str(significance)))
+        suffix = (
+            f' <span class="evidence-meta">({", ".join(suffix_parts)})</span>'
+            if suffix_parts
+            else ""
+        )
+
+        items.append(
+            f'<li>{source_label}: Level {_h(level)}{badge}{suffix}</li>'
+        )
+
+    if items:
+        return f'<ul class="evidence-sources">{"".join(items)}</ul>'
+
+    # Fallback: promote primary_sources (sans OncoKB) into citation cards
+    # so the cell still surfaces something meaningful for the 18 J-drafts
+    # that carry only SRC-ONCOKB in evidence_sources after the skip.
+    fallback_items: list[str] = []
+    fallback_seen: set = set()
+    for sid in (primary_sources or []):
+        if not sid or _is_skipped_source(sid):
+            continue
+        key = str(sid).upper()
+        if key in fallback_seen:
+            continue
+        fallback_seen.add(key)
+        fallback_items.append(f'<li class="evidence-fallback">{_h(sid)}</li>')
+
+    if fallback_items:
+        note = (
+            '<div class="evidence-fallback-note">'
+            'Evidence cited from clinical guidelines; per-source evidence '
+            'levels not yet structured. See Phase-2-of-CIViC-pivot for '
+            're-cite roadmap.'
+            '</div>'
+        )
+        return (
+            f'<ul class="evidence-sources evidence-sources--fallback">'
+            f'{"".join(fallback_items)}</ul>{note}'
+        )
+
+    return '<span style="color:var(--gray-500)">—</span>'
 
 
 def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
-    """Render the ESCAT / OncoKB tier-badges section.
+    """Render the ESCAT tier-badges + per-source evidence section.
 
     Inserted between the diagnostic profile (patient strip + etiological
     driver) and the treatment-plan tracks. When the patient has no
@@ -1382,7 +1547,7 @@ def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
         f"<th>{_h(_t('actionability_th_biomarker', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_variant', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_escat', target_lang))}</th>"
-        f"<th>{_h(_t('actionability_th_oncokb', target_lang))}</th>"
+        f"<th>{_h(_t('actionability_th_evidence', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_action', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_combos', target_lang))}</th>"
         f"<th>{_h(_t('actionability_th_sources', target_lang))}</th>"
@@ -1406,16 +1571,23 @@ def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
                 else f'<span style="color:var(--gray-500)">{_h(_t("actionability_gene_level", target_lang))}</span>'
             )
             escat_cls = _escat_class(h.escat_tier)
-            oncokb_cls = _oncokb_class(h.oncokb_level)
             escat_label = _h(h.escat_tier or "X")
-            oncokb_label = _h(h.oncokb_level or "4")
+            evidence_cell = _format_evidence_sources(
+                getattr(h, "evidence_sources", None) or [],
+                primary_sources=list(h.primary_sources or []),
+            )
             summary = _h_t(h.evidence_summary or "", target_lang)
             combos = (
                 "<br>".join(_h(c) for c in (h.recommended_combinations or []))
                 or '<span style="color:var(--gray-500)">—</span>'
             )
+            # Per OncoKB ToS, filter SRC-ONCOKB from the user-visible
+            # primary-sources column as well.
+            visible_sources = [
+                s for s in (h.primary_sources or []) if not _is_skipped_source(s)
+            ]
             sources = (
-                "".join(f"<li>{_h(s)}</li>" for s in (h.primary_sources or []))
+                "".join(f"<li>{_h(s)}</li>" for s in visible_sources)
                 or '<li style="color:var(--gray-500)">—</li>'
             )
             rows.append(
@@ -1423,7 +1595,7 @@ def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
                 f'<td><span class="gene">{biomarker}</span></td>'
                 f'<td><span class="variant">{variant_cell}</span></td>'
                 f'<td><span class="tier-badge {escat_cls}">{escat_label}</span></td>'
-                f'<td><span class="tier-badge {oncokb_cls}">{oncokb_label}</span></td>'
+                f'<td class="evidence">{evidence_cell}</td>'
                 f'<td class="summary">{summary}</td>'
                 f'<td class="combos">{combos}</td>'
                 f'<td><ul class="src-list">{sources}</ul></td>'
@@ -1493,7 +1665,7 @@ def render_plan_html(
         (plan_result.kb_resolved or {}).get("disease")
     ))
 
-    # Variant actionability (ESCAT / OncoKB) — inserted between the
+    # Variant actionability (ESCAT) — inserted between the
     # diagnostic profile and the treatment-plan tracks. Render-time
     # context only; engine never re-reads tier values to rank tracks.
     body.append(_render_variant_actionability(plan, target_lang))
@@ -1519,27 +1691,19 @@ def render_plan_html(
             if t.contraindications_data else ""
         )
         # Drug components with NSZU availability badges (render-time only;
-        # engine never reads these — same contract as ESCAT/OncoKB tiers).
+        # engine never reads these — same contract as ESCAT tiers).
         drugs_dd = _render_track_drug_list(
             t, drugs_lookup, plan_result.disease_id or "", disease_names, target_lang
         )
-        # Phase 4: OncoKB resistance-conflict inline banner (Q2 — surfaces
-        # R1/R2 next to the recommended regimen so it cannot be missed).
-        oncokb_layer_for_inline = getattr(plan_result, "oncokb_layer", None)
-        oncokb_inline = ""
-        if oncokb_layer_for_inline is not None:
-            try:
-                from .render_oncokb import render_track_resistance_banner
-                oncokb_inline = render_track_resistance_banner(
-                    t.track_id or t.label or "",
-                    oncokb_layer_for_inline.resistance_conflicts,
-                )
-            except Exception:
-                oncokb_inline = ""
+        # TODO(phase-4): inline resistance-conflict banner once the
+        # CIViC reader (SnapshotActionabilityClient) is wired and the
+        # actionability_layer is populated. Surface-only — the inline
+        # banner is the T3 mitigation for clinicians scrolling top-down.
+        actionability_inline = ""
         track_html.append(
             f'<div class="{track_class}">'
             f'<div class="track-head"><div class="track-name">{_h(t.label)}</div>{badge}</div>'
-            f'{oncokb_inline}'
+            f'{actionability_inline}'
             f'<dl>'
             f'<dt>Indication</dt><dd>{_h(t.indication_id)}</dd>'
             f'<dt>Regimen</dt><dd>{_h(regimen_str)}</dd>'
@@ -1566,25 +1730,16 @@ def render_plan_html(
     body.append(_render_red_flags_pro_contra(plan, plan_result.kb_resolved, target_lang))
     body.append(_render_what_not_to_do(plan, target_lang))
 
-    # Phase 4: OncoKB precision-medicine layer (HCP-only; surface-only).
-    # Per safe-rollout v3 §4.1: section sits AFTER tracks + supportive-care,
-    # BEFORE monitoring. CHARTER §8.3 invariant — engine never reads this.
-    # Phase 4.1: pass kb_resolved.drugs so the render layer can source FDA-
-    # approval truth from our Drug entities (OncoKB doesn't carry fdaApproved
-    # on treatments[] — see oncokb_api_evidence.md A3-bis).
-    oncokb_layer = getattr(plan_result, "oncokb_layer", None)
-    if oncokb_layer is not None:
-        try:
-            from .render_oncokb import render_oncokb_section
-            body.append(render_oncokb_section(
-                oncokb_layer,
-                mode="clinician",
-                target_lang=target_lang,
-                drugs_lookup=(plan_result.kb_resolved or {}).get("drugs"),
-            ))
-        except Exception as exc:
-            # Fail-open: missing oncokb section is preferable to a broken plan
-            body.append(f"<!-- oncokb section error: {exc} -->")
+    # Phase 4 (CIViC pivot, 2026-04-27): the per-cell `evidence_sources`
+    # rendering inside `_render_variant_actionability` is now ESCAT-primary
+    # + CIViC-detailed. SRC-ONCOKB entries are skipped per OncoKB ToS, and
+    # `primary_sources` (sans OncoKB) are promoted as a fallback when the
+    # post-skip evidence_sources list is empty (Phase 3-O finding). See
+    # `_format_evidence_sources` for the full rule set.
+    # TODO(phase-5-cleanup): when SnapshotActionabilityClient is wired,
+    # actionability_layer can replace the inline cell renderer below with
+    # a richer card-grid view.
+    # actionability_layer = getattr(plan_result, "actionability_layer", None)
 
     body.append(_render_monitoring_phases(plan))
     body.append(_render_timeline(plan))

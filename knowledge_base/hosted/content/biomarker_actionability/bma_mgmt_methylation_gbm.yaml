@@ -3,7 +3,6 @@ biomarker_id: BIO-MGMT-METHYLATION
 variant_qualifier: "MGMT promoter methylation (positive vs unmethylated; ~40% of newly-diagnosed glioblastoma IDH-WT)"
 disease_id: DIS-GBM
 escat_tier: "IA"
-oncokb_level: "2"
 evidence_summary: >
   MGMT promoter methylation in IDH-WT glioblastoma is the strongest
   validated predictor of temozolomide benefit (Stupp NEJM 2005 / 2009
@@ -38,7 +37,20 @@ primary_sources:
   - SRC-EANO-GBM-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-CNS-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-EANO-GBM-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

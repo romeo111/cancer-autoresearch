@@ -5,7 +5,8 @@ ICD-10 family prefix like "C18") to the closest OncoTree top-level
 or organ-system code.
 
 Tier-3 (final fallback) = pan-tumor query (oncotree_code=None passed
-to OncoKB; render layer adds warning badge per Q4 locked decision).
+to the actionability source; render layer adds warning badge per Q4
+locked decision).
 
 This module is intentionally a static mapping: editing it is a
 clinical-content change tracked under CHARTER §6.1 (dev-mode signoff

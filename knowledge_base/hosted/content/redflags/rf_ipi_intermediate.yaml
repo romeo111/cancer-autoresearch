@@ -5,12 +5,13 @@ definition_ua: "DLBCL з IPI 2-3 (проміжний ризик) — відкр�
 trigger:
   type: composite_score
   any_of:
-    - finding: "ipi_score"
-      threshold: 2
-      comparator: ">="
-    - finding: "ipi_score"
-      threshold: 3
-      comparator: "<="
+    - all_of:
+        - finding: "ipi_score"
+          threshold: 2
+          comparator: ">="
+        - finding: "ipi_score"
+          threshold: 3
+          comparator: "<="
     - finding: "ipi_risk_group"
       value: "intermediate"
     - finding: "ipi_risk_group"

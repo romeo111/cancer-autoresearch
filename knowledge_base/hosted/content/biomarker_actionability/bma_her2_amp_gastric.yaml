@@ -3,7 +3,6 @@ biomarker_id: BIO-HER2-SOLID
 variant_qualifier: "amplification / overexpression — IHC 3+ or (IHC 2+ + ISH amplified, HER2/CEP17 ≥2.0); ~15-20% of gastric/GEJ adenocarcinoma"
 disease_id: DIS-GASTRIC
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   HER2-positive gastric/GEJ adenocarcinoma (~15-20%): trastuzumab +
   chemotherapy is standard 1L (ToGA Bang Lancet 2010 — mOS 13.8 vs
@@ -37,7 +36,20 @@ primary_sources:
   - SRC-ESMO-GASTRIC-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-GASTRIC-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-GASTRIC-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

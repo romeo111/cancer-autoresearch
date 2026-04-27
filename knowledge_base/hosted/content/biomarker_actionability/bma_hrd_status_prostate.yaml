@@ -3,7 +3,6 @@ biomarker_id: BIO-HRD-STATUS
 variant_qualifier: "HRR-pathway alteration — BRCA1/2 (~10% of mCRPC), ATM, CHEK2, PALB2, FANCA, RAD51 family, etc.; BRCA-mut subset is most actionable"
 disease_id: DIS-PROSTATE
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   Homologous-recombination-repair (HRR) gene alterations in metastatic
   castration-resistant prostate cancer (mCRPC, ~25% somatic + germline):
@@ -48,7 +47,26 @@ primary_sources:
   - SRC-EAU-PROSTATE-2024
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-PROSTATE-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-PROSTATE-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-EAU-PROSTATE-2024
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

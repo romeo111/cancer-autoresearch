@@ -1,3 +1,22 @@
+# ⚠️ SUPERSEDED — 2026-04-27
+
+This document described the planned OncoKB integration (proxy-based, with
+academic API token). The plan was abandoned 2026-04-27 after audit
+revealed OncoKB Terms of Service explicitly forbid the OpenOnco use case
+(redistribution, patient-care report generation, AI model training).
+Replaced by CIViC (CC0).
+
+**See instead:**
+- `docs/reviews/oncokb-public-civic-coverage-2026-04-27.md` — the audit
+- `docs/plans/civic_integration_v1.md` — the replacement plan
+- Engine modules use `actionability_*` naming to keep source-pluggability open.
+
+The original document below is preserved for historical reference and
+to document the architectural decisions (engine firewall, fail-open
+contract, level taxonomy) that carried over to the CIViC implementation.
+
+---
+
 # OncoKB integration · Safe rollout plan v3
 
 **Status:** ratified 2026-04-26. Supersedes v1/v2 (in-conversation drafts).

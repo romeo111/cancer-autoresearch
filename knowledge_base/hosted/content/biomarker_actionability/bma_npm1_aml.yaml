@@ -3,7 +3,6 @@ biomarker_id: BIO-NPM1
 variant_qualifier: "exon 12 frameshift insertions (type A 4-bp duplication most common; ~30% of de novo AML, ~50% of normal-karyotype AML)"
 disease_id: DIS-AML
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   NPM1-mutated AML is a distinct WHO 2022 / ICC 2022 entity and ELN
   2022 favorable-risk category in the absence of adverse co-mutations
@@ -42,7 +41,38 @@ primary_sources:
   - SRC-VIALE-A-DINARDO-2020
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-ELN-AML-2022
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-NCCN-AML-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-AML-2020
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-QUAZAR-WEI-2020
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-VIALE-A-DINARDO-2020
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

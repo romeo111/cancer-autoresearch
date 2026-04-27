@@ -3,7 +3,6 @@ biomarker_id: BIO-CALR
 variant_qualifier: "exon 9 indels — type-1/type-1-like (52-bp deletion) and type-2/type-2-like (5-bp insertion); ~25% of primary myelofibrosis"
 disease_id: DIS-PMF
 escat_tier: "IA"
-oncokb_level: "1"
 evidence_summary: >
   CALR exon 9 indels are the second most common driver in PMF (~25%)
   and a WHO 2022 / ICC 2022 major diagnostic criterion in JAK2/MPL-
@@ -45,7 +44,44 @@ primary_sources:
   - SRC-DIPSS-PLUS-GANGAT-2011
   - SRC-ONCOKB
 last_verified: "2026-04-27"
-oncokb_snapshot_version: "v3.20-2026-04"
+evidence_sources:
+  - source: SRC-NCCN-MPN-2025
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-ESMO-MPN-2015
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-COMFORT-I-VERSTOVSEK-2012
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-JAKARTA2-HARRISON-2017
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-MOMENTUM-VERSTOVSEK-2023
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+  - source: SRC-DIPSS-PLUS-GANGAT-2011
+    level: pending-extraction
+    evidence_ids: []
+    direction:
+    significance:
+    note: Auto-promoted from primary_sources by Phase 5+ re-attribution; clinical review for evidence-level extraction pending.
+actionability_review_required: true
 review_status: pending_clinical_signoff
 drafted_by: claude_extraction
 notes: >

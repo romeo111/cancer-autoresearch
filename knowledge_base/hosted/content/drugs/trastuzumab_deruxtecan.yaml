@@ -37,3 +37,6 @@ sources: [SRC-NCCN-BREAST-2025, SRC-ESMO-BREAST-METASTATIC-2024]
 last_reviewed:
 notes: >
   DESTINY-Breast03: T-DXd superior to T-DM1 in 2L HER2+ metastatic. DESTINY-Breast04: HER2-low metastatic. DESTINY-Breast06: HER2-low first-line. ILD risk requires baseline CT + monitoring; pulmonology consult on any new respiratory symptoms.
+
+notes_patient: >
+  Препарат-мітка з «прикріпленим» хіміо-вантажем (ADC): знаходить HER2-пухлинні клітини й точково їх руйнує. Дуже ефективний при HER2+ і HER2-low раку грудей. Контролюємо легені — рідко можливе запалення (pneumonitis).
