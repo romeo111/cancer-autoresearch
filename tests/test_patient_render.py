@@ -40,7 +40,6 @@ from knowledge_base.engine._patient_vocabulary import (
     ESCAT_PLAIN_UA,
     LAB_PLAIN_UA,
     NSZU_PLAIN_UA,
-    ONCOKB_PLAIN_UA,
     SCREENING_PLAIN_UA,
     VARIANT_TYPE_PLAIN_UA,
     explain,
@@ -114,8 +113,6 @@ def test_vocabulary_explain_returns_strings():
         "V600E", "T790M", "MSI-H", "germline", "BRCA1",
         # ESCAT_PLAIN_UA
         "IA", "IIIA",
-        # ONCOKB_PLAIN_UA
-        "1", "R1",
         # NSZU_PLAIN_UA
         "covered", "oop",
         # LAB_PLAIN_UA
@@ -520,7 +517,6 @@ def test_all_vocabulary_tables_nonempty():
         "DRUG_CLASS_PLAIN_UA": DRUG_CLASS_PLAIN_UA,
         "VARIANT_TYPE_PLAIN_UA": VARIANT_TYPE_PLAIN_UA,
         "ESCAT_PLAIN_UA": ESCAT_PLAIN_UA,
-        "ONCOKB_PLAIN_UA": ONCOKB_PLAIN_UA,
         "NSZU_PLAIN_UA": NSZU_PLAIN_UA,
         "LAB_PLAIN_UA": LAB_PLAIN_UA,
         "AE_PLAIN_UA": AE_PLAIN_UA,
