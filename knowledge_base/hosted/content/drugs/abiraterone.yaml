@@ -34,3 +34,6 @@ sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
 last_reviewed: null
 notes: >
   Workhorse ARPI for mHSPC LATITUDE-high-risk and mCRPC 1L. Always co-administer prednisone — mineralocorticoid syndrome from CYP17 blockade is serious.
+
+notes_patient: >
+  Таблетка для раку простати: блокує синтез тестостерону в усіх тканинах (не лише в яєчках). Приймається з преднізолоном — для безпеки кори надниркових залоз.

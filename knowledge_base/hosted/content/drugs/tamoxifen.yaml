@@ -38,3 +38,6 @@ sources: [SRC-NCCN-BREAST-2025, SRC-ESMO-BREAST-METASTATIC-2024]
 last_reviewed: null
 notes: >
   Standard of care for premenopausal HR+ adjuvant. Switch to AI ± ovarian suppression after 2-5 years often considered. Postmenopausal: AI generally preferred but tamoxifen acceptable when AI contraindicated.
+
+notes_patient: >
+  Таблетка-блокатор естрогенового рецептора (SERM). Заважає естрогену стимулювати ріст пухлинних клітин грудей. Стандартна гормональна терапія для пременопаузних жінок.
