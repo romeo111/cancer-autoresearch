@@ -16,7 +16,7 @@ trigger:
 clinical_direction: intensify
 
 severity: major
-category: high-risk-biology
+category: risk-score
 relevant_diseases:
   - DIS-CML
 shifts_algorithm:

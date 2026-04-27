@@ -15,7 +15,7 @@ trigger:
 clinical_direction: investigate
 
 severity: major
-category: high-risk-biology
+category: risk-score
 relevant_diseases:
   - DIS-APL
 shifts_algorithm:

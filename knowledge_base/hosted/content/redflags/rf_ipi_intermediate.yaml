@@ -21,7 +21,7 @@ trigger:
 clinical_direction: investigate
 
 severity: major
-category: high-risk-biology
+category: risk-score
 relevant_diseases:
   - DIS-DLBCL-NOS
 shifts_algorithm: []

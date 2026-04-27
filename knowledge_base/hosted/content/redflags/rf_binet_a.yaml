@@ -13,7 +13,7 @@ trigger:
 clinical_direction: de-escalate
 
 severity: major
-category: high-risk-biology
+category: risk-score
 relevant_diseases:
   - DIS-CLL
 shifts_algorithm:
