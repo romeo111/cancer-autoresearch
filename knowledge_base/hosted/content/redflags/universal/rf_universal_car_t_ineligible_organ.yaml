@@ -43,8 +43,8 @@ relevant_diseases:
 shifts_algorithm: []
 
 sources:
-  - SRC-ZUMA1-NEELAPU-2017
-  - SRC-TRANSCEND-NHL001-ABRAMSON-2020
+  - SRC-ZUMA-1-NEELAPU-2017
+  - SRC-TRANSCEND-NHL-001-ABRAMSON-2020
 
 last_reviewed: "2026-04-27"
 draft: false

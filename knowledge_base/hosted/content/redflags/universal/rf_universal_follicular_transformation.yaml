@@ -34,7 +34,7 @@ priority: 50
 category: transformation-progression
 
 relevant_diseases:
-  - DIS-FOLLICULAR-LYMPHOMA
+  - DIS-FL
 shifts_algorithm: []
 
 sources:

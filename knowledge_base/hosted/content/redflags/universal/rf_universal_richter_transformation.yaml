@@ -31,7 +31,7 @@ priority: 50
 category: transformation-progression
 
 relevant_diseases:
-  - DIS-CLL-SLL
+  - DIS-CLL
 shifts_algorithm: []
 
 sources:

@@ -48,8 +48,8 @@ shifts_algorithm: []  # Per-disease CAR-T algorithms reference this RF as
                       # bridging recommendations.
 
 sources:
-  - SRC-ZUMA1-NEELAPU-2017
-  - SRC-ZUMA7-LOCKE-2022
+  - SRC-ZUMA-1-NEELAPU-2017
+  - SRC-ZUMA-7-LOCKE-2022
 
 last_reviewed: "2026-04-27"
 draft: false
