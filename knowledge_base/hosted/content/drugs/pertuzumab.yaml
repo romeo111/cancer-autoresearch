@@ -32,3 +32,6 @@ sources: [SRC-NCCN-BREAST-2025, SRC-ESMO-BREAST-METASTATIC-2024]
 last_reviewed: null
 notes: >
   APHINITY: improved iDFS in adjuvant high-risk HER2+. CLEOPATRA: improved OS in metastatic 1L (THP). Always combined with trastuzumab — no monotherapy role.
+
+notes_patient: >
+  Препарат-мітка для HER2-позитивних пухлин (грудей). Працює на іншій ділянці HER2, ніж trastuzumab — тому їх комбінують для посилення ефекту. Вводиться внутрішньовенно раз на 3 тижні.
