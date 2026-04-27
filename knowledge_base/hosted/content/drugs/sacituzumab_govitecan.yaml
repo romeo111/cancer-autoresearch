@@ -47,3 +47,6 @@ sources: [SRC-NCCN-BREAST-2025, SRC-ESMO-BREAST-METASTATIC-2024]
 last_reviewed: null
 notes: >
   ASCENT: sacituzumab superior to physician's-choice chemo in pretreated metastatic TNBC. TROPiCS-02: HR+/HER2- ≥3L. Trop-2 expression status not required for treatment selection (universal expression).
+
+notes_patient: >
+  Препарат-ADC, що знаходить пухлинні клітини за маркером Trop-2 і доставляє їм хіміо-вантаж. Використовується при triple-negative раку грудей і HR+ після гормональних ліній.

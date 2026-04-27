@@ -143,3 +143,6 @@ notes: >
   supports salvage activity after daratumumab failure in selected
   cases (limited evidence; not protocol-default — anti-CD38
   generally treated as one-shot class line per CHARTER hierarchy).
+
+notes_patient: >
+  Препарат-мітка для клітин мієломи (через CD38, як і daratumumab). Допомагає імунній системі їх знищити. Вводиться внутрішньовенно у складі багатокомпонентних схем.

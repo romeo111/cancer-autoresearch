@@ -35,3 +35,6 @@ sources: [SRC-NCCN-BREAST-2025, SRC-ESMO-BREAST-METASTATIC-2024]
 last_reviewed:
 notes: >
   SOLAR-1: PIK3CA-mutant HR+/HER2- metastatic post-AI. Pre-treatment PIK3CA testing (tissue or ctDNA) required. Hyperglycemia management dominant clinical workflow burden.
+
+notes_patient: >
+  Таблетка-PI3Ki для пухлин раку грудей з мутацією PIK3CA. Комбінують з fulvestrant. Часто підвищує цукор крові — можливо знадобиться інсулін або метформін на фоні лікування.

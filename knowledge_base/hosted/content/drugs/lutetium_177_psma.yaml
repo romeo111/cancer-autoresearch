@@ -50,3 +50,6 @@ sources: [SRC-NCCN-PROSTATE-2025, SRC-ESMO-PROSTATE-2024]
 last_reviewed: null
 notes: >
   VISION trial: significant rPFS + OS benefit in PSMA-PET-positive mCRPC post-ARPI + post-taxane. Requires nuclear medicine infrastructure + PSMA-PET availability — limits access in Ukraine to a few centers.
+
+notes_patient: >
+  Радіоактивна молекула, яка йде до клітин раку простати завдяки PSMA-маркеру і опромінює їх зсередини. Вводиться внутрішньовенно кожні 6 тижнів у спеціалізованому ядерно-медичному центрі.
