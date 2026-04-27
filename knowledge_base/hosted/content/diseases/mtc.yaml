@@ -40,7 +40,7 @@ reviewers: []
 
 metadata:
   proposal_status: partial
-  awaiting_proposal: "Total thyroidectomy + central neck dissection + lymph node mapping + lifelong calcitonin / CEA monitoring — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 solid-tumor extension. Source gap: SRC-NCCN-THYROID and SRC-ATA-THYROID-2015 not yet ingested."
+  awaiting_proposal: "Total thyroidectomy + central neck dissection + lymph node mapping + lifelong calcitonin / CEA monitoring — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 solid-tumor extension. Source gap: SRC-NCCN-THYROID-2025 and SRC-ATA-THYROID-2015 not yet ingested."
 
 notes: >
   Parafollicular C-cell origin — secretes calcitonin (diagnostic +

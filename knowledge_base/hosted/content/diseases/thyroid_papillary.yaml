@@ -45,7 +45,7 @@ reviewers: []
 
 metadata:
   proposal_status: partial
-  awaiting_proposal: "Total / hemi-thyroidectomy + radioiodine ablation phasing + TSH suppression — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 solid-tumor extension. Source gap: SRC-NCCN-THYROID and SRC-ATA-THYROID-2015 not yet ingested. Differentiated thyroid cancer (PTC + FTC + oncocytic) currently scoped to PTC; FTC sub-entity may be added later."
+  awaiting_proposal: "Total / hemi-thyroidectomy + radioiodine ablation phasing + TSH suppression — depends on KNOWLEDGE_SCHEMA_SPECIFICATION.md §17 solid-tumor extension. Source gap: SRC-NCCN-THYROID-2025 and SRC-ATA-THYROID-2015 not yet ingested. Differentiated thyroid cancer (PTC + FTC + oncocytic) currently scoped to PTC; FTC sub-entity may be added later."
 
 notes: >
   Differentiated thyroid carcinoma — most indolent of common cancers.

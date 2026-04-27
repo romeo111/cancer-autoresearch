@@ -48,6 +48,9 @@ sources:
   - source_id: SRC-ESMO-MELANOMA-2024
     position: supports
     relevant_quote_paraphrase: After 4 cycles nivo+ipi, transition to nivo mono maintenance is standard; pembrolizumab monotherapy is alternative 1L for low-tumor-burden patients
+  - source_id: SRC-CHECKMATE-067-LARKIN-2019
+    position: supports
+    relevant_quote_paraphrase: CHECKMATE-067 trial — see referenced publication for primary outcome data.
 known_controversies:
   - topic: 2-year fixed duration vs treat-until-progression for nivolumab maintenance
     positions:

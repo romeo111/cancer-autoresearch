@@ -56,7 +56,7 @@ rationale: >
   EAP availability in UA.
 
 sources:
-  - source_id: SRC-VISION-PAIK-2020
+  - source_id: SRC-VISION-PAIK-2020-PAIK-2020
     position: supports
     relevant_quote_paraphrase: "Tepotinib 500 mg PO daily in MET ex14 NSCLC (VISION): combined ORR 46% (1L 43%, pretreated 48%); mDOR 11.1 mo"
   - source_id: SRC-NCCN-NSCLC-2025
@@ -70,7 +70,7 @@ known_controversies:
   - topic: "Capmatinib BID vs tepotinib once-daily for MET ex14 NSCLC"
     positions:
       - position: "Tepotinib: once-daily; peripheral edema ~70%"
-        sources: [SRC-VISION-PAIK-2020]
+        sources: [SRC-VISION-PAIK-2020-PAIK-2020]
       - position: "Capmatinib: BID; CNS-active; less edema in some series"
         sources: [SRC-GEOMETRY-WOLF-2020]
     our_default: "Tepotinib for once-daily preference / adherence concerns; capmatinib if BID acceptable"

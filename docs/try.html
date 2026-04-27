@@ -535,6 +535,20 @@ function renderForm(quest) {
   } else {
     questIntro.hidden = true;
   }
+  // STUB banner — surfaces auto-generated status before clinician reviews
+  if (quest._stub_auto_generated) {
+    const banner = document.createElement('div');
+    banner.className = 'quest-stub-banner';
+    banner.style.cssText = 'background:#fef3c7;border-left:4px solid #f59e0b;padding:12px 16px;margin-bottom:16px;border-radius:4px;color:#92400e;font-size:13px;line-height:1.5;';
+    banner.innerHTML = `
+      <strong>⚠ Preliminary auto-generated questionnaire</strong><br>
+      Поля згенеровані автоматично з KB metadata (демографія + biomarker_requirements
+      з indications цієї хвороби). Engine routing працює end-to-end, але клінічних
+      деталей бракує — питання спрощені, дефолти консервативні.
+      Опитувальник чекає на review від Clinical Co-Lead за CHARTER §6.1.
+    `;
+    questGroups.appendChild(banner);
+  }
   for (const group of quest.groups || []) {
     const groupEl = document.createElement('div');
     groupEl.className = 'quest-group';
@@ -1439,14 +1453,35 @@ async function loadAssets() {
   questionnaires = await qResp.json();
   examples = await exResp.json();
 
-  // Disease selector
+  // Disease selector — hand-authored first, then auto-generated stubs
+  // (stubs marked with ⚠ prefix in the dropdown so users see the
+  // distinction at a glance; they still work end-to-end with the engine
+  // but content depth is preliminary, pending clinical co-lead review).
   diseaseSelect.innerHTML = '<option value="">— оберіть —</option>';
-  questionnaires.forEach((q, i) => {
+  const sorted = [...questionnaires].map((q, i) => ({q, i}))
+    .sort((a, b) => {
+      const aStub = !!a.q._stub_auto_generated;
+      const bStub = !!b.q._stub_auto_generated;
+      if (aStub !== bStub) return aStub ? 1 : -1;  // hand-authored first
+      return (a.q.title || '').localeCompare(b.q.title || '');
+    });
+  let stubGroupOpened = false;
+  for (const {q, i} of sorted) {
+    const isStub = !!q._stub_auto_generated;
+    if (isStub && !stubGroupOpened) {
+      const sep = document.createElement('option');
+      sep.value = '';
+      sep.disabled = true;
+      sep.textContent = '— ⚠ Auto-generated STUB questionnaires (preliminary) —';
+      diseaseSelect.appendChild(sep);
+      stubGroupOpened = true;
+    }
     const opt = document.createElement('option');
     opt.value = i;
-    opt.textContent = q.title;
+    opt.textContent = isStub ? `⚠ ${q.title}` : q.title;
+    if (isStub) opt.dataset.stub = '1';
     diseaseSelect.appendChild(opt);
-  });
+  }
 
   // Examples selector — initial population shows all; narrows once a
   // disease is picked.
