@@ -66,6 +66,54 @@
     <button id="resetBtn" class="btn btn-secondary qt-reset">Очистити</button>
   </div>
 
+  <!-- Early-paint warmup: a tiny synchronous script that runs before the
+       module-script below. Populates dropdowns from a localStorage cache
+       (written on the previous successful boot) so repeat visitors see
+       a filled dropdown the moment the toolbar renders, without waiting
+       for the Pyodide-importing module script to download + parse. The
+       module script later re-renders from the inline manifest, which
+       wins if the cached version is stale. -->
+  <script>
+  (function() {
+    try {
+      var raw = localStorage.getItem('openonco-manifests-v1');
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      var ds = document.getElementById('diseaseSelect');
+      if (ds && data && Array.isArray(data.questionnaires)) {
+        var frag = document.createDocumentFragment();
+        var ph = document.createElement('option');
+        ph.value = ''; ph.textContent = '— оберіть —';
+        frag.appendChild(ph);
+        data.questionnaires.forEach(function(q, i) {
+          var opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = q.title;
+          frag.appendChild(opt);
+        });
+        ds.innerHTML = '';
+        ds.appendChild(frag);
+        ds.dataset.warmedUp = '1';
+      }
+      var es = document.getElementById('exampleSelect');
+      if (es && data && Array.isArray(data.examples)) {
+        var frag2 = document.createDocumentFragment();
+        var ph2 = document.createElement('option');
+        ph2.value = ''; ph2.textContent = '— оберіть приклад —';
+        frag2.appendChild(ph2);
+        data.examples.forEach(function(ex, i) {
+          var opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = ex.label;
+          frag2.appendChild(opt);
+        });
+        es.innerHTML = '';
+        es.appendChild(frag2);
+      }
+    } catch (e) { /* silent */ }
+  })();
+  </script>
+
   <div class="quest-grid">
     <section class="quest-form-pane" id="formPane">
       <div id="questIntro" class="quest-intro" hidden></div>
@@ -197,7 +245,18 @@
 </div>
 
 <script type="module">
-import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.mjs";
+// Pyodide is loaded lazily on first Generate-click so a slow CDN fetch
+// (~few-100 KB module + parse) doesn't block dropdown population.
+// Static `import …` would gate the entire module-script body on
+// pyodide.mjs being fetched & parsed — meaning the form looked frozen
+// on cold visits even though the manifests are already in this HTML.
+let loadPyodide = null;
+async function ensurePyodideLoader() {
+  if (loadPyodide) return loadPyodide;
+  const mod = await import("https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.mjs");
+  loadPyodide = mod.loadPyodide;
+  return loadPyodide;
+}
 
 const STORAGE_KEY = 'openonco-try-draft-v1';
 
@@ -1231,7 +1290,8 @@ async function ensureEngine() {
     initStageStart(stage);
     setStatus('Завантажую Pyodide…');
     await yieldToBrowser(50);
-    pyodide = await loadPyodide({indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/"});
+    const _loadPyodide = await ensurePyodideLoader();
+    pyodide = await _loadPyodide({indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/"});
     initStageDone(stage);
 
     stage = 'pydeps';
@@ -1487,6 +1547,21 @@ async function ensureExamples() {
   return _examplesPromise;
 }
 
+// Persist dropdown manifests across visits. Read by the early-paint
+// warmup at the top of the script body, written by loadAssets after a
+// successful boot so the next cold visit can paint dropdowns from
+// localStorage even before the new HTML's inline manifest is parsed.
+const MANIFEST_CACHE_KEY = 'openonco-manifests-v1';
+function saveManifestsToCache() {
+  try {
+    localStorage.setItem(MANIFEST_CACHE_KEY, JSON.stringify({
+      ts: Date.now(),
+      questionnaires: QUESTIONNAIRES_MANIFEST,
+      examples: EXAMPLES_MANIFEST,
+    }));
+  } catch (e) { /* quota or private mode — silent skip */ }
+}
+
 async function loadAssets() {
   // Populate dropdowns from manifests — instant, no network fetch.
   diseaseSelect.innerHTML = '<option value="">— оберіть —</option>';
@@ -1496,6 +1571,7 @@ async function loadAssets() {
     opt.textContent = q.title;
     diseaseSelect.appendChild(opt);
   });
+  saveManifestsToCache();
 
   // Examples selector — initial population shows all; narrows once a
   // disease is picked.

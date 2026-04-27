@@ -364,16 +364,26 @@ def write_service_worker(output_dir: Path, *, core_version: str = "") -> dict:
     fetch. CSD-6E polish — speeds up cold loads on repeat visits past
     what localStorage can hold (entire core + all visited diseases)."""
     cache_name = "openonco-bundle-" + (core_version or "v1")
-    sw_js = """// OpenOnco bundle service worker (CSD-6E)
-// Cache-first strategy for the lazy-load engine bundles. Cache name is
-// stamped with the core bundle's SHA-256 prefix at build time, so any KB
-// change automatically rotates the cache key and old bundles are evicted
-// on the next install (see the activate handler).
+    sw_js = """// OpenOnco bundle service worker (CSD-6E + CSD-11A swr)
+// Two strategies in one SW:
+//   1. Cache-first for engine bundle artifacts (large, infrequent).
+//   2. Stale-while-revalidate for try.html + style.css — repeat visits
+//      paint instantly from cache while a fresh copy fetches in the
+//      background, so the dropdowns aren't gated on the HTML download.
+// Cache name is stamped with the core bundle's SHA-256 prefix so a KB
+// push automatically rotates the cache key.
 const CACHE_NAME = '__CACHE_NAME__';
 const PRECACHE = [
   '/openonco-engine-index.json',
   '/openonco-engine-core.zip',
+  '/try.html',
+  '/en/try.html',
+  '/style.css',
 ];
+// Routes that use stale-while-revalidate (instant from cache, refresh
+// in background). HTML pages must be on this list — never cache-first,
+// or the user gets stuck on an old build.
+const SWR_PATHS = ['/try.html', '/en/try.html', '/style.css'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -396,21 +406,39 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+function staleWhileRevalidate(event) {
+  event.respondWith(
+    caches.open(CACHE_NAME).then((cache) =>
+      cache.match(event.request, { ignoreSearch: true }).then((hit) => {
+        const network = fetch(event.request).then((resp) => {
+          if (resp && resp.ok) cache.put(event.request, resp.clone());
+          return resp;
+        }).catch(() => hit);
+        return hit || network;
+      })
+    )
+  );
+}
+
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-  // Only intercept our own engine artifacts. Everything else (HTML, CSS,
-  // CDN scripts) goes through the normal browser cache.
-  const matches =
+
+  // SWR for the small interactive shell (HTML + CSS).
+  if (SWR_PATHS.indexOf(url.pathname) !== -1) {
+    return staleWhileRevalidate(event);
+  }
+
+  // Cache-first for the heavy engine bundles.
+  const cacheFirstMatch =
     url.pathname.endsWith('/openonco-engine-core.zip') ||
     url.pathname.endsWith('/openonco-engine-index.json') ||
     url.pathname.startsWith('/disease/openonco-');
-  if (!matches) return;
+  if (!cacheFirstMatch) return;
   event.respondWith(
     caches.open(CACHE_NAME).then((cache) =>
       cache.match(event.request, { ignoreSearch: true }).then((hit) =>
         hit || fetch(event.request).then((resp) => {
-          // Only cache successful responses; never poison the cache with
-          // an opaque 404.
           if (resp && resp.ok) {
             const clone = resp.clone();
             cache.put(event.request, clone);
@@ -1440,6 +1468,54 @@ def render_try(
     <button id="resetBtn" class="btn btn-secondary qt-reset">Очистити</button>
   </div>
 
+  <!-- Early-paint warmup: a tiny synchronous script that runs before the
+       module-script below. Populates dropdowns from a localStorage cache
+       (written on the previous successful boot) so repeat visitors see
+       a filled dropdown the moment the toolbar renders, without waiting
+       for the Pyodide-importing module script to download + parse. The
+       module script later re-renders from the inline manifest, which
+       wins if the cached version is stale. -->
+  <script>
+  (function() {{
+    try {{
+      var raw = localStorage.getItem('openonco-manifests-v1');
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      var ds = document.getElementById('diseaseSelect');
+      if (ds && data && Array.isArray(data.questionnaires)) {{
+        var frag = document.createDocumentFragment();
+        var ph = document.createElement('option');
+        ph.value = ''; ph.textContent = '— оберіть —';
+        frag.appendChild(ph);
+        data.questionnaires.forEach(function(q, i) {{
+          var opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = q.title;
+          frag.appendChild(opt);
+        }});
+        ds.innerHTML = '';
+        ds.appendChild(frag);
+        ds.dataset.warmedUp = '1';
+      }}
+      var es = document.getElementById('exampleSelect');
+      if (es && data && Array.isArray(data.examples)) {{
+        var frag2 = document.createDocumentFragment();
+        var ph2 = document.createElement('option');
+        ph2.value = ''; ph2.textContent = '— оберіть приклад —';
+        frag2.appendChild(ph2);
+        data.examples.forEach(function(ex, i) {{
+          var opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = ex.label;
+          frag2.appendChild(opt);
+        }});
+        es.innerHTML = '';
+        es.appendChild(frag2);
+      }}
+    }} catch (e) {{ /* silent */ }}
+  }})();
+  </script>
+
   <div class="quest-grid">
     <section class="quest-form-pane" id="formPane">
       <div id="questIntro" class="quest-intro" hidden></div>
@@ -1571,7 +1647,18 @@ def render_try(
 </div>
 
 <script type="module">
-import {{ loadPyodide }} from "https://cdn.jsdelivr.net/pyodide/v{_PYODIDE_VERSION}/full/pyodide.mjs";
+// Pyodide is loaded lazily on first Generate-click so a slow CDN fetch
+// (~few-100 KB module + parse) doesn't block dropdown population.
+// Static `import …` would gate the entire module-script body on
+// pyodide.mjs being fetched & parsed — meaning the form looked frozen
+// on cold visits even though the manifests are already in this HTML.
+let loadPyodide = null;
+async function ensurePyodideLoader() {{
+  if (loadPyodide) return loadPyodide;
+  const mod = await import("https://cdn.jsdelivr.net/pyodide/v{_PYODIDE_VERSION}/full/pyodide.mjs");
+  loadPyodide = mod.loadPyodide;
+  return loadPyodide;
+}}
 
 const STORAGE_KEY = 'openonco-try-draft-v1';
 
@@ -2605,7 +2692,8 @@ async function ensureEngine() {{
     initStageStart(stage);
     setStatus('Завантажую Pyodide…');
     await yieldToBrowser(50);
-    pyodide = await loadPyodide({{indexURL: "https://cdn.jsdelivr.net/pyodide/v{_PYODIDE_VERSION}/full/"}});
+    const _loadPyodide = await ensurePyodideLoader();
+    pyodide = await _loadPyodide({{indexURL: "https://cdn.jsdelivr.net/pyodide/v{_PYODIDE_VERSION}/full/"}});
     initStageDone(stage);
 
     stage = 'pydeps';
@@ -2861,6 +2949,21 @@ async function ensureExamples() {{
   return _examplesPromise;
 }}
 
+// Persist dropdown manifests across visits. Read by the early-paint
+// warmup at the top of the script body, written by loadAssets after a
+// successful boot so the next cold visit can paint dropdowns from
+// localStorage even before the new HTML's inline manifest is parsed.
+const MANIFEST_CACHE_KEY = 'openonco-manifests-v1';
+function saveManifestsToCache() {{
+  try {{
+    localStorage.setItem(MANIFEST_CACHE_KEY, JSON.stringify({{
+      ts: Date.now(),
+      questionnaires: QUESTIONNAIRES_MANIFEST,
+      examples: EXAMPLES_MANIFEST,
+    }}));
+  }} catch (e) {{ /* quota or private mode — silent skip */ }}
+}}
+
 async function loadAssets() {{
   // Populate dropdowns from manifests — instant, no network fetch.
   diseaseSelect.innerHTML = '<option value="">— оберіть —</option>';
@@ -2870,6 +2973,7 @@ async function loadAssets() {{
     opt.textContent = q.title;
     diseaseSelect.appendChild(opt);
   }});
+  saveManifestsToCache();
 
   // Examples selector — initial population shows all; narrows once a
   // disease is picked.
