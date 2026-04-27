@@ -1347,13 +1347,13 @@ def _render_track_drug_list(
 
 
 # ── Variant actionability (ESCAT) ───────────────────────────────────────
-# TODO(phase-4): finalize CIViC rendering with civicdb.org links per
-# evidence_source. Phase 1 (CIViC pivot) removed the OncoKB tier-badge
-# column; the source-agnostic version below renders one short evidence
-# string per source under the "Evidence" column. Phase 4 will polish:
-# clickable civicdb.org URLs from EvidenceSourceRef.evidence_ids,
-# direction/significance pills, anti-evidence rendering for "Does Not
-# Support" CIViC items.
+# Phase 4 (CIViC pivot, 2026-04-27): ESCAT tier is the primary actionability
+# label (vendor-neutral, source-of-truth). evidence_sources renders the
+# per-source detail BELOW the ESCAT tag — SRC-CIVIC entries link to
+# civicdb.org, "Does Not Support" / "Resistance" entries get a ⚠ flag.
+# Per OncoKB ToS (see review-2026-04-27 §3.4), SRC-ONCOKB entries are
+# never rendered; if evidence_sources is empty after that skip, the
+# render falls back to primary_sources (sans OncoKB) as citation cards.
 
 
 def _escat_class(tier: Optional[str]) -> str:
@@ -1365,49 +1365,171 @@ def _escat_class(tier: Optional[str]) -> str:
     return f"escat-{t}" if t in valid else "escat-X"
 
 
-def _format_evidence_sources(evidence_sources: list) -> str:
+# Sources that must NEVER appear in rendered HTML, per their license
+# Terms of Use. OncoKB ToS forbids "use for patient services" and
+# "generation of reports in a hospital or other patient care setting,"
+# which is exactly what OpenOnco produces; therefore SRC-ONCOKB-attested
+# evidence is skipped from both `evidence_sources` and `primary_sources`
+# at render time, regardless of any legacy data still present in YAMLs.
+# See docs/reviews/oncokb-public-civic-coverage-2026-04-27.md §3.4.
+_RENDER_SKIP_SOURCES = frozenset({"SRC-ONCOKB"})
+
+
+def _is_skipped_source(source_id: str) -> bool:
+    """Per ToS, do not render anything attributed to OncoKB to user-facing
+    HTML. Match is case-insensitive and on prefix so SRC-ONCOKB-* legacy
+    variants are also caught."""
+    if not source_id:
+        return False
+    s = str(source_id).strip().upper()
+    if s in _RENDER_SKIP_SOURCES:
+        return True
+    return s.startswith("SRC-ONCOKB")
+
+
+def _civic_evidence_url(evidence_ids: list) -> Optional[str]:
+    """Return a civicdb.org link for the first numeric evidence id, or
+    fall back to the gene-page URL pattern if no numeric id is present.
+
+    CIViC evidence-item URL pattern: civicdb.org/links/evidence_items/<id>.
+    Some imports store ids as `EID12345`; we strip a leading `EID`.
+    """
+    for raw in (evidence_ids or []):
+        s = str(raw).strip()
+        if s.upper().startswith("EID"):
+            s = s[3:]
+        if s.isdigit():
+            return f"https://civicdb.org/links/evidence_items/{s}"
+    return None
+
+
+def _is_resistance_entry(direction, significance) -> bool:
+    """CIViC `direction == 'Does Not Support'` flips a Sensitivity item
+    into anti-evidence; `significance == 'Resistance'` is the explicit
+    resistance signal. Either condition gets a ⚠ flag at render time."""
+    d = (direction or "").strip().lower() if direction else ""
+    s = (significance or "").strip().lower() if significance else ""
+    if d in {"does not support", "does_not_support"}:
+        return True
+    if "resistance" in s:
+        return True
+    return False
+
+
+def _format_evidence_sources(
+    evidence_sources: list, primary_sources: Optional[list] = None
+) -> str:
     """Render evidence_sources entries as a short list per BMA cell.
 
-    Each entry is rendered as `{source}: Level {level}` with optional
-    direction/significance suffix. Render layer matches the
-    EvidenceSourceRef shape (dict or pydantic; both supported).
-
-    TODO(phase-4): wire civicdb.org links when source == 'SRC-CIVIC' and
-    evidence_ids are populated. This Phase 1 stub keeps the UI honest
-    (we show every cited source) without committing to a final layout.
+    Render rules (Phase-4 CIViC pivot, see review-2026-04-27):
+      1. Iterate `evidence_sources`. For each entry:
+         - SKIP source=SRC-ONCOKB entirely (OncoKB ToS forbids surfacing
+           OncoKB labels in patient-care reports).
+         - Otherwise render as `<source>: Level <level>`. SRC-CIVIC
+           entries get a clickable civicdb.org link via the first
+           numeric evidence_id (or gene-page fallback).
+         - "Does Not Support" / "Resistance" entries get a ⚠ marker +
+           "Resistance evidence" label.
+         - Deduplicate (source, level, resistance-flag) so multiple
+           CIViC evidence items at the same level collapse into one row.
+      2. Fallback (Phase 3-O finding): if `evidence_sources` is empty
+         after the SRC-ONCOKB skip, promote `primary_sources` (filtered
+         for non-OncoKB) as citation cards without a level, plus a note
+         pointing to the Phase-2-of-CIViC-pivot re-cite roadmap.
     """
-    if not evidence_sources:
-        return '<span style="color:var(--gray-500)">—</span>'
     items: list[str] = []
-    for es in evidence_sources:
+    seen: set = set()
+    for es in (evidence_sources or []):
         if isinstance(es, dict):
             source = es.get("source") or ""
             level = es.get("level") or ""
             direction = es.get("direction")
             significance = es.get("significance")
+            evidence_ids = es.get("evidence_ids") or []
         else:
             source = getattr(es, "source", "") or ""
             level = getattr(es, "level", "") or ""
             direction = getattr(es, "direction", None)
             significance = getattr(es, "significance", None)
-        if not source:
+            evidence_ids = getattr(es, "evidence_ids", None) or []
+        if not source or _is_skipped_source(source):
             continue
+        is_resistance = _is_resistance_entry(direction, significance)
+        # Dedupe key — collapse same source+level+resistance-flag rows.
+        key = (str(source).upper(), str(level).upper(), is_resistance)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        # Source label + optional clickable link (CIViC for SRC-CIVIC;
+        # other SRC-* render plain since URL lookup needs kb_resolved
+        # which we don't carry into this helper — see TODO below).
+        source_label = _h(source)
+        if str(source).upper() == "SRC-CIVIC":
+            href = _civic_evidence_url(evidence_ids) or "https://civicdb.org/"
+            source_label = (
+                f'<a href="{_h(href)}" target="_blank" rel="noopener">'
+                f'{_h(source)}</a>'
+            )
+
+        # Resistance flag
+        if is_resistance:
+            badge = (
+                ' <span class="evidence-resistance" '
+                'title="Resistance evidence">⚠ Resistance</span>'
+            )
+        else:
+            badge = ""
+
+        # Fine-grained metadata (direction/significance) — surfaced as a
+        # muted suffix when present and non-resistance (resistance is
+        # already conveyed by the badge).
         suffix_parts: list[str] = []
-        if direction:
+        if direction and not is_resistance:
             suffix_parts.append(_h(str(direction)))
-        if significance:
+        if significance and not is_resistance:
             suffix_parts.append(_h(str(significance)))
         suffix = (
             f' <span class="evidence-meta">({", ".join(suffix_parts)})</span>'
             if suffix_parts
             else ""
         )
+
         items.append(
-            f'<li>{_h(source)}: Level {_h(level)}{suffix}</li>'
+            f'<li>{source_label}: Level {_h(level)}{badge}{suffix}</li>'
         )
-    if not items:
-        return '<span style="color:var(--gray-500)">—</span>'
-    return f'<ul class="evidence-sources">{"".join(items)}</ul>'
+
+    if items:
+        return f'<ul class="evidence-sources">{"".join(items)}</ul>'
+
+    # Fallback: promote primary_sources (sans OncoKB) into citation cards
+    # so the cell still surfaces something meaningful for the 18 J-drafts
+    # that carry only SRC-ONCOKB in evidence_sources after the skip.
+    fallback_items: list[str] = []
+    fallback_seen: set = set()
+    for sid in (primary_sources or []):
+        if not sid or _is_skipped_source(sid):
+            continue
+        key = str(sid).upper()
+        if key in fallback_seen:
+            continue
+        fallback_seen.add(key)
+        fallback_items.append(f'<li class="evidence-fallback">{_h(sid)}</li>')
+
+    if fallback_items:
+        note = (
+            '<div class="evidence-fallback-note">'
+            'Evidence cited from clinical guidelines; per-source evidence '
+            'levels not yet structured. See Phase-2-of-CIViC-pivot for '
+            're-cite roadmap.'
+            '</div>'
+        )
+        return (
+            f'<ul class="evidence-sources evidence-sources--fallback">'
+            f'{"".join(fallback_items)}</ul>{note}'
+        )
+
+    return '<span style="color:var(--gray-500)">—</span>'
 
 
 def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
@@ -1451,15 +1573,21 @@ def _render_variant_actionability(plan, target_lang: str = "uk") -> str:
             escat_cls = _escat_class(h.escat_tier)
             escat_label = _h(h.escat_tier or "X")
             evidence_cell = _format_evidence_sources(
-                getattr(h, "evidence_sources", None) or []
+                getattr(h, "evidence_sources", None) or [],
+                primary_sources=list(h.primary_sources or []),
             )
             summary = _h_t(h.evidence_summary or "", target_lang)
             combos = (
                 "<br>".join(_h(c) for c in (h.recommended_combinations or []))
                 or '<span style="color:var(--gray-500)">—</span>'
             )
+            # Per OncoKB ToS, filter SRC-ONCOKB from the user-visible
+            # primary-sources column as well.
+            visible_sources = [
+                s for s in (h.primary_sources or []) if not _is_skipped_source(s)
+            ]
             sources = (
-                "".join(f"<li>{_h(s)}</li>" for s in (h.primary_sources or []))
+                "".join(f"<li>{_h(s)}</li>" for s in visible_sources)
                 or '<li style="color:var(--gray-500)">—</li>'
             )
             rows.append(
@@ -1602,16 +1730,15 @@ def render_plan_html(
     body.append(_render_red_flags_pro_contra(plan, plan_result.kb_resolved, target_lang))
     body.append(_render_what_not_to_do(plan, target_lang))
 
-    # TODO(phase-4): finalize CIViC rendering with civicdb.org links.
-    # The OncoKB layer renderer was removed in Phase 1 of the CIViC pivot
-    # (see docs/reviews/oncokb-public-civic-coverage-2026-04-27.md).
-    # Phase 4 will rebuild a source-agnostic actionability section that
-    # iterates `actionability_layer.results` and renders per-source
-    # evidence cards (CIViC level + direction + significance, FDA-CDx
-    # badges from our Drug entities, anti-evidence rendering for "Does
-    # Not Support" CIViC items). Until that lands, the per-cell
-    # `evidence_sources` rendering inside _render_variant_actionability
-    # carries the load.
+    # Phase 4 (CIViC pivot, 2026-04-27): the per-cell `evidence_sources`
+    # rendering inside `_render_variant_actionability` is now ESCAT-primary
+    # + CIViC-detailed. SRC-ONCOKB entries are skipped per OncoKB ToS, and
+    # `primary_sources` (sans OncoKB) are promoted as a fallback when the
+    # post-skip evidence_sources list is empty (Phase 3-O finding). See
+    # `_format_evidence_sources` for the full rule set.
+    # TODO(phase-5-cleanup): when SnapshotActionabilityClient is wired,
+    # actionability_layer can replace the inline cell renderer below with
+    # a richer card-grid view.
     # actionability_layer = getattr(plan_result, "actionability_layer", None)
 
     body.append(_render_monitoring_phases(plan))

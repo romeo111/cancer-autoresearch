@@ -518,6 +518,29 @@ h3 {
 }
 .evidence-sources li { padding: 1px 0; color: var(--gray-700); }
 .evidence-sources .evidence-meta { color: var(--gray-500); font-size: 10px; }
+.evidence-sources a { color: var(--green-700); text-decoration: none; }
+.evidence-sources a:hover { text-decoration: underline; }
+
+/* Resistance evidence flag — ⚠ badge for direction="Does Not Support"
+   or significance contains "Resistance" (CIViC anti-evidence). */
+.evidence-resistance {
+    display: inline-block; padding: 0 6px; margin-left: 4px;
+    border-radius: 3px;
+    background: #fee2e2; color: #991b1b;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+}
+
+/* Fallback rendering — when leveled evidence is unavailable,
+   primary_sources are promoted as citation cards without a level.
+   Visually muted relative to leveled evidence. */
+.evidence-sources--fallback li.evidence-fallback {
+    color: var(--gray-600); font-style: italic;
+}
+.evidence-fallback-note {
+    margin-top: 4px;
+    font-size: 10px; color: var(--gray-500);
+    font-family: var(--font-sans); font-style: italic;
+}
 
 /* NSZU availability badges — per-drug coverage flag rendered alongside
    each component in the track's drug list. Render-time metadata only
@@ -682,10 +705,11 @@ PATIENT_MODE_CSS = """
 """
 
 
-# TODO(phase-4): when render_actionability.py lands (CIViC pivot,
-# Phase 4), append its CSS here so the single-file HTML render carries
-# everything. The previous render_oncokb.ONCOKB_CSS splice was removed
-# in Phase 1 alongside the OncoKB layer.
+# Phase 4 (CIViC pivot, 2026-04-27) keeps actionability CSS in this same
+# file under `.actionability-table`, `.evidence-sources`,
+# `.evidence-resistance`, and `.evidence-fallback*` rules above. The
+# previous render_oncokb.ONCOKB_CSS splice was removed in Phase 1
+# alongside the legacy OncoKB-shaped renderer.
 
 
 __all__ = ["STYLESHEET", "PATIENT_MODE_CSS"]
