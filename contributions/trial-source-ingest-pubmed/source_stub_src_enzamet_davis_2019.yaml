@@ -1,0 +1,61 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: ENZAMET
+  notes_for_reviewer: >
+    PubMed/title verified. Trial name is included in the title field for the
+    TaskTorrent title-verification rule.
+
+id: SRC-ENZAMET-DAVIS-2019
+source_type: rct_publication
+title: "Enzalutamide with Standard First-Line Therapy in Metastatic Prostate Cancer (ENZAMET trial)"
+version: "2019"
+authors:
+  - Davis ID
+  - Martin AJ
+  - Stockler MR
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa1903835
+pmid: "31157964"
+url: https://pubmed.ncbi.nlm.nih.gov/31157964/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2019-07-11"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM subscription article; publisher rights retained
+attribution:
+  required: true
+  text: "Davis et al., NEJM 2019; ENZAMET trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-PROSTATE
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 randomized ENZAMET trial of enzalutamide with standard first-line
+  therapy in metastatic hormone-sensitive prostate cancer.
+pages_count: 11
+references_count: 35
+corpus_role: rct_publication

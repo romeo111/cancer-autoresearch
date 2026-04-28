@@ -1,0 +1,62 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: TALAPRO-2
+  notes_for_reviewer: >
+    PubMed/title verified from PubMed-indexed references and publisher
+    metadata. Trial name is included in the title field.
+
+id: SRC-TALAPRO2-AGARWAL-2023
+source_type: rct_publication
+title: "Talazoparib plus Enzalutamide in Men with First-Line Metastatic Castration-Resistant Prostate Cancer (TALAPRO-2 trial)"
+version: "2023"
+authors:
+  - Agarwal N
+  - Azad AA
+  - Carles J
+  - et al.
+journal: The Lancet
+doi: 10.1016/S0140-6736(23)01055-3
+pmid: "37285865"
+url: https://pubmed.ncbi.nlm.nih.gov/37285865/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2023-07-22"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: Elsevier/Lancet subscription article; publisher rights retained
+attribution:
+  required: true
+  text: "Agarwal et al., Lancet 2023; TALAPRO-2 trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-PROSTATE
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 randomized, placebo-controlled TALAPRO-2 trial of talazoparib plus
+  enzalutamide versus placebo plus enzalutamide in first-line metastatic
+  castration-resistant prostate cancer.
+pages_count: 13
+references_count: 40
+corpus_role: rct_publication

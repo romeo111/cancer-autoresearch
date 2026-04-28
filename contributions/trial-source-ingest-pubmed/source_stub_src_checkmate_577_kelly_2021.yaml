@@ -1,0 +1,62 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: CHECKMATE-577
+  notes_for_reviewer: >
+    PubMed/title verified. Trial name is included in the title field for the
+    TaskTorrent title-verification rule.
+
+id: SRC-CHECKMATE-577-KELLY-2021
+source_type: rct_publication
+title: "Adjuvant Nivolumab in Resected Esophageal or Gastroesophageal Junction Cancer (CHECKMATE-577 trial)"
+version: "2021"
+authors:
+  - Kelly RJ
+  - Ajani JA
+  - Kuzdzal J
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa2032125
+pmid: "33789008"
+url: https://pubmed.ncbi.nlm.nih.gov/33789008/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2021-04-01"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM subscription article; publisher rights retained
+attribution:
+  required: true
+  text: "Kelly et al., NEJM 2021; CHECKMATE-577 trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-ESOPHAGEAL
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 randomized CHECKMATE-577 trial of adjuvant nivolumab after
+  neoadjuvant chemoradiotherapy and resection for esophageal or
+  gastroesophageal junction cancer with residual pathologic disease.
+pages_count: 13
+references_count: 35
+corpus_role: rct_publication

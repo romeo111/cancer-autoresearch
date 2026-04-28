@@ -1,0 +1,61 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: ALINA
+  notes_for_reviewer: >
+    PubMed/title verified. Trial name is included in the title field for the
+    TaskTorrent title-verification rule.
+
+id: SRC-ALINA-WU-2024
+source_type: rct_publication
+title: "Alectinib in Resected ALK-Positive Non-Small-Cell Lung Cancer (ALINA trial)"
+version: "2024"
+authors:
+  - Wu YL
+  - Dziadziuszko R
+  - Ahn JS
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa2310532
+pmid: "38598794"
+url: https://pubmed.ncbi.nlm.nih.gov/38598794/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2024-04-11"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM subscription article; publisher rights retained
+attribution:
+  required: true
+  text: "Wu et al., NEJM 2024; ALINA trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-NSCLC
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 randomized ALINA trial of adjuvant alectinib versus platinum-based
+  chemotherapy in completely resected ALK-positive stage IB-IIIA NSCLC.
+pages_count: 12
+references_count: 35
+corpus_role: rct_publication

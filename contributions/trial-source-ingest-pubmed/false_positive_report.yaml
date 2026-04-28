@@ -1,0 +1,58 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  notes_for_reviewer: >
+    False-positive prefilter based on the existing citation-semantic verify
+    extraction plus domain-spread review. Generic terms with broad unrelated
+    disease spread are not stubbed in this implementation slice.
+
+summary:
+  total_candidates: 47
+  likely_false_positive: 3
+  initially_ambiguous_pending_pubmed_review: 10
+  initially_real_rct_candidates: 34
+method: >
+  Generic English-word candidate names spanning many unrelated disease domains
+  were classified as likely false positives. Bounded oncology trial acronyms
+  and trial-pattern names were kept for PubMed verification.
+likely_false_positives:
+  - trial_name: PARADIGM
+    rationale: >
+      Generic English word with broad, unrelated domain spread in extracted
+      findings, including CML, ovarian, endometrial, urothelial, lymphoma, and
+      NTRK infantile fibrosarcoma contexts. This is not defensible as one
+      trial-specific source target.
+    action: do_not_stub_without_maintainer_mapping
+  - trial_name: RUBY
+    rationale: >
+      Although RUBY is a real endometrial cancer trial, this extracted candidate
+      was attached to a broad set of endometrial biomarker source-gap rows and
+      also behaved as a generic term in the audit extraction. It needs explicit
+      maintainer mapping before source insertion.
+    action: maintainer_review_needed
+  - trial_name: CROSS
+    rationale: >
+      Generic English word with extreme unrelated spread, including FLT3 AML,
+      medullary thyroid cancer, esophageal cancer, melanoma, prostate, NSCLC,
+      Burkitt lymphoma, and CML contexts. This cannot be one trial-specific
+      source target.
+    action: do_not_stub_without_maintainer_mapping
+ambiguous_candidates_held_for_later_batch:
+  - NRG-GY018
+  - PAOLA-1
+  - CODEBREAK
+  - AIDA
+  - PROPEL
+  - MAGNITUDE
+  - THOR
+  - ARASENS
+  - PRODIGE
+  - BFORE
+notes: >
+  Some candidates originally marked ambiguous are being promoted only after
+  direct PubMed/title verification. This report remains intentionally
+  conservative and does not classify an ambiguous candidate as false positive
+  unless the source target is not safely inferable.

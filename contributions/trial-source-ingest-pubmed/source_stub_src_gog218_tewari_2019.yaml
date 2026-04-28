@@ -1,0 +1,63 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: GOG-218
+  notes_for_reviewer: >
+    PubMed/title verified. Uses the final overall-survival publication for
+    GOG-0218/GOG-218 because it is open in PMC and directly trial-specific.
+
+id: SRC-GOG218-TEWARI-2019
+source_type: rct_publication
+title: "Final Overall Survival of a Randomized Trial of Bevacizumab for Primary Treatment of Ovarian Cancer (GOG-218/GOG-0218 trial)"
+version: "2019"
+authors:
+  - Tewari KS
+  - Burger RA
+  - Enserro D
+  - et al.
+journal: Journal of Clinical Oncology
+doi: 10.1200/JCO.19.01009
+pmid: "31216226"
+url: https://pubmed.ncbi.nlm.nih.gov/31216226/
+access_level: open_access
+currency_status: current
+current_as_of: "2019-09-10"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: ASCO/JCO free PMC article; publisher rights retained
+attribution:
+  required: true
+  text: "Tewari et al., J Clin Oncol 2019; GOG-0218/GOG-218 trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-OVARIAN
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Protocol-specified final overall survival analysis of GOG-0218, a phase 3
+  randomized trial of carboplatin/paclitaxel with placebo, concurrent
+  bevacizumab, or concurrent plus maintenance bevacizumab in newly diagnosed
+  advanced ovarian, fallopian tube, or primary peritoneal carcinoma.
+pages_count: 12
+references_count: 45
+corpus_role: rct_publication

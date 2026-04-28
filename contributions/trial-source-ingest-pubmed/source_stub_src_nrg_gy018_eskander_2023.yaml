@@ -1,0 +1,62 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: NRG-GY018
+  notes_for_reviewer: >
+    PubMed/title verified. Trial name is included in the title field for the
+    TaskTorrent title-verification rule.
+
+id: SRC-NRG-GY018-ESKANDER-2023
+source_type: rct_publication
+title: "Pembrolizumab plus Chemotherapy in Advanced Endometrial Cancer (NRG-GY018 trial)"
+version: "2023"
+authors:
+  - Eskander RN
+  - Sill MW
+  - Beffa L
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa2302312
+pmid: "36972022"
+url: https://pubmed.ncbi.nlm.nih.gov/36972022/
+access_level: open_access
+currency_status: current
+current_as_of: "2023-06-08"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM article with free PMC manuscript access; publisher rights retained
+attribution:
+  required: true
+  text: "Eskander et al., NEJM 2023; NRG-GY018 trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Publisher-formatted article text and figures are not hosted.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-ENDOMETRIAL
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 randomized trial of pembrolizumab or placebo with paclitaxel and
+  carboplatin followed by maintenance pembrolizumab/placebo in advanced or
+  recurrent endometrial cancer, stratified by mismatch-repair status.
+pages_count: 12
+references_count: 40
+corpus_role: rct_publication

@@ -1,0 +1,62 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: TRIANGLE
+  notes_for_reviewer: >
+    PubMed/title verified. Trial name is included in the title field for the
+    TaskTorrent title-verification rule.
+
+id: SRC-TRIANGLE-DREYLING-2024
+source_type: rct_publication
+title: "Ibrutinib combined with immunochemotherapy with or without autologous stem-cell transplantation versus immunochemotherapy and autologous stem-cell transplantation in previously untreated patients with mantle cell lymphoma (TRIANGLE trial)"
+version: "2024"
+authors:
+  - Dreyling M
+  - Doorduijn J
+  - Gine E
+  - et al.
+journal: The Lancet
+doi: 10.1016/S0140-6736(24)00184-3
+pmid: "38705160"
+url: https://pubmed.ncbi.nlm.nih.gov/38705160/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2024-05-25"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: Elsevier/Lancet subscription article; publisher rights retained
+attribution:
+  required: true
+  text: "Dreyling et al., Lancet 2024; TRIANGLE trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-MCL
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Three-arm randomized phase 3 TRIANGLE trial in previously untreated,
+  transplant-eligible mantle cell lymphoma, testing ibrutinib-containing
+  immunochemotherapy with or without autologous stem-cell transplantation.
+pages_count: 14
+references_count: 45
+corpus_role: rct_publication
