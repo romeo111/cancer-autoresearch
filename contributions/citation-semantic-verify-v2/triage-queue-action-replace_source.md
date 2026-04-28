@@ -1,6 +1,6 @@
 # Triage Queue: citation-semantic-verify-v2
 
-**Filter:** status=`supported`, action=`None`
+**Filter:** status=`None`, action=`replace_source`
 
 **Total rows:** 121
 
