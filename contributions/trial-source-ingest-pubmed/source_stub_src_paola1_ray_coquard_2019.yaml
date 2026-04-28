@@ -1,0 +1,63 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: PAOLA-1
+  notes_for_reviewer: >
+    PubMed/title verified via ClinicalTrials.gov publication listing and
+    PubMed-indexed references. Trial name is included in the title field for
+    the TaskTorrent title-verification rule.
+
+id: SRC-PAOLA1-RAY-COQUARD-2019
+source_type: rct_publication
+title: "Olaparib plus Bevacizumab as First-Line Maintenance in Ovarian Cancer (PAOLA-1 trial)"
+version: "2019"
+authors:
+  - Ray-Coquard I
+  - Pautier P
+  - Pignata S
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa1911361
+pmid: "31851799"
+url: https://pubmed.ncbi.nlm.nih.gov/31851799/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2019-12-19"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM subscription article; publisher rights retained
+attribution:
+  required: true
+  text: "Ray-Coquard et al., NEJM 2019; PAOLA-1 trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-OVARIAN
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 PAOLA-1/ENGOT-ov25 trial evaluating olaparib versus placebo as
+  maintenance added to bevacizumab after first-line platinum-taxane
+  chemotherapy plus bevacizumab in advanced ovarian cancer.
+pages_count: 13
+references_count: 40
+corpus_role: rct_publication

@@ -1,0 +1,61 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: TITAN
+  notes_for_reviewer: >
+    PubMed/title verified. Trial name is included in the title field for the
+    TaskTorrent title-verification rule.
+
+id: SRC-TITAN-CHI-2019
+source_type: rct_publication
+title: "Apalutamide for Metastatic, Castration-Sensitive Prostate Cancer (TITAN trial)"
+version: "2019"
+authors:
+  - Chi KN
+  - Agarwal N
+  - Bjartell A
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa1903307
+pmid: "31150574"
+url: https://pubmed.ncbi.nlm.nih.gov/31150574/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2019-07-04"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM subscription article; publisher rights retained
+attribution:
+  required: true
+  text: "Chi et al., NEJM 2019; TITAN trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-PROSTATE
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 randomized TITAN trial of apalutamide plus androgen-deprivation
+  therapy in metastatic castration-sensitive prostate cancer.
+pages_count: 12
+references_count: 30
+corpus_role: rct_publication

@@ -1,0 +1,62 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: PACIFIC
+  notes_for_reviewer: >
+    PubMed/title verified. Trial name is included in the title field for the
+    TaskTorrent title-verification rule.
+
+id: SRC-PACIFIC-ANTONIA-2017
+source_type: rct_publication
+title: "Durvalumab after Chemoradiotherapy in Stage III Non-Small-Cell Lung Cancer (PACIFIC trial)"
+version: "2017"
+authors:
+  - Antonia SJ
+  - Villegas A
+  - Daniel D
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa1709937
+pmid: "28885881"
+url: https://pubmed.ncbi.nlm.nih.gov/28885881/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2017-11-16"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM subscription article; publisher rights retained
+attribution:
+  required: true
+  text: "Antonia et al., NEJM 2017; PACIFIC trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-NSCLC
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 PACIFIC trial of durvalumab consolidation versus placebo after
+  concurrent platinum-based chemoradiotherapy for unresectable stage III
+  non-small-cell lung cancer.
+pages_count: 11
+references_count: 35
+corpus_role: rct_publication

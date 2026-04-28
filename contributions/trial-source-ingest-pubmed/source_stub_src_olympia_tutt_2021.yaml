@@ -1,0 +1,61 @@
+_contribution:
+  chunk_id: trial-source-ingest-pubmed
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: OLYMPIA
+  notes_for_reviewer: >
+    PubMed/title verified. This is distinct from the pre-existing OlympiAD
+    metastatic breast cancer source.
+
+id: SRC-OLYMPIA-TUTT-2021
+source_type: rct_publication
+title: "Adjuvant Olaparib for Patients with BRCA1- or BRCA2-Mutated Breast Cancer (OlympiA trial)"
+version: "2021"
+authors:
+  - Tutt ANJ
+  - Garber JE
+  - Kaufman B
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa2105215
+pmid: "34081848"
+url: https://pubmed.ncbi.nlm.nih.gov/34081848/
+access_level: open_access
+currency_status: current
+current_as_of: "2021-06-24"
+evidence_tier: 2
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM article with free PMC manuscript access; publisher rights retained
+attribution:
+  required: true
+  text: "Tutt et al., NEJM 2021; OlympiA trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Publisher-formatted article text and figures are not hosted.
+legal_review:
+  status: pending
+  date: "2026-04-28"
+relates_to_diseases:
+  - DIS-BREAST
+last_verified: "2026-04-28"
+verifier: codex-agent
+notes: >
+  Phase 3 randomized adjuvant olaparib trial for high-risk HER2-negative early
+  breast cancer with germline BRCA1/2 pathogenic or likely pathogenic variants.
+pages_count: 12
+references_count: 40
+corpus_role: rct_publication
