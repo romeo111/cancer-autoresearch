@@ -23,88 +23,80 @@ primary_sources:
 - SRC-NCCN-MM-2025
 last_verified: '2026-04-27'
 evidence_sources:
-- source: SRC-ONCOKB
-  level: '4'
-  evidence_ids: []
-  direction: null
-  significance: null
-  note: Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC.
-    Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render
-    skips evidence_sources entries with source=SRC-ONCOKB.
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '227'
-  direction: Supports
-  significance: Positive
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
-    attached)'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '1142'
-  - '11652'
-  direction: Supports
-  significance: Sensitivity/Response
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Docetaxel,
-    Selumetinib, Divarasib'
-- source: SRC-CIVIC
-  level: D
-  evidence_ids:
-  - '1173'
-  - '2212'
-  - '7572'
-  direction: Supports
-  significance: Sensitivity/Response
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Epidermal
-    Growth Factor Receptor Tyrosine Kinase Inhibitor, ARS-853, Selumetinib, Dactolisib,
-    Adagrasib'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '1216'
-  - '2257'
-  - '3967'
-  direction: Supports
-  significance: Resistance
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Gefitinib,
-    Erlotinib, Chemotherapy, Cetuximab'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '1217'
-  direction: Supports
-  significance: Poor Outcome
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
-    attached)'
-- source: SRC-CIVIC
-  level: C
-  evidence_ids:
-  - '2253'
-  direction: Supports
-  significance: Resistance
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Panitumumab'
-- source: SRC-CIVIC
-  level: D
-  evidence_ids:
-  - '2261'
-  - '2262'
-  - '2263'
-  - '3973'
-  direction: Supports
-  significance: Resistance
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Melphalan,
-    Regorafenib Anhydrous'
 - source: SRC-CIVIC
   level: A
   evidence_ids:
-  - '9431'
-  - '12063'
-  - '12264'
+  - EID9431
+  - EID12063
+  - EID12264
   direction: Supports
   significance: Sensitivity/Response
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Sotorasib,
-    Cetuximab, Adagrasib, Panitumumab'
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Sotorasib, Cetuximab, Adagrasib, Panitumumab.'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID1217
+  direction: Supports
+  significance: Poor Outcome
+  note: CIViC snapshot 2026-04-25 reports Poor Outcome evidence without therapy-specific
+    annotation.
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID227
+  direction: Supports
+  significance: Positive
+  note: CIViC snapshot 2026-04-25 reports Positive evidence without therapy-specific
+    annotation.
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID1216
+  - EID2257
+  - EID3967
+  direction: Supports
+  significance: Resistance
+  note: 'CIViC snapshot 2026-04-25 reports Resistance evidence; therapies: Gefitinib,
+    Erlotinib, Chemotherapy, Cetuximab.'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID1142
+  - EID11652
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Docetaxel, Selumetinib, Divarasib.'
+- source: SRC-CIVIC
+  level: C
+  evidence_ids:
+  - EID2253
+  direction: Supports
+  significance: Resistance
+  note: 'CIViC snapshot 2026-04-25 reports Resistance evidence; therapies: Panitumumab.'
+- source: SRC-CIVIC
+  level: D
+  evidence_ids:
+  - EID2261
+  - EID2262
+  - EID2263
+  - EID3973
+  direction: Supports
+  significance: Resistance
+  note: 'CIViC snapshot 2026-04-25 reports Resistance evidence; therapies: Melphalan,
+    Regorafenib Anhydrous.'
+- source: SRC-CIVIC
+  level: D
+  evidence_ids:
+  - EID1173
+  - EID2212
+  - EID7572
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Epidermal Growth Factor Receptor Tyrosine Kinase Inhibitor, ARS-853, Selumetinib,
+    Dactolisib, Adagrasib.'
 actionability_review_required: true
 notes: 'ESCAT IV. FLAG: dedicated BIO-KRAS-G12C would improve granularity.
 

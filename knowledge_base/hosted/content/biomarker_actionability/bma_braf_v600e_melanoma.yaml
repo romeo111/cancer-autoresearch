@@ -47,208 +47,200 @@ primary_sources:
 - SRC-ESMO-MELANOMA-2024
 last_verified: '2026-04-27'
 evidence_sources:
-- source: SRC-ONCOKB
-  level: '1'
-  evidence_ids: []
-  direction: null
-  significance: null
-  note: Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC.
-    Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render
-    skips evidence_sources entries with source=SRC-ONCOKB.
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '79'
-  - '80'
-  - '1127'
-  direction: Supports
-  significance: Positive
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
-    attached)'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '82'
-  - '102'
-  direction: Does Not Support
-  significance: Poor Outcome
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
-    attached)'
-- source: SRC-CIVIC
-  level: D
-  evidence_ids:
-  - '86'
-  direction: Does Not Support
-  significance: Resistance
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Trametinib,
-    Mirdametinib'
-- source: SRC-CIVIC
-  level: D
-  evidence_ids:
-  - '89'
-  - '96'
-  - '97'
-  - '98'
-  - '99'
-  - '1005'
-  - '1141'
-  - '1408'
-  - '1428'
-  - '8506'
-  - '8507'
-  direction: Supports
-  significance: Sensitivity/Response
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Panitumumab,
-    Sorafenib, Pictilisib Bismesylate, PLX4720, Nutlin-3, Capecitabine, Bevacizumab,
-    Vemurafenib, Dactolisib, Selumetinib, Cobimetinib, Gefitinib, Cetuximab, GDC-0879,
-    Irinotecan, Erlotinib'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '95'
-  - '1398'
-  - '1410'
-  - '1421'
-  - '1579'
-  - '1591'
-  - '1749'
-  - '1902'
-  - '2135'
-  - '3750'
-  - '3755'
-  - '3757'
-  - '3758'
-  - '5958'
-  - '5959'
-  - '6045'
-  - '6123'
-  - '6178'
-  - '6938'
-  - '6940'
-  - '6975'
-  - '7260'
-  - '7264'
-  - '7583'
-  - '7612'
-  - '9018'
-  - '11672'
-  - '11770'
-  direction: Supports
-  significance: Sensitivity/Response
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Trametinib,
-    Dabrafenib, Vemurafenib, Cobimetinib, Irinotecan, Cetuximab, Panitumumab, Encorafenib,
-    Binimetinib'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '103'
-  - '104'
-  - '105'
-  - '106'
-  - '107'
-  - '463'
-  - '656'
-  - '1552'
-  - '1940'
-  - '2116'
-  - '2137'
-  - '2503'
-  - '7156'
-  - '7157'
-  - '7191'
-  - '9170'
-  direction: Supports
-  significance: Poor Outcome
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
-    attached)'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '126'
-  - '2115'
-  - '2117'
-  - '2118'
-  - '2121'
-  - '3739'
-  direction: Supports
-  significance: Resistance
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Cetuximab,
-    Panitumumab, Oxaliplatin, Irinotecan, Capecitabine, Bevacizumab, FOLFOX-4 Regimen'
-- source: SRC-CIVIC
-  level: C
-  evidence_ids:
-  - '757'
-  - '1414'
-  - '1430'
-  - '1589'
-  - '1698'
-  - '1699'
-  - '3777'
-  - '3787'
-  - '5902'
-  - '5903'
-  - '5904'
-  - '5906'
-  - '5960'
-  - '5961'
-  - '5962'
-  direction: Supports
-  significance: Sensitivity/Response
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Pictilisib,
-    Vemurafenib, Trametinib, Dabrafenib, Panitumumab, Irinotecan, Pertuzumab'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '816'
-  - '994'
-  direction: Does Not Support
-  significance: Resistance
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Panitumumab,
-    Cetuximab, MEK Inhibitor RO4987655'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '1405'
-  - '1413'
-  - '6124'
-  direction: Does Not Support
-  significance: Sensitivity/Response
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Vemurafenib,
-    Panitumumab, Trametinib'
-- source: SRC-CIVIC
-  level: B
-  evidence_ids:
-  - '1406'
-  direction: Supports
-  significance: Reduced Sensitivity
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Dabrafenib'
 - source: SRC-CIVIC
   level: A
   evidence_ids:
-  - '1409'
-  - '3017'
-  - '9851'
-  - '12161'
-  - '12162'
+  - EID1409
+  - EID3017
+  - EID9851
+  - EID12161
+  - EID12162
   direction: Supports
   significance: Sensitivity/Response
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Vemurafenib,
-    Dabrafenib, Trametinib, Cetuximab, Encorafenib'
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Vemurafenib, Dabrafenib, Trametinib, Cetuximab, Encorafenib.'
 - source: SRC-CIVIC
-  level: C
+  level: B
   evidence_ids:
-  - '2362'
+  - EID82
+  - EID102
   direction: Does Not Support
   significance: Poor Outcome
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: (no therapy
-    attached)'
+  note: CIViC snapshot 2026-04-25 reports Poor Outcome evidence without therapy-specific
+    annotation.
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID816
+  - EID994
+  direction: Does Not Support
+  significance: Resistance
+  note: 'CIViC snapshot 2026-04-25 reports Resistance evidence; therapies: Panitumumab,
+    Cetuximab, MEK Inhibitor RO4987655.'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID1405
+  - EID1413
+  - EID6124
+  direction: Does Not Support
+  significance: Sensitivity/Response
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Vemurafenib, Panitumumab, Trametinib.'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID103
+  - EID104
+  - EID105
+  - EID106
+  - EID107
+  - EID463
+  - EID656
+  - EID1552
+  - EID1940
+  - EID2116
+  - EID2137
+  - EID2503
+  - EID7156
+  - EID7157
+  - EID7191
+  - EID9170
+  direction: Supports
+  significance: Poor Outcome
+  note: CIViC snapshot 2026-04-25 reports Poor Outcome evidence without therapy-specific
+    annotation.
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID79
+  - EID80
+  - EID1127
+  direction: Supports
+  significance: Positive
+  note: CIViC snapshot 2026-04-25 reports Positive evidence without therapy-specific
+    annotation.
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID1406
+  direction: Supports
+  significance: Reduced Sensitivity
+  note: 'CIViC snapshot 2026-04-25 reports Reduced Sensitivity evidence; therapies:
+    Dabrafenib.'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID126
+  - EID2115
+  - EID2117
+  - EID2118
+  - EID2121
+  - EID3739
+  direction: Supports
+  significance: Resistance
+  note: 'CIViC snapshot 2026-04-25 reports Resistance evidence; therapies: Cetuximab,
+    Panitumumab, Oxaliplatin, Irinotecan, Capecitabine, Bevacizumab, FOLFOX-4 Regimen.'
+- source: SRC-CIVIC
+  level: B
+  evidence_ids:
+  - EID95
+  - EID1398
+  - EID1410
+  - EID1421
+  - EID1579
+  - EID1591
+  - EID1749
+  - EID1902
+  - EID2135
+  - EID3750
+  - EID3755
+  - EID3757
+  - EID3758
+  - EID5958
+  - EID5959
+  - EID6045
+  - EID6123
+  - EID6178
+  - EID6938
+  - EID6940
+  - EID6975
+  - EID7260
+  - EID7264
+  - EID7583
+  - EID7612
+  - EID9018
+  - EID11672
+  - EID11770
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Trametinib, Dabrafenib, Vemurafenib, Cobimetinib, Irinotecan, Cetuximab, Panitumumab,
+    Encorafenib, +1 more.'
 - source: SRC-CIVIC
   level: C
   evidence_ids:
-  - '3827'
+  - EID2362
+  direction: Does Not Support
+  significance: Poor Outcome
+  note: CIViC snapshot 2026-04-25 reports Poor Outcome evidence without therapy-specific
+    annotation.
+- source: SRC-CIVIC
+  level: C
+  evidence_ids:
+  - EID3827
   direction: Supports
   significance: Resistance
-  note: 'Auto-added Phase 3-N from CIViC snapshot 2026-04-25; therapies: Panitumumab'
+  note: 'CIViC snapshot 2026-04-25 reports Resistance evidence; therapies: Panitumumab.'
+- source: SRC-CIVIC
+  level: C
+  evidence_ids:
+  - EID757
+  - EID1414
+  - EID1430
+  - EID1589
+  - EID1698
+  - EID1699
+  - EID3777
+  - EID3787
+  - EID5902
+  - EID5903
+  - EID5904
+  - EID5906
+  - EID5960
+  - EID5961
+  - EID5962
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Pictilisib, Vemurafenib, Trametinib, Dabrafenib, Panitumumab, Irinotecan, Pertuzumab.'
+- source: SRC-CIVIC
+  level: D
+  evidence_ids:
+  - EID86
+  direction: Does Not Support
+  significance: Resistance
+  note: 'CIViC snapshot 2026-04-25 reports Resistance evidence; therapies: Trametinib,
+    Mirdametinib.'
+- source: SRC-CIVIC
+  level: D
+  evidence_ids:
+  - EID89
+  - EID96
+  - EID97
+  - EID98
+  - EID99
+  - EID1005
+  - EID1141
+  - EID1408
+  - EID1428
+  - EID8506
+  - EID8507
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Panitumumab, Sorafenib, Pictilisib Bismesylate, PLX4720, Nutlin-3, Capecitabine,
+    Bevacizumab, Vemurafenib, +8 more.'
 actionability_review_required: true
 notes: 'ESCAT IA per ESMO precision-medicine WG. OncoKB Level 1. Companion diagnostics:
   cobas 4800 BRAF V600 Mutation Test, THxID-BRAF, FoundationOne CDx. V600K behaves

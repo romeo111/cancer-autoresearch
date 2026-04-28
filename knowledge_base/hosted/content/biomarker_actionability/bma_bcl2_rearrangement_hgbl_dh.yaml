@@ -1,13 +1,16 @@
 id: BMA-BCL2-REARRANGEMENT-HGBL-DH
 biomarker_id: BIO-BCL2-REARRANGEMENT
-variant_qualifier: "BCL2-R (component of double-hit; partner of MYC-R)"
+variant_qualifier: BCL2-R (component of double-hit; partner of MYC-R)
 disease_id: DIS-HGBL-DH
-escat_tier: "IIA"
-evidence_summary: >
-  BCL2-R as the partner of MYC-R defines HGBL-DH. Same management
+escat_tier: IIA
+evidence_summary: 'BCL2-R as the partner of MYC-R defines HGBL-DH. Same management
   as MYC-R cell: DA-EPOCH-R 1L preferred per most series.
-evidence_summary_ua: >
-  BCL2-R as the partner of MYC-R defines HGBL-DH. Same management as MYC-R cell: DA-EPOCH-R 1L переважний per найбільш series.
+
+  '
+evidence_summary_ua: 'BCL2-R as the partner of MYC-R defines HGBL-DH. Same management
+  as MYC-R cell: DA-EPOCH-R 1L переважний per найбільш series.
+
+  '
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 regulatory_approval:
@@ -15,20 +18,15 @@ regulatory_approval:
   ema: []
   ukraine: []
 recommended_combinations:
-  - "DA-EPOCH-R"
-  - "pola-R-CHP"
-  - "CAR-T (R/R)"
+- DA-EPOCH-R
+- pola-R-CHP
+- CAR-T (R/R)
 contraindicated_monotherapy: []
 primary_sources:
-  - SRC-NCCN-BCELL-2025
-last_verified: "2026-04-27"
-evidence_sources:
-  - source: SRC-ONCOKB
-    level: "3A"
-    evidence_ids: []
-    direction: null
-    significance: null
-    note: "Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC. Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render skips evidence_sources entries with source=SRC-ONCOKB."
+- SRC-NCCN-BCELL-2025
+last_verified: '2026-04-27'
+evidence_sources: []
 actionability_review_required: true
-notes: >
-  ESCAT IIA — paired with MYC-R cell BMA-MYC-REARRANGEMENT-HGBL-DH.
+notes: 'ESCAT IIA — paired with MYC-R cell BMA-MYC-REARRANGEMENT-HGBL-DH.
+
+  '

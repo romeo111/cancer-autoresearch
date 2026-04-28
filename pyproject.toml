@@ -25,6 +25,24 @@ dev = [
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+# Top-level dirs at the repo root that are NOT importable Python packages
+# but contain __init__.py-less or otherwise non-package YAML / docs / data.
+# Without this, setuptools' flat-layout auto-discovery errors with
+# "Multiple top-level packages discovered" on pip install -e .
+include = ["knowledge_base*"]
+exclude = [
+    "contributions*",
+    "specs*",
+    "legacy*",
+    "infograph*",
+    "docs*",
+    "examples*",
+    "tests*",
+    "scripts*",
+    "OpenOnco_work*",
+]
+
 [tool.ruff]
 line-length = 100
 target-version = "py311"

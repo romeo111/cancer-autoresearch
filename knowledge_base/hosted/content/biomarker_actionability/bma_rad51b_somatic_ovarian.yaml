@@ -1,13 +1,17 @@
 id: BMA-RAD51B-SOMATIC-OVARIAN
 biomarker_id: BIO-HRR-PANEL
-variant_qualifier: "RAD51B somatic loss-of-function"
+variant_qualifier: RAD51B somatic loss-of-function
 disease_id: DIS-OVARIAN
-escat_tier: "IIB"
-evidence_summary: >
-  Somatic RAD51B loss-of-function in EOC: HRR panel inclusion (varies); PARPi
-  consideration in HRD-positive context. ESCAT IIB / OncoKB Level 3B.
-evidence_summary_ua: >
-  соматичний RAD51B втрата функції in EOC: HRR panel inclusion (varies); PARPi consideration in HRD-positive context. ESCAT IIB / OncoKB рівень 3B.
+escat_tier: IIB
+evidence_summary: 'Somatic RAD51B loss-of-function in EOC: HRR panel inclusion (varies);
+  PARPi consideration in HRD-positive context. ESCAT IIB / OncoKB Level 3B.
+
+  '
+evidence_summary_ua: 'соматичний RAD51B втрата функції in EOC: HRR panel inclusion
+  (varies); PARPi consideration in HRD-positive context. ESCAT IIB / OncoKB рівень
+  3B.
+
+  '
 ukrainian_review_status: pending_clinical_signoff
 ukrainian_drafted_by: claude_extraction
 regulatory_approval:
@@ -15,22 +19,24 @@ regulatory_approval:
   ema: []
   ukraine: []
 recommended_combinations:
-  - "niraparib (HRD-positive)"
-  - "olaparib + bevacizumab"
-  - "rucaparib (LOH-high)"
+- niraparib (HRD-positive)
+- olaparib + bevacizumab
+- rucaparib (LOH-high)
 contraindicated_monotherapy: []
 primary_sources:
-  - SRC-NCCN-OVARIAN-2025
-  - SRC-ESMO-OVARIAN-2024
-  - SRC-ONCOKB
-last_verified: "2026-04-27"
+- SRC-NCCN-OVARIAN-2025
+- SRC-ESMO-OVARIAN-2024
+last_verified: '2026-04-27'
 evidence_sources:
-  - source: SRC-ONCOKB
-    level: "3B"
-    evidence_ids: []
-    direction: null
-    significance: null
-    note: "Pre-CIViC-pivot legacy entry — pending Phase 3 reconciliation against CIViC. Per OncoKB ToS this entry is NOT surfaced in HCP or patient render; Phase 4 render skips evidence_sources entries with source=SRC-ONCOKB."
+- source: SRC-CIVIC
+  level: A
+  evidence_ids:
+  - EID11212
+  direction: Supports
+  significance: Sensitivity/Response
+  note: 'CIViC snapshot 2026-04-25 reports Sensitivity/Response evidence; therapies:
+    Olaparib.'
 actionability_review_required: true
-notes: >
-  Reflex germline testing recommended.
+notes: 'Reflex germline testing recommended.
+
+  '
