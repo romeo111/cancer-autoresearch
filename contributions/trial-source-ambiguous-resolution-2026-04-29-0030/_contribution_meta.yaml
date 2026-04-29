@@ -1,0 +1,13 @@
+chunk_id: trial-source-ambiguous-resolution-2026-04-29-0030
+chunk_spec_url: https://github.com/romeo111/task_torrent/blob/v0.4.0/chunks/openonco/trial-source-ambiguous-resolution-2026-04-29-0030.md
+contributor: codex-agent
+submission_date: "2026-04-29"
+ai_tool: codex
+ai_model: gpt-5
+ai_model_version: ""
+notes_for_reviewer: >
+  Resolves the 22 ambiguous trial-name candidates from issue #34. Confirmed
+  single-target trials are represented as referenced-only Source stubs. Trial
+  family names or context-mismatched extraction artifacts are kept in
+  false_positive_resolution_report.yaml for maintainer review rather than
+  forcing an unsafe global source mapping.

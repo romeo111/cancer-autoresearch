@@ -1,0 +1,177 @@
+_contribution:
+  chunk_id: trial-source-ambiguous-resolution-2026-04-29-0030
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  notes_for_reviewer: >
+    One row per manifest trial name. `source_stub_created` rows have a
+    companion source_stub_*.yaml in this directory. `maintainer_review_needed`
+    and `false_positive` rows are intentionally not stubbed because a single
+    safe source target was not defensible from the extracted context.
+
+summary:
+  total_manifest_entries: 22
+  source_stub_created: 17
+  maintainer_review_needed: 3
+  false_positive: 2
+  source_policy: referenced_only
+  verified_date: "2026-04-29"
+
+rows:
+  - trial_name: CROSS
+    verdict: source_stub_created
+    source_id: SRC-CROSS-VAN-HAGEN-2012
+    pmid: "22646630"
+    rationale: >
+      Confirmed as the randomized CROSS trial source for esophageal or
+      gastroesophageal junction cancer. The source should not be applied to
+      unrelated extracted rows that mention CROSS as a generic word.
+  - trial_name: PARADIGM
+    verdict: maintainer_review_needed
+    source_id: null
+    pmid: null
+    rationale: >
+      PARADIGM is a real metastatic colorectal cancer study name, but the
+      extracted OpenOnco candidate spans unrelated disease contexts. A single
+      source stub would be unsafe without row-level mapping.
+  - trial_name: RUBY
+    verdict: source_stub_created
+    source_id: SRC-RUBY-MIRZA-2023
+    pmid: "36972026"
+    rationale: >
+      Confirmed as the RUBY endometrial cancer trial source for dostarlimab
+      plus carboplatin-paclitaxel.
+  - trial_name: CODEBREAK
+    verdict: maintainer_review_needed
+    source_id: null
+    pmid: null
+    rationale: >
+      CODEBREAK is a trial-program family rather than one unambiguous source:
+      CodeBreaK 200 supports NSCLC, while CodeBreaK 300 supports CRC. The
+      manifest includes multiple KRAS G12C disease contexts, so this needs a
+      split follow-up manifest.
+  - trial_name: AIDA
+    verdict: source_stub_created
+    source_id: SRC-AIDA-AVVISATI-1996
+    pmid: "8695858"
+    rationale: >
+      Confirmed AIDA ATRA plus idarubicin APL source.
+  - trial_name: PROPEL
+    verdict: source_stub_created
+    source_id: SRC-PROPEL-SAAD-2023
+    pmid: "37714168"
+    rationale: >
+      Confirmed phase 3 PROpel mCRPC source for olaparib plus abiraterone.
+  - trial_name: MAGNITUDE
+    verdict: source_stub_created
+    source_id: SRC-MAGNITUDE-CHI-2023
+    pmid: "36952634"
+    rationale: >
+      Confirmed phase 3 MAGNITUDE mCRPC source for niraparib plus
+      abiraterone. Any non-prostate extracted rows should be separately
+      rejected during source replacement.
+  - trial_name: THOR
+    verdict: source_stub_created
+    source_id: SRC-THOR-LORIOT-2023
+    pmid: "37870920"
+    rationale: >
+      Confirmed phase 3 THOR urothelial carcinoma source for erdafitinib.
+  - trial_name: ARASENS
+    verdict: source_stub_created
+    source_id: SRC-ARASENS-SMITH-2022
+    pmid: "35179323"
+    rationale: >
+      Confirmed phase 3 ARASENS metastatic hormone-sensitive prostate cancer
+      source for darolutamide plus ADT and docetaxel.
+  - trial_name: PRODIGE
+    verdict: maintainer_review_needed
+    source_id: null
+    pmid: null
+    rationale: >
+      PRODIGE is a cooperative-group trial prefix covering multiple different
+      studies, including pancreatic and colorectal contexts. A single source
+      target would be ambiguous and should be split by trial number/context.
+  - trial_name: BFORE
+    verdict: source_stub_created
+    source_id: SRC-BFORE-CORTES-2018
+    pmid: "29091516"
+    rationale: >
+      Confirmed randomized BFORE CML source for bosutinib versus imatinib.
+  - trial_name: FIRE-3
+    verdict: source_stub_created
+    source_id: SRC-FIRE3-HEINEMANN-2014
+    pmid: "25088940"
+    rationale: >
+      Confirmed phase 3 FIRE-3 metastatic colorectal cancer source.
+  - trial_name: ICON7
+    verdict: source_stub_created
+    source_id: SRC-ICON7-PERREN-2011
+    pmid: "22204725"
+    rationale: >
+      Confirmed phase 3 ICON7 ovarian cancer source for bevacizumab with
+      chemotherapy.
+  - trial_name: STARTRK
+    verdict: source_stub_created
+    source_id: SRC-STARTRK-DOEBELE-2020
+    pmid: "31838007"
+    rationale: >
+      Confirmed integrated STARTRK/ALKA entrectinib source for NTRK
+      fusion-positive solid tumors.
+  - trial_name: STUPP
+    verdict: source_stub_created
+    source_id: SRC-STUPP-STUPP-2005
+    pmid: "15758009"
+    rationale: >
+      Confirmed Stupp regimen glioblastoma source for radiotherapy plus
+      concomitant and adjuvant temozolomide.
+  - trial_name: AGILE
+    verdict: source_stub_created
+    source_id: SRC-AGILE-MONTESINOS-2022
+    pmid: "35443108"
+    rationale: >
+      Confirmed phase 3 AGILE AML source for ivosidenib plus azacitidine.
+  - trial_name: STIL
+    verdict: source_stub_created
+    source_id: SRC-STIL-RUMMEL-2013
+    pmid: "23433739"
+    rationale: >
+      Confirmed StiL NHL1 first-line indolent NHL/MCL source for
+      bendamustine-rituximab versus R-CHOP.
+  - trial_name: CRYSTAL
+    verdict: source_stub_created
+    source_id: SRC-CRYSTAL-VAN-CUTSEM-2009
+    pmid: "19339720"
+    rationale: >
+      Confirmed CRYSTAL metastatic colorectal cancer source for cetuximab plus
+      FOLFIRI.
+  - trial_name: MONUMENTAL-1
+    verdict: source_stub_created
+    source_id: SRC-MONUMENTAL1-CHARI-2022
+    pmid: "36507686"
+    rationale: >
+      Confirmed MonumenTAL-1 multiple myeloma source for talquetamab.
+  - trial_name: BRIGHT
+    verdict: false_positive
+    source_id: null
+    pmid: null
+    rationale: >
+      BRIGHT is a real bendamustine-rituximab lymphoma study, but the extracted
+      OpenOnco row points to an ATLL mogamulizumab context. That context
+      mismatch makes this a false-positive trial-source target for this chunk.
+  - trial_name: IMPOWER150
+    verdict: source_stub_created
+    source_id: SRC-IMPOWER150-SOCINSKI-2018
+    pmid: "29863955"
+    rationale: >
+      Confirmed IMpower150 metastatic nonsquamous NSCLC source for
+      atezolizumab plus bevacizumab and chemotherapy.
+  - trial_name: SHINE
+    verdict: false_positive
+    source_id: null
+    pmid: null
+    rationale: >
+      SHINE is a real mantle-cell lymphoma trial of ibrutinib plus
+      bendamustine-rituximab, but the extracted row points to an
+      acalabrutinib-rituximab regimen. That mismatch should not create a
+      source replacement for the manifest row.

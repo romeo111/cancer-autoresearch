@@ -1,0 +1,61 @@
+_contribution:
+  chunk_id: trial-source-ambiguous-resolution-2026-04-29-0030
+  contributor: codex-agent
+  ai_tool: codex
+  ai_model: gpt-5
+  ai_model_version: ""
+  target_action: new
+  target_entity_id: MONUMENTAL-1
+  notes_for_reviewer: >
+    PubMed/title verified. Trial name is included in title for
+    title-substring verification.
+
+id: SRC-MONUMENTAL1-CHARI-2022
+source_type: clinical_trial
+title: "Talquetamab, a T-cell-redirecting GPRC5D bispecific antibody for multiple myeloma (MonumenTAL-1 trial)"
+version: "2022"
+authors:
+  - Chari A
+  - Minnema MC
+  - Berdeja JG
+  - et al.
+journal: New England Journal of Medicine
+doi: 10.1056/NEJMoa2204591
+pmid: "36507686"
+url: https://pubmed.ncbi.nlm.nih.gov/36507686/
+access_level: subscription_required
+currency_status: current
+current_as_of: "2022-12-15"
+evidence_tier: 3
+precedence_policy: confirmatory
+hosting_mode: referenced
+hosting_justification: H4
+ingestion:
+  method: none
+cache_policy:
+  enabled: false
+  scope: none
+license:
+  name: NEJM article; publisher rights retained
+attribution:
+  required: true
+  text: "Chari et al., NEJM 2022; MonumenTAL-1 trial"
+commercial_use_allowed: false
+redistribution_allowed: false
+modifications_allowed: false
+sharealike_required: false
+known_restrictions:
+  - Do not host publisher article text, tables, or figures.
+legal_review:
+  status: pending
+  date: "2026-04-29"
+relates_to_diseases:
+  - DIS-MM
+last_verified: "2026-04-29"
+verifier: codex-agent
+notes: >
+  MonumenTAL-1 phase 1/2 study of talquetamab in relapsed or refractory
+  multiple myeloma.
+pages_count: 13
+references_count: 35
+corpus_role: rct_publication
